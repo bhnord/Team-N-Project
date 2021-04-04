@@ -1,5 +1,9 @@
 package edu.wpi.teamname.services.database;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 public class Ndb {
 
 
@@ -24,6 +28,16 @@ public class Ndb {
                 default:
                     System.exit(0);
             }
+
+            Connection connection;
+            try {
+                connection = DriverManager.getConnection("jdbc:derby:L1Nodes");
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return;
+            }
+
+
         }
     }
     private void displayNodes() {
