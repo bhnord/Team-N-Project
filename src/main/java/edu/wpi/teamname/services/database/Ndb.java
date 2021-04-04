@@ -40,17 +40,21 @@ public class Ndb {
 
         }
     }
+
     private void displayNodes() {
 
     }
-    private void updateNode(){
+
+    private void updateNode() {
 
         //scanner in w/ id and then prompt for new x and y
     }
-    private void updateNodeLongName(){
+
+    private void updateNodeLongName() {
         //enter ID and then prompt w/ new long name
     }
-    private void getEdgeInfo(){
+
+    private void getEdgeInfo() {
         //display list of edges w/ attributes
     }
 
