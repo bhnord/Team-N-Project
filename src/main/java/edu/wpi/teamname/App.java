@@ -1,44 +1,62 @@
 package edu.wpi.teamname;
 
+import com.google.inject.AbstractModule;
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+import com.google.inject.Provides;
+import com.google.inject.Singleton;
+import edu.wpi.teamname.services.database.DatabaseService;
+import edu.wpi.teamname.services.database.DatabaseServiceProvider;
+import edu.wpi.teamname.state.HomeStateProvider;
+import edu.wpi.teamname.views.FXMLLoaderProvider;
 import java.io.IOException;
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class App extends Application {
 
-  private static Stage primaryStage;
-
-
+  private FXMLLoader loader;
+  private Scene primaryScene;
 
   @Override
   public void init() {
-    System.out.println("Starting Up");
+    log.info("Starting Up");
+    primaryScene = new Scene(new AnchorPane());
+    Injector injector =
+        Guice.createInjector(
+            new DatabaseServiceProvider(),
+            new HomeStateProvider(),
+            new FXMLLoaderProvider(),
+            new AbstractModule() {
+              @Provides
+              @Singleton
+              public Scene providePrimaryScene() {
+                return primaryScene;
+              }
+            });
+    DatabaseService db = injector.getInstance(DatabaseService.class);
+    db.initTable();
+    loader = new FXMLLoader();
+    loader.setControllerFactory(injector::getInstance);
   }
 
   @Override
-  public void start(Stage primaryStage) {
-    App.primaryStage = primaryStage;
-    try {
-      Parent root = FXMLLoader.load(getClass().getResource("fxml/Scene1.fxml"));
-      Scene scene = new Scene(root);
-      primaryStage.setScene(scene);
-      primaryStage.show();
-    } catch (IOException e) {
-      e.printStackTrace();
-      Platform.exit();
-    }
+  public void start(Stage primaryStage) throws IOException {
+    Parent root = loader.load(getClass().getResourceAsStream("views/HomeView.fxml"));
+    primaryScene.setRoot(root);
+    primaryStage.setScene(primaryScene);
+    primaryStage.setAlwaysOnTop(true);
+    primaryStage.show();
   }
-
-  public static Stage getPrimaryStage(){
-    return primaryStage;
-  }
-
 
   @Override
   public void stop() {
-    System.out.println("Shutting Down");
+    log.info("Shutting Down");
   }
 }
