@@ -6,7 +6,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamname.views.HomeController">
    <children>
-      <Button layoutX="84.0" layoutY="162.0" mnemonicParsing="false" onAction="#buttonClicked" prefHeight="77.0" prefWidth="126.0" text="Click Me" />
+      <Button fx:id="FloralRequest" layoutX="84.0" layoutY="162.0" mnemonicParsing="false" onAction="#buttonClicked" prefHeight="77.0" prefWidth="126.0" text="FloralReuqest" />
       <Label fx:id="text" layoutX="357.0" layoutY="162.0" prefHeight="77.0" prefWidth="150.0" text="Label" textAlignment="CENTER">
          <font>
             <Font size="29.0" />

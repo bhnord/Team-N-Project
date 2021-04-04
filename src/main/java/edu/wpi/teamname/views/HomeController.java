@@ -52,11 +52,11 @@ public class HomeController implements Initializable {
     log.info(db.getEmployeeName());
     this.state.getClickedProperty().set(!state.getClickedProperty().get());
     this.state.getCurrentNodeProperty().set(graph.getResults().get(0));
-    advanceScene();
+    advanceScene((((Button) actionEvent.getSource()).getId() + ".fxml"));
   }
 
-  private void advanceScene() throws IOException {
-    Parent root = loader.load(getClass().getResourceAsStream("HomeView.fxml"));
+  private void advanceScene(String file) throws IOException {
+    Parent root = loader.load(getClass().getResourceAsStream(file));
     appPrimaryScene.setRoot(root);
   }
 }
