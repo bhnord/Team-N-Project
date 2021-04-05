@@ -74,4 +74,7 @@ public class HomeController implements Initializable {
   public void advanceAudioVisual(ActionEvent actionEvent) {}
 
   public void advanceLaundryService(ActionEvent actionEvent) {}
+
+  public void advanceGiftDelivery(ActionEvent actionEvent) {
+  }
 }
