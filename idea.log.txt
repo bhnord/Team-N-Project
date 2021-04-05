@@ -1,0 +1,815 @@
+2017-04-14 11:48:58,112 [ 315477]   INFO - j.compiler.server.BuildManager - BUILDER_PROCESS [stdout]: Build process started. Classpath: C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/jps-launcher.jar;C:/Program Files/Java/jdk1.8.0_77/lib/tools.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/optimizedFileManager.jar 
+2017-04-14 11:48:58,236 [ 315601]   INFO - j.compiler.server.BuildManager - BUILDER_PROCESS [stderr]: SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder". 
+2017-04-14 11:48:58,284 [ 315649]   INFO - j.compiler.server.BuildManager - BUILDER_PROCESS [stderr]: SLF4J: Defaulting to no-operation (NOP) logger implementation 
+2017-04-14 11:48:58,284 [ 315649]   INFO - j.compiler.server.BuildManager - BUILDER_PROCESS [stderr]: SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details. 
+2017-04-14 11:49:00,689 [ 318054]   INFO - tartup.impl.StartupManagerImpl - C:/Users/mmaslov/Playtika/infra_contests/.idea case-sensitivity: expected=false actual=false 
+2017-04-14 11:49:02,740 [ 320105]   INFO - tor.impl.FileEditorManagerImpl - Project opening took 134248 ms 
+2017-04-14 11:49:10,659 [ 328024]   INFO - .diagnostic.PerformanceWatcher - Indexable file iteration took 35358ms; general responsiveness: 1/30 sluggish; EDT responsiveness: 7/35 sluggish, 13/35 very slow 
+2017-04-14 11:49:11,810 [ 329175]   INFO - tartup.impl.StartupManagerImpl - ProjectInspectionProfileStartUpActivity run in 640 
+2017-04-14 11:49:12,699 [ 330064]   INFO - tartup.impl.StartupManagerImpl - ExternalSystemStartupActivity run in 829 
+2017-04-14 11:49:13,129 [ 330494]   INFO - tartup.impl.StartupManagerImpl - InitLogStartupActivity run in 430 
+2017-04-14 11:49:13,748 [ 331113]   INFO - tartup.impl.StartupManagerImpl - JSLanguageServiceStartupActivity run in 510 
+2017-04-14 11:49:26,111 [ 343476]   INFO - pl.ProjectRootManagerComponent - project roots have changed 
+2017-04-14 11:49:26,426 [ 343791]   INFO - .diagnostic.PerformanceWatcher - Pushing properties took 40ms; general responsiveness: ok; EDT responsiveness: ok 
+2017-04-14 11:49:26,508 [ 343873]   INFO - .diagnostic.PerformanceWatcher - Indexable file iteration took 82ms; general responsiveness: ok; EDT responsiveness: ok 
+2017-04-14 11:51:48,326 [ 485691]   INFO - .diagnostic.PerformanceWatcher - Find Usages took 630ms; general responsiveness: ok; EDT responsiveness: ok 
+2017-04-14 11:51:53,334 [ 490699]   INFO -  #git4idea.commands.GitHandler - [infra_contests] git -c core.quotepath=false rm --ignore-unmatch --cached -- contests-daemon/src/main/java/com/playtika/services/contests/daemon/UserContestKey.java 
+2017-04-14 11:52:00,184 [ 497549]   INFO - ij.compiler.impl.CompileDriver - COMPILATION STARTED (BUILD PROCESS) 
+2017-04-14 11:52:00,590 [ 497955]   INFO - j.compiler.server.BuildManager - BUILDER_PROCESS [system]: "C:\Program Files\Java\jdk1.8.0_77\bin\java" -Xmx700m -Djava.awt.headless=true -Djava.endorsed.dirs=\"\" -Djdt.compiler.useSingleThread=true -Dcompile.parallel=false -Drebuild.on.dependency.change=true -Djava.net.preferIPv4Stack=true -Dio.netty.initialSeedUniquifier=-4094218875382772727 -Dfile.encoding=windows-1251 -Djps.file.types.component.name=FileTypeManager -Duser.language=en -Duser.country=US -Didea.paths.selector=IntelliJIdea2017.1 "-Didea.home.path=C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1" -Didea.config.path=C:\Users\mmaslov\.IntelliJIdea2017.1\config -Didea.plugins.path=C:\Users\mmaslov\.IntelliJIdea2017.1\config\plugins -Djps.log.dir=C:/Users/mmaslov/.IntelliJIdea2017.1/system/log/build-log "-Djps.fallback.jdk.home=C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/jre64" -Djps.fallback.jdk.version=1.8.0_112-release -Dio.netty.noUnsafe=true -Djava.io.tmpdir=C:/Users/mmaslov/.IntelliJIdea2017.1/system/compile-server/infra-contests_3388a8c0/_temp_ -Djps.backward.ref.index.builder=true -Dkotlin.incremental.compilation.experimental=true -Dkotlin.daemon.enabled -Dkotlin.daemon.client.alive.path=\"C:\Users\mmaslov\AppData\Local\Temp\kotlin-idea-8365391886242556358-is-running\" -classpath "C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/jps-launcher.jar;C:/Program Files/Java/jdk1.8.0_77/lib/tools.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/optimizedFileManager.jar" org.jetbrains.jps.cmdline.Launcher "C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/log4j.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/annotations.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/javac2.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/resources_en.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/protobuf-2.5.0.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/jdom.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/netty-all-4.1.9.Final.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/nanoxml-2.2.3.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/openapi.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/jps-model.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/forms_rt.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/oromatcher.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/jna-platform.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/jgoodies-forms.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/asm-all.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/snappy-in-java-0.5.1.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/jps-builders.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/jps-builders-6.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/util.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/idea_rt.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/trove4j.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/jna.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/commons-io-2.2.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/commons-lang-2.6.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-base-services-3.3.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-base-services-groovy-3.3.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-cli-3.3.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-core-3.3.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-jps-plugin.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-logging-3.3.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-messaging-3.3.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-model-core-3.3.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-model-groovy-3.3.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-native-3.3.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-process-services-3.3.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-resources-3.3.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-tooling-api-3.3.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-tooling-extension-api.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-tooling-extension-impl.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-version-info-3.3.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-wrapper-3.3.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/guava-jdk5-17.0.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/jansi-1.14.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/kryo-2.22.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/minlog-1.2.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/native-platform-0.12.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/native-platform-freebsd-amd64-libcpp-0.12.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/native-platform-freebsd-amd64-libstdcpp-0.12.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/native-platform-freebsd-i386-libcpp-0.12.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/native-platform-freebsd-i386-libstdcpp-0.12.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/native-platform-linux-amd64-0.12.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/native-platform-linux-amd64-ncurses5-0.12.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/native-platform-linux-amd64-ncurses6-0.12.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/native-platform-linux-i386-0.12.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/native-platform-linux-i386-ncurses5-0.12.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/native-platform-linux-i386-ncurses6-0.12.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/native-platform-osx-amd64-0.12.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/native-platform-osx-i386-0.12.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/native-platform-windows-amd64-0.12.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/native-platform-windows-i386-0.12.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/objenesis-1.2.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/reflectasm-1.07.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/resources_en.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/devkit/lib/devkit-jps-plugin.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/IntelliLang/lib/intellilang-jps-plugin.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/Groovy/lib/groovy-jps-plugin.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/Groovy/lib/groovy-rt-constants.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/eclipse/lib/eclipse-jps-plugin.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/eclipse/lib/common-eclipse-util.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/maven/lib/maven-jps-plugin.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/maven/lib/aether-dependency-resolver.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/maven/lib/aether-1.1.0-all.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/maven/lib/maven-aether-provider-3.3.9-all.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/maven/lib/plexus-utils-2.0.6.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-jps-plugin.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/JavaEE/lib/javaee-jps-plugin.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/JavaEE/lib/jps/jpa-jps-plugin.jar;C:/Users/mmaslov/.IntelliJIdea2017.1/config/plugins/Scala/lib/scala-library.jar;C:/Users/mmaslov/.IntelliJIdea2017.1/config/plugins/Scala/lib/compiler-settings.jar;C:/Users/mmaslov/.IntelliJIdea2017.1/config/plugins/Scala/lib/jps/nailgun.jar;C:/Users/mmaslov/.IntelliJIdea2017.1/config/plugins/Scala/lib/jps/scala-jps-plugin.jar;C:/Users/mmaslov/.IntelliJIdea2017.1/config/plugins/Scala/lib/jps/sbt-interface.jar;C:/Users/mmaslov/.IntelliJIdea2017.1/config/plugins/Scala/lib/jps/incremental-compiler.jar;C:/Users/mmaslov/.IntelliJIdea2017.1/config/plugins/Scala/lib/jps/jline.jar;C:/Users/mmaslov/.IntelliJIdea2017.1/config/plugins/Scala/lib/jps/dotty-interfaces.jar;C:/Users/mmaslov/.IntelliJIdea2017.1/config/plugins/Scala/lib/scala-library.jar;C:/Users/mmaslov/.IntelliJIdea2017.1/config/plugins/Scala/lib/scala-play-2-jps-plugin.jar;C:/Users/mmaslov/.IntelliJIdea2017.1/config/plugins/Scala/launcher/sbt-launch.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/Kotlin/lib/jps/kotlin-jps-plugin.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/Kotlin/lib/kotlin-runtime.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/Kotlin/lib/kotlin-reflect.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/Kotlin/lib/kotlin-plugin.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/Kotlin/lib/kotlin-android-extensions-plugin.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/Kotlin/lib/kotlin-android-extensions-compiler-plugin.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/javaFX/lib/javaFX-jps-plugin.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/javaFX/lib/common-javaFX-plugin.jar" org.jetbrains.jps.cmdline.BuildMain 127.0.0.1 50374 ccc5e28b-eb49-4d79-b3a5-36082b8b2422 C:/Users/mmaslov/.IntelliJIdea2017.1/system/compile-server 
+2017-04-14 11:52:00,970 [ 498335]   INFO - j.compiler.server.BuildManager - BUILDER_PROCESS [stdout]: Build process started. Classpath: C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/jps-launcher.jar;C:/Program Files/Java/jdk1.8.0_77/lib/tools.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/optimizedFileManager.jar 
+2017-04-14 11:52:01,061 [ 498426]   INFO - j.compiler.server.BuildManager - BUILDER_PROCESS [stderr]: SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder". 
+2017-04-14 11:52:01,097 [ 498462]   INFO - j.compiler.server.BuildManager - BUILDER_PROCESS [stderr]: SLF4J: Defaulting to no-operation (NOP) logger implementation 
+2017-04-14 11:52:01,097 [ 498462]   INFO - j.compiler.server.BuildManager - BUILDER_PROCESS [stderr]: SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details. 
+2017-04-14 11:52:10,879 [ 508244]   INFO - j.compiler.server.BuildManager - BUILDER_PROCESS [system]: "C:\Program Files\Java\jdk1.8.0_77\bin\java" -Xmx700m -Djava.awt.headless=true -Djava.endorsed.dirs=\"\" -Djdt.compiler.useSingleThread=true -Dpreload.project.path=C:/Users/mmaslov/Playtika/infra_contests -Dpreload.config.path=C:/Users/mmaslov/.IntelliJIdea2017.1/config/options -Dcompile.parallel=false -Drebuild.on.dependency.change=true -Djava.net.preferIPv4Stack=true -Dio.netty.initialSeedUniquifier=-4094218875382772727 -Dfile.encoding=windows-1251 -Djps.file.types.component.name=FileTypeManager -Duser.language=en -Duser.country=US -Didea.paths.selector=IntelliJIdea2017.1 "-Didea.home.path=C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1" -Didea.config.path=C:\Users\mmaslov\.IntelliJIdea2017.1\config -Didea.plugins.path=C:\Users\mmaslov\.IntelliJIdea2017.1\config\plugins -Djps.log.dir=C:/Users/mmaslov/.IntelliJIdea2017.1/system/log/build-log "-Djps.fallback.jdk.home=C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/jre64" -Djps.fallback.jdk.version=1.8.0_112-release -Dio.netty.noUnsafe=true -Djava.io.tmpdir=C:/Users/mmaslov/.IntelliJIdea2017.1/system/compile-server/infra-contests_3388a8c0/_temp_ -Djps.backward.ref.index.builder=true -Dkotlin.incremental.compilation.experimental=true -Dkotlin.daemon.enabled -Dkotlin.daemon.client.alive.path=\"C:\Users\mmaslov\AppData\Local\Temp\kotlin-idea-8365391886242556358-is-running\" -classpath "C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/jps-launcher.jar;C:/Program Files/Java/jdk1.8.0_77/lib/tools.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/optimizedFileManager.jar" org.jetbrains.jps.cmdline.Launcher "C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/log4j.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/annotations.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/javac2.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/resources_en.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/protobuf-2.5.0.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/jdom.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/netty-all-4.1.9.Final.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/nanoxml-2.2.3.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/openapi.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/jps-model.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/forms_rt.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/oromatcher.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/jna-platform.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/jgoodies-forms.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/asm-all.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/snappy-in-java-0.5.1.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/jps-builders.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/jps-builders-6.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/util.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/idea_rt.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/trove4j.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/jna.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/commons-io-2.2.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/commons-lang-2.6.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-base-services-3.3.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-base-services-groovy-3.3.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-cli-3.3.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-core-3.3.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-jps-plugin.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-logging-3.3.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-messaging-3.3.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-model-core-3.3.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-model-groovy-3.3.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-native-3.3.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-process-services-3.3.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-resources-3.3.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-tooling-api-3.3.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-tooling-extension-api.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-tooling-extension-impl.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-version-info-3.3.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-wrapper-3.3.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/guava-jdk5-17.0.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/jansi-1.14.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/kryo-2.22.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/minlog-1.2.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/native-platform-0.12.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/native-platform-freebsd-amd64-libcpp-0.12.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/native-platform-freebsd-amd64-libstdcpp-0.12.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/native-platform-freebsd-i386-libcpp-0.12.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/native-platform-freebsd-i386-libstdcpp-0.12.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/native-platform-linux-amd64-0.12.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/native-platform-linux-amd64-ncurses5-0.12.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/native-platform-linux-amd64-ncurses6-0.12.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/native-platform-linux-i386-0.12.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/native-platform-linux-i386-ncurses5-0.12.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/native-platform-linux-i386-ncurses6-0.12.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/native-platform-osx-amd64-0.12.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/native-platform-osx-i386-0.12.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/native-platform-windows-amd64-0.12.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/native-platform-windows-i386-0.12.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/objenesis-1.2.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/reflectasm-1.07.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/resources_en.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/devkit/lib/devkit-jps-plugin.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/IntelliLang/lib/intellilang-jps-plugin.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/Groovy/lib/groovy-jps-plugin.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/Groovy/lib/groovy-rt-constants.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/eclipse/lib/eclipse-jps-plugin.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/eclipse/lib/common-eclipse-util.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/maven/lib/maven-jps-plugin.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/maven/lib/aether-dependency-resolver.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/maven/lib/aether-1.1.0-all.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/maven/lib/maven-aether-provider-3.3.9-all.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/maven/lib/plexus-utils-2.0.6.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-jps-plugin.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/JavaEE/lib/javaee-jps-plugin.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/JavaEE/lib/jps/jpa-jps-plugin.jar;C:/Users/mmaslov/.IntelliJIdea2017.1/config/plugins/Scala/lib/scala-library.jar;C:/Users/mmaslov/.IntelliJIdea2017.1/config/plugins/Scala/lib/compiler-settings.jar;C:/Users/mmaslov/.IntelliJIdea2017.1/config/plugins/Scala/lib/jps/nailgun.jar;C:/Users/mmaslov/.IntelliJIdea2017.1/config/plugins/Scala/lib/jps/scala-jps-plugin.jar;C:/Users/mmaslov/.IntelliJIdea2017.1/config/plugins/Scala/lib/jps/sbt-interface.jar;C:/Users/mmaslov/.IntelliJIdea2017.1/config/plugins/Scala/lib/jps/incremental-compiler.jar;C:/Users/mmaslov/.IntelliJIdea2017.1/config/plugins/Scala/lib/jps/jline.jar;C:/Users/mmaslov/.IntelliJIdea2017.1/config/plugins/Scala/lib/jps/dotty-interfaces.jar;C:/Users/mmaslov/.IntelliJIdea2017.1/config/plugins/Scala/lib/scala-library.jar;C:/Users/mmaslov/.IntelliJIdea2017.1/config/plugins/Scala/lib/scala-play-2-jps-plugin.jar;C:/Users/mmaslov/.IntelliJIdea2017.1/config/plugins/Scala/launcher/sbt-launch.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/Kotlin/lib/jps/kotlin-jps-plugin.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/Kotlin/lib/kotlin-runtime.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/Kotlin/lib/kotlin-reflect.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/Kotlin/lib/kotlin-plugin.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/Kotlin/lib/kotlin-android-extensions-plugin.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/Kotlin/lib/kotlin-android-extensions-compiler-plugin.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/javaFX/lib/javaFX-jps-plugin.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/javaFX/lib/common-javaFX-plugin.jar" org.jetbrains.jps.cmdline.BuildMain 127.0.0.1 50374 0cac23d4-eae4-4a83-b369-97957f388fe1 C:/Users/mmaslov/.IntelliJIdea2017.1/system/compile-server 
+2017-04-14 11:52:11,122 [ 508487]   INFO - lij.compiler.impl.CompilerUtil - 	COMPILATION FINISHED (BUILD PROCESS); Errors: 0; warnings: 0 took 10818 ms: 0 min 10sec 
+2017-04-14 11:52:11,244 [ 508609]   INFO - j.compiler.server.BuildManager - BUILDER_PROCESS [stdout]: Build process started. Classpath: C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/jps-launcher.jar;C:/Program Files/Java/jdk1.8.0_77/lib/tools.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/optimizedFileManager.jar 
+2017-04-14 11:52:11,294 [ 508659]   INFO - j.compiler.server.BuildManager - BUILDER_PROCESS [stderr]: SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder". 
+2017-04-14 11:52:11,294 [ 508659]   INFO - j.compiler.server.BuildManager - BUILDER_PROCESS [stderr]: SLF4J: Defaulting to no-operation (NOP) logger implementation 
+2017-04-14 11:52:11,294 [ 508659]   INFO - j.compiler.server.BuildManager - BUILDER_PROCESS [stderr]: SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details. 
+2017-04-14 11:52:39,035 [ 536400]   INFO -  #git4idea.commands.GitHandler - [infra_contests] git -c core.quotepath=false commit --amend --only -F C:\Users\mmaslov\AppData\Local\Temp\git-commit-msg-.txt -- contests-daemon/src/main/java/com/playtika/services/contests/daemon/UserContestKey.java 
+2017-04-14 11:52:39,966 [ 537331]   INFO -  #git4idea.commands.GitHandler - [feature/INFRA-10277_refactor_camel_route 4c252d1] INFRA-10277 Daemon: filter blacklisted users in Camel route
+ Date: Fri Apr 14 11:17:35 2017 +0300
+ 9 files changed, 113 insertions(+), 112 deletions(-)
+ create mode 100644 contests-daemon/src/main/java/com/playtika/services/contests/daemon/NonBlackListedUserPredicate.java
+ delete mode 100644 contests-daemon/src/main/java/com/playtika/services/contests/daemon/UserContestKey.java
+ create mode 100644 contests-daemon/src/test/java/com/playtika/services/contests/daemon/NonBlackListedUserPredicateShould.java 
+2017-04-14 11:52:42,652 [ 540017]   INFO -  #git4idea.commands.GitHandler - [infra_contests] git -c core.quotepath=false push --progress --porcelain origin refs/heads/feature/INFRA-10277_refactor_camel_route:feature/INFRA-10277_refactor_camel_route --force 
+2017-04-14 11:52:45,045 [ 542410]   INFO -  #git4idea.commands.GitHandler - Counting objects: 27, done. 
+2017-04-14 11:52:45,055 [ 542420]   INFO -  #git4idea.commands.GitHandler - Delta compression using up to 4 threads. 
+2017-04-14 11:52:45,055 [ 542420]   INFO -  #git4idea.commands.GitHandler - Compressing objects: 100% (17/17), done. 
+2017-04-14 11:52:45,065 [ 542430]   INFO -  #git4idea.commands.GitHandler - Writing objects: 100% (27/27), 5.45 KiB | 0 bytes/s, done. 
+2017-04-14 11:52:45,065 [ 542430]   INFO -  #git4idea.commands.GitHandler - Total 27 (delta 9), reused 0 (delta 0) 
+2017-04-14 11:52:46,615 [ 543980]   INFO -  #git4idea.commands.GitHandler - remote: 
+2017-04-14 11:52:46,615 [ 543980]   INFO -  #git4idea.commands.GitHandler - To ssh://git@stash.playtika.com:7999/inse/infra_contests.git 
+2017-04-14 11:52:46,615 [ 543980]   INFO -  #git4idea.commands.GitHandler - remote: View pull request for feature/INFRA-10277_refactor_camel_route => feature/INFRA-10277_blocked_users: 
+2017-04-14 11:52:46,615 [ 543980]   INFO -  #git4idea.commands.GitHandler - +	refs/heads/feature/INFRA-10277_refactor_camel_route:refs/heads/feature/INFRA-10277_refactor_camel_route	9fc6014...4c252d1 (forced update) 
+2017-04-14 11:52:46,615 [ 543980]   INFO -  #git4idea.commands.GitHandler - remote:   https://stash.playtika.com/projects/INSE/repos/infra_contests/pull-requests/149 
+2017-04-14 11:52:46,615 [ 543980]   INFO -  #git4idea.commands.GitHandler - remote: 
+2017-04-14 11:52:46,615 [ 543980]   INFO -  #git4idea.commands.GitHandler - Done 
+2017-04-14 11:54:52,210 [ 669575]   INFO - ellij.vfs.persistent.FSRecords - Creating VFS corruption marker; Trace=
+java.lang.Exception
+	at com.intellij.openapi.vfs.newvfs.persistent.FSRecords$DbConnection.a(FSRecords.java:219)
+	at com.intellij.openapi.vfs.newvfs.persistent.FSRecords$DbConnection.access$3600(FSRecords.java:162)
+	at com.intellij.openapi.vfs.newvfs.persistent.FSRecords.invalidateCaches(FSRecords.java:1928)
+	at com.intellij.ide.actions.InvalidateCachesAction.actionPerformed(InvalidateCachesAction.java:94)
+	at com.intellij.openapi.actionSystem.ex.ActionUtil$1.run(ActionUtil.java:215)
+	at com.intellij.openapi.actionSystem.ex.ActionUtil.performActionDumbAware(ActionUtil.java:232)
+	at com.intellij.openapi.actionSystem.impl.ActionMenuItem$ActionTransmitter.a(ActionMenuItem.java:309)
+	at com.intellij.openapi.wm.impl.FocusManagerImpl.runOnOwnContext(FocusManagerImpl.java:929)
+	at com.intellij.openapi.wm.impl.IdeFocusManagerImpl.runOnOwnContext(IdeFocusManagerImpl.java:136)
+	at com.intellij.openapi.actionSystem.impl.ActionMenuItem$ActionTransmitter.actionPerformed(ActionMenuItem.java:299)
+	at javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:2022)
+	at com.intellij.openapi.actionSystem.impl.ActionMenuItem.a(ActionMenuItem.java:116)
+	at com.intellij.openapi.application.TransactionGuardImpl.a(TransactionGuardImpl.java:86)
+	at com.intellij.openapi.application.TransactionGuardImpl.a(TransactionGuardImpl.java:109)
+	at com.intellij.openapi.application.TransactionGuardImpl.submitTransaction(TransactionGuardImpl.java:118)
+	at com.intellij.openapi.application.TransactionGuard.submitTransaction(TransactionGuard.java:122)
+	at com.intellij.openapi.actionSystem.impl.ActionMenuItem.fireActionPerformed(ActionMenuItem.java:116)
+	at com.intellij.ui.plaf.beg.BegMenuItemUI.a(BegMenuItemUI.java:513)
+	at com.intellij.ui.plaf.beg.BegMenuItemUI.access$300(BegMenuItemUI.java:45)
+	at com.intellij.ui.plaf.beg.BegMenuItemUI$MyMouseInputHandler.mouseReleased(BegMenuItemUI.java:533)
+	at java.awt.Component.processMouseEvent(Component.java:6541)
+	at javax.swing.JComponent.processMouseEvent(JComponent.java:3324)
+	at java.awt.Component.processEvent(Component.java:6306)
+	at java.awt.Container.processEvent(Container.java:2236)
+	at java.awt.Component.dispatchEventImpl(Component.java:4897)
+	at java.awt.Container.dispatchEventImpl(Container.java:2294)
+	at java.awt.Component.dispatchEvent(Component.java:4719)
+	at java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4888)
+	at java.awt.LightweightDispatcher.processMouseEvent(Container.java:4525)
+	at java.awt.LightweightDispatcher.dispatchEvent(Container.java:4466)
+	at java.awt.Container.dispatchEventImpl(Container.java:2280)
+	at java.awt.Window.dispatchEventImpl(Window.java:2746)
+	at java.awt.Component.dispatchEvent(Component.java:4719)
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:764)
+	at java.awt.EventQueue.access$500(EventQueue.java:98)
+	at java.awt.EventQueue$3.run(EventQueue.java:715)
+	at java.awt.EventQueue$3.run(EventQueue.java:709)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:80)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:90)
+	at java.awt.EventQueue$4.run(EventQueue.java:737)
+	at java.awt.EventQueue$4.run(EventQueue.java:735)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:80)
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:734)
+	at com.intellij.ide.IdeEventQueue.e(IdeEventQueue.java:827)
+	at com.intellij.ide.IdeEventQueue._dispatchEvent(IdeEventQueue.java:651)
+	at com.intellij.ide.IdeEventQueue.dispatchEvent(IdeEventQueue.java:365)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:201)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
+ 
+2017-04-14 11:54:54,152 [ 671517]   INFO - ution.rmi.RemoteProcessSupport - Terminating: 64514/Maven3ServerImpl5d4de329 
+2017-04-14 11:54:54,221 [ 671586]   INFO - stubs.SerializationManagerImpl - START StubSerializationManager SHUTDOWN 
+2017-04-14 11:54:54,221 [ 671586]   INFO - stubs.SerializationManagerImpl - END StubSerializationManager SHUTDOWN 
+2017-04-14 11:54:54,222 [ 671587]   INFO - org.jetbrains.io.BuiltInServer - web server stopped 
+2017-04-14 11:54:54,227 [ 671592]   INFO - Types.impl.FileTypeManagerImpl - FileTypeManager: 4 auto-detected files
+Elapsed time on auto-detect: 900 ms 
+2017-04-14 11:54:54,229 [ 671594]   INFO - pl.local.NativeFileWatcherImpl - Watcher terminated with exit code 0 
+2017-04-14 11:54:54,379 [ 671744]   INFO - mbokPluginApplicationComponent - Lombok plugin disposed for IntelliJ 
+2017-04-14 11:54:54,379 [ 671744]   INFO - il.indexing.FileBasedIndexImpl - START INDEX SHUTDOWN 
+2017-04-14 11:54:54,796 [ 672161]   INFO - il.indexing.FileBasedIndexImpl - END INDEX SHUTDOWN 
+2017-04-14 11:54:54,801 [ 672166]   INFO - newvfs.persistent.PersistentFS - VFS dispose started 
+2017-04-14 11:54:54,814 [ 672179]   INFO - newvfs.persistent.PersistentFS - VFS dispose completed 
+2017-04-14 11:54:54,817 [ 672182]   INFO -   #com.intellij.util.Restarter - restart: [] 
+2017-04-14 11:54:55,357 [ 672722]   INFO -        #com.intellij.idea.Main - ------------------------------------------------------ IDE SHUTDOWN ------------------------------------------------------ 
+2017-04-14 11:54:55,365 [ 672730]   INFO - org.jetbrains.io.BuiltInServer - web server stopped 
+2017-04-14 11:54:57,550 [      0]   INFO -        #com.intellij.idea.Main - ------------------------------------------------------ IDE STARTED ------------------------------------------------------ 
+2017-04-14 11:54:57,584 [     34]   INFO -     #com.intellij.util.ui.JBUI - UI scale factor: 1.25 
+2017-04-14 11:54:57,593 [     43]   INFO -        #com.intellij.idea.Main - IDE: IntelliJ IDEA (build #IU-171.4073.35, 06 Apr 2017 21:57) 
+2017-04-14 11:54:57,593 [     43]   INFO -        #com.intellij.idea.Main - OS: Windows 7 (6.1, amd64) 
+2017-04-14 11:54:57,593 [     43]   INFO -        #com.intellij.idea.Main - JRE: 1.8.0_112-release-736-b16 (JetBrains s.r.o) 
+2017-04-14 11:54:57,593 [     43]   INFO -        #com.intellij.idea.Main - JVM: 25.112-b16 (OpenJDK 64-Bit Server VM) 
+2017-04-14 11:54:57,595 [     45]   INFO -        #com.intellij.idea.Main - JVM Args: -Xms1g -Xmx4g -XX:ReservedCodeCacheSize=240m -XX:+UseConcMarkSweepGC -XX:SoftRefLRUPolicyMSPerMB=50 -ea -Dsun.io.useCanonCaches=false -Djava.net.preferIPv4Stack=true -XX:+HeapDumpOnOutOfMemoryError -XX:-OmitStackTraceInFastThrow -Djb.vmOptionsFile=C:\Users\mmaslov\.IntelliJIdea2017.1\idea64.exe.vmoptions -Xbootclasspath/a:C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\lib\boot.jar -Didea.jre.check=true -Didea.paths.selector=IntelliJIdea2017.1 -XX:ErrorFile=C:\Users\mmaslov\java_error_in_idea_%p.log -XX:HeapDumpPath=C:\Users\mmaslov\java_error_in_idea.hprof 
+2017-04-14 11:54:57,595 [     45]   INFO -        #com.intellij.idea.Main - ext: C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\jre64\lib\ext: [access-bridge-64.jar, cldrdata.jar, dnsns.jar, jaccess.jar, jfxrt.jar, localedata.jar, meta-index, nashorn.jar, sunec.jar, sunjce_provider.jar, sunmscapi.jar, sunpkcs11.jar, zipfs.jar] 
+2017-04-14 11:54:57,595 [     45]   INFO -        #com.intellij.idea.Main - JNU charset: Cp1251 
+2017-04-14 11:54:57,622 [     72]   INFO -        #com.intellij.idea.Main - JNA library (64-bit) loaded in 26 ms 
+2017-04-14 11:54:57,624 [     74]   INFO - penapi.util.io.win32.IdeaWin32 - Native filesystem for Windows is operational 
+2017-04-14 11:54:57,625 [     75]   INFO -        #com.intellij.idea.Main - Using "FocusKiller" library to prevent focus stealing. 
+2017-04-14 11:54:59,158 [   1608]   INFO - llij.ide.plugins.PluginManager - Cannot find optional descriptor plugin-intelliLang.xml 
+2017-04-14 11:54:59,519 [   1969]   INFO - llij.ide.plugins.PluginManager - Plugin 'CVS Integration' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,524 [   1974]   INFO - llij.ide.plugins.PluginManager - Plugin 'ClearCase Integration' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,526 [   1976]   INFO - llij.ide.plugins.PluginManager - Plugin 'Perforce Integration' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,527 [   1977]   INFO - llij.ide.plugins.PluginManager - Plugin 'Subversion Integration' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,529 [   1979]   INFO - llij.ide.plugins.PluginManager - Plugin 'TFS Integration' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,534 [   1984]   INFO - llij.ide.plugins.PluginManager - Plugin 'Spring AOP/@AspectJ' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,535 [   1985]   INFO - llij.ide.plugins.PluginManager - Plugin 'Ant Support' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,536 [   1986]   INFO - llij.ide.plugins.PluginManager - Plugin 'TestNG-J' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,537 [   1987]   INFO - llij.ide.plugins.PluginManager - Plugin 'Coverage' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,539 [   1989]   INFO - llij.ide.plugins.PluginManager - Plugin 'Emma' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,540 [   1990]   INFO - llij.ide.plugins.PluginManager - Plugin 'TeamCity Integration' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,546 [   1996]   INFO - llij.ide.plugins.PluginManager - Plugin 'UI Designer' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,547 [   1997]   INFO - llij.ide.plugins.PluginManager - Plugin 'Velocity support' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,548 [   1998]   INFO - llij.ide.plugins.PluginManager - Plugin 'Cucumber for Java' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,549 [   1999]   INFO - llij.ide.plugins.PluginManager - Plugin 'hg4idea' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,550 [   2000]   INFO - llij.ide.plugins.PluginManager - Plugin '.ignore' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,551 [   2001]   INFO - llij.ide.plugins.PluginManager - Plugin 'Cucumber for Groovy' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,552 [   2002]   INFO - llij.ide.plugins.PluginManager - Plugin 'Osmorc' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,555 [   2005]   INFO - llij.ide.plugins.PluginManager - Plugin 'AspectJ Support' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,556 [   2006]   INFO - llij.ide.plugins.PluginManager - Plugin 'Flash/Flex Support' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,562 [   2012]   INFO - llij.ide.plugins.PluginManager - Plugin 'GitHub' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,562 [   2012]   INFO - llij.ide.plugins.PluginManager - Plugin 'GlassFish Integration' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,563 [   2013]   INFO - llij.ide.plugins.PluginManager - Plugin 'Heroku integration' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,564 [   2014]   INFO - llij.ide.plugins.PluginManager - Plugin 'JBoss Integration' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,564 [   2014]   INFO - llij.ide.plugins.PluginManager - Plugin 'JSR45 Integration' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,565 [   2015]   INFO - llij.ide.plugins.PluginManager - Plugin 'CoffeeScript' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,566 [   2016]   INFO - llij.ide.plugins.PluginManager - Plugin 'Jetty Integration' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,566 [   2016]   INFO - llij.ide.plugins.PluginManager - Plugin 'OpenShift integration' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,568 [   2018]   INFO - llij.ide.plugins.PluginManager - Plugin 'Resin Integration' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,569 [   2019]   INFO - llij.ide.plugins.PluginManager - Plugin 'CloudBees integration' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,570 [   2020]   INFO - llij.ide.plugins.PluginManager - Plugin 'Geronimo Integration' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,570 [   2020]   INFO - llij.ide.plugins.PluginManager - Plugin 'WebSphere Integration' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,571 [   2021]   INFO - llij.ide.plugins.PluginManager - Plugin 'WebLogic Integration' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,572 [   2022]   INFO - llij.ide.plugins.PluginManager - Plugin 'Hibernate Support' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,574 [   2024]   INFO - llij.ide.plugins.PluginManager - Plugin 'Application Servers View' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,575 [   2025]   INFO - llij.ide.plugins.PluginManager - Plugin 'JBoss Support' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,575 [   2025]   INFO - llij.ide.plugins.PluginManager - Plugin 'JBoss Drools Support' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,576 [   2026]   INFO - llij.ide.plugins.PluginManager - Plugin 'JBoss Arquillian Support' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,577 [   2027]   INFO - llij.ide.plugins.PluginManager - Plugin 'Struts 1.x' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,578 [   2028]   INFO - llij.ide.plugins.PluginManager - Plugin 'JBoss Seam Support' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,579 [   2029]   INFO - llij.ide.plugins.PluginManager - Plugin 'JBoss Seam Pageflow Support' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,581 [   2031]   INFO - llij.ide.plugins.PluginManager - Plugin 'JBoss Seam Pages Support' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,582 [   2032]   INFO - llij.ide.plugins.PluginManager - Plugin 'Cloud Foundry integration' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,582 [   2032]   INFO - llij.ide.plugins.PluginManager - Plugin 'dmServer Support' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,583 [   2033]   INFO - llij.ide.plugins.PluginManager - Plugin 'FreeMarker support' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,584 [   2034]   INFO - llij.ide.plugins.PluginManager - Plugin 'GWT Support' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,586 [   2036]   INFO - llij.ide.plugins.PluginManager - Plugin 'Google App Engine Integration' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,587 [   2037]   INFO - llij.ide.plugins.PluginManager - Plugin 'Vaadin Support' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,588 [   2038]   INFO - llij.ide.plugins.PluginManager - Plugin 'Spring Batch' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,589 [   2039]   INFO - llij.ide.plugins.PluginManager - Plugin 'Spring OSGi' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,589 [   2039]   INFO - llij.ide.plugins.PluginManager - Plugin 'Spring Data' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,590 [   2040]   INFO - llij.ide.plugins.PluginManager - Plugin 'Spring MVC' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,591 [   2041]   INFO - llij.ide.plugins.PluginManager - Plugin 'Spring Security' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,592 [   2042]   INFO - llij.ide.plugins.PluginManager - Plugin 'Spring Integration Patterns' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,593 [   2043]   INFO - llij.ide.plugins.PluginManager - Plugin 'Spring Web Flow' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,594 [   2044]   INFO - llij.ide.plugins.PluginManager - Plugin 'Spring WebSocket' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,594 [   2044]   INFO - llij.ide.plugins.PluginManager - Plugin 'Spring Web Services' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,595 [   2045]   INFO - llij.ide.plugins.PluginManager - Plugin 'Struts 2' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,596 [   2046]   INFO - llij.ide.plugins.PluginManager - Plugin 'Tapestry support' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,597 [   2047]   INFO - llij.ide.plugins.PluginManager - Plugin 'Thymeleaf' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,598 [   2048]   INFO - llij.ide.plugins.PluginManager - Plugin 'Grails' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,599 [   2049]   INFO - llij.ide.plugins.PluginManager - Plugin 'Android Support' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,616 [   2066]   INFO - llij.ide.plugins.PluginManager - Plugin 'Haml' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,617 [   2067]   INFO - llij.ide.plugins.PluginManager - Plugin 'Less support' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,618 [   2068]   INFO - llij.ide.plugins.PluginManager - Plugin 'Sass support' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,619 [   2069]   INFO - llij.ide.plugins.PluginManager - Plugin 'Stylus support' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,620 [   2070]   INFO - llij.ide.plugins.PluginManager - Plugin 'Spy-js' can't be loaded because: Plugin is disabled 
+2017-04-14 11:54:59,818 [   2268]   INFO - llij.ide.plugins.PluginManager - 140 plugins initialized in 1384 ms 
+2017-04-14 11:54:59,826 [   2276]   INFO - llij.ide.plugins.PluginManager - Loaded bundled plugins: ASP (0.1), Bytecode Viewer (0.1), CFML Support (3.53), CSS Support (171.4073.35), Copyright (8.1), DSM Analysis (1.0.0), Database Tools and SQL (1.0), Eclipse Integration (3.0), EditorConfig (171.4073.35), Gherkin (999.999), Git Integration (8.1), Gradle (171.4073.35), Groovy (9.0), Guice (8.0), HTML Tools (2.0), I18n for Java (171.4073.35), IDEA CORE (171.4073.35), IntelliLang (8.0), J2ME (1.0), JBA Cloud Config (171.4073.35), JBoss jBPM (2.0.0), JUnit (1.0), Java Bytecode Decompiler (171.4073.35), Java EE: Batch Applications (1.0), Java EE: Bean Validation Support (1.1), Java EE: Contexts and Dependency Injection (1.1), Java EE: EJB, JPA, Servlets (1.0), Java EE: JMS, JSON Processing, Concurrency, Transaction  (1.0), Java EE: Java Server Faces (2.2.X.), Java EE: RESTful Web Services (JAX-RS) (1.0), Java EE: Web Services (JAX-WS) (1.9), Java EE: WebSockets (1.0), Java Server Pages (JSP) Integration (1.0), JavaFX (1.0), JavaScript Debugger (1.0), JavaScript Intention Power Pack (0.9.4), JavaScript Support (1.0), Kotlin (1.1.1-release-IJ2017.1-1), Markdown support (VERSION), Maven Integration (171.4073.35), Maven Integration Extension (171.4073.35), Persistence Frameworks Support (1.0), Playframework Support (1.0), Plugin DevKit (1.0), Properties Support (171.4073.35), QuirksMode (171.4073.35), REST Client (171.4073.35), Refactor-X (2.01), Remote Hosts Access (0.1), SSH Remote Run (0.1), Settings Repository (171.4073.35), Spring Boot (1.0), Spring Support (1.0), Task Management (1.0), Terminal (0.1), Time Tracking (1.0), Tomcat and TomEE Integration (1.0), UML Support (1.0), W3C Validators (2.0), XPathView + XSLT Support (4), XSLT-Debugger (1.4), YAML (171.4073.35), ZKM-Unscramble (1.0), tslint (171.4073.35) 
+2017-04-14 11:54:59,827 [   2277]   INFO - llij.ide.plugins.PluginManager - Loaded custom plugins: BashSupport (1.6.5.171), Docker integration (2.5.3), Ini4Idea (171.3780.104), Lombok Plugin (0.14.16), Lua (1.0.106), Maven Helper (3.2.138.1503.1), Request mapper (0.3.1), Scala (2017.1.15), YourKit Java Profiler 2016.02-b43 Integration (2016.2.43.0) 
+2017-04-14 11:54:59,827 [   2277]   INFO - llij.ide.plugins.PluginManager - Disabled plugins: .ignore (1.5), Android Support (10.2.2.2), Ant Support (1.0), Application Servers View (0.2.0), AspectJ Support (1.2), CVS Integration (11), ClearCase Integration (2.0), Cloud Foundry integration (1.0), CloudBees integration (1.0), CoffeeScript (2.0), Coverage (171.4073.35), Cucumber for Groovy (999.999), Cucumber for Java (999.999), Emma (171.4073.35), Flash/Flex Support (171.4073.35), FreeMarker support (1.0), GWT Support (1.0), Geronimo Integration (1.0), GitHub (171.4073.35), GlassFish Integration (1.0), Google App Engine Integration (1.1.4), Grails (9.0), Haml (171.4073.35), Heroku integration (1.0), Hibernate Support (1.0), JBoss Arquillian Support (1.0), JBoss Drools Support (1.0), JBoss Integration (1.0), JBoss Seam Pageflow Support (1.0), JBoss Seam Pages Support (1.0), JBoss Seam Support (1.0), JBoss Support (1.0), JSR45 Integration (1.0), Jetty Integration (1.0), Less support (171.4073.35), OpenShift integration (1.0), Osmorc (1.4.9), Perforce Integration (2.0), Resin Integration (8.1), Sass support (171.4073.35), Spring AOP/@AspectJ (1.0), Spring Batch (1.0), Spring Data (1.0), Spring Integration Patterns (1.0), Spring MVC (1.0), Spring OSGi (1.0), Spring Security (1.0), Spring Web Flow (1.0), Spring Web Services (1.0), Spring WebSocket (1.0), Spy-js (171.4073.35), Struts 1.x (2.0), Struts 2 (1.0), Stylus support (999.999), Subversion Integration (1.1), TFS Integration (999.999), Tapestry support (1.0), TeamCity Integration (9.1.37645), TestNG-J (8.0), Thymeleaf (1.0), UI Designer (171.4073.35), Vaadin Support (1.0), Velocity support (1.0), WebLogic Integration (1.0), WebSphere Integration (1.0), dmServer Support (0.9.5), hg4idea (10.0) 
+2017-04-14 11:55:00,691 [   3141]   INFO - cloudConfig.CloudConfigManager - === Offline: (null) false === 
+2017-04-14 11:55:00,731 [   3181]   INFO - ellij.vfs.persistent.FSRecords - Marking VFS as corrupted: corruption marker found 
+2017-04-14 11:55:00,732 [   3182]   INFO - ellij.vfs.persistent.FSRecords - Filesystem storage is corrupted or does not exist. [Re]Building. Reason: Corruption marker file found 
+2017-04-14 11:55:00,743 [   3193]   INFO - ellij.vfs.persistent.FSRecords - Marking VFS as corrupted: 'C:\Users\mmaslov\.IntelliJIdea2017.1\system\caches\names.dat' does not exist 
+2017-04-14 11:55:00,744 [   3194]   INFO - ellij.util.io.PagedFileStorage - lower=100; upper=500; buffer=10; max=4042 
+2017-04-14 11:55:00,774 [   3224]   INFO - pl.local.NativeFileWatcherImpl - Starting file watcher: C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\bin\fsnotifier64.exe 
+2017-04-14 11:55:00,788 [   3238]   INFO - pl.local.NativeFileWatcherImpl - Native file watcher is operational. 
+2017-04-14 11:55:00,822 [   3272]   INFO - pi.util.registry.RegistryState - Registry values changed by user: 
+2017-04-14 11:55:00,822 [   3272]   INFO - pi.util.registry.RegistryState -   SBT.system.in.process = true 
+2017-04-14 11:55:01,705 [   4155]   INFO - .history.utils.LocalHistoryLog - FS has been rebuild, rebuilding local history... 
+2017-04-14 11:55:01,888 [   4338]   INFO - til.net.ssl.CertificateManager - Default SSL context initialized 
+2017-04-14 11:55:01,914 [   4364]   INFO - rains.ide.BuiltInServerManager - built-in server started, port 63342 
+2017-04-14 11:55:01,942 [   4392]   INFO - gs.impl.UpdateCheckerComponent - channel: release 
+2017-04-14 11:55:02,172 [   4622]   INFO - il.indexing.FileBasedIndexImpl - Index exts enumerated:183 
+2017-04-14 11:55:02,178 [   4628]   INFO - il.indexing.FileBasedIndexImpl - Index scheduled:5 
+2017-04-14 11:55:02,223 [   4673]   INFO - tellij.psi.stubs.StubIndexImpl - All stub exts enumerated:39 
+2017-04-14 11:55:02,224 [   4674]   INFO - tellij.psi.stubs.StubIndexImpl - stub exts update scheduled:0 
+2017-04-14 11:55:02,358 [   4808]   INFO - j.ide.script.IdeStartupScripts - 0 startup script(s) found 
+2017-04-14 11:55:02,504 [   4954]   INFO - mbokPluginApplicationComponent - Lombok plugin initialized for IntelliJ 
+2017-04-14 11:55:02,512 [   4962]   INFO - mbokPluginApplicationComponent - Runtime path support is disabled 
+2017-04-14 11:55:02,751 [   5201]   INFO - ellij.project.impl.ProjectImpl - 22 project components initialized in 778 ms 
+2017-04-14 11:55:03,387 [   5837]   INFO - plication.impl.ApplicationImpl - 104 application components initialized in 4957ms 
+2017-04-14 11:55:03,400 [   5850]   INFO - .intellij.idea.IdeaApplication - App initialization took 6612 ms 
+2017-04-14 11:55:04,915 [   7365]   INFO - CompilerWorkspaceConfiguration - Available processors: 4 
+2017-04-14 11:55:05,427 [   7877]   INFO - .openapi.application.Preloader - Finished preloading com.intellij.openapi.actionSystem.impl.ActionPreloader@63d02bef 
+2017-04-14 11:55:06,659 [   9109]   INFO - .openapi.application.Preloader - Finished preloading com.intellij.ide.ui.search.SearchableOptionPreloader@521943ff 
+2017-04-14 11:55:07,081 [   9531]   INFO - .openapi.application.Preloader - Finished preloading com.intellij.codeInsight.completion.CompletionPreloader@3517b605 
+2017-04-14 11:55:08,280 [  10730]   INFO - stubs.SerializationManagerImpl - Name storage is repaired 
+2017-04-14 11:55:08,655 [  11105]   INFO - ij.psi.stubs.StubUpdatingIndex - Following new file types will be indexed:Bash,TypeScript,Kotlin,Lua,Scala,SBT,CFML,KJSM,HTML,CSS,Ini,ECMAScript 6,JSX Harmony,CLASS,SQL,Properties,Groovy,Flow,ActionScript,kotlin_builtins,XML,Play2,spring.factories,JSP,TypeScript JSX,JavaScript,JAVA 
+2017-04-14 11:55:09,480 [  11930]   INFO - ellij.project.impl.ProjectImpl - 190 project components initialized in 5454 ms 
+2017-04-14 11:55:09,966 [  12416]   INFO - le.impl.ModuleManagerComponent - 14 module(s) loaded in 485 ms 
+2017-04-14 11:55:10,129 [  12579]   WARN - om.intellij.util.ProfilingUtil - Profiling agent is not enabled. Add -agentlib:yjpagent to idea.vmoptions if necessary to profile IDEA. 
+2017-04-14 11:55:10,278 [  12728]   INFO - pl$FileIndexDataInitialization - Initialization done:8100 
+2017-04-14 11:55:11,662 [  14112]   INFO - riptDefsFromTemplatesProviders - [kts] loading script definitions [kotlin.script.templates.standard.ScriptTemplateWithArgs] using cp:  
+2017-04-14 11:55:11,777 [  14227]   INFO - j.compiler.server.BuildManager - BUILDER_PROCESS [system]: "C:\Program Files\Java\jdk1.8.0_77\bin\java" -Xmx700m -Djava.awt.headless=true -Djava.endorsed.dirs=\"\" -Djdt.compiler.useSingleThread=true -Dcompile.parallel=false -Drebuild.on.dependency.change=true -Djava.net.preferIPv4Stack=true -Dio.netty.initialSeedUniquifier=3043959345694657248 -Dfile.encoding=windows-1251 -Djps.file.types.component.name=FileTypeManager -Duser.language=en -Duser.country=US -Didea.paths.selector=IntelliJIdea2017.1 "-Didea.home.path=C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1" -Didea.config.path=C:\Users\mmaslov\.IntelliJIdea2017.1\config -Didea.plugins.path=C:\Users\mmaslov\.IntelliJIdea2017.1\config\plugins -Djps.log.dir=C:/Users/mmaslov/.IntelliJIdea2017.1/system/log/build-log "-Djps.fallback.jdk.home=C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/jre64" -Djps.fallback.jdk.version=1.8.0_112-release -Dio.netty.noUnsafe=true -Djava.io.tmpdir=C:/Users/mmaslov/.IntelliJIdea2017.1/system/compile-server/infra-contests_3388a8c0/_temp_ -Djps.backward.ref.index.builder=true -Dkotlin.incremental.compilation.experimental=true -Dkotlin.daemon.enabled -Dkotlin.daemon.client.alive.path=\"C:\Users\mmaslov\AppData\Local\Temp\kotlin-idea-4518612485595339460-is-running\" -classpath "C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/jps-launcher.jar;C:/Program Files/Java/jdk1.8.0_77/lib/tools.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/optimizedFileManager.jar" org.jetbrains.jps.cmdline.Launcher "C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/log4j.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/annotations.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/javac2.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/resources_en.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/protobuf-2.5.0.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/jdom.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/netty-all-4.1.9.Final.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/nanoxml-2.2.3.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/openapi.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/jps-model.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/forms_rt.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/oromatcher.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/jna-platform.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/jgoodies-forms.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/asm-all.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/snappy-in-java-0.5.1.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/jps-builders.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/jps-builders-6.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/util.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/idea_rt.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/trove4j.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/jna.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/commons-io-2.2.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/commons-lang-2.6.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-base-services-3.3.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-base-services-groovy-3.3.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-cli-3.3.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-core-3.3.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-jps-plugin.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-logging-3.3.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-messaging-3.3.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-model-core-3.3.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-model-groovy-3.3.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-native-3.3.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-process-services-3.3.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-resources-3.3.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-tooling-api-3.3.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-tooling-extension-api.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-tooling-extension-impl.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-version-info-3.3.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-wrapper-3.3.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/guava-jdk5-17.0.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/jansi-1.14.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/kryo-2.22.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/minlog-1.2.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/native-platform-0.12.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/native-platform-freebsd-amd64-libcpp-0.12.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/native-platform-freebsd-amd64-libstdcpp-0.12.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/native-platform-freebsd-i386-libcpp-0.12.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/native-platform-freebsd-i386-libstdcpp-0.12.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/native-platform-linux-amd64-0.12.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/native-platform-linux-amd64-ncurses5-0.12.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/native-platform-linux-amd64-ncurses6-0.12.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/native-platform-linux-i386-0.12.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/native-platform-linux-i386-ncurses5-0.12.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/native-platform-linux-i386-ncurses6-0.12.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/native-platform-osx-amd64-0.12.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/native-platform-osx-i386-0.12.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/native-platform-windows-amd64-0.12.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/native-platform-windows-i386-0.12.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/objenesis-1.2.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/reflectasm-1.07.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/resources_en.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/devkit/lib/devkit-jps-plugin.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/IntelliLang/lib/intellilang-jps-plugin.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/Groovy/lib/groovy-jps-plugin.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/Groovy/lib/groovy-rt-constants.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/eclipse/lib/eclipse-jps-plugin.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/eclipse/lib/common-eclipse-util.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/maven/lib/maven-jps-plugin.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/maven/lib/aether-dependency-resolver.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/maven/lib/aether-1.1.0-all.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/maven/lib/maven-aether-provider-3.3.9-all.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/maven/lib/plexus-utils-2.0.6.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-jps-plugin.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/JavaEE/lib/javaee-jps-plugin.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/JavaEE/lib/jps/jpa-jps-plugin.jar;C:/Users/mmaslov/.IntelliJIdea2017.1/config/plugins/Scala/lib/scala-library.jar;C:/Users/mmaslov/.IntelliJIdea2017.1/config/plugins/Scala/lib/compiler-settings.jar;C:/Users/mmaslov/.IntelliJIdea2017.1/config/plugins/Scala/lib/jps/nailgun.jar;C:/Users/mmaslov/.IntelliJIdea2017.1/config/plugins/Scala/lib/jps/scala-jps-plugin.jar;C:/Users/mmaslov/.IntelliJIdea2017.1/config/plugins/Scala/lib/jps/sbt-interface.jar;C:/Users/mmaslov/.IntelliJIdea2017.1/config/plugins/Scala/lib/jps/incremental-compiler.jar;C:/Users/mmaslov/.IntelliJIdea2017.1/config/plugins/Scala/lib/jps/jline.jar;C:/Users/mmaslov/.IntelliJIdea2017.1/config/plugins/Scala/lib/jps/dotty-interfaces.jar;C:/Users/mmaslov/.IntelliJIdea2017.1/config/plugins/Scala/lib/scala-library.jar;C:/Users/mmaslov/.IntelliJIdea2017.1/config/plugins/Scala/lib/scala-play-2-jps-plugin.jar;C:/Users/mmaslov/.IntelliJIdea2017.1/config/plugins/Scala/launcher/sbt-launch.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/Kotlin/lib/jps/kotlin-jps-plugin.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/Kotlin/lib/kotlin-runtime.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/Kotlin/lib/kotlin-reflect.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/Kotlin/lib/kotlin-plugin.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/Kotlin/lib/kotlin-android-extensions-plugin.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/Kotlin/lib/kotlin-android-extensions-compiler-plugin.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/javaFX/lib/javaFX-jps-plugin.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/javaFX/lib/common-javaFX-plugin.jar" org.jetbrains.jps.cmdline.BuildMain 127.0.0.1 50604 90fc0193-7b67-4eec-a501-8d90117afd99 C:/Users/mmaslov/.IntelliJIdea2017.1/system/compile-server 
+2017-04-14 11:55:12,539 [  14989]   INFO - j.compiler.server.BuildManager - BUILDER_PROCESS [stdout]: Build process started. Classpath: C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/jps-launcher.jar;C:/Program Files/Java/jdk1.8.0_77/lib/tools.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/optimizedFileManager.jar 
+2017-04-14 11:55:12,583 [  15033]   INFO - j.compiler.server.BuildManager - BUILDER_PROCESS [stderr]: SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder". 
+2017-04-14 11:55:12,583 [  15033]   INFO - j.compiler.server.BuildManager - BUILDER_PROCESS [stderr]: SLF4J: Defaulting to no-operation (NOP) logger implementation 
+2017-04-14 11:55:12,583 [  15033]   INFO - j.compiler.server.BuildManager - BUILDER_PROCESS [stderr]: SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details. 
+2017-04-14 11:55:14,833 [  17283]   WARN - penapi.vfs.impl.jar.JarHandler - error in opening zip file: C:\Users\mmaslov\.m2\repository\com\playtika\utils\persistence-utils\1.0.2\persistence-utils-1.0.2-sources.jar 
+java.util.zip.ZipException: error in opening zip file
+	at java.util.zip.ZipFile.open(Native Method)
+	at java.util.zip.ZipFile.<init>(ZipFile.java:219)
+	at java.util.zip.ZipFile.<init>(ZipFile.java:149)
+	at java.util.zip.ZipFile.<init>(ZipFile.java:163)
+	at com.intellij.openapi.vfs.impl.jar.JarHandler.createEntriesMap(JarHandler.java:97)
+	at com.intellij.openapi.vfs.impl.ArchiveHandler.getEntriesMap(ArchiveHandler.java:190)
+	at com.intellij.openapi.vfs.impl.ArchiveHandler.getEntryInfo(ArchiveHandler.java:174)
+	at com.intellij.openapi.vfs.impl.ArchiveHandler.list(ArchiveHandler.java:89)
+	at com.intellij.openapi.vfs.newvfs.ArchiveFileSystem.list(ArchiveFileSystem.java:157)
+	at com.intellij.openapi.vfs.newvfs.persistent.PersistentFSImpl.a(PersistentFSImpl.java:158)
+	at com.intellij.openapi.vfs.newvfs.persistent.PersistentFSImpl.listAll(PersistentFSImpl.java:202)
+	at com.intellij.openapi.vfs.newvfs.impl.VirtualDirectoryImpl.getChildren(VirtualDirectoryImpl.java:317)
+	at com.intellij.openapi.roots.impl.PackageDirectoryCache$PackageInfo$1.compute(PackageDirectoryCache.java:106)
+	at com.intellij.openapi.roots.impl.PackageDirectoryCache$PackageInfo$1.compute(PackageDirectoryCache.java:100)
+	at com.intellij.openapi.util.VolatileNotNullLazyValue.getValue(VolatileNotNullLazyValue.java:34)
+	at com.intellij.openapi.roots.impl.PackageDirectoryCache$PackageInfo.getSubPackageDirectories(PackageDirectoryCache.java:125)
+	at com.intellij.openapi.roots.impl.PackageDirectoryCache.a(PackageDirectoryCache.java:69)
+	at com.intellij.openapi.roots.impl.PackageDirectoryCache.getDirectoriesByPackageName(PackageDirectoryCache.java:48)
+	at com.intellij.openapi.roots.impl.RootIndex.getDirectoriesByPackageName(RootIndex.java:461)
+	at com.intellij.openapi.roots.impl.DirectoryIndexImpl.getDirectoriesByPackageName(DirectoryIndexImpl.java:104)
+	at com.intellij.openapi.roots.impl.ProjectPackageIndexImpl.getDirsByPackageName(ProjectPackageIndexImpl.java:37)
+	at com.intellij.psi.impl.file.impl.JavaFileManagerImpl.findPackage(JavaFileManagerImpl.java:75)
+	at com.intellij.psi.impl.PsiElementFinderImpl.findPackage(PsiElementFinderImpl.java:65)
+	at com.intellij.psi.impl.JavaPsiFacadeImpl.findPackage(JavaPsiFacadeImpl.java:217)
+	at de.plushnikov.intellij.plugin.LombokPluginProjectValidatorComponent.hasLombokLibrary(LombokPluginProjectValidatorComponent.java:115)
+	at de.plushnikov.intellij.plugin.LombokPluginProjectValidatorComponent.projectOpened(LombokPluginProjectValidatorComponent.java:58)
+	at com.intellij.openapi.project.impl.ProjectImpl.b(ProjectImpl.java:392)
+	at com.intellij.openapi.project.impl.ProjectImpl.access$100(ProjectImpl.java:69)
+	at com.intellij.openapi.project.impl.ProjectImpl$MyProjectManagerListener.projectOpened(ProjectImpl.java:427)
+	at com.intellij.openapi.project.impl.ProjectManagerImpl$1.projectOpened(ProjectManagerImpl.java:97)
+	at com.intellij.openapi.project.impl.ProjectManagerImpl.f(ProjectManagerImpl.java:686)
+	at com.intellij.openapi.project.impl.ProjectManagerImpl.g(ProjectManagerImpl.java:357)
+	at com.intellij.openapi.application.TransactionGuardImpl.a(TransactionGuardImpl.java:163)
+	at com.intellij.openapi.application.TransactionGuardImpl.a(TransactionGuardImpl.java:86)
+	at com.intellij.openapi.application.TransactionGuardImpl.a(TransactionGuardImpl.java:109)
+	at com.intellij.openapi.application.impl.LaterInvocator$FlushQueue.a(LaterInvocator.java:410)
+	at com.intellij.openapi.application.impl.LaterInvocator$FlushQueue.run(LaterInvocator.java:399)
+	at java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:311)
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:762)
+	at java.awt.EventQueue.access$500(EventQueue.java:98)
+	at java.awt.EventQueue$3.run(EventQueue.java:715)
+	at java.awt.EventQueue$3.run(EventQueue.java:709)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:80)
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:732)
+	at com.intellij.ide.IdeEventQueue.e(IdeEventQueue.java:827)
+	at com.intellij.ide.IdeEventQueue._dispatchEvent(IdeEventQueue.java:655)
+	at com.intellij.ide.IdeEventQueue.dispatchEvent(IdeEventQueue.java:365)
+	at com.intellij.ide.IdeEventQueue.pumpEventsForHierarchy(IdeEventQueue.java:923)
+	at com.intellij.openapi.progress.util.ProgressWindow.startBlocking(ProgressWindow.java:199)
+	at com.intellij.openapi.progress.util.ProgressWindow.startBlocking(ProgressWindow.java:186)
+	at com.intellij.openapi.application.impl.ApplicationImpl.runProcessWithProgressSynchronously(ApplicationImpl.java:608)
+	at com.intellij.openapi.progress.impl.CoreProgressManager.runProcessWithProgressSynchronously(CoreProgressManager.java:422)
+	at com.intellij.openapi.progress.impl.ProgressManagerImpl.runProcessWithProgressSynchronously(ProgressManagerImpl.java:89)
+	at com.intellij.openapi.progress.impl.CoreProgressManager.b(CoreProgressManager.java:337)
+	at com.intellij.openapi.progress.impl.CoreProgressManager.a(CoreProgressManager.java:339)
+	at com.intellij.openapi.progress.impl.CoreProgressManager.run(CoreProgressManager.java:323)
+	at com.intellij.openapi.progress.ProgressManager.run(ProgressManager.java:190)
+	at com.intellij.openapi.project.impl.ProjectManagerImpl.loadAndOpenProject(ProjectManagerImpl.java:437)
+	at com.intellij.ide.impl.ProjectUtil.openProject(ProjectUtil.java:190)
+	at com.intellij.ide.RecentProjectsManagerImpl.doOpenProject(RecentProjectsManagerImpl.java:60)
+	at com.intellij.ide.RecentProjectsManagerBase.doReopenLastProject(RecentProjectsManagerBase.java:619)
+	at com.intellij.ide.RecentProjectsManagerBase$MyAppLifecycleListener.appStarting(RecentProjectsManagerBase.java:661)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at com.intellij.util.messages.impl.MessageBusConnectionImpl.deliverMessage(MessageBusConnectionImpl.java:117)
+	at com.intellij.util.messages.impl.MessageBusImpl.doPumpMessages(MessageBusImpl.java:437)
+	at com.intellij.util.messages.impl.MessageBusImpl.pumpWaitingBuses(MessageBusImpl.java:398)
+	at com.intellij.util.messages.impl.MessageBusImpl.pumpMessages(MessageBusImpl.java:387)
+	at com.intellij.util.messages.impl.MessageBusImpl.sendMessage(MessageBusImpl.java:373)
+	at com.intellij.util.messages.impl.MessageBusImpl.access$200(MessageBusImpl.java:44)
+	at com.intellij.util.messages.impl.MessageBusImpl$2.invoke(MessageBusImpl.java:230)
+	at com.sun.proxy.$Proxy60.appStarting(Unknown Source)
+	at com.intellij.idea.IdeaApplication$IdeStarter.a(IdeaApplication.java:350)
+	at com.intellij.openapi.application.TransactionGuardImpl.a(TransactionGuardImpl.java:86)
+	at com.intellij.openapi.application.TransactionGuardImpl.a(TransactionGuardImpl.java:109)
+	at com.intellij.openapi.application.TransactionGuardImpl.submitTransaction(TransactionGuardImpl.java:118)
+	at com.intellij.openapi.application.TransactionGuard.submitTransaction(TransactionGuard.java:122)
+	at com.intellij.idea.IdeaApplication$IdeStarter.main(IdeaApplication.java:348)
+	at com.intellij.idea.IdeaApplication.c(IdeaApplication.java:202)
+	at com.intellij.openapi.application.TransactionGuardImpl.performUserActivity(TransactionGuardImpl.java:193)
+	at com.intellij.idea.IdeaApplication.run(IdeaApplication.java:202)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at com.intellij.idea.MainImpl$1$1.a(MainImpl.java:63)
+	at java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:311)
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:762)
+	at java.awt.EventQueue.access$500(EventQueue.java:98)
+	at java.awt.EventQueue$3.run(EventQueue.java:715)
+	at java.awt.EventQueue$3.run(EventQueue.java:709)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:80)
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:732)
+	at com.intellij.ide.IdeEventQueue.dispatchEvent(IdeEventQueue.java:343)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:201)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
+2017-04-14 11:55:14,963 [  17413]   WARN - penapi.vfs.impl.jar.JarHandler - error in opening zip file: C:\Users\mmaslov\.m2\repository\com\playtika\StatsCollection\1.0.12.1\StatsCollection-1.0.12.1-sources.jar 
+java.util.zip.ZipException: error in opening zip file
+	at java.util.zip.ZipFile.open(Native Method)
+	at java.util.zip.ZipFile.<init>(ZipFile.java:219)
+	at java.util.zip.ZipFile.<init>(ZipFile.java:149)
+	at java.util.zip.ZipFile.<init>(ZipFile.java:163)
+	at com.intellij.openapi.vfs.impl.jar.JarHandler.createEntriesMap(JarHandler.java:97)
+	at com.intellij.openapi.vfs.impl.ArchiveHandler.getEntriesMap(ArchiveHandler.java:190)
+	at com.intellij.openapi.vfs.impl.ArchiveHandler.getEntryInfo(ArchiveHandler.java:174)
+	at com.intellij.openapi.vfs.impl.ArchiveHandler.list(ArchiveHandler.java:89)
+	at com.intellij.openapi.vfs.newvfs.ArchiveFileSystem.list(ArchiveFileSystem.java:157)
+	at com.intellij.openapi.vfs.newvfs.persistent.PersistentFSImpl.a(PersistentFSImpl.java:158)
+	at com.intellij.openapi.vfs.newvfs.persistent.PersistentFSImpl.listAll(PersistentFSImpl.java:202)
+	at com.intellij.openapi.vfs.newvfs.impl.VirtualDirectoryImpl.getChildren(VirtualDirectoryImpl.java:317)
+	at com.intellij.openapi.roots.impl.PackageDirectoryCache$PackageInfo$1.compute(PackageDirectoryCache.java:106)
+	at com.intellij.openapi.roots.impl.PackageDirectoryCache$PackageInfo$1.compute(PackageDirectoryCache.java:100)
+	at com.intellij.openapi.util.VolatileNotNullLazyValue.getValue(VolatileNotNullLazyValue.java:34)
+	at com.intellij.openapi.roots.impl.PackageDirectoryCache$PackageInfo.getSubPackageDirectories(PackageDirectoryCache.java:125)
+	at com.intellij.openapi.roots.impl.PackageDirectoryCache.a(PackageDirectoryCache.java:69)
+	at com.intellij.openapi.roots.impl.PackageDirectoryCache.getDirectoriesByPackageName(PackageDirectoryCache.java:48)
+	at com.intellij.openapi.roots.impl.RootIndex.getDirectoriesByPackageName(RootIndex.java:461)
+	at com.intellij.openapi.roots.impl.DirectoryIndexImpl.getDirectoriesByPackageName(DirectoryIndexImpl.java:104)
+	at com.intellij.openapi.roots.impl.ProjectPackageIndexImpl.getDirsByPackageName(ProjectPackageIndexImpl.java:37)
+	at com.intellij.psi.impl.file.impl.JavaFileManagerImpl.findPackage(JavaFileManagerImpl.java:75)
+	at com.intellij.psi.impl.PsiElementFinderImpl.findPackage(PsiElementFinderImpl.java:65)
+	at com.intellij.psi.impl.JavaPsiFacadeImpl.findPackage(JavaPsiFacadeImpl.java:217)
+	at de.plushnikov.intellij.plugin.LombokPluginProjectValidatorComponent.hasLombokLibrary(LombokPluginProjectValidatorComponent.java:115)
+	at de.plushnikov.intellij.plugin.LombokPluginProjectValidatorComponent.projectOpened(LombokPluginProjectValidatorComponent.java:58)
+	at com.intellij.openapi.project.impl.ProjectImpl.b(ProjectImpl.java:392)
+	at com.intellij.openapi.project.impl.ProjectImpl.access$100(ProjectImpl.java:69)
+	at com.intellij.openapi.project.impl.ProjectImpl$MyProjectManagerListener.projectOpened(ProjectImpl.java:427)
+	at com.intellij.openapi.project.impl.ProjectManagerImpl$1.projectOpened(ProjectManagerImpl.java:97)
+	at com.intellij.openapi.project.impl.ProjectManagerImpl.f(ProjectManagerImpl.java:686)
+	at com.intellij.openapi.project.impl.ProjectManagerImpl.g(ProjectManagerImpl.java:357)
+	at com.intellij.openapi.application.TransactionGuardImpl.a(TransactionGuardImpl.java:163)
+	at com.intellij.openapi.application.TransactionGuardImpl.a(TransactionGuardImpl.java:86)
+	at com.intellij.openapi.application.TransactionGuardImpl.a(TransactionGuardImpl.java:109)
+	at com.intellij.openapi.application.impl.LaterInvocator$FlushQueue.a(LaterInvocator.java:410)
+	at com.intellij.openapi.application.impl.LaterInvocator$FlushQueue.run(LaterInvocator.java:399)
+	at java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:311)
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:762)
+	at java.awt.EventQueue.access$500(EventQueue.java:98)
+	at java.awt.EventQueue$3.run(EventQueue.java:715)
+	at java.awt.EventQueue$3.run(EventQueue.java:709)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:80)
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:732)
+	at com.intellij.ide.IdeEventQueue.e(IdeEventQueue.java:827)
+	at com.intellij.ide.IdeEventQueue._dispatchEvent(IdeEventQueue.java:655)
+	at com.intellij.ide.IdeEventQueue.dispatchEvent(IdeEventQueue.java:365)
+	at com.intellij.ide.IdeEventQueue.pumpEventsForHierarchy(IdeEventQueue.java:923)
+	at com.intellij.openapi.progress.util.ProgressWindow.startBlocking(ProgressWindow.java:199)
+	at com.intellij.openapi.progress.util.ProgressWindow.startBlocking(ProgressWindow.java:186)
+	at com.intellij.openapi.application.impl.ApplicationImpl.runProcessWithProgressSynchronously(ApplicationImpl.java:608)
+	at com.intellij.openapi.progress.impl.CoreProgressManager.runProcessWithProgressSynchronously(CoreProgressManager.java:422)
+	at com.intellij.openapi.progress.impl.ProgressManagerImpl.runProcessWithProgressSynchronously(ProgressManagerImpl.java:89)
+	at com.intellij.openapi.progress.impl.CoreProgressManager.b(CoreProgressManager.java:337)
+	at com.intellij.openapi.progress.impl.CoreProgressManager.a(CoreProgressManager.java:339)
+	at com.intellij.openapi.progress.impl.CoreProgressManager.run(CoreProgressManager.java:323)
+	at com.intellij.openapi.progress.ProgressManager.run(ProgressManager.java:190)
+	at com.intellij.openapi.project.impl.ProjectManagerImpl.loadAndOpenProject(ProjectManagerImpl.java:437)
+	at com.intellij.ide.impl.ProjectUtil.openProject(ProjectUtil.java:190)
+	at com.intellij.ide.RecentProjectsManagerImpl.doOpenProject(RecentProjectsManagerImpl.java:60)
+	at com.intellij.ide.RecentProjectsManagerBase.doReopenLastProject(RecentProjectsManagerBase.java:619)
+	at com.intellij.ide.RecentProjectsManagerBase$MyAppLifecycleListener.appStarting(RecentProjectsManagerBase.java:661)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at com.intellij.util.messages.impl.MessageBusConnectionImpl.deliverMessage(MessageBusConnectionImpl.java:117)
+	at com.intellij.util.messages.impl.MessageBusImpl.doPumpMessages(MessageBusImpl.java:437)
+	at com.intellij.util.messages.impl.MessageBusImpl.pumpWaitingBuses(MessageBusImpl.java:398)
+	at com.intellij.util.messages.impl.MessageBusImpl.pumpMessages(MessageBusImpl.java:387)
+	at com.intellij.util.messages.impl.MessageBusImpl.sendMessage(MessageBusImpl.java:373)
+	at com.intellij.util.messages.impl.MessageBusImpl.access$200(MessageBusImpl.java:44)
+	at com.intellij.util.messages.impl.MessageBusImpl$2.invoke(MessageBusImpl.java:230)
+	at com.sun.proxy.$Proxy60.appStarting(Unknown Source)
+	at com.intellij.idea.IdeaApplication$IdeStarter.a(IdeaApplication.java:350)
+	at com.intellij.openapi.application.TransactionGuardImpl.a(TransactionGuardImpl.java:86)
+	at com.intellij.openapi.application.TransactionGuardImpl.a(TransactionGuardImpl.java:109)
+	at com.intellij.openapi.application.TransactionGuardImpl.submitTransaction(TransactionGuardImpl.java:118)
+	at com.intellij.openapi.application.TransactionGuard.submitTransaction(TransactionGuard.java:122)
+	at com.intellij.idea.IdeaApplication$IdeStarter.main(IdeaApplication.java:348)
+	at com.intellij.idea.IdeaApplication.c(IdeaApplication.java:202)
+	at com.intellij.openapi.application.TransactionGuardImpl.performUserActivity(TransactionGuardImpl.java:193)
+	at com.intellij.idea.IdeaApplication.run(IdeaApplication.java:202)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at com.intellij.idea.MainImpl$1$1.a(MainImpl.java:63)
+	at java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:311)
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:762)
+	at java.awt.EventQueue.access$500(EventQueue.java:98)
+	at java.awt.EventQueue$3.run(EventQueue.java:715)
+	at java.awt.EventQueue$3.run(EventQueue.java:709)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:80)
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:732)
+	at com.intellij.ide.IdeEventQueue.dispatchEvent(IdeEventQueue.java:343)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:201)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
+2017-04-14 11:55:15,696 [  18146]   INFO - exImpl$StubIndexInitialization - Initialization done:5418 
+2017-04-14 11:55:15,936 [  18386]   INFO - j.compiler.server.BuildManager - BUILDER_PROCESS [system]: "C:\Program Files\Java\jdk1.8.0_77\bin\java" -Xmx700m -Djava.awt.headless=true -Djava.endorsed.dirs=\"\" -Djdt.compiler.useSingleThread=true -Dpreload.project.path=C:/Users/mmaslov/Playtika/infra_contests -Dpreload.config.path=C:/Users/mmaslov/.IntelliJIdea2017.1/config/options -Dcompile.parallel=false -Drebuild.on.dependency.change=true -Djava.net.preferIPv4Stack=true -Dio.netty.initialSeedUniquifier=3043959345694657248 -Dfile.encoding=windows-1251 -Djps.file.types.component.name=FileTypeManager -Duser.language=en -Duser.country=US -Didea.paths.selector=IntelliJIdea2017.1 "-Didea.home.path=C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1" -Didea.config.path=C:\Users\mmaslov\.IntelliJIdea2017.1\config -Didea.plugins.path=C:\Users\mmaslov\.IntelliJIdea2017.1\config\plugins -Djps.log.dir=C:/Users/mmaslov/.IntelliJIdea2017.1/system/log/build-log "-Djps.fallback.jdk.home=C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/jre64" -Djps.fallback.jdk.version=1.8.0_112-release -Dio.netty.noUnsafe=true -Djava.io.tmpdir=C:/Users/mmaslov/.IntelliJIdea2017.1/system/compile-server/infra-contests_3388a8c0/_temp_ -Djps.backward.ref.index.builder=true -Dkotlin.incremental.compilation.experimental=true -Dkotlin.daemon.enabled -Dkotlin.daemon.client.alive.path=\"C:\Users\mmaslov\AppData\Local\Temp\kotlin-idea-4518612485595339460-is-running\" -classpath "C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/jps-launcher.jar;C:/Program Files/Java/jdk1.8.0_77/lib/tools.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/optimizedFileManager.jar" org.jetbrains.jps.cmdline.Launcher "C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/log4j.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/annotations.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/javac2.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/resources_en.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/protobuf-2.5.0.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/jdom.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/netty-all-4.1.9.Final.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/nanoxml-2.2.3.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/openapi.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/jps-model.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/forms_rt.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/oromatcher.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/jna-platform.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/jgoodies-forms.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/asm-all.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/snappy-in-java-0.5.1.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/jps-builders.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/jps-builders-6.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/util.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/idea_rt.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/trove4j.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/jna.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/commons-io-2.2.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/commons-lang-2.6.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-base-services-3.3.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-base-services-groovy-3.3.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-cli-3.3.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-core-3.3.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-jps-plugin.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-logging-3.3.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-messaging-3.3.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-model-core-3.3.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-model-groovy-3.3.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-native-3.3.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-process-services-3.3.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-resources-3.3.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-tooling-api-3.3.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-tooling-extension-api.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-tooling-extension-impl.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-version-info-3.3.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-wrapper-3.3.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/guava-jdk5-17.0.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/jansi-1.14.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/kryo-2.22.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/minlog-1.2.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/native-platform-0.12.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/native-platform-freebsd-amd64-libcpp-0.12.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/native-platform-freebsd-amd64-libstdcpp-0.12.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/native-platform-freebsd-i386-libcpp-0.12.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/native-platform-freebsd-i386-libstdcpp-0.12.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/native-platform-linux-amd64-0.12.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/native-platform-linux-amd64-ncurses5-0.12.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/native-platform-linux-amd64-ncurses6-0.12.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/native-platform-linux-i386-0.12.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/native-platform-linux-i386-ncurses5-0.12.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/native-platform-linux-i386-ncurses6-0.12.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/native-platform-osx-amd64-0.12.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/native-platform-osx-i386-0.12.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/native-platform-windows-amd64-0.12.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/native-platform-windows-i386-0.12.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/objenesis-1.2.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/reflectasm-1.07.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/resources_en.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/devkit/lib/devkit-jps-plugin.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/IntelliLang/lib/intellilang-jps-plugin.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/Groovy/lib/groovy-jps-plugin.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/Groovy/lib/groovy-rt-constants.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/eclipse/lib/eclipse-jps-plugin.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/eclipse/lib/common-eclipse-util.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/maven/lib/maven-jps-plugin.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/maven/lib/aether-dependency-resolver.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/maven/lib/aether-1.1.0-all.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/maven/lib/maven-aether-provider-3.3.9-all.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/maven/lib/plexus-utils-2.0.6.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/gradle/lib/gradle-jps-plugin.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/JavaEE/lib/javaee-jps-plugin.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/JavaEE/lib/jps/jpa-jps-plugin.jar;C:/Users/mmaslov/.IntelliJIdea2017.1/config/plugins/Scala/lib/scala-library.jar;C:/Users/mmaslov/.IntelliJIdea2017.1/config/plugins/Scala/lib/compiler-settings.jar;C:/Users/mmaslov/.IntelliJIdea2017.1/config/plugins/Scala/lib/jps/nailgun.jar;C:/Users/mmaslov/.IntelliJIdea2017.1/config/plugins/Scala/lib/jps/scala-jps-plugin.jar;C:/Users/mmaslov/.IntelliJIdea2017.1/config/plugins/Scala/lib/jps/sbt-interface.jar;C:/Users/mmaslov/.IntelliJIdea2017.1/config/plugins/Scala/lib/jps/incremental-compiler.jar;C:/Users/mmaslov/.IntelliJIdea2017.1/config/plugins/Scala/lib/jps/jline.jar;C:/Users/mmaslov/.IntelliJIdea2017.1/config/plugins/Scala/lib/jps/dotty-interfaces.jar;C:/Users/mmaslov/.IntelliJIdea2017.1/config/plugins/Scala/lib/scala-library.jar;C:/Users/mmaslov/.IntelliJIdea2017.1/config/plugins/Scala/lib/scala-play-2-jps-plugin.jar;C:/Users/mmaslov/.IntelliJIdea2017.1/config/plugins/Scala/launcher/sbt-launch.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/Kotlin/lib/jps/kotlin-jps-plugin.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/Kotlin/lib/kotlin-runtime.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/Kotlin/lib/kotlin-reflect.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/Kotlin/lib/kotlin-plugin.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/Kotlin/lib/kotlin-android-extensions-plugin.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/Kotlin/lib/kotlin-android-extensions-compiler-plugin.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/javaFX/lib/javaFX-jps-plugin.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/plugins/javaFX/lib/common-javaFX-plugin.jar" org.jetbrains.jps.cmdline.BuildMain 127.0.0.1 50604 f8d2fb6b-e478-4e36-b8f5-111103769d0c C:/Users/mmaslov/.IntelliJIdea2017.1/system/compile-server 
+2017-04-14 11:55:16,026 [  18476]   WARN - penapi.vfs.impl.jar.JarHandler - error in opening zip file: C:\Users\mmaslov\.m2\repository\com\caucho\resin-hessian\4.0.23\resin-hessian-4.0.23-sources.jar 
+java.util.zip.ZipException: error in opening zip file
+	at java.util.zip.ZipFile.open(Native Method)
+	at java.util.zip.ZipFile.<init>(ZipFile.java:219)
+	at java.util.zip.ZipFile.<init>(ZipFile.java:149)
+	at java.util.zip.ZipFile.<init>(ZipFile.java:163)
+	at com.intellij.openapi.vfs.impl.jar.JarHandler.createEntriesMap(JarHandler.java:97)
+	at com.intellij.openapi.vfs.impl.ArchiveHandler.getEntriesMap(ArchiveHandler.java:190)
+	at com.intellij.openapi.vfs.impl.ArchiveHandler.getEntryInfo(ArchiveHandler.java:174)
+	at com.intellij.openapi.vfs.impl.ArchiveHandler.list(ArchiveHandler.java:89)
+	at com.intellij.openapi.vfs.newvfs.ArchiveFileSystem.list(ArchiveFileSystem.java:157)
+	at com.intellij.openapi.vfs.newvfs.persistent.PersistentFSImpl.a(PersistentFSImpl.java:158)
+	at com.intellij.openapi.vfs.newvfs.persistent.PersistentFSImpl.listAll(PersistentFSImpl.java:202)
+	at com.intellij.openapi.vfs.newvfs.impl.VirtualDirectoryImpl.getChildren(VirtualDirectoryImpl.java:317)
+	at com.intellij.openapi.roots.impl.PackageDirectoryCache$PackageInfo$1.compute(PackageDirectoryCache.java:106)
+	at com.intellij.openapi.roots.impl.PackageDirectoryCache$PackageInfo$1.compute(PackageDirectoryCache.java:100)
+	at com.intellij.openapi.util.VolatileNotNullLazyValue.getValue(VolatileNotNullLazyValue.java:34)
+	at com.intellij.openapi.roots.impl.PackageDirectoryCache$PackageInfo.getSubPackageDirectories(PackageDirectoryCache.java:125)
+	at com.intellij.openapi.roots.impl.PackageDirectoryCache.a(PackageDirectoryCache.java:69)
+	at com.intellij.openapi.roots.impl.PackageDirectoryCache.getDirectoriesByPackageName(PackageDirectoryCache.java:48)
+	at com.intellij.openapi.roots.impl.RootIndex.getDirectoriesByPackageName(RootIndex.java:461)
+	at com.intellij.openapi.roots.impl.DirectoryIndexImpl.getDirectoriesByPackageName(DirectoryIndexImpl.java:104)
+	at com.intellij.openapi.roots.impl.ProjectPackageIndexImpl.getDirsByPackageName(ProjectPackageIndexImpl.java:37)
+	at com.intellij.psi.impl.file.impl.JavaFileManagerImpl.findPackage(JavaFileManagerImpl.java:75)
+	at com.intellij.psi.impl.PsiElementFinderImpl.findPackage(PsiElementFinderImpl.java:65)
+	at com.intellij.psi.impl.JavaPsiFacadeImpl.findPackage(JavaPsiFacadeImpl.java:217)
+	at de.plushnikov.intellij.plugin.LombokPluginProjectValidatorComponent.hasLombokLibrary(LombokPluginProjectValidatorComponent.java:115)
+	at de.plushnikov.intellij.plugin.LombokPluginProjectValidatorComponent.projectOpened(LombokPluginProjectValidatorComponent.java:58)
+	at com.intellij.openapi.project.impl.ProjectImpl.b(ProjectImpl.java:392)
+	at com.intellij.openapi.project.impl.ProjectImpl.access$100(ProjectImpl.java:69)
+	at com.intellij.openapi.project.impl.ProjectImpl$MyProjectManagerListener.projectOpened(ProjectImpl.java:427)
+	at com.intellij.openapi.project.impl.ProjectManagerImpl$1.projectOpened(ProjectManagerImpl.java:97)
+	at com.intellij.openapi.project.impl.ProjectManagerImpl.f(ProjectManagerImpl.java:686)
+	at com.intellij.openapi.project.impl.ProjectManagerImpl.g(ProjectManagerImpl.java:357)
+	at com.intellij.openapi.application.TransactionGuardImpl.a(TransactionGuardImpl.java:163)
+	at com.intellij.openapi.application.TransactionGuardImpl.a(TransactionGuardImpl.java:86)
+	at com.intellij.openapi.application.TransactionGuardImpl.a(TransactionGuardImpl.java:109)
+	at com.intellij.openapi.application.impl.LaterInvocator$FlushQueue.a(LaterInvocator.java:410)
+	at com.intellij.openapi.application.impl.LaterInvocator$FlushQueue.run(LaterInvocator.java:399)
+	at java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:311)
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:762)
+	at java.awt.EventQueue.access$500(EventQueue.java:98)
+	at java.awt.EventQueue$3.run(EventQueue.java:715)
+	at java.awt.EventQueue$3.run(EventQueue.java:709)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:80)
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:732)
+	at com.intellij.ide.IdeEventQueue.e(IdeEventQueue.java:827)
+	at com.intellij.ide.IdeEventQueue._dispatchEvent(IdeEventQueue.java:655)
+	at com.intellij.ide.IdeEventQueue.dispatchEvent(IdeEventQueue.java:365)
+	at com.intellij.ide.IdeEventQueue.pumpEventsForHierarchy(IdeEventQueue.java:923)
+	at com.intellij.openapi.progress.util.ProgressWindow.startBlocking(ProgressWindow.java:199)
+	at com.intellij.openapi.progress.util.ProgressWindow.startBlocking(ProgressWindow.java:186)
+	at com.intellij.openapi.application.impl.ApplicationImpl.runProcessWithProgressSynchronously(ApplicationImpl.java:608)
+	at com.intellij.openapi.progress.impl.CoreProgressManager.runProcessWithProgressSynchronously(CoreProgressManager.java:422)
+	at com.intellij.openapi.progress.impl.ProgressManagerImpl.runProcessWithProgressSynchronously(ProgressManagerImpl.java:89)
+	at com.intellij.openapi.progress.impl.CoreProgressManager.b(CoreProgressManager.java:337)
+	at com.intellij.openapi.progress.impl.CoreProgressManager.a(CoreProgressManager.java:339)
+	at com.intellij.openapi.progress.impl.CoreProgressManager.run(CoreProgressManager.java:323)
+	at com.intellij.openapi.progress.ProgressManager.run(ProgressManager.java:190)
+	at com.intellij.openapi.project.impl.ProjectManagerImpl.loadAndOpenProject(ProjectManagerImpl.java:437)
+	at com.intellij.ide.impl.ProjectUtil.openProject(ProjectUtil.java:190)
+	at com.intellij.ide.RecentProjectsManagerImpl.doOpenProject(RecentProjectsManagerImpl.java:60)
+	at com.intellij.ide.RecentProjectsManagerBase.doReopenLastProject(RecentProjectsManagerBase.java:619)
+	at com.intellij.ide.RecentProjectsManagerBase$MyAppLifecycleListener.appStarting(RecentProjectsManagerBase.java:661)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at com.intellij.util.messages.impl.MessageBusConnectionImpl.deliverMessage(MessageBusConnectionImpl.java:117)
+	at com.intellij.util.messages.impl.MessageBusImpl.doPumpMessages(MessageBusImpl.java:437)
+	at com.intellij.util.messages.impl.MessageBusImpl.pumpWaitingBuses(MessageBusImpl.java:398)
+	at com.intellij.util.messages.impl.MessageBusImpl.pumpMessages(MessageBusImpl.java:387)
+	at com.intellij.util.messages.impl.MessageBusImpl.sendMessage(MessageBusImpl.java:373)
+	at com.intellij.util.messages.impl.MessageBusImpl.access$200(MessageBusImpl.java:44)
+	at com.intellij.util.messages.impl.MessageBusImpl$2.invoke(MessageBusImpl.java:230)
+	at com.sun.proxy.$Proxy60.appStarting(Unknown Source)
+	at com.intellij.idea.IdeaApplication$IdeStarter.a(IdeaApplication.java:350)
+	at com.intellij.openapi.application.TransactionGuardImpl.a(TransactionGuardImpl.java:86)
+	at com.intellij.openapi.application.TransactionGuardImpl.a(TransactionGuardImpl.java:109)
+	at com.intellij.openapi.application.TransactionGuardImpl.submitTransaction(TransactionGuardImpl.java:118)
+	at com.intellij.openapi.application.TransactionGuard.submitTransaction(TransactionGuard.java:122)
+	at com.intellij.idea.IdeaApplication$IdeStarter.main(IdeaApplication.java:348)
+	at com.intellij.idea.IdeaApplication.c(IdeaApplication.java:202)
+	at com.intellij.openapi.application.TransactionGuardImpl.performUserActivity(TransactionGuardImpl.java:193)
+	at com.intellij.idea.IdeaApplication.run(IdeaApplication.java:202)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at com.intellij.idea.MainImpl$1$1.a(MainImpl.java:63)
+	at java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:311)
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:762)
+	at java.awt.EventQueue.access$500(EventQueue.java:98)
+	at java.awt.EventQueue$3.run(EventQueue.java:715)
+	at java.awt.EventQueue$3.run(EventQueue.java:709)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:80)
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:732)
+	at com.intellij.ide.IdeEventQueue.dispatchEvent(IdeEventQueue.java:343)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:201)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
+2017-04-14 11:55:16,249 [  18699]   INFO - j.compiler.server.BuildManager - BUILDER_PROCESS [stdout]: Build process started. Classpath: C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/jps-launcher.jar;C:/Program Files/Java/jdk1.8.0_77/lib/tools.jar;C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/optimizedFileManager.jar 
+2017-04-14 11:55:16,339 [  18789]   INFO - j.compiler.server.BuildManager - BUILDER_PROCESS [stderr]: SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder". 
+2017-04-14 11:55:16,339 [  18789]   INFO - j.compiler.server.BuildManager - BUILDER_PROCESS [stderr]: SLF4J: Defaulting to no-operation (NOP) logger implementation 
+2017-04-14 11:55:16,339 [  18789]   INFO - j.compiler.server.BuildManager - BUILDER_PROCESS [stderr]: SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details. 
+2017-04-14 11:55:28,608 [  31058]   WARN - penapi.vfs.impl.jar.JarHandler - error in opening zip file: C:\Users\mmaslov\.m2\repository\com\playtika\services\dynamic-properties\1.1\dynamic-properties-1.1-sources.jar 
+java.util.zip.ZipException: error in opening zip file
+	at java.util.zip.ZipFile.open(Native Method)
+	at java.util.zip.ZipFile.<init>(ZipFile.java:219)
+	at java.util.zip.ZipFile.<init>(ZipFile.java:149)
+	at java.util.zip.ZipFile.<init>(ZipFile.java:163)
+	at com.intellij.openapi.vfs.impl.jar.JarHandler.createEntriesMap(JarHandler.java:97)
+	at com.intellij.openapi.vfs.impl.ArchiveHandler.getEntriesMap(ArchiveHandler.java:190)
+	at com.intellij.openapi.vfs.impl.ArchiveHandler.getEntryInfo(ArchiveHandler.java:174)
+	at com.intellij.openapi.vfs.impl.ArchiveHandler.list(ArchiveHandler.java:89)
+	at com.intellij.openapi.vfs.newvfs.ArchiveFileSystem.list(ArchiveFileSystem.java:157)
+	at com.intellij.openapi.vfs.newvfs.persistent.PersistentFSImpl.a(PersistentFSImpl.java:158)
+	at com.intellij.openapi.vfs.newvfs.persistent.PersistentFSImpl.listAll(PersistentFSImpl.java:202)
+	at com.intellij.openapi.vfs.newvfs.impl.VirtualDirectoryImpl.getChildren(VirtualDirectoryImpl.java:317)
+	at com.intellij.openapi.roots.impl.PackageDirectoryCache$PackageInfo$1.compute(PackageDirectoryCache.java:106)
+	at com.intellij.openapi.roots.impl.PackageDirectoryCache$PackageInfo$1.compute(PackageDirectoryCache.java:100)
+	at com.intellij.openapi.util.VolatileNotNullLazyValue.getValue(VolatileNotNullLazyValue.java:34)
+	at com.intellij.openapi.roots.impl.PackageDirectoryCache$PackageInfo.getSubPackageDirectories(PackageDirectoryCache.java:125)
+	at com.intellij.openapi.roots.impl.PackageDirectoryCache.a(PackageDirectoryCache.java:69)
+	at com.intellij.openapi.roots.impl.PackageDirectoryCache.getDirectoriesByPackageName(PackageDirectoryCache.java:48)
+	at com.intellij.openapi.roots.impl.RootIndex.getDirectoriesByPackageName(RootIndex.java:461)
+	at com.intellij.openapi.roots.impl.DirectoryIndexImpl.getDirectoriesByPackageName(DirectoryIndexImpl.java:104)
+	at com.intellij.openapi.roots.impl.ProjectPackageIndexImpl.getDirsByPackageName(ProjectPackageIndexImpl.java:37)
+	at com.intellij.psi.impl.file.impl.JavaFileManagerImpl.findPackage(JavaFileManagerImpl.java:75)
+	at com.intellij.psi.impl.PsiElementFinderImpl.findPackage(PsiElementFinderImpl.java:65)
+	at com.intellij.psi.impl.JavaPsiFacadeImpl.findPackage(JavaPsiFacadeImpl.java:217)
+	at de.plushnikov.intellij.plugin.LombokPluginProjectValidatorComponent.hasLombokLibrary(LombokPluginProjectValidatorComponent.java:115)
+	at de.plushnikov.intellij.plugin.LombokPluginProjectValidatorComponent.projectOpened(LombokPluginProjectValidatorComponent.java:58)
+	at com.intellij.openapi.project.impl.ProjectImpl.b(ProjectImpl.java:392)
+	at com.intellij.openapi.project.impl.ProjectImpl.access$100(ProjectImpl.java:69)
+	at com.intellij.openapi.project.impl.ProjectImpl$MyProjectManagerListener.projectOpened(ProjectImpl.java:427)
+	at com.intellij.openapi.project.impl.ProjectManagerImpl$1.projectOpened(ProjectManagerImpl.java:97)
+	at com.intellij.openapi.project.impl.ProjectManagerImpl.f(ProjectManagerImpl.java:686)
+	at com.intellij.openapi.project.impl.ProjectManagerImpl.g(ProjectManagerImpl.java:357)
+	at com.intellij.openapi.application.TransactionGuardImpl.a(TransactionGuardImpl.java:163)
+	at com.intellij.openapi.application.TransactionGuardImpl.a(TransactionGuardImpl.java:86)
+	at com.intellij.openapi.application.TransactionGuardImpl.a(TransactionGuardImpl.java:109)
+	at com.intellij.openapi.application.impl.LaterInvocator$FlushQueue.a(LaterInvocator.java:410)
+	at com.intellij.openapi.application.impl.LaterInvocator$FlushQueue.run(LaterInvocator.java:399)
+	at java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:311)
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:762)
+	at java.awt.EventQueue.access$500(EventQueue.java:98)
+	at java.awt.EventQueue$3.run(EventQueue.java:715)
+	at java.awt.EventQueue$3.run(EventQueue.java:709)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:80)
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:732)
+	at com.intellij.ide.IdeEventQueue.e(IdeEventQueue.java:827)
+	at com.intellij.ide.IdeEventQueue._dispatchEvent(IdeEventQueue.java:655)
+	at com.intellij.ide.IdeEventQueue.dispatchEvent(IdeEventQueue.java:365)
+	at com.intellij.ide.IdeEventQueue.pumpEventsForHierarchy(IdeEventQueue.java:923)
+	at com.intellij.openapi.progress.util.ProgressWindow.startBlocking(ProgressWindow.java:199)
+	at com.intellij.openapi.progress.util.ProgressWindow.startBlocking(ProgressWindow.java:186)
+	at com.intellij.openapi.application.impl.ApplicationImpl.runProcessWithProgressSynchronously(ApplicationImpl.java:608)
+	at com.intellij.openapi.progress.impl.CoreProgressManager.runProcessWithProgressSynchronously(CoreProgressManager.java:422)
+	at com.intellij.openapi.progress.impl.ProgressManagerImpl.runProcessWithProgressSynchronously(ProgressManagerImpl.java:89)
+	at com.intellij.openapi.progress.impl.CoreProgressManager.b(CoreProgressManager.java:337)
+	at com.intellij.openapi.progress.impl.CoreProgressManager.a(CoreProgressManager.java:339)
+	at com.intellij.openapi.progress.impl.CoreProgressManager.run(CoreProgressManager.java:323)
+	at com.intellij.openapi.progress.ProgressManager.run(ProgressManager.java:190)
+	at com.intellij.openapi.project.impl.ProjectManagerImpl.loadAndOpenProject(ProjectManagerImpl.java:437)
+	at com.intellij.ide.impl.ProjectUtil.openProject(ProjectUtil.java:190)
+	at com.intellij.ide.RecentProjectsManagerImpl.doOpenProject(RecentProjectsManagerImpl.java:60)
+	at com.intellij.ide.RecentProjectsManagerBase.doReopenLastProject(RecentProjectsManagerBase.java:619)
+	at com.intellij.ide.RecentProjectsManagerBase$MyAppLifecycleListener.appStarting(RecentProjectsManagerBase.java:661)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at com.intellij.util.messages.impl.MessageBusConnectionImpl.deliverMessage(MessageBusConnectionImpl.java:117)
+	at com.intellij.util.messages.impl.MessageBusImpl.doPumpMessages(MessageBusImpl.java:437)
+	at com.intellij.util.messages.impl.MessageBusImpl.pumpWaitingBuses(MessageBusImpl.java:398)
+	at com.intellij.util.messages.impl.MessageBusImpl.pumpMessages(MessageBusImpl.java:387)
+	at com.intellij.util.messages.impl.MessageBusImpl.sendMessage(MessageBusImpl.java:373)
+	at com.intellij.util.messages.impl.MessageBusImpl.access$200(MessageBusImpl.java:44)
+	at com.intellij.util.messages.impl.MessageBusImpl$2.invoke(MessageBusImpl.java:230)
+	at com.sun.proxy.$Proxy60.appStarting(Unknown Source)
+	at com.intellij.idea.IdeaApplication$IdeStarter.a(IdeaApplication.java:350)
+	at com.intellij.openapi.application.TransactionGuardImpl.a(TransactionGuardImpl.java:86)
+	at com.intellij.openapi.application.TransactionGuardImpl.a(TransactionGuardImpl.java:109)
+	at com.intellij.openapi.application.TransactionGuardImpl.submitTransaction(TransactionGuardImpl.java:118)
+	at com.intellij.openapi.application.TransactionGuard.submitTransaction(TransactionGuard.java:122)
+	at com.intellij.idea.IdeaApplication$IdeStarter.main(IdeaApplication.java:348)
+	at com.intellij.idea.IdeaApplication.c(IdeaApplication.java:202)
+	at com.intellij.openapi.application.TransactionGuardImpl.performUserActivity(TransactionGuardImpl.java:193)
+	at com.intellij.idea.IdeaApplication.run(IdeaApplication.java:202)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at com.intellij.idea.MainImpl$1$1.a(MainImpl.java:63)
+	at java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:311)
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:762)
+	at java.awt.EventQueue.access$500(EventQueue.java:98)
+	at java.awt.EventQueue$3.run(EventQueue.java:715)
+	at java.awt.EventQueue$3.run(EventQueue.java:709)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:80)
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:732)
+	at com.intellij.ide.IdeEventQueue.dispatchEvent(IdeEventQueue.java:343)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:201)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
+2017-04-14 11:55:28,734 [  31184]   WARN - penapi.vfs.impl.jar.JarHandler - error in opening zip file: C:\Users\mmaslov\.m2\repository\com\playtika\infra-common\2.2.2.3\infra-common-2.2.2.3-sources.jar 
+java.util.zip.ZipException: error in opening zip file
+	at java.util.zip.ZipFile.open(Native Method)
+	at java.util.zip.ZipFile.<init>(ZipFile.java:219)
+	at java.util.zip.ZipFile.<init>(ZipFile.java:149)
+	at java.util.zip.ZipFile.<init>(ZipFile.java:163)
+	at com.intellij.openapi.vfs.impl.jar.JarHandler.createEntriesMap(JarHandler.java:97)
+	at com.intellij.openapi.vfs.impl.ArchiveHandler.getEntriesMap(ArchiveHandler.java:190)
+	at com.intellij.openapi.vfs.impl.ArchiveHandler.getEntryInfo(ArchiveHandler.java:174)
+	at com.intellij.openapi.vfs.impl.ArchiveHandler.list(ArchiveHandler.java:89)
+	at com.intellij.openapi.vfs.newvfs.ArchiveFileSystem.list(ArchiveFileSystem.java:157)
+	at com.intellij.openapi.vfs.newvfs.persistent.PersistentFSImpl.a(PersistentFSImpl.java:158)
+	at com.intellij.openapi.vfs.newvfs.persistent.PersistentFSImpl.listAll(PersistentFSImpl.java:202)
+	at com.intellij.openapi.vfs.newvfs.impl.VirtualDirectoryImpl.getChildren(VirtualDirectoryImpl.java:317)
+	at com.intellij.openapi.roots.impl.PackageDirectoryCache$PackageInfo$1.compute(PackageDirectoryCache.java:106)
+	at com.intellij.openapi.roots.impl.PackageDirectoryCache$PackageInfo$1.compute(PackageDirectoryCache.java:100)
+	at com.intellij.openapi.util.VolatileNotNullLazyValue.getValue(VolatileNotNullLazyValue.java:34)
+	at com.intellij.openapi.roots.impl.PackageDirectoryCache$PackageInfo.getSubPackageDirectories(PackageDirectoryCache.java:125)
+	at com.intellij.openapi.roots.impl.PackageDirectoryCache.a(PackageDirectoryCache.java:69)
+	at com.intellij.openapi.roots.impl.PackageDirectoryCache.getDirectoriesByPackageName(PackageDirectoryCache.java:48)
+	at com.intellij.openapi.roots.impl.RootIndex.getDirectoriesByPackageName(RootIndex.java:461)
+	at com.intellij.openapi.roots.impl.DirectoryIndexImpl.getDirectoriesByPackageName(DirectoryIndexImpl.java:104)
+	at com.intellij.openapi.roots.impl.ProjectPackageIndexImpl.getDirsByPackageName(ProjectPackageIndexImpl.java:37)
+	at com.intellij.psi.impl.file.impl.JavaFileManagerImpl.findPackage(JavaFileManagerImpl.java:75)
+	at com.intellij.psi.impl.PsiElementFinderImpl.findPackage(PsiElementFinderImpl.java:65)
+	at com.intellij.psi.impl.JavaPsiFacadeImpl.findPackage(JavaPsiFacadeImpl.java:217)
+	at de.plushnikov.intellij.plugin.LombokPluginProjectValidatorComponent.hasLombokLibrary(LombokPluginProjectValidatorComponent.java:115)
+	at de.plushnikov.intellij.plugin.LombokPluginProjectValidatorComponent.projectOpened(LombokPluginProjectValidatorComponent.java:58)
+	at com.intellij.openapi.project.impl.ProjectImpl.b(ProjectImpl.java:392)
+	at com.intellij.openapi.project.impl.ProjectImpl.access$100(ProjectImpl.java:69)
+	at com.intellij.openapi.project.impl.ProjectImpl$MyProjectManagerListener.projectOpened(ProjectImpl.java:427)
+	at com.intellij.openapi.project.impl.ProjectManagerImpl$1.projectOpened(ProjectManagerImpl.java:97)
+	at com.intellij.openapi.project.impl.ProjectManagerImpl.f(ProjectManagerImpl.java:686)
+	at com.intellij.openapi.project.impl.ProjectManagerImpl.g(ProjectManagerImpl.java:357)
+	at com.intellij.openapi.application.TransactionGuardImpl.a(TransactionGuardImpl.java:163)
+	at com.intellij.openapi.application.TransactionGuardImpl.a(TransactionGuardImpl.java:86)
+	at com.intellij.openapi.application.TransactionGuardImpl.a(TransactionGuardImpl.java:109)
+	at com.intellij.openapi.application.impl.LaterInvocator$FlushQueue.a(LaterInvocator.java:410)
+	at com.intellij.openapi.application.impl.LaterInvocator$FlushQueue.run(LaterInvocator.java:399)
+	at java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:311)
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:762)
+	at java.awt.EventQueue.access$500(EventQueue.java:98)
+	at java.awt.EventQueue$3.run(EventQueue.java:715)
+	at java.awt.EventQueue$3.run(EventQueue.java:709)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:80)
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:732)
+	at com.intellij.ide.IdeEventQueue.e(IdeEventQueue.java:827)
+	at com.intellij.ide.IdeEventQueue._dispatchEvent(IdeEventQueue.java:655)
+	at com.intellij.ide.IdeEventQueue.dispatchEvent(IdeEventQueue.java:365)
+	at com.intellij.ide.IdeEventQueue.pumpEventsForHierarchy(IdeEventQueue.java:923)
+	at com.intellij.openapi.progress.util.ProgressWindow.startBlocking(ProgressWindow.java:199)
+	at com.intellij.openapi.progress.util.ProgressWindow.startBlocking(ProgressWindow.java:186)
+	at com.intellij.openapi.application.impl.ApplicationImpl.runProcessWithProgressSynchronously(ApplicationImpl.java:608)
+	at com.intellij.openapi.progress.impl.CoreProgressManager.runProcessWithProgressSynchronously(CoreProgressManager.java:422)
+	at com.intellij.openapi.progress.impl.ProgressManagerImpl.runProcessWithProgressSynchronously(ProgressManagerImpl.java:89)
+	at com.intellij.openapi.progress.impl.CoreProgressManager.b(CoreProgressManager.java:337)
+	at com.intellij.openapi.progress.impl.CoreProgressManager.a(CoreProgressManager.java:339)
+	at com.intellij.openapi.progress.impl.CoreProgressManager.run(CoreProgressManager.java:323)
+	at com.intellij.openapi.progress.ProgressManager.run(ProgressManager.java:190)
+	at com.intellij.openapi.project.impl.ProjectManagerImpl.loadAndOpenProject(ProjectManagerImpl.java:437)
+	at com.intellij.ide.impl.ProjectUtil.openProject(ProjectUtil.java:190)
+	at com.intellij.ide.RecentProjectsManagerImpl.doOpenProject(RecentProjectsManagerImpl.java:60)
+	at com.intellij.ide.RecentProjectsManagerBase.doReopenLastProject(RecentProjectsManagerBase.java:619)
+	at com.intellij.ide.RecentProjectsManagerBase$MyAppLifecycleListener.appStarting(RecentProjectsManagerBase.java:661)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at com.intellij.util.messages.impl.MessageBusConnectionImpl.deliverMessage(MessageBusConnectionImpl.java:117)
+	at com.intellij.util.messages.impl.MessageBusImpl.doPumpMessages(MessageBusImpl.java:437)
+	at com.intellij.util.messages.impl.MessageBusImpl.pumpWaitingBuses(MessageBusImpl.java:398)
+	at com.intellij.util.messages.impl.MessageBusImpl.pumpMessages(MessageBusImpl.java:387)
+	at com.intellij.util.messages.impl.MessageBusImpl.sendMessage(MessageBusImpl.java:373)
+	at com.intellij.util.messages.impl.MessageBusImpl.access$200(MessageBusImpl.java:44)
+	at com.intellij.util.messages.impl.MessageBusImpl$2.invoke(MessageBusImpl.java:230)
+	at com.sun.proxy.$Proxy60.appStarting(Unknown Source)
+	at com.intellij.idea.IdeaApplication$IdeStarter.a(IdeaApplication.java:350)
+	at com.intellij.openapi.application.TransactionGuardImpl.a(TransactionGuardImpl.java:86)
+	at com.intellij.openapi.application.TransactionGuardImpl.a(TransactionGuardImpl.java:109)
+	at com.intellij.openapi.application.TransactionGuardImpl.submitTransaction(TransactionGuardImpl.java:118)
+	at com.intellij.openapi.application.TransactionGuard.submitTransaction(TransactionGuard.java:122)
+	at com.intellij.idea.IdeaApplication$IdeStarter.main(IdeaApplication.java:348)
+	at com.intellij.idea.IdeaApplication.c(IdeaApplication.java:202)
+	at com.intellij.openapi.application.TransactionGuardImpl.performUserActivity(TransactionGuardImpl.java:193)
+	at com.intellij.idea.IdeaApplication.run(IdeaApplication.java:202)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at com.intellij.idea.MainImpl$1$1.a(MainImpl.java:63)
+	at java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:311)
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:762)
+	at java.awt.EventQueue.access$500(EventQueue.java:98)
+	at java.awt.EventQueue$3.run(EventQueue.java:715)
+	at java.awt.EventQueue$3.run(EventQueue.java:709)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:80)
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:732)
+	at com.intellij.ide.IdeEventQueue.dispatchEvent(IdeEventQueue.java:343)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:201)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
+2017-04-14 11:55:37,708 [  40158]   INFO - ution.rmi.RemoteProcessSupport - "C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\jre64\bin\java" -Djava.awt.headless=true -Didea.version==2017.1.1 -Xmx768m -Didea.maven.embedder.version=3.3.9 -Dfile.encoding=windows-1251 -classpath "C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2017.1/lib/resources_en.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\lib\log4j.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\lib\oromatcher.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\lib\jna-platform.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\lib\annotations.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\lib\snappy-in-java-0.5.1.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\lib\resources_en.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\lib\util.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\lib\jdom.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\lib\trove4j.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\lib\jna.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\plugins\maven\lib\lucene-core-2.4.1.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\plugins\maven\lib\maven-server-api.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\plugins\maven\lib\maven3-server-common.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\plugins\maven\lib\maven3-server-lib\archetype-catalog-2.2.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\plugins\maven\lib\maven3-server-lib\archetype-common-2.2.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\plugins\maven\lib\maven3-server-lib\maven-dependency-tree-1.2.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\plugins\maven\lib\maven3-server-lib\nexus-indexer-3.0.4.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\plugins\maven\lib\maven3-server-lib\nexus-indexer-artifact-1.0.1.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\plugins\maven\lib\maven3-server-impl.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\plugins\maven\lib\maven3\lib\aether-api-1.0.2.v20150114.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\plugins\maven\lib\maven3\lib\aether-connector-basic-1.0.2.v20150114.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\plugins\maven\lib\maven3\lib\aether-impl-1.0.2.v20150114.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\plugins\maven\lib\maven3\lib\aether-spi-1.0.2.v20150114.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\plugins\maven\lib\maven3\lib\aether-transport-wagon-1.0.2.v20150114.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\plugins\maven\lib\maven3\lib\aether-util-1.0.2.v20150114.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\plugins\maven\lib\maven3\lib\aopalliance-1.0.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\plugins\maven\lib\maven3\lib\cdi-api-1.0.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\plugins\maven\lib\maven3\lib\commons-cli-1.2.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\plugins\maven\lib\maven3\lib\commons-io-2.2.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\plugins\maven\lib\maven3\lib\commons-lang-2.6.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\plugins\maven\lib\maven3\lib\commons-lang3-3.4.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\plugins\maven\lib\maven3\lib\guava-18.0.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\plugins\maven\lib\maven3\lib\guice-4.0-no_aop.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\plugins\maven\lib\maven3\lib\javax.inject-1.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\plugins\maven\lib\maven3\lib\jsoup-1.7.2.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\plugins\maven\lib\maven3\lib\jsr250-api-1.0.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\plugins\maven\lib\maven3\lib\maven-aether-provider-3.3.9.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\plugins\maven\lib\maven3\lib\maven-artifact-3.3.9.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\plugins\maven\lib\maven3\lib\maven-builder-support-3.3.9.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\plugins\maven\lib\maven3\lib\maven-compat-3.3.9.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\plugins\maven\lib\maven3\lib\maven-core-3.3.9.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\plugins\maven\lib\maven3\lib\maven-embedder-3.3.9.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\plugins\maven\lib\maven3\lib\maven-model-3.3.9.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\plugins\maven\lib\maven3\lib\maven-model-builder-3.3.9.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\plugins\maven\lib\maven3\lib\maven-plugin-api-3.3.9.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\plugins\maven\lib\maven3\lib\maven-repository-metadata-3.3.9.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\plugins\maven\lib\maven3\lib\maven-settings-3.3.9.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\plugins\maven\lib\maven3\lib\maven-settings-builder-3.3.9.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\plugins\maven\lib\maven3\lib\org.eclipse.sisu.inject-0.3.2.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\plugins\maven\lib\maven3\lib\org.eclipse.sisu.plexus-0.3.2.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\plugins\maven\lib\maven3\lib\plexus-cipher-1.7.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\plugins\maven\lib\maven3\lib\plexus-component-annotations-1.6.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\plugins\maven\lib\maven3\lib\plexus-interpolation-1.21.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\plugins\maven\lib\maven3\lib\plexus-sec-dispatcher-1.3.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\plugins\maven\lib\maven3\lib\plexus-utils-3.0.22.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\plugins\maven\lib\maven3\lib\slf4j-api-1.7.5.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\plugins\maven\lib\maven3\lib\slf4j-simple-1.7.5.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\plugins\maven\lib\maven3\lib\wagon-file-2.10.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\plugins\maven\lib\maven3\lib\wagon-http-2.10-shaded.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\plugins\maven\lib\maven3\lib\wagon-http-shared-2.10.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\plugins\maven\lib\maven3\lib\wagon-provider-api-2.10.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\plugins\maven\lib\maven3\boot\plexus-classworlds-2.5.2.jar" org.jetbrains.idea.maven.server.RemoteMavenServer 
+2017-04-14 11:55:38,586 [  41036]   INFO - .diagnostic.PerformanceWatcher - Pushing properties took 7576ms; general responsiveness: ok; EDT responsiveness: 0/1 sluggish, 1/1 very slow 
+2017-04-14 11:55:38,753 [  41203]   INFO - ution.rmi.RemoteProcessSupport - Port/ID: 53690/Maven3ServerImpl77e9bed5 
+2017-04-14 11:55:41,128 [  43578]   INFO - tartup.impl.StartupManagerImpl - OpenFilesActivity run in 10185 
+2017-04-14 11:55:41,882 [  44332]   INFO - tartup.impl.StartupManagerImpl - C:/Users/mmaslov/Playtika/infra_contests/.idea case-sensitivity: expected=false actual=false 
+2017-04-14 11:55:43,317 [  45767]   INFO - tor.impl.FileEditorManagerImpl - Project opening took 39509 ms 
+2017-04-14 11:56:20,063 [  82513]   INFO - .diagnostic.PerformanceWatcher - Indexable file iteration took 41476ms; general responsiveness: 0/48 sluggish, 7/48 very slow; EDT responsiveness: 4/42 sluggish, 1/42 very slow 
+2017-04-14 11:56:20,104 [  82554]   INFO - indexing.UnindexedFilesUpdater - Unindexed files update started: 202652 files to update 
+2017-04-14 11:56:52,023 [ 114473]   INFO -  #git4idea.commands.GitHandler - [infra_contests] git -c core.quotepath=false commit --amend --only -F C:\Users\mmaslov\AppData\Local\Temp\git-commit-msg-.txt -- contests-daemon/src/main/java/com/playtika/services/contests/daemon/NonBlackListedUserPredicate.java 
+2017-04-14 11:56:52,347 [ 114797]   INFO -  #git4idea.commands.GitHandler - [feature/INFRA-10277_refactor_camel_route 685703e] INFRA-10277 Daemon: filter blacklisted users in Camel route
+ Date: Fri Apr 14 11:17:35 2017 +0300
+ 9 files changed, 113 insertions(+), 112 deletions(-)
+ create mode 100644 contests-daemon/src/main/java/com/playtika/services/contests/daemon/NonBlackListedUserPredicate.java
+ delete mode 100644 contests-daemon/src/main/java/com/playtika/services/contests/daemon/UserContestKey.java
+ create mode 100644 contests-daemon/src/test/java/com/playtika/services/contests/daemon/NonBlackListedUserPredicateShould.java 
+2017-04-14 11:56:55,291 [ 117741]   INFO -  #git4idea.commands.GitHandler - [infra_contests] git -c core.quotepath=false push --progress --porcelain origin refs/heads/feature/INFRA-10277_refactor_camel_route:feature/INFRA-10277_refactor_camel_route --force 
+2017-04-14 11:57:17,285 [ 139735]   INFO -  #git4idea.commands.GitHandler - Counting objects: 27, done. 
+2017-04-14 11:57:17,310 [ 139760]   INFO -  #git4idea.commands.GitHandler - Delta compression using up to 4 threads. 
+2017-04-14 11:57:17,394 [ 139844]   INFO -  #git4idea.commands.GitHandler - Compressing objects: 100% (17/17), done. 
+2017-04-14 11:57:17,395 [ 139845]   INFO -  #git4idea.commands.GitHandler - Writing objects: 100% (27/27), 5.45 KiB | 0 bytes/s, done. 
+2017-04-14 11:57:17,575 [ 140025]   INFO -  #git4idea.commands.GitHandler - Total 27 (delta 9), reused 0 (delta 0) 
+2017-04-14 11:57:19,791 [ 142241]   INFO -  #git4idea.commands.GitHandler - remote: 
+2017-04-14 11:57:19,791 [ 142241]   INFO -  #git4idea.commands.GitHandler - remote: View pull request for feature/INFRA-10277_refactor_camel_route => feature/INFRA-10277_blocked_users: 
+2017-04-14 11:57:19,791 [ 142241]   INFO -  #git4idea.commands.GitHandler - remote:   https://stash.playtika.com/projects/INSE/repos/infra_contests/pull-requests/149 
+2017-04-14 11:57:19,791 [ 142241]   INFO -  #git4idea.commands.GitHandler - remote: 
+2017-04-14 11:57:19,818 [ 142268]   INFO -  #git4idea.commands.GitHandler - To ssh://git@stash.playtika.com:7999/inse/infra_contests.git 
+2017-04-14 11:57:19,820 [ 142270]   INFO -  #git4idea.commands.GitHandler - +	refs/heads/feature/INFRA-10277_refactor_camel_route:refs/heads/feature/INFRA-10277_refactor_camel_route	4c252d1...685703e (forced update) 
+2017-04-14 11:57:19,820 [ 142270]   INFO -  #git4idea.commands.GitHandler - Done 
+2017-04-14 11:57:19,825 [ 142275]   INFO -  #git4idea.commands.GitHandler - git push took 24544 ms. Command parameters: 
+"C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\bin\runnerw.exe" "C:\Program Files\Git\cmd\git.exe" -c core.quotepath=false push --progress --porcelain origin refs/heads/feature/INFRA-10277_refactor_camel_route:feature/INFRA-10277_refactor_camel_route --force 
+2017-04-14 11:58:31,820 [ 214270]   INFO - .diagnostic.PerformanceWatcher - Unindexed files update took 131716ms; general responsiveness: 4/122 sluggish; EDT responsiveness: 4/129 sluggish, 3/129 very slow 
+2017-04-14 11:58:34,544 [ 216994]   INFO - pl.ProjectRootManagerComponent - project roots have changed 
+2017-04-14 11:58:34,724 [ 217174]   INFO - .diagnostic.PerformanceWatcher - Pushing properties took 15ms; general responsiveness: ok; EDT responsiveness: ok 
+2017-04-14 11:58:36,815 [ 219265]   INFO - .diagnostic.PerformanceWatcher - Indexable file iteration took 2091ms; general responsiveness: ok; EDT responsiveness: ok 
+2017-04-14 11:58:53,234 [ 235684]   INFO -  #git4idea.commands.GitHandler - git log took 13462 ms. Command parameters: 
+"C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\bin\runnerw.exe" "C:\Program Files\Git\cmd\git.exe" -c core.quotepath=false log --no-walk=unsorted 51bc9c996438f21ee5054b49cc937e7e8cac847e 62506cf5254b3216780fd0e69ab20e99fde80bbd 7e096fcbbdb8a7adec9661db6f1302f0f3ae158b d8785a414bec84200785ef931af9c134f3ce93c7 987ff4e66d00fe81376c85c5128ed70e3dccbec8 011177e75a34f505f638568c624c9a22f72c0b74 ee7f51b991040a1f7a3465464f1fff1b9d2ac55f c866deafa7daf5947d71169e617b6c033d6f562c b962f439e6ec2f023daf3566165ab15c8bb73ed6 561de25f988a3b6f0298a644b86592f51d5f9d19 3e74c6e6913012ee88aa1cb6a260f4e51296f797 85de64457c691f793ccc6f5cf916d68f6b93281f cffcc76160f0727c55cce2c20b1f1aa770b86675 813302a4e7d806476e22c02632a1e42d8b2c752e 76af03db3901de15c6d059ba07b4fc325286eaf6 7c11a4beb608ade9f76756199bdda8b43e01a940 91233e0bcbedadcd86797cc9416dbf2a5109a7ad 18273dea02c50cc5bf97d68a330896d2174fdbc0 fdd285046c3bab82b1413041c883873cac46c8cc 177ddcda53c396c4388dc39b55622484661bd2d0 2b7d6a5ecf961cb043dd313e10d28ebfe987f6e7 c9475a0fc1a144b4534ea57ee0ace9f945e83640 e19070671a459022064a0db31061a5f8f975cea6 e1b1550ed1ecb166d35a6e8fa29243b418474286 4adfc6dec9ab2034b15f3380bd16bfab35f542ca 5bccdae918d5f7ced5a8dec8fda8a23796d476e9 a1e161305366e04351be9880072a66adf16895c3 917dcf8f6c127132a14e336f6b8798e3f6d7277d f658b6d1a0a7ced2ffffad0300ce671d07d87a07 00b4966943996e341f0c4d1363d714b8f8cfb3cb 45977e3a3da194e66bf4bdddd69e34df00b22c37 55ee0baff206b95a4440b25ed7b689665194928f 48d4bec355a418507c1f4b6270461a4e51559baa e652e449b3f0774c4803310ca66d033aa540d2ea c0132bc49cba61310a6b4e8d111e0ec74cfa2cf6 654c5112df5722e15f5d81a433be5395d16371f5 2f181624fd566a208f476773336fb07ae702a88a e708eccf662ff2dcaf0b7494670e8fe61d06f93c b78207f6e9ac3008ba19ee979ac52e32ab5e7a00 bc1e1a68cbfe5f8bbc680ae08da21c412501adea e4aa7bb237911b2b1cf8a6f82efdc1200a638ce2 d22a703fc7ec8abadc6685486dd673a56e56621a b569256916c5b4ad42d3f7b69c55b05b3d3866e4 6f57a61ad504b85c9abd45a7445cbcf72eca247c f98a0d429689e8424c72a15c5b7adbdc32cf6bc6 edf4694291f624a6bb6ce79c19b37a1b9642d2aa 6f5f56651d589042c060ad6ab97e7032ea2848dd f7b90bc999b80a4540f3924f121dba0af5198510 ecb946dee2dd42cb6a72cc731742bec6874df7b6 0745214fa7fb0ae8f97e0cfeac656e30595baefd 516e696cad4022b2ff71c5bb7ca22f7d2940f4f9 e31771a5ce7bbfb242d212c25fff9a62e81eb031 aae815a18839f73d1f4976967a77e5932a21d90c 2d54dfa20587bea04ed6d4048112779747f63502 93c6f20cddc9d94c841fb45247fc887368c1488b a264d212b9fa5ffa06e148419abb218bcbcefcbe a78cfb35a54a4a2c816ef58d24e758394318acd2 652ad91ae76f16328168768e8cefb52f966e427a 0a15b1c52f5ce68bba6dd6f7c12c5480890541a7 819e34d79ef51a9ddc587459cd6359dc8467efa8 950183edae1b4c618b9f517f4c857d91663abe3f 268cda2998d9ce8d96fefd09f205f0b1aaa4fced dc59e424dd9b9dce1d93d7b948c239a96967c1af c2517541e254b34995a9c89cfea0301fe7b0227a 898f0777405fd3da4d2be4fd11dca95c11c3d509 e33da49f4be6bad2f8e305d8e097c48542f9a9c3 b5e150c4960ea8f755ea0caa103eb6ae814d8a23 66694f8e95a120dcb7ec8bf5e872517d1f42e256 f503369fb2d2adb21742e2cfb07ad7e651c6040f 62fca37a92b393db49b1f1b9cbb2aa9be53cc09c dfe16ad290f8807aeaa7b3593cb5cd6bc5abf4ea a3790eb37cf7bb008f88fd4ee8f35cba41b0016e df1a64636c8d0bbcc1543c3c797dfb9e03bd29d2 8d4235e23635249bb392a06fe69c9e99d3c785f0 2262aa1d902d5d3fd26e99a068bebd17c71393d8 c975da7e143e67f2905b4358b120eee6c2aabbeb 49c52fdd47ceeeb62c4409876e68d79e0148299f 21d99b3eb7014f1dee6e70ef16d631fa7bbb683b f43d181ceaf6e99e7b1ff769a8e9d1389bc7008d 2bb682ca532067808bc4df873ad5c9673e069fca 7be91adf3f45f30a068a9799fee3deaf088a6dd5 7f6db393d3eb7131ea702018f06dc0f50b92ca62 88904f3e7ba7ac9a6377790afd1ad7b1e1b132d2 9b1e9f0e79c577bd8dc653bd8a8617d2fc1591f6 de662191b421ae938b5d239f2cee7dddbf85bf1e feb69ebb71d41d0e0e057d2fcaaaf0de118fcccf 45b5e96ed0c49180225328a626a8062bee196a46 0d290c971ed00530b6a9848f43f30cb5d34397d7 a51b7e608973292b6234e9077452b8f3bf1fe721 aa471d393f8f0a0c8bedd0887cf198034ba926a1 11918970b7c5239ddd75516447c2a0134d53551b 74c33665c7d6d1a60e7525c42cc0a99b26d3483d 2844fbebe48d5fbfc7f5a409dcb27098fae63f22 ed3c270a502ba770582188fb2eff990e213158d4 3ff700d640fa384f727c501fee22217d37258a15 66b0b83bcae26166866d2b240617b010012aeb70 63d097df278721dbefded9e6d68a40ae4ce13b8f 97e84f50c2d9ff947accacc8e443b536c34a1b0d f66b4c670c8865f1761c2126ec0f2fd3938ad44f 30aab78ca297f69f50bcee19dac49e5582a6e056 f2ded01579ca1ead7d8e09637b9ae3a003544453 9f9a73805dc539676346e60133a9806d51d21502 8ca001fb963e4cb44658757c21f954c366424233 59932267fab6fa5d3c6b751c23d289b1e73bfddd a91fbf5139e77f7173667308a51474ef66ae947c c54ec3e9cef5e2851fbd16ac877545524b9b0be8 ae87e3a1bbfcbb2189fa756cbd88dadf8de54461 ab37918768932ee84730d1d1dd57c67a73e876be d638d92395e3af73df89b56eefef5a4213c9c8f4 a3fa3c1e069b4b84bcafde493ecc98bb9f2d8810 e78c1e8e0f96cb6afbb4fd20ee1a8589429ad82a 240f9de96a979e3ef05a0ce955c46ea5f3f7c661 604109eec32a8163ac27a6df028aac19fcd036b3 f14435e72bfb4b18c5f9af724ef8d9173d000ba8 c7fd3eeb0b38fc70022ee2e7b3f7a685f602b42e 48812ee52aa6860393098d417b7c9ecf30a68a66 1321c75111c39d5177988b54089474c6dbb2ded9 059e2baf55e3aeeb03019bf987f213ac5486a0dc e5307185421a59b06c501cc1771d8cb142cce842 23db05eb2b41fa9cb9a439e91564668c4b07c950 7005be43efa087442d38ac17170964ef14740880 396656794aa29cf08c9224b130f20b80cc897a5b 9b92e113ca45a99dcb19f28a59088e91f2c509d9 4d6334156c648e424b94ff78faa7f5cbab3cd3e0 6f1e63d9b9995aa0694158217d8c99f753c81e4e 2d66cf7b46717543e8af947cffe4154d7e0e24bf c2cfb299c58b33091d73a6238d90b45b22eba551 977a7ca7ea0b5259686bd49066a37edc6ca0804f 5bb2b7757b070b8b4f7227c2ca5332ae6696d4b3 3b1f41d51445e9c6647c748de802aeeddcee0685 d8bddb56f4bb4750a5a36837782c450b5e58e1a7 f4a4cf2ffd309c6190024770743eee8b37737ea0 79bac0d3db689c85c3bb3ab179c619f13f4f3410 24cdc2f0398afc2852bffed0da15dc3d7d9ee005 738f84301e9e7ec8e3b774ca78f43426e131a56d d3e6bff8cf774df4ca1d84b4ce33f214a1a2fd4a cd15a3944076b88fd1a38c0a90de6b1667b3bcb0 be3ed2fade690ec2890ecf41681b054e24350515 3c8d3e389ba3b8ebac7abb681a482fa18eeec559 abac08ab0560527eac809ce7e3b371ae803f39ae 4bbaef95e4dba359e4925b5962eb07f0862c0376 06a1a4d77bface250fddd42d7b40f3a6635e6817 80157dca17243c3308f6502b9f560f4a26ec2eb6 73bd583f02740ba9616e865abeac1408366fc2d3 4db71ee9d097d0da656110ebf3afdc9700b2dae7 c95bd200ee0479236f2b8368e89954454c6bf018 1fe38ca7de59e2016df3a0baa01189675361d6b7 092e6cfe7a9de395045b1cb063199347d9df870f 4102ed4644a7a6f745dcead557da08053b7264b2 638a3dc20dfb252b84ee5fdf96c401cefcbd56d6 b01f39a16612c7f540ec1147589fb5795cdfc9ae fe86f87ebb8d68045cbe3914793c47594765c325 0436f4daea780d2d2e6bb80206d368c6dc5078c8 0460e3eb10324230b1cc584fbbf0dadbb9519b75 255be7ae19d06fcbc761ec441c9a21478ac75e63 95d8a618421ae03320594cee79de676b4437c9b1 7d1a1cea646a742f7a2bac97c654ab5a448b067e 0035031c6d590396e0b844bc1d906eb02cf9e594 751a2fb2f83a865e071343ae767eee57d32b1757 a517504d2613d671d3004273d9dc33af06869716 3782a408cec692a885c80684f5eaecc17da9d17b 1887722767dd5ef9cf4c7e6beef75d27f1a3b95e 720bd34f102062963ba035694efc47534143392e e5cd16932b256c1b512d62b71641821db623c17b 92d072c23cf3a074717eba322a49895e080b0898 27a155fe86eb2e5748dffb61c0876f05bc3b1ff2 eb43a36a5befc6043f00ca5a2eb986def7879c27 1f5b855bd1b2c8eef3bd96a8569f431c79c64b1b 36c9be80ac979e55ea3c67a280008f9bb0cb2513 9539856141bdbdf763a322c9ce70769094d537a6 6827b2788c5664eeb247f03f1bb9f61f214a0417 55cae00e72c68c1762b6cd33dabe05c2568a5f20 a19726eba1edea1f40cbcc3db5621fd5d446f0ad 160d6bbbe48c65ff6ea848e01ab0ddf1e275a1f9 77c3909fa688c7061c2835a1f33ae93779c1a773 7b9573b01c736b31bf12681bdf33b0ab12989b2a d1cf7f469f6faa16bafba1027cf12bdf6483063f 7f68721f03736d1991e7989366558ab8c533f39a 234b511108f597ea5eeafc72551424586f79757e 6b12aede8322b41b9fdd80348d7b10439804ab80 fe5ebf6b96147383fa9a35755d6030a8f90bcd3a 22a9ef824fd1930ed83d5892dbfcb2371295f2d2 8cf180aa1063545348202eadf832b63e71467e29 96060a5c36a138f5cad634d592274d9ed6d7b745 eb85cbec5caab364c29c3bb5408d9c980126903f 60f20e0cec0721d51c354fc12c2061c9a569beaf 297eef2c5d43304a11d1a6c9374affd651eb6f4c a94ecef4bd390321996cc84c4c1a71a4564dd0a8 0aebe83066d2000408fb66af9266bad62314291f 4b32644735d04d43eef1183f85b78c2e83c08120 --pretty=format:%x01%x01%H%x02%ct%x02%an%x02%at%x02%ae%x02%cn%x02%ce%x02%P%x02%s%x02%b%x02%B%x03%x03 --encoding=UTF-8 -M --name-status -c -- 
