@@ -21,7 +21,7 @@
       <Button fx:id="ReligiousRequests" layoutX="14.0" layoutY="270.0" mnemonicParsing="false" onAction="#advance" prefHeight="30.0" prefWidth="200.0" text="Religious Request" AnchorPane.topAnchor="275.0" />
       <Button fx:id="InternalPatient" layoutX="14.0" layoutY="313.0" mnemonicParsing="false" onAction="#advance" prefHeight="30.0" prefWidth="200.0" text="Internal patient transportation" AnchorPane.topAnchor="310.0" />
       <Button fx:id="ExternalPatient" layoutX="229.0" layoutY="64.0" mnemonicParsing="false" onAction="#advance" prefHeight="30.0" prefWidth="200.0" text="External patient transportation" />
-      <Button fx:id="SecurityService" layoutX="229.0" layoutY="100.0" mnemonicParsing="false" onAction="#advance" prefHeight="30.0" prefWidth="200.0" text="Security Services" />
+      <Button fx:id="SecurityServices" layoutX="229.0" layoutY="100.0" mnemonicParsing="false" onAction="#advance" prefHeight="30.0" prefWidth="200.0" text="Security Services" />
       <Button fx:id="FacilityMaintenance" layoutX="229.0" layoutY="135.0" mnemonicParsing="false" onAction="#advance" prefHeight="30.0" prefWidth="200.0" text="Facility maintenance" />
       <Button fx:id="ComputerServiceRequests" layoutX="229.0" layoutY="170.0" mnemonicParsing="false" onAction="#advance" prefHeight="30.0" prefWidth="200.0" text="Computer service request" />
       <Button fx:id="AudioVisualRequest" layoutX="229.0" layoutY="205.0" mnemonicParsing="false" onAction="#advance" prefHeight="30.0" prefWidth="200.0" text="Audio/visual request" />
