@@ -18,7 +18,9 @@ public class Ndb {
 
     // TODO Find a better way to get connection?
     try {
-      connection = DriverManager.getConnection("jdbc:derby:test;create=true");
+      connection =
+          DriverManager.getConnection(
+              "jdbc:derby:src/main/java/edu/wpi/teamname/services/database/test;create=true");
       stmt = connection.createStatement();
     } catch (SQLException e) {
       e.printStackTrace();
