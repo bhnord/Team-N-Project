@@ -7,13 +7,11 @@ import edu.wpi.teamname.state.HomeState;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import lombok.extern.slf4j.Slf4j;
 
@@ -42,21 +40,11 @@ public class HomeController implements Initializable {
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     log.debug(state.toString());
-    text.visibleProperty().bind(this.state.getClickedProperty());
-    text.textProperty().bind(this.state.getCurrentNodeProperty());
   }
 
   @FXML
-  private void buttonClicked(ActionEvent actionEvent) throws IOException {
-    log.trace("{} clicked", ((Button) actionEvent.getSource()).getText());
-    log.info(db.getEmployeeName());
-    this.state.getClickedProperty().set(!state.getClickedProperty().get());
-    this.state.getCurrentNodeProperty().set(graph.getResults().get(0));
-    advanceScene((((Button) actionEvent.getSource()).getId() + ".fxml"));
-  }
-
-  private void advanceScene(String file) throws IOException {
-    Parent root = loader.load(getClass().getResourceAsStream(file));
+  private void advanceFloral() throws IOException {
+    Parent root = loader.load(getClass().getResourceAsStream("FloralRequest.fxml"));
     appPrimaryScene.setRoot(root);
   }
 }

@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamname.views.HomeController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamname.views.HomeController">
    <children>
-      <Button fx:id="FloralRequest" layoutX="84.0" layoutY="162.0" mnemonicParsing="false" onAction="#buttonClicked" prefHeight="77.0" prefWidth="126.0" text="FloralReuqest" />
-      <Label fx:id="text" layoutX="357.0" layoutY="162.0" prefHeight="77.0" prefWidth="150.0" text="Label" textAlignment="CENTER">
+      <Button fx:id="FloralRequest" layoutX="84.0" layoutY="162.0" mnemonicParsing="false" onAction="#advanceFloral" prefHeight="77.0" prefWidth="126.0" text="FloralRequest" />
+      <Label fx:id="text" layoutX="357.0" layoutY="162.0" prefHeight="77.0" prefWidth="150.0" text="Home info" textAlignment="CENTER" visible="true">
          <font>
             <Font size="29.0" />
          </font>
