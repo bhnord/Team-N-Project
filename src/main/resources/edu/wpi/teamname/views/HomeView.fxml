@@ -16,7 +16,7 @@
       <Button fx:id="LanguageInterpreters" layoutX="14.0" layoutY="94.0" mnemonicParsing="false" onAction="#advanceLanguageInterpreters" prefHeight="30.0" prefWidth="200.0" text="Language interpreters" AnchorPane.topAnchor="100.0" />
       <Button fx:id="SanitaionService" layoutX="14.0" layoutY="124.0" mnemonicParsing="false" onAction="#advanceSanitationService" prefHeight="30.0" prefWidth="200.0" text="Sanitation service" AnchorPane.topAnchor="135.0" />
       <Button fx:id="LaundryServices" layoutX="14.0" layoutY="170.0" mnemonicParsing="false" onAction="#advanceLaundry" prefHeight="30.0" prefWidth="200.0" text="Laundry services" AnchorPane.topAnchor="170.0" />
-      <Button fx:id="FloralRequest" layoutX="14.0" layoutY="210.0" mnemonicParsing="false" onAction="#advanceFloral" prefHeight="30.0" prefWidth="200.0" text="Gift delivery service" AnchorPane.topAnchor="205.0" />
+      <Button fx:id="FloralRequest" layoutX="14.0" layoutY="210.0" mnemonicParsing="false" onAction="#advanceFloral" prefHeight="30.0" prefWidth="200.0" text="FloralRequest" AnchorPane.topAnchor="205.0" />
       <Button fx:id="MedicineDeliveryService" layoutX="14.0" layoutY="251.0" mnemonicParsing="false" onAction="#advanceMedicineDelivery" prefHeight="30.0" prefWidth="200.0" text="Medicine delivery service" AnchorPane.topAnchor="240.0" />
       <Button fx:id="ReligiousRequest" layoutX="14.0" layoutY="270.0" mnemonicParsing="false" onAction="#advanceReligionRequest" prefHeight="30.0" prefWidth="200.0" text="Religious Request" AnchorPane.topAnchor="275.0" />
       <Button fx:id="InternalPatientTransport" layoutX="14.0" layoutY="313.0" mnemonicParsing="false" onAction="#advanceInternalPatientTransport" prefHeight="30.0" prefWidth="200.0" text="Internal patient transportation" AnchorPane.topAnchor="310.0" />
@@ -26,5 +26,6 @@
       <Button fx:id="ComputerServiceRequest" layoutX="229.0" layoutY="170.0" mnemonicParsing="false" onAction="#AdvanceServiceRequest" prefHeight="30.0" prefWidth="200.0" text="Computer service request" />
       <Button fx:id="AudioVisual" layoutX="229.0" layoutY="205.0" mnemonicParsing="false" onAction="#advanceAudioVisual" prefHeight="30.0" prefWidth="200.0" text="Audio/visual request" />
       <Button fx:id="LaundryService" layoutX="229.0" layoutY="240.0" mnemonicParsing="false" onAction="#advanceLaundryService" prefHeight="30.0" prefWidth="200.0" text="Laundry services" />
+      <Button fx:id="GiftDeliveryService" layoutX="229.0" layoutY="275.0" mnemonicParsing="false" onAction="#advanceGiftDelivery" prefHeight="30.0" prefWidth="200.0" text="Gift delivery service" />
    </children>
 </AnchorPane>

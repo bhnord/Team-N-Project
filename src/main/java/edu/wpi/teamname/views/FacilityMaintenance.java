@@ -18,33 +18,33 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class FacilityMaintenance implements Initializable {
 
-    @Inject DatabaseService db;
-    @Inject ServiceTwo graph;
-    @Inject FXMLLoader loader;
-    @Inject HomeState state;
-    @FXML private Label text;
+  @Inject DatabaseService db;
+  @Inject ServiceTwo graph;
+  @Inject FXMLLoader loader;
+  @Inject HomeState state;
+  @FXML private Label text;
 
-    private Scene appPrimaryScene;
+  private Scene appPrimaryScene;
 
-    /**
-     * This method allows the tests to inject the scene at a later time, since it must be done on the
-     * JavaFX thread
-     *
-     * @param appPrimaryScene Primary scene of the app whose root will be changed
-     */
-    @Inject
-    public void setAppPrimaryScene(Scene appPrimaryScene) {
-        this.appPrimaryScene = appPrimaryScene;
-    }
+  /**
+   * This method allows the tests to inject the scene at a later time, since it must be done on the
+   * JavaFX thread
+   *
+   * @param appPrimaryScene Primary scene of the app whose root will be changed
+   */
+  @Inject
+  public void setAppPrimaryScene(Scene appPrimaryScene) {
+    this.appPrimaryScene = appPrimaryScene;
+  }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        log.debug(state.toString());
-    }
+  @Override
+  public void initialize(URL location, ResourceBundle resources) {
+    log.debug(state.toString());
+  }
 
-    @FXML
-    private void advanceHome() throws IOException {
-        Parent root = loader.load(getClass().getResourceAsStream("HomeView.fxml"));
-        appPrimaryScene.setRoot(root);
-    }
+  @FXML
+  private void advanceHome() throws IOException {
+    Parent root = loader.load(getClass().getResourceAsStream("HomeView.fxml"));
+    appPrimaryScene.setRoot(root);
+  }
 }
