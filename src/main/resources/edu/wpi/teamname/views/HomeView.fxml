@@ -7,11 +7,24 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamname.views.HomeController">
    <children>
-      <Button fx:id="FloralRequest" layoutX="84.0" layoutY="162.0" mnemonicParsing="false" onAction="#advanceFloral" prefHeight="77.0" prefWidth="126.0" text="FloralRequest" />
-      <Label fx:id="text" layoutX="357.0" layoutY="162.0" prefHeight="77.0" prefWidth="150.0" text="Home info" textAlignment="CENTER" visible="true">
+      <Button fx:id="FoodDelivery" layoutX="14.0" layoutY="64.0" mnemonicParsing="false" onAction="#advanceFood" prefHeight="30.0" prefWidth="200.0" text="Food delivery service" />
+      <Label fx:id="text" layoutX="14.0" layoutY="14.0" prefHeight="50.0" prefWidth="100.0" text="Home" textAlignment="CENTER" visible="true">
          <font>
             <Font size="29.0" />
          </font>
       </Label>
+      <Button fx:id="LanguageInterpreters" layoutX="14.0" layoutY="94.0" mnemonicParsing="false" onAction="#advanceLanguageInterpreters" prefHeight="30.0" prefWidth="200.0" text="Language interpreters" AnchorPane.topAnchor="100.0" />
+      <Button fx:id="SanitaionService" layoutX="14.0" layoutY="124.0" mnemonicParsing="false" onAction="#advanceSanitationService" prefHeight="30.0" prefWidth="200.0" text="Sanitation service" AnchorPane.topAnchor="135.0" />
+      <Button fx:id="FloralRequest111" layoutX="14.0" layoutY="170.0" mnemonicParsing="false" onAction="#advanceFloral" prefHeight="30.0" prefWidth="200.0" text="Laundry services" AnchorPane.topAnchor="170.0" />
+      <Button fx:id="FloralRequest1111" layoutX="14.0" layoutY="210.0" mnemonicParsing="false" onAction="#advanceFloral" prefHeight="30.0" prefWidth="200.0" text="Gift delivery service" AnchorPane.topAnchor="205.0" />
+      <Button fx:id="FloralRequest11111" layoutX="14.0" layoutY="251.0" mnemonicParsing="false" onAction="#advanceFloral" prefHeight="30.0" prefWidth="200.0" text="Medicine delivery service" AnchorPane.topAnchor="240.0" />
+      <Button fx:id="FloralRequest111111" layoutX="14.0" layoutY="270.0" mnemonicParsing="false" onAction="#advanceFloral" prefHeight="30.0" prefWidth="200.0" text="Religious Request" AnchorPane.topAnchor="275.0" />
+      <Button fx:id="FloralRequest1111111" layoutX="14.0" layoutY="313.0" mnemonicParsing="false" onAction="#advanceFloral" prefHeight="30.0" prefWidth="200.0" text="Internal patient transportation" AnchorPane.topAnchor="310.0" />
+      <Button fx:id="FloralRequest11111111" layoutX="229.0" layoutY="64.0" mnemonicParsing="false" onAction="#advanceFloral" prefHeight="30.0" prefWidth="200.0" text="External patient transportation" />
+      <Button fx:id="FloralRequest111111111" layoutX="229.0" layoutY="100.0" mnemonicParsing="false" onAction="#advanceFloral" prefHeight="30.0" prefWidth="200.0" text="Security Services" />
+      <Button fx:id="FloralRequest1111111111" layoutX="229.0" layoutY="135.0" mnemonicParsing="false" onAction="#advanceFloral" prefHeight="30.0" prefWidth="200.0" text="Facility maintenance" />
+      <Button fx:id="FloralRequest11111111111" layoutX="229.0" layoutY="170.0" mnemonicParsing="false" onAction="#advanceFloral" prefHeight="30.0" prefWidth="200.0" text="Computer service request" />
+      <Button fx:id="FloralRequest111111111111" layoutX="229.0" layoutY="205.0" mnemonicParsing="false" onAction="#advanceFloral" prefHeight="30.0" prefWidth="200.0" text="Audio/visual request" />
+      <Button fx:id="FloralRequest1111111111111" layoutX="229.0" layoutY="240.0" mnemonicParsing="false" onAction="#advanceFloral" prefHeight="30.0" prefWidth="200.0" text="Laundry services" />
    </children>
 </AnchorPane>
