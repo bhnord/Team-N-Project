@@ -16,7 +16,7 @@ import javafx.scene.control.Label;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class GiftDelivery implements Initializable {
+public class InternalPatient implements Initializable {
 
   @Inject DatabaseService db;
   @Inject ServiceTwo graph;
