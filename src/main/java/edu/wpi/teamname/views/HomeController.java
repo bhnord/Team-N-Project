@@ -7,6 +7,7 @@ import edu.wpi.teamname.state.HomeState;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -49,32 +50,42 @@ public class HomeController implements Initializable {
     appPrimaryScene.setRoot(root);
   }
 
-  public void advanceFood(ActionEvent actionEvent) {}
+  public void advanceFood(ActionEvent actionEvent) {
+  }
 
-  public void advanceLanguageInterpreters(ActionEvent actionEvent) {}
+  public void advanceLanguageInterpreters(ActionEvent actionEvent) {
+  }
 
-  public void advanceSanitationService(ActionEvent actionEvent) {}
+  public void advanceSanitationService(ActionEvent actionEvent) {
+  }
 
-  public void advanceLaundry(ActionEvent actionEvent) {}
+  public void advanceLaundry(ActionEvent actionEvent) {
+  }
 
-  public void advanceMedicineDelivery(ActionEvent actionEvent) {}
+  public void advanceMedicineDelivery(ActionEvent actionEvent) {
+  }
 
-  public void advanceReligionRequest(ActionEvent actionEvent) {}
+  public void advanceReligionRequest(ActionEvent actionEvent) {
+  }
 
-  public void advanceInternalPatientTransport(ActionEvent actionEvent) {}
+  public void advanceInternalPatientTransport(ActionEvent actionEvent) {
+  }
 
-  public void advanceExternalPatient(ActionEvent actionEvent) {}
+  public void advanceExternalPatient(ActionEvent actionEvent) {
+  }
 
-  public void advanceSecurityServices(ActionEvent actionEvent) {}
+  public void advanceSecurityServices(ActionEvent actionEvent) {
+  }
 
-  public void advanceFacilityMaintenance(ActionEvent actionEvent) {}
+  public void advanceFacilityMaintenance(ActionEvent actionEvent) {
+  }
 
-  public void AdvanceServiceRequest(ActionEvent actionEvent) {}
+  public void AdvanceServiceRequest(ActionEvent actionEvent) {
+  }
 
-  public void advanceAudioVisual(ActionEvent actionEvent) {}
+  public void advanceAudioVisual(ActionEvent actionEvent) {
+  }
 
-  public void advanceLaundryService(ActionEvent actionEvent) {}
-
-  public void advanceGiftDelivery(ActionEvent actionEvent) {
+  public void advanceLaundryService(ActionEvent actionEvent) {
   }
 }
