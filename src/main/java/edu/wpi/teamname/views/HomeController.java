@@ -13,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import lombok.extern.slf4j.Slf4j;
 
@@ -43,37 +44,9 @@ public class HomeController implements Initializable {
     log.debug(state.toString());
   }
 
-  @FXML
-  private void advanceFloral() throws IOException {
-    Parent root = loader.load(getClass().getResourceAsStream("FloralRequest.fxml"));
+  public void advance(ActionEvent actionEvent) throws IOException {
+    String file = ((Button) actionEvent.getSource()).getId() + ".fxml";
+    Parent root = loader.load(getClass().getResourceAsStream(file));
     appPrimaryScene.setRoot(root);
   }
-
-  public void advanceFood(ActionEvent actionEvent) {}
-
-  public void advanceLanguageInterpreters(ActionEvent actionEvent) {}
-
-  public void advanceSanitationService(ActionEvent actionEvent) {}
-
-  public void advanceLaundry(ActionEvent actionEvent) {}
-
-  public void advanceMedicineDelivery(ActionEvent actionEvent) {}
-
-  public void advanceReligionRequest(ActionEvent actionEvent) {}
-
-  public void advanceInternalPatientTransport(ActionEvent actionEvent) {}
-
-  public void advanceExternalPatient(ActionEvent actionEvent) {}
-
-  public void advanceSecurityServices(ActionEvent actionEvent) {}
-
-  public void advanceFacilityMaintenance(ActionEvent actionEvent) {}
-
-  public void AdvanceServiceRequest(ActionEvent actionEvent) {}
-
-  public void advanceAudioVisual(ActionEvent actionEvent) {}
-
-  public void advanceLaundryService(ActionEvent actionEvent) {}
-
-  public void advanceGiftDelivery(ActionEvent actionEvent) {}
 }
