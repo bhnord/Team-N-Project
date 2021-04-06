@@ -17,9 +17,6 @@ public class ConfirmBox {
   public static void confirm(FoodDelivery foodType) throws IOException {
 
     food = foodType;
-
-    // Stage window = new Stage();
-    // String message = "are you sure you want to proceed?";
     String title = "confirmation box";
 
     FXMLLoader fxmlLoader = new FXMLLoader(ConfirmBox.class.getResource("ConfirmBox.fxml"));
@@ -35,34 +32,6 @@ public class ConfirmBox {
     box.stage.setTitle(title);
 
     box.stage.showAndWait();
-
-    // window.setWidth(500);
-    // window.setHeight(500);
-
-    // Label label1 = new Label(message);
-
-    // Button no = new Button("no");
-    // no.setOnAction(e -> window.close());
-
-    // Button yes = new Button("yes");
-    // yes.setOnAction(e -> window.setScene(scene2));
-
-    // layout 2
-    // Button confirmed = new Button("exit");
-    // Label confirmation = new Label("Your request has been submitted! This is a confirmation!");
-    // Box layout2 = new VBox(10); // StackPane layout2 = new StackPane();
-    //
-    //    layout2.getChildren().addAll(confirmation, confirmed);
-    //    scene2 = new Scene(layout2, 600, 600);
-    //    confirmed.setOnAction(e -> window.close());
-    //
-    //    VBox layout = new VBox(10);
-    //    layout.getChildren().addAll(label1, yes, no);
-    //    layout.setAlignment(Pos.CENTER);
-    //
-    //    Scene scene = new Scene(layout);
-    //    window.setScene(scene);
-    //    window.showAndWait();
   }
 
   @FXML
