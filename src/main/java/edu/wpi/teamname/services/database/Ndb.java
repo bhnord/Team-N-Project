@@ -17,8 +17,8 @@ public class Ndb {
 
     try {
       connection =
-              DriverManager.getConnection(
-                      "jdbc:derby:src/main/java/edu/wpi/teamname/services/database/NodeEdgeData;user=admin;password=admin;create=true");
+          DriverManager.getConnection(
+              "jdbc:derby:src/main/java/edu/wpi/teamname/services/database/NodeEdgeData;user=admin;password=admin;create=true");
       stmt = connection.createStatement();
     } catch (SQLException e) {
       e.printStackTrace();
@@ -27,7 +27,7 @@ public class Ndb {
 
     if (args.length == 0) {
       System.out.println(
-              "1 - Node Information\n2 - Update Node Information\n3 - Update Node Location Long Name");
+          "1 - Node Information\n2 - Update Node Information\n3 - Update Node Location Long Name");
       System.out.println("4 - Edge Information\n5 - Exit Program");
     } else {
       switch (args[0]) {
@@ -64,12 +64,12 @@ public class Ndb {
   private static void updateNode() {
     try {
       Scanner s = new Scanner(System.in);
-      System.out.println("Enter Node ID");
+      System.out.print("Enter Node ID: ");
       String id = s.nextLine();
-      System.out.println("Enter new X Y");
+      System.out.print("Enter new X Y (ex. 100 200): ");
       String[] xy = s.nextLine().split(" ");
       String str =
-              "UPDATE Nodes SET xcoord = " + xy[0] + ", ycoord = " + xy[1] + " WHERE nodeID = " + id;
+          "UPDATE Nodes SET xcoord = '" + xy[0] + "', ycoord = '" + xy[1] + "' WHERE nodeID = '" + id + "'";
       s.close();
       stmt.execute(str);
     } catch (SQLException e) {
@@ -112,36 +112,35 @@ public class Ndb {
     }
     System.out.println(""); // newline
     while (r.next()) {
-      for (int i = 1; i <= colNum; i++)
-        System.out.printf("%-25s", r.getString(i));
+      for (int i = 1; i <= colNum; i++) System.out.printf("%-25s", r.getString(i));
       System.out.println(""); // newline
     }
   }
 
-//  private static void initTables() {
-//    try {
-//      String str =
-//          "CREATE TABLE Edges( "
-//              + "edgesID varchar(25), "
-//              + "startNode varchar(25), "
-//              + "endNode varchar(25), "
-//              + "PRIMARY KEY (edgesID))";
-//      stmt.execute(str);
-//      str =
-//          "CREATE TABLE Nodes( "
-//              + "nodeID varchar(25), "
-//              + "xcoord varchar(25), "
-//              + "ycoord varchar(25), "
-//              + "floor varchar(25), "
-//              + "building varchar(25), "
-//              + "nodeType varchar(25), "
-//              + "longName varchar(25), "
-//              + "shortName varchar(25), "
-//              + "PRIMARY KEY (nodeID))";
-//      stmt.execute(str);
-//    } catch (SQLException e) {
-//      e.printStackTrace();
-//    }
-//  }
+  //  private static void initTables() {
+  //    try {
+  //      String str =
+  //          "CREATE TABLE Edges( "
+  //              + "edgesID varchar(25), "
+  //              + "startNode varchar(25), "
+  //              + "endNode varchar(25), "
+  //              + "PRIMARY KEY (edgesID))";
+  //      stmt.execute(str);
+  //      str =
+  //          "CREATE TABLE Nodes( "
+  //              + "nodeID varchar(25), "
+  //              + "xcoord varchar(25), "
+  //              + "ycoord varchar(25), "
+  //              + "floor varchar(25), "
+  //              + "building varchar(25), "
+  //              + "nodeType varchar(25), "
+  //              + "longName varchar(25), "
+  //              + "shortName varchar(25), "
+  //              + "PRIMARY KEY (nodeID))";
+  //      stmt.execute(str);
+  //    } catch (SQLException e) {
+  //      e.printStackTrace();
+  //    }
+  //  }
 
 }
