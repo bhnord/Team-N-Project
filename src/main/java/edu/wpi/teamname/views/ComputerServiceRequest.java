@@ -4,7 +4,6 @@ import com.google.inject.Inject;
 import edu.wpi.teamname.services.ServiceTwo;
 import edu.wpi.teamname.services.database.DatabaseService;
 import edu.wpi.teamname.state.HomeState;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
