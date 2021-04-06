@@ -56,17 +56,21 @@ public class masterController implements Initializable {
     ChildAppPrimaryScene.setRoot(root);
   }
 
-  @FXML
-  public void advanceHome(ActionEvent actionEvent) throws IOException {
-    Parent root = loader.load(getClass().getResourceAsStream("HomeView.fxml"));
-    appPrimaryScene.setRoot(root);
-  }
-
   public void closePopUp(ActionEvent actionEvent) throws IOException {
     Parent root = loader.load(getClass().getResourceAsStream("HomeView.fxml"));
     appPrimaryScene.setRoot(root);
 
     Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
     stage.close();
+  }
+
+  public void cancel(ActionEvent actionEvent) throws IOException {
+    Stage stage = new Stage();
+    stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+    stage.setScene(null);
+    stage.close();
+
+    Parent root = loader.load(getClass().getResourceAsStream("FoodDelivery.fxml"));
+    appPrimaryScene.setRoot(root);
   }
 }

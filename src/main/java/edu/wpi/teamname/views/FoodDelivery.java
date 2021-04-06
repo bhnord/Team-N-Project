@@ -13,11 +13,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
-import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -59,10 +57,6 @@ public class FoodDelivery extends masterController implements Initializable {
   }
 
   public void Submit(ActionEvent actionEvent) throws IOException {
-    Stage popup = new Stage();
-    Parent root = loader.load(getClass().getResourceAsStream("SubmitWindow.fxml"));
-    Scene scene2 = new Scene(root);
-    popup.setScene(scene2);
-    popup.show();
+    ConfirmBox.confirm();
   }
 }
