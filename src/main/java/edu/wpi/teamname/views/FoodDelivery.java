@@ -58,6 +58,7 @@ public class FoodDelivery extends masterController implements Initializable {
     super.advanceHome(loader, appPrimaryScene);
   }
 
+  @FXML
   public void Submit(ActionEvent actionEvent) throws IOException {
 
     Parent root = FXMLLoader.load(getClass().getResource("SubmitWindow.fxml"));
@@ -66,7 +67,5 @@ public class FoodDelivery extends masterController implements Initializable {
     stage.setScene(scene);
     stage.setTitle("My Window");
     stage.show();
-
-
   }
 }
