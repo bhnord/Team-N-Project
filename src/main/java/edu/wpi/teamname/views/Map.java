@@ -10,9 +10,12 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 
@@ -55,5 +58,13 @@ public class Map extends masterController implements Initializable {
   public void xyPrint(MouseEvent mouseDragEvent) {
     XLabel.setText(String.valueOf(mouseDragEvent.getX()));
     YLabel.setText(String.valueOf(mouseDragEvent.getY()));
+  }
+
+  public void placeNode(MouseEvent mouseEvent) {
+    Circle simpleNode = new Circle(mouseEvent.getX(), mouseEvent.getY(), 25);
+    Group root = new Group(simpleNode);
+    AnchorPane scene = (AnchorPane) appPrimaryScene.getRoot();
+    scene.getChildren().add(root);
+    Stage stage = (Stage) appPrimaryScene.getWindow();
   }
 }
