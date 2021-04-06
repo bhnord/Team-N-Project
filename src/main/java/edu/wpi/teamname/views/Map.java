@@ -15,6 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
@@ -61,7 +62,8 @@ public class Map extends masterController implements Initializable {
   }
 
   public void placeNode(MouseEvent mouseEvent) {
-    Circle simpleNode = new Circle(mouseEvent.getX(), mouseEvent.getY(), 25);
+    Circle simpleNode = new Circle(mouseEvent.getX(), mouseEvent.getY(), 5);
+    simpleNode.setFill(Color.BLUE);
     Group root = new Group(simpleNode);
     AnchorPane scene = (AnchorPane) appPrimaryScene.getRoot();
     scene.getChildren().add(root);
