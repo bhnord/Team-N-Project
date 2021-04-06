@@ -13,14 +13,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class FoodDelivery implements Initializable {
+public class FoodDelivery extends masterController implements Initializable {
 
   @Inject DatabaseService db;
   @Inject ServiceTwo graph;
@@ -53,9 +52,8 @@ public class FoodDelivery implements Initializable {
   }
 
   @FXML
-  private void advanceHome() throws IOException {
-    Parent root = loader.load(getClass().getResourceAsStream("HomeView.fxml"));
-    appPrimaryScene.setRoot(root);
+  public void advanceHome() throws IOException {
+    super.advanceHome(loader, appPrimaryScene);
   }
 
   public void Submit(ActionEvent actionEvent) {}
