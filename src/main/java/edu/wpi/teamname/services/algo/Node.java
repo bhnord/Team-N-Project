@@ -1,17 +1,20 @@
 package edu.wpi.teamname.services.algo;
 
+import lombok.NonNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Node <T extends Node> implements Comparable<Node> {
-    public static class Link{
+public abstract class Node <T extends Node<T>> implements Comparable<Node<T>> {
+    public class Link{
        float _distance;
-       Node _other;
+       Node<T> _other;
     }
+    T value;
     float _localGoal;
     float _globalGoal;
     boolean _seen;
-    Node _parent;
+    Node<T> _parent;
     List<Link> _neighbors;
 
     public Node(){
@@ -28,10 +31,9 @@ public abstract class Node <T extends Node> implements Comparable<Node> {
         this._seen = false;
         this._parent = null;
     }
-    abstract float hueristic(T other);
+    abstract float heuristic(Node<T> other);
     @Override
-    public int compareTo(Node Other){
+    public int compareTo(@NonNull Node<T> Other){
         return (this._localGoal + this._globalGoal) > (this._localGoal + this._globalGoal) ? 1 : -1;
     }
 }
-
