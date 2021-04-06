@@ -5,11 +5,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="317.0" prefWidth="252.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" fx:controller="edu.wpi.teamname.views.masterController" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="317.0" prefWidth="252.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button layoutX="142.0" layoutY="213.0" mnemonicParsing="false" text="Confirm" />
-      <Button layoutX="48.0" layoutY="213.0" mnemonicParsing="false" text="Cancel" />
+      <Button fx:id="Confirm" layoutX="142.0" layoutY="213.0" mnemonicParsing="false" onAction="#advanceHome"  text="Confirm"/>
+      <Button fx:id="cancel" layoutX="48.0" layoutY="213.0" mnemonicParsing="false" text="Cancel" />
       <Label layoutX="35.0" layoutY="71.0" text="Confirm request?">
          <font>
             <Font size="24.0" />
