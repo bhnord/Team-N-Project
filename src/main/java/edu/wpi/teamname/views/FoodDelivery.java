@@ -57,6 +57,6 @@ public class FoodDelivery extends masterController implements Initializable {
   }
 
   public void Submit(ActionEvent actionEvent) {
-
+    ConfirmBox.confirm();
   }
 }
