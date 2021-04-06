@@ -15,6 +15,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -47,6 +48,15 @@ public class HomeController implements Initializable {
   public void advance(ActionEvent actionEvent) throws IOException {
     String file = ((Button) actionEvent.getSource()).getId() + ".fxml";
     Parent root = loader.load(getClass().getResourceAsStream(file));
+    appPrimaryScene.setRoot(root);
+  }
+
+  public void map(ActionEvent actionEvent) throws IOException {
+    Parent root = loader.load(getClass().getResourceAsStream("map.fxml"));
+
+    Stage stage = (Stage) appPrimaryScene.getWindow();
+    stage.setHeight(800);
+    stage.setWidth(1200);
     appPrimaryScene.setRoot(root);
   }
 }

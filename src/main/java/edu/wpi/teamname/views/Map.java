@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -46,6 +47,9 @@ public class Map extends masterController implements Initializable {
   @FXML
   public void advanceHome() throws IOException {
     super.advanceHome(loader, appPrimaryScene);
+    Stage stage = (Stage) appPrimaryScene.getWindow();
+    stage.setHeight(435);
+    stage.setWidth(600);
   }
 
   public void xyPrint(MouseEvent mouseDragEvent) {
