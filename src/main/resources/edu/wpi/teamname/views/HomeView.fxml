@@ -25,6 +25,6 @@
       <Button fx:id="FacilityMaintenance" layoutX="229.0" layoutY="135.0" mnemonicParsing="false" onAction="#advance" prefHeight="30.0" prefWidth="200.0" text="Facility maintenance" />
       <Button fx:id="ComputerServiceRequests" layoutX="229.0" layoutY="170.0" mnemonicParsing="false" onAction="#advance" prefHeight="30.0" prefWidth="200.0" text="Computer service request" />
       <Button fx:id="AudioVisualRequest" layoutX="229.0" layoutY="205.0" mnemonicParsing="false" onAction="#advance" prefHeight="30.0" prefWidth="200.0" text="Audio/visual request" />
-      <Button fx:id="GiftDelivery" layoutX="229.0" layoutY="275.0" mnemonicParsing="false" onAction="#advance" prefHeight="30.0" prefWidth="200.0" text="Gift delivery service" />
+      <Button fx:id="GiftDelivery" layoutX="229.0" layoutY="240.0" mnemonicParsing="false" onAction="#advance" prefHeight="30.0" prefWidth="200.0" text="Gift delivery service" />
    </children>
 </AnchorPane>
