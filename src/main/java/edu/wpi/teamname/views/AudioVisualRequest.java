@@ -4,6 +4,7 @@ import com.google.inject.Inject;
 import edu.wpi.teamname.services.ServiceTwo;
 import edu.wpi.teamname.services.database.DatabaseService;
 import edu.wpi.teamname.state.HomeState;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -24,10 +25,7 @@ public class AudioVisualRequest extends masterController implements Initializabl
   @Inject HomeState state;
   @FXML private Label text;
 
-  public AudioVisualRequest() {
-    super.setAppPrimaryScene(appPrimaryScene);
-    super.setLoader(loader);
-  }
+  public AudioVisualRequest() {}
 
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
@@ -43,5 +41,10 @@ public class AudioVisualRequest extends masterController implements Initializabl
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     log.debug(state.toString());
+  }
+
+  @FXML
+  public void advanceHome() throws IOException {
+    super.advanceHome(loader, appPrimaryScene);
   }
 }
