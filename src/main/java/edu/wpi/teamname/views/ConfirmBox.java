@@ -17,8 +17,7 @@ public class ConfirmBox {
     String message = "are you sure you want to proceed?";
     String title = "confirmation box";
 
-    window.initModality(
-        Modality.APPLICATION_MODAL); // pop-up window won't close until you have dealt with it
+    window.initModality(Modality.APPLICATION_MODAL); // pop-up window won't close until you have dealt with it
     window.setTitle(title);
     window.setWidth(500);
     window.setHeight(500);
