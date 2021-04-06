@@ -69,7 +69,13 @@ public class Ndb {
       System.out.print("Enter new X Y (ex. 100 200): ");
       String[] xy = s.nextLine().split(" ");
       String str =
-          "UPDATE Nodes SET xcoord = '" + xy[0] + "', ycoord = '" + xy[1] + "' WHERE nodeID = '" + id + "'";
+          "UPDATE Nodes SET xcoord = '"
+              + xy[0]
+              + "', ycoord = '"
+              + xy[1]
+              + "' WHERE nodeID = '"
+              + id
+              + "'";
       s.close();
       stmt.execute(str);
     } catch (SQLException e) {
@@ -81,11 +87,11 @@ public class Ndb {
   private static void updateNodeLongName() {
     try {
       Scanner s = new Scanner(System.in);
-      System.out.println("Enter Node ID");
+      System.out.print("Enter Node ID: ");
       String id = s.nextLine();
-      System.out.println("Enter new longName");
+      System.out.print("Enter new longName: ");
       String ln = s.nextLine();
-      String str = "UPDATE Nodes SET longName = " + ln + " WHERE nodeID = " + id;
+      String str = "UPDATE Nodes SET longName = '" + ln + "' WHERE nodeID = '" + id + "'";
       s.close();
       stmt.execute(str);
     } catch (SQLException e) {
