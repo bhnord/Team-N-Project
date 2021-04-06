@@ -20,7 +20,7 @@ public class Ndb {
     try {
       connection =
           DriverManager.getConnection(
-              "jdbc:derby:src/main/java/edu/wpi/teamname/services/database/test;create=true");
+              "jdbc:derby:src/main/java/edu/wpi/teamname/services/database/NodeEdgeData;user=admin;password=admin;create=true");
       stmt = connection.createStatement();
     } catch (SQLException e) {
       e.printStackTrace();
@@ -34,7 +34,7 @@ public class Ndb {
     } else {
       switch (args[0]) {
         case "1":
-          displayNodes();
+          displayNodeInfo();
           break;
         case "2":
           updateNode();
@@ -43,7 +43,7 @@ public class Ndb {
           // TODO Update Node Location Long Name
           break;
         case "4":
-          getEdgeInfo();
+          displayEdgeInfo();
           break;
         default:
           System.exit(0);
@@ -52,7 +52,7 @@ public class Ndb {
   }
 
   // displays nodes (on command line)
-  private static void displayNodes() {
+  private static void displayNodeInfo() {
     try {
       String str = "SELECT * FROM Nodes";
       ResultSet r = stmt.executeQuery(str);
@@ -67,10 +67,11 @@ public class Ndb {
     try {
       Scanner s = new Scanner(System.in);
       System.out.println("Enter Node ID");
-      int id = Integer.parseInt(s.nextLine());
+      String id = s.nextLine();
       System.out.println("Enter new X Y");
       String[] xy = s.nextLine().split(" ");
-      String str = "UPDATE Nodes SET X = " + xy[0] + ", Y = " + xy[1] + " WHERE id = " + id;
+      String str =
+          "UPDATE Nodes SET xcoord = " + xy[0] + ", ycoord = " + xy[1] + " WHERE nodeID = " + id;
       s.close();
       stmt.execute(str);
     } catch (SQLException e) {
@@ -80,12 +81,22 @@ public class Ndb {
 
   // enter ID and then prompt w/ new long name
   private static void updateNodeLongName() {
-    // TODO implement method
-
+    try {
+      Scanner s = new Scanner(System.in);
+      System.out.println("Enter Node ID");
+      String id = s.nextLine();
+      System.out.println("Enter new longName");
+      String ln = s.nextLine();
+      String str = "UPDATE Nodes SET longName = " + ln + " WHERE nodeID = " + id;
+      s.close();
+      stmt.execute(str);
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
   }
 
   // display list of edges w/ attributes
-  private static void getEdgeInfo() {
+  private static void displayEdgeInfo() {
     try {
       String str = "SELECT * FROM Edges";
       ResultSet r = stmt.executeQuery(str);
@@ -105,20 +116,27 @@ public class Ndb {
     }
   }
 
-  private static void initTestTables() { // TODO Delete this / replace with CSV data
+  private static void initTables() { // TODO Delete this
     try {
       String str =
-          "CREATE TABLE Nodes( "
-              + "id INT NOT NULL GENERATED ALWAYS AS IDENTITY, "
-              + "X INT NOT NULL, "
-              + "Y INT NOT NULL, "
-              + "PRIMARY KEY (Id))";
+          "CREATE TABLE Edges( "
+              + "edgesID varchar(25), "
+              + "startNode varchar(25), "
+              + "endNode varchar(25), "
+              + "PRIMARY KEY (edgesID))";
       stmt.execute(str);
-
-      for (int i = 0; i < 5; i++) {
-        str = "INSERT INTO Nodes(X, Y) VALUES(" + i + ", " + i + ")";
-        stmt.execute(str);
-      }
+      str =
+          "CREATE TABLE Nodes( "
+              + "nodeID varchar(25), "
+              + "xcoord varchar(25), "
+              + "ycoord varchar(25), "
+              + "floor varchar(25), "
+              + "building varchar(25), "
+              + "nodeType varchar(25), "
+              + "longName varchar(25), "
+              + "shortName varchar(25), "
+              + "PRIMARY KEY (nodeID))";
+      stmt.execute(str);
     } catch (SQLException e) {
       e.printStackTrace();
     }
