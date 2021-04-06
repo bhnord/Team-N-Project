@@ -7,12 +7,15 @@ import edu.wpi.teamname.state.HomeState;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -53,9 +56,21 @@ public class masterController implements Initializable {
     ChildAppPrimaryScene.setRoot(root);
   }
 
-  @FXML
-  public void advanceHome() throws IOException {
+  public void closePopUp(ActionEvent actionEvent) throws IOException {
     Parent root = loader.load(getClass().getResourceAsStream("HomeView.fxml"));
+    appPrimaryScene.setRoot(root);
+
+    Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+    stage.close();
+  }
+
+  public void cancel(ActionEvent actionEvent) throws IOException {
+    Stage stage = new Stage();
+    stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+    stage.setScene(null);
+    stage.close();
+
+    Parent root = loader.load(getClass().getResourceAsStream("FoodDelivery.fxml"));
     appPrimaryScene.setRoot(root);
   }
 }

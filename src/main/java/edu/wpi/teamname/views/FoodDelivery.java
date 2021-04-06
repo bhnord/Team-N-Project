@@ -56,7 +56,7 @@ public class FoodDelivery extends masterController implements Initializable {
     super.advanceHome(loader, appPrimaryScene);
   }
 
-  public void Submit(ActionEvent actionEvent) {
+  public void Submit(ActionEvent actionEvent) throws IOException {
     ConfirmBox.confirm();
   }
 }
