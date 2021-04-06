@@ -11,7 +11,6 @@ import javafx.stage.Stage;
 
 public class ConfirmBox {
   static Scene scene2;
-  static Scene scene1;
 
   public static void confirm() {
     Stage window = new Stage();
