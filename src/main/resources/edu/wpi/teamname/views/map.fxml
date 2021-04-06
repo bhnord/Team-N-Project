@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamname.views.Map">
+   <children>
+      <VBox layoutX="203.0" layoutY="157.0" minHeight="800.0" minWidth="1000.0" prefHeight="800.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fx:id="mapimage" fitHeight="549.0" fitWidth="865.0" onMousePressed="#placeNode" onMouseMoved="#xyPrint" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@/images/level1.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="XLabel" prefHeight="47.0" prefWidth="120.0" text="X-Value" />
+            <Label fx:id="YLabel" prefHeight="47.0" prefWidth="120.0" text="y-Value" />
+            <Button fx:id="HomeView" layoutX="14.0" layoutY="356.0" mnemonicParsing="false" onAction="#advanceHome" prefHeight="30.0" prefWidth="100.0" text="Home" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
