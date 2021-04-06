@@ -7,18 +7,15 @@ import edu.wpi.teamname.state.HomeState;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class HomeController implements Initializable {
+public class FacilityMaintenance extends masterController implements Initializable {
 
   @Inject DatabaseService db;
   @Inject ServiceTwo graph;
@@ -44,9 +41,8 @@ public class HomeController implements Initializable {
     log.debug(state.toString());
   }
 
-  public void advance(ActionEvent actionEvent) throws IOException {
-    String file = ((Button) actionEvent.getSource()).getId() + ".fxml";
-    Parent root = loader.load(getClass().getResourceAsStream(file));
-    appPrimaryScene.setRoot(root);
+  @FXML
+  public void advanceHome() throws IOException {
+    super.advanceHome(loader, appPrimaryScene);
   }
 }
