@@ -19,6 +19,7 @@ public class ConfirmBox {
 
     window.initModality(
         Modality.APPLICATION_MODAL); // pop-up window won't close until you have dealt with it
+    window.setAlwaysOnTop(true);
     window.setTitle(title);
     window.setWidth(500);
     window.setHeight(500);
@@ -31,11 +32,14 @@ public class ConfirmBox {
     Button yes = new Button("yes");
     yes.setOnAction(e -> window.setScene(scene2));
 
-    // Confirmation page
-    Label confirmed = new Label("Your food request is confirmed! Yay!");
+    // layout 2
+    Button confirmed = new Button("exit");
     StackPane layout2 = new StackPane();
-    layout2.getChildren().add(confirmed);
+    Label confirmation = new Label("Your request has been submitted! This is a confirmation!");
+    layout2.getChildren().addAll(confirmation, confirmed);
     scene2 = new Scene(layout2, 600, 600);
+
+    confirmed.setOnAction(e -> window.close());
 
     VBox layout = new VBox(10);
     layout.getChildren().addAll(label1, yes, no);
