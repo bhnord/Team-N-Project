@@ -42,7 +42,7 @@ public class Ndb {
           updateNode();
           break;
         case "3":
-          // TODO Update Node Location Long Name
+          updateNodeLongName();
           break;
         case "4":
           displayEdgeInfo();
