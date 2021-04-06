@@ -59,10 +59,14 @@ public class FoodDelivery extends masterController implements Initializable {
   }
 
   public void Submit(ActionEvent actionEvent) throws IOException {
-    Stage popup = new Stage();
-    Parent root = loader.load(getClass().getResourceAsStream("SubmitWindow.fxml"));
-    Scene scene2 = new Scene(root);
-    popup.setScene(scene2);
-    popup.show();
+
+    Parent root = FXMLLoader.load(getClass().getResource("SubmitWindow.fxml"));
+    Scene scene = new Scene(root);
+    Stage stage = new Stage();
+    stage.setScene(scene);
+    stage.setTitle("My Window");
+    stage.show();
+
+
   }
 }
