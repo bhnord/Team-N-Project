@@ -4,6 +4,8 @@ import com.google.inject.Inject;
 import edu.wpi.teamname.services.ServiceTwo;
 import edu.wpi.teamname.services.database.DatabaseService;
 import edu.wpi.teamname.state.HomeState;
+
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -38,5 +40,9 @@ public class ComputerServiceRequest extends masterController implements Initiali
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     log.debug(state.toString());
+  }
+
+  public void advanceHome() throws IOException {
+    super.advanceHome(loader, appPrimaryScene);
   }
 }
