@@ -17,13 +17,15 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class AudioVisualRequest extends masterController implements Initializable {
 
+  private Scene appPrimaryScene;
+
   @Inject DatabaseService db;
   @Inject ServiceTwo graph;
   @Inject FXMLLoader loader;
   @Inject HomeState state;
   @FXML private Label text;
 
-  private Scene appPrimaryScene;
+  public AudioVisualRequest() {}
 
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
