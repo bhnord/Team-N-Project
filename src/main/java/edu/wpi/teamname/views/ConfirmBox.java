@@ -4,7 +4,6 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -34,11 +33,11 @@ public class ConfirmBox {
 
     // layout 2
     Button confirmed = new Button("exit");
-    StackPane layout2 = new StackPane();
     Label confirmation = new Label("Your request has been submitted! This is a confirmation!");
+    VBox layout2 = new VBox(10); // StackPane layout2 = new StackPane();
+
     layout2.getChildren().addAll(confirmation, confirmed);
     scene2 = new Scene(layout2, 600, 600);
-
     confirmed.setOnAction(e -> window.close());
 
     VBox layout = new VBox(10);
