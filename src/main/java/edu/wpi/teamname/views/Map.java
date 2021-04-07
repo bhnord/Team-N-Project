@@ -6,11 +6,16 @@ import edu.wpi.teamname.services.database.DatabaseService;
 import edu.wpi.teamname.state.HomeState;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -31,6 +36,8 @@ public class Map extends masterController implements Initializable {
   @FXML private Label YLabel;
 
   private Scene appPrimaryScene;
+  int[] nodeinfo = new int[3];
+  ObservableList<int[]> nodes = FXCollections.observableArrayList();
 
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
@@ -62,11 +69,28 @@ public class Map extends masterController implements Initializable {
   }
 
   public void placeNode(MouseEvent mouseEvent) {
-    Circle simpleNode = new Circle(mouseEvent.getX(), mouseEvent.getY(), 5);
+    Circle simpleNode = new Circle(mouseEvent.getX(), mouseEvent.getY(), 2.5);
     simpleNode.setFill(Color.BLUE);
     Group root = new Group(simpleNode);
     AnchorPane scene = (AnchorPane) appPrimaryScene.getRoot();
     scene.getChildren().add(root);
     Stage stage = (Stage) appPrimaryScene.getWindow();
+    nodeinfo = new int[] {(int) mouseEvent.getX(), (int) mouseEvent.getY(), nodes.size() + 1};
+    nodes.add(nodeinfo);
+  }
+
+  public void PrintNode(ActionEvent actionEvent) {
+    for (int[] node : nodes) {
+      System.out.println(Arrays.toString(node) + ", ");
+    }
+  }
+
+  public void clear(ActionEvent actionEvent) throws IOException {
+    Parent root = loader.load(getClass().getResourceAsStream("map.fxml"));
+
+    Stage stage = (Stage) appPrimaryScene.getWindow();
+    stage.setHeight(800);
+    stage.setWidth(1200);
+    appPrimaryScene.setRoot(root);
   }
 }
