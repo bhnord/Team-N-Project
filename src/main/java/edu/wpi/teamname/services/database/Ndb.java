@@ -25,6 +25,7 @@ public class Ndb {
       return;
     }
 
+    initTables();
     if (args.length == 0) {
       System.out.println(
           "1 - Node Information\n2 - Update Node Information\n3 - Update Node Location Long Name");
@@ -69,11 +70,11 @@ public class Ndb {
       System.out.print("Enter new X Y (ex. 100 200): ");
       String[] xy = s.nextLine().split(" ");
       String str =
-          "UPDATE Nodes SET xcoord = '"
+          "UPDATE Nodes SET xcoord = "
               + xy[0]
-              + "', ycoord = '"
+              + ", ycoord = "
               + xy[1]
-              + "' WHERE nodeID = '"
+              + " WHERE nodeID = '"
               + id
               + "'";
       s.close();
@@ -114,39 +115,38 @@ public class Ndb {
     ResultSetMetaData rm = r.getMetaData();
     int colNum = rm.getColumnCount();
     for (int i = 1; i <= colNum; i++) {
-      System.out.printf("%-25s", rm.getColumnLabel(i));
+      System.out.printf("%-45s", rm.getColumnLabel(i));
     }
-    System.out.println(""); // newline
+    System.out.println(); // newline
     while (r.next()) {
-      for (int i = 1; i <= colNum; i++) System.out.printf("%-25s", r.getString(i));
-      System.out.println(""); // newline
+      for (int i = 1; i <= colNum; i++) System.out.printf("%-45s", r.getString(i));
+      System.out.println(); // newline
     }
   }
 
-  //  private static void initTables() {
-  //    try {
-  //      String str =
-  //          "CREATE TABLE Edges( "
-  //              + "edgesID varchar(25), "
-  //              + "startNode varchar(25), "
-  //              + "endNode varchar(25), "
-  //              + "PRIMARY KEY (edgesID))";
-  //      stmt.execute(str);
-  //      str =
-  //          "CREATE TABLE Nodes( "
-  //              + "nodeID varchar(25), "
-  //              + "xcoord varchar(25), "
-  //              + "ycoord varchar(25), "
-  //              + "floor varchar(25), "
-  //              + "building varchar(25), "
-  //              + "nodeType varchar(25), "
-  //              + "longName varchar(25), "
-  //              + "shortName varchar(25), "
-  //              + "PRIMARY KEY (nodeID))";
-  //      stmt.execute(str);
-  //    } catch (SQLException e) {
-  //      e.printStackTrace();
-  //    }
-  //  }
-
+  private static void initTables() {
+    try {
+      String str =
+          "CREATE TABLE Edges( "
+              + "edgesID varchar(25), "
+              + "startNode varchar(25), "
+              + "endNode varchar(25), "
+              + "PRIMARY KEY (edgesID))";
+      stmt.execute(str);
+      str =
+          "CREATE TABLE Nodes( "
+              + "nodeID varchar(25), "
+              + "xcoord INT NOT NULL, "
+              + "ycoord INT NOT NULL, "
+              + "floor varchar(25), "
+              + "building varchar(25), "
+              + "nodeType varchar(25), "
+              + "longName varchar(45), "
+              + "shortName varchar(25), "
+              + "PRIMARY KEY (nodeID))";
+      stmt.execute(str);
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
 }
