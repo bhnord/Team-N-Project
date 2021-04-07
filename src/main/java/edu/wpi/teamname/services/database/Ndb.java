@@ -51,6 +51,7 @@ public class Ndb {
   }
 
   // displays nodes (on command line)
+
   private static void displayNodeInfo() {
     try {
       String str = "SELECT * FROM Nodes";
