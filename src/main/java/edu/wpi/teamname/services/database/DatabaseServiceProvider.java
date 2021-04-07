@@ -13,7 +13,8 @@ import java.sql.SQLException;
  */
 public class DatabaseServiceProvider extends AbstractModule {
 
-  private final String realDbUrl = "jdbc:derby:myDB;create=true";
+  private final String realDbUrl =
+      "jdbc:derby:src/main/java/edu/wpi/teamname/services/database/NodeEdgeData;user=admin;password=admin;create=true";
 
   @Override
   protected void configure() {}
