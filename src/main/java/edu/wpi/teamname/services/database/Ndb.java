@@ -1,4 +1,3 @@
 package edu.wpi.teamname.services.database;
 
-public class Ndb {
-}
+public class Ndb {}
