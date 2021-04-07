@@ -43,6 +43,6 @@ public abstract class Node<T extends Node<T>> implements Comparable<Node<T>> {
 
   @Override
   public int compareTo(@NonNull Node<T> Other) {
-    return (this._localGoal + this._globalGoal) > (this._localGoal + this._globalGoal) ? 1 : -1;
+    return (this._localGoal + this._globalGoal) > (Other._localGoal + Other._globalGoal) ? 1 : -1;
   }
 }

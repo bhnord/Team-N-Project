@@ -11,6 +11,7 @@ import java.net.URL;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.ResourceBundle;
+import java.util.Stack;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -99,7 +100,7 @@ public class Map extends masterController implements Initializable {
   private void placeLink(String id1, String id2) {
     Cartesian node1 = nodeSet.get(id1);
     Cartesian node2 = nodeSet.get(id2);
-    int distance = node2.heuristic(node2);
+    int distance = node1.heuristic(node2);
     node1.addNeighbor(node2, distance);
     node2.addNeighbor(node1, distance);
     Line simpleNode = new Line(node1._x, node1._y, node2._x, node2._y);
@@ -133,8 +134,24 @@ public class Map extends masterController implements Initializable {
         int y = Integer.parseInt(l[i + 3]);
         placeNode(l[i + 1], x, y);
         i += 4;
-      } else {
+      } else if (l[i].equals("link:")) {
         placeLink(l[i + 1], l[i + 2]);
+        i += 3;
+      } else if (l[i].equals("path:")) {
+        PathFinder<Cartesian> pathFinder = new PathFinder<>();
+        Cartesian node1 = nodeSet.get(l[i + 1]);
+        Cartesian node2 = nodeSet.get(l[i + 2]);
+        Stack<Node<Cartesian>> ret = pathFinder.Astar(node1, node2);
+        Cartesian c1 = (Cartesian) ret.pop();
+        while (!ret.empty()) {
+          Cartesian c2 = (Cartesian) ret.pop();
+          Line simpleNode = new Line(c1._x, c1._y, c2._x, c2._y);
+          simpleNode.setStroke(Color.RED);
+          Group root = new Group(simpleNode);
+          AnchorPane scene = (AnchorPane) appPrimaryScene.getRoot();
+          scene.getChildren().add(root);
+          c1 = c2;
+        }
         i += 3;
       }
     }

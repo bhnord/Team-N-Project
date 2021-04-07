@@ -8,7 +8,7 @@ public class PathFinder<T extends Node<T>> {
    * @param end target node
    * @return a stack of nodes containing the path from the start to the end
    */
-  Stack<Node<T>> Astar(Node<T> start, Node<T> end) {
+  public Stack<Node<T>> Astar(Node<T> start, Node<T> end) {
     // Node.reset() should be called on every node accessible to start
     Node<T> curNode;
     start._localGoal = 0;
@@ -23,7 +23,7 @@ public class PathFinder<T extends Node<T>> {
       for (Node<T>.Link l : curNode._neighbors) {
         Node<T> n = l._other;
         int local = curNode._localGoal + l._distance;
-        if (!n._seen || n._localGoal < local) {
+        if (!n._seen || n._localGoal > local) {
           n._localGoal = local;
           n._globalGoal = n.heuristic(end);
           n._parent = curNode;
@@ -32,11 +32,12 @@ public class PathFinder<T extends Node<T>> {
         }
       }
     } while (!open.isEmpty());
+    Stack<Node<T>> ret = rebuild(start, end);
     // reset manipulated nodes
     for (Node<T> n : used) {
       n.reset();
     }
-    return rebuild(start, curNode);
+    return ret;
   }
   /**
    * @param start node to walk back to
@@ -46,7 +47,7 @@ public class PathFinder<T extends Node<T>> {
    */
   private Stack<Node<T>> rebuild(Node<T> start, Node<T> curNode) {
     Stack<Node<T>> ret = new Stack<>();
-    while (curNode != start) {
+    while (curNode != null) {
       ret.push(curNode);
       curNode = curNode._parent;
     }
