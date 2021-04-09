@@ -1,6 +1,9 @@
 package edu.wpi.teamname.views;
 
 import com.google.inject.Inject;
+import edu.wpi.teamname.services.ServiceTwo;
+import edu.wpi.teamname.services.database.DatabaseService;
+import edu.wpi.teamname.state.HomeState;
 import edu.wpi.teamname.state.Login;
 import java.io.IOException;
 import javafx.fxml.FXML;
@@ -12,8 +15,11 @@ import javafx.scene.control.TextField;
 
 public class LoginPage extends masterController implements Initializable {
 
-  private FXMLLoader loader = new FXMLLoader();
+  @Inject FXMLLoader loader;
   private Scene appPrimaryScene;
+  @Inject DatabaseService db;
+  @Inject ServiceTwo graph;
+  @Inject HomeState state;
 
   @FXML private TextField usernameField;
   @FXML private TextField passwordField;
