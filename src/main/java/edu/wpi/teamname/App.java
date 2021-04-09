@@ -48,7 +48,8 @@ public class App extends Application {
 
   @Override
   public void start(Stage primaryStage) throws IOException {
-    Parent root = loader.load(getClass().getResourceAsStream("views/HomeView.fxml"));
+    // Parent root = loader.load(getClass().getResourceAsStream("views/HomeView.fxml"));
+    Parent root = loader.load(getClass().getResourceAsStream("views/LoginPage.fxml"));
     primaryScene.setRoot(root);
     primaryStage.setScene(primaryScene);
     primaryStage.setAlwaysOnTop(true);

@@ -42,7 +42,7 @@ public class HomeController implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    log.debug(state.toString());
+    // log.debug(state.toString());
   }
 
   public void advance(ActionEvent actionEvent) throws IOException {
