@@ -6,6 +6,7 @@ import edu.wpi.teamname.services.algo.*;
 import edu.wpi.teamname.services.algo.Cartesian;
 import edu.wpi.teamname.services.database.DatabaseService;
 import edu.wpi.teamname.state.HomeState;
+import java.io.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
@@ -41,6 +42,8 @@ public class Map extends masterController implements Initializable {
   @FXML private Label XLabel;
   @FXML private Label YLabel;
   @FXML private TextArea Text;
+  @FXML private Label NodeValues;
+  @FXML private TextArea NodeNames;
 
   private Scene appPrimaryScene;
   int[] nodeinfo = new int[3];
@@ -69,6 +72,7 @@ public class Map extends masterController implements Initializable {
     Stage stage = (Stage) appPrimaryScene.getWindow();
     stage.setHeight(435);
     stage.setWidth(600);
+    stage.centerOnScreen();
   }
 
   public void xyPrint(MouseEvent mouseDragEvent) {
@@ -85,6 +89,8 @@ public class Map extends masterController implements Initializable {
     Stage stage = (Stage) appPrimaryScene.getWindow();
     nodeinfo = new int[] {(int) mouseEvent.getX(), (int) mouseEvent.getY(), nodes.size() + 1};
     nodes.add(nodeinfo);
+    NodeValues.setText(
+        NodeValues.getText() + "\nX:" + nodeinfo[0] + ", Y:" + nodeinfo[1] + ", ID:" + nodeinfo[2]);
   }
 
   private void placeNode(String id, int x, int y) {
@@ -155,5 +161,23 @@ public class Map extends masterController implements Initializable {
         i += 3;
       }
     }
+  }
+
+  public void CreateCSV(ActionEvent actionEvent) throws IOException {
+    String[] nodeList = NodeNames.getText().split("[\n]");
+    FileWriter csvWriter = new FileWriter("src/main/resources/MapCSV/MapNodes.csv");
+    for (int i = 0; nodeList.length > i; i++) {
+      String[] singleNode = nodeList[i].split("[,]");
+      csvWriter.append(singleNode[0]);
+      csvWriter.append(", ");
+      csvWriter.append(String.valueOf(nodes.get(i)[0]));
+      csvWriter.append(", ");
+      csvWriter.append(String.valueOf(nodes.get(i)[1]));
+      csvWriter.append(", ");
+      csvWriter.append(singleNode[1]);
+      csvWriter.append("\n");
+    }
+    csvWriter.flush();
+    csvWriter.close();
   }
 }
