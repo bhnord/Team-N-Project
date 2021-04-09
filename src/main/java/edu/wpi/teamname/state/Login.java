@@ -3,9 +3,8 @@ package edu.wpi.teamname.state;
 import javafx.beans.property.SimpleDoubleProperty;
 
 public class Login {
-  private double username; // rate
-  private double password; // amount
-  // private double years; //deleated years
+  private double username;
+  private double password;
 
   private SimpleDoubleProperty payment;
 
@@ -35,6 +34,5 @@ public class Login {
 
   public void calculatePayment() {
 
-    // payment.set(amount * Math.pow(1 + (rate / 12), years));
   }
 }

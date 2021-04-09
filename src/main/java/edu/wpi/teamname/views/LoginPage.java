@@ -34,14 +34,6 @@ public class LoginPage extends masterController implements Initializable {
 
   @FXML
   private void continueToHomePage() throws IOException {
-    //
-    //    Parent root = loader.load(getClass().getResourceAsStream("HomeView.fxml"));
-    //    appPrimaryScene.setRoot(root);
-    //    Stage primaryStage = new Stage();
-    //    primaryStage.setScene(appPrimaryScene);
-    //    primaryStage.setAlwaysOnTop(true);
-    //    primaryStage.show();
-
     super.advanceHome(loader, appPrimaryScene);
   }
 
