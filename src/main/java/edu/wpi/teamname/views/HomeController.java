@@ -11,10 +11,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 
@@ -53,10 +55,14 @@ public class HomeController implements Initializable {
 
   public void map(ActionEvent actionEvent) throws IOException {
     Parent root = loader.load(getClass().getResourceAsStream("map.fxml"));
+    Screen screen = Screen.getPrimary();
+    Rectangle2D bounds = screen.getVisualBounds();
 
     Stage stage = (Stage) appPrimaryScene.getWindow();
-    stage.setHeight(800);
-    stage.setWidth(1200);
+    stage.setX(bounds.getMinX());
+    stage.setY(bounds.getMinY());
+    stage.setWidth(bounds.getWidth());
+    stage.setHeight(bounds.getHeight());
     appPrimaryScene.setRoot(root);
   }
 }
