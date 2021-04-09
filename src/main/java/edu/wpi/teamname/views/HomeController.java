@@ -48,7 +48,7 @@ public class HomeController implements Initializable {
   }
 
   public void advance(ActionEvent actionEvent) throws IOException {
-    String file = ((Button) actionEvent.getSource()).getId() + ".fxml";
+    String file = "Requests/" + ((Button) actionEvent.getSource()).getId() + ".fxml";
     Parent root = loader.load(getClass().getResourceAsStream(file));
     appPrimaryScene.setRoot(root);
   }
