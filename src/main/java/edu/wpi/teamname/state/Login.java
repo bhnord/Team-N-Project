@@ -32,7 +32,5 @@ public class Login {
     return payment;
   }
 
-  public void calculatePayment() {
-
-  }
+  public void calculatePayment() {}
 }

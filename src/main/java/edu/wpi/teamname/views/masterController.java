@@ -70,7 +70,7 @@ public class masterController implements Initializable {
     stage.setScene(null);
     stage.close();
 
-    Parent root = loader.load(getClass().getResourceAsStream("FoodDelivery.fxml"));
+    Parent root = loader.load(getClass().getResourceAsStream("FoodDeliveryRequest.fxml"));
     appPrimaryScene.setRoot(root);
   }
 }
