@@ -19,16 +19,19 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 
@@ -44,6 +47,7 @@ public class Map extends masterController implements Initializable {
   @FXML private TextArea Text;
   @FXML private Label NodeValues;
   @FXML private TextArea NodeNames;
+  @FXML private ImageView mapimage;
 
   private Scene appPrimaryScene;
   int[] nodeinfo = new int[3];
@@ -124,11 +128,19 @@ public class Map extends masterController implements Initializable {
 
   public void clear(ActionEvent actionEvent) throws IOException {
     Parent root = loader.load(getClass().getResourceAsStream("map.fxml"));
+    Screen screen = Screen.getPrimary();
+    Rectangle2D bounds = screen.getVisualBounds();
 
     Stage stage = (Stage) appPrimaryScene.getWindow();
-    stage.setHeight(800);
-    stage.setWidth(1200);
+    stage.setX(bounds.getMinX());
+    stage.setY(bounds.getMinY());
+    stage.setWidth(bounds.getWidth());
+    stage.setHeight(bounds.getHeight());
     appPrimaryScene.setRoot(root);
+
+    // this resets image but does not delete nodes since they are attached to the root not the
+    // image.
+    // mapimage.setImage(new Image("@../../images/level1.png"));
   }
 
   public void submit(ActionEvent actionEvent) {
@@ -167,16 +179,16 @@ public class Map extends masterController implements Initializable {
     String[] nodeList = NodeNames.getText().split("[\n]");
     FileWriter csvWriter = new FileWriter("src/main/resources/MapCSV/MapNodes.csv");
     for (int i = 0; nodeList.length > i; i++) {
+      nodeSet.put(nodeList[i], new Cartesian(nodes.get(i)[0], nodes.get(i)[1]));
       String[] singleNode = nodeList[i].split("[,]");
       csvWriter.append(singleNode[0]);
       csvWriter.append(", ");
       csvWriter.append(String.valueOf(nodes.get(i)[0]));
       csvWriter.append(", ");
       csvWriter.append(String.valueOf(nodes.get(i)[1]));
-      csvWriter.append(", ");
-      csvWriter.append(singleNode[1]);
       csvWriter.append("\n");
     }
+    placeLink("node1", "node2");
     csvWriter.flush();
     csvWriter.close();
   }
