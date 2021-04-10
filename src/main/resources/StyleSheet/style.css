@@ -1,4 +1,9 @@
 
+
+.jfx-progress-bar >  .bar{
+    -fx-background-color: #002bf3;
+}
+
 .jfx-hamburger StackPane{
     -fx-pref-width: 40px;
     -fx-pref-height: 7px;
