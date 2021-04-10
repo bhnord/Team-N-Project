@@ -56,6 +56,12 @@ public class masterController implements Initializable {
     ChildAppPrimaryScene.setRoot(root);
   }
 
+  @FXML
+  public void logOut(FXMLLoader childLoader, Scene ChildAppPrimaryScene) throws IOException {
+    Parent root = childLoader.load(getClass().getResourceAsStream("LoginPage.fxml"));
+    ChildAppPrimaryScene.setRoot(root);
+  }
+
   public void closePopUp(ActionEvent actionEvent) throws IOException {
     Parent root =
         loader.load(
