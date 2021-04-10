@@ -48,6 +48,7 @@ public class Map extends masterController implements Initializable {
   @FXML private Label NodeValues;
   @FXML private TextArea NodeNames;
   @FXML private ImageView mapimage;
+  @FXML private TextArea LinkField;
 
   private Scene appPrimaryScene;
   int[] nodeinfo = new int[3];
@@ -188,8 +189,15 @@ public class Map extends masterController implements Initializable {
       csvWriter.append(String.valueOf(nodes.get(i)[1]));
       csvWriter.append("\n");
     }
-    placeLink("node1", "node2");
     csvWriter.flush();
     csvWriter.close();
+  }
+
+  public void CreateLinks(ActionEvent actionEvent) {
+    String[] links = LinkField.getText().split("[\n]");
+    for (String link : links) {
+      String[] l = link.split(",");
+      placeLink(l[0], l[1]);
+    }
   }
 }
