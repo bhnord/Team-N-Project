@@ -12,9 +12,9 @@ public class ConfirmBox {
   static Scene scene2;
   static Stage stage;
   static ConfirmBox box;
-  static FoodDelivery food;
+  static FoodDeliveryRequest food;
 
-  public static void confirm(FoodDelivery foodType) throws IOException {
+  public static void confirm(FoodDeliveryRequest foodType) throws IOException {
 
     food = foodType;
     String title = "confirmation box";

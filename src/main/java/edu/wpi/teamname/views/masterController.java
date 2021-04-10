@@ -57,7 +57,10 @@ public class masterController implements Initializable {
   }
 
   public void closePopUp(ActionEvent actionEvent) throws IOException {
-    Parent root = loader.load(getClass().getResourceAsStream("HomeView.fxml"));
+    Parent root =
+        loader.load(
+            getClass()
+                .getResourceAsStream("src/main/java/edu/wpi/teamname/views/HomeController.java"));
     appPrimaryScene.setRoot(root);
 
     Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
