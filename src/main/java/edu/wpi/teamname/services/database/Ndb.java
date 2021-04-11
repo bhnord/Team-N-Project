@@ -1,10 +1,10 @@
-//package edu.wpi.teamname.services.database;
+// package edu.wpi.teamname.services.database;
 //
-//import java.sql.*;
-//import java.util.Scanner;
+// import java.sql.*;
+// import java.util.Scanner;
 //
 //// TODO Decide if we want to use Slf4j logger (@Slf4j)
-//public class Ndb {
+// public class Ndb {
 //  private static Connection connection;
 //  private static Statement stmt;
 //
@@ -20,7 +20,8 @@
 //    try {
 //      connection =
 //          DriverManager.getConnection(
-//              "jdbc:derby:src/main/java/edu/wpi/teamname/services/database/NodeEdgeData;user=admin;password=admin;create=true");
+//
+// "jdbc:derby:src/main/java/edu/wpi/teamname/services/database/NodeEdgeData;user=admin;password=admin;create=true");
 //      stmt = connection.createStatement();
 //    } catch (SQLException e) {
 //      e.printStackTrace();
@@ -29,7 +30,8 @@
 //
 //    if (args.length == 0) {
 //      System.out.println(
-//          "1 - Node Information\n2 - Update Node Information\n3 - Update Node Location Long Name");
+//          "1 - Node Information\n2 - Update Node Information\n3 - Update Node Location Long
+// Name");
 //      System.out.println("4 - Edge Information\n5 - Exit Program");
 //    } else {
 //      switch (args[0]) {
@@ -141,4 +143,4 @@
 //      e.printStackTrace();
 //    }
 //  }
-//}
+// }
