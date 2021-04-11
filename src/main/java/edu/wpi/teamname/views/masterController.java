@@ -51,13 +51,6 @@ public class masterController implements Initializable {
   }
 
   @FXML
-  public void returnToFoodDeliveryRequest(FXMLLoader childLoader, Scene ChildAppPrimaryScene)
-      throws IOException {
-    Parent root = childLoader.load(getClass().getResourceAsStream("FoodDeliveryRequest.fxml"));
-    ChildAppPrimaryScene.setRoot(root);
-  }
-
-  @FXML
   public void advanceHome(FXMLLoader childLoader, Scene ChildAppPrimaryScene) throws IOException {
     Parent root = childLoader.load(getClass().getResourceAsStream("HomeView.fxml"));
     ChildAppPrimaryScene.setRoot(root);
