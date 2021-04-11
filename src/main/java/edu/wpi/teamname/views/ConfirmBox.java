@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 public class ConfirmBox {
   static Stage stage;
   static ConfirmBox box;
-  static FoodDeliveryRequest food;
+  static FoodDeliveryRequest food = new FoodDeliveryRequest();
 
   public static void confirm(FoodDeliveryRequest foodType) throws IOException {
 

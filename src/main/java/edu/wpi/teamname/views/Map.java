@@ -141,10 +141,6 @@ public class Map extends masterController implements Initializable {
     stage.setWidth(bounds.getWidth());
     stage.setHeight(bounds.getHeight());
     appPrimaryScene.setRoot(root);
-
-    // this resets image but does not delete nodes since they are attached to the root not the
-    // image.
-    // mapimage.setImage(new Image("@../../images/level1.png"));
   }
 
   public void submit(ActionEvent actionEvent) {
