@@ -70,15 +70,6 @@ public class masterController implements Initializable {
     ChildAppPrimaryScene.setRoot(root);
   }
 
-  /*
-    @FXML
-    public void returnToRequest(FXMLLoader childLoader, Scene ChildAppPrimaryScene)
-        throws IOException {
-      Parent root =
-          childLoader.load(getClass().getResourceAsStream("Requests/FoodDeliveryRequest.fxml"));
-      ChildAppPrimaryScene.setRoot(root);
-    }
-  */
   @FXML
   public void logOut(FXMLLoader childLoader, Scene ChildAppPrimaryScene) throws IOException {
     Parent root = childLoader.load(getClass().getResourceAsStream("LoginPage.fxml"));
