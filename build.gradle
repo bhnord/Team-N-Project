@@ -58,6 +58,8 @@ jar {
     }
 }
 
+
+
 def codeCoverageExcludes = [
         'edu.wpi.teamname.App',
         'edu.wpi.teamname.services.database.DatabaseServiceProvider',
