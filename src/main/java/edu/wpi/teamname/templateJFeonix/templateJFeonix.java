@@ -18,6 +18,8 @@ public class templateJFeonix implements Initializable {
 
   @FXML private JFXTextField txtUsername;
 
+  @FXML private JFXPasswordField txtPassword;
+
   @FXML private JFXProgressBar jfxProgressBar;
 
   @FXML private JFXButton prgStart;
@@ -38,7 +40,7 @@ public class templateJFeonix implements Initializable {
           basicClose.setRate(basicClose.getRate() * -1);
           basicClose.play();
         });
-    /** USERNAME input* */
+    /** USERNAME input and password* */
     RequiredFieldValidator reqInputValid = new RequiredFieldValidator();
     reqInputValid.setMessage("Cannot be empty");
     txtUsername.getValidators().add(reqInputValid);
@@ -47,6 +49,14 @@ public class templateJFeonix implements Initializable {
         .addListener(
             (o, oldVal, newVal) -> {
               if (!newVal) txtUsername.validate();
+            });
+    reqInputValid.setMessage("Cannot be empty");
+    txtPassword.getValidators().add(reqInputValid);
+    txtPassword
+        .focusedProperty()
+        .addListener(
+            (o, oldVal, newVal) -> {
+              if (!newVal) txtPassword.validate();
             });
 
     /** ComboBox* */
