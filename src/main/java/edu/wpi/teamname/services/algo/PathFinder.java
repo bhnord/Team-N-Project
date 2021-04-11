@@ -17,19 +17,20 @@ public class PathFinder<T extends Node<T>> {
     ArrayList<Node<T>> used = new ArrayList<>();
     used.add(start);
     open.add(start);
+    start._seen = true;
     do {
       curNode = open.remove();
-      curNode._seen = true;
       if (curNode == end) {
         break;
       }
       for (Node<T>.Link l : curNode._neighbors) {
         Node<T> n = l._other;
-        int local = curNode._localGoal + l._distance;
+        double local = curNode._localGoal + l._distance;
         if (!n._seen || n._localGoal > local) {
           n._localGoal = local;
           n._globalGoal = n.heuristic(end);
           n._parent = curNode;
+          n._seen = true;
           open.add(n);
           used.add(n);
         }
