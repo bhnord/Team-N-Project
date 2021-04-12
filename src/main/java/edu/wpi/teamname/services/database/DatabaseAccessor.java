@@ -1,6 +1,7 @@
 package edu.wpi.teamname.services.database;
 
 import edu.wpi.teamname.services.algo.DataNode;
+import edu.wpi.teamname.services.algo.Edge;
 import java.sql.*;
 import java.util.HashSet;
 
@@ -31,7 +32,6 @@ public class DatabaseAccessor {
   }
 
   public static HashSet<DataNode> getAllNodes() {
-    HashSet<DataNode> nodeSet = new HashSet<>();
     String query = "SELECT * FROM NODES";
     try {
       ResultSet nodes = stmt.executeQuery(query);
@@ -47,6 +47,39 @@ public class DatabaseAccessor {
     try {
       ResultSet rs = stmt.executeQuery(query);
       return (DataNode) resultSetToNodes(rs).toArray()[0];
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return null;
+    }
+  }
+
+  public static HashSet<Edge> getAllEdges() {
+    String query = "SELECT * FROM EDGES";
+    try {
+      ResultSet rs = stmt.executeQuery(query);
+      return resultSetToEdges(rs);
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return null;
+    }
+  }
+
+  public static HashSet<Edge> getEdgesFromStartNode(String startNode) {
+    String query = "SELECT * FROM EDGES WHERE STARTNODE = '" + startNode + "'";
+    try {
+      ResultSet rs = stmt.executeQuery(query);
+      return resultSetToEdges(rs);
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return null;
+    }
+  }
+
+  public static HashSet<Edge> getEdgesFromEndNode(String endNode) {
+    String query = "SELECT * FROM EDGES WHERE EndNode = '" + endNode + "'";
+    try {
+      ResultSet rs = stmt.executeQuery(query);
+      return resultSetToEdges(rs);
     } catch (SQLException e) {
       e.printStackTrace();
       return null;
@@ -74,14 +107,36 @@ public class DatabaseAccessor {
       return null;
     }
   }
+
+  private static HashSet<Edge> resultSetToEdges(ResultSet rs) {
+    HashSet<Edge> edgeSet = new HashSet<>();
+    try {
+      while (rs.next()) {
+        String edgeID = rs.getString("EDGESID");
+        String startNode = rs.getString("STARTNODE");
+        String endNode = rs.getString("ENDNODE");
+        edgeSet.add(new Edge(edgeID, startNode, edgeID));
+      }
+      return edgeSet;
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return null;
+    }
+  }
 }
 
 class test {
   public static void main(String[] args) {
     DatabaseAccessor db = DatabaseAccessor.getInstance();
     HashSet<DataNode> nodes = db.getAllNodes();
-    //    nodes.forEach(node -> System.out.println(node));
-
+    nodes.forEach(node -> System.out.println(node));
+    System.out.println();
     System.out.println(db.getNode("CREST001L1"));
+    System.out.println();
+    db.getAllEdges().forEach(edge -> System.out.println(edge));
+    System.out.println();
+    db.getEdgesFromStartNode("CDEPT003L1").forEach(edge -> System.out.println(edge));
+    System.out.println();
+    db.getEdgesFromEndNode("CLABS004L1").forEach(edge -> System.out.println(edge));
   }
 }
