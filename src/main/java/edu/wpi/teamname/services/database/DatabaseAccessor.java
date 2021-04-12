@@ -9,7 +9,7 @@ public class DatabaseAccessor {
 
   private static DatabaseAccessor single_instance = null;
   private static String databaseUrl =
-      "jdbc:derby:src/main/java/edu/wpi/teamname/services/database/NodeEdgeData;user=admin;password=admin;create=true";
+      "jdbc:derby:src/main/java/edu/wpi/teamname/services/database/DerbyDB;user=admin;password=admin;create=true";
   private static Connection connection;
   private static Statement stmt;
 

@@ -18,12 +18,13 @@ public class Ndb {
     try {
       connection =
           DriverManager.getConnection(
-              "jdbc:derby:src/main/java/edu/wpi/teamname/services/database/NodeEdgeData;user=admin;password=admin;create=true");
+              "jdbc:derby:src/main/java/edu/wpi/teamname/services/database/DerbyDB;user=admin;password=admin;create=true");
       stmt = connection.createStatement();
     } catch (SQLException e) {
       e.printStackTrace();
       return;
     }
+
 
     if (args.length == 0) {
       System.out.println(
@@ -124,6 +125,9 @@ public class Ndb {
     }
   }
 
+  /**
+   * inits tables into database.
+   */
   private static void initTables() {
     try {
       String str =
@@ -144,6 +148,29 @@ public class Ndb {
               + "longName varchar(45), "
               + "shortName varchar(25), "
               + "PRIMARY KEY (nodeID))";
+      stmt.execute(str);
+      str =
+          "CREATE TABLE Users("
+              + "id INT NOT NULL GENERATED ALWAYS AS IDENTITY,"
+              + "Username varchar(40) NOT NULL UNIQUE, "
+              + "Password varchar(40) NOT NULL,"
+              + "UserType varchar(15),"
+              + "CONSTRAINT chk_UserType CHECK (UserType IN ('Patient', 'Employee', 'Administrator')),"
+              + "PRIMARY KEY (id))";
+      stmt.execute(str);
+      str =
+          "CREATE TABLE Requests("
+              + "id INT NOT NULL GENERATED ALWAYS AS IDENTITY, "
+              + "Type varchar(30), "
+              + "Sender INT NOT NULL, "
+              + "Receiver INT, "
+              + "Content varchar(700), "
+              + "Notes varchar(200), "
+              + "CONSTRAINT chk_Type CHECK (Type IN "
+              + "('Food Delivery', 'Language Interpreter', 'Sanitation', 'Laundry', 'Gift Delivery', 'Floral Delivery', 'Medicine Delivery', "
+              + "'Religious Request', 'Internal Patient Transportation', 'External Patient Transportation', 'Security', 'Facilities Maintenance', "
+              + "'Computer Service', 'Audio/Visual')),"
+              + "PRIMARY KEY (id))";
       stmt.execute(str);
     } catch (SQLException e) {
       e.printStackTrace();
