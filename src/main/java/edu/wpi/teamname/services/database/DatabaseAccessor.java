@@ -35,32 +35,53 @@ public class DatabaseAccessor {
     String query = "SELECT * FROM NODES";
     try {
       ResultSet nodes = stmt.executeQuery(query);
-      while (nodes.next()) {
-        String nodeID = nodes.getString("NODEID");
-        String floor = nodes.getString("FLOOR");
-        String building = nodes.getString("BUILDING");
-        String nodeType = nodes.getString("NODETYPE");
-        String longName = nodes.getString("LONGNAME");
-        String shortName = nodes.getString("SHORTNAME");
-        double xPos = nodes.getDouble("XCOORD");
-        double yPos = nodes.getDouble("YCOORD");
-        nodeSet.add(
-            new DataNode(xPos, yPos, nodeID, floor, building, nodeType, longName, shortName));
-      }
-
+      return resultSetToNodes(nodes);
     } catch (SQLException e) {
       e.printStackTrace();
       return null;
     }
-    return nodeSet;
+  }
+
+  public static DataNode getNode(String nodeID) {
+    String query = "SELECT * FROM NODES WHERE NODEID = '" + nodeID + "'";
+    try {
+      ResultSet rs = stmt.executeQuery(query);
+      return (DataNode) resultSetToNodes(rs).toArray()[0];
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return null;
+    }
+  }
+
+  private static HashSet<DataNode> resultSetToNodes(ResultSet rs) {
+    HashSet<DataNode> nodeSet = new HashSet<>();
+    try {
+      while (rs.next()) {
+        String nodeID = rs.getString("NODEID");
+        String floor = rs.getString("FLOOR");
+        String building = rs.getString("BUILDING");
+        String nodeType = rs.getString("NODETYPE");
+        String longName = rs.getString("LONGNAME");
+        String shortName = rs.getString("SHORTNAME");
+        double xPos = rs.getDouble("XCOORD");
+        double yPos = rs.getDouble("YCOORD");
+        nodeSet.add(
+            new DataNode(xPos, yPos, nodeID, floor, building, nodeType, longName, shortName));
+      }
+      return nodeSet;
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return null;
+    }
   }
 }
 
 class test {
   public static void main(String[] args) {
     DatabaseAccessor db = DatabaseAccessor.getInstance();
-
     HashSet<DataNode> nodes = db.getAllNodes();
-    nodes.forEach(node -> System.out.println(node));
+    //    nodes.forEach(node -> System.out.println(node));
+
+    System.out.println(db.getNode("CREST001L1"));
   }
 }
