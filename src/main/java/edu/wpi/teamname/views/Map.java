@@ -237,15 +237,15 @@ public class Map extends masterController implements Initializable {
 
   public void DeleteNodes(ActionEvent actionEvent) throws IOException {
     DeleteNodesFromMap();
-    // DeleteNodesFromCSV();
+    DeleteNodesFromCSV();
   }
 
   private void DeleteNodesFromMap() {
     AnchorPane scene = (AnchorPane) appPrimaryScene.getRoot();
     List<String> nodesToBeDeletedID = Arrays.asList(deletenodeID.getText().split("[,]"));
     for (int i = 0; scene.getChildren().size() > i; i++) {
-      if (nodesToBeDeletedID.contains(scene.getChildren().get(i + 1).getId())) {
-        scene.getChildren().remove(i + 1);
+      if (nodesToBeDeletedID.contains(scene.getChildren().get(i).getId())) {
+        scene.getChildren().remove(i);
       }
     }
   }
