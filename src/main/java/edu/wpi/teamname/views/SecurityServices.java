@@ -7,10 +7,14 @@ import edu.wpi.teamname.state.HomeState;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import lombok.extern.slf4j.Slf4j;
 
@@ -24,6 +28,10 @@ public class SecurityServices extends masterController implements Initializable 
   @FXML private Label text;
 
   private Scene appPrimaryScene;
+
+  @FXML private ChoiceBox Security;
+  ObservableList<String> securityChoices =
+      FXCollections.observableArrayList("Select security", "Police Officer", "Security Guard");
 
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
@@ -39,10 +47,18 @@ public class SecurityServices extends masterController implements Initializable 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     log.debug(state.toString());
+    Security.setValue("Select security");
+    Security.setItems(securityChoices);
   }
 
   @FXML
   public void advanceHome() throws IOException {
     super.advanceHome(loader, appPrimaryScene);
+  }
+
+  public void Submit(ActionEvent actionEvent) throws IOException {
+    ConfirmBox.confirm(this);
+    {
+    }
   }
 }

@@ -13,6 +13,7 @@ public class ConfirmBox {
   static Stage stage;
   static ConfirmBox box;
   static FoodDelivery food;
+  static SecurityServices security;
 
   public static void confirm(FoodDelivery foodType) throws IOException {
 
@@ -52,5 +53,11 @@ public class ConfirmBox {
   public void returnToHome() throws IOException {
     box.stage.close();
     food.advanceHome();
+  }
+
+  public static void confirm(SecurityServices securityType) throws IOException {
+
+    security = securityType;
+    String title = "confirmation box";
   }
 }
