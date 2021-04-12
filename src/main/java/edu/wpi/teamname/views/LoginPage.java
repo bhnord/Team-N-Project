@@ -6,6 +6,7 @@ import edu.wpi.teamname.services.database.DatabaseService;
 import edu.wpi.teamname.state.HomeState;
 import edu.wpi.teamname.state.Login;
 import java.io.IOException;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -42,5 +43,10 @@ public class LoginPage extends masterController implements Initializable {
     if (!usernameField.getText().isEmpty() && !passwordField.getText().isEmpty()) {
       goToHomePage.setDisable(false);
     }
+  }
+
+  @FXML
+  private void exit(ActionEvent actionEvent) throws IOException {
+    super.cancel(actionEvent);
   }
 }
