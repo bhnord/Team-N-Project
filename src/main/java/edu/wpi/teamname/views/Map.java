@@ -9,13 +9,13 @@ import edu.wpi.teamname.state.HomeState;
 import java.io.*;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.ResourceBundle;
-import java.util.Stack;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -52,6 +52,8 @@ public class Map extends masterController implements Initializable {
   @FXML private ImageView mapimage;
   @FXML private TextArea LinkField;
   @FXML private TextField pathFindNodes;
+  @FXML private TextField deletenodeID;
+  @FXML private Label selectedNode;
 
   private Scene appPrimaryScene;
   int[] nodeinfo = new int[3];
@@ -92,6 +94,13 @@ public class Map extends masterController implements Initializable {
     Circle simpleNode = new Circle(mouseEvent.getX(), mouseEvent.getY(), 2.5);
     simpleNode.setFill(Color.BLUE);
     Group root = new Group(simpleNode);
+    root.setOnMouseClicked(
+        new EventHandler<MouseEvent>() {
+          @Override
+          public void handle(MouseEvent event) {
+            selectedNode.setText(root.getId());
+          }
+        });
     AnchorPane scene = (AnchorPane) appPrimaryScene.getRoot();
     scene.getChildren().add(root);
     Stage stage = (Stage) appPrimaryScene.getWindow();
@@ -182,9 +191,11 @@ public class Map extends masterController implements Initializable {
   public void CreateCSV(ActionEvent actionEvent) throws IOException {
     String[] nodeList = NodeNames.getText().split("[\n]");
     FileWriter csvWriter = new FileWriter("src/main/resources/MapCSV/MapNodes.csv");
+    AnchorPane scene = (AnchorPane) appPrimaryScene.getRoot();
     for (int i = 0; nodeList.length > i; i++) {
-      nodeSet.put(nodeList[i], new Cartesian(nodes.get(i)[0], nodes.get(i)[1]));
       String[] singleNode = nodeList[i].split("[,]");
+      nodeSet.put(nodeList[i], new Cartesian(nodes.get(i)[0], nodes.get(i)[1]));
+      scene.getChildren().get(i + 1).setId(singleNode[0]);
       csvWriter.append(singleNode[0]);
       csvWriter.append(", ");
       csvWriter.append(String.valueOf(nodes.get(i)[0]));
@@ -222,5 +233,56 @@ public class Map extends masterController implements Initializable {
       scene.getChildren().add(root);
       c1 = c2;
     }
+  }
+
+  public void DeleteNodes(ActionEvent actionEvent) throws IOException {
+    DeleteNodesFromMap();
+    // DeleteNodesFromCSV();
+  }
+
+  private void DeleteNodesFromMap() {
+    AnchorPane scene = (AnchorPane) appPrimaryScene.getRoot();
+    List<String> nodesToBeDeletedID = Arrays.asList(deletenodeID.getText().split("[,]"));
+    for (int i = 0; scene.getChildren().size() > i; i++) {
+      if (nodesToBeDeletedID.contains(scene.getChildren().get(i + 1).getId())) {
+        scene.getChildren().remove(i + 1);
+      }
+    }
+  }
+
+  public static int getLineCount() throws IOException {
+    BufferedReader readCSV =
+        Files.newBufferedReader(Paths.get("src/main/resources/MapCSV/MapNodes.csv"));
+    int lineCount = 0;
+    String data;
+    while ((data = readCSV.readLine()) != null) {
+      lineCount++;
+    }
+    return lineCount;
+  }
+
+  public void DeleteNodesFromCSV() throws IOException {
+    BufferedReader readCSV =
+        Files.newBufferedReader(Paths.get("src/main/resources/MapCSV/MapNodes.csv"));
+    String finalCSV = "";
+    String line;
+
+    List<String> nodesToBeDeletedID = Arrays.asList(deletenodeID.getText().split("[,]"));
+
+    for (int i = 0; getLineCount() > i; i++) {
+      line = readCSV.readLine();
+      String id = line.split("[,]")[0];
+      if (nodesToBeDeletedID.contains(id)) ;
+      else {
+        if (finalCSV.equals("")) finalCSV = line;
+        else finalCSV = finalCSV + "\n" + line;
+      }
+    }
+    BufferedWriter csvWriter =
+        Files.newBufferedWriter(Paths.get("src/main/resources/MapCSV/MapNodes.csv"));
+    csvWriter.write(finalCSV);
+
+    csvWriter.flush();
+    csvWriter.close();
   }
 }
