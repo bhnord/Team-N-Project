@@ -3,8 +3,6 @@ package edu.wpi.teamname.views;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXProgressBar;
 import java.io.IOException;
-import javafx.concurrent.Task;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,8 +15,8 @@ public class ConfirmBox {
   static Scene scene2;
   static Stage stage;
   static ConfirmBox box;
-  static FoodDelivery food;
-  static InternalPatient patient;
+  static FoodDeliveryRequest food;
+  // static InternalPatient patient;
 
   @FXML private JFXProgressBar jfxProgressBar;
 
@@ -26,7 +24,7 @@ public class ConfirmBox {
 
   @FXML private AnchorPane anchorPane;
 
-  public static void confirm(FoodDelivery foodType) throws IOException {
+  public static void confirm(FoodDeliveryRequest foodType) throws IOException {
 
     food = foodType;
     String title = "confirmation box";
@@ -45,27 +43,29 @@ public class ConfirmBox {
 
     box.stage.showAndWait();
   }
+  /*
 
-  public static void confirm(InternalPatient iP) throws IOException {
+    public static void confirm(InternalPatient iP) throws IOException {
 
-    patient = iP;
-    String title = "confirmation box";
+      patient = iP;
+      String title = "confirmation box";
 
-    FXMLLoader fxmlLoader =
-        new FXMLLoader(ConfirmBox.class.getResource("ConfirmBoxInternalPatient.fxml"));
-    Parent root = fxmlLoader.load();
-    Scene scene = new Scene(root);
-    box = fxmlLoader.getController();
-    box.stage = new Stage();
-    box.stage.setScene(scene);
+      FXMLLoader fxmlLoader =
+          new FXMLLoader(ConfirmBox.class.getResource("ConfirmBoxInternalPatient.fxml"));
+      Parent root = fxmlLoader.load();
+      Scene scene = new Scene(root);
+      box = fxmlLoader.getController();
+      box.stage = new Stage();
+      box.stage.setScene(scene);
 
-    box.stage.initModality(
-        Modality.APPLICATION_MODAL); // pop-up window won't close until you have dealt with it
-    box.stage.setAlwaysOnTop(true);
-    box.stage.setTitle(title);
+      box.stage.initModality(
+          Modality.APPLICATION_MODAL); // pop-up window won't close until you have dealt with it
+      box.stage.setAlwaysOnTop(true);
+      box.stage.setTitle(title);
 
-    box.stage.showAndWait();
-  }
+      box.stage.showAndWait();
+    }
+  */
 
   @FXML
   public void cancel() throws IOException {
@@ -96,14 +96,17 @@ public class ConfirmBox {
 
     box.stage.setScene(scene);
   }
+  /*
 
-  @FXML
-  public void returnToHomeInternalPatient() throws IOException {
-    box.stage.close();
-    patient.advanceHome();
-  }
+    @FXML
+    public void returnToHomeInternalPatient() throws IOException {
+      box.stage.close();
+      patient.advanceHome();
+    }
+  */
 
   /** Progress Bar w/ button* */
+  /*
   @FXML
   private void handleEventButton(ActionEvent ae) {
     Task task = taskWorker(20);
@@ -123,7 +126,9 @@ public class ConfirmBox {
     Thread th = new Thread(task);
     th.start();
   }
+  */
   /** Telling what to do while progress bar is filling up* */
+  /*
   private Task taskWorker(int seconds) {
     return new Task() {
       @Override
@@ -135,5 +140,5 @@ public class ConfirmBox {
         return null;
       }
     };
-  }
+  }*/
 }
