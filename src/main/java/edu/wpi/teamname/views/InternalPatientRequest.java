@@ -13,8 +13,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -29,7 +31,7 @@ public class InternalPatientRequest extends masterController implements Initiali
   @FXML private JFXTextField txtStartRoom;
   @FXML private JFXTextField txtEndRoom;
   private Scene appPrimaryScene;
-
+  Stage primaryStage;
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
    * JavaFX thread
@@ -79,5 +81,14 @@ public class InternalPatientRequest extends masterController implements Initiali
 
   public void Submit(ActionEvent actionEvent) throws IOException {
     ConfirmBoxInternalPatient.confirm(this);
+  }
+
+  public void help(ActionEvent actionEvent) throws IOException {
+    Parent root =
+        loader.load(getClass().getResourceAsStream("InternalPatientRequestHelpPage.fxml"));
+    appPrimaryScene.setRoot(root);
+    primaryStage.setScene(appPrimaryScene);
+    primaryStage.setAlwaysOnTop(true);
+    primaryStage.show();
   }
 }

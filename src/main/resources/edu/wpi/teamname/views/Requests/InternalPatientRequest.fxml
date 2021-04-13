@@ -48,5 +48,7 @@
       <JFXButton fx:id="HomeView" layoutX="50.0" layoutY="359.0" onAction="#advanceHome" ripplerFill="WHITE" text="Home" textFill="WHITE" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#211edd" height="18.0" layoutX="535.0" layoutY="363.0" stroke="TRANSPARENT" strokeType="INSIDE" width="49.0" />
       <JFXButton fx:id="submit" layoutX="532.0" layoutY="359.0" onAction="#Submit" ripplerFill="WHITE" text="Submit" textFill="WHITE" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#211edd" height="18.0" layoutX="276.0" layoutY="363.0" stroke="TRANSPARENT" strokeType="INSIDE" width="49.0" />
+      <JFXButton fx:id="submit1" layoutX="280.0" layoutY="359.0" onAction="#help" ripplerFill="WHITE" text="Help" textFill="WHITE" />
     </children>
 </AnchorPane>
