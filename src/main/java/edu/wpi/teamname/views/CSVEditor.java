@@ -33,7 +33,6 @@ public class CSVEditor extends masterController implements Initializable {
   @FXML private Label loadSuccess;
 
   private Scene appPrimaryScene;
-  // private final JFileChooser openFileChooser;
 
   JFileChooser fc =
       new JFileChooser() {
@@ -48,10 +47,6 @@ public class CSVEditor extends masterController implements Initializable {
           return dialog;
         }
       };
-
-  /*  public CSVEditor() {
-    fc.setFileFilter(new FileNameExtensionFilter("cvs"));
-  }*/
 
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
