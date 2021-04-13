@@ -28,7 +28,7 @@
          </font></JFXTextField>
       <ImageView fitHeight="190.0" fitWidth="333.0" layoutX="41.0" layoutY="142.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="images\level1.png" />
+            <Image url="@/images/level1.png" />
          </image>
       </ImageView>
       <JFXColorPicker layoutX="206.0" layoutY="92.0" promptText="Node Color" />
