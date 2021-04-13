@@ -33,13 +33,19 @@ public class CSVEditor extends masterController implements Initializable {
 
   private Scene appPrimaryScene;
 
-  private final JFileChooser openFileChooser;
-  private Component editor;
+  // private final JFileChooser openFileChooser;
 
-  public CSVEditor() {
-    openFileChooser = new JFileChooser();
-    openFileChooser.setCurrentDirectory(new File("c:\\temp"));
-  }
+  JFileChooser fc =
+      new JFileChooser() {
+        @Override
+        protected JDialog createDialog(Component parent) throws HeadlessException {
+          // intercept the dialog created by JFileChooser
+          JDialog dialog = super.createDialog(parent);
+          dialog.setModal(true); // set modality (or setModalityType)
+          dialog.setAlwaysOnTop(true);
+          return dialog;
+        }
+      };
 
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
@@ -63,9 +69,10 @@ public class CSVEditor extends masterController implements Initializable {
   }
 
   public void openFile(ActionEvent actionEvent) throws IOException {
-    int returnValue = openFileChooser.showOpenDialog(editor);
+    // fc.setCurrentDirectory(new File("c:\\temp"));
+    int returnValue = fc.showOpenDialog(fc);
     if (returnValue == JFileChooser.APPROVE_OPTION) {
-      File file = openFileChooser.getSelectedFile();
+      File file = fc.getSelectedFile();
       loadSuccess.setText("File successfully loaded!");
       messageLabel.setText("" + file);
     } else {
