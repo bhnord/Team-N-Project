@@ -13,9 +13,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -28,6 +30,7 @@ public class FoodDeliveryRequest extends masterController implements Initializab
   @FXML private Label text;
 
   private Scene appPrimaryScene;
+  Stage primaryStage;
 
   @FXML private ChoiceBox Food;
   ObservableList<String> foodChoices =
@@ -58,5 +61,13 @@ public class FoodDeliveryRequest extends masterController implements Initializab
 
   public void Submit(ActionEvent actionEvent) throws IOException {
     ConfirmBox.confirm(this);
+  }
+
+  public void help(ActionEvent actionEvent) throws IOException {
+    Parent root = loader.load(getClass().getResourceAsStream("FoodRequestHelpPage.fxml"));
+    appPrimaryScene.setRoot(root);
+    primaryStage.setScene(appPrimaryScene);
+    primaryStage.setAlwaysOnTop(true);
+    primaryStage.show();
   }
 }
