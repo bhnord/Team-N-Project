@@ -3,7 +3,7 @@ package edu.wpi.teamname.services.database;
 import java.sql.*;
 
 public class Session {
-  private ResultSet _usrData = null;
+  private ResultSet _usrData = null; // TODO Change to Type USER
   private boolean _loggedIn = false;
   private final String _url =
       "jdbc:derby:src/main/java/edu/wpi/teamname/services/database/DerbyDB;user=admin;password=admin;create=true";
