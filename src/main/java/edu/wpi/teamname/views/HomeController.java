@@ -53,6 +53,12 @@ public class HomeController extends masterController implements Initializable {
     appPrimaryScene.setRoot(root);
   }
 
+  public void advanceViews(ActionEvent actionEvent) throws IOException {
+    String file = ((Button) actionEvent.getSource()).getId() + ".fxml";
+    Parent root = loader.load(getClass().getResourceAsStream(file));
+    appPrimaryScene.setRoot(root);
+  }
+
   public void map(ActionEvent actionEvent) throws IOException {
     Parent root = loader.load(getClass().getResourceAsStream("map.fxml"));
     Screen screen = Screen.getPrimary();
