@@ -83,6 +83,7 @@
       <Button fx:id="map" layoutY="366.0" mnemonicParsing="false" onAction="#map" prefHeight="25.0" prefWidth="79.0" text="Map" />
       <Button fx:id="logOutButton" layoutX="521.0" layoutY="351.0" mnemonicParsing="false" onAction="#logOut" text="Log Out" />
       <Button layoutY="-1.0" mnemonicParsing="false" onAction="#exit" text="X" />
-      <Button fx:id="CSVEditor" layoutY="339.0" mnemonicParsing="false" onAction="#advanceViews" prefHeight="25.0" prefWidth="79.0" text="CSV Nodes" />
+      <Button fx:id="CSVEditor" layoutX="495.0" layoutY="5.0" mnemonicParsing="false" onAction="#advanceViews" prefHeight="31.0" prefWidth="100.0" text="CSV Nodes" />
+      <Button fx:id="CSVEditor2" layoutX="495.0" layoutY="48.0" mnemonicParsing="false" onAction="#advanceViews" prefHeight="31.0" prefWidth="100.0" text="CSV Edges" />
    </children>
 </AnchorPane>
