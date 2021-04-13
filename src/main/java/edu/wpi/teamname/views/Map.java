@@ -172,7 +172,6 @@ public class Map extends masterController implements Initializable {
     int edgeSize = getLineCount("MapNEdgesAll");
 
     for (int i = 0; nodesSize > i; i++) {
-      System.out.println("Here");
       String[] line = readnodes.readLine().split("[,]");
       placeNode(
           line[0],
@@ -180,7 +179,6 @@ public class Map extends masterController implements Initializable {
           (int) (Integer.parseInt(line[2]) * 0.1609));
     }
     for (int i = 0; edgeSize > i; i++) {
-      System.out.println("Here 2");
       String[] line = readedges.readLine().split("[,]");
       placeLink(line[1], line[2]);
     }
