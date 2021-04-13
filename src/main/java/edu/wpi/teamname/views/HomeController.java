@@ -21,7 +21,7 @@ import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class HomeController implements Initializable {
+public class HomeController extends masterController implements Initializable {
 
   @Inject DatabaseService db;
   @Inject ServiceTwo graph;
@@ -44,7 +44,7 @@ public class HomeController implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    // log.debug(state.toString());
+    log.debug(state.toString());
   }
 
   public void advance(ActionEvent actionEvent) throws IOException {
@@ -64,5 +64,15 @@ public class HomeController implements Initializable {
     stage.setWidth(bounds.getWidth());
     stage.setHeight(bounds.getHeight());
     appPrimaryScene.setRoot(root);
+  }
+
+  @FXML
+  public void logOut() throws IOException {
+    super.logOut(loader, appPrimaryScene);
+  }
+
+  @FXML
+  private void exit(ActionEvent actionEvent) throws IOException {
+    super.cancel(actionEvent);
   }
 }

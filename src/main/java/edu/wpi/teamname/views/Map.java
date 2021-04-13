@@ -25,6 +25,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -33,6 +34,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javax.swing.*;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -48,6 +50,8 @@ public class Map extends masterController implements Initializable {
   @FXML private Label NodeValues;
   @FXML private TextArea NodeNames;
   @FXML private ImageView mapimage;
+  @FXML private TextArea LinkField;
+  @FXML private TextField pathFindNodes;
 
   private Scene appPrimaryScene;
   int[] nodeinfo = new int[3];
@@ -137,10 +141,6 @@ public class Map extends masterController implements Initializable {
     stage.setWidth(bounds.getWidth());
     stage.setHeight(bounds.getHeight());
     appPrimaryScene.setRoot(root);
-
-    // this resets image but does not delete nodes since they are attached to the root not the
-    // image.
-    // mapimage.setImage(new Image("@../../images/level1.png"));
   }
 
   public void submit(ActionEvent actionEvent) {
@@ -188,8 +188,35 @@ public class Map extends masterController implements Initializable {
       csvWriter.append(String.valueOf(nodes.get(i)[1]));
       csvWriter.append("\n");
     }
-    placeLink("node1", "node2");
     csvWriter.flush();
     csvWriter.close();
+  }
+
+  public void CreateLinks(ActionEvent actionEvent) {
+    String[] links = LinkField.getText().split("[\n]");
+    for (String link : links) {
+      String[] l = link.split(",");
+      placeLink(l[0], l[1]);
+    }
+  }
+
+  public void PathFind(ActionEvent actionEvent) {
+    String[] S_E_nodes = pathFindNodes.getText().split("[,]");
+    PathFinder<Cartesian> pathFinder = new PathFinder<>();
+    Cartesian node1 = nodeSet.get(S_E_nodes[0]);
+    Cartesian node2 = nodeSet.get(S_E_nodes[1]);
+    pathFinder.Astar(node1, node2);
+
+    Stack<Node<Cartesian>> ret = pathFinder.Astar(node1, node2);
+    Cartesian c1 = (Cartesian) ret.pop();
+    while (!ret.empty()) {
+      Cartesian c2 = (Cartesian) ret.pop();
+      Line simpleNode = new Line(c1._x, c1._y, c2._x, c2._y);
+      simpleNode.setStroke(Color.BLUE);
+      Group root = new Group(simpleNode);
+      AnchorPane scene = (AnchorPane) appPrimaryScene.getRoot();
+      scene.getChildren().add(root);
+      c1 = c2;
+    }
   }
 }

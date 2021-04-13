@@ -20,9 +20,9 @@ public class PathFinder<T extends Node<T>> {
     do {
       curNode = open.remove();
       curNode._seen = true;
-      if (curNode == end) {
-        break;
-      }
+      //      if (curNode == end) {
+      //        break;
+      //      }
       for (Node<T>.Link l : curNode._neighbors) {
         Node<T> n = l._other;
         int local = curNode._localGoal + l._distance;

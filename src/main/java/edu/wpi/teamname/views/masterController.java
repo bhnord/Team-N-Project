@@ -47,7 +47,7 @@ public class masterController implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    log.debug(state.toString());
+    //    log.debug(state.toString());
   }
 
   @FXML
@@ -56,8 +56,24 @@ public class masterController implements Initializable {
     ChildAppPrimaryScene.setRoot(root);
   }
 
+  @FXML
+  public void returnToRequest(
+      FXMLLoader childLoader, Scene ChildAppPrimaryScene, String requestPath) throws IOException {
+    Parent root = childLoader.load(getClass().getResourceAsStream(requestPath + ".fxml"));
+    ChildAppPrimaryScene.setRoot(root);
+  }
+
+  @FXML
+  public void logOut(FXMLLoader childLoader, Scene ChildAppPrimaryScene) throws IOException {
+    Parent root = childLoader.load(getClass().getResourceAsStream("LoginPage.fxml"));
+    ChildAppPrimaryScene.setRoot(root);
+  }
+
   public void closePopUp(ActionEvent actionEvent) throws IOException {
-    Parent root = loader.load(getClass().getResourceAsStream("HomeView.fxml"));
+    Parent root =
+        loader.load(
+            getClass()
+                .getResourceAsStream("src/main/java/edu/wpi/teamname/views/HomeController.java"));
     appPrimaryScene.setRoot(root);
 
     Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
@@ -65,12 +81,10 @@ public class masterController implements Initializable {
   }
 
   public void cancel(ActionEvent actionEvent) throws IOException {
-    Stage stage = new Stage();
-    stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-    stage.setScene(null);
-    stage.close();
-
-    Parent root = loader.load(getClass().getResourceAsStream("FoodDeliveryRequest.fxml"));
-    appPrimaryScene.setRoot(root);
+    new Stage();
+    Stage stage2;
+    stage2 = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+    stage2.setScene(null);
+    stage2.close();
   }
 }

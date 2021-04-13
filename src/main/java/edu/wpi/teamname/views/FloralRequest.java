@@ -7,6 +7,7 @@ import edu.wpi.teamname.state.HomeState;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,7 +16,7 @@ import javafx.scene.control.Label;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class LanguageInterpreters extends masterController implements Initializable {
+public class FloralRequest extends masterController implements Initializable {
 
   @Inject DatabaseService db;
   @Inject ServiceTwo graph;
@@ -44,5 +45,9 @@ public class LanguageInterpreters extends masterController implements Initializa
   @FXML
   public void advanceHome() throws IOException {
     super.advanceHome(loader, appPrimaryScene);
+  }
+
+  public void Submit(ActionEvent actionEvent) throws IOException {
+    ConfirmBoxFloral.confirm(this);
   }
 }
