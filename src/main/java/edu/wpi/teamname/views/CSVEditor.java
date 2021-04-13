@@ -17,6 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javax.swing.*;
 import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -32,7 +33,6 @@ public class CSVEditor extends masterController implements Initializable {
   @FXML private Label loadSuccess;
 
   private Scene appPrimaryScene;
-
   // private final JFileChooser openFileChooser;
 
   JFileChooser fc =
@@ -41,11 +41,17 @@ public class CSVEditor extends masterController implements Initializable {
         protected JDialog createDialog(Component parent) throws HeadlessException {
           // intercept the dialog created by JFileChooser
           JDialog dialog = super.createDialog(parent);
-          dialog.setModal(true); // set modality (or setModalityType)
+          dialog.setModal(true); // doesn't close pop-up until dealt with
           dialog.setAlwaysOnTop(true);
+          FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV FILES", "csv");
+          fc.setFileFilter(filter);
           return dialog;
         }
       };
+
+  /*  public CSVEditor() {
+    fc.setFileFilter(new FileNameExtensionFilter("cvs"));
+  }*/
 
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
@@ -70,9 +76,14 @@ public class CSVEditor extends masterController implements Initializable {
 
   public void openFile(ActionEvent actionEvent) throws IOException {
     // fc.setCurrentDirectory(new File("c:\\temp"));
+
     int returnValue = fc.showOpenDialog(fc);
+    //    FileNameExtensionFilter filter = new FileNameExtensionFilter("TEXT FILES", "txt", "text");
+    //    fc.setFileFilter(filter);
     if (returnValue == JFileChooser.APPROVE_OPTION) {
+
       File file = fc.getSelectedFile();
+      // fc.addChoosableFileFilter(new FileNameExtensionFilter("CSV File", "csv"));
       loadSuccess.setText("File successfully loaded!");
       messageLabel.setText("" + file);
     } else {
