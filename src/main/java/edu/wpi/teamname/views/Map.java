@@ -85,11 +85,21 @@ public class Map extends masterController implements Initializable {
     stage.centerOnScreen();
   }
 
+  /**
+   * Prints the x and y values of the cursor on the bottom left of the screen
+   *
+   * @param mouseDragEvent
+   */
   public void xyPrint(MouseEvent mouseDragEvent) {
     XLabel.setText(String.valueOf(mouseDragEvent.getX()));
     YLabel.setText(String.valueOf(mouseDragEvent.getY()));
   }
 
+  /**
+   * on mouse click on the map places a node with no id but when clicked it returns the node FX:ID
+   *
+   * @param mouseEvent
+   */
   public void placeNode(MouseEvent mouseEvent) {
     Circle simpleNode = new Circle(mouseEvent.getX(), mouseEvent.getY(), 2.5);
     simpleNode.setFill(Color.BLUE);
@@ -114,12 +124,26 @@ public class Map extends masterController implements Initializable {
     Circle simpleNode = new Circle(x, y, 2.5);
     simpleNode.setFill(Color.BLUE);
     Group root = new Group(simpleNode);
+    root.setId(id);
+    root.setOnMouseClicked(
+        new EventHandler<MouseEvent>() {
+          @Override
+          public void handle(MouseEvent event) {
+            selectedNode.setText(root.getId());
+          }
+        });
     AnchorPane scene = (AnchorPane) appPrimaryScene.getRoot();
     scene.getChildren().add(root);
     Cartesian n = new Cartesian(x, y);
     nodeSet.put(id, n);
   }
 
+  /**
+   * Places a line between two nodes
+   *
+   * @param id1 node id of first node
+   * @param id2 node id of the second node
+   */
   private void placeLink(String id1, String id2) {
     Cartesian node1 = nodeSet.get(id1);
     Cartesian node2 = nodeSet.get(id2);
@@ -139,6 +163,52 @@ public class Map extends masterController implements Initializable {
     }
   }
 
+  public void examplePathFind(ActionEvent actionEvent) throws IOException {
+    BufferedReader readnodes =
+        Files.newBufferedReader(Paths.get("src/main/resources/MapCSV/MapNNodesAll.csv"));
+    BufferedReader readedges =
+        Files.newBufferedReader(Paths.get("src/main/resources/MapCSV/MapNEdgesAll.csv"));
+    int nodesSize = getLineCount("MapNNodesAll");
+    int edgeSize = getLineCount("MapNEdgesAll");
+
+    for (int i = 0; nodesSize > i; i++) {
+      System.out.println("Here");
+      String[] line = readnodes.readLine().split("[,]");
+      placeNode(
+          line[0],
+          (int) (Integer.parseInt(line[1]) * 0.1614),
+          (int) (Integer.parseInt(line[2]) * 0.1609));
+    }
+    for (int i = 0; edgeSize > i; i++) {
+      System.out.println("Here 2");
+      String[] line = readedges.readLine().split("[,]");
+      placeLink(line[1], line[2]);
+    }
+
+    Cartesian node1 = nodeSet.get("CHALL004L1");
+    Cartesian node2 = nodeSet.get("CLABS002L1");
+    PathFinder<Cartesian> pathFinder = new PathFinder<>();
+    pathFinder.Astar(node1, node2);
+
+    Stack<Node<Cartesian>> ret = pathFinder.Astar(node1, node2);
+    Cartesian c1 = (Cartesian) ret.pop();
+    while (!ret.empty()) {
+      Cartesian c2 = (Cartesian) ret.pop();
+      Line simpleNode = new Line(c1._x, c1._y, c2._x, c2._y);
+      simpleNode.setStroke(Color.BLUE);
+      Group root = new Group(simpleNode);
+      AnchorPane scene = (AnchorPane) appPrimaryScene.getRoot();
+      scene.getChildren().add(root);
+      c1 = c2;
+    }
+  }
+
+  /**
+   * restarts the map class. Needs work.
+   *
+   * @param actionEvent
+   * @throws IOException
+   */
   public void clear(ActionEvent actionEvent) throws IOException {
     Parent root = loader.load(getClass().getResourceAsStream("map.fxml"));
     Screen screen = Screen.getPrimary();
@@ -184,6 +254,12 @@ public class Map extends masterController implements Initializable {
     }
   }
 
+  /**
+   * replaces MapNodes.csv with a new csv of the current nodesSet
+   *
+   * @param actionEvent
+   * @throws IOException
+   */
   public void CreateCSV(ActionEvent actionEvent) throws IOException {
     String[] nodeList = NodeNames.getText().split("[\n]");
     FileWriter csvWriter = new FileWriter("src/main/resources/MapCSV/MapNodes.csv");
@@ -246,9 +322,9 @@ public class Map extends masterController implements Initializable {
     }
   }
 
-  public static int getLineCount() throws IOException {
+  public static int getLineCount(String csv) throws IOException {
     BufferedReader readCSV =
-        Files.newBufferedReader(Paths.get("src/main/resources/MapCSV/MapNodes.csv"));
+        Files.newBufferedReader(Paths.get("src/main/resources/MapCSV/" + csv + ".csv"));
     int lineCount = 0;
     String data;
     while ((data = readCSV.readLine()) != null) {
@@ -265,7 +341,7 @@ public class Map extends masterController implements Initializable {
 
     List<String> nodesToBeDeletedID = Arrays.asList(deletenodeID.getText().split("[,]"));
 
-    for (int i = 0; getLineCount() > i; i++) {
+    for (int i = 0; getLineCount("MapNodes") > i; i++) {
       line = readCSV.readLine();
       String id = line.split("[,]")[0];
       if (nodesToBeDeletedID.contains(id)) ;
