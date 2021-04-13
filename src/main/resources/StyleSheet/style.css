@@ -7,6 +7,27 @@
 .jfx-hamburger StackPane{
     -fx-pref-width: 40px;
     -fx-pref-height: 7px;
-    -fx-background-color : #D63333;
+    -fx-background-color : #d63333;
     -fx-background-radius : 5px;
+}
+
+.jfx-list-cell:selected{
+    -fx-background-color: #3d8c91;
+}
+.jfx-list-cell{
+    -fx-background-insets: 0.0;
+}
+.jfx-list-cell .jfx-rippler{
+    -fx-rippler-fill: #0000ff;
+}
+.jfx-list-cell:hover{
+    -fx-background-color: #1bd79c;
+}
+
+.jfx-list-view{
+    -fx-expanded: true;
+    -fx-background-insets: 0;
+    -fx-cell-vertical-margin: 10.0;
+    -fx-vertical-gap: 10;
+    -fx-pref-width: 150;
 }
