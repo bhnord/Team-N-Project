@@ -86,6 +86,8 @@ public class ConfirmBox {
     box.stage.close();
     food.advanceHome();
   }
+}
+  /*
 
   @FXML
   public void continuePageInternalPatient() throws IOException {
@@ -95,8 +97,7 @@ public class ConfirmBox {
     Scene scene = new Scene(root);
 
     box.stage.setScene(scene);
-  }
-  /*
+
 
     @FXML
     public void returnToHomeInternalPatient() throws IOException {
@@ -141,4 +142,3 @@ public class ConfirmBox {
       }
     };
   }*/
-}
