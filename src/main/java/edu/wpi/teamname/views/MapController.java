@@ -38,7 +38,7 @@ import javax.swing.*;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class Map extends masterController implements Initializable {
+public class MapController extends masterController implements Initializable {
   @Inject DatabaseService db;
   @Inject ServiceTwo graph;
   @Inject FXMLLoader loader;
