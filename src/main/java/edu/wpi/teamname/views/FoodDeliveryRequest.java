@@ -19,7 +19,7 @@ import javafx.scene.control.Label;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class FoodDelivery extends masterController implements Initializable {
+public class FoodDeliveryRequest extends masterController implements Initializable {
 
   @Inject DatabaseService db;
   @Inject ServiceTwo graph;
