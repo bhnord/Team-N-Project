@@ -151,6 +151,7 @@ public class MapController extends masterController implements Initializable {
     node1.addNeighbor(node2, distance);
     node2.addNeighbor(node1, distance);
     Line simpleNode = new Line(node1._x, node1._y, node2._x, node2._y);
+    simpleNode.setStrokeWidth(2);
     simpleNode.setFill(Color.RED);
     Group root = new Group(simpleNode);
     root.setId(id1 + "_" + id2);
@@ -183,8 +184,8 @@ public class MapController extends masterController implements Initializable {
       String[] line = readnodes.readLine().split("[,]");
       placeNode(
           line[0],
-          (int) (Integer.parseInt(line[1]) * 0.1614),
-          (int) (Integer.parseInt(line[2]) * 0.1609));
+          ((int) (Integer.parseInt(line[1]) * 0.25 + 10)),
+          (int) (Integer.parseInt(line[2]) * 0.25 + 10));
     }
     for (int i = 0; edgeSize > i; i++) {
       String[] line = readedges.readLine().split("[,]");
