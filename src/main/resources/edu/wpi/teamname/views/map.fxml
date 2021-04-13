@@ -34,7 +34,7 @@
                               <Insets top="10.0" />
                            </VBox.margin>
                         </Button>
-                        <Button fx:id="pathFindingBtn" mnemonicParsing="false" onAction="#PathFind" text="Pathfind">
+                        <Button fx:id="pathFindingBtn" mnemonicParsing="false" onAction="#examplePathFind" text="Pathfind">
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin>
