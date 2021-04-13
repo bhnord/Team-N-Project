@@ -113,6 +113,26 @@ public class DatabaseAccessor {
     }
   }
 
+  /**
+   * loads CSV files into Database.
+   *
+   * @param csvPath full path to CSV File. (needs .csv)
+   * @param tableName table name to put CSV File in. --Note table name needs to be in all caps.--
+   */
+  public static void loadCSVtoTable(String csvPath, String tableName) {
+    String str =
+        "CALL SYSCS_UTIL.SYSCS_IMPORT_TABLE(null, '"
+            + tableName
+            + "', '"
+            + csvPath
+            + "', ',', '\"', 'UTF-8',0)";
+    try {
+      stmt.execute(str);
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
+
   private static HashSet<DataNode> resultSetToNodes(ResultSet rs) {
     HashSet<DataNode> nodeSet = new HashSet<>();
     try {

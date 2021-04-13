@@ -137,7 +137,7 @@ public class Ndb {
               + "building varchar(25), "
               + "nodeType varchar(25), "
               + "longName varchar(45), "
-              + "shortName varchar(25), "
+              + "shortName varchar(35), "
               + "PRIMARY KEY (id))";
       stmt.execute(str);
       str =
