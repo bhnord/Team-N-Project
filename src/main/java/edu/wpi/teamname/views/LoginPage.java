@@ -1,18 +1,22 @@
 package edu.wpi.teamname.views;
 
 import com.google.inject.Inject;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.validation.RequiredFieldValidator;
 import edu.wpi.teamname.services.ServiceTwo;
 import edu.wpi.teamname.services.database.DatabaseService;
 import edu.wpi.teamname.state.HomeState;
 import edu.wpi.teamname.state.Login;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 
 public class LoginPage extends masterController implements Initializable {
 
@@ -22,11 +26,33 @@ public class LoginPage extends masterController implements Initializable {
   @Inject ServiceTwo graph;
   @Inject HomeState state;
 
-  @FXML private TextField usernameField;
-  @FXML private TextField passwordField;
-  @FXML private Button goToHomePage;
+  @FXML private JFXTextField usernameField;
+  @FXML private JFXPasswordField passwordField;
+  @FXML private JFXButton goToHomePage;
 
   private Login login;
+
+  public void initialize(URL url, ResourceBundle rb) {
+
+    /** USERNAME input and password* */
+    RequiredFieldValidator reqInputValid = new RequiredFieldValidator();
+    reqInputValid.setMessage("Cannot be empty");
+    usernameField.getValidators().add(reqInputValid);
+    usernameField
+        .focusedProperty()
+        .addListener(
+            (o, oldVal, newVal) -> {
+              if (!newVal) usernameField.validate();
+            });
+    reqInputValid.setMessage("Cannot be empty");
+    passwordField.getValidators().add(reqInputValid);
+    passwordField
+        .focusedProperty()
+        .addListener(
+            (o, oldVal, newVal) -> {
+              if (!newVal) passwordField.validate();
+            });
+  }
 
   @Inject
   public void setAppPrimaryScene(Scene appPrimaryScene) {
@@ -42,6 +68,8 @@ public class LoginPage extends masterController implements Initializable {
   private void validateButton() {
     if (!usernameField.getText().isEmpty() && !passwordField.getText().isEmpty()) {
       goToHomePage.setDisable(false);
+    } else {
+      goToHomePage.setDisable(true);
     }
   }
 
