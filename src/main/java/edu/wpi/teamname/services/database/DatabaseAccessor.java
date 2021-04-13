@@ -43,7 +43,7 @@ public class DatabaseAccessor {
   }
 
   public static DataNode getNode(String nodeID) {
-    String query = "SELECT * FROM NODES WHERE NODEID = '" + nodeID + "'";
+    String query = "SELECT * FROM NODES WHERE id = '" + nodeID + "'";
     try {
       ResultSet rs = stmt.executeQuery(query);
       return (DataNode) resultSetToNodes(rs).toArray()[0];
@@ -92,7 +92,7 @@ public class DatabaseAccessor {
   }
 
   public static HashSet<Edge> getEdgesFromStartNode(String startNode) {
-    String query = "SELECT * FROM EDGES WHERE STARTNODE = '" + startNode + "'";
+    String query = "SELECT * FROM EDGES WHERE StartNodeID = '" + startNode + "'";
     try {
       ResultSet rs = stmt.executeQuery(query);
       return resultSetToEdges(rs);
@@ -103,7 +103,7 @@ public class DatabaseAccessor {
   }
 
   public static HashSet<Edge> getEdgesFromEndNode(String endNode) {
-    String query = "SELECT * FROM EDGES WHERE EndNode = '" + endNode + "'";
+    String query = "SELECT * FROM EDGES WHERE EndNodeID = '" + endNode + "'";
     try {
       ResultSet rs = stmt.executeQuery(query);
       return resultSetToEdges(rs);
@@ -113,11 +113,31 @@ public class DatabaseAccessor {
     }
   }
 
+  /**
+   * loads CSV files into Database.
+   *
+   * @param csvPath full path to CSV File. (needs .csv)
+   * @param tableName table name to put CSV File in. --Note table name needs to be in all caps.--
+   */
+  public static void loadCSVtoTable(String csvPath, String tableName) {
+    String str =
+        "CALL SYSCS_UTIL.SYSCS_IMPORT_TABLE(null, '"
+            + tableName
+            + "', '"
+            + csvPath
+            + "', ',', '\"', 'UTF-8',0)";
+    try {
+      stmt.execute(str);
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
+
   private static HashSet<DataNode> resultSetToNodes(ResultSet rs) {
     HashSet<DataNode> nodeSet = new HashSet<>();
     try {
       while (rs.next()) {
-        String nodeID = rs.getString("NODEID");
+        String nodeID = rs.getString("id");
         String floor = rs.getString("FLOOR");
         String building = rs.getString("BUILDING");
         String nodeType = rs.getString("NODETYPE");
@@ -139,9 +159,9 @@ public class DatabaseAccessor {
     HashSet<Edge> edgeSet = new HashSet<>();
     try {
       while (rs.next()) {
-        String edgeID = rs.getString("EDGESID");
-        String startNode = rs.getString("STARTNODE");
-        String endNode = rs.getString("ENDNODE");
+        String edgeID = rs.getString("id");
+        String startNode = rs.getString("StartNodeID");
+        String endNode = rs.getString("EndNodeID");
         edgeSet.add(new Edge(edgeID, startNode, edgeID));
       }
       return edgeSet;
@@ -155,20 +175,20 @@ public class DatabaseAccessor {
 class test {
   public static void main(String[] args) {
     DatabaseAccessor db = DatabaseAccessor.getInstance();
-    //        HashSet<DataNode> nodes = db.getAllNodes();
-    //        nodes.forEach(node -> System.out.println(node));
-    //        System.out.println();
-    //
-    //        System.out.println(db.getNode("CREST001L1"));
-    //        System.out.println();
-    //
-    //        db.getAllEdges().forEach(edge -> System.out.println(edge));
-    //        System.out.println();
-    //
-    //        db.getEdgesFromStartNode("CDEPT003L1").forEach(edge -> System.out.println(edge));
-    //        System.out.println();
-    //
-    //    db.getEdgesFromEndNode("CLABS004L1").forEach(edge -> System.out.println(edge));
+    HashSet<DataNode> nodes = db.getAllNodes();
+    nodes.forEach(node -> System.out.println(node));
+    System.out.println();
+
+    System.out.println(db.getNode("CREST001L1"));
+    System.out.println();
+
+    db.getAllEdges().forEach(edge -> System.out.println(edge));
+    System.out.println();
+
+    db.getEdgesFromStartNode("CDEPT003L1").forEach(edge -> System.out.println(edge));
+    System.out.println();
+
+    db.getEdgesFromEndNode("CLABS004L1").forEach(edge -> System.out.println(edge));
 
     String nodeID = "testid";
     String floor = "testfloor";
@@ -178,6 +198,6 @@ class test {
     String shortName = "testsname";
     double xPos = 0;
     double yPos = 1;
-    db.addNode(new DataNode(xPos, yPos, nodeID, floor, building, nodeType, longName, shortName));
+    // db.addNode(new DataNode(xPos, yPos, nodeID, floor, building, nodeType, longName, shortName));
   }
 }

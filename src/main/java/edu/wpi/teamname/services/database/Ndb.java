@@ -127,24 +127,26 @@ public class Ndb {
   /** inits tables into database. */
   private static void initTables() {
     try {
+
       String str =
-          "CREATE TABLE Edges( "
-              + "edgesID varchar(25), "
-              + "startNode varchar(25), "
-              + "endNode varchar(25), "
-              + "PRIMARY KEY (edgesID))";
-      stmt.execute(str);
-      str =
           "CREATE TABLE Nodes( "
-              + "nodeID varchar(25), "
+              + "id varchar(25), "
               + "xcoord INT NOT NULL, "
               + "ycoord INT NOT NULL, "
               + "floor varchar(25), "
               + "building varchar(25), "
               + "nodeType varchar(25), "
               + "longName varchar(45), "
-              + "shortName varchar(25), "
-              + "PRIMARY KEY (nodeID))";
+              + "shortName varchar(35), "
+              + "PRIMARY KEY (id))";
+      stmt.execute(str);
+      str =
+          "CREATE TABLE Edges( "
+              + "id varchar(25), "
+              + "startNodeID varchar(25) REFERENCES Nodes (id), "
+              + "endNodeID varchar(25) REFERENCES Nodes (id), "
+              + "PRIMARY KEY (id))";
+
       stmt.execute(str);
       str =
           "CREATE TABLE Users("
@@ -159,8 +161,8 @@ public class Ndb {
           "CREATE TABLE Requests("
               + "id INT NOT NULL GENERATED ALWAYS AS IDENTITY, "
               + "Type varchar(30), "
-              + "Sender INT NOT NULL, "
-              + "Receiver INT, "
+              + "SenderID INT NOT NULL REFERENCES Users (id), "
+              + "ReceiverID INT REFERENCES Users (id), "
               + "Content varchar(700), "
               + "Notes varchar(200), "
               + "CONSTRAINT chk_Type CHECK (Type IN "
