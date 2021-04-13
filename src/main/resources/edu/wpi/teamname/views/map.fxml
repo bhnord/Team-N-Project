@@ -40,6 +40,17 @@
                            </VBox.margin>
                         </Button>
                         <TextField fx:id="pathFindNodes" />
+                        <Button fx:id="deleteNodes" mnemonicParsing="false" onAction="#DeleteNodes" text="Delete Nodes">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Button>
+                        <TextField fx:id="deletenodeID" />
+                        <Label fx:id="selectedNode" text="Selected Label">
+                           <VBox.margin>
+                              <Insets top="50.0" />
+                           </VBox.margin>
+                        </Label>
                      </children>
                      <HBox.margin>
                         <Insets left="100.0" />
