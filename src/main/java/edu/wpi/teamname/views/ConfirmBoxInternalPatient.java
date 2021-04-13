@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 public class ConfirmBoxInternalPatient {
   static Scene scene2;
   static Stage stage;
-  static edu.wpi.teamname.views.ConfirmBox box;
+  static edu.wpi.teamname.views.ConfirmBoxInternalPatient box;
 
   static InternalPatientRequest patient;
 
@@ -32,7 +32,8 @@ public class ConfirmBoxInternalPatient {
     String title = "confirmation box";
 
     FXMLLoader fxmlLoader =
-        new FXMLLoader(ConfirmBox.class.getResource("ConfirmBoxInternalPatient.fxml"));
+        new FXMLLoader(
+            ConfirmBoxInternalPatient.class.getResource("ConfirmBoxInternalPatient.fxml"));
     Parent root = fxmlLoader.load();
     Scene scene = new Scene(root);
     box = fxmlLoader.getController();
