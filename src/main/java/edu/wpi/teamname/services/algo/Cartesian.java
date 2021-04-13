@@ -16,4 +16,12 @@ public class Cartesian extends Node<Cartesian> {
         (other.value._x - this._x) * (other.value._x - this._x)
             + (other.value._y - this._y) * (other.value._y - this._y));
   }
+
+  public double get_x() {
+    return _x;
+  }
+
+  public double get_y() {
+    return _y;
+  }
 }

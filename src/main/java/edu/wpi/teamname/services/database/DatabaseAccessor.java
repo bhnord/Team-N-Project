@@ -53,6 +53,33 @@ public class DatabaseAccessor {
     }
   }
 
+  public static boolean addNode(DataNode node) {
+    String query =
+        "INSERT INTO NODES VALUES ('"
+            + node.get_nodeID()
+            + "', "
+            + node.get_x()
+            + ", "
+            + node.get_y()
+            + ", '"
+            + node.get_floor()
+            + "', '"
+            + node.get_building()
+            + "', '"
+            + node.get_nodeType()
+            + "', '"
+            + node.get_longName()
+            + "', '"
+            + node.get_shortName()
+            + "')";
+    try {
+      return stmt.execute(query);
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return false;
+    }
+  }
+
   public static HashSet<Edge> getAllEdges() {
     String query = "SELECT * FROM EDGES";
     try {
@@ -128,15 +155,29 @@ public class DatabaseAccessor {
 class test {
   public static void main(String[] args) {
     DatabaseAccessor db = DatabaseAccessor.getInstance();
-    HashSet<DataNode> nodes = db.getAllNodes();
-    nodes.forEach(node -> System.out.println(node));
-    System.out.println();
-    System.out.println(db.getNode("CREST001L1"));
-    System.out.println();
-    db.getAllEdges().forEach(edge -> System.out.println(edge));
-    System.out.println();
-    db.getEdgesFromStartNode("CDEPT003L1").forEach(edge -> System.out.println(edge));
-    System.out.println();
-    db.getEdgesFromEndNode("CLABS004L1").forEach(edge -> System.out.println(edge));
+    //        HashSet<DataNode> nodes = db.getAllNodes();
+    //        nodes.forEach(node -> System.out.println(node));
+    //        System.out.println();
+    //
+    //        System.out.println(db.getNode("CREST001L1"));
+    //        System.out.println();
+    //
+    //        db.getAllEdges().forEach(edge -> System.out.println(edge));
+    //        System.out.println();
+    //
+    //        db.getEdgesFromStartNode("CDEPT003L1").forEach(edge -> System.out.println(edge));
+    //        System.out.println();
+    //
+    //    db.getEdgesFromEndNode("CLABS004L1").forEach(edge -> System.out.println(edge));
+
+    String nodeID = "testid";
+    String floor = "testfloor";
+    String building = "testbuilding";
+    String nodeType = "testtype";
+    String longName = "testlname";
+    String shortName = "testsname";
+    double xPos = 0;
+    double yPos = 1;
+    db.addNode(new DataNode(xPos, yPos, nodeID, floor, building, nodeType, longName, shortName));
   }
 }

@@ -25,7 +25,6 @@ public class Ndb {
       return;
     }
 
-
     if (args.length == 0) {
       System.out.println(
           "1 - Node Information\n2 - Update Node Information\n3 - Update Node Location Long Name");
@@ -125,9 +124,7 @@ public class Ndb {
     }
   }
 
-  /**
-   * inits tables into database.
-   */
+  /** inits tables into database. */
   private static void initTables() {
     try {
       String str =
