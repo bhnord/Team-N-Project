@@ -64,7 +64,6 @@ public class ConfirmBox {
 
     box.stage.showAndWait();
   }
-}
 
   /*
 
@@ -90,44 +89,45 @@ public class ConfirmBox {
     }
   */
 
-//  @FXML
-//  public void cancel() throws IOException {
-//    box.stage.close();
-//  }
-//
-//  @FXML
-//  public void continuePage() throws IOException {
-//    FXMLLoader fxmlLoader = new FXMLLoader(ConfirmBox.class.getResource("ConfirmationPage.fxml"));
-//    Parent root = fxmlLoader.load();
-//    Scene scene = new Scene(root);
-//
-//    box.stage.setScene(scene);
-//  }
-//
-//  @FXML
-//  public void returnToHome() throws IOException {
-//    box.stage.close();
-//    food.advanceHome();
-//  }
-// }
-  /*
+  //  @FXML
+  //  public void cancel() throws IOException {
+  //    box.stage.close();
+  //  }
+  //
+  //  @FXML
+  //  public void continuePage() throws IOException {
+  //    FXMLLoader fxmlLoader = new
+  // FXMLLoader(ConfirmBox.class.getResource("ConfirmationPage.fxml"));
+  //    Parent root = fxmlLoader.load();
+  //    Scene scene = new Scene(root);
+  //
+  //    box.stage.setScene(scene);
+  //  }
+  // *
+  @FXML
+  public void returnToHome() throws IOException {
+    box.stage.close();
+    food.advanceHome();
+  }
+}
+
+/*
+@FXML
+public void continuePageInternalPatient() throws IOException {
+  FXMLLoader fxmlLoader =
+      new FXMLLoader(ConfirmBox.class.getResource("ConfirmationPageInternalPatient.fxml"));
+  Parent root = fxmlLoader.load();
+  Scene scene = new Scene(root);
+
+  box.stage.setScene(scene);
+
 
   @FXML
-  public void continuePageInternalPatient() throws IOException {
-    FXMLLoader fxmlLoader =
-        new FXMLLoader(ConfirmBox.class.getResource("ConfirmationPageInternalPatient.fxml"));
-    Parent root = fxmlLoader.load();
-    Scene scene = new Scene(root);
-
-    box.stage.setScene(scene);
-
-
-    @FXML
-    public void returnToHomeInternalPatient() throws IOException {
-      box.stage.close();
-      patient.advanceHome();
-    }
-  */
+  public void returnToHomeInternalPatient() throws IOException {
+    box.stage.close();
+    patient.advanceHome();
+  }
+*/
 
   /** Progress Bar w/ button* */
   /*
