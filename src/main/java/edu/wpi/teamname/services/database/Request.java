@@ -1,13 +1,13 @@
 package edu.wpi.teamname.services.database;
 
 public abstract class Request {
-  int id, senderID, recieverID;
+  int id, senderID, receiverID;
   String notes;
 
-  public Request(int id, int senderID, int recieverID, String notes) {
+  public Request(int id, int senderID, int receiverID, String notes) {
     this.id = id;
     this.senderID = senderID;
-    this.recieverID = recieverID;
+    this.receiverID = receiverID;
     this.notes = notes;
   }
 
@@ -19,8 +19,8 @@ public abstract class Request {
     return senderID;
   }
 
-  public int getRecieverID() {
-    return recieverID;
+  public int getReceiverID() {
+    return receiverID;
   }
 
   public String getNotes() {
