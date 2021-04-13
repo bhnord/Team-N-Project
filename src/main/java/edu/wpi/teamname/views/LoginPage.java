@@ -33,6 +33,8 @@ public class LoginPage extends masterController implements Initializable {
   private Login login;
 
   public void initialize(URL url, ResourceBundle rb) {
+    /** Locking submit button to start* */
+    goToHomePage.setDisable(true);
 
     /** USERNAME input and password* */
     RequiredFieldValidator reqInputValid = new RequiredFieldValidator();
