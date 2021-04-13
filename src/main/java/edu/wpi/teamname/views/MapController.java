@@ -153,6 +153,14 @@ public class MapController extends masterController implements Initializable {
     Line simpleNode = new Line(node1._x, node1._y, node2._x, node2._y);
     simpleNode.setFill(Color.RED);
     Group root = new Group(simpleNode);
+    root.setId(id1 + "_" + id2);
+    root.setOnMouseClicked(
+        new EventHandler<MouseEvent>() {
+          @Override
+          public void handle(MouseEvent event) {
+            selectedNode.setText(root.getId());
+          }
+        });
     AnchorPane scene = (AnchorPane) appPrimaryScene.getRoot();
     scene.getChildren().add(root);
   }
