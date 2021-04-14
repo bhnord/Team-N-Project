@@ -151,20 +151,19 @@ public class MapController extends masterController implements Initializable {
     int distance = node1.heuristic(node2);
     node1.addNeighbor(node2, distance);
     node2.addNeighbor(node1, distance);
-    Line simpleNode = new Line(node1._x, node1._y, node2._x, node2._y);
-    simpleNode.setStrokeWidth(2);
-    simpleNode.setFill(Color.RED);
-    Group root = new Group(simpleNode);
-    root.setId(id1 + "_" + id2);
-    root.setOnMouseClicked(
-        new EventHandler<MouseEvent>() {
-          @Override
-          public void handle(MouseEvent event) {
-            selectedNode.setText(root.getId());
-          }
-        });
-    AnchorPane scene = (AnchorPane) appPrimaryScene.getRoot();
-    scene.getChildren().add(root);
+    //    Line simpleNode = new Line(node1._x, node1._y, node2._x, node2._y);
+    //    simpleNode.setStrokeWidth(0);
+    //    Group root = new Group(simpleNode);
+    //    root.setId(id1 + "_" + id2);
+    //    root.setOnMouseClicked(
+    //        new EventHandler<MouseEvent>() {
+    //          @Override
+    //          public void handle(MouseEvent event) {
+    //            selectedNode.setText(root.getId());
+    //          }
+    //        });
+    //    AnchorPane scene = (AnchorPane) appPrimaryScene.getRoot();
+    //    scene.getChildren().add(root);
   }
 
   public void PrintNode(ActionEvent actionEvent) {
