@@ -22,6 +22,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.stage.FileChooser;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import lombok.extern.slf4j.Slf4j;
@@ -33,19 +34,21 @@ public class CSVEditorNodes extends masterController implements Initializable {
   @Inject ServiceTwo graph;
   @Inject FXMLLoader loader;
   @Inject HomeState state;
-  JFileChooser fc =
-      new JFileChooser() {
-        @Override
-        protected JDialog createDialog(Component parent) throws HeadlessException {
-          // intercept the dialog created by JFileChooser
-          JDialog dialog = super.createDialog(parent);
-          dialog.setModal(true); // doesn't close pop-up until dealt with
-          dialog.setAlwaysOnTop(true);
-          FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV FILES", "csv");
-          fc.setFileFilter(filter);
-          return dialog;
-        }
-      };
+//  JFileChooser fc =
+//      new JFileChooser() {
+//        @Override
+//        protected JDialog createDialog(Component parent) throws HeadlessException {
+//          // intercept the dialog created by JFileChooser
+//          JDialog dialog = super.createDialog(parent);
+//          dialog.setModal(true); // doesn't close pop-up until dealt with
+//          dialog.setAlwaysOnTop(true);
+//          FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV FILES", "csv");
+//          fc.setFileFilter(filter);
+//          return dialog;
+//        }
+//      };
+
+  FileChooser fileChooser = new FileChooser();
 
   @FXML private JFXButton commitChangesButton;
   @FXML private Label messageLabel;
@@ -155,22 +158,24 @@ public class CSVEditorNodes extends masterController implements Initializable {
   }
 
   public void openFile(ActionEvent actionEvent) throws IOException {
+    fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
+    File file = fileChooser.showOpenDialog(appPrimaryScene.getWindow());
     // fc.setCurrentDirectory(new File("c:\\temp"));
-    int returnValue = fc.showOpenDialog(fc);
+    //    int returnValue = fc.showOpenDialog(fc);
     //    FileNameExtensionFilter filter = new FileNameExtensionFilter("TEXT FILES", "txt", "text");
     //    fc.setFileFilter(filter);
-    if (returnValue == JFileChooser.APPROVE_OPTION) {
-      File file = fc.getSelectedFile();
-      // fc.addChoosableFileFilter(new FileNameExtensionFilter("CSV File", "csv"));
-      try {
-        selectedFilePath = file.getPath();
-        loadNodes(file);
-      } catch (Exception e) {
-        loadSuccess.setText("Error loading file, try again.");
-      }
-    } else {
-      messageLabel.setText("no file chosen");
+    //    if (returnValue == JFileChooser.APPROVE_OPTION) {
+    //      File file = fc.getSelectedFile();
+    // fc.addChoosableFileFilter(new FileNameExtensionFilter("CSV File", "csv"));
+    try {
+      selectedFilePath = file.getPath();
+      loadNodes(file);
+    } catch (Exception e) {
+      loadSuccess.setText("Error loading file, try again.");
     }
+    //    } else {
+    //      messageLabel.setText("no file chosen");
+    //    }
   }
 
   private void loadNodes(File file) throws FileNotFoundException {

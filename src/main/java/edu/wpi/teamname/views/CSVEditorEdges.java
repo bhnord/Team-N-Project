@@ -77,9 +77,10 @@ public class CSVEditorEdges extends masterController implements Initializable {
   public void initialize(URL url, ResourceBundle rb) {
     // log.debug(state.toString());
     try {
-//      File file = new File("src/main/resources/MapCSV/MapNNodesAll.csv"); //TODO Resolve if we want them to
-//      selectedFilePath = file.getPath();
-//      loadNodes(file);
+      //      File file = new File("src/main/resources/MapCSV/MapNNodesAll.csv"); //TODO Resolve if
+      // we want them to
+      //      selectedFilePath = file.getPath();
+      //      loadNodes(file);
     } catch (Exception e) {
       e.printStackTrace();
     }
