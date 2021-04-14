@@ -6,18 +6,18 @@ import lombok.NonNull;
 
 public abstract class Node<T extends Node<T>> implements Comparable<Node<T>> {
   public class Link {
-    int _distance;
+    double _distance;
     Node<T> _other;
 
-    public Link(Node<T> other, int distance) {
+    public Link(Node<T> other, double distance) {
       this._distance = distance;
       this._other = other;
     }
   }
 
   T value;
-  int _localGoal;
-  int _globalGoal;
+  double _localGoal;
+  double _globalGoal;
   boolean _seen;
   Node<T> _parent;
   List<Link> _neighbors;
@@ -35,11 +35,11 @@ public abstract class Node<T extends Node<T>> implements Comparable<Node<T>> {
     this._parent = null;
   }
 
-  public void addNeighbor(Node<T> other, int distance) {
+  public void addNeighbor(Node<T> other, double distance) {
     this._neighbors.add(new Link(other, distance));
   }
 
-  abstract int heuristic(Node<T> other);
+  abstract double heuristic(Node<T> other);
 
   @Override
   public int compareTo(@NonNull Node<T> Other) {

@@ -1,9 +1,9 @@
 package edu.wpi.teamname.services.algo;
 
 public class Cartesian extends Node<Cartesian> {
-  public int _x, _y;
+  public double _x, _y;
 
-  public Cartesian(int _x, int _y) {
+  public Cartesian(double _x, double _y) {
     super();
     this.value = this;
     this._x = _x;
@@ -11,8 +11,17 @@ public class Cartesian extends Node<Cartesian> {
   }
 
   @Override
-  public int heuristic(Node<Cartesian> other) {
-    return (other.value._x - this._x) * (other.value._x - this._x)
-        + (other.value._y - this._y) * (other.value._y - this._y);
+  public double heuristic(Node<Cartesian> other) {
+    return Math.sqrt(
+        (other.value._x - this._x) * (other.value._x - this._x)
+            + (other.value._y - this._y) * (other.value._y - this._y));
+  }
+
+  public double get_x() {
+    return _x;
+  }
+
+  public double get_y() {
+    return _y;
   }
 }

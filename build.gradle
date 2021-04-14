@@ -8,7 +8,7 @@ plugins {
 
 sourceCompatibility = '1.8'
 targetCompatibility = '1.8'
-mainClassName = 'edu.wpi.teamname.Main'
+mainClassName = 'edu.wpi.teamname.services.database.Ndb'
 
 repositories {
     mavenCentral()
