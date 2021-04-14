@@ -14,6 +14,8 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 import java.util.Scanner;
+import java.util.UUID;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -61,9 +63,10 @@ public class CSVEditor extends masterController implements Initializable {
   @FXML private JFXTextField LongName;
   @FXML private JFXTextField NodeType;
 
-  private DataNode selectedNode;
+  private Label selectedLabel;
   private HashMap<String, DataNode> nodeMap = new HashMap<>();
   private Scene appPrimaryScene;
+  private String selectedFilePath;
 
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
@@ -81,19 +84,11 @@ public class CSVEditor extends masterController implements Initializable {
     // log.debug(state.toString());
     try {
       File file = new File("src/main/resources/MapCSV/MapNNodesAll.csv");
+      selectedFilePath = file.getPath();
       loadNodes(file);
     } catch (Exception e) {
       e.printStackTrace();
     }
-    /** PLACEHOLDER TESTING FOR CSV NODES* */
-    //        for (int i = 0; i < 4; i++) {
-    //            try {
-    //                Label lbl = new Label("Item" + i);
-    //                listView.getItems().add(lbl);
-    //            } catch (Exception ex) {
-    //                Logger.getLogger(CSVEditor.class.getName()).log(Level.SEVERE, null, ex);
-    //            }
-    //        }
   }
 
   @FXML
@@ -113,8 +108,27 @@ public class CSVEditor extends masterController implements Initializable {
   }
 
   @FXML
-  private void addNew(ActionEvent event) {
-    listView.getItems().add(new Label("new node"));
+  private void addNew(ActionEvent actionEvent) {
+    Label lbl = new Label("New Node");
+    String uuid = UUID.randomUUID().toString();
+    lbl.setId(uuid);
+    nodeMap.put(uuid, new DataNode(0, 0, "", "", "", "", "", ""));
+    lbl.setOnMousePressed(
+            event -> {
+              if (event.isPrimaryButtonDown()) {
+                DataNode clickedNode = nodeMap.get(lbl.getId());
+                selectedLabel = lbl;
+                ID.setText(clickedNode.get_nodeID());
+                XCoord.setText(Double.toString(clickedNode.get_x()));
+                YCoord.setText(Double.toString(clickedNode.get_y()));
+                Floor.setText(clickedNode.get_floor());
+                Building.setText(clickedNode.get_building());
+                ShortName.setText(clickedNode.get_shortName());
+                LongName.setText(clickedNode.get_longName());
+                NodeType.setText(clickedNode.get_nodeType());
+              }
+            });
+    listView.getItems().add(lbl);
   }
 
   @FXML
@@ -124,16 +138,18 @@ public class CSVEditor extends masterController implements Initializable {
 
   public void commitChanges(ActionEvent actionEvent) {
     try {
+      DataNode selectedNode = nodeMap.get(selectedLabel.getId());
       double xcoord = Double.parseDouble(XCoord.getText());
       double ycoord = Double.parseDouble(YCoord.getText());
       selectedNode.set_nodeID(ID.getText());
       selectedNode.set_x(xcoord);
       selectedNode.set_y(ycoord);
       selectedNode.set_floor(Floor.getText());
-      selectedNode.set_building( Building.getText());
+      selectedNode.set_building(Building.getText());
       selectedNode.set_nodeType(NodeType.getText());
       selectedNode.set_longName(LongName.getText());
       selectedNode.set_shortName(ShortName.getText());
+      selectedLabel.setText(selectedNode.get_nodeID());
     } catch (Exception e) {
       messageLabel.setText("Invalid type in field");
     }
@@ -148,6 +164,7 @@ public class CSVEditor extends masterController implements Initializable {
       File file = fc.getSelectedFile();
       // fc.addChoosableFileFilter(new FileNameExtensionFilter("CSV File", "csv"));
       try {
+        selectedFilePath = file.getPath();
         loadNodes(file);
       } catch (Exception e) {
         loadSuccess.setText("Error loading file, try again.");
@@ -170,7 +187,7 @@ public class CSVEditor extends masterController implements Initializable {
           event -> {
             if (event.isPrimaryButtonDown()) {
               DataNode clickedNode = nodeMap.get(lbl.getId());
-              selectedNode = clickedNode;
+              selectedLabel = lbl;
               ID.setText(clickedNode.get_nodeID());
               XCoord.setText(Double.toString(clickedNode.get_x()));
               YCoord.setText(Double.toString(clickedNode.get_y()));
@@ -238,5 +255,9 @@ public class CSVEditor extends masterController implements Initializable {
       fileWriter.write(outputString);
     }
     fileWriter.close();
+  }
+
+  public void saveFile(ActionEvent actionEvent) throws IOException {
+    nodesToCsv(selectedFilePath);
   }
 }
