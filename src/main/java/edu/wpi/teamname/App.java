@@ -53,7 +53,7 @@ public class App extends Application {
 
   @Override
   public void start(Stage primaryStage) throws IOException {
-    Parent root = loader.load(getClass().getResourceAsStream("views/LoginPage.fxml"));
+    Parent root = loader.load(getClass().getResourceAsStream("views/loginPage.fxml"));
     // TODO: uncomment above line and comment below line to switch between template and app
     // Parent root = loader.load(getClass().getResourceAsStream("views/templateJFeonix.fxml"));
     primaryScene.setRoot(root);

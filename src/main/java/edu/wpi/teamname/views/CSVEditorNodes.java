@@ -16,15 +16,16 @@ import java.util.ResourceBundle;
 import java.util.Scanner;
 import java.util.UUID;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseButton;
 import javafx.stage.FileChooser;
 import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -34,19 +35,19 @@ public class CSVEditorNodes extends masterController implements Initializable {
   @Inject ServiceTwo graph;
   @Inject FXMLLoader loader;
   @Inject HomeState state;
-//  JFileChooser fc =
-//      new JFileChooser() {
-//        @Override
-//        protected JDialog createDialog(Component parent) throws HeadlessException {
-//          // intercept the dialog created by JFileChooser
-//          JDialog dialog = super.createDialog(parent);
-//          dialog.setModal(true); // doesn't close pop-up until dealt with
-//          dialog.setAlwaysOnTop(true);
-//          FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV FILES", "csv");
-//          fc.setFileFilter(filter);
-//          return dialog;
-//        }
-//      };
+  //  JFileChooser fc =
+  //      new JFileChooser() {
+  //        @Override
+  //        protected JDialog createDialog(Component parent) throws HeadlessException {
+  //          // intercept the dialog created by JFileChooser
+  //          JDialog dialog = super.createDialog(parent);
+  //          dialog.setModal(true); // doesn't close pop-up until dealt with
+  //          dialog.setAlwaysOnTop(true);
+  //          FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV FILES", "csv");
+  //          fc.setFileFilter(filter);
+  //          return dialog;
+  //        }
+  //      };
 
   FileChooser fileChooser = new FileChooser();
 
@@ -84,6 +85,26 @@ public class CSVEditorNodes extends masterController implements Initializable {
   @Override
   public void initialize(URL url, ResourceBundle rb) {
     // log.debug(state.toString());
+    listView.setOnMouseClicked(
+        new EventHandler<javafx.scene.input.MouseEvent>() {
+          @Override
+          public void handle(javafx.scene.input.MouseEvent event) {
+            System.out.println("clicked on " + listView.getSelectionModel().getSelectedItem());
+            Label selected = listView.getSelectionModel().getSelectedItem();
+            if (event.getButton() == MouseButton.PRIMARY) {
+              DataNode clickedNode = nodeMap.get(selected.getId());
+              selectedLabel = selected;
+              ID.setText(clickedNode.get_nodeID());
+              XCoord.setText(Double.toString(clickedNode.get_x()));
+              YCoord.setText(Double.toString(clickedNode.get_y()));
+              Floor.setText(clickedNode.get_floor());
+              Building.setText(clickedNode.get_building());
+              ShortName.setText(clickedNode.get_shortName());
+              LongName.setText(clickedNode.get_longName());
+              NodeType.setText(clickedNode.get_nodeType());
+            }
+          }
+        });
     try {
       File file = new File("src/main/resources/MapCSV/MapNNodesAll.csv");
       selectedFilePath = file.getPath();
@@ -115,21 +136,6 @@ public class CSVEditorNodes extends masterController implements Initializable {
     String uuid = UUID.randomUUID().toString();
     lbl.setId(uuid);
     nodeMap.put(uuid, new DataNode(0, 0, "", "", "", "", "", ""));
-    lbl.setOnMousePressed(
-        event -> {
-          if (event.isPrimaryButtonDown()) {
-            DataNode clickedNode = nodeMap.get(lbl.getId());
-            selectedLabel = lbl;
-            ID.setText(clickedNode.get_nodeID());
-            XCoord.setText(Double.toString(clickedNode.get_x()));
-            YCoord.setText(Double.toString(clickedNode.get_y()));
-            Floor.setText(clickedNode.get_floor());
-            Building.setText(clickedNode.get_building());
-            ShortName.setText(clickedNode.get_shortName());
-            LongName.setText(clickedNode.get_longName());
-            NodeType.setText(clickedNode.get_nodeType());
-          }
-        });
     listView.getItems().add(lbl);
   }
 
@@ -187,21 +193,6 @@ public class CSVEditorNodes extends masterController implements Initializable {
     for (DataNode node : nodeMap.values()) {
       Label lbl = new Label(node.get_nodeID());
       lbl.setId(node.get_nodeID());
-      lbl.setOnMousePressed(
-          event -> {
-            if (event.isPrimaryButtonDown()) {
-              DataNode clickedNode = nodeMap.get(lbl.getId());
-              selectedLabel = lbl;
-              ID.setText(clickedNode.get_nodeID());
-              XCoord.setText(Double.toString(clickedNode.get_x()));
-              YCoord.setText(Double.toString(clickedNode.get_y()));
-              Floor.setText(clickedNode.get_floor());
-              Building.setText(clickedNode.get_building());
-              ShortName.setText(clickedNode.get_shortName());
-              LongName.setText(clickedNode.get_longName());
-              NodeType.setText(clickedNode.get_nodeType());
-            }
-          });
       listView.getItems().add(lbl);
     }
   }
