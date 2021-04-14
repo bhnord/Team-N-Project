@@ -199,6 +199,7 @@ public class CSVEditorEdges extends masterController implements Initializable {
     edgeMap.remove(selectedLabel.getId());
     listView.getItems().remove(selectedLabel);
     if (index != 0) index--;
+    if (listView.getItems().size() == 0) return;
     selectedLabel = listView.getItems().get(index);
     Edge clickedEdge = edgeMap.get(selectedLabel.getId());
     ID.setText(clickedEdge.get_edgeID());

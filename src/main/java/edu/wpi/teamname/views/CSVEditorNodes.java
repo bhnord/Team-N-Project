@@ -236,6 +236,8 @@ public class CSVEditorNodes extends masterController implements Initializable {
     nodeMap.remove(selectedLabel.getId());
     listView.getItems().remove(selectedLabel);
     if (index != 0) index--;
+    if (listView.getItems().size() == 0) return;
+    ;
     selectedLabel = listView.getItems().get(index);
     DataNode clickedNode = nodeMap.get(selectedLabel.getId());
     ID.setText(clickedNode.get_nodeID());
