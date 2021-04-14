@@ -77,4 +77,28 @@ public class DataNode extends Cartesian {
         + '\''
         + '}';
   }
+
+  public void set_nodeID(String _nodeID) {
+    this._nodeID = _nodeID;
+  }
+
+  public void set_floor(String _floor) {
+    this._floor = _floor;
+  }
+
+  public void set_building(String _building) {
+    this._building = _building;
+  }
+
+  public void set_nodeType(String _nodeType) {
+    this._nodeType = _nodeType;
+  }
+
+  public void set_longName(String _longName) {
+    this._longName = _longName;
+  }
+
+  public void set_shortName(String _shortName) {
+    this._shortName = _shortName;
+  }
 }
