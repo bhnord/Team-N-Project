@@ -75,7 +75,12 @@ public class CSVEditor extends masterController implements Initializable {
   @Override
   public void initialize(URL url, ResourceBundle rb) {
     // log.debug(state.toString());
-
+    try {
+      File file = new File("src/main/resources/MapCSV/MapNNodesAll.csv");
+      loadNodes(file);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
     /** PLACEHOLDER TESTING FOR CSV NODES* */
     //        for (int i = 0; i < 4; i++) {
     //            try {
@@ -115,47 +120,46 @@ public class CSVEditor extends masterController implements Initializable {
 
   public void openFile(ActionEvent actionEvent) throws IOException {
     // fc.setCurrentDirectory(new File("c:\\temp"));
-    System.out.println(1);
     int returnValue = fc.showOpenDialog(fc);
     //    FileNameExtensionFilter filter = new FileNameExtensionFilter("TEXT FILES", "txt", "text");
     //    fc.setFileFilter(filter);
     if (returnValue == JFileChooser.APPROVE_OPTION) {
-      System.out.println(2);
       File file = fc.getSelectedFile();
       // fc.addChoosableFileFilter(new FileNameExtensionFilter("CSV File", "csv"));
       try {
-        System.out.println(3);
-        nodeMap.clear();
-        csvToNodes(file);
-        System.out.println(4);
-        loadSuccess.setText("File successfully loaded!");
-        messageLabel.setText("" + file);
-        listView.getItems().clear();
-        for (DataNode node : nodeMap.values()) {
-          Label lbl = new Label(node.get_nodeID());
-          lbl.setId(node.get_nodeID());
-          lbl.setOnMouseClicked(
-              event -> {
-                System.out.println("clicked");
-                if (event.isPrimaryButtonDown()) {
-                  DataNode clickedNode = nodeMap.get(lbl.getId());
-                  ID.setText(clickedNode.get_nodeID());
-                  XCoord.setText(Double.toString(clickedNode.get_x()));
-                  YCoord.setText(Double.toString(clickedNode.get_y()));
-                  Floor.setText(clickedNode.get_floor());
-                  Building.setText(clickedNode.get_building());
-                  ShortName.setText(clickedNode.get_shortName());
-                  LongName.setText(clickedNode.get_longName());
-                  NodeType.setText(clickedNode.get_nodeType());
-                }
-              });
-          listView.getItems().add(lbl);
-        }
-      } catch (IOException e) {
+        loadNodes(file);
+      } catch (Exception e) {
         loadSuccess.setText("Error loading file, try again.");
       }
     } else {
       messageLabel.setText("no file chosen");
+    }
+  }
+
+  private void loadNodes(File file) throws FileNotFoundException {
+    nodeMap.clear();
+    csvToNodes(file);
+    loadSuccess.setText("File successfully loaded!");
+    messageLabel.setText("" + file);
+    listView.getItems().clear();
+    for (DataNode node : nodeMap.values()) {
+      Label lbl = new Label(node.get_nodeID());
+      lbl.setId(node.get_nodeID());
+      lbl.setOnMousePressed(
+          event -> {
+            if (event.isPrimaryButtonDown()) {
+              DataNode clickedNode = nodeMap.get(lbl.getId());
+              ID.setText(clickedNode.get_nodeID());
+              XCoord.setText(Double.toString(clickedNode.get_x()));
+              YCoord.setText(Double.toString(clickedNode.get_y()));
+              Floor.setText(clickedNode.get_floor());
+              Building.setText(clickedNode.get_building());
+              ShortName.setText(clickedNode.get_shortName());
+              LongName.setText(clickedNode.get_longName());
+              NodeType.setText(clickedNode.get_nodeType());
+            }
+          });
+      listView.getItems().add(lbl);
     }
   }
 
