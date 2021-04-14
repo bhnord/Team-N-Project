@@ -152,8 +152,7 @@ public class MapController extends masterController implements Initializable {
     node1.addNeighbor(node2, distance);
     node2.addNeighbor(node1, distance);
     Line simpleNode = new Line(node1._x, node1._y, node2._x, node2._y);
-    simpleNode.setStrokeWidth(2);
-    simpleNode.setFill(Color.RED);
+    simpleNode.setStrokeWidth(1);
     Group root = new Group(simpleNode);
     root.setId(id1 + "_" + id2);
     root.setOnMouseClicked(
@@ -203,6 +202,7 @@ public class MapController extends masterController implements Initializable {
       Cartesian c2 = (Cartesian) ret.pop();
       Line simpleNode = new Line(c1._x, c1._y, c2._x, c2._y);
       simpleNode.setStroke(Color.BLUE);
+      simpleNode.setStrokeWidth(3);
       Group root = new Group(simpleNode);
       AnchorPane scene = (AnchorPane) appPrimaryScene.getRoot();
       scene.getChildren().add(root);
