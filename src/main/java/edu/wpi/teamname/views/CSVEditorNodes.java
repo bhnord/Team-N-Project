@@ -86,25 +86,22 @@ public class CSVEditorNodes extends masterController implements Initializable {
   public void initialize(URL url, ResourceBundle rb) {
     // log.debug(state.toString());
     listView.setOnMouseClicked(
-        new EventHandler<javafx.scene.input.MouseEvent>() {
-          @Override
-          public void handle(javafx.scene.input.MouseEvent event) {
-            System.out.println("clicked on " + listView.getSelectionModel().getSelectedItem());
-            Label selected = listView.getSelectionModel().getSelectedItem();
-            if (event.getButton() == MouseButton.PRIMARY) {
-              DataNode clickedNode = nodeMap.get(selected.getId());
-              selectedLabel = selected;
-              ID.setText(clickedNode.get_nodeID());
-              XCoord.setText(Double.toString(clickedNode.get_x()));
-              YCoord.setText(Double.toString(clickedNode.get_y()));
-              Floor.setText(clickedNode.get_floor());
-              Building.setText(clickedNode.get_building());
-              ShortName.setText(clickedNode.get_shortName());
-              LongName.setText(clickedNode.get_longName());
-              NodeType.setText(clickedNode.get_nodeType());
-            }
-          }
-        });
+            event -> {
+              System.out.println("clicked on " + listView.getSelectionModel().getSelectedItem());
+              Label selected = listView.getSelectionModel().getSelectedItem();
+              if (event.getButton() == MouseButton.PRIMARY) {
+                DataNode clickedNode = nodeMap.get(selected.getId());
+                selectedLabel = selected;
+                ID.setText(clickedNode.get_nodeID());
+                XCoord.setText(Double.toString(clickedNode.get_x()));
+                YCoord.setText(Double.toString(clickedNode.get_y()));
+                Floor.setText(clickedNode.get_floor());
+                Building.setText(clickedNode.get_building());
+                ShortName.setText(clickedNode.get_shortName());
+                LongName.setText(clickedNode.get_longName());
+                NodeType.setText(clickedNode.get_nodeType());
+              }
+            });
     try {
       File file = new File("src/main/resources/MapCSV/MapNNodesAll.csv");
       selectedFilePath = file.getPath();

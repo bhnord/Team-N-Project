@@ -82,17 +82,14 @@ public class CSVEditorEdges extends masterController implements Initializable {
   public void initialize(URL url, ResourceBundle rb) {
     // log.debug(state.toString());
     listView.setOnMouseClicked(
-            new EventHandler<MouseEvent>() {
-              @Override
-              public void handle(javafx.scene.input.MouseEvent event) {
-                Label selected = listView.getSelectionModel().getSelectedItem();
-                if (event.getButton() == MouseButton.PRIMARY) {
-                  Edge clickedEdge = edgeMap.get(selected.getId());
-                  selectedLabel = selected;
-                  ID.setText(clickedEdge.get_edgeID());
-                  startNode.setText(clickedEdge.get_startNode());
-                  endNode.setText(clickedEdge.get_endNode());
-                }
+            event -> {
+              Label selected = listView.getSelectionModel().getSelectedItem();
+              if (event.getButton() == MouseButton.PRIMARY) {
+                Edge clickedEdge = edgeMap.get(selected.getId());
+                selectedLabel = selected;
+                ID.setText(clickedEdge.get_edgeID());
+                startNode.setText(clickedEdge.get_startNode());
+                endNode.setText(clickedEdge.get_endNode());
               }
             });
     try {
