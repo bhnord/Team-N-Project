@@ -156,16 +156,19 @@ public class CSVEditor extends masterController implements Initializable {
         if (!scanner.hasNextLine()) return nodeMap;
         do {
             String[] entries = line.split(",");
-            String nodeID = entries[0];
-            Double xPos = Double.parseDouble(entries[1]);
-            Double yPos = Double.parseDouble(entries[2]);
-            String floor = entries[3];
-            String building = entries[4];
-            String nodeType = entries[5];
-            String longName = entries[6];
-            String shortName = entries[7];
-            nodeMap.put(
-                    nodeID, new DataNode(xPos, yPos, nodeID, floor, building, nodeType, longName, shortName));
+            if(entries.length == 8) {
+              String nodeID = entries[0];
+              Double xPos = Double.parseDouble(entries[1]);
+              Double yPos = Double.parseDouble(entries[2]);
+              String floor = entries[3];
+              String building = entries[4];
+              String nodeType = entries[5];
+              String longName = entries[6];
+              String shortName = entries[7];
+
+              nodeMap.put(
+                      nodeID, new DataNode(xPos, yPos, nodeID, floor, building, nodeType, longName, shortName));
+            }
             line = scanner.nextLine();
         } while (scanner.hasNextLine());
         return nodeMap;
