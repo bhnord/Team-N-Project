@@ -5,7 +5,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
 import edu.wpi.teamname.services.ServiceTwo;
-import edu.wpi.teamname.services.algo.DataNode;
+import edu.wpi.teamname.services.algo.Edge;
 import edu.wpi.teamname.services.database.DatabaseService;
 import edu.wpi.teamname.state.HomeState;
 import java.awt.*;
@@ -15,7 +15,6 @@ import java.util.HashMap;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 import java.util.UUID;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,7 +27,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class CSVEditor extends masterController implements Initializable {
+public class CSVEditorEdges extends masterController implements Initializable {
 
   @Inject DatabaseService db;
   @Inject ServiceTwo graph;
@@ -55,16 +54,11 @@ public class CSVEditor extends masterController implements Initializable {
   @FXML private JFXListView<Label> listView;
 
   @FXML private JFXTextField ID;
-  @FXML private JFXTextField XCoord;
-  @FXML private JFXTextField YCoord;
-  @FXML private JFXTextField Floor;
-  @FXML private JFXTextField Building;
-  @FXML private JFXTextField ShortName;
-  @FXML private JFXTextField LongName;
-  @FXML private JFXTextField NodeType;
+  @FXML private JFXTextField startNode;
+  @FXML private JFXTextField endNode;
 
   private Label selectedLabel;
-  private HashMap<String, DataNode> nodeMap = new HashMap<>();
+  private HashMap<String, Edge> edgeMap = new HashMap<>();
   private Scene appPrimaryScene;
   private String selectedFilePath;
 
@@ -109,25 +103,20 @@ public class CSVEditor extends masterController implements Initializable {
 
   @FXML
   private void addNew(ActionEvent actionEvent) {
-    Label lbl = new Label("New Node");
+    Label lbl = new Label("New Edge");
     String uuid = UUID.randomUUID().toString();
     lbl.setId(uuid);
-    nodeMap.put(uuid, new DataNode(0, 0, "", "", "", "", "", ""));
+    edgeMap.put(uuid, new Edge("", "", ""));
     lbl.setOnMousePressed(
-            event -> {
-              if (event.isPrimaryButtonDown()) {
-                DataNode clickedNode = nodeMap.get(lbl.getId());
-                selectedLabel = lbl;
-                ID.setText(clickedNode.get_nodeID());
-                XCoord.setText(Double.toString(clickedNode.get_x()));
-                YCoord.setText(Double.toString(clickedNode.get_y()));
-                Floor.setText(clickedNode.get_floor());
-                Building.setText(clickedNode.get_building());
-                ShortName.setText(clickedNode.get_shortName());
-                LongName.setText(clickedNode.get_longName());
-                NodeType.setText(clickedNode.get_nodeType());
-              }
-            });
+        event -> {
+          if (event.isPrimaryButtonDown()) {
+            Edge clickedEdge = edgeMap.get(lbl.getId());
+            selectedLabel = lbl;
+            ID.setText(clickedEdge.get_edgeID());
+            startNode.setText(clickedEdge.get_startNode());
+            endNode.setText(clickedEdge.get_endNode());
+          }
+        });
     listView.getItems().add(lbl);
   }
 
@@ -138,18 +127,11 @@ public class CSVEditor extends masterController implements Initializable {
 
   public void commitChanges(ActionEvent actionEvent) {
     try {
-      DataNode selectedNode = nodeMap.get(selectedLabel.getId());
-      double xcoord = Double.parseDouble(XCoord.getText());
-      double ycoord = Double.parseDouble(YCoord.getText());
-      selectedNode.set_nodeID(ID.getText());
-      selectedNode.set_x(xcoord);
-      selectedNode.set_y(ycoord);
-      selectedNode.set_floor(Floor.getText());
-      selectedNode.set_building(Building.getText());
-      selectedNode.set_nodeType(NodeType.getText());
-      selectedNode.set_longName(LongName.getText());
-      selectedNode.set_shortName(ShortName.getText());
-      selectedLabel.setText(selectedNode.get_nodeID());
+      Edge selectedEdge = edgeMap.get(selectedLabel.getId());
+
+      selectedEdge.set_edgeID(ID.getText());
+      selectedEdge.set_startNode(startNode.getText());
+      selectedEdge.set_endNode(endNode.getText());
     } catch (Exception e) {
       messageLabel.setText("Invalid type in field");
     }
@@ -175,34 +157,29 @@ public class CSVEditor extends masterController implements Initializable {
   }
 
   private void loadNodes(File file) throws FileNotFoundException {
-    nodeMap.clear();
+    edgeMap.clear();
     csvToNodes(file);
     loadSuccess.setText("File successfully loaded!");
     messageLabel.setText("" + file);
     listView.getItems().clear();
-    for (DataNode node : nodeMap.values()) {
-      Label lbl = new Label(node.get_nodeID());
-      lbl.setId(node.get_nodeID());
+    for (Edge e : edgeMap.values()) {
+      Label lbl = new Label(e.get_edgeID());
+      lbl.setId(e.get_edgeID());
       lbl.setOnMousePressed(
           event -> {
             if (event.isPrimaryButtonDown()) {
-              DataNode clickedNode = nodeMap.get(lbl.getId());
+              Edge clickedEdge = edgeMap.get(lbl.getId());
               selectedLabel = lbl;
-              ID.setText(clickedNode.get_nodeID());
-              XCoord.setText(Double.toString(clickedNode.get_x()));
-              YCoord.setText(Double.toString(clickedNode.get_y()));
-              Floor.setText(clickedNode.get_floor());
-              Building.setText(clickedNode.get_building());
-              ShortName.setText(clickedNode.get_shortName());
-              LongName.setText(clickedNode.get_longName());
-              NodeType.setText(clickedNode.get_nodeType());
+              ID.setText(clickedEdge.get_edgeID());
+              startNode.setText(clickedEdge.get_startNode());
+              endNode.setText(clickedEdge.get_endNode());
             }
           });
       listView.getItems().add(lbl);
     }
   }
 
-  private HashMap<String, DataNode> csvToNodes(File file) throws FileNotFoundException {
+  private HashMap<String, Edge> csvToNodes(File file) throws FileNotFoundException {
     Scanner scanner = new Scanner(file);
     String line = scanner.nextLine();
 
@@ -211,46 +188,29 @@ public class CSVEditor extends masterController implements Initializable {
       line = scanner.nextLine();
     }
 
-    if (!scanner.hasNextLine()) return nodeMap;
+    if (!scanner.hasNextLine()) return edgeMap;
     do {
       String[] entries = line.split(",");
-      if (entries.length == 8) {
-        String nodeID = entries[0];
-        Double xPos = Double.parseDouble(entries[1]);
-        Double yPos = Double.parseDouble(entries[2]);
-        String floor = entries[3];
-        String building = entries[4];
-        String nodeType = entries[5];
-        String longName = entries[6];
-        String shortName = entries[7];
-        nodeMap.put(
-            nodeID,
-            new DataNode(xPos, yPos, nodeID, floor, building, nodeType, longName, shortName));
+      if (entries.length == 3) {
+        String ID = entries[0];
+        String sNode = entries[1];
+        String eNode = entries[2];
+        edgeMap.put(ID, new Edge(ID, sNode, eNode));
       }
       line = scanner.nextLine();
     } while (scanner.hasNextLine());
-    return nodeMap;
+    return edgeMap;
   }
 
   private void nodesToCsv(String outputPath) throws IOException {
     Writer fileWriter = new FileWriter(outputPath, false);
-    for (DataNode node : nodeMap.values()) {
+    for (Edge e : edgeMap.values()) {
       String outputString = "";
-      outputString += node.get_nodeID();
+      outputString += e.get_edgeID();
       outputString += ",";
-      outputString += node.get_x();
+      outputString += e.get_startNode();
       outputString += ",";
-      outputString += node.get_y();
-      outputString += ",";
-      outputString += node.get_floor();
-      outputString += ",";
-      outputString += node.get_building();
-      outputString += ",";
-      outputString += node.get_nodeType();
-      outputString += ",";
-      outputString += node.get_longName();
-      outputString += ",";
-      outputString += node.get_shortName();
+      outputString += e.get_endNode();
       outputString += "\n";
       fileWriter.write(outputString);
     }
