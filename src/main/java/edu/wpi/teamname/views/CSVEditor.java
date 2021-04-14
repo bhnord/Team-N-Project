@@ -1,6 +1,7 @@
 package edu.wpi.teamname.views;
 
 import com.google.inject.Inject;
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
 import edu.wpi.teamname.services.ServiceTwo;
@@ -44,13 +45,12 @@ public class CSVEditor extends masterController implements Initializable {
           return dialog;
         }
       };
-  @FXML private Label text;
+
+  @FXML private JFXButton commitChangesButton;
   @FXML private Label messageLabel;
   @FXML private Label loadSuccess;
   @FXML private Button HomeView;
   @FXML private JFXListView<Label> listView;
-  private HashMap<String, DataNode> nodeMap = new HashMap<>();
-  private Scene appPrimaryScene;
 
   @FXML private JFXTextField ID;
   @FXML private JFXTextField XCoord;
@@ -60,6 +60,9 @@ public class CSVEditor extends masterController implements Initializable {
   @FXML private JFXTextField ShortName;
   @FXML private JFXTextField LongName;
   @FXML private JFXTextField NodeType;
+
+  private HashMap<String, DataNode> nodeMap = new HashMap<>();
+  private Scene appPrimaryScene;
 
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
@@ -116,6 +119,23 @@ public class CSVEditor extends masterController implements Initializable {
   @FXML
   public void advanceHome() throws IOException {
     super.advanceHome(loader, appPrimaryScene);
+  }
+
+  public void commitChanges(ActionEvent actionEvent) {
+    try {
+      double xcoord = Double.parseDouble(XCoord.getText());
+      double ycoord = Double.parseDouble(YCoord.getText());
+      String nodeID = ID.getText();
+      Double xPos = xcoord;
+      Double yPos = ycoord;
+      String floor = Floor.getText();
+      String building = Building.getText();
+      String nodeType = NodeType.getText();
+      String longName = LongName.getText();
+      String shortName = ShortName.getText();
+    } catch (Exception e) {
+      messageLabel.setText("Invalid type in field");
+    }
   }
 
   public void openFile(ActionEvent actionEvent) throws IOException {
