@@ -76,10 +76,9 @@ public class CSVEditorEdges extends masterController implements Initializable {
           }
         });
     try {
-      //      File file = new File("src/main/resources/MapCSV/MapNNodesAll.csv"); //TODO Resolve if
-      // we want them to
-      //      selectedFilePath = file.getPath();
-      //      loadNodes(file);
+      File file = new File("src/main/resources/MapCSV/MapNEdgesAll.csv");
+      selectedFilePath = file.getPath();
+      loadNodes(file);
     } catch (Exception e) {
       e.printStackTrace();
     }
