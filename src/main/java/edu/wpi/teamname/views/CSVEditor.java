@@ -15,7 +15,6 @@ import java.util.HashMap;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 import java.util.UUID;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -114,20 +113,20 @@ public class CSVEditor extends masterController implements Initializable {
     lbl.setId(uuid);
     nodeMap.put(uuid, new DataNode(0, 0, "", "", "", "", "", ""));
     lbl.setOnMousePressed(
-            event -> {
-              if (event.isPrimaryButtonDown()) {
-                DataNode clickedNode = nodeMap.get(lbl.getId());
-                selectedLabel = lbl;
-                ID.setText(clickedNode.get_nodeID());
-                XCoord.setText(Double.toString(clickedNode.get_x()));
-                YCoord.setText(Double.toString(clickedNode.get_y()));
-                Floor.setText(clickedNode.get_floor());
-                Building.setText(clickedNode.get_building());
-                ShortName.setText(clickedNode.get_shortName());
-                LongName.setText(clickedNode.get_longName());
-                NodeType.setText(clickedNode.get_nodeType());
-              }
-            });
+        event -> {
+          if (event.isPrimaryButtonDown()) {
+            DataNode clickedNode = nodeMap.get(lbl.getId());
+            selectedLabel = lbl;
+            ID.setText(clickedNode.get_nodeID());
+            XCoord.setText(Double.toString(clickedNode.get_x()));
+            YCoord.setText(Double.toString(clickedNode.get_y()));
+            Floor.setText(clickedNode.get_floor());
+            Building.setText(clickedNode.get_building());
+            ShortName.setText(clickedNode.get_shortName());
+            LongName.setText(clickedNode.get_longName());
+            NodeType.setText(clickedNode.get_nodeType());
+          }
+        });
     listView.getItems().add(lbl);
   }
 
