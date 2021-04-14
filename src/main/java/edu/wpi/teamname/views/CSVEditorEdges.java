@@ -213,4 +213,17 @@ public class CSVEditorEdges extends masterController implements Initializable {
   public void saveFile(ActionEvent actionEvent) throws IOException {
     nodesToCsv(selectedFilePath);
   }
+
+  public void DeleteNode(ActionEvent actionEvent) {
+    if (listView.getItems().isEmpty()) return;
+    int index = listView.getItems().indexOf(selectedLabel);
+    edgeMap.remove(selectedLabel.getId());
+    listView.getItems().remove(selectedLabel);
+    if (index != 0) index--;
+    selectedLabel = listView.getItems().get(index);
+    Edge clickedEdge = edgeMap.get(selectedLabel.getId());
+    ID.setText(clickedEdge.get_edgeID());
+    startNode.setText(clickedEdge.get_startNode());
+    endNode.setText(clickedEdge.get_endNode());
+  }
 }

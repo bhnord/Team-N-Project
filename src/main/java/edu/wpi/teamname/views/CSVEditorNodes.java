@@ -253,6 +253,7 @@ public class CSVEditorNodes extends masterController implements Initializable {
   }
 
   public void DeleteNode(ActionEvent actionEvent) {
+    if (listView.getItems().isEmpty()) return;
     int index = listView.getItems().indexOf(selectedLabel);
     nodeMap.remove(selectedLabel.getId());
     listView.getItems().remove(selectedLabel);
