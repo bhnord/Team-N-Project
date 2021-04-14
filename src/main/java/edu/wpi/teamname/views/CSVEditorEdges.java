@@ -32,19 +32,7 @@ public class CSVEditorEdges extends masterController implements Initializable {
   @Inject ServiceTwo graph;
   @Inject FXMLLoader loader;
   @Inject HomeState state;
-  //  JFileChooser fc =
-  //      new JFileChooser() {
-  //        @Override
-  //        protected JDialog createDialog(Component parent) throws HeadlessException {
-  //          // intercept the dialog created by JFileChooser
-  //          JDialog dialog = super.createDialog(parent);
-  //          dialog.setModal(true); // doesn't close pop-up until dealt with
-  //          dialog.setAlwaysOnTop(true);
-  //          FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV FILES", "csv");
-  //          fc.setFileFilter(filter);
-  //          return dialog;
-  //        }
-  //      };
+
   FileChooser fileChooser = new FileChooser();
 
   @FXML private JFXButton commitChangesButton;

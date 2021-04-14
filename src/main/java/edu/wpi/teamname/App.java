@@ -56,6 +56,10 @@ public class App extends Application {
     Parent root = loader.load(getClass().getResourceAsStream("views/loginPage.fxml"));
     // TODO: uncomment above line and comment below line to switch between template and app
     // Parent root = loader.load(getClass().getResourceAsStream("views/templateJFeonix.fxml"));
+    //    primaryStage
+    //        .getIcons()
+    //        .add(new
+    // Image(Objects.requireNonNull(ClassLoader.getSystemResourceAsStream("images/hospital-256.png"))));
     primaryScene.setRoot(root);
     primaryStage.setScene(primaryScene);
     primaryStage.setAlwaysOnTop(true);
