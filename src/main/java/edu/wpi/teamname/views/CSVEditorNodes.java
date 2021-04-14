@@ -259,4 +259,21 @@ public class CSVEditorNodes extends masterController implements Initializable {
   public void saveFile(ActionEvent actionEvent) throws IOException {
     nodesToCsv(selectedFilePath);
   }
+
+  public void DeleteNode(ActionEvent actionEvent) {
+    int index = listView.getItems().indexOf(selectedLabel);
+    nodeMap.remove(selectedLabel.getId());
+    listView.getItems().remove(selectedLabel);
+    if (index != 0) index--;
+    selectedLabel = listView.getItems().get(index);
+    DataNode clickedNode = nodeMap.get(selectedLabel.getId());
+    ID.setText(clickedNode.get_nodeID());
+    XCoord.setText(Double.toString(clickedNode.get_x()));
+    YCoord.setText(Double.toString(clickedNode.get_y()));
+    Floor.setText(clickedNode.get_floor());
+    Building.setText(clickedNode.get_building());
+    ShortName.setText(clickedNode.get_shortName());
+    LongName.setText(clickedNode.get_longName());
+    NodeType.setText(clickedNode.get_nodeType());
+  }
 }
