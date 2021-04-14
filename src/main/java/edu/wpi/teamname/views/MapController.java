@@ -148,7 +148,7 @@ public class MapController extends masterController implements Initializable {
   private void placeLink(String id1, String id2) {
     Cartesian node1 = nodeSet.get(id1);
     Cartesian node2 = nodeSet.get(id2);
-    int distance = node1.heuristic(node2);
+    double distance = node1.heuristic(node2);
     node1.addNeighbor(node2, distance);
     node2.addNeighbor(node1, distance);
     Line simpleNode = new Line(node1._x, node1._y, node2._x, node2._y);
