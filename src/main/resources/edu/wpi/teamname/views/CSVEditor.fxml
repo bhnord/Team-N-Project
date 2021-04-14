@@ -6,34 +6,45 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Ellipse?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamname.views.CSVEditorNodes">
     <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#9ed0ff" height="400.0" stroke="TRANSPARENT" strokeType="INSIDE" width="600.0" />
         <Button fx:id="HomeView" layoutX="521.0" layoutY="350.0" mnemonicParsing="false" onAction="#advanceHome" prefHeight="36.0" prefWidth="65.0" text="Home" />
-      <JFXButton fx:id="button" layoutX="449.0" layoutY="17.0" onAction="#load" prefHeight="36.0" prefWidth="126.0" text="Toggle Expansion" />
-      <JFXButton fx:id="button1" layoutX="462.0" layoutY="56.0" onAction="#addNew" prefHeight="36.0" prefWidth="107.0" text="Add New Node" />
-      <JFXListView fx:id="listView" layoutX="14.0" layoutY="12.0" prefHeight="375.0" prefWidth="200.0" stylesheets="@/StyleSheet/style.css" verticalGap="10.0" />
+      <JFXButton fx:id="button" layoutX="469.0" layoutY="6.0" onAction="#load" prefHeight="36.0" prefWidth="126.0" text="Toggle Expansion" />
+      <JFXButton fx:id="button1" layoutX="482.0" layoutY="45.0" onAction="#addNew" prefHeight="36.0" prefWidth="107.0" text="Add New Node" />
+      <JFXListView fx:id="listView" layoutX="14.0" layoutY="79.0" prefHeight="308.0" prefWidth="200.0" stylesheets="@/StyleSheet/style.css" verticalGap="10.0" />
       <Button fx:id="openFileButton" layoutX="521.0" layoutY="312.0" mnemonicParsing="false" onAction="#openFile" text="Open file" />
       <Label fx:id="messageLabel" layoutX="234.0" layoutY="368.0" prefHeight="21.0" prefWidth="268.0" text=" " />
       <Label fx:id="loadSuccess" layoutX="225.0" layoutY="350.0" prefHeight="21.0" prefWidth="286.0" />
-      <JFXTextField fx:id="ID" layoutX="233.0" layoutY="35.0" />
-      <JFXTextField fx:id="XCoord" layoutX="233.0" layoutY="91.0" />
-      <JFXTextField fx:id="YCoord" layoutX="233.0" layoutY="143.0" />
-      <JFXTextField fx:id="Floor" layoutX="233.0" layoutY="196.0" />
-      <Label layoutX="233.0" layoutY="18.0" text="ID" />
-      <Label layoutX="233.0" layoutY="74.0" text="XCoord" />
-      <Label layoutX="233.0" layoutY="126.0" text="YCoord" />
-      <Label layoutX="233.0" layoutY="179.0" prefHeight="17.0" prefWidth="40.0" text="Floor" />
-      <Label layoutX="231.0" layoutY="229.0" text="Building" />
-      <Label layoutX="234.0" layoutY="278.0" text="Node Type" />
-      <Label layoutX="406.0" layoutY="109.0" text="Long Name" />
-      <Label layoutX="405.0" layoutY="162.0" text="Short Name" />
-      <JFXTextField fx:id="Building" layoutX="233.0" layoutY="246.0" />
-      <JFXTextField fx:id="ShortName" layoutX="406.0" layoutY="178.0" />
-      <JFXTextField fx:id="LongName" layoutX="406.0" layoutY="122.0" />
-      <JFXTextField fx:id="NodeType" layoutX="233.0" layoutY="299.0" />
-      <JFXButton fx:id="commitChangesButton" layoutX="405.0" layoutY="246.0" onAction="#commitChanges" text="Update Node" />
-      <JFXButton fx:id="saveFileButton" layoutX="406.0" layoutY="283.0" onAction="#saveFile" text="Save File" />
-      <JFXButton fx:id="deleteButton" layoutX="412.0" layoutY="312.0" onAction="#DeleteNode" text="Delete" />
+      <JFXTextField fx:id="ID" layoutX="233.0" layoutY="95.0" />
+      <JFXTextField fx:id="XCoord" layoutX="233.0" layoutY="151.0" />
+      <JFXTextField fx:id="YCoord" layoutX="233.0" layoutY="203.0" />
+      <JFXTextField fx:id="Floor" layoutX="233.0" layoutY="256.0" />
+      <Label layoutX="233.0" layoutY="78.0" text="ID" />
+      <Label layoutX="233.0" layoutY="134.0" text="XCoord" />
+      <Label layoutX="233.0" layoutY="186.0" text="YCoord" />
+      <Label layoutX="233.0" layoutY="239.0" prefHeight="17.0" prefWidth="40.0" text="Floor" />
+      <Label layoutX="231.0" layoutY="289.0" text="Building" />
+      <Label layoutX="406.0" layoutY="74.0" text="Node Type" />
+      <Label layoutX="406.0" layoutY="138.0" text="Long Name" />
+      <Label layoutX="405.0" layoutY="187.0" text="Short Name" />
+      <JFXTextField fx:id="Building" layoutX="233.0" layoutY="306.0" />
+      <JFXTextField fx:id="ShortName" layoutX="406.0" layoutY="203.0" />
+      <JFXTextField fx:id="LongName" layoutX="406.0" layoutY="151.0" />
+      <JFXTextField fx:id="NodeType" layoutX="405.0" layoutY="95.0" />
+      <JFXButton fx:id="commitChangesButton" layoutX="402.0" layoutY="246.0" onAction="#commitChanges" text="Update Node" />
+      <JFXButton fx:id="saveFileButton" layoutX="403.0" layoutY="280.0" onAction="#saveFile" text="Save File" />
+      <JFXButton fx:id="deleteButton" layoutX="402.0" layoutY="313.0" onAction="#DeleteNode" text="Delete Node" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#211edd" height="50.0" layoutY="18.0" stroke="TRANSPARENT" strokeType="INSIDE" width="286.0" />
+      <Ellipse fill="#211edd" layoutX="286.0" layoutY="43.0" radiusX="38.0" radiusY="25.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+      <Label fx:id="text" layoutX="43.0" layoutY="16.0" prefHeight="50.0" prefWidth="256.0" text="CSV Node Editor:" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Serif Bold" size="29.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>
