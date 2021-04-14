@@ -25,7 +25,7 @@ public class PathFinder<T extends Node<T>> {
       //      }
       for (Node<T>.Link l : curNode._neighbors) {
         Node<T> n = l._other;
-        int local = curNode._localGoal + l._distance;
+        double local = curNode._localGoal + l._distance;
         if (!n._seen || n._localGoal > local) {
           n._localGoal = local;
           n._globalGoal = n.heuristic(end);

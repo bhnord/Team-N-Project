@@ -3,13 +3,15 @@ package edu.wpi.teamname.views;
 import com.google.inject.Inject;
 import com.jfoenix.controls.JFXListView;
 import edu.wpi.teamname.services.ServiceTwo;
+import edu.wpi.teamname.services.algo.DataNode;
 import edu.wpi.teamname.services.database.DatabaseService;
 import edu.wpi.teamname.state.HomeState;
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.ResourceBundle;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
@@ -20,7 +22,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javax.swing.*;
-import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import lombok.extern.slf4j.Slf4j;
 
@@ -31,17 +32,6 @@ public class CSVEditor extends masterController implements Initializable {
   @Inject ServiceTwo graph;
   @Inject FXMLLoader loader;
   @Inject HomeState state;
-  @FXML private Label text;
-
-  @FXML private Label messageLabel;
-  @FXML private Label loadSuccess;
-
-  @FXML private Button HomeView;
-
-  @FXML private JFXListView<Label> listView;
-
-  private Scene appPrimaryScene;
-
   JFileChooser fc =
       new JFileChooser() {
         @Override
@@ -55,6 +45,13 @@ public class CSVEditor extends masterController implements Initializable {
           return dialog;
         }
       };
+  @FXML private Label text;
+  @FXML private Label messageLabel;
+  @FXML private Label loadSuccess;
+  @FXML private Button HomeView;
+  @FXML private JFXListView<Label> listView;
+  private HashMap<String, DataNode> nodeMap = new HashMap<>();
+  private Scene appPrimaryScene;
 
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
@@ -110,18 +107,74 @@ public class CSVEditor extends masterController implements Initializable {
 
   public void openFile(ActionEvent actionEvent) throws IOException {
     // fc.setCurrentDirectory(new File("c:\\temp"));
-
+    System.out.println(1);
     int returnValue = fc.showOpenDialog(fc);
     //    FileNameExtensionFilter filter = new FileNameExtensionFilter("TEXT FILES", "txt", "text");
     //    fc.setFileFilter(filter);
     if (returnValue == JFileChooser.APPROVE_OPTION) {
-
+      System.out.println(2);
       File file = fc.getSelectedFile();
       // fc.addChoosableFileFilter(new FileNameExtensionFilter("CSV File", "csv"));
-      loadSuccess.setText("File successfully loaded!");
-      messageLabel.setText("" + file);
+      try {
+        System.out.println(3);
+        csvToNodes(file);
+        System.out.println(4);
+        loadSuccess.setText("File successfully loaded!");
+        messageLabel.setText("" + file);
+        listView.getItems().removeAll();
+        for (DataNode node : nodeMap.values()) {
+          Label lbl = new Label(node.get_nodeID());
+          listView.getItems().add(lbl);
+        }
+      } catch (IOException e) {
+        loadSuccess.setText("Error loading file, try again.");
+      }
     } else {
       messageLabel.setText("no file chosen");
     }
+  }
+
+  private HashMap<String, DataNode> csvToNodes(File file) throws FileNotFoundException {
+    Scanner scanner = new Scanner(file);
+    while (scanner.hasNextLine()) {
+      String line = scanner.nextLine();
+      String[] entries = line.split(",");
+      String nodeID = entries[0];
+      Double xPos = Double.parseDouble(entries[1]);
+      Double yPos = Double.parseDouble(entries[2]);
+      String floor = entries[3];
+      String building = entries[4];
+      String nodeType = entries[5];
+      String longName = entries[6];
+      String shortName = entries[7];
+      nodeMap.put(
+          nodeID, new DataNode(xPos, yPos, nodeID, floor, building, nodeType, longName, shortName));
+    }
+    return nodeMap;
+  }
+
+  private void nodesToCsv(String outputPath) throws IOException {
+    Writer fileWriter = new FileWriter(outputPath, false);
+    for (DataNode node : nodeMap.values()) {
+      String outputString = "";
+      outputString += node.get_nodeID();
+      outputString += ",";
+      outputString += node.get_x();
+      outputString += ",";
+      outputString += node.get_y();
+      outputString += ",";
+      outputString += node.get_floor();
+      outputString += ",";
+      outputString += node.get_building();
+      outputString += ",";
+      outputString += node.get_nodeType();
+      outputString += ",";
+      outputString += node.get_longName();
+      outputString += ",";
+      outputString += node.get_shortName();
+      outputString += "\n";
+      fileWriter.write(outputString);
+    }
+    fileWriter.close();
   }
 }
