@@ -46,6 +46,7 @@ public class MapController extends masterController implements Initializable {
 
   @FXML private Label XLabel;
   @FXML private Label YLabel;
+  @FXML private Label pathtext;
   @FXML private TextArea Text;
   @FXML private Label NodeValues;
   @FXML private TextArea NodeNames;
@@ -190,6 +191,7 @@ public class MapController extends masterController implements Initializable {
       placeLink(line[1], line[2]);
     }
 
+    pathtext.setVisible(true);
     Cartesian node1 = nodeSet.get("CHALL004L1");
     Cartesian node2 = nodeSet.get("CLABS002L1");
     PathFinder<Cartesian> pathFinder = new PathFinder<>();
