@@ -32,6 +32,7 @@
       <JFXTextField fx:id="ShortName" layoutX="406.0" layoutY="178.0" />
       <JFXTextField fx:id="LongName" layoutX="406.0" layoutY="122.0" />
       <JFXTextField fx:id="NodeType" layoutX="233.0" layoutY="299.0" />
-      <JFXButton fx:id="commitChangesButton" layoutX="404.0" layoutY="234.0" onAction="#commitChanges" text="Commit Node Changes" />
+      <JFXButton fx:id="commitChangesButton" layoutX="405.0" layoutY="246.0" onAction="#commitChanges" text="Update Node" />
+      <JFXButton fx:id="saveFileButton" layoutX="406.0" layoutY="283.0" onAction="#saveFile" text="Save File" />
     </children>
 </AnchorPane>
