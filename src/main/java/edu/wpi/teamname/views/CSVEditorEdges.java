@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
 import edu.wpi.teamname.services.ServiceTwo;
+import edu.wpi.teamname.services.algo.DataNode;
 import edu.wpi.teamname.services.algo.Edge;
 import edu.wpi.teamname.services.database.DatabaseService;
 import edu.wpi.teamname.state.HomeState;
@@ -16,6 +17,7 @@ import java.util.ResourceBundle;
 import java.util.Scanner;
 import java.util.UUID;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -24,6 +26,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -76,6 +81,20 @@ public class CSVEditorEdges extends masterController implements Initializable {
   @Override
   public void initialize(URL url, ResourceBundle rb) {
     // log.debug(state.toString());
+    listView.setOnMouseClicked(
+            new EventHandler<MouseEvent>() {
+              @Override
+              public void handle(javafx.scene.input.MouseEvent event) {
+                Label selected = listView.getSelectionModel().getSelectedItem();
+                if (event.getButton() == MouseButton.PRIMARY) {
+                  Edge clickedEdge = edgeMap.get(selected.getId());
+                  selectedLabel = selected;
+                  ID.setText(clickedEdge.get_edgeID());
+                  startNode.setText(clickedEdge.get_startNode());
+                  endNode.setText(clickedEdge.get_endNode());
+                }
+              }
+            });
     try {
       //      File file = new File("src/main/resources/MapCSV/MapNNodesAll.csv"); //TODO Resolve if
       // we want them to
@@ -108,16 +127,6 @@ public class CSVEditorEdges extends masterController implements Initializable {
     String uuid = UUID.randomUUID().toString();
     lbl.setId(uuid);
     edgeMap.put(uuid, new Edge("", "", ""));
-    lbl.setOnMousePressed(
-        event -> {
-          if (event.isPrimaryButtonDown()) {
-            Edge clickedEdge = edgeMap.get(lbl.getId());
-            selectedLabel = lbl;
-            ID.setText(clickedEdge.get_edgeID());
-            startNode.setText(clickedEdge.get_startNode());
-            endNode.setText(clickedEdge.get_endNode());
-          }
-        });
     listView.getItems().add(lbl);
   }
 
@@ -166,16 +175,6 @@ public class CSVEditorEdges extends masterController implements Initializable {
     for (Edge e : edgeMap.values()) {
       Label lbl = new Label(e.get_edgeID());
       lbl.setId(e.get_edgeID());
-      lbl.setOnMousePressed(
-          event -> {
-            if (event.isPrimaryButtonDown()) {
-              Edge clickedEdge = edgeMap.get(lbl.getId());
-              selectedLabel = lbl;
-              ID.setText(clickedEdge.get_edgeID());
-              startNode.setText(clickedEdge.get_startNode());
-              endNode.setText(clickedEdge.get_endNode());
-            }
-          });
       listView.getItems().add(lbl);
     }
   }
