@@ -1,6 +1,7 @@
 package edu.wpi.teamname.views;
 
 import com.google.inject.Inject;
+import edu.wpi.teamname.entity.CSV;
 import edu.wpi.teamname.services.ServiceTwo;
 import edu.wpi.teamname.services.algo.*;
 import edu.wpi.teamname.services.algo.Cartesian;
@@ -172,22 +173,20 @@ public class MapController extends masterController implements Initializable {
   }
 
   public void examplePathFind(ActionEvent actionEvent) throws IOException {
-    BufferedReader readnodes =
-        Files.newBufferedReader(Paths.get("src/main/resources/MapCSV/MapNNodesAll.csv"));
-    BufferedReader readedges =
-        Files.newBufferedReader(Paths.get("src/main/resources/MapCSV/MapNEdgesAll.csv"));
-    int nodesSize = getLineCount("MapNNodesAll");
-    int edgeSize = getLineCount("MapNEdgesAll");
+    CSV nodesCSV = new CSV("src/main/resources/MapCSV/MapNNodesAll.csv");
+    CSV edgesCSV = new CSV("src/main/resources/MapCSV/MapNEdgesAll.csv");
+    int nodesSize = nodesCSV.getLineCount();
+    int edgeSize = edgesCSV.getLineCount();
 
-    for (int i = 0; nodesSize > i; i++) {
-      String[] line = readnodes.readLine().split("[,]");
+    for (String node : nodesCSV) {
+      String[] line = node.split("[,]");
       placeNode(
           line[0],
           ((int) (Integer.parseInt(line[1]) * 0.25 + 10)),
           (int) (Integer.parseInt(line[2]) * 0.25 + 10));
     }
-    for (int i = 0; edgeSize > i; i++) {
-      String[] line = readedges.readLine().split("[,]");
+    for (String edge : edgesCSV) {
+      String[] line = edge.split("[,]");
       placeLink(line[1], line[2]);
     }
 

@@ -3,10 +3,11 @@ package edu.wpi.teamname.entity;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Scanner;
 import java.util.Set;
 
-public class CSV {
+public class CSV implements Iterable<String> {
   public static void main(String[] args) throws FileNotFoundException {
     CSV c = new CSV("src/main/resources/MapCSV/MapNNodesAll.csv");
     System.out.println(c.toString());
@@ -35,5 +36,10 @@ public class CSV {
 
   public int getLineCount() {
     return csvLines.size();
+  }
+
+  @Override
+  public Iterator<String> iterator() {
+    return csvLines.iterator();
   }
 }
