@@ -79,14 +79,14 @@ public class CSVEditor extends masterController implements Initializable {
         // log.debug(state.toString());
 
         /** PLACEHOLDER TESTING FOR CSV NODES* */
-        for (int i = 0; i < 4; i++) {
-            try {
-                Label lbl = new Label("Item" + i);
-                listView.getItems().add(lbl);
-            } catch (Exception ex) {
-                Logger.getLogger(CSVEditor.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+//        for (int i = 0; i < 4; i++) {
+//            try {
+//                Label lbl = new Label("Item" + i);
+//                listView.getItems().add(lbl);
+//            } catch (Exception ex) {
+//                Logger.getLogger(CSVEditor.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        }
     }
 
     @FXML
@@ -132,7 +132,7 @@ public class CSVEditor extends masterController implements Initializable {
                 System.out.println(4);
                 loadSuccess.setText("File successfully loaded!");
                 messageLabel.setText("" + file);
-                listView.getItems().removeAll();
+                listView.getItems().clear();
                 for (DataNode node : nodeMap.values()) {
                     Label lbl = new Label(node.get_nodeID());
                     listView.getItems().add(lbl);
@@ -165,7 +165,6 @@ public class CSVEditor extends masterController implements Initializable {
               String nodeType = entries[5];
               String longName = entries[6];
               String shortName = entries[7];
-
               nodeMap.put(
                       nodeID, new DataNode(xPos, yPos, nodeID, floor, building, nodeType, longName, shortName));
             }
