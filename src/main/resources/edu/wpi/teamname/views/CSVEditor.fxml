@@ -16,10 +16,10 @@
       <Button fx:id="openFileButton" layoutX="521.0" layoutY="274.0" mnemonicParsing="false" onAction="#openFile" text="Open file" />
       <Label fx:id="messageLabel" layoutX="234.0" layoutY="368.0" prefHeight="21.0" prefWidth="268.0" text=" " />
       <Label fx:id="loadSuccess" layoutX="225.0" layoutY="350.0" prefHeight="21.0" prefWidth="286.0" />
-      <JFXTextField layoutX="233.0" layoutY="35.0" />
-      <JFXTextField layoutX="233.0" layoutY="91.0" />
-      <JFXTextField layoutX="233.0" layoutY="143.0" />
-      <JFXTextField layoutX="233.0" layoutY="196.0" />
+      <JFXTextField fx:id="ID" layoutX="233.0" layoutY="35.0" />
+      <JFXTextField fx:id="XCoord" layoutX="233.0" layoutY="91.0" />
+      <JFXTextField fx:id="YCoord" layoutX="233.0" layoutY="143.0" />
+      <JFXTextField fx:id="Floor" layoutX="233.0" layoutY="196.0" />
       <Label layoutX="233.0" layoutY="18.0" text="ID" />
       <Label layoutX="233.0" layoutY="74.0" text="XCoord" />
       <Label layoutX="233.0" layoutY="126.0" text="YCoord" />
@@ -28,9 +28,9 @@
       <Label layoutX="234.0" layoutY="278.0" text="Node Type" />
       <Label layoutX="403.0" layoutY="118.0" text="Long Name" />
       <Label layoutX="402.0" layoutY="171.0" text="Short Name" />
-      <JFXTextField layoutX="233.0" layoutY="246.0" />
-      <JFXTextField layoutX="403.0" layoutY="187.0" />
-      <JFXTextField layoutX="403.0" layoutY="131.0" />
-      <JFXTextField layoutX="233.0" layoutY="299.0" />
+      <JFXTextField fx:id="Building" layoutX="233.0" layoutY="246.0" />
+      <JFXTextField fx:id="ShortName" layoutX="403.0" layoutY="187.0" />
+      <JFXTextField fx:id="LongName" layoutX="403.0" layoutY="131.0" />
+      <JFXTextField fx:id="NodeType" layoutX="233.0" layoutY="299.0" />
     </children>
 </AnchorPane>
