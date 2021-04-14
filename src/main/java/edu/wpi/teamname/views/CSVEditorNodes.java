@@ -203,6 +203,7 @@ public class CSVEditorNodes extends masterController implements Initializable {
 
   private HashMap<String, DataNode> csvToNodes(File file) throws FileNotFoundException {
     Scanner scanner = new Scanner(file);
+    if (!scanner.hasNextLine()) return nodeMap;
     String line = scanner.nextLine();
 
     if (line.contains("nodeID,xcoord,ycoord,floor,building,nodeType,longName,shortName")
