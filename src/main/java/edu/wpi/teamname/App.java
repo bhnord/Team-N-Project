@@ -15,10 +15,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javax.swing.*;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -48,20 +46,14 @@ public class App extends Application {
               }
             });
     DatabaseService db = injector.getInstance(DatabaseService.class);
-    //    db.initTable();
+    //db.initTable();
     loader = new FXMLLoader();
     loader.setControllerFactory(injector::getInstance);
   }
 
   @Override
   public void start(Stage primaryStage) throws IOException {
-    Parent root = loader.load(getClass().getResourceAsStream("views/loginPage.fxml"));
-    // TODO: uncomment above line and comment below line to switch between template and app
-    // Parent root = loader.load(getClass().getResourceAsStream("views/templateJFeonix.fxml"));
-    primaryStage
-        .getIcons()
-        .add(new Image(ClassLoader.getSystemResourceAsStream("images/hospital-256.png")));
-    primaryStage.setTitle("Team N Application");
+    Parent root = loader.load(getClass().getResourceAsStream("views/HomeView.fxml"));
     primaryScene.setRoot(root);
     primaryStage.setScene(primaryScene);
     primaryStage.setAlwaysOnTop(true);
