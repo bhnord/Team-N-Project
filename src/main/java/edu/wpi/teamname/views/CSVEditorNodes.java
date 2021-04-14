@@ -250,6 +250,7 @@ public class CSVEditorNodes extends masterController implements Initializable {
 
   public void saveFile(ActionEvent actionEvent) throws IOException {
     nodesToCsv(selectedFilePath);
+    loadSuccess.setText("File Saved!");
   }
 
   public void DeleteNode(ActionEvent actionEvent) {

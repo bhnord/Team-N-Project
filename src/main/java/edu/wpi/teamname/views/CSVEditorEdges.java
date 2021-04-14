@@ -8,7 +8,6 @@ import edu.wpi.teamname.services.ServiceTwo;
 import edu.wpi.teamname.services.algo.Edge;
 import edu.wpi.teamname.services.database.DatabaseService;
 import edu.wpi.teamname.state.HomeState;
-import java.awt.*;
 import java.io.*;
 import java.net.URL;
 import java.util.HashMap;
@@ -23,8 +22,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
-import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
+import javafx.stage.FileChooser;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -34,19 +32,20 @@ public class CSVEditorEdges extends masterController implements Initializable {
   @Inject ServiceTwo graph;
   @Inject FXMLLoader loader;
   @Inject HomeState state;
-  JFileChooser fc =
-      new JFileChooser() {
-        @Override
-        protected JDialog createDialog(Component parent) throws HeadlessException {
-          // intercept the dialog created by JFileChooser
-          JDialog dialog = super.createDialog(parent);
-          dialog.setModal(true); // doesn't close pop-up until dealt with
-          dialog.setAlwaysOnTop(true);
-          FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV FILES", "csv");
-          fc.setFileFilter(filter);
-          return dialog;
-        }
-      };
+  //  JFileChooser fc =
+  //      new JFileChooser() {
+  //        @Override
+  //        protected JDialog createDialog(Component parent) throws HeadlessException {
+  //          // intercept the dialog created by JFileChooser
+  //          JDialog dialog = super.createDialog(parent);
+  //          dialog.setModal(true); // doesn't close pop-up until dealt with
+  //          dialog.setAlwaysOnTop(true);
+  //          FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV FILES", "csv");
+  //          fc.setFileFilter(filter);
+  //          return dialog;
+  //        }
+  //      };
+  FileChooser fileChooser = new FileChooser();
 
   @FXML private JFXButton commitChangesButton;
   @FXML private Label messageLabel;
@@ -141,21 +140,13 @@ public class CSVEditorEdges extends masterController implements Initializable {
   }
 
   public void openFile(ActionEvent actionEvent) throws IOException {
-    // fc.setCurrentDirectory(new File("c:\\temp"));
-    int returnValue = fc.showOpenDialog(fc);
-    //    FileNameExtensionFilter filter = new FileNameExtensionFilter("TEXT FILES", "txt", "text");
-    //    fc.setFileFilter(filter);
-    if (returnValue == JFileChooser.APPROVE_OPTION) {
-      File file = fc.getSelectedFile();
-      // fc.addChoosableFileFilter(new FileNameExtensionFilter("CSV File", "csv"));
-      try {
-        selectedFilePath = file.getPath();
-        loadNodes(file);
-      } catch (Exception e) {
-        loadSuccess.setText("Error loading file, try again.");
-      }
-    } else {
-      messageLabel.setText("no file chosen");
+    fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
+    File file = fileChooser.showOpenDialog(appPrimaryScene.getWindow());
+    try {
+      selectedFilePath = file.getPath();
+      loadNodes(file);
+    } catch (Exception e) {
+      loadSuccess.setText("Error loading file, try again.");
     }
   }
 
@@ -212,5 +203,6 @@ public class CSVEditorEdges extends masterController implements Initializable {
 
   public void saveFile(ActionEvent actionEvent) throws IOException {
     nodesToCsv(selectedFilePath);
+    loadSuccess.setText("File Saved!");
   }
 }
