@@ -34,7 +34,6 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-import javax.swing.*;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
