@@ -46,7 +46,7 @@ public class App extends Application {
               }
             });
     DatabaseService db = injector.getInstance(DatabaseService.class);
-    db.initTable();
+    //db.initTable();
     loader = new FXMLLoader();
     loader.setControllerFactory(injector::getInstance);
   }
