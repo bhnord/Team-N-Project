@@ -61,6 +61,7 @@ public class CSVEditor extends masterController implements Initializable {
   @FXML private JFXTextField LongName;
   @FXML private JFXTextField NodeType;
 
+  private DataNode selectedNode;
   private HashMap<String, DataNode> nodeMap = new HashMap<>();
   private Scene appPrimaryScene;
 
@@ -125,14 +126,14 @@ public class CSVEditor extends masterController implements Initializable {
     try {
       double xcoord = Double.parseDouble(XCoord.getText());
       double ycoord = Double.parseDouble(YCoord.getText());
-      String nodeID = ID.getText();
-      Double xPos = xcoord;
-      Double yPos = ycoord;
-      String floor = Floor.getText();
-      String building = Building.getText();
-      String nodeType = NodeType.getText();
-      String longName = LongName.getText();
-      String shortName = ShortName.getText();
+      selectedNode.set_nodeID(ID.getText());
+      selectedNode.set_x(xcoord);
+      selectedNode.set_y(ycoord);
+      selectedNode.set_floor(Floor.getText());
+      selectedNode.set_building( Building.getText());
+      selectedNode.set_nodeType(NodeType.getText());
+      selectedNode.set_longName(LongName.getText());
+      selectedNode.set_shortName(ShortName.getText());
     } catch (Exception e) {
       messageLabel.setText("Invalid type in field");
     }
@@ -169,6 +170,7 @@ public class CSVEditor extends masterController implements Initializable {
           event -> {
             if (event.isPrimaryButtonDown()) {
               DataNode clickedNode = nodeMap.get(lbl.getId());
+              selectedNode = clickedNode;
               ID.setText(clickedNode.get_nodeID());
               XCoord.setText(Double.toString(clickedNode.get_x()));
               YCoord.setText(Double.toString(clickedNode.get_y()));

@@ -24,4 +24,12 @@ public class Cartesian extends Node<Cartesian> {
   public double get_y() {
     return _y;
   }
+
+  public void set_x(double _x) {
+    this._x = _x;
+  }
+
+  public void set_y(double _y) {
+    this._y = _y;
+  }
 }
