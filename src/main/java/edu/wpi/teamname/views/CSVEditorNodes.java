@@ -8,13 +8,6 @@ import edu.wpi.teamname.services.ServiceTwo;
 import edu.wpi.teamname.services.algo.DataNode;
 import edu.wpi.teamname.services.database.DatabaseService;
 import edu.wpi.teamname.state.HomeState;
-import java.awt.*;
-import java.io.*;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.ResourceBundle;
-import java.util.Scanner;
-import java.util.UUID;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,9 +17,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
 import javafx.stage.FileChooser;
-import javax.swing.*;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
+
+import java.io.*;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.ResourceBundle;
+import java.util.Scanner;
+import java.util.UUID;
 
 @Slf4j
 public class CSVEditorNodes extends masterController implements Initializable {

@@ -3,16 +3,11 @@ package edu.wpi.teamname.views;
 import com.google.inject.Inject;
 import edu.wpi.teamname.entity.CSV;
 import edu.wpi.teamname.services.ServiceTwo;
-import edu.wpi.teamname.services.algo.*;
 import edu.wpi.teamname.services.algo.Cartesian;
+import edu.wpi.teamname.services.algo.Node;
+import edu.wpi.teamname.services.algo.PathFinder;
 import edu.wpi.teamname.services.database.DatabaseService;
 import edu.wpi.teamname.state.HomeState;
-import java.io.*;
-import java.io.IOException;
-import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -36,6 +31,15 @@ import javafx.scene.shape.Line;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.*;
 
 @Slf4j
 public class MapController extends masterController implements Initializable {
@@ -173,8 +177,8 @@ public class MapController extends masterController implements Initializable {
   }
 
   public void examplePathFind(ActionEvent actionEvent) throws IOException {
-    CSV nodesCSV = new CSV("src/main/resources/MapCSV/MapNNodesAll.csv");
-    CSV edgesCSV = new CSV("src/main/resources/MapCSV/MapNEdgesAll.csv");
+    CSV nodesCSV = new CSV("MapCSV/MapNNodesAll.csv");
+    CSV edgesCSV = new CSV("MapCSV/MapNEdgesAll.csv");
     int nodesSize = nodesCSV.getLineCount();
     int edgeSize = edgesCSV.getLineCount();
 
