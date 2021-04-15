@@ -124,6 +124,7 @@ public class CSVEditorEdges extends masterController implements Initializable {
       selectedEdge.set_edgeID(ID.getText());
       selectedEdge.set_startNode(startNode.getText());
       selectedEdge.set_endNode(endNode.getText());
+      selectedLabel.setText(selectedEdge.get_edgeID());
     } catch (Exception e) {
       messageLabel.setText("Invalid type in field");
     }
