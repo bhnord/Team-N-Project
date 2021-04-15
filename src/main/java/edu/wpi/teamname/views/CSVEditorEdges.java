@@ -24,6 +24,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
 import javafx.stage.FileChooser;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.io.FileUtils;
 
 @Slf4j
 public class CSVEditorEdges extends masterController implements Initializable {
@@ -76,7 +77,9 @@ public class CSVEditorEdges extends masterController implements Initializable {
           }
         });
     try {
-      File file = new File("src/main/resources/MapCSV/MapNEdgesAll.csv");
+      InputStream initialStream = ClassLoader.getSystemResourceAsStream("MapCSV/MapNEdgesAll.csv");
+      File file = new File("MapCSV/targetFile.tmp");
+      FileUtils.copyInputStreamToFile(initialStream, file);
       selectedFilePath = file.getPath();
       loadNodes(file);
     } catch (Exception e) {
