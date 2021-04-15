@@ -4,9 +4,6 @@ import com.google.inject.Inject;
 import edu.wpi.teamname.services.ServiceTwo;
 import edu.wpi.teamname.services.database.DatabaseService;
 import edu.wpi.teamname.state.HomeState;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +14,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 @Slf4j
 public class masterController implements Initializable {
@@ -65,7 +66,7 @@ public class masterController implements Initializable {
 
   @FXML
   public void logOut(FXMLLoader childLoader, Scene ChildAppPrimaryScene) throws IOException {
-    Parent root = childLoader.load(getClass().getResourceAsStream("LoginPage.fxml"));
+    Parent root = childLoader.load(getClass().getResourceAsStream("loginPage.fxml"));
     ChildAppPrimaryScene.setRoot(root);
   }
 
