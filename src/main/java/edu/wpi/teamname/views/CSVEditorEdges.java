@@ -10,10 +10,7 @@ import edu.wpi.teamname.services.database.DatabaseService;
 import edu.wpi.teamname.state.HomeState;
 import java.io.*;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.ResourceBundle;
-import java.util.Scanner;
-import java.util.UUID;
+import java.util.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -46,7 +43,8 @@ public class CSVEditorEdges extends masterController implements Initializable {
   @FXML private JFXTextField endNode;
 
   private Label selectedLabel;
-  private HashMap<String, Edge> edgeMap = new HashMap<>();
+  // private HashMap<String, Edge> edgeMap = new HashMap<>();
+
   private Scene appPrimaryScene;
   private String selectedFilePath;
 
@@ -68,7 +66,7 @@ public class CSVEditorEdges extends masterController implements Initializable {
         event -> {
           Label selected = listView.getSelectionModel().getSelectedItem();
           if (event.getButton() == MouseButton.PRIMARY && selected != null) {
-            Edge clickedEdge = edgeMap.get(selected.getId());
+            Edge clickedEdge = db.getEdge(selected.getId());
             selectedLabel = selected;
             ID.setText(clickedEdge.get_edgeID());
             startNode.setText(clickedEdge.get_startNode());
@@ -76,9 +74,10 @@ public class CSVEditorEdges extends masterController implements Initializable {
           }
         });
     try {
-      File file = new File("src/main/resources/MapCSV/MapNEdgesAll.csv");
-      selectedFilePath = file.getPath();
-      loadNodes(file);
+      //      File file = new File("src/main/resources/MapCSV/MapNEdgesAll.csv");
+      //      selectedFilePath = file.getPath();
+      //      loadEdges(file);
+      loadFromDB();
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -105,7 +104,7 @@ public class CSVEditorEdges extends masterController implements Initializable {
     Label lbl = new Label("New Edge");
     String uuid = UUID.randomUUID().toString();
     lbl.setId(uuid);
-    edgeMap.put(uuid, new Edge("", "", ""));
+    // edgeMap.put(uuid, new Edge("", "", ""));
     listView.getItems().add(lbl);
   }
 
@@ -116,11 +115,14 @@ public class CSVEditorEdges extends masterController implements Initializable {
 
   public void commitChanges(ActionEvent actionEvent) {
     try {
-      Edge selectedEdge = edgeMap.get(selectedLabel.getId());
-
+      Edge selectedEdge = db.getEdge(selectedLabel.getId());
+      db.deleteEdge(selectedEdge.get_edgeID());
       selectedEdge.set_edgeID(ID.getText());
       selectedEdge.set_startNode(startNode.getText());
       selectedEdge.set_endNode(endNode.getText());
+      db.addEdge(selectedEdge);
+      selectedLabel.setId(ID.getText());
+      selectedLabel.setText(ID.getText());
     } catch (Exception e) {
       messageLabel.setText("Invalid type in field");
     }
@@ -131,51 +133,63 @@ public class CSVEditorEdges extends masterController implements Initializable {
     File file = fileChooser.showOpenDialog(appPrimaryScene.getWindow());
     try {
       selectedFilePath = file.getPath();
-      loadNodes(file);
+      db.deleteEdgeRows();
+      db.loadCSVtoTable(file.getPath(), "EDGES");
     } catch (Exception e) {
       loadSuccess.setText("Error loading file, try again.");
     }
   }
 
-  private void loadNodes(File file) throws FileNotFoundException {
-    edgeMap.clear();
-    csvToNodes(file);
-    loadSuccess.setText("File successfully loaded!");
-    messageLabel.setText("" + file);
+  //  private void loadEdges(File file) throws FileNotFoundException {
+  //    edgeMap.clear();
+  //    csvToNodes(file);
+  //    loadSuccess.setText("File successfully loaded!");
+  //    messageLabel.setText("" + file);
+  //    listView.getItems().clear();
+  //    for (Edge e : edgeMap.values()) {
+  //      Label lbl = new Label(e.get_edgeID());
+  //      lbl.setId(e.get_edgeID());
+  //      listView.getItems().add(lbl);
+  //    }
+  //  }
+
+  private void loadFromDB() {
     listView.getItems().clear();
-    for (Edge e : edgeMap.values()) {
+    HashSet<Edge> edgeSet = db.getAllEdges();
+    for (Edge e : edgeSet) {
       Label lbl = new Label(e.get_edgeID());
       lbl.setId(e.get_edgeID());
       listView.getItems().add(lbl);
     }
   }
 
-  private HashMap<String, Edge> csvToNodes(File file) throws FileNotFoundException {
-    Scanner scanner = new Scanner(file);
-    String line = scanner.nextLine();
-
-    if (line.contains("nodeID,xcoord,ycoord,floor,building,nodeType,longName,shortName")
-        && scanner.hasNextLine()) {
-      line = scanner.nextLine();
-    }
-
-    if (!scanner.hasNextLine()) return edgeMap;
-    do {
-      String[] entries = line.split(",");
-      if (entries.length == 3) {
-        String ID = entries[0];
-        String sNode = entries[1];
-        String eNode = entries[2];
-        edgeMap.put(ID, new Edge(ID, sNode, eNode));
-      }
-      line = scanner.nextLine();
-    } while (scanner.hasNextLine());
-    return edgeMap;
-  }
+  //  private HashMap<String, Edge> csvToNodes(File file) throws FileNotFoundException {
+  //    Scanner scanner = new Scanner(file);
+  //    String line = scanner.nextLine();
+  //
+  //    if (line.contains("nodeID,xcoord,ycoord,floor,building,nodeType,longName,shortName")
+  //        && scanner.hasNextLine()) {
+  //      line = scanner.nextLine();
+  //    }
+  //
+  //    if (!scanner.hasNextLine()) return edgeMap;
+  //    do {
+  //      String[] entries = line.split(",");
+  //      if (entries.length == 3) {
+  //        String ID = entries[0];
+  //        String sNode = entries[1];
+  //        String eNode = entries[2];
+  //        edgeMap.put(ID, new Edge(ID, sNode, eNode));
+  //      }
+  //      line = scanner.nextLine();
+  //    } while (scanner.hasNextLine());
+  //    return edgeMap;
+  //  }
 
   private void nodesToCsv(String outputPath) throws IOException {
     Writer fileWriter = new FileWriter(outputPath, false);
-    for (Edge e : edgeMap.values()) {
+    HashSet<Edge> allEdges = db.getAllEdges();
+    for (Edge e : allEdges) {
       String outputString = "";
       outputString += e.get_edgeID();
       outputString += ",";
@@ -196,12 +210,12 @@ public class CSVEditorEdges extends masterController implements Initializable {
   public void DeleteNode(ActionEvent actionEvent) {
     if (listView.getItems().isEmpty()) return;
     int index = listView.getItems().indexOf(selectedLabel);
-    edgeMap.remove(selectedLabel.getId());
+    db.deleteEdge(selectedLabel.getId());
     listView.getItems().remove(selectedLabel);
     if (index != 0) index--;
     if (listView.getItems().size() == 0) return;
     selectedLabel = listView.getItems().get(index);
-    Edge clickedEdge = edgeMap.get(selectedLabel.getId());
+    Edge clickedEdge = db.getEdge(selectedLabel.getId());
     ID.setText(clickedEdge.get_edgeID());
     startNode.setText(clickedEdge.get_startNode());
     endNode.setText(clickedEdge.get_endNode());
