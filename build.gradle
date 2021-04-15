@@ -70,7 +70,6 @@ def codeCoverageExcludes = [
         'edu.wpi.teamname.state.HomeStateProvider',
         'edu.wpi.teamname.App.1',
 ]
-
 jacoco {
     toolVersion = "0.8.4"
 }

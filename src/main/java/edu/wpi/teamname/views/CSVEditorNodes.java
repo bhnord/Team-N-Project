@@ -88,7 +88,7 @@ public class CSVEditorNodes extends masterController implements Initializable {
           }
         });
     try {
-      File file = new File("src/main/resources/MapCSV/MapNNodesAll.csv");
+      File file = new File("build/resources/main/MapCSV/MapNNodesAll.csv");
       selectedFilePath = file.getPath();
       loadNodes(file);
     } catch (Exception e) {
