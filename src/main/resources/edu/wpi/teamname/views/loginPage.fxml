@@ -21,6 +21,7 @@
             <JFXTextField fx:id="usernameField" focusColor="#4141a6" labelFloat="true" layoutX="197.0" layoutY="158.0" onKeyReleased="#validateButton" prefHeight="25.0" prefWidth="207.0" promptText="Username" unFocusColor="#f2a100" />
             <JFXPasswordField fx:id="passwordField" labelFloat="true" layoutX="197.0" layoutY="218.0" onKeyReleased="#validateButton" prefHeight="25.0" prefWidth="207.0" promptText="Password" unFocusColor="#f2a100" />
             <JFXButton fx:id="goToHomePage" layoutX="274.0" layoutY="275.0" onAction="#continueToHomePage" text="Submit" />
+            <Label fx:id="incorrectLogin" layoutX="160.0" layoutY="310.0" prefHeight="21.0" prefWidth="300.0" text=" " />
          </children>
       </AnchorPane>
    </children>
