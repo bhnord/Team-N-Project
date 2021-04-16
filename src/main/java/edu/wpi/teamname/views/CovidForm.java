@@ -9,7 +9,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -21,7 +20,21 @@ import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class FoodDeliveryRequest extends masterController implements Initializable {
+public class CovidForm extends masterController implements Initializable {
+
+  @FXML private ChoiceBox q1 = new ChoiceBox();
+
+  @FXML private ChoiceBox q2 = new ChoiceBox();
+
+  @FXML private ChoiceBox q3 = new ChoiceBox();
+
+  @FXML private ChoiceBox q4 = new ChoiceBox();
+
+  @FXML private ChoiceBox q5 = new ChoiceBox();
+
+  @FXML private ChoiceBox q6 = new ChoiceBox();
+
+  ObservableList<String> answers = FXCollections.observableArrayList("yes", "no");
 
   @Inject DatabaseService db;
   @Inject ServiceTwo graph;
@@ -29,13 +42,9 @@ public class FoodDeliveryRequest extends masterController implements Initializab
   @Inject HomeState state;
   @FXML private Label text;
 
-  private Scene appPrimaryScene;
-  Stage primaryStage;
+  static Stage stage;
 
-  @FXML private ChoiceBox Food;
-  ObservableList<String> foodChoices =
-      FXCollections.observableArrayList(
-          "select available personal", "person 1", "person 2", "person 3", "person 4");
+  private Scene appPrimaryScene;
 
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
@@ -51,8 +60,19 @@ public class FoodDeliveryRequest extends masterController implements Initializab
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     log.debug(state.toString());
-    Food.setValue("select available personal");
-    Food.setItems(foodChoices);
+
+    q1.setValue("select");
+    q1.setItems(answers);
+    q2.setValue("select");
+    q2.setItems(answers);
+    q3.setValue("select");
+    q3.setItems(answers);
+    q4.setValue("select");
+    q4.setItems(answers);
+    q5.setValue("select");
+    q5.setItems(answers);
+    q6.setValue("select");
+    q6.setItems(answers);
   }
 
   @FXML
@@ -60,15 +80,14 @@ public class FoodDeliveryRequest extends masterController implements Initializab
     super.advanceHome(loader, appPrimaryScene);
   }
 
-  public void Submit(ActionEvent actionEvent) throws IOException {
-    ConfirmBoxFood.confirm(this);
+  public void goToRequestPage(FXMLLoader childLoader, Scene ChildAppPrimaryScene)
+      throws IOException {
+    Parent root = childLoader.load(getClass().getResourceAsStream("ConfirmationPageCovid.fxml"));
+    ChildAppPrimaryScene.setRoot(root);
   }
 
-  public void help(ActionEvent actionEvent) throws IOException {
-    Parent root = loader.load(getClass().getResourceAsStream("FoodRequestHelpPage.fxml"));
-    appPrimaryScene.setRoot(root);
-    primaryStage.setScene(appPrimaryScene);
-    primaryStage.setAlwaysOnTop(true);
-    primaryStage.show();
+  @FXML
+  public void continuePage() throws IOException {
+    goToRequestPage(loader, appPrimaryScene);
   }
 }

@@ -17,6 +17,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 
 public class LoginPage extends masterController implements Initializable {
 
@@ -29,8 +30,11 @@ public class LoginPage extends masterController implements Initializable {
   @FXML private JFXTextField usernameField;
   @FXML private JFXPasswordField passwordField;
   @FXML private JFXButton goToHomePage;
+  @FXML private Label incorrectLogin;
 
   private Login login;
+  String patientUsername = "p";
+  String patientPassword = "p";
 
   public void initialize(URL url, ResourceBundle rb) {
     /** Locking submit button to start* */
@@ -56,6 +60,14 @@ public class LoginPage extends masterController implements Initializable {
             });
   }
 
+  public String getUsername() {
+    return usernameField.getText();
+  }
+
+  public String getPassword() {
+    return passwordField.getText();
+  }
+
   @Inject
   public void setAppPrimaryScene(Scene appPrimaryScene) {
     this.appPrimaryScene = appPrimaryScene;
@@ -63,7 +75,13 @@ public class LoginPage extends masterController implements Initializable {
 
   @FXML
   private void continueToHomePage() throws IOException {
-    super.advanceHome(loader, appPrimaryScene);
+    // System.out.println(getUsername());
+    // System.out.println(getPassword());
+    if (getUsername().equals(patientUsername) && getPassword().equals(patientPassword)) {
+      super.advanceHome(loader, appPrimaryScene);
+    } else {
+      incorrectLogin.setText("incorrect username or password. try again");
+    }
   }
 
   @FXML
