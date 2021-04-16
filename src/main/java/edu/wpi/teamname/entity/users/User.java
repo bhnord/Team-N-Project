@@ -16,5 +16,5 @@ abstract class User {
     return username;
   }
 
-  public abstract String getType();
+  public abstract UserType getType();
 }

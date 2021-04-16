@@ -6,7 +6,7 @@ public class Employee extends User {
   }
 
   @Override
-  public String getType() {
-    return "Employee";
+  public UserType getType() {
+    return UserType.EMPLOYEE;
   }
 }

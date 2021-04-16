@@ -5,7 +5,7 @@ public class Patient extends User {
     super(id, username);
   }
 
-  public String getType() {
-    return "Patient";
+  public UserType getType() {
+    return UserType.PATIENT;
   }
 }
