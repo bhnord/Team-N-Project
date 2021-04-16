@@ -1,4 +1,4 @@
-package edu.wpi.teamname.services.database;
+package edu.wpi.teamname.services.database.requests;
 
 public abstract class Request {
   int id, senderID, receiverID;

@@ -73,14 +73,14 @@ public class CSVEditorNodes extends masterController implements Initializable {
           if (event.getButton() == MouseButton.PRIMARY && selected != null) {
             DataNode clickedNode = nodeMap.get(selected.getId());
             selectedLabel = selected;
-            ID.setText(clickedNode.get_nodeID());
+            ID.setText(clickedNode.getNodeID());
             XCoord.setText(Double.toString(clickedNode.get_x()));
             YCoord.setText(Double.toString(clickedNode.get_y()));
-            Floor.setText(clickedNode.get_floor());
-            Building.setText(clickedNode.get_building());
-            ShortName.setText(clickedNode.get_shortName());
-            LongName.setText(clickedNode.get_longName());
-            NodeType.setText(clickedNode.get_nodeType());
+            Floor.setText(clickedNode.getFloor());
+            Building.setText(clickedNode.getBuilding());
+            ShortName.setText(clickedNode.getShortName());
+            LongName.setText(clickedNode.getLongName());
+            NodeType.setText(clickedNode.getNodeType());
           }
         });
     try {
@@ -138,7 +138,7 @@ public class CSVEditorNodes extends masterController implements Initializable {
       selectedNode.set_nodeType(NodeType.getText());
       selectedNode.set_longName(LongName.getText());
       selectedNode.set_shortName(ShortName.getText());
-      selectedLabel.setText(selectedNode.get_nodeID());
+      selectedLabel.setText(selectedNode.getNodeID());
     } catch (Exception e) {
       messageLabel.setText("Invalid type in field");
     }
@@ -162,8 +162,8 @@ public class CSVEditorNodes extends masterController implements Initializable {
     messageLabel.setText("" + file);
     listView.getItems().clear();
     for (DataNode node : nodeMap.values()) {
-      Label lbl = new Label(node.get_nodeID());
-      lbl.setId(node.get_nodeID());
+      Label lbl = new Label(node.getNodeID());
+      lbl.setId(node.getNodeID());
       listView.getItems().add(lbl);
     }
   }
@@ -203,21 +203,21 @@ public class CSVEditorNodes extends masterController implements Initializable {
     Writer fileWriter = new FileWriter(outputPath, false);
     for (DataNode node : nodeMap.values()) {
       String outputString = "";
-      outputString += node.get_nodeID();
+      outputString += node.getNodeID();
       outputString += ",";
       outputString += node.get_x();
       outputString += ",";
       outputString += node.get_y();
       outputString += ",";
-      outputString += node.get_floor();
+      outputString += node.getFloor();
       outputString += ",";
-      outputString += node.get_building();
+      outputString += node.getBuilding();
       outputString += ",";
-      outputString += node.get_nodeType();
+      outputString += node.getNodeType();
       outputString += ",";
-      outputString += node.get_longName();
+      outputString += node.getLongName();
       outputString += ",";
-      outputString += node.get_shortName();
+      outputString += node.getShortName();
       outputString += "\n";
       fileWriter.write(outputString);
     }
@@ -243,13 +243,13 @@ public class CSVEditorNodes extends masterController implements Initializable {
     ;
     selectedLabel = listView.getItems().get(index);
     DataNode clickedNode = nodeMap.get(selectedLabel.getId());
-    ID.setText(clickedNode.get_nodeID());
+    ID.setText(clickedNode.getNodeID());
     XCoord.setText(Double.toString(clickedNode.get_x()));
     YCoord.setText(Double.toString(clickedNode.get_y()));
-    Floor.setText(clickedNode.get_floor());
-    Building.setText(clickedNode.get_building());
-    ShortName.setText(clickedNode.get_shortName());
-    LongName.setText(clickedNode.get_longName());
-    NodeType.setText(clickedNode.get_nodeType());
+    Floor.setText(clickedNode.getFloor());
+    Building.setText(clickedNode.getBuilding());
+    ShortName.setText(clickedNode.getShortName());
+    LongName.setText(clickedNode.getLongName());
+    NodeType.setText(clickedNode.getNodeType());
   }
 }

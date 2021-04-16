@@ -1,4 +1,4 @@
-package edu.wpi.teamname.entity.users;
+package edu.wpi.teamname.services.database.users;
 
 public class Employee extends User {
   public Employee(String id, String username) {

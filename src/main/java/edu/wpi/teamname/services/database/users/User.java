@@ -1,4 +1,4 @@
-package edu.wpi.teamname.entity.users;
+package edu.wpi.teamname.services.database.users;
 
 abstract class User {
   private String id, username;
