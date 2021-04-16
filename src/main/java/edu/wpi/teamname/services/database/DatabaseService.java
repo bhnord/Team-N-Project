@@ -50,23 +50,23 @@ public class DatabaseService {
 
   public boolean addNode(DataNode node) {
     String query =
-            "INSERT INTO NODES VALUES ('"
-                    + node.get_nodeID()
-                    + "', "
-                    + node.get_x()
-                    + ", "
-                    + node.get_y()
-                    + ", '"
-                    + node.get_floor()
-                    + "', '"
-                    + node.get_building()
-                    + "', '"
-                    + node.get_nodeType()
-                    + "', '"
-                    + node.get_longName()
-                    + "', '"
-                    + node.get_shortName()
-                    + "')";
+        "INSERT INTO NODES VALUES ('"
+            + node.get_nodeID()
+            + "', "
+            + node.get_x()
+            + ", "
+            + node.get_y()
+            + ", '"
+            + node.get_floor()
+            + "', '"
+            + node.get_building()
+            + "', '"
+            + node.get_nodeType()
+            + "', '"
+            + node.get_longName()
+            + "', '"
+            + node.get_shortName()
+            + "')";
     try {
       return stmt.execute(query);
     } catch (SQLException e) {
@@ -77,13 +77,13 @@ public class DatabaseService {
 
   public boolean addEdge(Edge e) {
     String str =
-            "INSERT INTO EDGES VALUES ('"
-                    + e.get_edgeID()
-                    + "', '"
-                    + e.get_startNode()
-                    + "', '"
-                    + e.get_endNode()
-                    + "')";
+        "INSERT INTO EDGES VALUES ('"
+            + e.get_edgeID()
+            + "', '"
+            + e.get_startNode()
+            + "', '"
+            + e.get_endNode()
+            + "')";
     try {
       return stmt.execute(str);
     } catch (SQLException exception) {
@@ -162,11 +162,11 @@ public class DatabaseService {
    */
   public void loadCSVtoTable(String csvPath, String tableName) {
     String str =
-            "CALL SYSCS_UTIL.SYSCS_IMPORT_TABLE(null, '"
-                    + tableName
-                    + "', '"
-                    + csvPath
-                    + "', ',', '\"', 'UTF-8',0)";
+        "CALL SYSCS_UTIL.SYSCS_IMPORT_TABLE(null, '"
+            + tableName
+            + "', '"
+            + csvPath
+            + "', ',', '\"', 'UTF-8',0)";
     try {
       stmt.execute(str);
     } catch (SQLException e) {
@@ -187,7 +187,7 @@ public class DatabaseService {
         double xPos = rs.getDouble("XCOORD");
         double yPos = rs.getDouble("YCOORD");
         nodeSet.add(
-                new DataNode(xPos, yPos, nodeID, floor, building, nodeType, longName, shortName));
+            new DataNode(xPos, yPos, nodeID, floor, building, nodeType, longName, shortName));
       }
       return nodeSet;
     } catch (SQLException e) {

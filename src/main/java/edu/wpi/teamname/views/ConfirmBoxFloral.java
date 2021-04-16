@@ -27,7 +27,8 @@ public class ConfirmBoxFloral extends masterController implements Initializable 
     floral = floralType;
     String title = "floral confirmation box";
 
-    FXMLLoader fxmlLoader = new FXMLLoader(ConfirmBox.class.getResource("ConfirmBoxFloral.fxml"));
+    FXMLLoader fxmlLoader =
+        new FXMLLoader(ConfirmBoxFood.class.getResource("ConfirmBoxFloral.fxml"));
     Parent root = fxmlLoader.load();
     Scene scene = new Scene(root);
     box = fxmlLoader.getController();
@@ -50,7 +51,7 @@ public class ConfirmBoxFloral extends masterController implements Initializable 
   @FXML
   public void continuePage() throws IOException {
     FXMLLoader fxmlLoader =
-        new FXMLLoader(ConfirmBox.class.getResource("ConfirmationPageFloral.fxml"));
+        new FXMLLoader(ConfirmBoxFood.class.getResource("ConfirmationPageFloral.fxml"));
     Parent root = fxmlLoader.load();
     Scene scene = new Scene(root);
     box.stage.setScene(scene);

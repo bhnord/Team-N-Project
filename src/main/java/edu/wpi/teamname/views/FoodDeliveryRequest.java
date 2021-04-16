@@ -60,7 +60,7 @@ public class FoodDeliveryRequest extends masterController implements Initializab
   }
 
   public void Submit(ActionEvent actionEvent) throws IOException {
-    ConfirmBox.confirm(this);
+    ConfirmBoxFood.confirm(this);
   }
 
   public void help(ActionEvent actionEvent) throws IOException {
