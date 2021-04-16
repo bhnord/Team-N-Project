@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamname.views.HomeController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamname.views.HomeController">
    <children>
       <ImageView fitHeight="400.0" fitWidth="648.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -85,5 +85,6 @@
       <Button layoutY="-1.0" mnemonicParsing="false" onAction="#exit" text="X" />
       <Button fx:id="CSVEditor" layoutX="495.0" layoutY="5.0" mnemonicParsing="false" onAction="#advanceViews" prefHeight="31.0" prefWidth="100.0" text="CSV Nodes" />
       <Button fx:id="CSVEditor2" layoutX="495.0" layoutY="48.0" mnemonicParsing="false" onAction="#advanceViews" prefHeight="31.0" prefWidth="100.0" text="CSV Edges" />
+      <Button fx:id="CovidForm" layoutX="114.0" layoutY="98.0" mnemonicParsing="false" onAction="#advanceViews" text="Virtual Check-In" />
    </children>
 </AnchorPane>
