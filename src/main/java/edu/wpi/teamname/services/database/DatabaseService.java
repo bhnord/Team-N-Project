@@ -186,7 +186,7 @@ public class DatabaseService {
    * @param csvPath full path to CSV File. (needs .csv)
    * @param tableName table name to put CSV File in. --Note table name needs to be in all caps.--
    */
-  public void loadCSVtoTable(String csvPath, String tableName) {
+  public boolean loadCSVtoTable(String csvPath, String tableName) {
     String str =
         "CALL SYSCS_UTIL.SYSCS_IMPORT_TABLE(null, '"
             + tableName
@@ -195,8 +195,10 @@ public class DatabaseService {
             + "', ',', '\"', 'UTF-8',0)";
     try {
       stmt.execute(str);
+      return true;
     } catch (SQLException e) {
       e.printStackTrace();
+      return false;
     }
   }
 
