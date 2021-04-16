@@ -3,12 +3,19 @@ package edu.wpi.teamname.views;
 import com.google.inject.Inject;
 import com.jfoenix.controls.JFXColorPicker;
 import edu.wpi.teamname.entity.CSV;
-import edu.wpi.teamname.services.ServiceTwo;
 import edu.wpi.teamname.services.algo.Cartesian;
 import edu.wpi.teamname.services.algo.Node;
 import edu.wpi.teamname.services.algo.PathFinder;
 import edu.wpi.teamname.services.database.DatabaseService;
 import edu.wpi.teamname.state.HomeState;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -33,19 +40,9 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.*;
-
 @Slf4j
 public class MapController extends masterController implements Initializable {
   @Inject DatabaseService db;
-  @Inject ServiceTwo graph;
   @Inject FXMLLoader loader;
   @Inject HomeState state;
 

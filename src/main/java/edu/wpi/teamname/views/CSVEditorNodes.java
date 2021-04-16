@@ -4,7 +4,6 @@ import com.google.inject.Inject;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
-import edu.wpi.teamname.services.ServiceTwo;
 import edu.wpi.teamname.services.algo.DataNode;
 import edu.wpi.teamname.services.database.DatabaseService;
 import edu.wpi.teamname.state.HomeState;
@@ -29,7 +28,6 @@ import lombok.extern.slf4j.Slf4j;
 public class CSVEditorNodes extends masterController implements Initializable {
 
   @Inject DatabaseService db;
-  @Inject ServiceTwo graph;
   @Inject FXMLLoader loader;
   @Inject HomeState state;
 
