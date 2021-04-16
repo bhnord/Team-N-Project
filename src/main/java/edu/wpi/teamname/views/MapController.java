@@ -1,6 +1,7 @@
 package edu.wpi.teamname.views;
 
 import com.google.inject.Inject;
+import com.jfoenix.controls.JFXColorPicker;
 import edu.wpi.teamname.entity.CSV;
 import edu.wpi.teamname.services.ServiceTwo;
 import edu.wpi.teamname.services.algo.Cartesian;
@@ -58,6 +59,7 @@ public class MapController extends masterController implements Initializable {
   @FXML private TextField pathFindNodes;
   @FXML private TextField deletenodeID;
   @FXML private Label selectedNode;
+  @FXML private JFXColorPicker colorPicker;
 
   private Scene appPrimaryScene;
   int[] nodeinfo = new int[3];
