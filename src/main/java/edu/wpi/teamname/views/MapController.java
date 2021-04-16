@@ -9,14 +9,6 @@ import edu.wpi.teamname.services.algo.Node;
 import edu.wpi.teamname.services.algo.PathFinder;
 import edu.wpi.teamname.services.database.DatabaseService;
 import edu.wpi.teamname.state.HomeState;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -40,6 +32,15 @@ import javafx.scene.shape.Line;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.*;
 
 @Slf4j
 public class MapController extends masterController implements Initializable {
@@ -108,7 +109,7 @@ public class MapController extends masterController implements Initializable {
    */
   public void placeNode(MouseEvent mouseEvent) {
     Circle simpleNode = new Circle(mouseEvent.getX(), mouseEvent.getY(), 2.5);
-    simpleNode.setFill(Color.BLUE);
+    simpleNode.setFill(colorPicker.getValue());
     Group root = new Group(simpleNode);
     root.setOnMouseClicked(
         new EventHandler<MouseEvent>() {
@@ -127,8 +128,9 @@ public class MapController extends masterController implements Initializable {
   }
 
   private void placeNode(String id, int x, int y) {
+
     Circle simpleNode = new Circle(x, y, 2.5);
-    simpleNode.setFill(Color.BLUE);
+    simpleNode.setFill(colorPicker.getValue());
     Group root = new Group(simpleNode);
     root.setId(id);
     root.setOnMouseClicked(
@@ -177,7 +179,7 @@ public class MapController extends masterController implements Initializable {
     }
   }
 
-  public void examplePathFind(ActionEvent actionEvent) throws IOException {
+  public void examplePathFind(ActionEvent actionEvent) throws IOException, InterruptedException {
     CSV nodesCSV = new CSV("MapCSV/MapNNodesAll.csv");
     CSV edgesCSV = new CSV("MapCSV/MapNEdgesAll.csv");
     int nodesSize = nodesCSV.getLineCount();
