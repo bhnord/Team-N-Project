@@ -75,7 +75,7 @@ public class ConfirmBoxFood extends masterController implements Initializable {
   @FXML
   public void complete(ActionEvent actionEvent) throws IOException {
     count += 1;
-    message.setText("Confirmation: request completed.");
+    message.setText("Confirmation: request marked as completed.");
   }
 
   @FXML

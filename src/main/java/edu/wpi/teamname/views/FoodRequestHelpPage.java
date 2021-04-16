@@ -44,7 +44,5 @@ public class FoodRequestHelpPage extends masterController implements Initializab
   public void returnToRequestPage(ActionEvent actionEvent) throws IOException {
 
     super.returnToRequest(loader, appPrimaryScene, path);
-    // super.returnToRequest(loader, appPrimaryScene);
-
   }
 }

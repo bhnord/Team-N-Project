@@ -34,7 +34,8 @@ public class FoodDeliveryRequest extends masterController implements Initializab
 
   @FXML private ChoiceBox Food;
   ObservableList<String> foodChoices =
-      FXCollections.observableArrayList("Select food", "Pizza", "Apple stew", "Beef stew");
+      FXCollections.observableArrayList(
+          "select available personal", "person 1", "person 2", "person 3", "person 4");
 
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
@@ -50,7 +51,7 @@ public class FoodDeliveryRequest extends masterController implements Initializab
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     log.debug(state.toString());
-    Food.setValue("Select food");
+    Food.setValue("select available personal");
     Food.setItems(foodChoices);
   }
 
