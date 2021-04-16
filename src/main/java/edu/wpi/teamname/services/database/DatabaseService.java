@@ -68,7 +68,8 @@ public class DatabaseService {
             + node.get_shortName()
             + "')";
     try {
-      return stmt.execute(query);
+      stmt.execute(query);
+      return true;
     } catch (SQLException e) {
       e.printStackTrace();
       return false;
@@ -85,7 +86,8 @@ public class DatabaseService {
             + e.get_endNode()
             + "')";
     try {
-      return stmt.execute(str);
+      stmt.execute(str);
+      return true;
     } catch (SQLException exception) {
       exception.printStackTrace();
       return false;
@@ -107,19 +109,43 @@ public class DatabaseService {
     String query = "SELECT * FROM EDGES WHERE id = '" + edgeID + "'";
     try {
       ResultSet rs = stmt.executeQuery(query);
-      return (Edge) resultSetToEdges(rs).toArray()[0];
+      HashSet<Edge> edge = resultSetToEdges(rs);
+      if (edge.size() > 0) {
+        return (Edge) edge.toArray()[0];
+      } else {
+        return null;
+      }
     } catch (SQLException e) {
       e.printStackTrace();
       return null;
     }
   }
 
-  public void deleteEdge(String edgeID) {
+  public boolean updateEdge(String edgeID, String startNodeID, String endNodeID) {
+    String str =
+        "UPDATE EDGES SET startNodeID = "
+            + startNodeID
+            + ", endNodeID = "
+            + endNodeID
+            + " WHERE edgeID = "
+            + edgeID;
+    try {
+      stmt.execute(str);
+      return true;
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return false;
+    }
+  }
+
+  public boolean deleteEdge(String edgeID) {
     String st = "DELETE FROM EDGES WHERE id = '" + edgeID + "'";
     try {
       stmt.execute(st);
+      return true;
     } catch (SQLException e) {
       e.printStackTrace();
+      return false;
     }
   }
 

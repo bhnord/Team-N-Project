@@ -43,10 +43,11 @@ public class CSVEditorEdges extends masterController implements Initializable {
   @FXML private JFXTextField endNode;
 
   private Label selectedLabel;
-  // private HashMap<String, Edge> edgeMap = new HashMap<>();
+  private HashMap<String, Edge> newEdges = new HashMap<>();
 
   private Scene appPrimaryScene;
   private String selectedFilePath;
+  private int numEdgesAdded = 0;
 
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
@@ -66,11 +67,21 @@ public class CSVEditorEdges extends masterController implements Initializable {
         event -> {
           Label selected = listView.getSelectionModel().getSelectedItem();
           if (event.getButton() == MouseButton.PRIMARY && selected != null) {
-            Edge clickedEdge = db.getEdge(selected.getId());
-            selectedLabel = selected;
-            ID.setText(clickedEdge.get_edgeID());
-            startNode.setText(clickedEdge.get_startNode());
-            endNode.setText(clickedEdge.get_endNode());
+            String id = selected.getId();
+            Edge clickedEdge = db.getEdge(id);
+            messageLabel.setText("");
+            if (!(clickedEdge == null)) {
+              selectedLabel = selected;
+              ID.setText(clickedEdge.get_edgeID());
+              startNode.setText(clickedEdge.get_startNode());
+              endNode.setText(clickedEdge.get_endNode());
+            } else {
+              // Edge e = newEdges.get(id);
+              selectedLabel = selected;
+              ID.setText("");
+              startNode.setText("");
+              endNode.setText("");
+            }
           }
         });
     try {
@@ -85,7 +96,6 @@ public class CSVEditorEdges extends masterController implements Initializable {
 
   @FXML
   private void load(ActionEvent event) {
-
     if (!listView.isExpanded()) {
       listView.setExpanded(true);
       listView.depthProperty().set(1);
@@ -101,9 +111,9 @@ public class CSVEditorEdges extends masterController implements Initializable {
 
   @FXML
   private void addNew(ActionEvent actionEvent) {
-    Label lbl = new Label("New Edge");
-    String uuid = UUID.randomUUID().toString();
-    lbl.setId(uuid);
+    numEdgesAdded++;
+    Label lbl = new Label("New Edge " + numEdgesAdded);
+    lbl.setId("New Edge " + numEdgesAdded);
     // edgeMap.put(uuid, new Edge("", "", ""));
     listView.getItems().add(lbl);
   }
@@ -113,21 +123,38 @@ public class CSVEditorEdges extends masterController implements Initializable {
     super.advanceHome(loader, appPrimaryScene);
   }
 
+  @FXML
   public void commitChanges(ActionEvent actionEvent) {
-    try {
-      Edge selectedEdge = db.getEdge(selectedLabel.getId());
-      db.deleteEdge(selectedEdge.get_edgeID());
-      selectedEdge.set_edgeID(ID.getText());
-      selectedEdge.set_startNode(startNode.getText());
-      selectedEdge.set_endNode(endNode.getText());
-      db.addEdge(selectedEdge);
-      selectedLabel.setId(ID.getText());
-      selectedLabel.setText(ID.getText());
-    } catch (Exception e) {
-      messageLabel.setText("Invalid type in field");
+
+    Edge selectedEdge = db.getEdge(selectedLabel.getId());
+    String idText = ID.getText();
+    if (!(selectedEdge == null)) {
+      if (selectedEdge.get_edgeID().equals(idText)) {
+        if (!db.updateEdge(idText, startNode.getText(), endNode.getText())) {
+          messageLabel.setText(("Invalid type in field"));
+        }
+        updateSelectedLabel(idText);
+      } else {
+        Edge e = new Edge(idText, startNode.getText(), endNode.getText());
+        if (db.addEdge(e)) {
+          db.deleteEdge(selectedEdge.get_edgeID());
+          updateSelectedLabel(idText);
+        } else {
+          messageLabel.setText("Invalid type in field");
+        }
+      }
+    } else {
+      Edge e = new Edge(ID.getText(), startNode.getText(), endNode.getText());
+      if (db.addEdge(e)) {
+        newEdges.remove(selectedLabel.getId());
+        updateSelectedLabel(idText);
+      } else {
+        messageLabel.setText("Invalid type in field");
+      }
     }
   }
 
+  @FXML
   public void openFile(ActionEvent actionEvent) throws IOException {
     fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
     File file = fileChooser.showOpenDialog(appPrimaryScene.getWindow());
@@ -152,6 +179,11 @@ public class CSVEditorEdges extends masterController implements Initializable {
   //      listView.getItems().add(lbl);
   //    }
   //  }
+
+  private void updateSelectedLabel(String idText) {
+    selectedLabel.setId(idText);
+    selectedLabel.setText(idText);
+  }
 
   private void loadFromDB() {
     listView.getItems().clear();
