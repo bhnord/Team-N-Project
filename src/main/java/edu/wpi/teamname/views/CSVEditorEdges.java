@@ -68,9 +68,9 @@ public class CSVEditorEdges extends masterController implements Initializable {
           if (event.getButton() == MouseButton.PRIMARY && selected != null) {
             Edge clickedEdge = edgeMap.get(selected.getId());
             selectedLabel = selected;
-            ID.setText(clickedEdge.get_edgeID());
-            startNode.setText(clickedEdge.get_startNode());
-            endNode.setText(clickedEdge.get_endNode());
+            ID.setText(clickedEdge.getEdgeID());
+            startNode.setText(clickedEdge.getStartNode());
+            endNode.setText(clickedEdge.getEndNode());
           }
         });
     try {
@@ -119,10 +119,10 @@ public class CSVEditorEdges extends masterController implements Initializable {
     try {
       Edge selectedEdge = edgeMap.get(selectedLabel.getId());
 
-      selectedEdge.set_edgeID(ID.getText());
-      selectedEdge.set_startNode(startNode.getText());
-      selectedEdge.set_endNode(endNode.getText());
-      selectedLabel.setText(selectedEdge.get_edgeID());
+      selectedEdge.setEdgeID(ID.getText());
+      selectedEdge.setStartNode(startNode.getText());
+      selectedEdge.setEndNode(endNode.getText());
+      selectedLabel.setText(selectedEdge.getEdgeID());
     } catch (Exception e) {
       messageLabel.setText("Invalid type in field");
     }
@@ -146,8 +146,8 @@ public class CSVEditorEdges extends masterController implements Initializable {
     messageLabel.setText("" + file);
     listView.getItems().clear();
     for (Edge e : edgeMap.values()) {
-      Label lbl = new Label(e.get_edgeID());
-      lbl.setId(e.get_edgeID());
+      Label lbl = new Label(e.getEdgeID());
+      lbl.setId(e.getEdgeID());
       listView.getItems().add(lbl);
     }
   }
@@ -179,11 +179,11 @@ public class CSVEditorEdges extends masterController implements Initializable {
     Writer fileWriter = new FileWriter(outputPath, false);
     for (Edge e : edgeMap.values()) {
       String outputString = "";
-      outputString += e.get_edgeID();
+      outputString += e.getEdgeID();
       outputString += ",";
-      outputString += e.get_startNode();
+      outputString += e.getStartNode();
       outputString += ",";
-      outputString += e.get_endNode();
+      outputString += e.getEndNode();
       outputString += "\n";
       fileWriter.write(outputString);
     }
@@ -208,8 +208,8 @@ public class CSVEditorEdges extends masterController implements Initializable {
     if (listView.getItems().size() == 0) return;
     selectedLabel = listView.getItems().get(index);
     Edge clickedEdge = edgeMap.get(selectedLabel.getId());
-    ID.setText(clickedEdge.get_edgeID());
-    startNode.setText(clickedEdge.get_startNode());
-    endNode.setText(clickedEdge.get_endNode());
+    ID.setText(clickedEdge.getEdgeID());
+    startNode.setText(clickedEdge.getStartNode());
+    endNode.setText(clickedEdge.getEndNode());
   }
 }
