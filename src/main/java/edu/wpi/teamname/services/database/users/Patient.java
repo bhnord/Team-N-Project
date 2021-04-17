@@ -1,11 +1,11 @@
-package edu.wpi.teamname.services.database;
+package edu.wpi.teamname.services.database.users;
 
 public class Patient extends User {
   public Patient(String id, String username) {
     super(id, username);
   }
 
-  public String getType() {
-    return "Patient";
+  public UserType getType() {
+    return UserType.PATIENT;
   }
 }

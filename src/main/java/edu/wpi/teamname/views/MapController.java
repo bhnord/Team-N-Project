@@ -1,8 +1,8 @@
 package edu.wpi.teamname.views;
 
 import com.google.inject.Inject;
+import com.jfoenix.controls.JFXColorPicker;
 import edu.wpi.teamname.entity.CSV;
-import edu.wpi.teamname.services.ServiceTwo;
 import edu.wpi.teamname.services.algo.Cartesian;
 import edu.wpi.teamname.services.algo.Node;
 import edu.wpi.teamname.services.algo.PathFinder;
@@ -43,7 +43,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class MapController extends masterController implements Initializable {
   @Inject DatabaseService db;
-  @Inject ServiceTwo graph;
   @Inject FXMLLoader loader;
   @Inject HomeState state;
 
@@ -58,6 +57,7 @@ public class MapController extends masterController implements Initializable {
   @FXML private TextField pathFindNodes;
   @FXML private TextField deletenodeID;
   @FXML private Label selectedNode;
+  @FXML private JFXColorPicker colorPicker;
 
   private Scene appPrimaryScene;
   int[] nodeinfo = new int[3];
@@ -106,7 +106,7 @@ public class MapController extends masterController implements Initializable {
    */
   public void placeNode(MouseEvent mouseEvent) {
     Circle simpleNode = new Circle(mouseEvent.getX(), mouseEvent.getY(), 2.5);
-    simpleNode.setFill(Color.BLUE);
+    simpleNode.setFill(colorPicker.getValue());
     Group root = new Group(simpleNode);
     root.setOnMouseClicked(
         new EventHandler<MouseEvent>() {
@@ -125,8 +125,9 @@ public class MapController extends masterController implements Initializable {
   }
 
   private void placeNode(String id, int x, int y) {
+
     Circle simpleNode = new Circle(x, y, 2.5);
-    simpleNode.setFill(Color.BLUE);
+    simpleNode.setFill(colorPicker.getValue());
     Group root = new Group(simpleNode);
     root.setId(id);
     root.setOnMouseClicked(
@@ -175,7 +176,7 @@ public class MapController extends masterController implements Initializable {
     }
   }
 
-  public void examplePathFind(ActionEvent actionEvent) throws IOException {
+  public void examplePathFind(ActionEvent actionEvent) throws IOException, InterruptedException {
     CSV nodesCSV = new CSV("MapCSV/MapNNodesAll.csv");
     CSV edgesCSV = new CSV("MapCSV/MapNEdgesAll.csv");
     int nodesSize = nodesCSV.getLineCount();

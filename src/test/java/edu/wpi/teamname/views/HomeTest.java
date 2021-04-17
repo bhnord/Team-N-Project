@@ -4,7 +4,6 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.testfx.api.FxAssert.verifyThat;
 
-import edu.wpi.teamname.services.ServiceTwo;
 import edu.wpi.teamname.services.database.DatabaseService;
 import edu.wpi.teamname.state.HomeState;
 import java.io.IOException;
@@ -30,7 +29,7 @@ import org.testfx.framework.junit5.Start;
 public class HomeTest extends FxRobot {
 
   // Mock dependencies
-  @Mock ServiceTwo two;
+//  @Mock ServiceTwo two;
   @Mock DatabaseService dbService;
   @Mock FXMLLoader mockloader;
   // Don't mock since we require the state to change
@@ -57,19 +56,19 @@ public class HomeTest extends FxRobot {
   @BeforeEach
   public void init() throws IOException {
     when(mockloader.load(any(InputStream.class))).thenReturn(sceneRoot);
-    when(dbService.getEmployeeName()).thenReturn("Wilson Wong");
+//    when(dbService.getEmployeeName()).thenReturn("Wilson Wong");
   }
 
   @Test
   public void testSingleClick() {
-    when(two.getResults()).thenCallRealMethod();
+//    when(two.getResults()).thenCallRealMethod();
     clickOn("Click Me");
     verifyThat("#text", Node::isVisible);
   }
 
   @Test
   public void testDoubleClick() {
-    when(two.getResults()).thenCallRealMethod();
+//    when(two.getResults()).thenCallRealMethod();
     clickOn("Click Me");
     clickOn("Click Me");
     verifyThat("#text", (n) -> !n.isVisible());
@@ -77,13 +76,13 @@ public class HomeTest extends FxRobot {
 
   @Test
   public void testGetNodes() {
-    when(two.getResults())
-        .thenReturn(
-            new ArrayList<String>() {
-              {
-                add("Expected");
-              }
-            });
+//    when(two.getResults())
+//        .thenReturn(
+//            new ArrayList<String>() {
+//              {
+//                add("Expected");
+//              }
+//            });
     clickOn("Click Me");
     verifyThat("Expected", Node::isVisible);
   }

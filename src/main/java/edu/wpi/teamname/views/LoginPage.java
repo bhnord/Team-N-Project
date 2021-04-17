@@ -5,7 +5,6 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.RequiredFieldValidator;
-import edu.wpi.teamname.services.ServiceTwo;
 import edu.wpi.teamname.services.database.DatabaseService;
 import edu.wpi.teamname.state.HomeState;
 import edu.wpi.teamname.state.Login;
@@ -24,7 +23,6 @@ public class LoginPage extends masterController implements Initializable {
   @Inject FXMLLoader loader;
   private Scene appPrimaryScene;
   @Inject DatabaseService db;
-  @Inject ServiceTwo graph;
   @Inject HomeState state;
 
   @FXML private JFXTextField usernameField;
