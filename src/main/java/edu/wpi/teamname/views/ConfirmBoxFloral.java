@@ -14,14 +14,6 @@ public class ConfirmBoxFloral extends masterController implements Initializable 
   static ConfirmBoxFloral box;
   static FloralRequest floral = new FloralRequest();
 
-  //  @Inject DatabaseService db;
-  //  @Inject ServiceTwo graph;
-  //  @Inject FXMLLoader loader;
-  //  @Inject HomeState state;
-  //  @FXML private Label text;
-  //
-  //  private Scene appPrimaryScene;
-
   public static void confirm(FloralRequest floralType) throws IOException {
 
     floral = floralType;
@@ -57,20 +49,9 @@ public class ConfirmBoxFloral extends masterController implements Initializable 
     box.stage.setScene(scene);
   }
 
-  //  @Inject
-  //  public void setAppPrimaryScene(Scene appPrimaryScene) {
-  //    this.appPrimaryScene = appPrimaryScene;
-  //  }
-  //
-  //  @FXML
-  //  public void advanceHome() throws IOException {
-  //    super.advanceHome(loader, appPrimaryScene);
-  //  }
-
   @FXML
   public void returnToHomeFloral() throws IOException {
     box.stage.close();
     floral.advanceHome();
-    // advanceHome();
   }
 }
