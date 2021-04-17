@@ -50,23 +50,23 @@ public class DatabaseService {
 
   public boolean addNode(DataNode node) {
     String query =
-            "INSERT INTO NODES VALUES ('"
-                    + node.get_nodeID()
-                    + "', "
-                    + node.get_x()
-                    + ", "
-                    + node.get_y()
-                    + ", '"
-                    + node.get_floor()
-                    + "', '"
-                    + node.get_building()
-                    + "', '"
-                    + node.get_nodeType()
-                    + "', '"
-                    + node.get_longName()
-                    + "', '"
-                    + node.get_shortName()
-                    + "')";
+        "INSERT INTO NODES VALUES ('"
+            + node.getNodeID()
+            + "', "
+            + node.get_x()
+            + ", "
+            + node.get_y()
+            + ", '"
+            + node.getFloor()
+            + "', '"
+            + node.getBuilding()
+            + "', '"
+            + node.getNodeType()
+            + "', '"
+            + node.getLongName()
+            + "', '"
+            + node.getShortName()
+            + "')";
     try {
       stmt.execute(query);
       return true;
@@ -78,13 +78,13 @@ public class DatabaseService {
 
   public boolean addEdge(Edge e) {
     String str =
-            "INSERT INTO EDGES VALUES ('"
-                    + e.get_edgeID()
-                    + "', '"
-                    + e.get_startNode()
-                    + "', '"
-                    + e.get_endNode()
-                    + "')";
+        "INSERT INTO EDGES VALUES ('"
+            + e.get_edgeID()
+            + "', '"
+            + e.get_startNode()
+            + "', '"
+            + e.get_endNode()
+            + "')";
     try {
       stmt.execute(str);
       return true;
@@ -123,12 +123,12 @@ public class DatabaseService {
 
   public boolean updateEdge(String edgeID, String startNodeID, String endNodeID) {
     String str =
-            "UPDATE EDGES SET startNodeID = "
-                    + startNodeID
-                    + ", endNodeID = "
-                    + endNodeID
-                    + " WHERE edgeID = "
-                    + edgeID;
+        "UPDATE EDGES SET startNodeID = "
+            + startNodeID
+            + ", endNodeID = "
+            + endNodeID
+            + " WHERE edgeID = "
+            + edgeID;
     try {
       stmt.execute(str);
       return true;
@@ -188,11 +188,11 @@ public class DatabaseService {
    */
   public boolean loadCSVtoTable(String csvPath, String tableName) {
     String str =
-            "CALL SYSCS_UTIL.SYSCS_IMPORT_TABLE(null, '"
-                    + tableName
-                    + "', '"
-                    + csvPath
-                    + "', ',', '\"', 'UTF-8',0)";
+        "CALL SYSCS_UTIL.SYSCS_IMPORT_TABLE(null, '"
+            + tableName
+            + "', '"
+            + csvPath
+            + "', ',', '\"', 'UTF-8',0)";
     try {
       stmt.execute(str);
       return true;
@@ -215,7 +215,7 @@ public class DatabaseService {
         double xPos = rs.getDouble("XCOORD");
         double yPos = rs.getDouble("YCOORD");
         nodeSet.add(
-                new DataNode(xPos, yPos, nodeID, floor, building, nodeType, longName, shortName));
+            new DataNode(xPos, yPos, nodeID, floor, building, nodeType, longName, shortName));
       }
       return nodeSet;
     } catch (SQLException e) {
