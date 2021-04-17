@@ -50,25 +50,26 @@ public class DatabaseService {
 
   public boolean addNode(DataNode node) {
     String query =
-        "INSERT INTO NODES VALUES ('"
-            + node.getNodeID()
-            + "', "
-            + node.get_x()
-            + ", "
-            + node.get_y()
-            + ", '"
-            + node.getFloor()
-            + "', '"
-            + node.getBuilding()
-            + "', '"
-            + node.getNodeType()
-            + "', '"
-            + node.getLongName()
-            + "', '"
-            + node.getShortName()
-            + "')";
+            "INSERT INTO NODES VALUES ('"
+                    + node.get_nodeID()
+                    + "', "
+                    + node.get_x()
+                    + ", "
+                    + node.get_y()
+                    + ", '"
+                    + node.get_floor()
+                    + "', '"
+                    + node.get_building()
+                    + "', '"
+                    + node.get_nodeType()
+                    + "', '"
+                    + node.get_longName()
+                    + "', '"
+                    + node.get_shortName()
+                    + "')";
     try {
-      return stmt.execute(query);
+      stmt.execute(query);
+      return true;
     } catch (SQLException e) {
       e.printStackTrace();
       return false;
@@ -77,15 +78,16 @@ public class DatabaseService {
 
   public boolean addEdge(Edge e) {
     String str =
-        "INSERT INTO EDGES VALUES ('"
-            + e.get_edgeID()
-            + "', '"
-            + e.get_startNode()
-            + "', '"
-            + e.get_endNode()
-            + "')";
+            "INSERT INTO EDGES VALUES ('"
+                    + e.get_edgeID()
+                    + "', '"
+                    + e.get_startNode()
+                    + "', '"
+                    + e.get_endNode()
+                    + "')";
     try {
-      return stmt.execute(str);
+      stmt.execute(str);
+      return true;
     } catch (SQLException exception) {
       exception.printStackTrace();
       return false;
@@ -107,19 +109,43 @@ public class DatabaseService {
     String query = "SELECT * FROM EDGES WHERE id = '" + edgeID + "'";
     try {
       ResultSet rs = stmt.executeQuery(query);
-      return (Edge) resultSetToEdges(rs).toArray()[0];
+      HashSet<Edge> edge = resultSetToEdges(rs);
+      if (edge.size() > 0) {
+        return (Edge) edge.toArray()[0];
+      } else {
+        return null;
+      }
     } catch (SQLException e) {
       e.printStackTrace();
       return null;
     }
   }
 
-  public void deleteEdge(String edgeID) {
+  public boolean updateEdge(String edgeID, String startNodeID, String endNodeID) {
+    String str =
+            "UPDATE EDGES SET startNodeID = "
+                    + startNodeID
+                    + ", endNodeID = "
+                    + endNodeID
+                    + " WHERE edgeID = "
+                    + edgeID;
+    try {
+      stmt.execute(str);
+      return true;
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return false;
+    }
+  }
+
+  public boolean deleteEdge(String edgeID) {
     String st = "DELETE FROM EDGES WHERE id = '" + edgeID + "'";
     try {
       stmt.execute(st);
+      return true;
     } catch (SQLException e) {
       e.printStackTrace();
+      return false;
     }
   }
 
@@ -160,17 +186,19 @@ public class DatabaseService {
    * @param csvPath full path to CSV File. (needs .csv)
    * @param tableName table name to put CSV File in. --Note table name needs to be in all caps.--
    */
-  public void loadCSVtoTable(String csvPath, String tableName) {
+  public boolean loadCSVtoTable(String csvPath, String tableName) {
     String str =
-        "CALL SYSCS_UTIL.SYSCS_IMPORT_TABLE(null, '"
-            + tableName
-            + "', '"
-            + csvPath
-            + "', ',', '\"', 'UTF-8',0)";
+            "CALL SYSCS_UTIL.SYSCS_IMPORT_TABLE(null, '"
+                    + tableName
+                    + "', '"
+                    + csvPath
+                    + "', ',', '\"', 'UTF-8',0)";
     try {
       stmt.execute(str);
+      return true;
     } catch (SQLException e) {
       e.printStackTrace();
+      return false;
     }
   }
 
@@ -187,7 +215,7 @@ public class DatabaseService {
         double xPos = rs.getDouble("XCOORD");
         double yPos = rs.getDouble("YCOORD");
         nodeSet.add(
-            new DataNode(xPos, yPos, nodeID, floor, building, nodeType, longName, shortName));
+                new DataNode(xPos, yPos, nodeID, floor, building, nodeType, longName, shortName));
       }
       return nodeSet;
     } catch (SQLException e) {
