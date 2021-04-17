@@ -79,11 +79,11 @@ public class DatabaseService {
   public boolean addEdge(Edge e) {
     String str =
         "INSERT INTO EDGES VALUES ('"
-            + e.get_edgeID()
+            + e.getEdgeID()
             + "', '"
-            + e.get_startNode()
+            + e.getStartNode()
             + "', '"
-            + e.get_endNode()
+            + e.getEndNode()
             + "')";
     try {
       stmt.execute(str);
