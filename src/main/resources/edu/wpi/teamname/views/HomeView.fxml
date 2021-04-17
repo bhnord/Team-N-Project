@@ -71,21 +71,21 @@
       <Button fx:id="map1" layoutX="172.0" layoutY="503.0" mnemonicParsing="false" onAction="#map" prefHeight="25.0" prefWidth="79.0" text="Map" />
       <Button layoutX="23.0" layoutY="81.0" mnemonicParsing="false" onAction="#exit" text="X" />
       <Button fx:id="logOutButton2" layoutX="14.0" layoutY="263.0" mnemonicParsing="false" onAction="#logOut" text="Log Out" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff5a5a" height="200.0" layoutX="-1.0" layoutY="204.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
+      <Button fx:id="CovidForm2" layoutX="14.0" layoutY="308.0" mnemonicParsing="false" onAction="#advanceViews" text="Virtual Check-In" />
       <ImageView fitHeight="768.0" fitWidth="1366.0" layoutX="-5.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@/images/HomeViewBackground.png" />
          </image>
       </ImageView>
-      <JFXButton fx:id="CSVEditor2" layoutX="536.0" layoutY="645.0" onAction="#advanceViews" prefHeight="73.0" prefWidth="260.0" scaleX="1.25" scaleY="1.25" />
-      <JFXButton fx:id="CSVEditor" layoutX="158.0" layoutY="645.0" onAction="#advanceViews" prefHeight="73.0" prefWidth="260.0" scaleX="1.25" scaleY="1.25" />
+      <JFXButton fx:id="CSVEditor2" layoutX="536.0" layoutY="641.0" onAction="#advanceViews" prefHeight="73.0" prefWidth="260.0" scaleX="1.25" scaleY="1.25" />
+      <JFXButton fx:id="CSVEditor" layoutX="158.0" layoutY="641.0" onAction="#advanceViews" prefHeight="73.0" prefWidth="260.0" scaleX="1.25" scaleY="1.25" />
       <JFXButton fx:id="map" layoutX="935.0" layoutY="491.0" onAction="#map" prefHeight="204.0" prefWidth="315.0" scaleX="1.25" scaleY="1.25" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff5a5a" height="200.0" layoutX="-1.0" layoutY="204.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
-      <Button fx:id="CovidForm" layoutX="14.0" layoutY="308.0" mnemonicParsing="false" onAction="#advanceViews" text="Virtual Check-In" />
       <JFXButton fx:id="serviceRequests" layoutX="892.0" layoutY="119.0" onAction="#advanceViews" prefHeight="305.0" prefWidth="408.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0c00ae" height="69.0" layoutX="-1.0" layoutY="70.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.0" layoutX="27.0" layoutY="82.0" rotate="45.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.0" layoutX="27.0" layoutY="82.0" rotate="-45.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" />
-      <JFXButton layoutY="69.0" onAction="#exit" prefHeight="71.0" prefWidth="66.0" textFill="WHITE">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0c00ae" height="69.0" layoutX="-1.0" layoutY="77.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.0" layoutX="27.0" layoutY="89.0" rotate="45.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.0" layoutX="27.0" layoutY="89.0" rotate="-45.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" />
+      <JFXButton layoutY="76.0" onAction="#exit" prefHeight="71.0" prefWidth="66.0" textFill="WHITE">
          <font>
             <Font name="System Bold" size="9.0" />
          </font>
@@ -97,6 +97,17 @@
          </image>
       </ImageView>
       <JFXButton fx:id="logOutButton" layoutX="-1.0" layoutY="148.0" onAction="#logOut" prefHeight="71.0" prefWidth="66.0" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="9.0" />
+         </font>
+      </JFXButton>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0c00ae" height="69.0" layoutX="-1.0" layoutY="222.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
+      <ImageView fitHeight="50.0" fitWidth="59.0" layoutX="6.0" layoutY="232.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@/images/ButtonCovid.png" />
+         </image>
+      </ImageView>
+      <JFXButton fx:id="CovidForm" layoutX="-1.0" layoutY="221.0" onAction="#advanceViews" prefHeight="71.0" prefWidth="66.0" textFill="WHITE">
          <font>
             <Font name="System Bold" size="9.0" />
          </font>
