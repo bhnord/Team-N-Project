@@ -41,6 +41,6 @@ public class LanguageInterpretersRequest extends masterController implements Ini
 
   @FXML
   public void advanceHome() throws IOException {
-    super.advanceHome(loader, appPrimaryScene);
+    super.advanceServiceRequest(loader, appPrimaryScene);
   }
 }

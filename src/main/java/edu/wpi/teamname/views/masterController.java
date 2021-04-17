@@ -54,6 +54,12 @@ public class masterController implements Initializable {
     ChildAppPrimaryScene.setRoot(root);
   }
 
+  public void advanceServiceRequest(FXMLLoader childLoader, Scene ChildAppPrimaryScene)
+      throws IOException {
+    Parent root = childLoader.load(getClass().getResourceAsStream("ServiceRequests.fxml"));
+    ChildAppPrimaryScene.setRoot(root);
+  }
+
   @FXML
   public void returnToRequest(
       FXMLLoader childLoader, Scene ChildAppPrimaryScene, String requestPath) throws IOException {

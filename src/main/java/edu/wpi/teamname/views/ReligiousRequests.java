@@ -41,6 +41,6 @@ public class ReligiousRequests extends masterController implements Initializable
 
   @FXML
   public void advanceHome() throws IOException {
-    super.advanceHome(loader, appPrimaryScene);
+    super.advanceServiceRequest(loader, appPrimaryScene);
   }
 }

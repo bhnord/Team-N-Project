@@ -43,6 +43,6 @@ public class AudioVisualRequest extends masterController implements Initializabl
 
   @FXML
   public void advanceHome() throws IOException {
-    super.advanceHome(loader, appPrimaryScene);
+    super.advanceServiceRequest(loader, appPrimaryScene);
   }
 }

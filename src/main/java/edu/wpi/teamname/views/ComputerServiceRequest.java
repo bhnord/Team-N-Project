@@ -40,6 +40,6 @@ public class ComputerServiceRequest extends masterController implements Initiali
   }
 
   public void advanceHome() throws IOException {
-    super.advanceHome(loader, appPrimaryScene);
+    super.advanceServiceRequest(loader, appPrimaryScene);
   }
 }

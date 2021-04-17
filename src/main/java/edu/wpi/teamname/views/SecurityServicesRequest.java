@@ -41,6 +41,6 @@ public class SecurityServicesRequest extends masterController implements Initial
 
   @FXML
   public void advanceHome() throws IOException {
-    super.advanceHome(loader, appPrimaryScene);
+    super.advanceServiceRequest(loader, appPrimaryScene);
   }
 }

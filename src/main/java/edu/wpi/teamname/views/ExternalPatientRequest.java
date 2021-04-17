@@ -41,6 +41,6 @@ public class ExternalPatientRequest extends masterController implements Initiali
 
   @FXML
   public void advanceHome() throws IOException {
-    super.advanceHome(loader, appPrimaryScene);
+    super.advanceServiceRequest(loader, appPrimaryScene);
   }
 }

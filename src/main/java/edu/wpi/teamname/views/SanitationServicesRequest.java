@@ -41,6 +41,6 @@ public class SanitationServicesRequest extends masterController implements Initi
 
   @FXML
   public void advanceHome() throws IOException {
-    super.advanceHome(loader, appPrimaryScene);
+    super.advanceServiceRequest(loader, appPrimaryScene);
   }
 }
