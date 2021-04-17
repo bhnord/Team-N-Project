@@ -9,18 +9,18 @@ import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class ConfirmBoxFloral extends masterController implements Initializable {
+public class ConfirmBoxMaintenance extends masterController implements Initializable {
   static Stage stage;
-  static ConfirmBoxFloral box;
-  static FloralRequest floral = new FloralRequest();
+  static ConfirmBoxMaintenance box;
+  static FacilityMaintenanceRequest maintenance = new FacilityMaintenanceRequest();
 
-  public static void confirm(FloralRequest floralType) throws IOException {
+  public static void confirm(FacilityMaintenanceRequest maintenanceType) throws IOException {
 
-    floral = floralType;
-    String title = "floral confirmation box";
+    maintenance = maintenanceType;
+    String title = "Facility Maintenance confirmation box";
 
     FXMLLoader fxmlLoader =
-        new FXMLLoader(ConfirmBoxFood.class.getResource("ConfirmBoxFloral.fxml"));
+        new FXMLLoader(ConfirmBoxFood.class.getResource("ConfirmBoxMaintenance.fxml"));
     Parent root = fxmlLoader.load();
     Scene scene = new Scene(root);
     box = fxmlLoader.getController();
@@ -43,15 +43,15 @@ public class ConfirmBoxFloral extends masterController implements Initializable 
   @FXML
   public void continuePage() throws IOException {
     FXMLLoader fxmlLoader =
-        new FXMLLoader(ConfirmBoxFood.class.getResource("ConfirmationPageFloral.fxml"));
+        new FXMLLoader(ConfirmBoxFood.class.getResource("ConfirmationPageMaintenance.fxml"));
     Parent root = fxmlLoader.load();
     Scene scene = new Scene(root);
     box.stage.setScene(scene);
   }
 
   @FXML
-  public void returnToHomeFloral() throws IOException {
+  public void returnToHomeMaintenance() throws IOException {
     box.stage.close();
-    floral.advanceHome();
+    maintenance.advanceHome();
   }
 }
