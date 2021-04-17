@@ -3,7 +3,6 @@ package edu.wpi.teamname.views;
 import com.google.inject.Inject;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.RequiredFieldValidator;
-import edu.wpi.teamname.services.ServiceTwo;
 import edu.wpi.teamname.services.database.DatabaseService;
 import edu.wpi.teamname.state.HomeState;
 import java.io.IOException;
@@ -23,7 +22,6 @@ import lombok.extern.slf4j.Slf4j;
 public class InternalPatientRequest extends masterController implements Initializable {
 
   @Inject DatabaseService db;
-  @Inject ServiceTwo graph;
   @Inject FXMLLoader loader;
   @Inject HomeState state;
   @FXML private Label text;

@@ -1,4 +1,4 @@
-package edu.wpi.teamname.services.database;
+package edu.wpi.teamname.services.database.users;
 
 public class Employee extends User {
   public Employee(String id, String username) {
@@ -6,7 +6,7 @@ public class Employee extends User {
   }
 
   @Override
-  public String getType() {
-    return "Employee";
+  public UserType getType() {
+    return UserType.EMPLOYEE;
   }
 }

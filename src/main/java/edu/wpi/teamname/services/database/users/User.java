@@ -1,4 +1,4 @@
-package edu.wpi.teamname.services.database;
+package edu.wpi.teamname.services.database.users;
 
 abstract class User {
   private String id, username;
@@ -16,5 +16,5 @@ abstract class User {
     return username;
   }
 
-  public abstract String getType();
+  public abstract UserType getType();
 }

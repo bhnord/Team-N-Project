@@ -1,7 +1,6 @@
 package edu.wpi.teamname.views;
 
 import com.google.inject.Inject;
-import edu.wpi.teamname.services.ServiceTwo;
 import edu.wpi.teamname.services.database.DatabaseService;
 import edu.wpi.teamname.state.HomeState;
 import java.io.IOException;
@@ -37,7 +36,6 @@ public class CovidForm extends masterController implements Initializable {
   ObservableList<String> answers = FXCollections.observableArrayList("yes", "no");
 
   @Inject DatabaseService db;
-  @Inject ServiceTwo graph;
   @Inject FXMLLoader loader;
   @Inject HomeState state;
   @FXML private Label text;

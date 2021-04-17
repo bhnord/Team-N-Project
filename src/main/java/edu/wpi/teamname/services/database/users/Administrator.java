@@ -1,4 +1,4 @@
-package edu.wpi.teamname.services.database;
+package edu.wpi.teamname.services.database.users;
 
 public class Administrator extends User {
 
@@ -6,7 +6,7 @@ public class Administrator extends User {
     super(id, username);
   }
 
-  public String getType() {
-    return "Admin";
+  public UserType getType() {
+    return UserType.ADMINISTRATOR;
   }
 }
