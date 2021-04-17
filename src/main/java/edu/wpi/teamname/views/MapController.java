@@ -84,8 +84,8 @@ public class MapController extends masterController implements Initializable {
   public void advanceHome() throws IOException {
     super.advanceHome(loader, appPrimaryScene);
     Stage stage = (Stage) appPrimaryScene.getWindow();
-    stage.setHeight(435);
-    stage.setWidth(600);
+    stage.setHeight(800);
+    stage.setWidth(1366);
     stage.centerOnScreen();
   }
 

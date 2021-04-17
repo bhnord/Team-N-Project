@@ -11,23 +11,30 @@
    <children>
       <Button fx:id="CSVEditor4" layoutX="84.0" layoutY="152.0" mnemonicParsing="false" onAction="#advanceViews" prefHeight="31.0" prefWidth="100.0" text="CSV Edges" />
       <Button fx:id="CSVEditor3" layoutX="58.0" layoutY="625.0" mnemonicParsing="false" onAction="#advanceViews" prefHeight="31.0" prefWidth="100.0" text="CSV Nodes" />
-      <ImageView fitHeight="768.0" fitWidth="1366.0" layoutX="-5.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true">
+      <Button fx:id="map1" layoutX="172.0" layoutY="503.0" mnemonicParsing="false" onAction="#map" prefHeight="25.0" prefWidth="79.0" text="Map" />
+      <ImageView fitHeight="768.0" fitWidth="1366.0" layoutX="-5.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@/images/HomeViewBackground.png" />
          </image>
       </ImageView>
-      <ImageView accessibleRole="BUTTON" fitHeight="343.0" fitWidth="282.0" layoutX="393.0" layoutY="556.0" preserveRatio="true">
+      <ImageView accessibleRole="BUTTON" fitHeight="343.0" fitWidth="282.0" layoutX="543.0" layoutY="526.0" preserveRatio="true" scaleX="1.25" scaleY="1.25">
          <image>
             <Image url="@/images/ButtonEdge.png" />
          </image>
       </ImageView>
-      <JFXButton fx:id="CSVEditor2" layoutX="402.0" layoutY="670.0" onAction="#advanceViews" prefHeight="69.0" prefWidth="260.0" />
-      <ImageView accessibleRole="BUTTON" fitHeight="322.0" fitWidth="260.0" layoutX="107.0" layoutY="661.0" preserveRatio="true">
+      <JFXButton fx:id="CSVEditor2" layoutX="552.0" layoutY="640.0" onAction="#advanceViews" prefHeight="69.0" prefWidth="260.0" scaleX="1.25" scaleY="1.25" />
+      <ImageView accessibleRole="BUTTON" fitHeight="322.0" fitWidth="260.0" layoutX="188.0" layoutY="631.0" preserveRatio="true" scaleX="1.25" scaleY="1.25">
          <image>
             <Image url="@/images/ButtonNode.png" />
          </image>
       </ImageView>
-      <JFXButton fx:id="CSVEditor" layoutX="106.0" layoutY="670.0" onAction="#advanceViews" prefHeight="69.0" prefWidth="260.0" />
+      <JFXButton fx:id="CSVEditor" layoutX="187.0" layoutY="640.0" onAction="#advanceViews" prefHeight="69.0" prefWidth="260.0" scaleX="1.25" scaleY="1.25" />
+      <ImageView accessibleRole="BUTTON" fitHeight="401.0" fitWidth="341.0" layoutX="921.0" layoutY="403.0" preserveRatio="true" scaleX="1.25" scaleY="1.25">
+         <image>
+            <Image url="@/images/ButtonMap.png" />
+         </image>
+      </ImageView>
+      <JFXButton fx:id="map" layoutX="936.0" layoutY="490.0" onAction="#map" prefHeight="204.0" prefWidth="315.0" scaleX="1.25" scaleY="1.25" />
       <Button fx:id="FoodDeliveryRequest" layoutX="260.0" layoutY="288.0" mnemonicParsing="false" onAction="#advance" prefHeight="30.0" prefWidth="200.0" text="Food Delivery Service">
          <font>
             <Font name="Franklin Gothic Medium" size="17.0" />
@@ -84,7 +91,6 @@
          <font>
             <Font name="Franklin Gothic Medium" size="17.0" />
          </font></Button>
-      <Button fx:id="map" layoutX="172.0" layoutY="503.0" mnemonicParsing="false" onAction="#map" prefHeight="25.0" prefWidth="79.0" text="Map" />
       <Button fx:id="logOutButton" layoutX="688.0" layoutY="504.0" mnemonicParsing="false" onAction="#logOut" text="Log Out" />
       <Button layoutX="167.0" layoutY="152.0" mnemonicParsing="false" onAction="#exit" text="X" />
       <Button fx:id="CovidForm" layoutX="281.0" layoutY="251.0" mnemonicParsing="false" onAction="#advanceViews" text="Virtual Check-In" />
