@@ -23,9 +23,9 @@
         <Label layoutX="277.0" layoutY="97.0" text="ID" />
         <Label layoutX="277.0" layoutY="153.0" text="Start Node" />
         <Label layoutX="277.0" layoutY="205.0" text="End Node" />
-        <JFXButton fx:id="commitChangesButton" layoutX="470.0" layoutY="157.0" onAction="#commitChanges" text="Update Edge" />
-        <JFXButton fx:id="saveFileButton" layoutX="469.0" layoutY="193.0" onAction="#saveFile" text="Save File" />
-        <JFXButton fx:id="deleteButton" layoutX="468.0" layoutY="228.0" onAction="#DeleteNode" text="Delete Node" />
+        <JFXButton fx:id="commitChangesButton" layoutX="448.0" layoutY="170.0" onAction="#commitChanges" text="Save Edit to Database" />
+        <JFXButton fx:id="saveFileButton" layoutX="451.0" layoutY="201.0" onAction="#saveFile" text="Save File" />
+        <JFXButton fx:id="deleteButton" layoutX="451.0" layoutY="235.0" onAction="#DeleteNode" text="Delete" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#211edd" height="50.0" layoutY="19.0" stroke="TRANSPARENT" strokeType="INSIDE" width="286.0" />
       <Ellipse fill="#211edd" layoutX="286.0" layoutY="44.0" radiusX="38.0" radiusY="25.0" stroke="TRANSPARENT" strokeType="INSIDE" />
       <Label fx:id="text1" layoutX="43.0" layoutY="17.0" prefHeight="50.0" prefWidth="256.0" text="CSV Edge Editor:" textAlignment="CENTER" textFill="WHITE">
@@ -35,7 +35,7 @@
       </Label>
       <Button fx:id="HomeView1" layoutX="521.0" layoutY="349.0" mnemonicParsing="false" onAction="#advanceHome" prefHeight="36.0" prefWidth="65.0" text="Home" />
       <JFXButton fx:id="button" layoutX="469.0" layoutY="5.0" onAction="#load" prefHeight="36.0" prefWidth="126.0" text="Toggle Expansion" />
-      <JFXButton fx:id="button1" layoutX="482.0" layoutY="44.0" onAction="#addNew" prefHeight="36.0" prefWidth="107.0" text="Add New Node" />
+      <JFXButton fx:id="button1" layoutX="482.0" layoutY="44.0" onAction="#addNew" prefHeight="36.0" prefWidth="107.0" text="Add New Edge" />
       <JFXListView fx:id="listView" layoutX="14.0" layoutY="78.0" prefHeight="308.0" prefWidth="200.0" stylesheets="@/StyleSheet/style.css" verticalGap="10.0" />
       <Button fx:id="openFileButton1" layoutX="521.0" layoutY="311.0" mnemonicParsing="false" onAction="#openFile" text="Open file" />
       <Label fx:id="messageLabel1" layoutX="234.0" layoutY="367.0" prefHeight="21.0" prefWidth="268.0" text=" " />
