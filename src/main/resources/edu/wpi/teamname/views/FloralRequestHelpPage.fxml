@@ -6,7 +6,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamname.views.LaundryRequestHelpPage">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamname.views.FloralRequestHelpPage">
     <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#9ed0ff" height="820.0" layoutY="-172.0" stroke="TRANSPARENT" strokeType="INSIDE" width="1206.0" />
         <Label layoutX="25.0" layoutY="21.0" prefHeight="14.0" prefWidth="239.0" text="Laundry Request Help Page">

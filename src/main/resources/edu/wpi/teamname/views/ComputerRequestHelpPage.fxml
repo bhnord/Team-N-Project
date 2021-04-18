@@ -1,17 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamname.views.FoodRequestHelpPage">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamname.views.ComputerRequestHelpPage">
    <children>
-      <Label layoutX="25.0" layoutY="21.0" text="Food Delivery Help Page" />
-      <Label layoutX="25.0" layoutY="81.0" prefWidth="521.0" text="* Room number refers to the room the patient is residing at within the hospital" />
-      <Label layoutX="25.0" layoutY="113.0" prefHeight="21.0" prefWidth="571.0" text="* Time of delivery refers to when the food should be delievered to the patient's room" />
-      <Label layoutX="25.0" layoutY="143.0" prefHeight="21.0" prefWidth="571.0" text="* Dietary restrictions refers to the patients eating habits and food intake limitations" />
-      <Label layoutX="25.0" layoutY="171.0" prefHeight="21.0" prefWidth="571.0" text="* Food requests refers to specific supplements or meals you want " />
-      <Label layoutX="25.0" layoutY="200.0" prefHeight="21.0" prefWidth="571.0" text="* Comments refers to any addition information you want to provide" />
-      <Button fx:id="returnButton" layoutX="165.0" layoutY="329.0" mnemonicParsing="false" text="Return to food delivery request form" onAction="#returnToRequestPage"/>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#9ed0ff" height="820.0" layoutY="-172.0" stroke="TRANSPARENT" strokeType="INSIDE" width="1206.0" />
+      <Label layoutX="25.0" layoutY="21.0" prefHeight="14.0" prefWidth="239.0" text="Laundry Request Help Page">
+         <font>
+            <Font name="Serif Bold" size="12.0" />
+         </font></Label>
+      <Label layoutX="25.0" layoutY="92.0" prefWidth="521.0" text="* Employee Name refers to the employee being requested to complete the job">
+         <font>
+            <Font name="Serif Bold" size="12.0" />
+         </font></Label>
+      <Label layoutX="25.0" layoutY="116.0" prefHeight="21.0" prefWidth="571.0" text="* Patient Room is the room that the employee will pick the patient's laundry up at">
+         <font>
+            <Font name="Serif Bold" size="12.0" />
+         </font></Label>
+      <Label layoutX="25.0" layoutY="172.0" prefHeight="21.0" prefWidth="571.0" text="* Comments refer to additional information pertaining to the laundry service">
+         <font>
+            <Font name="Serif Bold" size="12.0" />
+         </font></Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#211edd" height="21.0" layoutX="158.0" layoutY="331.0" stroke="TRANSPARENT" strokeType="INSIDE" width="225.0" />
+      <JFXButton layoutX="147.0" layoutY="329.0" onAction="#returnToRequestPage" prefHeight="25.0" prefWidth="246.0" text="Return to internal patient request form" textFill="WHITE">
+         <font>
+            <Font name="Serif Regular" size="12.0" />
+         </font>
+      </JFXButton>
+      <Label layoutX="25.0" layoutY="144.0" prefHeight="21.0" prefWidth="571.0" text="* Time of request refers to time of laundry pick-up">
+         <font>
+            <Font name="Serif Bold" size="12.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
