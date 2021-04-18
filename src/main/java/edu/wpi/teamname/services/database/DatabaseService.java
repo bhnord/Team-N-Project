@@ -37,17 +37,34 @@ public class DatabaseService {
     }
   }
 
+  /**
+   * gets node from the NODES table
+   *
+   * @param nodeID
+   * @return node from table
+   */
   public DataNode getNode(String nodeID) {
     String query = "SELECT * FROM NODES WHERE id = '" + nodeID + "'";
     try {
       ResultSet rs = stmt.executeQuery(query);
-      return (DataNode) resultSetToNodes(rs).toArray()[0];
+      HashSet<DataNode> set = resultSetToNodes(rs);
+      if (set.size() > 0) {
+        return (DataNode) set.toArray()[0];
+      } else {
+        return null;
+      }
     } catch (SQLException e) {
       e.printStackTrace();
       return null;
     }
   }
 
+  /**
+   * adds given node to the NODES table
+   *
+   * @param node the node to add to table
+   * @return whether operation was carried out successfully
+   */
   public boolean addNode(DataNode node) {
     String query =
         "INSERT INTO NODES VALUES ('"
@@ -69,6 +86,81 @@ public class DatabaseService {
             + "')";
     try {
       stmt.execute(query);
+      return true;
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return false;
+    }
+  }
+
+  /**
+   * updates selected node data (id stays the same.)
+   *
+   * @param id
+   * @param x
+   * @param y
+   * @param floor
+   * @param building
+   * @param nodeType
+   * @param longName
+   * @param shortName
+   * @return
+   */
+  public boolean updateNode(
+      String id,
+      double x,
+      double y,
+      String floor,
+      String building,
+      String nodeType,
+      String longName,
+      String shortName) {
+    String str =
+        "UPDATE NODES SET xcoord = "
+            + x
+            + ",ycoord = "
+            + y
+            + ", floor = "
+            + floor
+            + ", building = "
+            + building
+            + ", nodeType = "
+            + nodeType
+            + ", longName = "
+            + longName
+            + ", shortName = "
+            + shortName
+            + " WHERE id ="
+            + id;
+    try {
+      stmt.execute(str);
+      return true;
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return false;
+    }
+  }
+
+  /** deletes all rows from NODES table */
+  public void deleteNodeRows() {
+    String str = "DELETE FROM NODES";
+    try {
+      stmt.execute(str);
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
+
+  /**
+   * deletes node from DB - WILL ALSO DELETE ANY ASSOCIATED EDGES -
+   *
+   * @param nodeID node's id
+   * @return whether the operation was carried out successfully
+   */
+  public boolean deleteNode(String nodeID) {
+    String st = "DELETE FROM NODES WHERE id = '" + nodeID + "'";
+    try {
+      stmt.execute(st);
       return true;
     } catch (SQLException e) {
       e.printStackTrace();
@@ -245,8 +337,8 @@ public class DatabaseService {
       String str =
           "CREATE TABLE Nodes( "
               + "id varchar(25), "
-              + "xcoord INT NOT NULL, "
-              + "ycoord INT NOT NULL, "
+              + "xcoord DOUBLE NOT NULL, "
+              + "ycoord DOUBLE NOT NULL, "
               + "floor varchar(25), "
               + "building varchar(25), "
               + "nodeType varchar(25), "
@@ -257,8 +349,8 @@ public class DatabaseService {
       str =
           "CREATE TABLE Edges( "
               + "id varchar(25), "
-              + "startNodeID varchar(25) REFERENCES Nodes (id), "
-              + "endNodeID varchar(25) REFERENCES Nodes (id), "
+              + "startNodeID varchar(25) REFERENCES Nodes (id) ON DELETE CASCADE, "
+              + "endNodeID varchar(25) REFERENCES Nodes (id) ON DELETE CASCADE, "
               + "PRIMARY KEY (id))";
 
       stmt.execute(str);

@@ -68,26 +68,20 @@ public class CSVEditorEdges extends masterController implements Initializable {
             String id = selected.getId();
             Edge clickedEdge = db.getEdge(id);
             messageLabel.setText("");
+            selectedLabel = selected;
             if (!(clickedEdge == null)) {
-              selectedLabel = selected;
               ID.setText(clickedEdge.get_edgeID());
               startNode.setText(clickedEdge.get_startNode());
               endNode.setText(clickedEdge.get_endNode());
             } else {
-              // Edge e = newEdges.get(id);
-              selectedLabel = selected;
               setEmptyFields();
             }
           }
         });
-    try {
-      //      File file = new File("src/main/resources/MapCSV/MapNEdgesAll.csv");
-      //      selectedFilePath = file.getPath();
-      //      loadEdges(file);
-      loadFromDB();
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
+    //      File file = new File("src/main/resources/MapCSV/MapNEdgesAll.csv");
+    //      selectedFilePath = file.getPath();
+    //      loadEdges(file);
+    loadFromDB();
   }
 
   @FXML
@@ -110,7 +104,6 @@ public class CSVEditorEdges extends masterController implements Initializable {
     numEdgesAdded++;
     Label lbl = new Label("New Edge " + numEdgesAdded);
     lbl.setId("New Edge " + numEdgesAdded);
-    // edgeMap.put(uuid, new Edge("", "", ""));
     listView.getItems().add(lbl);
   }
 
@@ -127,16 +120,15 @@ public class CSVEditorEdges extends masterController implements Initializable {
     if (!(selectedEdge == null)) {
       if (selectedEdge.get_edgeID().equals(idText)) {
         if (!db.updateEdge(idText, startNode.getText(), endNode.getText())) {
-          messageLabel.setText(("Invalid type in field"));
+          messageLabel.setText(("Invalid inputs"));
         }
-        updateSelectedLabel(idText);
       } else {
         Edge e = new Edge(idText, startNode.getText(), endNode.getText());
         if (db.addEdge(e)) {
           db.deleteEdge(selectedEdge.get_edgeID());
           updateSelectedLabel(idText);
         } else {
-          messageLabel.setText("Invalid type in field");
+          messageLabel.setText("Invalid inputs");
         }
       }
     } else {
@@ -144,7 +136,7 @@ public class CSVEditorEdges extends masterController implements Initializable {
       if (db.addEdge(e)) {
         updateSelectedLabel(idText);
       } else {
-        messageLabel.setText("Invalid type in field");
+        messageLabel.setText("Invalid inputs");
       }
     }
   }
@@ -166,8 +158,8 @@ public class CSVEditorEdges extends masterController implements Initializable {
         Label lbl = new Label(e.get_edgeID());
         lbl.setId(e.get_edgeID());
         listView.getItems().add(lbl);
-        loadSuccess.setText("Edges file successfully loaded!");
       }
+      loadSuccess.setText("Edges file successfully loaded!");
     }
   }
 
@@ -237,7 +229,7 @@ public class CSVEditorEdges extends masterController implements Initializable {
   public void deleteEdge(ActionEvent actionEvent) {
     if (listView.getItems().isEmpty()) return;
     int index = listView.getItems().indexOf(selectedLabel);
-    if (!db.deleteEdge(selectedLabel.getId()))
+    db.deleteEdge(selectedLabel.getId());
     listView.getItems().remove(selectedLabel);
     if (index != 0) index--;
     if (!(listView.getItems().size() == 0)) {
