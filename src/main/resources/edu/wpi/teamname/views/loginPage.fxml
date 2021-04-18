@@ -23,15 +23,15 @@
             <Font name="Javanese Text" size="48.0" />
          </font>
       </Label>
-      <Rectangle arcWidth="5.0" fill="WHITE" height="41.0" layoutX="578.0" layoutY="328.0" stroke="TRANSPARENT" strokeType="INSIDE" width="207.0" />
-      <JFXTextField fx:id="usernameField" focusColor="RED" labelFloat="true" layoutX="578.0" layoutY="327.0" onKeyReleased="#validateButton" prefHeight="25.0" prefWidth="207.0" promptText="Username" unFocusColor="WHITE">
+      <Rectangle arcWidth="5.0" fill="WHITE" height="25.0" layoutX="578.0" layoutY="334.0" stroke="TRANSPARENT" strokeType="INSIDE" width="207.0" />
+      <JFXTextField fx:id="usernameField" focusColor="RED" labelFloat="true" layoutX="578.0" layoutY="333.0" onKeyReleased="#validateButton" prefHeight="25.0" prefWidth="207.0" promptText="Username" unFocusColor="WHITE">
          <font>
-            <Font name="Javanese Text" size="12.0" />
+            <Font name="Times New Roman" size="12.0" />
          </font></JFXTextField>
-      <Rectangle arcWidth="5.0" fill="WHITE" height="41.0" layoutX="578.0" layoutY="415.0" stroke="TRANSPARENT" strokeType="INSIDE" width="207.0" />
-      <JFXPasswordField fx:id="passwordField" focusColor="RED" labelFloat="true" layoutX="578.0" layoutY="414.0" onKeyReleased="#validateButton" prefHeight="25.0" prefWidth="207.0" promptText="Password" unFocusColor="WHITE">
+      <Rectangle arcWidth="5.0" fill="WHITE" height="25.0" layoutX="578.0" layoutY="421.0" stroke="TRANSPARENT" strokeType="INSIDE" width="207.0" />
+      <JFXPasswordField fx:id="passwordField" focusColor="RED" labelFloat="true" layoutX="578.0" layoutY="420.0" onKeyReleased="#validateButton" prefHeight="25.0" prefWidth="207.0" promptText="Password" unFocusColor="WHITE">
          <font>
-            <Font name="Javanese Text" size="12.0" />
+            <Font name="Times New Roman" size="12.0" />
          </font></JFXPasswordField>
       <JFXButton fx:id="goToHomePage" layoutX="645.0" layoutY="502.0" onAction="#continueToHomePage" text="SUBMIT" textFill="WHITE">
          <font>
