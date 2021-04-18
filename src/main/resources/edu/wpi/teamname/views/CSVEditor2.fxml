@@ -25,7 +25,7 @@
         <Label layoutX="277.0" layoutY="205.0" text="End Node" />
         <JFXButton fx:id="commitChangesButton" layoutX="448.0" layoutY="170.0" onAction="#commitChanges" text="Save Edit to Database" />
         <JFXButton fx:id="saveFileButton" layoutX="451.0" layoutY="201.0" onAction="#saveFile" text="Save File" />
-        <JFXButton fx:id="deleteButton" layoutX="451.0" layoutY="235.0" onAction="#DeleteNode" text="Delete" />
+        <JFXButton fx:id="deleteButton" layoutX="451.0" layoutY="235.0" onAction="#deleteEdge" text="Delete" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#211edd" height="50.0" layoutY="19.0" stroke="TRANSPARENT" strokeType="INSIDE" width="286.0" />
       <Ellipse fill="#211edd" layoutX="286.0" layoutY="44.0" radiusX="38.0" radiusY="25.0" stroke="TRANSPARENT" strokeType="INSIDE" />
       <Label fx:id="text1" layoutX="43.0" layoutY="17.0" prefHeight="50.0" prefWidth="256.0" text="CSV Edge Editor:" textAlignment="CENTER" textFill="WHITE">
