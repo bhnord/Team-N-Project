@@ -1,6 +1,7 @@
 package edu.wpi.teamname.views;
 
 import com.google.inject.Inject;
+import com.jfoenix.controls.JFXButton;
 import edu.wpi.teamname.services.database.DatabaseService;
 import edu.wpi.teamname.state.HomeState;
 import java.io.IOException;
@@ -15,6 +16,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
@@ -26,6 +28,13 @@ public class HomeController extends masterController implements Initializable {
   @Inject FXMLLoader loader;
   @Inject HomeState state;
   @FXML private Label text;
+
+  @FXML private JFXButton CovidForm;
+  @FXML private Tooltip ttCovidForm;
+  @FXML private JFXButton exit;
+  @FXML private Tooltip ttExit;
+  @FXML private JFXButton logOutButton;
+  @FXML private Tooltip ttLogOutButton;
 
   private Scene appPrimaryScene;
 
@@ -43,6 +52,9 @@ public class HomeController extends masterController implements Initializable {
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     log.debug(state.toString());
+    CovidForm.setTooltip(ttCovidForm);
+    logOutButton.setTooltip(ttLogOutButton);
+    exit.setTooltip(ttExit);
   }
 
   public void advance(ActionEvent actionEvent) throws IOException {
