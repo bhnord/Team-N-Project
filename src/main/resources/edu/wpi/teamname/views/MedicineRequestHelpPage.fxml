@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamname.views.MedicineRequestHelpPage">
+   <children>
+      <Label layoutX="25.0" layoutY="21.0" text="Food Delivery Help Page" />
+      <Label layoutX="25.0" layoutY="81.0" prefWidth="521.0" text="* Room number refers to the room the patient is residing at within the hospital" />
+      <Label layoutX="25.0" layoutY="113.0" prefHeight="21.0" prefWidth="571.0" text="* Time of delivery refers to when the food should be delievered to the patient's room" />
+      <Label layoutX="25.0" layoutY="143.0" prefHeight="21.0" prefWidth="571.0" text="* Dietary restrictions refers to the patients eating habits and food intake limitations" />
+      <Label layoutX="25.0" layoutY="171.0" prefHeight="21.0" prefWidth="571.0" text="* Food requests refers to specific supplements or meals you want " />
+      <Label layoutX="25.0" layoutY="200.0" prefHeight="21.0" prefWidth="571.0" text="* Comments refers to any addition information you want to provide" />
+      <Button fx:id="returnButton" layoutX="165.0" layoutY="329.0" mnemonicParsing="false" text="Return to food delivery request form" onAction="#returnToRequestPage"/>
+   </children>
+</AnchorPane>
