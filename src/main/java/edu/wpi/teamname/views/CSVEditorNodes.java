@@ -71,6 +71,7 @@ public class CSVEditorNodes extends masterController implements Initializable {
   @Override
   public void initialize(URL url, ResourceBundle rb) {
     // log.debug(state.toString());
+    db.loadCSVtoTable("src/main/resources/MapCSV/MapNNodesAll.csv", "NODES");
     listView.setOnMouseClicked(
         event -> {
           Label selected = listView.getSelectionModel().getSelectedItem();

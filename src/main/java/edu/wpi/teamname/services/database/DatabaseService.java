@@ -172,7 +172,7 @@ public class DatabaseService {
   }
 
   public void deleteEdgeRows() {
-    String str = "DELETE * FROM EDGES";
+    String str = "DELETE FROM EDGES";
     try {
       stmt.execute(str);
     } catch (SQLException e) {

@@ -25,7 +25,7 @@ public class Ndb {
       return;
     }
 
-    // initTables();
+    initTables();
 
     if (args.length == 0) {
       System.out.println(
