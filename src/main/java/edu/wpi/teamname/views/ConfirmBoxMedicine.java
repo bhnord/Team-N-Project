@@ -12,9 +12,9 @@ import javafx.stage.Stage;
 public class ConfirmBoxMedicine extends masterController implements Initializable {
   static Stage stage2;
   static ConfirmBoxMedicine box;
-  static MedicineDeliveryRequest medicine = new MedicineDeliveryRequest();
+  static MedicineDeliveryRequestController medicine = new MedicineDeliveryRequestController();
 
-  public static void confirm(MedicineDeliveryRequest medicineType) throws IOException {
+  public static void confirm(MedicineDeliveryRequestController medicineType) throws IOException {
 
     medicine = medicineType;
     String title = "medicine confirmation box";

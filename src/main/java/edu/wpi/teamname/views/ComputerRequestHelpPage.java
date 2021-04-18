@@ -18,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ComputerRequestHelpPage extends masterController implements Initializable {
 
-  static String path = "Requests/ComputerServiceRequest";
+  static String path = "Requests/ComputerServiceRequestController";
   static Stage stage;
   static ComputerRequestHelpPage box;
   @Inject DatabaseService db;

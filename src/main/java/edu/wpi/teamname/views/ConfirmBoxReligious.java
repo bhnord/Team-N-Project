@@ -12,9 +12,9 @@ import javafx.stage.Stage;
 public class ConfirmBoxReligious extends masterController implements Initializable {
   static Stage stage;
   static ConfirmBoxReligious box;
-  static ReligiousRequests religious = new ReligiousRequests();
+  static ReligiousRequestsController religious = new ReligiousRequestsController();
 
-  public static void confirm(ReligiousRequests religiousType) throws IOException {
+  public static void confirm(ReligiousRequestsController religiousType) throws IOException {
 
     religious = religiousType;
     String title = "religious services confirmation box";

@@ -19,7 +19,7 @@ import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class ComputerServiceRequest extends masterController implements Initializable {
+public class GiftDeliveryRequestController extends masterController implements Initializable {
 
   @Inject DatabaseService db;
   @Inject FXMLLoader loader;
@@ -78,11 +78,11 @@ public class ComputerServiceRequest extends masterController implements Initiali
   }
 
   public void Submit(ActionEvent actionEvent) throws IOException {
-    ConfirmBoxComputer.confirm(this);
+    ConfirmBoxGift.confirm(this);
   }
 
   public void help(ActionEvent actionEvent) throws IOException {
-    Parent root = loader.load(getClass().getResourceAsStream("ComputerRequestHelpPage.fxml"));
+    Parent root = loader.load(getClass().getResourceAsStream("GiftRequestHelpPage.fxml"));
     appPrimaryScene.setRoot(root);
     primaryStage.setScene(appPrimaryScene);
     primaryStage.setAlwaysOnTop(true);

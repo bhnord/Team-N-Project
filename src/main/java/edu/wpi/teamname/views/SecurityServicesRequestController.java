@@ -19,7 +19,7 @@ import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class LanguageInterpretersRequest extends masterController implements Initializable {
+public class SecurityServicesRequestController extends masterController implements Initializable {
 
   @Inject DatabaseService db;
   @Inject FXMLLoader loader;
@@ -78,11 +78,11 @@ public class LanguageInterpretersRequest extends masterController implements Ini
   }
 
   public void Submit(ActionEvent actionEvent) throws IOException {
-    ConfirmBoxLanguage.confirm(this);
+    ConfirmBoxSecurity.confirm(this);
   }
 
   public void help(ActionEvent actionEvent) throws IOException {
-    Parent root = loader.load(getClass().getResourceAsStream("LanguageRequestHelpPage.fxml"));
+    Parent root = loader.load(getClass().getResourceAsStream("SecurityRequestHelpPage.fxml"));
     appPrimaryScene.setRoot(root);
     primaryStage.setScene(appPrimaryScene);
     primaryStage.setAlwaysOnTop(true);

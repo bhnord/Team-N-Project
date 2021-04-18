@@ -19,7 +19,7 @@ import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class GiftDeliveryRequest extends masterController implements Initializable {
+public class SanitationServicesRequestController extends masterController implements Initializable {
 
   @Inject DatabaseService db;
   @Inject FXMLLoader loader;
@@ -78,11 +78,11 @@ public class GiftDeliveryRequest extends masterController implements Initializab
   }
 
   public void Submit(ActionEvent actionEvent) throws IOException {
-    ConfirmBoxGift.confirm(this);
+    ConfirmBoxSanitation.confirm(this);
   }
 
   public void help(ActionEvent actionEvent) throws IOException {
-    Parent root = loader.load(getClass().getResourceAsStream("GiftRequestHelpPage.fxml"));
+    Parent root = loader.load(getClass().getResourceAsStream("SanitationRequestHelpPage.fxml"));
     appPrimaryScene.setRoot(root);
     primaryStage.setScene(appPrimaryScene);
     primaryStage.setAlwaysOnTop(true);

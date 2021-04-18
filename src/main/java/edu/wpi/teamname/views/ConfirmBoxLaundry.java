@@ -12,9 +12,9 @@ import javafx.stage.Stage;
 public class ConfirmBoxLaundry extends masterController implements Initializable {
   static Stage stage;
   static ConfirmBoxLaundry box;
-  static LaundryRequest laundry = new LaundryRequest();
+  static LaundryRequestController laundry = new LaundryRequestController();
 
-  public static void confirm(LaundryRequest laundryType) throws IOException {
+  public static void confirm(LaundryRequestController laundryType) throws IOException {
 
     laundry = laundryType;
     String title = "laundry request confirmation box";

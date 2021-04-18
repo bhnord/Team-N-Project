@@ -19,7 +19,7 @@ import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class SecurityServicesRequest extends masterController implements Initializable {
+public class MedicineDeliveryRequestController extends masterController implements Initializable {
 
   @Inject DatabaseService db;
   @Inject FXMLLoader loader;
@@ -78,11 +78,11 @@ public class SecurityServicesRequest extends masterController implements Initial
   }
 
   public void Submit(ActionEvent actionEvent) throws IOException {
-    ConfirmBoxSecurity.confirm(this);
+    ConfirmBoxMedicine.confirm(this);
   }
 
   public void help(ActionEvent actionEvent) throws IOException {
-    Parent root = loader.load(getClass().getResourceAsStream("SecurityRequestHelpPage.fxml"));
+    Parent root = loader.load(getClass().getResourceAsStream("MedicineRequestHelpPage.fxml"));
     appPrimaryScene.setRoot(root);
     primaryStage.setScene(appPrimaryScene);
     primaryStage.setAlwaysOnTop(true);

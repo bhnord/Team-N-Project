@@ -18,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class SecurityRequestHelpPage extends masterController implements Initializable {
 
-  static String path = "Requests/SecurityServicesRequest";
+  static String path = "Requests/SecurityServicesRequestController";
   static Stage stage;
   static SecurityRequestHelpPage box;
   @Inject DatabaseService db;

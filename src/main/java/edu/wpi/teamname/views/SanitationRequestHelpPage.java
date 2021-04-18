@@ -18,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class SanitationRequestHelpPage extends masterController implements Initializable {
 
-  static String path = "Requests/SanitationServicesRequest";
+  static String path = "Requests/SanitationServicesRequestController";
   static Stage stage;
   static SanitationRequestHelpPage box;
   @Inject DatabaseService db;

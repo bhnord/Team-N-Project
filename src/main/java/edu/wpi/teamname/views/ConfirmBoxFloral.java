@@ -12,9 +12,9 @@ import javafx.stage.Stage;
 public class ConfirmBoxFloral extends masterController implements Initializable {
   static Stage stage;
   static ConfirmBoxFloral box;
-  static FloralRequest floral = new FloralRequest();
+  static FloralRequestController floral = new FloralRequestController();
 
-  public static void confirm(FloralRequest floralType) throws IOException {
+  public static void confirm(FloralRequestController floralType) throws IOException {
 
     floral = floralType;
     String title = "floral confirmation box";

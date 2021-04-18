@@ -18,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class LanguageRequestHelpPage extends masterController implements Initializable {
 
-  static String path = "Requests/LanguageInterpretersRequest";
+  static String path = "Requests/LanguageInterpretersRequestController";
   static Stage stage;
   static LanguageRequestHelpPage box;
   @Inject DatabaseService db;

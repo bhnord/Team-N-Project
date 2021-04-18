@@ -12,9 +12,9 @@ import javafx.stage.Stage;
 public class ConfirmBoxSecurity extends masterController implements Initializable {
   static Stage stage;
   static ConfirmBoxSecurity box;
-  static SecurityServicesRequest security = new SecurityServicesRequest();
+  static SecurityServicesRequestController security = new SecurityServicesRequestController();
 
-  public static void confirm(SecurityServicesRequest SecurityType) throws IOException {
+  public static void confirm(SecurityServicesRequestController SecurityType) throws IOException {
 
     security = SecurityType;
     String title = "security services confirmation box";

@@ -18,7 +18,7 @@ import javafx.stage.Stage;
 public class ConfirmBoxFood extends masterController implements Initializable {
   static Stage stage;
   static ConfirmBoxFood box;
-  static FoodDeliveryRequest food;
+  static FoodDeliveryRequestController food;
   int count = 0;
 
   @FXML private JFXProgressBar jfxProgressBar;
@@ -33,7 +33,7 @@ public class ConfirmBoxFood extends masterController implements Initializable {
 
   @FXML private Label message;
 
-  public static void confirm(FoodDeliveryRequest foodType) throws IOException {
+  public static void confirm(FoodDeliveryRequestController foodType) throws IOException {
 
     food = foodType;
     String title = "confirmation box";

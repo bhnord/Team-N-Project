@@ -12,9 +12,9 @@ import javafx.stage.Stage;
 public class ConfirmBoxAudioVisual extends masterController implements Initializable {
   static Stage stage;
   static ConfirmBoxAudioVisual box;
-  static AudioVisualRequest audioVisual = new AudioVisualRequest();
+  static AudioVisualRequestController audioVisual = new AudioVisualRequestController();
 
-  public static void confirm(AudioVisualRequest audioVisualType) throws IOException {
+  public static void confirm(AudioVisualRequestController audioVisualType) throws IOException {
 
     audioVisual = audioVisualType;
     String title = "audio visual confirmation box";

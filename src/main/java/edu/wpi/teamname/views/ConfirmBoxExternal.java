@@ -12,9 +12,9 @@ import javafx.stage.Stage;
 public class ConfirmBoxExternal extends masterController implements Initializable {
   static Stage stage;
   static ConfirmBoxExternal box;
-  static ExternalPatientRequest external = new ExternalPatientRequest();
+  static ExternalPatientRequestController external = new ExternalPatientRequestController();
 
-  public static void confirm(ExternalPatientRequest externalType) throws IOException {
+  public static void confirm(ExternalPatientRequestController externalType) throws IOException {
 
     external = externalType;
     String title = "external patient request confirmation box";

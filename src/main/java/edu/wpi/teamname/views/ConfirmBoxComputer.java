@@ -12,9 +12,9 @@ import javafx.stage.Stage;
 public class ConfirmBoxComputer extends masterController implements Initializable {
   static Stage stage;
   static ConfirmBoxComputer box;
-  static ComputerServiceRequest computer = new ComputerServiceRequest();
+  static ComputerServiceRequestController computer = new ComputerServiceRequestController();
 
-  public static void confirm(ComputerServiceRequest computerType) throws IOException {
+  public static void confirm(ComputerServiceRequestController computerType) throws IOException {
 
     computer = computerType;
     String title = "Computer services confirmation box";

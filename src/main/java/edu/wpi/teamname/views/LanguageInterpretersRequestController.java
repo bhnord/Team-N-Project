@@ -19,7 +19,7 @@ import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class InternalPatientRequest extends masterController implements Initializable {
+public class LanguageInterpretersRequestController extends masterController implements Initializable {
 
   @Inject DatabaseService db;
   @Inject FXMLLoader loader;
@@ -78,12 +78,11 @@ public class InternalPatientRequest extends masterController implements Initiali
   }
 
   public void Submit(ActionEvent actionEvent) throws IOException {
-    ConfirmBoxInternalPatient.confirm(this);
+    ConfirmBoxLanguage.confirm(this);
   }
 
   public void help(ActionEvent actionEvent) throws IOException {
-    Parent root =
-        loader.load(getClass().getResourceAsStream("InternalPatientRequestHelpPage.fxml"));
+    Parent root = loader.load(getClass().getResourceAsStream("LanguageRequestHelpPage.fxml"));
     appPrimaryScene.setRoot(root);
     primaryStage.setScene(appPrimaryScene);
     primaryStage.setAlwaysOnTop(true);
