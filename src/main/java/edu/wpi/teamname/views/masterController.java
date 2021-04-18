@@ -45,7 +45,7 @@ public class masterController implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    log.debug(state.toString());
+    //    log.debug(state.toString());
   }
 
   @FXML
