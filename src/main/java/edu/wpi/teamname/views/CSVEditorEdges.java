@@ -161,7 +161,11 @@ public class CSVEditorEdges extends masterController implements Initializable {
     try {
       selectedFilePath = file.getPath();
       db.deleteEdgeRows();
-      db.loadCSVtoTable(file.getPath(), "EDGES");
+      boolean loaded = db.loadCSVtoTable(file.getPath(), "EDGES");
+      if (!loaded) {
+        loadSuccess.setText(
+            "Error loading file, Make sure all edges have corresponding nodes and try again.");
+      }
     } catch (Exception e) {
       loadSuccess.setText("Error loading file, try again.");
     }
