@@ -62,7 +62,7 @@ public class App extends Application {
     primaryStage
         .getIcons()
         .add(new Image(ClassLoader.getSystemResourceAsStream("images/hospital-256.png")));
-    primaryStage.initStyle(StageStyle.UNDECORATED);
+    //primaryStage.initStyle(StageStyle.UNDECORATED);
     primaryStage.setTitle("Team N Application");
     primaryScene.setRoot(root);
     primaryStage.setScene(primaryScene);
