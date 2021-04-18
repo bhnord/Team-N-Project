@@ -58,7 +58,7 @@ public class MapController extends masterController implements Initializable {
   private Scene appPrimaryScene;
   int[] nodeinfo = new int[3];
   ObservableList<int[]> nodes = FXCollections.observableArrayList();
-  HashMap<String, Cartesian> nodeSet = new HashMap<String, Cartesian>();
+  HashMap<String, Node> nodeSet = new HashMap<>();
 
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
@@ -144,13 +144,13 @@ public class MapController extends masterController implements Initializable {
    * @param id1 node id of first node
    * @param id2 node id of the second node
    */
-  private void placeLink(String id1, String id2) {
-    Cartesian node1 = nodeSet.get(id1);
-    Cartesian node2 = nodeSet.get(id2);
+  private void placeLink(String id, String id1, String id2) {
+    Node node1 = nodeSet.get(id1);
+    Node node2 = nodeSet.get(id2);
     double distance = node1.heuristic(node2);
-    node1.addNeighbor(node2, distance);
-    node2.addNeighbor(node1, distance);
-    Line simpleNode = new Line(node1._x, node1._y, node2._x, node2._y);
+    node1.addNeighbor(id, node2, distance);
+    node2.addNeighbor(id, node1, distance);
+    Line simpleNode = new Line(node1.get_x(), node1.get_y(), node2.get_x(), node2.get_y());
     simpleNode.setStrokeWidth(2);
     simpleNode.setFill(Color.RED);
     Group root = new Group(simpleNode);
@@ -192,10 +192,10 @@ public class MapController extends masterController implements Initializable {
 
     Cartesian node1 = nodeSet.get("CHALL004L1");
     Cartesian node2 = nodeSet.get("CLABS002L1");
-    PathFinder<Cartesian> pathFinder = new PathFinder<>();
+    PathFinder pathFinder = new PathFinder();
     pathFinder.Astar(node1, node2);
 
-    Stack<Node<Cartesian>> ret = pathFinder.Astar(node1, node2);
+    Stack<Node> ret = pathFinder.Astar(node1, node2);
     Cartesian c1 = (Cartesian) ret.pop();
     while (!ret.empty()) {
       Cartesian c2 = (Cartesian) ret.pop();
@@ -240,10 +240,10 @@ public class MapController extends masterController implements Initializable {
         placeLink(l[i + 1], l[i + 2]);
         i += 3;
       } else if (l[i].equals("path:")) {
-        PathFinder<Cartesian> pathFinder = new PathFinder<>();
+        PathFinder pathFinder = new PathFinder();
         Cartesian node1 = nodeSet.get(l[i + 1]);
         Cartesian node2 = nodeSet.get(l[i + 2]);
-        Stack<Node<Cartesian>> ret = pathFinder.Astar(node1, node2);
+        Stack<Node> ret = pathFinder.Astar(node1, node2);
         Cartesian c1 = (Cartesian) ret.pop();
         while (!ret.empty()) {
           Cartesian c2 = (Cartesian) ret.pop();
@@ -294,12 +294,12 @@ public class MapController extends masterController implements Initializable {
 
   public void PathFind(ActionEvent actionEvent) {
     String[] S_E_nodes = pathFindNodes.getText().split("[,]");
-    PathFinder<Cartesian> pathFinder = new PathFinder<>();
+    PathFinder pathFinder = new PathFinder();
     Cartesian node1 = nodeSet.get(S_E_nodes[0]);
     Cartesian node2 = nodeSet.get(S_E_nodes[1]);
     pathFinder.Astar(node1, node2);
 
-    Stack<Node<Cartesian>> ret = pathFinder.Astar(node1, node2);
+    Stack<Node> ret = pathFinder.Astar(node1, node2);
     Cartesian c1 = (Cartesian) ret.pop();
     while (!ret.empty()) {
       Cartesian c2 = (Cartesian) ret.pop();

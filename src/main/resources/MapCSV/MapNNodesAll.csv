@@ -1,82 +1,81 @@
-nPARK001L1,140,1785,L1,Parking,PARK,parkingSpace1,parking1
-nPARK002L1,280,1785,L1,Parking,PARK,parkingSpace2,parking2
-nPARK003L1,380,1785,L1,Parking,PARK,parkingSpace3,parking3
-nPARK004L1,480,1785,L1,Parking,PARK,parkingSpace4,parking4
-nPARK005L1,600,1785,L1,Parking,PARK,parkingSpace5,parking5
-nPARK006L1,140,2150,L1,Parking,PARK,parkingSpace6,parking6
-nPARK007L1,280,2150,L1,Parking,PARK,parkingSpace7,parking7
-nPARK008L1,380,2150,L1,Parking,PARK,parkingSpace8,parking8
-nPARK009L1,480,2150,L1,Parking,PARK,parkingSpace9,parking9
-nPARK010L1,600,2150,L1,Parking,PARK,parkingSpace10,parking10
-nPARK011L1,1950,1785,L1,Parking,PARK,parkingSpace11,parking11
-nPARK012L1,2070,1785,L1,Parking,PARK,parkingSpace12,parking12
-nPARK013L1,2190,1785,L1,Parking,PARK,parkingSpace13,parking13
-nPARK014L1,2300,1785,L1,Parking,PARK,parkingSpace14,parking14
-nPARK015L1,2430,1785,L1,Parking,PARK,parkingSpace15,parking15
-nPARK016L1,1950,2150,L1,Parking,PARK,parkingSpace16,parking16
-nPARK017L1,2070,2150,L1,Parking,PARK,parkingSpace17,parking17
-nPARK018L1,2190,2150,L1,Parking,PARK,parkingSpace18,parking18
-nPARK019L1,2300,2150,L1,Parking,PARK,parkingSpace19,parking19
-nPARK020L1,2430,2150,L1,Parking,PARK,parkingSpace20,parking20
-nPARK021L1,2650,1785,L1,Parking,PARK,parkingSpace21,parking21
-nPARK022L1,2760,1785,L1,Parking,PARK,parkingSpace22,parking22
-nPARK023L1,2875,1785,L1,Parking,PARK,parkingSpace23,parking23
-nPARK024L1,2600,2150,L1,Parking,PARK,parkingSpace24,parking24
-nPARK025L1,2725,2150,L1,Parking,PARK,parkingSpace25,parking25
-nEXIT026L1,3080,1209,L1,Parking,EXIT,LobbyEntrance,lobby
-nEXIT027L1,3424,1223,L1,Parking,EXIT,EmergencyRoomEntrance,emergencyRoom
-nPARK028L1,400,1984,L1,Parking,PARK,parkingSpace26,parking26
-nPARK029L1,1050,1984,L1,Parking,PARK,parkingSpace27,parking27
-nPARK030L1,1080,1700,L1,Parking,PARK,parkingSpace28,parking28
-nPARK031L1,1736,1668,L1,Parking,PARK,parkingSpace29,parking29
-nPARK032L1,1800,1784,L1,Parking,PARK,parkingSpace30,parking30
-nPARK033L1,1800,1996,L1,Parking,PARK,parkingSpace31,parking31
-nPARK034L1,2172,1986,L1,Parking,PARK,parkingSpace32,parking32
-nPARK035L1,1744,1516,L1,Parking,PARK,parkingSpace33,parking33
-nPARK036L1,1756,1388,L1,Parking,PARK,parkingSpace34,parking34
-CCONF001L1,2255,849,L1,45 Francis,CONF,Anesthesia Conf Floor L1,Conf C001L1
-CCONF002L1,2665,1043,L1,45 Francis,CONF,Medical Records Conference Room Floor L1,Conf C002L1
-CCONF003L1,2445,1245,L1,45 Francis,CONF,Abrams Conference Room,Conf C003L1
-CDEPT002L1,1980,844,L1,Tower,DEPT,Day Surgery Family Waiting Floor L1,Department C002L1
-CDEPT003L1,1845,844,L1,Tower,DEPT,Day Surgery Family Waiting Exit Floor L1,Department C003L1
-CDEPT004L1,2310,1043,L1,45 Francis,DEPT,Medical Records Film Library Floor L1,Department C004L1
-CHALL001L1,1732,924,L1,Tower,HALL,Hallway 1 Floor L1,Hallway C001L1
-CHALL002L1,2445,1043,L1,45 Francis,HALL,Hallway 2 Floor L1,Hallway C002L1
-CHALL003L1,2445,1284,L1,45 Francis,HALL,Hallway 3 Floor L1,Hallway C003L1
-CHALL004L1,2770,1070,L1,45 Francis,HALL,Hallway 4 Floor L1,Hallway C004L1
-CHALL005L1,1750,1284,L1,Tower,HALL,Hallway 5 Floor L1,Hallway C005L1
-CHALL006L1,2130,1284,L1,Tower,HALL,Hallway 6 Floor L1,Hallway C006L1
-CHALL007L1,2130,1045,L1,Tower,HALL,Hallway 7 Floor L1,Hallway C007L1
-CHALL008L1,2215,1045,L1,45 Francis,HALL,Hallway 8 Floor L1,Hallway C008L1
-CHALL009L1,2220,904,L1,45 Francis,HALL,Hallway 9 Floor L1,Hallway C009L1
-CHALL010L1,2265,904,L1,45 Francis,HALL,Hallway 10 Floor L1,Hallway C010L1
-CHALL011L1,2360,849,L1,45 Francis,HALL,Hallway 11 Floor L1,Hallway C011L1
-CHALL012L1,2130,904,L1,45 Francis,HALL,Hallway 12 Floor L1,Hallway C012L1
-CHALL013L1,2130,844,L1,45 Francis,HALL,Hallway 13 Floor L1,Hallway C013L1
-CHALL014L1,1845,924,L1,Tower,HALL,Hallway 14 Floor L1,Hallway C014L1
-CHALL015L1,2300,849,L1,45 Francis,HALL,Hallway 15 Floor L1,Hallway C015L1
-CLABS001L1,1965,1284,L1,Tower,LABS,Outpatient Fluoroscopy Floor L1,Lab C001L1
-CLABS002L1,1750,1090,L1,Tower,LABS,Pre-Op PACU Floor L1,Lab C002L1
-CLABS003L1,2290,1284,L1,45 Francis,LABS,Nuclear Medicine Floor L1,Lab C003L1
-CLABS004L1,2320,1284,L1,45 Francis,LABS,Ultrasound Floor L1,Lab C004L1
-CLABS005L1,2770,1284,L1,45 Francis,LABS,CSIR MRI Floor L1,Lab C005L1
-CREST001L1,1732,1019,L1,Tower,REST,Restroom L Elevator Floor L1,Restroom C001L1
-CREST002L1,2065,1284,L1,Tower,REST,Restroom M Elevator Floor L1,Restroom C002L1
-CREST003L1,2300,879,L1,45 Francis,REST,Restroom K Elevator Floor L1,Restroom C003L1
-CREST004L1,2770,1160,L1,45 Francis,REST,Restroom H Elevator Floor L1,Restroom C004L1
-CRETL001L1,2185,904,L1,45 Francis,RETL,Vending Machine 1 L1,Retail C001L1
-CSERV001L1,2490,1043,L1,45 Francis,SERV,Volunteers Floor L1,Service C001L1
-CSERV001L2,2015,1280,L2,45 Francis,SERV,Interpreter Services Floor L2,Service C001L2
-GELEV00QL1,1637,2116,L1,Shapiro,ELEV,Elevator Q MapNode 7 Floor L1,Elevator Q L1
-GEXIT001L1,1702,2260,L1,Shapiro,EXIT,Fenwood Road Exit MapNode 1 Floor L1,Fenwood Road EntranceExit L1
-GHALL002L1,1702,2167,L1,Shapiro,HALL,Hallway MapNode 2 Floor L1,Hall
-GHALL003L1,1688,2167,L1,Shapiro,HALL,Hallway MapNode 3 Floor L1,Hall
-GHALL004L1,1666,2167,L1,Shapiro,HALL,Hallway MapNode 4 Floor L1,Hall
-GHALL005L1,1688,2131,L1,Shapiro,HALL,Hallway MapNode 5 Floor L1,Hall
-GHALL006L1,1665,2116,L1,Shapiro,HALL,Hallway MapNode 6 Floor L1,Hall
-GSTAI008L1,1720,2131,L1,Shapiro,STAI,Stairs MapNode 8 Floor L1,L1 Stairs
-WELEV00HL1,2715,1070,L1,45 Francis,ELEV,Elevator H Floor L1,Elevator HL1
-WELEV00JL1,2360,799,L1,45 Francis,ELEV,Elevator J Floor L1,Elevator JL1
-WELEV00KL1,2220,974,L1,45 Francis,ELEV,Elevator K Floor L1,Elevator KL1
-WELEV00LL1,1785,924,L1,Tower,ELEV,Elevator L Floor L1,Elevator LL1
-WELEV00ML1,1820,1284,L1,Tower,ELEV,Elevator M Floor L1,Elevator ML1
+CLABS002L1,1750.0,1090.0,L1,Tower,LABS,Pre-Op PACU Floor L1,Lab C002L1
+nPARK033L1,1800.0,1996.0,L1,Parking,PARK,parkingSpace31,parking31
+CHALL007L1,2130.0,1045.0,L1,Tower,HALL,Hallway 7 Floor L1,Hallway C007L1
+CDEPT004L1,2310.0,1043.0,L1,45 Francis,DEPT,Medical Records Film Library Floor L1,Department C004L1
+nPARK035L1,1744.0,1516.0,L1,Parking,PARK,parkingSpace33,parking33
+CHALL009L1,2220.0,904.0,L1,45 Francis,HALL,Hallway 9 Floor L1,Hallway C009L1
+nPARK012L1,2070.0,1785.0,L1,Parking,PARK,parkingSpace12,parking12
+nPARK010L1,600.0,2150.0,L1,Parking,PARK,parkingSpace10,parking10
+nPARK031L1,1736.0,1668.0,L1,Parking,PARK,parkingSpace29,parking29
+nPARK005L1,600.0,1785.0,L1,Parking,PARK,parkingSpace5,parking5
+CHALL010L1,2265.0,904.0,L1,45 Francis,HALL,Hallway 10 Floor L1,Hallway C010L1
+nPARK003L1,380.0,1785.0,L1,Parking,PARK,parkingSpace3,parking3
+CHALL012L1,2130.0,904.0,L1,45 Francis,HALL,Hallway 12 Floor L1,Hallway C012L1
+CREST001L1,1732.0,1019.0,L1,Tower,REST,Restroom L Elevator Floor L1,Restroom C001L1
+CDEPT002L1,1980.0,844.0,L1,Tower,DEPT,Day Surgery Family Waiting Floor L1,Department C002L1
+nPARK009L1,480.0,2150.0,L1,Parking,PARK,parkingSpace9,parking9
+CHALL014L1,1845.0,924.0,L1,Tower,HALL,Hallway 14 Floor L1,Hallway C014L1
+GHALL006L1,1665.0,2116.0,L1,Shapiro,HALL,Hallway MapNode 6 Floor L1,Hall
+nPARK007L1,280.0,2150.0,L1,Parking,PARK,parkingSpace7,parking7
+nPARK028L1,400.0,1984.0,L1,Parking,PARK,parkingSpace26,parking26
+GHALL004L1,1666.0,2167.0,L1,Shapiro,HALL,Hallway MapNode 4 Floor L1,Hall
+GHALL002L1,1702.0,2167.0,L1,Shapiro,HALL,Hallway MapNode 2 Floor L1,Hall
+CLABS004L1,2320.0,1284.0,L1,45 Francis,LABS,Ultrasound Floor L1,Lab C004L1
+CCONF003L1,2445.0,1245.0,L1,45 Francis,CONF,Abrams Conference Room,Conf C003L1
+CRETL001L1,2185.0,904.0,L1,45 Francis,RETL,Vending Machine 1 L1,Retail C001L1
+nPARK021L1,2650.0,1785.0,L1,Parking,PARK,parkingSpace21,parking21
+nPARK023L1,2875.0,1785.0,L1,Parking,PARK,parkingSpace23,parking23
+WELEV00KL1,2220.0,974.0,L1,45 Francis,ELEV,Elevator K Floor L1,Elevator KL1
+nPARK002L1,280.0,1785.0,L1,Parking,PARK,parkingSpace2,parking2
+CREST003L1,2300.0,879.0,L1,45 Francis,REST,Restroom K Elevator Floor L1,Restroom C003L1
+nEXIT027L1,3424.0,1223.0,L1,Parking,EXIT,EmergencyRoomEntrance,emergencyRoom
+nPARK016L1,1950.0,2150.0,L1,Parking,PARK,parkingSpace16,parking16
+nPARK014L1,2300.0,1785.0,L1,Parking,PARK,parkingSpace14,parking14
+CHALL001L1,1732.0,924.0,L1,Tower,HALL,Hallway 1 Floor L1,Hallway C001L1
+CHALL003L1,2445.0,1284.0,L1,45 Francis,HALL,Hallway 3 Floor L1,Hallway C003L1
+nPARK018L1,2190.0,2150.0,L1,Parking,PARK,parkingSpace18,parking18
+CHALL005L1,1750.0,1284.0,L1,Tower,HALL,Hallway 5 Floor L1,Hallway C005L1
+CCONF001L1,2255.0,849.0,L1,45 Francis,CONF,Anesthesia Conf Floor L1,Conf C001L1
+GSTAI008L1,1720.0,2131.0,L1,Shapiro,STAI,Stairs MapNode 8 Floor L1,L1 Stairs
+CLABS003L1,2290.0,1284.0,L1,45 Francis,LABS,Nuclear Medicine Floor L1,Lab C003L1
+CLABS001L1,1965.0,1284.0,L1,Tower,LABS,Outpatient Fluoroscopy Floor L1,Lab C001L1
+GELEV00QL1,1637.0,2116.0,L1,Shapiro,ELEV,Elevator Q MapNode 7 Floor L1,Elevator Q L1
+nPARK032L1,1800.0,1784.0,L1,Parking,PARK,parkingSpace30,parking30
+CHALL008L1,2215.0,1045.0,L1,45 Francis,HALL,Hallway 8 Floor L1,Hallway C008L1
+CSERV001L1,2490.0,1043.0,L1,45 Francis,SERV,Volunteers Floor L1,Service C001L1
+nPARK034L1,2172.0,1986.0,L1,Parking,PARK,parkingSpace32,parking32
+CSERV001L2,2015.0,1280.0,L2,45 Francis,SERV,Interpreter Services Floor L2,Service C001L2
+CDEPT003L1,1845.0,844.0,L1,Tower,DEPT,Day Surgery Family Waiting Exit Floor L1,Department C003L1
+nPARK013L1,2190.0,1785.0,L1,Parking,PARK,parkingSpace13,parking13
+nPARK011L1,1950.0,1785.0,L1,Parking,PARK,parkingSpace11,parking11
+nPARK030L1,1080.0,1700.0,L1,Parking,PARK,parkingSpace28,parking28
+nPARK006L1,140.0,2150.0,L1,Parking,PARK,parkingSpace6,parking6
+nPARK029L1,1050.0,1984.0,L1,Parking,PARK,parkingSpace27,parking27
+CHALL011L1,2360.0,849.0,L1,45 Francis,HALL,Hallway 11 Floor L1,Hallway C011L1
+nPARK004L1,480.0,1785.0,L1,Parking,PARK,parkingSpace4,parking4
+CHALL013L1,2130.0,844.0,L1,45 Francis,HALL,Hallway 13 Floor L1,Hallway C013L1
+nPARK025L1,2725.0,2150.0,L1,Parking,PARK,parkingSpace25,parking25
+CHALL015L1,2300.0,849.0,L1,45 Francis,HALL,Hallway 15 Floor L1,Hallway C015L1
+GHALL005L1,1688.0,2131.0,L1,Shapiro,HALL,Hallway MapNode 5 Floor L1,Hall
+WELEV00HL1,2715.0,1070.0,L1,45 Francis,ELEV,Elevator H Floor L1,Elevator HL1
+nPARK008L1,380.0,2150.0,L1,Parking,PARK,parkingSpace8,parking8
+GHALL003L1,1688.0,2167.0,L1,Shapiro,HALL,Hallway MapNode 3 Floor L1,Hall
+CLABS005L1,2770.0,1284.0,L1,45 Francis,LABS,CSIR MRI Floor L1,Lab C005L1
+GEXIT001L1,1702.0,2260.0,L1,Shapiro,EXIT,Fenwood Road Exit MapNode 1 Floor L1,Fenwood Road EntranceExit L1
+CCONF002L1,2665.0,1043.0,L1,45 Francis,CONF,Medical Records Conference Room Floor L1,Conf C002L1
+WELEV00LL1,1785.0,924.0,L1,Tower,ELEV,Elevator L Floor L1,Elevator LL1
+nPARK022L1,2760.0,1785.0,L1,Parking,PARK,parkingSpace22,parking22
+WELEV00JL1,2360.0,799.0,L1,45 Francis,ELEV,Elevator J Floor L1,Elevator JL1
+nPARK024L1,2600.0,2150.0,L1,Parking,PARK,parkingSpace24,parking24
+nEXIT026L1,3080.0,1209.0,L1,Parking,EXIT,LobbyEntrance,lobby
+CREST002L1,2065.0,1284.0,L1,Tower,REST,Restroom M Elevator Floor L1,Restroom C002L1
+nPARK001L1,140.0,1785.0,L1,Parking,PARK,parkingSpace1,parking1
+CREST004L1,2770.0,1160.0,L1,45 Francis,REST,Restroom H Elevator Floor L1,Restroom C004L1
+nPARK020L1,2430.0,2150.0,L1,Parking,PARK,parkingSpace20,parking20
+nPARK017L1,2070.0,2150.0,L1,Parking,PARK,parkingSpace17,parking17
+nPARK015L1,2430.0,1785.0,L1,Parking,PARK,parkingSpace15,parking15
+CHALL002L1,2445.0,1043.0,L1,45 Francis,HALL,Hallway 2 Floor L1,Hallway C002L1
+nPARK036L1,1756.0,1388.0,L1,Parking,PARK,parkingSpace34,parking34
+CHALL004L1,2770.0,1070.0,L1,45 Francis,HALL,Hallway 4 Floor L1,Hallway C004L1
+nPARK019L1,2300.0,2150.0,L1,Parking,PARK,parkingSpace19,parking19
+CHALL006L1,2130.0,1284.0,L1,Tower,HALL,Hallway 6 Floor L1,Hallway C006L1
