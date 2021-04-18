@@ -12,9 +12,11 @@ import javafx.stage.Stage;
 public class ConfirmBoxMaintenance extends masterController implements Initializable {
   static Stage stage;
   static ConfirmBoxMaintenance box;
-  static FacilityMaintenanceRequestController maintenance = new FacilityMaintenanceRequestController();
+  static FacilityMaintenanceRequestController maintenance =
+      new FacilityMaintenanceRequestController();
 
-  public static void confirm(FacilityMaintenanceRequestController maintenanceType) throws IOException {
+  public static void confirm(FacilityMaintenanceRequestController maintenanceType)
+      throws IOException {
 
     maintenance = maintenanceType;
     String title = "Facility Maintenance confirmation box";

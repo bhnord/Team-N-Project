@@ -14,7 +14,8 @@ public class ConfirmBoxSanitation extends masterController implements Initializa
   static ConfirmBoxSanitation box;
   static SanitationServicesRequestController sanitation = new SanitationServicesRequestController();
 
-  public static void confirm(SanitationServicesRequestController sanitationType) throws IOException {
+  public static void confirm(SanitationServicesRequestController sanitationType)
+      throws IOException {
 
     sanitation = sanitationType;
     String title = "sanitation services confirmation box";

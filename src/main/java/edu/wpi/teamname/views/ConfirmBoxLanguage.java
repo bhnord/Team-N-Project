@@ -12,9 +12,11 @@ import javafx.stage.Stage;
 public class ConfirmBoxLanguage extends masterController implements Initializable {
   static Stage stage;
   static ConfirmBoxLanguage box;
-  static LanguageInterpretersRequestController language = new LanguageInterpretersRequestController();
+  static LanguageInterpretersRequestController language =
+      new LanguageInterpretersRequestController();
 
-  public static void confirm(LanguageInterpretersRequestController languageType) throws IOException {
+  public static void confirm(LanguageInterpretersRequestController languageType)
+      throws IOException {
 
     language = languageType;
     String title = "Language Interpreters confirmation box";
