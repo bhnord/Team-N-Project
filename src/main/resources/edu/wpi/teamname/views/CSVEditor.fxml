@@ -28,7 +28,7 @@
             <Font name="Javanese Text" size="14.0" />
          </font></JFXButton>
       <JFXListView fx:id="listView" layoutX="116.0" layoutY="161.0" prefHeight="535.0" prefWidth="261.0" stylesheets="@/StyleSheet/style.css" verticalGap="10.0" />
-      <Label fx:id="messageLabel" layoutX="412.0" layoutY="562.0" prefHeight="21.0" prefWidth="268.0" text=" " />
+      <Label fx:id="messageLabel" layoutX="395.0" layoutY="654.0" prefHeight="21.0" prefWidth="200.0" text=" " />
       <Label fx:id="loadSuccess" layoutX="118.0" layoutY="705.0" prefHeight="21.0" prefWidth="463.0" />
       <JFXTextField fx:id="ID" layoutX="411.0" layoutY="189.0" />
       <JFXTextField fx:id="XCoord" layoutX="411.0" layoutY="245.0" />
