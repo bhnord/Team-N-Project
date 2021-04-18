@@ -35,6 +35,12 @@ public class LoginPage extends masterController implements Initializable {
   String patientUsername = "p";
   String patientPassword = "p";
 
+  String employeeUsername = "e";
+  String employeePassword = "e";
+
+  String adminUsername = "a";
+  String adminPassword = "a";
+
   public void initialize(URL url, ResourceBundle rb) {
     /** Locking submit button to start* */
     goToHomePage.setDisable(true);
@@ -77,7 +83,15 @@ public class LoginPage extends masterController implements Initializable {
     // System.out.println(getUsername());
     // System.out.println(getPassword());
     if (getUsername().equals(patientUsername) && getPassword().equals(patientPassword)) {
+      super.advanceHomePatient(loader, appPrimaryScene);
+    }
+
+    if (getUsername().equals(employeeUsername) && getPassword().equals(employeePassword)) {
       super.advanceHome(loader, appPrimaryScene);
+    }
+
+    if (getUsername().equals(adminUsername) && getPassword().equals(adminPassword)) {
+      super.advanceHomeAdmin(loader, appPrimaryScene);
     } else {
       incorrectLogin.setText("INCORRECT USERNAME OR PASSWORD, TRY AGAIN");
       incorrectLogin.setAlignment(Pos.CENTER);

@@ -45,12 +45,26 @@ public class masterController implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    //    log.debug(state.toString());
+    log.debug(state.toString());
   }
 
   @FXML
   public void advanceHome(FXMLLoader childLoader, Scene ChildAppPrimaryScene) throws IOException {
     Parent root = childLoader.load(getClass().getResourceAsStream("HomeView.fxml"));
+    ChildAppPrimaryScene.setRoot(root);
+  }
+
+  @FXML
+  public void advanceHomePatient(FXMLLoader childLoader, Scene ChildAppPrimaryScene)
+      throws IOException {
+    Parent root = childLoader.load(getClass().getResourceAsStream("HomeViewPatient.fxml"));
+    ChildAppPrimaryScene.setRoot(root);
+  }
+
+  @FXML
+  public void advanceHomeAdmin(FXMLLoader childLoader, Scene ChildAppPrimaryScene)
+          throws IOException {
+    Parent root = childLoader.load(getClass().getResourceAsStream("HomeViewAdmin.fxml"));
     ChildAppPrimaryScene.setRoot(root);
   }
 
