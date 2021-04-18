@@ -16,11 +16,11 @@ import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class MedicineRequestHelpPage extends masterController implements Initializable {
+public class LaundryRequestHelpPage extends masterController implements Initializable {
 
-  static String path = "Requests/MedicineDeliveryRequest";
+  static String path = "Requests/LaundryRequest";
   static Stage stage;
-  static MedicineRequestHelpPage box;
+  static LaundryRequestHelpPage box;
   @Inject DatabaseService db;
   @Inject FXMLLoader loader;
   @Inject HomeState state;
