@@ -15,6 +15,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 
@@ -78,7 +79,8 @@ public class LoginPage extends masterController implements Initializable {
     if (getUsername().equals(patientUsername) && getPassword().equals(patientPassword)) {
       super.advanceHome(loader, appPrimaryScene);
     } else {
-      incorrectLogin.setText("incorrect username or password. try again");
+      incorrectLogin.setText("INCORRECT USERNAME OR PASSWORD, TRY AGAIN");
+      incorrectLogin.setAlignment(Pos.CENTER);
     }
   }
 
