@@ -17,6 +17,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -211,5 +212,21 @@ public class CSVEditorEdges extends masterController implements Initializable {
     ID.setText(clickedEdge.getEdgeID());
     startNode.setText(clickedEdge.getStartNode());
     endNode.setText(clickedEdge.getEndNode());
+  }
+
+  @FXML
+  public void logOut() throws IOException {
+    super.logOut(loader, appPrimaryScene);
+  }
+
+  @FXML
+  private void exit(ActionEvent actionEvent) throws IOException {
+    super.cancel(actionEvent);
+  }
+
+  public void advanceViews(ActionEvent actionEvent) throws IOException {
+    String file = ((Button) actionEvent.getSource()).getId() + ".fxml";
+    Parent root = loader.load(getClass().getResourceAsStream(file));
+    appPrimaryScene.setRoot(root);
   }
 }
