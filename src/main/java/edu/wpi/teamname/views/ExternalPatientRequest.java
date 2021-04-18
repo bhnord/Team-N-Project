@@ -6,6 +6,7 @@ import edu.wpi.teamname.state.HomeState;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -42,5 +43,9 @@ public class ExternalPatientRequest extends masterController implements Initiali
   @FXML
   public void advanceHome() throws IOException {
     super.advanceServiceRequest(loader, appPrimaryScene);
+  }
+
+  public void Submit(ActionEvent actionEvent) throws IOException {
+    ConfirmBoxExternal.confirm(this);
   }
 }
