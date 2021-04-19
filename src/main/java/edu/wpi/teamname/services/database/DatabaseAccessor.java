@@ -57,21 +57,21 @@ public class DatabaseAccessor {
   public static boolean addNode(DataNode node) {
     String query =
         "INSERT INTO NODES VALUES ('"
-            + node.get_nodeID()
+            + node.getNodeID()
             + "', "
             + node.get_x()
             + ", "
             + node.get_y()
             + ", '"
-            + node.get_floor()
+            + node.getFloor()
             + "', '"
-            + node.get_building()
+            + node.getBuilding()
             + "', '"
-            + node.get_nodeType()
+            + node.getNodeID()
             + "', '"
-            + node.get_longName()
+            + node.getLongName()
             + "', '"
-            + node.get_shortName()
+            + node.getShortName()
             + "')";
     try {
       return stmt.execute(query);
