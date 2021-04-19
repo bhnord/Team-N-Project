@@ -82,12 +82,6 @@ public class AudioVisualRequestController extends masterController implements In
   }
 
   public void help(ActionEvent actionEvent) throws IOException {
-    /* Parent root = loader.load(getClass().getResourceAsStream("AudioVisualRequestHelpPage.fxml"));
-    appPrimaryScene.setRoot(root);
-    primaryStage.setScene(appPrimaryScene);
-    primaryStage.setAlwaysOnTop(true);
-    primaryStage.show();*/
-
     super.returnToRequest(loader, appPrimaryScene, helpPagePath);
   }
 }

@@ -12,7 +12,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
@@ -30,6 +29,7 @@ public class LanguageInterpretersRequestController extends masterController
   @FXML private JFXTextField txtStartRoom;
   @FXML private JFXTextField txtEndRoom;
   private Scene appPrimaryScene;
+  String helpPagePath = "LanguageRequestHelpPage";
   Stage primaryStage;
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
@@ -83,10 +83,6 @@ public class LanguageInterpretersRequestController extends masterController
   }
 
   public void help(ActionEvent actionEvent) throws IOException {
-    Parent root = loader.load(getClass().getResourceAsStream("LanguageRequestHelpPage.fxml"));
-    appPrimaryScene.setRoot(root);
-    primaryStage.setScene(appPrimaryScene);
-    primaryStage.setAlwaysOnTop(true);
-    primaryStage.show();
+    super.returnToRequest(loader, appPrimaryScene, helpPagePath);
   }
 }

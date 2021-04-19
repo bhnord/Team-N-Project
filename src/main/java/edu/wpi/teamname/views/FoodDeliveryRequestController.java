@@ -12,7 +12,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
@@ -26,6 +25,7 @@ public class FoodDeliveryRequestController extends masterController implements I
   @Inject FXMLLoader loader;
   @Inject HomeState state;
   @FXML private Label text;
+  String helpPagePath = "FoodRequestHelpPage";
 
   private Scene appPrimaryScene;
   Stage primaryStage;
@@ -63,10 +63,6 @@ public class FoodDeliveryRequestController extends masterController implements I
   }
 
   public void help(ActionEvent actionEvent) throws IOException {
-    Parent root = loader.load(getClass().getResourceAsStream("FoodRequestHelpPage.fxml"));
-    appPrimaryScene.setRoot(root);
-    primaryStage.setScene(appPrimaryScene);
-    primaryStage.setAlwaysOnTop(true);
-    primaryStage.show();
+    super.returnToRequest(loader, appPrimaryScene, helpPagePath);
   }
 }
