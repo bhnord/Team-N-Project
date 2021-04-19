@@ -82,12 +82,6 @@ public class MedicineDeliveryRequestController extends masterController implemen
   }
 
   public void help(ActionEvent actionEvent) throws IOException {
-    /* Parent root = loader.load(getClass().getResourceAsStream("MedicineRequestHelpPage.fxml"));
-    appPrimaryScene.setRoot(root);
-    primaryStage.setScene(appPrimaryScene);
-    primaryStage.setAlwaysOnTop(true);
-    primaryStage.show();*/
-
     super.returnToRequest(loader, appPrimaryScene, helpPagePath);
   }
 }
