@@ -100,14 +100,22 @@ public class LoginPage extends masterController implements Initializable {
     }
     return account;*/
 
-    if (accountUsername.equals(patientUsername) && accountPassword.equals(patientPassword)) {
+    /*if (accountUsername.equals(patientUsername) && accountPassword.equals(patientPassword)) {
       super.advanceHomePatient(loader, appPrimaryScene);
     } else if (accountUsername.equals(employeeUsername)
         && accountPassword.equals(employeePassword)) {
       super.advanceHome(loader, appPrimaryScene);
     } else if (accountUsername.equals(adminUsername) && accountPassword.equals(adminPassword)) {
       super.advanceHomeAdmin(loader, appPrimaryScene);
-    } else super.advanceHomeAdmin(loader, appPrimaryScene);
+    } else super.advanceHomeAdmin(loader, appPrimaryScene);*/
+
+    if (getUsername().equals(patientUsername) && getPassword().equals(patientPassword)) {
+      super.advanceHomePatient(loader, appPrimaryScene);
+    } else if (getUsername().equals(employeeUsername) && getPassword().equals(employeePassword)) {
+      super.advanceHome(loader, appPrimaryScene);
+    } else if (getUsername().equals(adminUsername) && getPassword().equals(adminPassword)) {
+      super.advanceHomeAdmin(loader, appPrimaryScene);
+    }
   }
 
   @FXML
