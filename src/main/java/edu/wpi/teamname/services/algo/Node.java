@@ -75,6 +75,16 @@ public class Node implements Comparable<Node> {
 
   private Shape _shape;
   private double _x, _y;
+
+  public String get_nodeID() {
+    return _nodeID;
+  }
+
+  public void set_nodeID(String _nodeID) {
+    this._nodeID = _nodeID;
+  }
+
+  private String _nodeID;
   private double _localGoal;
   private double _globalGoal;
   private boolean _seen;

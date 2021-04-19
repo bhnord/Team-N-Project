@@ -28,6 +28,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -53,7 +54,11 @@ public class MapController extends masterController implements Initializable {
   @FXML private TextArea LinkField;
   @FXML private TextField pathFindNodes;
   @FXML private TextField deletenodeID;
-  @FXML private Label selectedNode;
+  @FXML private Label selectedNodelbl;
+
+  private String selectedID;
+  private Node startNode;
+  private Node endNode;
 
   private Scene appPrimaryScene;
   int[] nodeinfo = new int[3];
@@ -94,31 +99,63 @@ public class MapController extends masterController implements Initializable {
     XLabel.setText(String.valueOf(mouseDragEvent.getX()));
     YLabel.setText(String.valueOf(mouseDragEvent.getY()));
   }
-
+   private Node get(double x, double y) {
+     Node temp = new Cartesian(x, y);
+     double min = Double.MAX_VALUE;
+     Node closest = null;
+     for (Node c : nodeSet.values()) {
+       double distance = c.heuristic(temp);
+       if (distance < min) {
+         closest = c;
+         min = distance;
+       }
+     }
+     return closest;
+   }
   /**
    * on mouse click on the map places a node with no id but when clicked it returns the node FX:ID
    *
    * @param mouseEvent
    */
-  public void placeNode(MouseEvent mouseEvent) {
-    Circle simpleNode = new Circle(mouseEvent.getX(), mouseEvent.getY(), 2.5);
-    simpleNode.setFill(Color.BLUE);
-    Group root = new Group(simpleNode);
-    root.setOnMouseClicked(
-        new EventHandler<MouseEvent>() {
-          @Override
-          public void handle(MouseEvent event) {
-            selectedNode.setText(root.getId());
-          }
-        });
-    AnchorPane scene = (AnchorPane) appPrimaryScene.getRoot();
-    scene.getChildren().add(root);
-    Stage stage = (Stage) appPrimaryScene.getWindow();
-    nodeinfo = new int[] {(int) mouseEvent.getX(), (int) mouseEvent.getY(), nodes.size() + 1};
-    nodes.add(nodeinfo);
-    NodeValues.setText(
-        NodeValues.getText() + "\nX:" + nodeinfo[0] + ", Y:" + nodeinfo[1] + ", ID:" + nodeinfo[2]);
-  }
+   public void placeNode(MouseEvent mouseEvent) {
+     if (mouseEvent.getButton() == MouseButton.PRIMARY) {
+       Circle simpleNode = new Circle(mouseEvent.getX(), mouseEvent.getY(), 2.5);
+       simpleNode.setFill(Color.BLUE);
+       Group root = new Group(simpleNode);
+       root.setOnMouseClicked(
+               new EventHandler<MouseEvent>() {
+                 @Override
+                 public void handle(MouseEvent event) {
+                   selectedNodelbl.setText(root.getId());
+                 }
+               });
+       AnchorPane scene = (AnchorPane) appPrimaryScene.getRoot();
+       scene.getChildren().add(root);
+       Stage stage = (Stage) appPrimaryScene.getWindow();
+       nodeinfo = new int[] {(int) mouseEvent.getX(), (int) mouseEvent.getY(), nodes.size() + 1};
+       nodes.add(nodeinfo);
+       NodeValues.setText(
+               NodeValues.getText() + "\nX:" + nodeinfo[0] + ", Y:" + nodeinfo[1] + ", ID:" + nodeinfo[2]);
+       nodeSet.put("",new Node());
+     }
+   }
+
+   public void startLink(MouseEvent mouseEvent) {
+     if (mouseEvent.getButton() != MouseButton.PRIMARY) {
+       System.out.println("startingLink");
+       startNode = get(mouseEvent.getX(), mouseEvent.getY());
+     }
+   }
+
+   public void releaseMouse(MouseEvent mouseEvent) {
+     if (mouseEvent.getButton() != MouseButton.PRIMARY) {
+       System.out.println("endingLink");
+       Node other = get(mouseEvent.getX(), mouseEvent.getY());
+       if (other != startNode) {
+         placeLink("", startNode, other);
+       }
+     }
+   }
 
   private void placeNode(String id, int x, int y) {
     Circle simpleNode = new Circle(x, y, 2.5);
@@ -129,7 +166,7 @@ public class MapController extends masterController implements Initializable {
         new EventHandler<MouseEvent>() {
           @Override
           public void handle(MouseEvent event) {
-            selectedNode.setText(root.getId());
+            selectedNodelbl.setText(root.getId());
           }
         });
     AnchorPane scene = (AnchorPane) appPrimaryScene.getRoot();
@@ -141,12 +178,12 @@ public class MapController extends masterController implements Initializable {
   /**
    * Places a line between two nodes
    *
-   * @param id1 node id of first node
-   * @param id2 node id of the second node
+   * @param node1 node id of first node
+   * @param node2 node id of the second node
    */
-  private void placeLink(String id, String id1, String id2) {
-    Node node1 = nodeSet.get(id1);
-    Node node2 = nodeSet.get(id2);
+  private void placeLink(String id, Node node1, Node node2) {
+    String id1 = node1.get_nodeID();
+    String id2 = node2.get_nodeID();
     double distance = node1.heuristic(node2);
     node1.addNeighbor(id, node2, distance);
     node2.addNeighbor(id, node1, distance);
@@ -159,7 +196,7 @@ public class MapController extends masterController implements Initializable {
         new EventHandler<MouseEvent>() {
           @Override
           public void handle(MouseEvent event) {
-            selectedNode.setText(root.getId());
+            selectedNodelbl.setText(root.getId());
           }
         });
     AnchorPane scene = (AnchorPane) appPrimaryScene.getRoot();
@@ -187,11 +224,11 @@ public class MapController extends masterController implements Initializable {
     }
     for (String edge : edgesCSV) {
       String[] line = edge.split("[,]");
-      placeLink(line[1], line[2]);
+      placeLink(line[0], nodeSet.get(line[1]), nodeSet.get(line[2]));
     }
 
-    Cartesian node1 = nodeSet.get("CHALL004L1");
-    Cartesian node2 = nodeSet.get("CLABS002L1");
+    Node node1 = nodeSet.get("CHALL004L1");
+    Node node2 = nodeSet.get("CLABS002L1");
     PathFinder pathFinder = new PathFinder();
     pathFinder.Astar(node1, node2);
 
@@ -227,37 +264,37 @@ public class MapController extends masterController implements Initializable {
     appPrimaryScene.setRoot(root);
   }
 
-  public void submit(ActionEvent actionEvent) {
-    String input = Text.getText();
-    String[] l = input.split("[ \t\n]+");
-    for (int i = 0; i < l.length; ) {
-      if (l[i].equals("node:")) {
-        int x = Integer.parseInt(l[i + 2]);
-        int y = Integer.parseInt(l[i + 3]);
-        placeNode(l[i + 1], x, y);
-        i += 4;
-      } else if (l[i].equals("link:")) {
-        placeLink(l[i + 1], l[i + 2]);
-        i += 3;
-      } else if (l[i].equals("path:")) {
-        PathFinder pathFinder = new PathFinder();
-        Cartesian node1 = nodeSet.get(l[i + 1]);
-        Cartesian node2 = nodeSet.get(l[i + 2]);
-        Stack<Node> ret = pathFinder.Astar(node1, node2);
-        Cartesian c1 = (Cartesian) ret.pop();
-        while (!ret.empty()) {
-          Cartesian c2 = (Cartesian) ret.pop();
-          Line simpleNode = new Line(c1._x, c1._y, c2._x, c2._y);
-          simpleNode.setStroke(Color.RED);
-          Group root = new Group(simpleNode);
-          AnchorPane scene = (AnchorPane) appPrimaryScene.getRoot();
-          scene.getChildren().add(root);
-          c1 = c2;
-        }
-        i += 3;
-      }
-    }
-  }
+  //public void submit(ActionEvent actionEvent) {
+    //String input = Text.getText();
+    //String[] l = input.split("[ \t\n]+");
+    //for (int i = 0; i < l.length; ) {
+      //if (l[i].equals("node:")) {
+        //int x = Integer.parseInt(l[i + 2]);
+        //int y = Integer.parseInt(l[i + 3]);
+        //placeNode(l[i + 1], x, y);
+        //i += 4;
+      //} else if (l[i].equals("link:")) {
+        //placeLink(l[i + 1], l[i + 2]);
+        //i += 3;
+      //} else if (l[i].equals("path:")) {
+        //PathFinder pathFinder = new PathFinder();
+        //Cartesian node1 = nodeSet.get(l[i + 1]);
+        //Cartesian node2 = nodeSet.get(l[i + 2]);
+        //Stack<Node> ret = pathFinder.Astar(node1, node2);
+        //Cartesian c1 = (Cartesian) ret.pop();
+        //while (!ret.empty()) {
+          //Cartesian c2 = (Cartesian) ret.pop();
+          //Line simpleNode = new Line(c1._x, c1._y, c2._x, c2._y);
+          //simpleNode.setStroke(Color.RED);
+          //Group root = new Group(simpleNode);
+          //AnchorPane scene = (AnchorPane) appPrimaryScene.getRoot();
+          //scene.getChildren().add(root);
+          //c1 = c2;
+        //}
+        //i += 3;
+      //}
+    //}
+  //}
 
   /**
    * replaces MapNodes.csv with a new csv of the current nodesSet
@@ -284,19 +321,19 @@ public class MapController extends masterController implements Initializable {
     csvWriter.close();
   }
 
-  public void CreateLinks(ActionEvent actionEvent) {
-    String[] links = LinkField.getText().split("[\n]");
-    for (String link : links) {
-      String[] l = link.split(",");
-      placeLink(l[0], l[1]);
-    }
-  }
+//  public void CreateLinks(ActionEvent actionEvent) {
+//    String[] links = LinkField.getText().split("[\n]");
+//    for (String link : links) {
+//      String[] l = link.split(",");
+//      placeLink(l[0], l[1]);
+//    }
+//  }
 
   public void PathFind(ActionEvent actionEvent) {
     String[] S_E_nodes = pathFindNodes.getText().split("[,]");
     PathFinder pathFinder = new PathFinder();
-    Cartesian node1 = nodeSet.get(S_E_nodes[0]);
-    Cartesian node2 = nodeSet.get(S_E_nodes[1]);
+    Node node1 = nodeSet.get(S_E_nodes[0]);
+    Node node2 = nodeSet.get(S_E_nodes[1]);
     pathFinder.Astar(node1, node2);
 
     Stack<Node> ret = pathFinder.Astar(node1, node2);
