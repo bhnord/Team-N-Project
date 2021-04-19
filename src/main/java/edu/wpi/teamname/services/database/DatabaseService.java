@@ -302,27 +302,27 @@ public class DatabaseService {
         }
     }
 
-//    public boolean addRequest(Request request) {
-//
-//        String str =
-//                "INSERT INTO REQUESTS (TYPE, SENDERID, RECEIVERID, CONTENT, NOTES) VALUES ('"
-//                        + request
-//                        + "', "
-//                        + senderId
-//                        + ", "
-//                        + receiverId
-//                        + ", '"
-//                        + content
-//                        + "', '"
-//                        + notes
-//                        + "')";
-//        try {
-//            return stmt.execute(str);
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//            return false;
-//        }
-//    }
+    public boolean addRequest(Request request) {
+
+        String str =
+                "INSERT INTO REQUESTS (TYPE, SENDERID, RECEIVERID, CONTENT, NOTES) VALUES ('"
+                        + request.getType()
+                        + "', "
+                        + request.getSenderID()
+                        + ", "
+                        + request.getReceiverID()
+                        + ", '"
+                        + request.getContent()
+                        + "', '"
+                        + request.getNotes()
+                        + "')";
+        try {
+            return stmt.execute(str);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
     public boolean deleteRequest(int requestID) {
         String str = "DELETE FROM REQUESTS WHERE id = '" + requestID + "'";
@@ -357,12 +357,37 @@ public class DatabaseService {
         }
     }
 
+    public boolean updateRequest(int requestID, RequestType type, int senderID, int receiverID, String content, String notes) {
+        String str =
+                "UPDATE REQUESTS SET TYPE = "
+                        + type.toString()
+                        + ", SENDERID = "
+                        + senderID
+                        + ", RECEIVERID = "
+                        + receiverID
+                        + ", CONTENT = "
+                        + content
+                        + ", NOTES = "
+                        + notes
+                        + " WHERE ID = "
+                        + requestID;
+        try {
+            stmt.execute(str);
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
     private HashSet<Request> resultSetToRequest(ResultSet rs) throws SQLException {
         HashSet<Request> requests = new HashSet<>();
         while (rs.next()) {
-            requests.add(new Request(rs.getInt("ID"),
+            requests.add(new Request (RequestType.valueOf(rs.getString("TYPE")),
+                    rs.getInt("ID"),
                     rs.getInt("SENDERID"),
                     rs.getInt("RECIEVERID"),
+                    rs.getString("CONTENT"),
                     rs.getString("NOTES")));
         }
         return requests;
