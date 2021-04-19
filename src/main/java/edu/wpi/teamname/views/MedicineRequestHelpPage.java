@@ -18,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class MedicineRequestHelpPage extends masterController implements Initializable {
 
-  static String path = "Requests/MedicineDeliveryRequestController";
+  static String path = "Requests/MedicineDeliveryRequest";
   static Stage stage;
   static MedicineRequestHelpPage box;
   @Inject DatabaseService db;

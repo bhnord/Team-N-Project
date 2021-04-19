@@ -39,11 +39,6 @@
             <Font name="Serif Bold" size="25.0" />
          </font>
       </Label>
-      <ImageView fitHeight="472.0" fitWidth="492.0" layoutX="59.0" layoutY="88.0">
-         <image>
-            <Image url="@../../../../../../../../OneDrive/Pictures/Camera%20Roll/pills.jpg" />
-         </image>
-      </ImageView>
       <Label layoutX="687.0" layoutY="119.0" prefHeight="37.0" prefWidth="389.0" text="being requested to complete the job">
          <font>
             <Font name="Serif Bold" size="25.0" />

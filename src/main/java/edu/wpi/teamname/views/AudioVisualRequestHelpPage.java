@@ -18,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class AudioVisualRequestHelpPage extends masterController implements Initializable {
 
-  static String path = "Requests/AudioVisualRequestController";
+  static String path = "Requests/AudioVisualRequest";
   static Stage stage;
   static AudioVisualRequestHelpPage box;
   @Inject DatabaseService db;

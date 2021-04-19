@@ -18,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class GiftRequestHelpPage extends masterController implements Initializable {
 
-  static String path = "Requests/GiftDeliveryRequestController";
+  static String path = "Requests/GiftDeliveryRequest";
   static Stage stage;
   static GiftRequestHelpPage box;
   @Inject DatabaseService db;
