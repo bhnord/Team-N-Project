@@ -7,10 +7,13 @@ import com.jfoenix.controls.JFXTextField;
 import edu.wpi.teamname.services.algo.DataNode;
 import edu.wpi.teamname.services.database.DatabaseService;
 import edu.wpi.teamname.state.HomeState;
-import java.awt.*;
-import java.io.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
 import java.net.URL;
-import java.util.*;
+import java.util.HashSet;
+import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,7 +24,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
 import javafx.stage.FileChooser;
-import javax.swing.*;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -194,50 +196,6 @@ public class CSVEditorNodes extends masterController implements Initializable {
       }
     }
   }
-
-  //  private void loadNodes(File file) throws FileNotFoundException {
-  //    nodeMap.clear();
-  //    csvToNodes(file);
-  //    loadSuccess.setText("File successfully loaded!");
-  //    messageLabel.setText("" + file);
-  //    listView.getItems().clear();
-  //    for (DataNode node : nodeMap.values()) {
-  //      Label lbl = new Label(node.getNodeID());
-  //      lbl.setId(node.getNodeID());
-  //      listView.getItems().add(lbl);
-  //    }
-  //  }
-
-  //  private HashMap<String, DataNode> csvToNodes(File file) throws FileNotFoundException {
-  //    Scanner scanner = new Scanner(file);
-  //    if (!scanner.hasNextLine()) return nodeMap;
-  //    String line = scanner.nextLine();
-  //
-  //    if (line.contains("nodeID,xcoord,ycoord,floor,building,nodeType,longName,shortName")
-  //        && scanner.hasNextLine()) {
-  //      line = scanner.nextLine();
-  //    }
-  //
-  //    if (!scanner.hasNextLine()) return nodeMap;
-  //    do {
-  //      String[] entries = line.split(",");
-  //      if (entries.length == 8) {
-  //        String nodeID = entries[0];
-  //        Double xPos = Double.parseDouble(entries[1]);
-  //        Double yPos = Double.parseDouble(entries[2]);
-  //        String floor = entries[3];
-  //        String building = entries[4];
-  //        String nodeType = entries[5];
-  //        String longName = entries[6];
-  //        String shortName = entries[7];
-  //        nodeMap.put(
-  //            nodeID,
-  //            new DataNode(xPos, yPos, nodeID, floor, building, nodeType, longName, shortName));
-  //      }
-  //      line = scanner.nextLine();
-  //    } while (scanner.hasNextLine());
-  //    return nodeMap;
-  //  }
 
   private void nodesToCsv(String outputPath) throws IOException {
     Writer fileWriter = new FileWriter(outputPath, false);
