@@ -1,15 +1,11 @@
 package edu.wpi.teamname.entity;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 
 public class CSV implements Iterable<String> {
   public static void main(String[] args) throws FileNotFoundException {
-    CSV c = new CSV("src/main/resources/MapCSV/MapNNodesAll.csv");
+    CSV c = new CSV("MapCSV/MapNNodesAll.csv");
     System.out.println(c.toString());
     System.out.println(c.getLineCount());
   }
@@ -18,7 +14,8 @@ public class CSV implements Iterable<String> {
   Scanner scanner;
 
   public CSV(String path) throws FileNotFoundException {
-    this.scanner = new Scanner(new File(path));
+    this.scanner =
+        new Scanner(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream(path)));
     while (scanner.hasNext()) {
       String a = scanner.nextLine();
       csvLines.add(a);

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXColorPicker?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -35,6 +36,7 @@
                   <Button fx:id="Clear" mnemonicParsing="false" onAction="#clear" prefHeight="30.0" prefWidth="100.0" text="Clear" />
                   <Button fx:id="Print" mnemonicParsing="false" onAction="#PrintNode" prefHeight="30.0" prefWidth="100.0" text="Print" />
                   <Button fx:id="pathFindingBtn" mnemonicParsing="false" onAction="#examplePathFind" text="Example Pathfind" />
+                  <JFXColorPicker fx:id="colorPicker" promptText="Node Color" />
                   <Label fx:id="pathtext" prefHeight="17.0" prefWidth="253.0" text="Path in blue from CHALL004L1 to CLABS002L1" visible="false">
                      <HBox.margin>
                         <Insets left="10.0" />

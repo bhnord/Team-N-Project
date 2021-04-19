@@ -18,7 +18,7 @@ public class ConfirmBoxInternalPatient {
   static Stage stage;
   static edu.wpi.teamname.views.ConfirmBoxInternalPatient box;
 
-  static InternalPatientRequest patient;
+  static InternalPatientRequestController patient;
 
   @FXML private JFXProgressBar jfxProgressBar;
 
@@ -26,7 +26,7 @@ public class ConfirmBoxInternalPatient {
 
   @FXML private AnchorPane anchorPane;
 
-  public static void confirm(InternalPatientRequest iP) throws IOException {
+  public static void confirm(InternalPatientRequestController iP) throws IOException {
 
     patient = iP;
     String title = "confirmation box";
@@ -56,7 +56,7 @@ public class ConfirmBoxInternalPatient {
   @FXML
   public void continuePage() throws IOException {
     FXMLLoader fxmlLoader =
-        new FXMLLoader(ConfirmBox.class.getResource("ConfirmationPageInternalPatient.fxml"));
+        new FXMLLoader(ConfirmBoxFood.class.getResource("ConfirmationPageInternalPatient.fxml"));
     Parent root = fxmlLoader.load();
     Scene scene = new Scene(root);
 

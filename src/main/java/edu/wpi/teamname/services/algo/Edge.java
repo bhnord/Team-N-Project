@@ -5,27 +5,27 @@ public class Edge {
   private String _startNode;
   private String _endNode;
 
-  public String get_edgeID() {
+  public String getEdgeID() {
     return _edgeID;
   }
 
-  public String get_startNode() {
+  public String getStartNode() {
     return _startNode;
   }
 
-  public String get_endNode() {
+  public String getEndNode() {
     return _endNode;
   }
 
-  public void set_edgeID(String _edgeID) {
+  public void setEdgeID(String _edgeID) {
     this._edgeID = _edgeID;
   }
 
-  public void set_startNode(String _startNode) {
+  public void setStartNode(String _startNode) {
     this._startNode = _startNode;
   }
 
-  public void set_endNode(String _endNode) {
+  public void setEndNode(String _endNode) {
     this._endNode = _endNode;
   }
 

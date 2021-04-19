@@ -1,7 +1,6 @@
 package edu.wpi.teamname.views;
 
 import com.google.inject.Inject;
-import edu.wpi.teamname.services.ServiceTwo;
 import edu.wpi.teamname.services.database.DatabaseService;
 import edu.wpi.teamname.state.HomeState;
 import java.io.IOException;
@@ -22,7 +21,6 @@ import lombok.extern.slf4j.Slf4j;
 public class masterController implements Initializable {
 
   @Inject DatabaseService db;
-  @Inject ServiceTwo graph;
   @Inject FXMLLoader loader;
   @Inject HomeState state;
   @FXML private Label text;
@@ -57,6 +55,26 @@ public class masterController implements Initializable {
   }
 
   @FXML
+  public void advanceHomePatient(FXMLLoader childLoader, Scene ChildAppPrimaryScene)
+      throws IOException {
+    Parent root = childLoader.load(getClass().getResourceAsStream("HomeViewPatient.fxml"));
+    ChildAppPrimaryScene.setRoot(root);
+  }
+
+  @FXML
+  public void advanceHomeAdmin(FXMLLoader childLoader, Scene ChildAppPrimaryScene)
+      throws IOException {
+    Parent root = childLoader.load(getClass().getResourceAsStream("HomeViewAdmin.fxml"));
+    ChildAppPrimaryScene.setRoot(root);
+  }
+
+  public void advanceServiceRequest(FXMLLoader childLoader, Scene ChildAppPrimaryScene)
+      throws IOException {
+    Parent root = childLoader.load(getClass().getResourceAsStream("ServiceRequests.fxml"));
+    ChildAppPrimaryScene.setRoot(root);
+  }
+
+  @FXML
   public void returnToRequest(
       FXMLLoader childLoader, Scene ChildAppPrimaryScene, String requestPath) throws IOException {
     Parent root = childLoader.load(getClass().getResourceAsStream(requestPath + ".fxml"));
@@ -65,7 +83,7 @@ public class masterController implements Initializable {
 
   @FXML
   public void logOut(FXMLLoader childLoader, Scene ChildAppPrimaryScene) throws IOException {
-    Parent root = childLoader.load(getClass().getResourceAsStream("LoginPage.fxml"));
+    Parent root = childLoader.load(getClass().getResourceAsStream("loginPage.fxml"));
     ChildAppPrimaryScene.setRoot(root);
   }
 

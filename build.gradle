@@ -28,6 +28,7 @@ dependencies {
 
             'org.slf4j:slf4j-api:1.7.30',
             'org.slf4j:slf4j-simple:1.7.30',
+
     )
     testImplementation(
             'org.junit.jupiter:junit-jupiter:5.6.0',
@@ -42,6 +43,7 @@ dependencies {
             'org.junit.jupiter:junit-jupiter:5.6.0',
             'org.testfx:testfx-junit5:4.0.16-alpha',
     )
+    compile group: 'commons-io', name: 'commons-io', version: '2.0.1'
 }
 
 
@@ -70,7 +72,6 @@ def codeCoverageExcludes = [
         'edu.wpi.teamname.state.HomeStateProvider',
         'edu.wpi.teamname.App.1',
 ]
-
 jacoco {
     toolVersion = "0.8.4"
 }

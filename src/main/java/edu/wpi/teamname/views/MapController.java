@@ -1,13 +1,16 @@
 package edu.wpi.teamname.views;
 
 import com.google.inject.Inject;
+import com.jfoenix.controls.JFXColorPicker;
 import edu.wpi.teamname.entity.CSV;
-import edu.wpi.teamname.services.ServiceTwo;
-import edu.wpi.teamname.services.algo.*;
 import edu.wpi.teamname.services.algo.Cartesian;
+import edu.wpi.teamname.services.algo.Node;
+import edu.wpi.teamname.services.algo.PathFinder;
 import edu.wpi.teamname.services.database.DatabaseService;
 import edu.wpi.teamname.state.HomeState;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
@@ -40,7 +43,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class MapController extends masterController implements Initializable {
   @Inject DatabaseService db;
-  @Inject ServiceTwo graph;
   @Inject FXMLLoader loader;
   @Inject HomeState state;
 
@@ -55,6 +57,7 @@ public class MapController extends masterController implements Initializable {
   @FXML private TextField pathFindNodes;
   @FXML private TextField deletenodeID;
   @FXML private Label selectedNode;
+  @FXML private JFXColorPicker colorPicker;
 
   private Scene appPrimaryScene;
   int[] nodeinfo = new int[3];
@@ -81,8 +84,8 @@ public class MapController extends masterController implements Initializable {
   public void advanceHome() throws IOException {
     super.advanceHome(loader, appPrimaryScene);
     Stage stage = (Stage) appPrimaryScene.getWindow();
-    stage.setHeight(435);
-    stage.setWidth(600);
+    stage.setHeight(800);
+    stage.setWidth(1366);
     stage.centerOnScreen();
   }
 
@@ -103,7 +106,7 @@ public class MapController extends masterController implements Initializable {
    */
   public void placeNode(MouseEvent mouseEvent) {
     Circle simpleNode = new Circle(mouseEvent.getX(), mouseEvent.getY(), 2.5);
-    simpleNode.setFill(Color.BLUE);
+    simpleNode.setFill(colorPicker.getValue());
     Group root = new Group(simpleNode);
     root.setOnMouseClicked(
         new EventHandler<MouseEvent>() {
@@ -122,8 +125,9 @@ public class MapController extends masterController implements Initializable {
   }
 
   private void placeNode(String id, int x, int y) {
+
     Circle simpleNode = new Circle(x, y, 2.5);
-    simpleNode.setFill(Color.BLUE);
+    simpleNode.setFill(colorPicker.getValue());
     Group root = new Group(simpleNode);
     root.setId(id);
     root.setOnMouseClicked(
@@ -172,9 +176,9 @@ public class MapController extends masterController implements Initializable {
     }
   }
 
-  public void examplePathFind(ActionEvent actionEvent) throws IOException {
-    CSV nodesCSV = new CSV("src/main/resources/MapCSV/MapNNodesAll.csv");
-    CSV edgesCSV = new CSV("src/main/resources/MapCSV/MapNEdgesAll.csv");
+  public void examplePathFind(ActionEvent actionEvent) throws IOException, InterruptedException {
+    CSV nodesCSV = new CSV("MapCSV/MapNNodesAll.csv");
+    CSV edgesCSV = new CSV("MapCSV/MapNEdgesAll.csv");
     int nodesSize = nodesCSV.getLineCount();
     int edgeSize = edgesCSV.getLineCount();
 

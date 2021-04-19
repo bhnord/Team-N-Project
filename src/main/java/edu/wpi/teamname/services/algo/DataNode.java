@@ -9,27 +9,27 @@ public class DataNode extends Cartesian {
   private String _longName;
   private String _shortName;
 
-  public String get_nodeID() {
+  public String getNodeID() {
     return _nodeID;
   }
 
-  public String get_floor() {
+  public String getFloor() {
     return _floor;
   }
 
-  public String get_building() {
+  public String getBuilding() {
     return _building;
   }
 
-  public String get_nodeType() {
+  public String getNodeType() {
     return _nodeType;
   }
 
-  public String get_longName() {
+  public String getLongName() {
     return _longName;
   }
 
-  public String get_shortName() {
+  public String getShortName() {
     return _shortName;
   }
 

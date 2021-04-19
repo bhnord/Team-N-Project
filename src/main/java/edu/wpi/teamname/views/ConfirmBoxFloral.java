@@ -12,22 +12,15 @@ import javafx.stage.Stage;
 public class ConfirmBoxFloral extends masterController implements Initializable {
   static Stage stage;
   static ConfirmBoxFloral box;
-  static FloralRequest floral = new FloralRequest();
+  static FloralRequestController floral = new FloralRequestController();
 
-  //  @Inject DatabaseService db;
-  //  @Inject ServiceTwo graph;
-  //  @Inject FXMLLoader loader;
-  //  @Inject HomeState state;
-  //  @FXML private Label text;
-  //
-  //  private Scene appPrimaryScene;
-
-  public static void confirm(FloralRequest floralType) throws IOException {
+  public static void confirm(FloralRequestController floralType) throws IOException {
 
     floral = floralType;
     String title = "floral confirmation box";
 
-    FXMLLoader fxmlLoader = new FXMLLoader(ConfirmBox.class.getResource("ConfirmBoxFloral.fxml"));
+    FXMLLoader fxmlLoader =
+        new FXMLLoader(ConfirmBoxFood.class.getResource("ConfirmBoxFloral.fxml"));
     Parent root = fxmlLoader.load();
     Scene scene = new Scene(root);
     box = fxmlLoader.getController();
@@ -50,26 +43,15 @@ public class ConfirmBoxFloral extends masterController implements Initializable 
   @FXML
   public void continuePage() throws IOException {
     FXMLLoader fxmlLoader =
-        new FXMLLoader(ConfirmBox.class.getResource("ConfirmationPageFloral.fxml"));
+        new FXMLLoader(ConfirmBoxFood.class.getResource("ConfirmationPageFloral.fxml"));
     Parent root = fxmlLoader.load();
     Scene scene = new Scene(root);
     box.stage.setScene(scene);
   }
 
-  //  @Inject
-  //  public void setAppPrimaryScene(Scene appPrimaryScene) {
-  //    this.appPrimaryScene = appPrimaryScene;
-  //  }
-  //
-  //  @FXML
-  //  public void advanceHome() throws IOException {
-  //    super.advanceHome(loader, appPrimaryScene);
-  //  }
-
   @FXML
   public void returnToHomeFloral() throws IOException {
     box.stage.close();
     floral.advanceHome();
-    // advanceHome();
   }
 }

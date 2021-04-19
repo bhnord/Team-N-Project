@@ -2,7 +2,6 @@ package edu.wpi.teamname.views;
 
 import com.google.inject.*;
 import com.google.inject.Inject;
-import edu.wpi.teamname.services.ServiceTwo;
 import edu.wpi.teamname.services.database.DatabaseService;
 import edu.wpi.teamname.state.HomeState;
 import java.io.IOException;
@@ -27,7 +26,6 @@ public class FoodRequestHelpPage extends masterController implements Initializab
   @Inject FXMLLoader loader;
   @Inject HomeState state;
   @FXML private Label text;
-  @Inject ServiceTwo graph;
   Stage primaryStage;
   private Scene appPrimaryScene;
 
@@ -44,7 +42,5 @@ public class FoodRequestHelpPage extends masterController implements Initializab
   public void returnToRequestPage(ActionEvent actionEvent) throws IOException {
 
     super.returnToRequest(loader, appPrimaryScene, path);
-    // super.returnToRequest(loader, appPrimaryScene);
-
   }
 }
