@@ -99,63 +99,60 @@ public class MapController extends masterController implements Initializable {
     XLabel.setText(String.valueOf(mouseDragEvent.getX()));
     YLabel.setText(String.valueOf(mouseDragEvent.getY()));
   }
-   private Node get(double x, double y) {
-     Node temp = new Cartesian(x, y);
-     double min = Double.MAX_VALUE;
-     Node closest = null;
-     for (Node c : nodeSet.values()) {
-       double distance = c.heuristic(temp);
-       if (distance < min) {
-         closest = c;
-         min = distance;
-       }
-     }
-     return closest;
-   }
+
+  private Node get(double x, double y) {
+    Node temp = new Cartesian(x, y);
+    double min = Double.MAX_VALUE;
+    Node closest = null;
+    for (Node c : nodeSet.values()) {
+      double distance = c.heuristic(temp);
+      if (distance < min) {
+        closest = c;
+        min = distance;
+      }
+    }
+    return closest;
+  }
   /**
    * on mouse click on the map places a node with no id but when clicked it returns the node FX:ID
    *
    * @param mouseEvent
    */
-   public void placeNode(MouseEvent mouseEvent) {
-     if (mouseEvent.getButton() == MouseButton.PRIMARY) {
-       Circle simpleNode = new Circle(mouseEvent.getX(), mouseEvent.getY(), 2.5);
-       simpleNode.setFill(Color.BLUE);
-       Group root = new Group(simpleNode);
-       root.setOnMouseClicked(
-               new EventHandler<MouseEvent>() {
-                 @Override
-                 public void handle(MouseEvent event) {
-                   selectedNodelbl.setText(root.getId());
-                 }
-               });
-       AnchorPane scene = (AnchorPane) appPrimaryScene.getRoot();
-       scene.getChildren().add(root);
-       Stage stage = (Stage) appPrimaryScene.getWindow();
-       nodeinfo = new int[] {(int) mouseEvent.getX(), (int) mouseEvent.getY(), nodes.size() + 1};
-       nodes.add(nodeinfo);
-       NodeValues.setText(
-               NodeValues.getText() + "\nX:" + nodeinfo[0] + ", Y:" + nodeinfo[1] + ", ID:" + nodeinfo[2]);
-       nodeSet.put("",new Node());
-     }
-   }
+  public void placeNode(MouseEvent mouseEvent) {
+    if (mouseEvent.getButton() == MouseButton.PRIMARY) {
+      Circle simpleNode = new Circle(mouseEvent.getX(), mouseEvent.getY(), 2.5);
+      simpleNode.setFill(Color.BLUE);
+      Group root = new Group(simpleNode);
+      root.setOnMouseClicked(
+          new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+              selectedNodelbl.setText(root.getId());
+            }
+          });
+      AnchorPane scene = (AnchorPane) appPrimaryScene.getRoot();
+      scene.getChildren().add(root);
+      Stage stage = (Stage) appPrimaryScene.getWindow();
+      nodeSet.put(UUID.randomUUID().toString(), new Node());
+    }
+  }
 
-   public void startLink(MouseEvent mouseEvent) {
-     if (mouseEvent.getButton() != MouseButton.PRIMARY) {
-       System.out.println("startingLink");
-       startNode = get(mouseEvent.getX(), mouseEvent.getY());
-     }
-   }
+  public void startLink(MouseEvent mouseEvent) {
+    if (mouseEvent.getButton() != MouseButton.PRIMARY) {
+      System.out.println("startingLink");
+      startNode = get(mouseEvent.getX(), mouseEvent.getY());
+    }
+  }
 
-   public void releaseMouse(MouseEvent mouseEvent) {
-     if (mouseEvent.getButton() != MouseButton.PRIMARY) {
-       System.out.println("endingLink");
-       Node other = get(mouseEvent.getX(), mouseEvent.getY());
-       if (other != startNode) {
-         placeLink("", startNode, other);
-       }
-     }
-   }
+  public void releaseMouse(MouseEvent mouseEvent) {
+    if (mouseEvent.getButton() != MouseButton.PRIMARY) {
+      System.out.println("endingLink");
+      Node other = get(mouseEvent.getX(), mouseEvent.getY());
+      if (other != startNode) {
+        placeLink(UUID.randomUUID().toString(), startNode, other);
+      }
+    }
+  }
 
   private void placeNode(String id, int x, int y) {
     Circle simpleNode = new Circle(x, y, 2.5);
@@ -264,37 +261,37 @@ public class MapController extends masterController implements Initializable {
     appPrimaryScene.setRoot(root);
   }
 
-  //public void submit(ActionEvent actionEvent) {
-    //String input = Text.getText();
-    //String[] l = input.split("[ \t\n]+");
-    //for (int i = 0; i < l.length; ) {
-      //if (l[i].equals("node:")) {
-        //int x = Integer.parseInt(l[i + 2]);
-        //int y = Integer.parseInt(l[i + 3]);
-        //placeNode(l[i + 1], x, y);
-        //i += 4;
-      //} else if (l[i].equals("link:")) {
-        //placeLink(l[i + 1], l[i + 2]);
-        //i += 3;
-      //} else if (l[i].equals("path:")) {
-        //PathFinder pathFinder = new PathFinder();
-        //Cartesian node1 = nodeSet.get(l[i + 1]);
-        //Cartesian node2 = nodeSet.get(l[i + 2]);
-        //Stack<Node> ret = pathFinder.Astar(node1, node2);
-        //Cartesian c1 = (Cartesian) ret.pop();
-        //while (!ret.empty()) {
-          //Cartesian c2 = (Cartesian) ret.pop();
-          //Line simpleNode = new Line(c1._x, c1._y, c2._x, c2._y);
-          //simpleNode.setStroke(Color.RED);
-          //Group root = new Group(simpleNode);
-          //AnchorPane scene = (AnchorPane) appPrimaryScene.getRoot();
-          //scene.getChildren().add(root);
-          //c1 = c2;
-        //}
-        //i += 3;
-      //}
-    //}
-  //}
+  // public void submit(ActionEvent actionEvent) {
+  // String input = Text.getText();
+  // String[] l = input.split("[ \t\n]+");
+  // for (int i = 0; i < l.length; ) {
+  // if (l[i].equals("node:")) {
+  // int x = Integer.parseInt(l[i + 2]);
+  // int y = Integer.parseInt(l[i + 3]);
+  // placeNode(l[i + 1], x, y);
+  // i += 4;
+  // } else if (l[i].equals("link:")) {
+  // placeLink(l[i + 1], l[i + 2]);
+  // i += 3;
+  // } else if (l[i].equals("path:")) {
+  // PathFinder pathFinder = new PathFinder();
+  // Cartesian node1 = nodeSet.get(l[i + 1]);
+  // Cartesian node2 = nodeSet.get(l[i + 2]);
+  // Stack<Node> ret = pathFinder.Astar(node1, node2);
+  // Cartesian c1 = (Cartesian) ret.pop();
+  // while (!ret.empty()) {
+  // Cartesian c2 = (Cartesian) ret.pop();
+  // Line simpleNode = new Line(c1._x, c1._y, c2._x, c2._y);
+  // simpleNode.setStroke(Color.RED);
+  // Group root = new Group(simpleNode);
+  // AnchorPane scene = (AnchorPane) appPrimaryScene.getRoot();
+  // scene.getChildren().add(root);
+  // c1 = c2;
+  // }
+  // i += 3;
+  // }
+  // }
+  // }
 
   /**
    * replaces MapNodes.csv with a new csv of the current nodesSet
@@ -321,13 +318,13 @@ public class MapController extends masterController implements Initializable {
     csvWriter.close();
   }
 
-//  public void CreateLinks(ActionEvent actionEvent) {
-//    String[] links = LinkField.getText().split("[\n]");
-//    for (String link : links) {
-//      String[] l = link.split(",");
-//      placeLink(l[0], l[1]);
-//    }
-//  }
+  //  public void CreateLinks(ActionEvent actionEvent) {
+  //    String[] links = LinkField.getText().split("[\n]");
+  //    for (String link : links) {
+  //      String[] l = link.split(",");
+  //      placeLink(l[0], l[1]);
+  //    }
+  //  }
 
   public void PathFind(ActionEvent actionEvent) {
     String[] S_E_nodes = pathFindNodes.getText().split("[,]");

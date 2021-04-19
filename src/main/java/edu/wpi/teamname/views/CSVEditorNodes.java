@@ -5,7 +5,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
 import edu.wpi.teamname.services.ServiceTwo;
-import edu.wpi.teamname.services.algo.DataNode;
+import edu.wpi.teamname.services.algo.Node;
 import edu.wpi.teamname.services.database.DatabaseService;
 import edu.wpi.teamname.state.HomeState;
 import java.awt.*;
@@ -66,7 +66,7 @@ public class CSVEditorNodes extends masterController implements Initializable {
   @FXML private JFXTextField NodeType;
 
   private Label selectedLabel;
-  private HashMap<String, DataNode> nodeMap = new HashMap<>();
+  private HashMap<String, Node> nodeMap = new HashMap<>();
   private Scene appPrimaryScene;
   private String selectedFilePath;
 
@@ -88,7 +88,7 @@ public class CSVEditorNodes extends masterController implements Initializable {
         event -> {
           Label selected = listView.getSelectionModel().getSelectedItem();
           if (event.getButton() == MouseButton.PRIMARY && selected != null) {
-            DataNode clickedNode = nodeMap.get(selected.getId());
+            Node clickedNode = nodeMap.get(selected.getId());
             selectedLabel = selected;
             ID.setText(clickedNode.get_nodeID());
             XCoord.setText(Double.toString(clickedNode.get_x()));

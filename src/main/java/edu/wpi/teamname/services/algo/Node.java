@@ -2,8 +2,6 @@ package edu.wpi.teamname.services.algo;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
 import lombok.NonNull;
 
@@ -93,8 +91,7 @@ public class Node implements Comparable<Node> {
 
   public double heuristic(Node other) {
     return Math.sqrt(
-            (other._x - this._x) * (other._x - this._x)
-                    + (other._y - this._y) * (other._y - this._y));
+        (other._x - this._x) * (other._x - this._x) + (other._y - this._y) * (other._y - this._y));
   }
 
   public Node() {
@@ -111,9 +108,8 @@ public class Node implements Comparable<Node> {
   }
 
   public void addNeighbor(String id, Node other, double distance) {
-    this._neighbors.add(new Edge(id,this, other, distance));
+    this._neighbors.add(new Edge(id, this, other, distance));
   }
-
 
   @Override
   public int compareTo(@NonNull Node Other) {

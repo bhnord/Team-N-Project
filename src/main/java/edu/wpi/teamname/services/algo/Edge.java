@@ -1,6 +1,5 @@
 package edu.wpi.teamname.services.algo;
 
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
 
 public class Edge {
@@ -8,15 +7,15 @@ public class Edge {
   private Node _startNode;
   private Node _endNode;
 
-    public double get_distance() {
-        return _distance;
-    }
+  public double get_distance() {
+    return _distance;
+  }
 
-    public void set_distance(double _distance) {
-        this._distance = _distance;
-    }
+  public void set_distance(double _distance) {
+    this._distance = _distance;
+  }
 
-    private double _distance;
+  private double _distance;
 
   public Shape get_shape() {
     return _shape;
@@ -26,7 +25,7 @@ public class Edge {
     this._shape = _shape;
   }
 
- private Shape _shape;
+  private Shape _shape;
 
   public String get_edgeID() {
     return _edgeID;
