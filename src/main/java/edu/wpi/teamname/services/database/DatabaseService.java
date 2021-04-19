@@ -68,21 +68,21 @@ public class DatabaseService {
   public boolean addNode(DataNode node) {
     String query =
         "INSERT INTO NODES VALUES ('"
-            + node.get_nodeID()
+            + node.getNodeID()
             + "', "
             + node.get_x()
             + ", "
             + node.get_y()
             + ", '"
-            + node.get_floor()
+            + node.getFloor()
             + "', '"
-            + node.get_building()
+            + node.getBuilding()
             + "', '"
-            + node.get_nodeType()
+            + node.getNodeID()
             + "', '"
-            + node.get_longName()
+            + node.getLongName()
             + "', '"
-            + node.get_shortName()
+            + node.getShortName()
             + "')";
     try {
       stmt.execute(query);
@@ -171,11 +171,11 @@ public class DatabaseService {
   public boolean addEdge(Edge e) {
     String str =
         "INSERT INTO EDGES VALUES ('"
-            + e.get_edgeID()
+            + e.getEdgeID()
             + "', '"
-            + e.get_startNode()
+            + e.getStartNode()
             + "', '"
-            + e.get_endNode()
+            + e.getEndNode()
             + "')";
     try {
       stmt.execute(str);
