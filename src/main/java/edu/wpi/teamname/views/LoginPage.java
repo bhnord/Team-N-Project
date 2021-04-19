@@ -32,6 +32,7 @@ public class LoginPage extends masterController implements Initializable {
   @FXML private Label incorrectLogin;
 
   private Login login;
+  public String account;
   String patientUsername = "p";
   String patientPassword = "p";
 
@@ -40,6 +41,10 @@ public class LoginPage extends masterController implements Initializable {
 
   String adminUsername = "a";
   String adminPassword = "a";
+
+  LoginPage() {
+    this.account = "";
+  }
 
   public void initialize(URL url, ResourceBundle rb) {
     /** Locking submit button to start* */
@@ -78,19 +83,28 @@ public class LoginPage extends masterController implements Initializable {
     this.appPrimaryScene = appPrimaryScene;
   }
 
-  @FXML
-  private void continueToHomePage() throws IOException {
-    // System.out.println(getUsername());
-    // System.out.println(getPassword());
+  public String accountType() {
     if (getUsername().equals(patientUsername) && getPassword().equals(patientPassword)) {
-      super.advanceHomePatient(loader, appPrimaryScene);
+      account = "patient";
     }
 
     if (getUsername().equals(employeeUsername) && getPassword().equals(employeePassword)) {
-      super.advanceHome(loader, appPrimaryScene);
+      account = "employee";
     }
 
     if (getUsername().equals(adminUsername) && getPassword().equals(adminPassword)) {
+      account = "admin";
+    }
+    return account;
+  }
+
+  @FXML
+  private void continueToHomePage() throws IOException {
+    if (getUsername().equals(patientUsername) && getPassword().equals(patientPassword)) {
+      super.advanceHomePatient(loader, appPrimaryScene);
+    } else if (getUsername().equals(employeeUsername) && getPassword().equals(employeePassword)) {
+      super.advanceHome(loader, appPrimaryScene);
+    } else if (getUsername().equals(adminUsername) && getPassword().equals(adminPassword)) {
       super.advanceHomeAdmin(loader, appPrimaryScene);
     } else {
       incorrectLogin.setText("INCORRECT USERNAME OR PASSWORD, TRY AGAIN");

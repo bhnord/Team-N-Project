@@ -29,6 +29,7 @@ public class LaundryRequestController extends masterController implements Initia
   @FXML private JFXTextField txtEndRoom;
   private Scene appPrimaryScene;
   String helpPagePath = "LaundryRequestHelpPage";
+  LoginPage loginAccount = new LoginPage();
   Stage primaryStage;
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
@@ -74,7 +75,22 @@ public class LaundryRequestController extends masterController implements Initia
 
   @FXML
   public void advanceHome() throws IOException {
-    super.advanceServiceRequest(loader, appPrimaryScene);
+    if (loginAccount.getUsername().equals("p") && loginAccount.getPassword().equals("p")) {
+      // if (loginAccount.accountType().equals("patient"))
+      super.advanceServiceRequestPatient(loader, appPrimaryScene);
+    }
+    if (loginAccount.getUsername().equals("e") && loginAccount.getPassword().equals("e")) {
+      // if (loginAccount.accountType().equals("employee"))
+      super.advanceServiceRequestEmployee(loader, appPrimaryScene);
+    }
+    if (loginAccount.getUsername().equals("a") && loginAccount.getPassword().equals("a")) {
+      // if (loginAccount.accountType().equals("admin"))
+      super.advanceServiceRequestAdmin(loader, appPrimaryScene);
+    }
+    if (loginAccount.getUsername().equals("") && loginAccount.getPassword().equals("")) {
+      // if (loginAccount.accountType().equals("admin"))
+      System.out.println("didn't work");
+    }
   }
 
   public void Submit(ActionEvent actionEvent) throws IOException {
