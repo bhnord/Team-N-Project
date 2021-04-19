@@ -21,6 +21,7 @@
                         <Image fx:id="mapimg" url="@/images/level1.png" />
                      </image>
                   </ImageView>
+                  <Label fx:id="nodeName" visible="false"/>
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <HBox.margin>
                         <Insets left="100.0" />
@@ -37,6 +38,7 @@
                   <Button fx:id="Print" mnemonicParsing="false" onAction="#PrintNode" prefHeight="30.0" prefWidth="100.0" text="Print" />
                   <Button fx:id="pathFindingBtn" mnemonicParsing="false" onAction="#examplePathFind" text="Example Pathfind" />
                   <JFXColorPicker fx:id="colorPicker" promptText="Node Color" />
+                  <Label prefHeight="17.0" prefWidth="28.0" text="Label" />
                   <Label fx:id="pathtext" prefHeight="17.0" prefWidth="253.0" text="Path in blue from CHALL004L1 to CLABS002L1" visible="false">
                      <HBox.margin>
                         <Insets left="10.0" />
