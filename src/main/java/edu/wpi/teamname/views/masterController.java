@@ -105,4 +105,16 @@ public class masterController implements Initializable {
     stage2.setScene(null);
     stage2.close();
   }
+
+  public void advance(ActionEvent actionEvent) throws IOException {
+    String file = "Requests/" + ((Button) actionEvent.getSource()).getId() + ".fxml";
+    Parent root = loader.load(getClass().getResourceAsStream(file));
+    appPrimaryScene.setRoot(root);
+  }
+
+  public void advanceViews(ActionEvent actionEvent) throws IOException {
+    String file = ((Button) actionEvent.getSource()).getId() + ".fxml";
+    Parent root = loader.load(getClass().getResourceAsStream(file));
+    appPrimaryScene.setRoot(root);
+  }
 }
