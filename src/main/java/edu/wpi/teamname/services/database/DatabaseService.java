@@ -118,20 +118,21 @@ public class DatabaseService {
     String str =
         "UPDATE NODES SET xcoord = "
             + x
-            + ",ycoord = "
+            + ", ycoord = "
             + y
-            + ", floor = "
+            + ", floor = '"
             + floor
-            + ", building = "
+            + "', building = '"
             + building
-            + ", nodeType = "
+            + "', nodeType = '"
             + nodeType
-            + ", longName = "
+            + "', longName = '"
             + longName
-            + ", shortName = "
+            + "', shortName = '"
             + shortName
-            + " WHERE id ="
-            + id;
+            + "' WHERE id = '"
+            + id
+            + "'";
     try {
       stmt.execute(str);
       return true;

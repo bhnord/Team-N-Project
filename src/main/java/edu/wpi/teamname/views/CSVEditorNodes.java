@@ -129,6 +129,9 @@ public class CSVEditorNodes extends masterController implements Initializable {
   }
 
   public void commitChanges(ActionEvent actionEvent) {
+    if (selectedLabel == null) {
+      return;
+    }
     String id = selectedLabel.getId();
     double x, y;
     String f = Floor.getText();
@@ -137,15 +140,22 @@ public class CSVEditorNodes extends masterController implements Initializable {
     String ln = LongName.getText();
     String sn = ShortName.getText();
     DataNode selectedNode = db.getNode(selectedLabel.getId());
+
     try {
       x = Double.parseDouble(XCoord.getText());
       y = Double.parseDouble(YCoord.getText());
 
       if (!(selectedNode == null)) {
-        if (!db.updateNode(id, x, y, f, b, nt, ln, sn)) {
-          messageLabel.setText("Invalid inputs");
+
+        if (!id.equals(selectedNode.get_nodeID())) {
+          if (!db.updateNode(id, x, y, f, b, nt, ln, sn)) {
+            messageLabel.setText("Invalid inputs");
+          }
+        } else {
+          messageLabel.setText("You cannot change the ID of an already made node");
         }
       } else {
+        id = ID.getText();
         DataNode n = new DataNode(x, y, id, f, b, nt, ln, sn);
         if (db.addNode(n)) {
           updateSelectedLabel(id);
@@ -153,6 +163,7 @@ public class CSVEditorNodes extends masterController implements Initializable {
           messageLabel.setText("Invalid inputs");
         }
       }
+
     } catch (Exception e) {
       messageLabel.setText("Invalid type in field");
     }
@@ -166,20 +177,22 @@ public class CSVEditorNodes extends masterController implements Initializable {
   public void openFile(ActionEvent actionEvent) throws IOException {
     fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
     File file = fileChooser.showOpenDialog(appPrimaryScene.getWindow());
-    selectedFilePath = file.getPath();
-    db.deleteNodeRows();
-    listView.getItems().clear();
-    boolean loaded = db.loadCSVtoTable(file.getPath(), "NODES");
-    if (!loaded) {
-      loadSuccess.setText("Error loading file.");
-    } else {
-      HashSet<DataNode> set = db.getAllNodes();
-      for (DataNode n : set) {
-        Label lbl = new Label(n.get_nodeID());
-        lbl.setId(n.get_nodeID());
-        listView.getItems().add(lbl);
+    if (file != null) {
+      selectedFilePath = file.getPath();
+      db.deleteNodeRows();
+      listView.getItems().clear();
+      boolean loaded = db.loadCSVtoTable(file.getPath(), "NODES");
+      if (!loaded) {
+        loadSuccess.setText("Error loading file.");
+      } else {
+        HashSet<DataNode> set = db.getAllNodes();
+        for (DataNode n : set) {
+          Label lbl = new Label(n.get_nodeID());
+          lbl.setId(n.get_nodeID());
+          listView.getItems().add(lbl);
+        }
+        loadSuccess.setText("Nodes file successfully loaded!");
       }
-      loadSuccess.setText("Edges file successfully loaded!");
     }
   }
 
@@ -254,12 +267,16 @@ public class CSVEditorNodes extends masterController implements Initializable {
   }
 
   public void saveFile(ActionEvent actionEvent) throws IOException {
-    nodesToCsv(selectedFilePath);
-    loadSuccess.setText("File Saved!");
+    if (!(selectedFilePath == null)) {
+      nodesToCsv(selectedFilePath);
+      loadSuccess.setText("File Saved!");
+    } else {
+      messageLabel.setText("Select a filepath first with \"Open File\"");
+    }
   }
 
   public void DeleteNode(ActionEvent actionEvent) {
-    if (listView.getItems().isEmpty()) return;
+    if (listView.getItems().isEmpty() || selectedLabel == null) return;
     int index = listView.getItems().indexOf(selectedLabel);
     db.deleteNode(selectedLabel.getId());
     listView.getItems().remove(selectedLabel);
@@ -273,6 +290,7 @@ public class CSVEditorNodes extends masterController implements Initializable {
         setEmptyFields();
       }
     } else {
+      selectedLabel = null;
       setEmptyFields();
     }
   }

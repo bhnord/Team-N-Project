@@ -114,7 +114,9 @@ public class CSVEditorEdges extends masterController implements Initializable {
 
   @FXML
   public void commitChanges(ActionEvent actionEvent) {
-
+    if (selectedLabel == null) {
+      return;
+    }
     Edge selectedEdge = db.getEdge(selectedLabel.getId());
     String idText = ID.getText();
     if (!(selectedEdge == null)) {
@@ -145,6 +147,9 @@ public class CSVEditorEdges extends masterController implements Initializable {
   public void openFile(ActionEvent actionEvent) {
     fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
     File file = fileChooser.showOpenDialog(appPrimaryScene.getWindow());
+    if (file == null) {
+      return;
+    }
     selectedFilePath = file.getPath();
     db.deleteEdgeRows();
     listView.getItems().clear();
@@ -201,7 +206,7 @@ public class CSVEditorEdges extends masterController implements Initializable {
   //    return edgeMap;
   //  }
 
-  private void nodesToCsv(String outputPath) throws IOException {
+  private void edgesToCsv(String outputPath) throws IOException {
     Writer fileWriter = new FileWriter(outputPath, false);
     HashSet<Edge> allEdges = db.getAllEdges();
     for (Edge e : allEdges) {
@@ -219,7 +224,7 @@ public class CSVEditorEdges extends masterController implements Initializable {
 
   public void saveFile(ActionEvent actionEvent) throws IOException {
     if (!(selectedFilePath == null)) {
-      nodesToCsv(selectedFilePath);
+      edgesToCsv(selectedFilePath);
       loadSuccess.setText("File Saved!");
     } else {
       messageLabel.setText("Select a filepath first with \"Open File\"");
@@ -227,7 +232,7 @@ public class CSVEditorEdges extends masterController implements Initializable {
   }
 
   public void deleteEdge(ActionEvent actionEvent) {
-    if (listView.getItems().isEmpty()) return;
+    if (listView.getItems().isEmpty() || selectedLabel == null) return;
     int index = listView.getItems().indexOf(selectedLabel);
     db.deleteEdge(selectedLabel.getId());
     listView.getItems().remove(selectedLabel);
@@ -243,6 +248,7 @@ public class CSVEditorEdges extends masterController implements Initializable {
         setEmptyFields();
       }
     } else {
+      selectedLabel = null;
       setEmptyFields();
     }
   }
