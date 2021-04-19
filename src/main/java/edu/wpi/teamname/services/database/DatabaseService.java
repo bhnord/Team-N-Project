@@ -294,6 +294,31 @@ public class DatabaseService {
     }
   }
 
+  //  public int addRequest(
+  //      RequestType type, int senderId, int receiverId, String content, String notes) {
+  //    String str =
+  //        "INSERT INTO REQUESTS (TYPE, SENDERID, RECEIVERID, CONTENT, NOTES) VALUES ('"
+  //            + type
+  //            + "', "
+  //            + senderId
+  //            + ", "
+  //            + receiverId
+  //            + ", '"
+  //            + content
+  //            + "', '"
+  //            + notes
+  //            + "')";
+  //    try {
+  //      stmt.execute(str);
+  //      str = "SELECT TOP 1 ID FROM REQUESTS ORDER BY id DESC";
+  //      ResultSet rs = stmt.executeQuery(str);
+  //      return rs.getInt("ID");
+  //    } catch (SQLException e) {
+  //      e.printStackTrace();
+  //      throw SQLException;
+  //    }
+  //  }
+
   private HashSet<DataNode> resultSetToNodes(ResultSet rs) {
     HashSet<DataNode> nodeSet = new HashSet<>();
     try {

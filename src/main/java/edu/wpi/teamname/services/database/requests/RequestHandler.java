@@ -4,7 +4,7 @@ public abstract class RequestHandler {
   private int id, senderID, receiverID;
   private String notes;
 
-  public RequestHandler(int id, int senderID, int receiverID, String notes) {
+  public RequestHandler(int senderID, int receiverID, String notes) {
     this.id = id;
     this.senderID = senderID;
     this.receiverID = receiverID;
