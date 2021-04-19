@@ -4,7 +4,6 @@ import com.google.inject.Inject;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
-import edu.wpi.teamname.services.ServiceTwo;
 import edu.wpi.teamname.services.algo.DataNode;
 import edu.wpi.teamname.services.database.DatabaseService;
 import edu.wpi.teamname.state.HomeState;
@@ -16,6 +15,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -28,7 +28,6 @@ import lombok.extern.slf4j.Slf4j;
 public class CSVEditorNodes extends masterController implements Initializable {
 
   @Inject DatabaseService db;
-  @Inject ServiceTwo graph;
   @Inject FXMLLoader loader;
   @Inject HomeState state;
 
@@ -89,14 +88,14 @@ public class CSVEditorNodes extends masterController implements Initializable {
   }
 
   private void updateTextFields(DataNode clickedNode) {
-    ID.setText(clickedNode.get_nodeID());
+    ID.setText(clickedNode.getNodeID());
     XCoord.setText(Double.toString(clickedNode.get_x()));
     YCoord.setText(Double.toString(clickedNode.get_y()));
-    Floor.setText(clickedNode.get_floor());
-    Building.setText(clickedNode.get_building());
-    ShortName.setText(clickedNode.get_shortName());
-    LongName.setText(clickedNode.get_longName());
-    NodeType.setText(clickedNode.get_nodeType());
+    Floor.setText(clickedNode.getFloor());
+    Building.setText(clickedNode.getBuilding());
+    ShortName.setText(clickedNode.getShortName());
+    LongName.setText(clickedNode.getLongName());
+    NodeType.setText(clickedNode.getNodeID());
   }
 
   @FXML
@@ -147,7 +146,7 @@ public class CSVEditorNodes extends masterController implements Initializable {
 
       if (!(selectedNode == null)) {
 
-        if (!id.equals(selectedNode.get_nodeID())) {
+        if (!id.equals(selectedNode.getNodeID())) {
           if (!db.updateNode(id, x, y, f, b, nt, ln, sn)) {
             messageLabel.setText("Invalid inputs");
           }
@@ -187,8 +186,8 @@ public class CSVEditorNodes extends masterController implements Initializable {
       } else {
         HashSet<DataNode> set = db.getAllNodes();
         for (DataNode n : set) {
-          Label lbl = new Label(n.get_nodeID());
-          lbl.setId(n.get_nodeID());
+          Label lbl = new Label(n.getNodeID());
+          lbl.setId(n.getNodeID());
           listView.getItems().add(lbl);
         }
         loadSuccess.setText("Nodes file successfully loaded!");
@@ -203,8 +202,8 @@ public class CSVEditorNodes extends masterController implements Initializable {
   //    messageLabel.setText("" + file);
   //    listView.getItems().clear();
   //    for (DataNode node : nodeMap.values()) {
-  //      Label lbl = new Label(node.get_nodeID());
-  //      lbl.setId(node.get_nodeID());
+  //      Label lbl = new Label(node.getNodeID());
+  //      lbl.setId(node.getNodeID());
   //      listView.getItems().add(lbl);
   //    }
   //  }
@@ -245,21 +244,21 @@ public class CSVEditorNodes extends masterController implements Initializable {
     HashSet<DataNode> set = db.getAllNodes();
     for (DataNode node : set) {
       String outputString = "";
-      outputString += node.get_nodeID();
+      outputString += node.getNodeID();
       outputString += ",";
       outputString += node.get_x();
       outputString += ",";
       outputString += node.get_y();
       outputString += ",";
-      outputString += node.get_floor();
+      outputString += node.getFloor();
       outputString += ",";
-      outputString += node.get_building();
+      outputString += node.getBuilding();
       outputString += ",";
-      outputString += node.get_nodeType();
+      outputString += node.getNodeType();
       outputString += ",";
-      outputString += node.get_longName();
+      outputString += node.getLongName();
       outputString += ",";
-      outputString += node.get_shortName();
+      outputString += node.getShortName();
       outputString += "\n";
       fileWriter.write(outputString);
     }
@@ -299,8 +298,8 @@ public class CSVEditorNodes extends masterController implements Initializable {
     listView.getItems().clear();
     HashSet<DataNode> set = db.getAllNodes();
     for (DataNode n : set) {
-      Label lbl = new Label(n.get_nodeID());
-      lbl.setId(n.get_nodeID());
+      Label lbl = new Label(n.getNodeID());
+      lbl.setId(n.getNodeID());
       listView.getItems().add(lbl);
     }
   }
@@ -314,5 +313,21 @@ public class CSVEditorNodes extends masterController implements Initializable {
     ShortName.setText("");
     LongName.setText("");
     NodeType.setText("");
+  }
+
+  @FXML
+  public void logOut() throws IOException {
+    super.logOut(loader, appPrimaryScene);
+  }
+
+  @FXML
+  private void exit(ActionEvent actionEvent) throws IOException {
+    super.cancel(actionEvent);
+  }
+
+  public void advanceViews(ActionEvent actionEvent) throws IOException {
+    String file = ((Button) actionEvent.getSource()).getId() + ".fxml";
+    Parent root = loader.load(getClass().getResourceAsStream(file));
+    appPrimaryScene.setRoot(root);
   }
 }

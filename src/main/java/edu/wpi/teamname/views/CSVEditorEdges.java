@@ -4,7 +4,6 @@ import com.google.inject.Inject;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
-import edu.wpi.teamname.services.ServiceTwo;
 import edu.wpi.teamname.services.algo.Edge;
 import edu.wpi.teamname.services.database.DatabaseService;
 import edu.wpi.teamname.state.HomeState;
@@ -15,6 +14,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -26,7 +26,6 @@ import lombok.extern.slf4j.Slf4j;
 public class CSVEditorEdges extends masterController implements Initializable {
 
   @Inject DatabaseService db;
-  @Inject ServiceTwo graph;
   @Inject FXMLLoader loader;
   @Inject HomeState state;
 
@@ -70,9 +69,9 @@ public class CSVEditorEdges extends masterController implements Initializable {
             messageLabel.setText("");
             selectedLabel = selected;
             if (!(clickedEdge == null)) {
-              ID.setText(clickedEdge.get_edgeID());
-              startNode.setText(clickedEdge.get_startNode());
-              endNode.setText(clickedEdge.get_endNode());
+              ID.setText(clickedEdge.getEdgeID());
+              startNode.setText(clickedEdge.getStartNode());
+              endNode.setText(clickedEdge.getEndNode());
             } else {
               setEmptyFields();
             }
@@ -120,14 +119,14 @@ public class CSVEditorEdges extends masterController implements Initializable {
     Edge selectedEdge = db.getEdge(selectedLabel.getId());
     String idText = ID.getText();
     if (!(selectedEdge == null)) {
-      if (selectedEdge.get_edgeID().equals(idText)) {
+      if (selectedEdge.getEdgeID().equals(idText)) {
         if (!db.updateEdge(idText, startNode.getText(), endNode.getText())) {
           messageLabel.setText(("Invalid inputs"));
         }
       } else {
         Edge e = new Edge(idText, startNode.getText(), endNode.getText());
         if (db.addEdge(e)) {
-          db.deleteEdge(selectedEdge.get_edgeID());
+          db.deleteEdge(selectedEdge.getEdgeID());
           updateSelectedLabel(idText);
         } else {
           messageLabel.setText("Invalid inputs");
@@ -160,8 +159,8 @@ public class CSVEditorEdges extends masterController implements Initializable {
     } else {
       HashSet<Edge> set = db.getAllEdges();
       for (Edge e : set) {
-        Label lbl = new Label(e.get_edgeID());
-        lbl.setId(e.get_edgeID());
+        Label lbl = new Label(e.getEdgeID());
+        lbl.setId(e.getEdgeID());
         listView.getItems().add(lbl);
       }
       loadSuccess.setText("Edges file successfully loaded!");
@@ -177,8 +176,8 @@ public class CSVEditorEdges extends masterController implements Initializable {
     listView.getItems().clear();
     HashSet<Edge> edgeSet = db.getAllEdges();
     for (Edge e : edgeSet) {
-      Label lbl = new Label(e.get_edgeID());
-      lbl.setId(e.get_edgeID());
+      Label lbl = new Label(e.getEdgeID());
+      lbl.setId(e.getEdgeID());
       listView.getItems().add(lbl);
     }
   }
@@ -211,11 +210,11 @@ public class CSVEditorEdges extends masterController implements Initializable {
     HashSet<Edge> allEdges = db.getAllEdges();
     for (Edge e : allEdges) {
       String outputString = "";
-      outputString += e.get_edgeID();
+      outputString += e.getEdgeID();
       outputString += ",";
-      outputString += e.get_startNode();
+      outputString += e.getStartNode();
       outputString += ",";
-      outputString += e.get_endNode();
+      outputString += e.getEndNode();
       outputString += "\n";
       fileWriter.write(outputString);
     }
@@ -241,9 +240,9 @@ public class CSVEditorEdges extends masterController implements Initializable {
       selectedLabel = listView.getItems().get(index);
       Edge clickedEdge = db.getEdge(selectedLabel.getId());
       if (clickedEdge != null) {
-        ID.setText(clickedEdge.get_edgeID());
-        startNode.setText(clickedEdge.get_startNode());
-        endNode.setText(clickedEdge.get_endNode());
+        ID.setText(clickedEdge.getEdgeID());
+        startNode.setText(clickedEdge.getStartNode());
+        endNode.setText(clickedEdge.getEndNode());
       } else {
         setEmptyFields();
       }
@@ -257,5 +256,21 @@ public class CSVEditorEdges extends masterController implements Initializable {
     ID.setText("");
     startNode.setText("");
     endNode.setText("");
+  }
+
+  @FXML
+  public void logOut() throws IOException {
+    super.logOut(loader, appPrimaryScene);
+  }
+
+  @FXML
+  private void exit(ActionEvent actionEvent) throws IOException {
+    super.cancel(actionEvent);
+  }
+
+  public void advanceViews(ActionEvent actionEvent) throws IOException {
+    String file = ((Button) actionEvent.getSource()).getId() + ".fxml";
+    Parent root = loader.load(getClass().getResourceAsStream(file));
+    appPrimaryScene.setRoot(root);
   }
 }
