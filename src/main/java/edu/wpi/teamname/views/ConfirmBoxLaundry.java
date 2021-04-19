@@ -55,7 +55,7 @@ public class ConfirmBoxLaundry extends masterController implements Initializable
   public void returnToHomeLaundry() throws IOException {
     box.stage.close();
     // laundry.advanceHome();
-
+    /*
     if (loginAccount.getUsername().equals("p") && loginAccount.getPassword().equals("p")) {
       // if (loginAccount.accountType().equals("patient"))
       super.advanceServiceRequestPatient(loader, appPrimaryScene);
@@ -69,11 +69,7 @@ public class ConfirmBoxLaundry extends masterController implements Initializable
       super.advanceServiceRequestAdmin(loader, appPrimaryScene);
     }
 
-    /*if (loginAccount.accountType().equals("patient"))
-      super.advanceServiceRequestPatient(loader, appPrimaryScene);
-    if (loginAccount.accountType().equals("employee"))
-      super.advanceServiceRequestEmployee(loader, appPrimaryScene);
-    if (loginAccount.accountType().equals("admin"))
-      super.advanceServiceRequestAdmin(loader, appPrimaryScene);*/
+    */
+    loginAccount.accountType();
   }
 }

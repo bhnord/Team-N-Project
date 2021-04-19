@@ -32,7 +32,8 @@ public class LoginPage extends masterController implements Initializable {
   @FXML private Label incorrectLogin;
 
   private Login login;
-  public String account;
+  public String accountUsername = "";
+  public String accountPassword = "";
   String patientUsername = "p";
   String patientPassword = "p";
 
@@ -42,9 +43,9 @@ public class LoginPage extends masterController implements Initializable {
   String adminUsername = "a";
   String adminPassword = "a";
 
-  LoginPage() {
+  /*  LoginPage() {
     this.account = "";
-  }
+  }*/
 
   public void initialize(URL url, ResourceBundle rb) {
     /** Locking submit button to start* */
@@ -71,10 +72,12 @@ public class LoginPage extends masterController implements Initializable {
   }
 
   public String getUsername() {
+    accountUsername = usernameField.getText();
     return usernameField.getText();
   }
 
   public String getPassword() {
+    accountPassword = passwordField.getText();
     return passwordField.getText();
   }
 
@@ -83,8 +86,8 @@ public class LoginPage extends masterController implements Initializable {
     this.appPrimaryScene = appPrimaryScene;
   }
 
-  public String accountType() {
-    if (getUsername().equals(patientUsername) && getPassword().equals(patientPassword)) {
+  public void accountType() throws IOException {
+    /*   if (getUsername().equals(patientUsername) && getPassword().equals(patientPassword)) {
       account = "patient";
     }
 
@@ -95,7 +98,16 @@ public class LoginPage extends masterController implements Initializable {
     if (getUsername().equals(adminUsername) && getPassword().equals(adminPassword)) {
       account = "admin";
     }
-    return account;
+    return account;*/
+
+    if (accountUsername.equals(patientUsername) && accountPassword.equals(patientPassword)) {
+      super.advanceHomePatient(loader, appPrimaryScene);
+    } else if (accountUsername.equals(employeeUsername)
+        && accountPassword.equals(employeePassword)) {
+      super.advanceHome(loader, appPrimaryScene);
+    } else if (accountUsername.equals(adminUsername) && accountPassword.equals(adminPassword)) {
+      super.advanceHomeAdmin(loader, appPrimaryScene);
+    } else super.advanceHomeAdmin(loader, appPrimaryScene);
   }
 
   @FXML
