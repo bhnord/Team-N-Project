@@ -59,7 +59,7 @@ public class MapController extends masterController implements Initializable {
   @FXML private TextField deletenodeID;
   @FXML private Label selectedNode;
   @FXML private JFXColorPicker colorPicker;
-  @FXML private Label nodeName;
+  String nodeName;
 
   private Scene appPrimaryScene;
   int[] nodeinfo = new int[3];
@@ -121,7 +121,8 @@ public class MapController extends masterController implements Initializable {
 
     NameNode nameNode = new NameNode();
     NameNode.confirm(this);
-    root.setId(nodeName.getText());
+    System.out.println(nodeName);
+    root.setId(nodeName);
 
     AnchorPane scene = (AnchorPane) appPrimaryScene.getRoot();
     scene.getChildren().add(root);
@@ -134,7 +135,7 @@ public class MapController extends masterController implements Initializable {
   }
 
   public void setNodeName(String name) {
-    nodeName.setText(name);
+    nodeName = name;
   }
 
   private void placeNode(String id, int x, int y) {
