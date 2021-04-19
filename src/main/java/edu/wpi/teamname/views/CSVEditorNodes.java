@@ -295,4 +295,9 @@ public class CSVEditorNodes extends masterController implements Initializable {
     LongName.setText("");
     NodeType.setText("");
   }
+
+  @FXML
+  private void exit(ActionEvent actionEvent) throws IOException {
+    super.cancel(actionEvent);
+  }
 }

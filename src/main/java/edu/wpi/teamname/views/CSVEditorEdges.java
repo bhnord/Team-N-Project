@@ -250,4 +250,9 @@ public class CSVEditorEdges extends masterController implements Initializable {
     startNode.setText("");
     endNode.setText("");
   }
+
+  @FXML
+  private void exit(ActionEvent actionEvent) throws IOException {
+    super.cancel(actionEvent);
+  }
 }
