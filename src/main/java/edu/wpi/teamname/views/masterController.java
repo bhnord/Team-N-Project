@@ -68,6 +68,24 @@ public class masterController implements Initializable {
     ChildAppPrimaryScene.setRoot(root);
   }
 
+  public void advanceServiceRequestPatient(FXMLLoader childLoader, Scene ChildAppPrimaryScene)
+      throws IOException {
+    Parent root = childLoader.load(getClass().getResourceAsStream("ServiceRequestsPatient.fxml"));
+    ChildAppPrimaryScene.setRoot(root);
+  }
+
+  public void advanceServiceRequestAdmin(FXMLLoader childLoader, Scene ChildAppPrimaryScene)
+      throws IOException {
+    Parent root = childLoader.load(getClass().getResourceAsStream("ServiceRequestsAdmin.fxml"));
+    ChildAppPrimaryScene.setRoot(root);
+  }
+
+  public void advanceServiceRequestEmployee(FXMLLoader childLoader, Scene ChildAppPrimaryScene)
+      throws IOException {
+    Parent root = childLoader.load(getClass().getResourceAsStream("ServiceRequests.fxml"));
+    ChildAppPrimaryScene.setRoot(root);
+  }
+
   public void advanceServiceRequest(FXMLLoader childLoader, Scene ChildAppPrimaryScene)
       throws IOException {
     Parent root = childLoader.load(getClass().getResourceAsStream("ServiceRequests.fxml"));
@@ -104,5 +122,17 @@ public class masterController implements Initializable {
     stage2 = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
     stage2.setScene(null);
     stage2.close();
+  }
+
+  public void advance(ActionEvent actionEvent) throws IOException {
+    String file = "Requests/" + ((Button) actionEvent.getSource()).getId() + ".fxml";
+    Parent root = loader.load(getClass().getResourceAsStream(file));
+    appPrimaryScene.setRoot(root);
+  }
+
+  public void advanceViews(ActionEvent actionEvent) throws IOException {
+    String file = ((Button) actionEvent.getSource()).getId() + ".fxml";
+    Parent root = loader.load(getClass().getResourceAsStream(file));
+    appPrimaryScene.setRoot(root);
   }
 }

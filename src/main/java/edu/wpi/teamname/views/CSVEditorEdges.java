@@ -7,9 +7,13 @@ import com.jfoenix.controls.JFXTextField;
 import edu.wpi.teamname.services.algo.Edge;
 import edu.wpi.teamname.services.database.DatabaseService;
 import edu.wpi.teamname.state.HomeState;
-import java.io.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
 import java.net.URL;
-import java.util.*;
+import java.util.HashSet;
+import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -113,7 +117,9 @@ public class CSVEditorEdges extends masterController implements Initializable {
 
   @FXML
   public void commitChanges(ActionEvent actionEvent) {
-
+    if (selectedLabel == null) {
+      return;
+    }
     Edge selectedEdge = db.getEdge(selectedLabel.getId());
     String idText = ID.getText();
     if (!(selectedEdge == null)) {
@@ -144,6 +150,9 @@ public class CSVEditorEdges extends masterController implements Initializable {
   public void openFile(ActionEvent actionEvent) {
     fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
     File file = fileChooser.showOpenDialog(appPrimaryScene.getWindow());
+    if (file == null) {
+      return;
+    }
     selectedFilePath = file.getPath();
     db.deleteEdgeRows();
     listView.getItems().clear();
@@ -177,30 +186,7 @@ public class CSVEditorEdges extends masterController implements Initializable {
     }
   }
 
-  //  private HashMap<String, Edge> csvToNodes(File file) throws FileNotFoundException {
-  //    Scanner scanner = new Scanner(file);
-  //    String line = scanner.nextLine();
-  //
-  //    if (line.contains("nodeID,xcoord,ycoord,floor,building,nodeType,longName,shortName")
-  //        && scanner.hasNextLine()) {
-  //      line = scanner.nextLine();
-  //    }
-  //
-  //    if (!scanner.hasNextLine()) return edgeMap;
-  //    do {
-  //      String[] entries = line.split(",");
-  //      if (entries.length == 3) {
-  //        String ID = entries[0];
-  //        String sNode = entries[1];
-  //        String eNode = entries[2];
-  //        edgeMap.put(ID, new Edge(ID, sNode, eNode));
-  //      }
-  //      line = scanner.nextLine();
-  //    } while (scanner.hasNextLine());
-  //    return edgeMap;
-  //  }
-
-  private void nodesToCsv(String outputPath) throws IOException {
+  private void edgesToCsv(String outputPath) throws IOException {
     Writer fileWriter = new FileWriter(outputPath, false);
     HashSet<Edge> allEdges = db.getAllEdges();
     for (Edge e : allEdges) {
@@ -218,7 +204,7 @@ public class CSVEditorEdges extends masterController implements Initializable {
 
   public void saveFile(ActionEvent actionEvent) throws IOException {
     if (!(selectedFilePath == null)) {
-      nodesToCsv(selectedFilePath);
+      edgesToCsv(selectedFilePath);
       loadSuccess.setText("File Saved!");
     } else {
       messageLabel.setText("Select a filepath first with \"Open File\"");
@@ -226,7 +212,7 @@ public class CSVEditorEdges extends masterController implements Initializable {
   }
 
   public void deleteEdge(ActionEvent actionEvent) {
-    if (listView.getItems().isEmpty()) return;
+    if (listView.getItems().isEmpty() || selectedLabel == null) return;
     int index = listView.getItems().indexOf(selectedLabel);
     db.deleteEdge(selectedLabel.getId());
     listView.getItems().remove(selectedLabel);
@@ -242,6 +228,7 @@ public class CSVEditorEdges extends masterController implements Initializable {
         setEmptyFields();
       }
     } else {
+      selectedLabel = null;
       setEmptyFields();
     }
   }

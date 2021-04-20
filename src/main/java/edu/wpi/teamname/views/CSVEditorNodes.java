@@ -4,13 +4,16 @@ import com.google.inject.Inject;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
-import edu.wpi.teamname.services.algo.DataNode;
+import edu.wpi.teamname.services.algo.Node;
 import edu.wpi.teamname.services.database.DatabaseService;
 import edu.wpi.teamname.state.HomeState;
-import java.awt.*;
-import java.io.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
 import java.net.URL;
-import java.util.*;
+import java.util.HashSet;
+import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,7 +24,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
 import javafx.stage.FileChooser;
-import javax.swing.*;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -71,7 +73,7 @@ public class CSVEditorNodes extends masterController implements Initializable {
           Label selected = listView.getSelectionModel().getSelectedItem();
           if (event.getButton() == MouseButton.PRIMARY && selected != null) {
             String id = selected.getId();
-            DataNode clickedNode = db.getNode(id);
+            Node clickedNode = db.getNode(id);
             messageLabel.setText("");
             selectedLabel = selected;
             if (!(clickedNode == null)) {
@@ -87,15 +89,15 @@ public class CSVEditorNodes extends masterController implements Initializable {
     loadFromDB();
   }
 
-  private void updateTextFields(DataNode clickedNode) {
-    ID.setText(clickedNode.getNodeID());
+  private void updateTextFields(Node clickedNode) {
+    ID.setText(clickedNode.get_nodeID());
     XCoord.setText(Double.toString(clickedNode.get_x()));
     YCoord.setText(Double.toString(clickedNode.get_y()));
-    Floor.setText(clickedNode.getFloor());
-    Building.setText(clickedNode.getBuilding());
-    ShortName.setText(clickedNode.getShortName());
-    LongName.setText(clickedNode.getLongName());
-    NodeType.setText(clickedNode.getNodeType());
+    Floor.setText(clickedNode.get_floor());
+    Building.setText(clickedNode.get_building());
+    ShortName.setText(clickedNode.get_shortName());
+    LongName.setText(clickedNode.get_longName());
+    NodeType.setText(clickedNode.get_nodeID());
   }
 
   @FXML
@@ -128,6 +130,9 @@ public class CSVEditorNodes extends masterController implements Initializable {
   }
 
   public void commitChanges(ActionEvent actionEvent) {
+    if (selectedLabel == null) {
+      return;
+    }
     String id = selectedLabel.getId();
     double x, y;
     String f = Floor.getText();
@@ -135,23 +140,31 @@ public class CSVEditorNodes extends masterController implements Initializable {
     String nt = NodeType.getText();
     String ln = LongName.getText();
     String sn = ShortName.getText();
-    DataNode selectedNode = db.getNode(selectedLabel.getId());
+    Node selectedNode = db.getNode(selectedLabel.getId());
+
     try {
       x = Double.parseDouble(XCoord.getText());
       y = Double.parseDouble(YCoord.getText());
 
       if (!(selectedNode == null)) {
-        if (!db.updateNode(id, x, y, f, b, nt, ln, sn)) {
-          messageLabel.setText("Invalid inputs");
+
+        if (!id.equals(selectedNode.get_nodeID())) {
+          if (!db.updateNode(id, x, y, f, b, nt, ln, sn)) {
+            messageLabel.setText("Invalid inputs");
+          }
+        } else {
+          messageLabel.setText("You cannot change the ID of an already made node");
         }
       } else {
-        DataNode n = new DataNode(x, y, id, f, b, nt, ln, sn);
+        id = ID.getText();
+        Node n = new Node(x, y, id, f, b, nt, ln, sn);
         if (db.addNode(n)) {
           updateSelectedLabel(id);
         } else {
           messageLabel.setText("Invalid inputs");
         }
       }
+
     } catch (Exception e) {
       messageLabel.setText("Invalid type in field");
     }
@@ -165,87 +178,45 @@ public class CSVEditorNodes extends masterController implements Initializable {
   public void openFile(ActionEvent actionEvent) throws IOException {
     fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
     File file = fileChooser.showOpenDialog(appPrimaryScene.getWindow());
-    selectedFilePath = file.getPath();
-    db.deleteNodeRows();
-    listView.getItems().clear();
-    boolean loaded = db.loadCSVtoTable(file.getPath(), "NODES");
-    if (!loaded) {
-      loadSuccess.setText("Error loading file.");
-    } else {
-      HashSet<DataNode> set = db.getAllNodes();
-      for (DataNode n : set) {
-        Label lbl = new Label(n.getNodeID());
-        lbl.setId(n.getNodeID());
-        listView.getItems().add(lbl);
+    if (file != null) {
+      selectedFilePath = file.getPath();
+      db.deleteNodeRows();
+      listView.getItems().clear();
+      boolean loaded = db.loadCSVtoTable(file.getPath(), "NODES");
+      if (!loaded) {
+        loadSuccess.setText("Error loading file.");
+      } else {
+        HashSet<Node> set = db.getAllNodes();
+        for (Node n : set) {
+          Label lbl = new Label(n.get_nodeID());
+          lbl.setId(n.get_nodeID());
+          listView.getItems().add(lbl);
+        }
+        loadSuccess.setText("Nodes file successfully loaded!");
       }
-      loadSuccess.setText("Edges file successfully loaded!");
     }
   }
 
-  //  private void loadNodes(File file) throws FileNotFoundException {
-  //    nodeMap.clear();
-  //    csvToNodes(file);
-  //    loadSuccess.setText("File successfully loaded!");
-  //    messageLabel.setText("" + file);
-  //    listView.getItems().clear();
-  //    for (DataNode node : nodeMap.values()) {
-  //      Label lbl = new Label(node.get_nodeID());
-  //      lbl.setId(node.get_nodeID());
-  //      listView.getItems().add(lbl);
-  //    }
-  //  }
-
-  //  private HashMap<String, DataNode> csvToNodes(File file) throws FileNotFoundException {
-  //    Scanner scanner = new Scanner(file);
-  //    if (!scanner.hasNextLine()) return nodeMap;
-  //    String line = scanner.nextLine();
-  //
-  //    if (line.contains("nodeID,xcoord,ycoord,floor,building,nodeType,longName,shortName")
-  //        && scanner.hasNextLine()) {
-  //      line = scanner.nextLine();
-  //    }
-  //
-  //    if (!scanner.hasNextLine()) return nodeMap;
-  //    do {
-  //      String[] entries = line.split(",");
-  //      if (entries.length == 8) {
-  //        String nodeID = entries[0];
-  //        Double xPos = Double.parseDouble(entries[1]);
-  //        Double yPos = Double.parseDouble(entries[2]);
-  //        String floor = entries[3];
-  //        String building = entries[4];
-  //        String nodeType = entries[5];
-  //        String longName = entries[6];
-  //        String shortName = entries[7];
-  //        nodeMap.put(
-  //            nodeID,
-  //            new DataNode(xPos, yPos, nodeID, floor, building, nodeType, longName, shortName));
-  //      }
-  //      line = scanner.nextLine();
-  //    } while (scanner.hasNextLine());
-  //    return nodeMap;
-  //  }
-
   private void nodesToCsv(String outputPath) throws IOException {
     Writer fileWriter = new FileWriter(outputPath, false);
-    HashSet<DataNode> set = db.getAllNodes();
-    for (DataNode node : set) {
+    HashSet<Node> set = db.getAllNodes();
+    for (Node node : set) {
       String outputString = "";
-      outputString += node.getNodeID();
+      outputString += node.get_nodeID();
       outputString += ",";
       outputString += node.get_x();
       outputString += ",";
       outputString += node.get_y();
       outputString += ",";
-      outputString += node.getFloor();
+      outputString += node.get_floor();
       outputString += ",";
-      outputString += node.getBuilding();
+      outputString += node.get_building();
       outputString += ",";
-      outputString += node.getNodeType();
+      outputString += node.get_nodeType();
       outputString += ",";
-      outputString += node.getLongName();
+      outputString += node.get_longName();
       outputString += ",";
-      outputString += node.getShortName();
+      outputString += node.get_shortName();
       outputString += "\n";
       fileWriter.write(outputString);
     }
@@ -253,36 +224,40 @@ public class CSVEditorNodes extends masterController implements Initializable {
   }
 
   public void saveFile(ActionEvent actionEvent) throws IOException {
-    nodesToCsv(selectedFilePath);
-    loadSuccess.setText("File Saved!");
+    if (!(selectedFilePath == null)) {
+      nodesToCsv(selectedFilePath);
+      loadSuccess.setText("File Saved!");
+    } else {
+      messageLabel.setText("Select a filepath first with \"Open File\"");
+    }
   }
 
-  @FXML
-  public void DeleteNode(ActionEvent actionEvent) {
-    if (listView.getItems().isEmpty()) return;
+  public void deleteNode(ActionEvent actionEvent) {
+    if (listView.getItems().isEmpty() || selectedLabel == null) return;
     int index = listView.getItems().indexOf(selectedLabel);
     db.deleteNode(selectedLabel.getId());
     listView.getItems().remove(selectedLabel);
     if (index != 0) index--;
     if (!(listView.getItems().size() == 0)) {
       selectedLabel = listView.getItems().get(index);
-      DataNode clickedNode = db.getNode(selectedLabel.getId());
+      Node clickedNode = db.getNode(selectedLabel.getId());
       if (clickedNode != null) {
         updateTextFields(clickedNode);
       } else {
         setEmptyFields();
       }
     } else {
+      selectedLabel = null;
       setEmptyFields();
     }
   }
 
   private void loadFromDB() {
     listView.getItems().clear();
-    HashSet<DataNode> set = db.getAllNodes();
-    for (DataNode n : set) {
-      Label lbl = new Label(n.getNodeID());
-      lbl.setId(n.getNodeID());
+    HashSet<Node> set = db.getAllNodes();
+    for (Node n : set) {
+      Label lbl = new Label(n.get_nodeID());
+      lbl.setId(n.get_nodeID());
       listView.getItems().add(lbl);
     }
   }

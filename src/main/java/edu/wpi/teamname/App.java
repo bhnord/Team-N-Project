@@ -1,15 +1,10 @@
 package edu.wpi.teamname;
 
-import com.google.inject.AbstractModule;
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-import com.google.inject.Provides;
-import com.google.inject.Singleton;
+import com.google.inject.*;
 import edu.wpi.teamname.services.database.DatabaseService;
 import edu.wpi.teamname.services.database.DatabaseServiceProvider;
 import edu.wpi.teamname.state.HomeStateProvider;
 import edu.wpi.teamname.views.FXMLLoaderProvider;
-import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -18,8 +13,9 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javax.swing.*;
 import lombok.extern.slf4j.Slf4j;
+
+import java.io.IOException;
 
 @Slf4j
 public class App extends Application {
@@ -48,7 +44,7 @@ public class App extends Application {
               }
             });
     DatabaseService db = injector.getInstance(DatabaseService.class);
-    // db.initTables();
+    //db.initTables();
     loader = new FXMLLoader();
     loader.setControllerFactory(injector::getInstance);
   }

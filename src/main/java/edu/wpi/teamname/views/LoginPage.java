@@ -32,6 +32,8 @@ public class LoginPage extends masterController implements Initializable {
   @FXML private Label incorrectLogin;
 
   private Login login;
+  public String accountUsername = "";
+  public String accountPassword = "";
   String patientUsername = "p";
   String patientPassword = "p";
 
@@ -40,6 +42,10 @@ public class LoginPage extends masterController implements Initializable {
 
   String adminUsername = "a";
   String adminPassword = "a";
+
+  /*  LoginPage() {
+    this.account = "";
+  }*/
 
   public void initialize(URL url, ResourceBundle rb) {
     /** Locking submit button to start* */
@@ -66,10 +72,12 @@ public class LoginPage extends masterController implements Initializable {
   }
 
   public String getUsername() {
+    accountUsername = usernameField.getText();
     return usernameField.getText();
   }
 
   public String getPassword() {
+    accountPassword = passwordField.getText();
     return passwordField.getText();
   }
 
@@ -78,19 +86,46 @@ public class LoginPage extends masterController implements Initializable {
     this.appPrimaryScene = appPrimaryScene;
   }
 
-  @FXML
-  private void continueToHomePage() throws IOException {
-    // System.out.println(getUsername());
-    // System.out.println(getPassword());
-    if (getUsername().equals(patientUsername) && getPassword().equals(patientPassword)) {
-      super.advanceHomePatient(loader, appPrimaryScene);
+  public void accountType() throws IOException {
+    /*   if (getUsername().equals(patientUsername) && getPassword().equals(patientPassword)) {
+      account = "patient";
     }
 
     if (getUsername().equals(employeeUsername) && getPassword().equals(employeePassword)) {
-      super.advanceHome(loader, appPrimaryScene);
+      account = "employee";
     }
 
     if (getUsername().equals(adminUsername) && getPassword().equals(adminPassword)) {
+      account = "admin";
+    }
+    return account;*/
+
+    /*if (accountUsername.equals(patientUsername) && accountPassword.equals(patientPassword)) {
+      super.advanceHomePatient(loader, appPrimaryScene);
+    } else if (accountUsername.equals(employeeUsername)
+        && accountPassword.equals(employeePassword)) {
+      super.advanceHome(loader, appPrimaryScene);
+    } else if (accountUsername.equals(adminUsername) && accountPassword.equals(adminPassword)) {
+      super.advanceHomeAdmin(loader, appPrimaryScene);
+    } else super.advanceHomeAdmin(loader, appPrimaryScene);*/
+
+    if (getUsername().equals(patientUsername) && getPassword().equals(patientPassword)) {
+      super.advanceHomePatient(loader, appPrimaryScene);
+    } else if (getUsername().equals(employeeUsername) && getPassword().equals(employeePassword)) {
+      super.advanceHome(loader, appPrimaryScene);
+    } else if (getUsername().equals(adminUsername) && getPassword().equals(adminPassword)) {
+      super.advanceHomeAdmin(loader, appPrimaryScene);
+    }
+  }
+
+  @FXML
+  private void continueToHomePage() throws IOException {
+    if (getUsername().equals(patientUsername) && getPassword().equals(patientPassword)) {
+
+      super.advanceHomePatient(loader, appPrimaryScene);
+    } else if (getUsername().equals(employeeUsername) && getPassword().equals(employeePassword)) {
+      super.advanceHome(loader, appPrimaryScene);
+    } else if (getUsername().equals(adminUsername) && getPassword().equals(adminPassword)) {
       super.advanceHomeAdmin(loader, appPrimaryScene);
     } else {
       incorrectLogin.setText("INCORRECT USERNAME OR PASSWORD, TRY AGAIN");

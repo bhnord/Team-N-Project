@@ -12,7 +12,9 @@ import javafx.stage.Stage;
 public class ConfirmBoxLaundry extends masterController implements Initializable {
   static Stage stage;
   static ConfirmBoxLaundry box;
+  private Scene appPrimaryScene;
   static LaundryRequestController laundry = new LaundryRequestController();
+  static LoginPage loginAccount = new LoginPage();
 
   public static void confirm(LaundryRequestController laundryType) throws IOException {
 
@@ -52,6 +54,22 @@ public class ConfirmBoxLaundry extends masterController implements Initializable
   @FXML
   public void returnToHomeLaundry() throws IOException {
     box.stage.close();
-    laundry.advanceHome();
+    // laundry.advanceHome();
+    /*
+    if (loginAccount.getUsername().equals("p") && loginAccount.getPassword().equals("p")) {
+      // if (loginAccount.accountType().equals("patient"))
+      super.advanceServiceRequestPatient(loader, appPrimaryScene);
+    }
+    if (loginAccount.getUsername().equals("e") && loginAccount.getPassword().equals("e")) {
+      // if (loginAccount.accountType().equals("employee"))
+      super.advanceServiceRequestEmployee(loader, appPrimaryScene);
+    }
+    if (loginAccount.getUsername().equals("a") && loginAccount.getPassword().equals("a")) {
+      // if (loginAccount.accountType().equals("admin"))
+      super.advanceServiceRequestAdmin(loader, appPrimaryScene);
+    }
+
+    */
+    loginAccount.accountType();
   }
 }
