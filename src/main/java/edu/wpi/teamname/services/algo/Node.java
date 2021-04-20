@@ -2,6 +2,7 @@ package edu.wpi.teamname.services.algo;
 
 import java.util.ArrayList;
 import java.util.List;
+import javafx.scene.shape.Line;
 import javafx.scene.shape.Shape;
 import lombok.NonNull;
 
@@ -10,12 +11,16 @@ public class Node implements Comparable<Node> {
   public static class Link {
     String _id;
     Node _other;
+    Node _this;
     double _distance;
+    public Line _shape;
 
-    public Link(String id, Node other, double distance) {
+    public Link(String id, Node _this, Node other, double distance, Line shape) {
       this._id = id;
       this._distance = distance;
       this._other = other;
+      this._shape = shape;
+      this._this = _this;
     }
   }
 
@@ -43,11 +48,11 @@ public class Node implements Comparable<Node> {
     this._seen = _seen;
   }
 
-  public Node get_parent() {
+  public Link get_parent() {
     return _parent;
   }
 
-  public void set_parent(Node _parent) {
+  public void set_parent(Link _parent) {
     this._parent = _parent;
   }
 
@@ -98,7 +103,7 @@ public class Node implements Comparable<Node> {
   private double _localGoal;
   private double _globalGoal;
   private boolean _seen;
-  private Node _parent;
+  private Link _parent;
   private List<Link> _neighbors;
 
   public String get_floor() {
@@ -189,8 +194,8 @@ public class Node implements Comparable<Node> {
     this._parent = null;
   }
 
-  public void addNeighbor(String id, Node other, double distance) {
-    this._neighbors.add(new Link(id, other, distance));
+  public void addNeighbor(String id, Node other, double distance, Line shape) {
+    this._neighbors.add(new Link(id, this, other, distance, shape));
   }
 
   @Override
