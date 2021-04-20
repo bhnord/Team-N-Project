@@ -4,6 +4,8 @@ import com.google.inject.Inject;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.RequiredFieldValidator;
 import edu.wpi.teamname.services.database.DatabaseService;
+import edu.wpi.teamname.services.database.requests.Request;
+import edu.wpi.teamname.services.database.requests.RequestType;
 import edu.wpi.teamname.state.HomeState;
 import java.io.IOException;
 import java.net.URL;
@@ -24,9 +26,13 @@ public class AudioVisualRequestController extends masterController implements In
   @Inject FXMLLoader loader;
   @Inject HomeState state;
   @FXML private Label text;
+  @FXML private Label errorLabel;
   @FXML private JFXTextField txtEmployeeName;
-  @FXML private JFXTextField txtStartRoom;
-  @FXML private JFXTextField txtEndRoom;
+  @FXML private JFXTextField txtRoom;
+  @FXML private JFXTextField txtTimeOfRequest;
+  @FXML private JFXTextField txtEquipment;
+  @FXML private JFXTextField txtComments;
+
   private Scene appPrimaryScene;
   Stage primaryStage;
   String helpPagePath = "AudioVisualRequestHelpPage";
@@ -55,20 +61,20 @@ public class AudioVisualRequestController extends masterController implements In
               if (!newVal) txtEmployeeName.validate();
             });
     reqInputValid.setMessage("Cannot be empty");
-    txtStartRoom.getValidators().add(reqInputValid);
-    txtStartRoom
+    txtRoom.getValidators().add(reqInputValid);
+    txtRoom
         .focusedProperty()
         .addListener(
             (o, oldVal, newVal) -> {
-              if (!newVal) txtStartRoom.validate();
+              if (!newVal) txtRoom.validate();
             });
     reqInputValid.setMessage("Cannot be empty");
-    txtEndRoom.getValidators().add(reqInputValid);
-    txtEndRoom
+    txtEquipment.getValidators().add(reqInputValid);
+    txtEquipment
         .focusedProperty()
         .addListener(
             (o, oldVal, newVal) -> {
-              if (!newVal) txtEndRoom.validate();
+              if (!newVal) txtEquipment.validate();
             });
   }
 
@@ -79,6 +85,17 @@ public class AudioVisualRequestController extends masterController implements In
 
   public void Submit(ActionEvent actionEvent) throws IOException {
     ConfirmBoxAudioVisual.confirm(this);
+
+    Request r =
+        new Request(
+            RequestType.AUDIO_VISUAL,
+            2,
+            txtRoom.getText(),
+            txtEquipment.getText(),
+            txtComments.getText());
+    if (!db.addRequest(r)) {
+      errorLabel.setText("Invalid Input(s)");
+    }
   }
 
   public void help(ActionEvent actionEvent) throws IOException {
