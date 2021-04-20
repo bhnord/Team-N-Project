@@ -104,6 +104,7 @@ public class MapController extends masterController implements Initializable {
     YLabel.setText(String.valueOf(mouseDragEvent.getY()));
   }
 
+  //Getting the closest node to the mouse
   private Node get(double x, double y) {
     double min = Double.MAX_VALUE;
     Node closest = null;
@@ -222,6 +223,7 @@ public class MapController extends masterController implements Initializable {
    * @param actionEvent
    * @throws IOException
    */
+  //Reloading the map scene
   public void clear(ActionEvent actionEvent) throws IOException {
     Parent root = loader.load(getClass().getResourceAsStream("map.fxml"));
     Screen screen = Screen.getPrimary();
@@ -285,6 +287,7 @@ public class MapController extends masterController implements Initializable {
     current.setText("No object Selected");
   }
 
+  //Loading from the database
   public void Load(ActionEvent actionEvent) {
     for (HashMap.Entry<String, Node> node : nodeSet.entrySet()) {
       node.getValue().set_x(node.getValue().get_x() * .25);
