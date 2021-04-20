@@ -3,7 +3,6 @@ package edu.wpi.teamname.views;
 import com.google.inject.Inject;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
-import com.jfoenix.controls.JFXTextField;
 import edu.wpi.teamname.services.database.requests.Request;
 import java.io.IOException;
 import java.net.URL;
@@ -24,13 +23,13 @@ public class CurrentRequestController extends masterController implements Initia
   private Scene appPrimaryScene;
   @FXML private JFXListView<Label> listView;
   @FXML private JFXButton markCompleteButton;
-  @FXML private JFXTextField RequestId;
-  @FXML private JFXTextField requestType;
-  @FXML private JFXTextField senderName;
-  @FXML private JFXTextField ReceiverName;
-  @FXML private JFXTextField contentField;
-  @FXML private JFXTextField notesField;
-  @FXML private JFXTextField roomName;
+  @FXML private Label requestId;
+  @FXML private Label requestType;
+  @FXML private Label senderName;
+  @FXML private Label receiverName;
+  @FXML private Label content;
+  @FXML private Label notes;
+  @FXML private Label roomName;
   private Label selectedLabel;
   private HashMap<Integer, Request> requestMap = new HashMap<>();
 
@@ -48,7 +47,7 @@ public class CurrentRequestController extends masterController implements Initia
           new Label(
               request.getType().toString()
                   + " request for "
-                  + db.getUserById(Integer.toString(request.getSenderID())).getUsername());
+                  + db.getUserById(Integer.toString(request.getReceiverID())).getUsername());
       lbl.setId(Integer.toString(request.getId()));
       requestMap.put(request.getId(), request);
       listView.getItems().add(lbl);
@@ -70,25 +69,25 @@ public class CurrentRequestController extends masterController implements Initia
   }
 
   private void setEmptyFields() {
-    RequestId.setText("");
+    requestId.setText("");
     requestType.setText("");
     senderName.setText("");
-    ReceiverName.setText("");
-    contentField.setText("");
-    notesField.setText("");
+    receiverName.setText("");
+    content.setText("");
+    notes.setText("");
     roomName.setText("");
   }
 
   private void updateTextFields(Request clickedRequest) {
-    RequestId.setText(Integer.toString(clickedRequest.getId()));
+    requestId.setText(Integer.toString(clickedRequest.getId()));
     requestType.setText(clickedRequest.getType().toString());
     senderName.setText(
         db.getUserById(Integer.toString(clickedRequest.getSenderID())).getUsername());
-    ReceiverName.setText(
+    receiverName.setText(
         db.getUserById(Integer.toString(clickedRequest.getReceiverID())).getUsername());
     roomName.setText(db.getNode(clickedRequest.getRoomNodeId()).get_longName());
-    contentField.setText(clickedRequest.getContent());
-    notesField.setText(clickedRequest.getNotes());
+    content.setText(clickedRequest.getContent());
+    notes.setText(clickedRequest.getNotes());
   }
 
   @FXML

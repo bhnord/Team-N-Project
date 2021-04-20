@@ -18,7 +18,7 @@ public class DatabaseService {
   /*
    Database service class. This class will be loaded as a Singleton by Guice.
   */
-  User currentUser = new Employee("1", "username111");
+  User currentUser = new Employee("1", "username111"); // TODO IMPLEMENT WITH LOGIN PAGE
 
   private final Connection connection;
   private Statement stmt;

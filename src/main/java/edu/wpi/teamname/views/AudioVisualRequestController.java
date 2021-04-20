@@ -26,11 +26,13 @@ public class AudioVisualRequestController extends masterController implements In
   @Inject FXMLLoader loader;
   @Inject HomeState state;
   @FXML private Label text;
+  @FXML private Label errorLabel;
   @FXML private JFXTextField txtEmployeeName;
   @FXML private JFXTextField txtRoom;
   @FXML private JFXTextField txtTimeOfRequest;
   @FXML private JFXTextField txtEquipment;
   @FXML private JFXTextField txtComments;
+
   private Scene appPrimaryScene;
   Stage primaryStage;
   String helpPagePath = "AudioVisualRequestHelpPage";
@@ -91,7 +93,9 @@ public class AudioVisualRequestController extends masterController implements In
             txtRoom.getText(),
             txtEquipment.getText(),
             txtComments.getText());
-    db.addRequest(r);
+    if (!db.addRequest(r)) {
+      errorLabel.setText("Invalid Input(s)");
+    }
   }
 
   public void help(ActionEvent actionEvent) throws IOException {

@@ -50,5 +50,10 @@
                 <Font name="Serif Bold" size="38.0" />
             </font>
         </JFXTextField>
+      <Label fx:id="errorLabel" layoutX="51.0" layoutY="592.0" prefHeight="31.0" prefWidth="464.0">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>
