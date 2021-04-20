@@ -1,16 +1,14 @@
 package edu.wpi.teamname.services.database;
 
 import com.google.inject.Inject;
-import edu.wpi.teamname.services.algo.Node;
 import edu.wpi.teamname.services.algo.Edge;
 import edu.wpi.teamname.services.algo.Node;
-import lombok.extern.slf4j.Slf4j;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashSet;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class DatabaseService {
@@ -73,21 +71,21 @@ public class DatabaseService {
   public boolean addNode(Node node) {
     String query =
         "INSERT INTO NODES VALUES ('"
-            + node.getNodeID()
+            + node.get_nodeID()
             + "', "
             + node.get_x()
             + ", "
             + node.get_y()
             + ", '"
-            + node.getFloor()
+            + node.get_floor()
             + "', '"
-            + node.getFloor()
+            + node.get_floor()
             + "', '"
-            + node.getNodeID()
+            + node.get_nodeID()
             + "', '"
-            + node.getLongName()
+            + node.get_longName()
             + "', '"
-            + node.getShortName()
+            + node.get_shortName()
             + "')";
     try {
       stmt.execute(query);
@@ -312,8 +310,7 @@ public class DatabaseService {
         String shortName = rs.getString("SHORTNAME");
         double xPos = rs.getDouble("XCOORD");
         double yPos = rs.getDouble("YCOORD");
-        nodeSet.add(
-            new Node(xPos, yPos, nodeID, floor, building, nodeType, longName, shortName));
+        nodeSet.add(new Node(xPos, yPos, nodeID, floor, building, nodeType, longName, shortName));
       }
       return nodeSet;
     } catch (SQLException e) {

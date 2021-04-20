@@ -62,6 +62,7 @@ public class MapController extends masterController implements Initializable {
   int[] nodeinfo = new int[3];
   ObservableList<int[]> nodes = FXCollections.observableArrayList();
   HashMap<String, Node> nodeSet = new HashMap<>();
+  String nodeName;
 
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
@@ -120,6 +121,10 @@ public class MapController extends masterController implements Initializable {
       String id = UUID.randomUUID().toString();
       placeNode(id, (int) mouseEvent.getX(), (int) mouseEvent.getY());
     }
+  }
+
+  public void setNodeName(String nodeName) {
+    this.nodeName = nodeName;
   }
 
   public void startLink(MouseEvent mouseEvent) {
@@ -381,4 +386,6 @@ public class MapController extends masterController implements Initializable {
     csvWriter.flush();
     csvWriter.close();
   }
+
+  public void examplePathFind(ActionEvent actionEvent) {}
 }
