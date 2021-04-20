@@ -108,8 +108,10 @@ public class MapController extends masterController implements Initializable {
     YLabel.setText(String.valueOf(mouseDragEvent.getY()));
   }
 
-  //Getting the closest node to the mouse
+  // Getting the closest node to the mouse
   private Node get(double x, double y) {
+    x *= 4;
+    y *= 4;
     double min = Double.MAX_VALUE;
     Node closest = null;
     for (Node c : nodeSet.values()) {
@@ -180,7 +182,7 @@ public class MapController extends masterController implements Initializable {
         });
     AnchorPane scene = (AnchorPane) appPrimaryScene.getRoot();
     scene.getChildren().add(root);
-    Node n = new Node(x, y, id);
+    Node n = new Node(x * 4, y * 4, id);
     n.set_shape(simpleNode);
     if (!nodeSet.containsKey(id)) {
       mapObjects.put(id, scene.getChildren().size() - 1);
@@ -199,7 +201,8 @@ public class MapController extends masterController implements Initializable {
     String id1 = node1.get_nodeID();
     String id2 = node2.get_nodeID();
     double distance = node1.heuristic(node2);
-    Line simpleNode = new Line(node1.get_x(), node1.get_y(), node2.get_x(), node2.get_y());
+    Line simpleNode =
+        new Line(node1.get_x() / 4, node1.get_y() / 4, node2.get_x() / 4, node2.get_y() / 4);
     simpleNode.setTranslateZ(5);
     node1.addNeighbor(id, node2, distance, simpleNode);
     node2.addNeighbor(id, node1, distance, simpleNode);
@@ -230,7 +233,7 @@ public class MapController extends masterController implements Initializable {
    * @param actionEvent
    * @throws IOException
    */
-  //Reloading the map scene
+  // Reloading the map scene
   public void clear(ActionEvent actionEvent) throws IOException {
     Parent root = loader.load(getClass().getResourceAsStream("map.fxml"));
     Screen screen = Screen.getPrimary();
@@ -304,7 +307,7 @@ public class MapController extends masterController implements Initializable {
     current.setText("No object Selected");
   }
 
-  //Loading from the database
+  // Loading from the database
   public void Load(ActionEvent actionEvent) {
     nodeSet.clear();
     edgeSet.clear();
@@ -318,7 +321,7 @@ public class MapController extends masterController implements Initializable {
           nodeSet.get(edge.getValue().getEndNode()));
     }
     for (HashMap.Entry<String, Node> node : nodeSet.entrySet()) {
-      placeNode(node.getKey(), node.getValue().get_x(), node.getValue().get_y());
+      placeNode(node.getKey(), node.getValue().get_x() * .25, node.getValue().get_y() * .25);
     }
   }
 
