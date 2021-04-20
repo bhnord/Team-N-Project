@@ -47,7 +47,7 @@
          <font>
             <Font name="Arial Narrow Bold" size="20.0" />
          </font></JFXTextField>
-      <JFXCheckBox fx:id="checkbox1" checkedColor="#00e0b0" layoutX="623.0" layoutY="484.0" text="Wheelcahir" unCheckedColor="WHITE">
+      <JFXCheckBox fx:id="checkbox1" checkedColor="#00e0b0" layoutX="623.0" layoutY="484.0" text="Wheelchair" unCheckedColor="WHITE">
          <font>
             <Font name="Arial Narrow Bold" size="20.0" />
          </font></JFXCheckBox>

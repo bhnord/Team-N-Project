@@ -1,19 +1,19 @@
 package edu.wpi.teamname.views;
 
 import com.google.inject.Inject;
+import com.jfoenix.controls.JFXComboBox;
 import edu.wpi.teamname.services.database.DatabaseService;
 import edu.wpi.teamname.state.HomeState;
+import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
@@ -21,27 +21,12 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class CovidForm extends masterController implements Initializable {
 
-  @FXML private ChoiceBox q1 = new ChoiceBox();
-
-  @FXML private ChoiceBox q2 = new ChoiceBox();
-
-  @FXML private ChoiceBox q3 = new ChoiceBox();
-
-  @FXML private ChoiceBox q4 = new ChoiceBox();
-
-  @FXML private ChoiceBox q5 = new ChoiceBox();
-
-  @FXML private ChoiceBox q6 = new ChoiceBox();
-
-  ObservableList<String> answers = FXCollections.observableArrayList("yes", "no");
-
   @Inject DatabaseService db;
   @Inject FXMLLoader loader;
   @Inject HomeState state;
   @FXML private Label text;
 
-  static Stage stage;
-
+  static Stage primaryStage;
   private Scene appPrimaryScene;
 
   /**
@@ -55,27 +40,47 @@ public class CovidForm extends masterController implements Initializable {
     this.appPrimaryScene = appPrimaryScene;
   }
 
+  @FXML JFXComboBox<String> comboBox = new JFXComboBox<>();
+  @FXML JFXComboBox<String> comboBox2 = new JFXComboBox<>();
+  @FXML JFXComboBox<String> comboBox3 = new JFXComboBox<>();
+  @FXML JFXComboBox<String> comboBox4 = new JFXComboBox<>();
+  @FXML JFXComboBox<String> comboBox6 = new JFXComboBox<>();
+  @FXML JFXComboBox<String> comboBox5 = new JFXComboBox<>();
+
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    log.debug(state.toString());
+    comboBox.getItems().add("yes");
+    comboBox.getItems().add("no");
 
-    q1.setValue("select");
-    q1.setItems(answers);
-    q2.setValue("select");
-    q2.setItems(answers);
-    q3.setValue("select");
-    q3.setItems(answers);
-    q4.setValue("select");
-    q4.setItems(answers);
-    q5.setValue("select");
-    q5.setItems(answers);
-    q6.setValue("select");
-    q6.setItems(answers);
+    comboBox2.getItems().add("yes");
+    comboBox2.getItems().add("no");
+
+    comboBox3.getItems().add("yes");
+    comboBox3.getItems().add("no");
+
+    comboBox4.getItems().add("yes");
+    comboBox4.getItems().add("no");
+
+    comboBox5.getItems().add("yes");
+    comboBox5.getItems().add("no");
+
+    comboBox6.getItems().add("yes");
+    comboBox6.getItems().add("no");
   }
 
   @FXML
   public void advanceHome() throws IOException {
     super.advanceHome(loader, appPrimaryScene);
+  }
+
+  @FXML
+  public void logOut() throws IOException {
+    super.logOut(loader, appPrimaryScene);
+  }
+
+  @FXML
+  private void exit(ActionEvent actionEvent) throws IOException {
+    super.cancel(actionEvent);
   }
 
   public void goToRequestPage(FXMLLoader childLoader, Scene ChildAppPrimaryScene)
@@ -85,7 +90,7 @@ public class CovidForm extends masterController implements Initializable {
   }
 
   @FXML
-  public void continuePage() throws IOException {
+  public void continuePage(ActionEvent actionEvent) throws IOException {
     goToRequestPage(loader, appPrimaryScene);
   }
 }
