@@ -48,11 +48,6 @@
                   </Button>
                   <Button mnemonicParsing="false" onAction="#SetEndNode" text="End Node" />
                   <Button mnemonicParsing="false" onAction="#PathFind" text="Get Directions" />
-                  <Label fx:id="pathtext" prefHeight="17.0" prefWidth="253.0" text="Path in blue from CHALL004L1 to CLABS002L1" visible="false">
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
-                  </Label>
                </children>
             </HBox>
          </children>

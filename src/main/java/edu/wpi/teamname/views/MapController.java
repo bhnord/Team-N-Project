@@ -134,7 +134,7 @@ public class MapController extends masterController implements Initializable {
     if (mouseEvent.getButton() == MouseButton.PRIMARY) {
       NameNode nameNodeClass = new NameNode();
       nameNodeClass.confirm(this);
-      if (cancelOrSubmit) {
+      if (cancelOrSubmit && !nodeName.equals("")) {
         placeNode(nodeName, mouseEvent.getX(), mouseEvent.getY());
       }
     }
@@ -181,7 +181,6 @@ public class MapController extends masterController implements Initializable {
             current.setText(root.getId());
           }
         });
-    //    onMousePressed="#startLink" onMouseReleased="#releaseMouse"
     root.setOnMousePressed(
         new EventHandler<MouseEvent>() {
           @Override
@@ -296,8 +295,9 @@ public class MapController extends masterController implements Initializable {
 
   private void DeleteNodesFromMap() {
     AnchorPane scene = (AnchorPane) appPrimaryScene.getRoot();
-    int i = 1;
-    for (javafx.scene.Node root : scene.getChildren().subList(1, scene.getChildren().size())) {
+    int i = 9;
+    System.out.println(scene.getChildren().size());
+    for (javafx.scene.Node root : scene.getChildren().subList(9, scene.getChildren().size() - 1)) {
       if (root.getId().equals(current.getText())) {
         scene.getChildren().remove(i);
         return;
