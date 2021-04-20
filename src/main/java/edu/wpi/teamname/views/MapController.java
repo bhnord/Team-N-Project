@@ -359,7 +359,17 @@ public class MapController extends masterController implements Initializable {
 
   private void DeleteNodesFromMap() {
     AnchorPane scene = (AnchorPane) appPrimaryScene.getRoot();
-    scene.getChildren().remove(current.getText());
+    int i = 1;
+    for (javafx.scene.Node root : scene.getChildren().subList(1, scene.getChildren().size() - 1)) {
+      if (root.getId().equals(current.getText())) {
+        scene.getChildren().remove(i);
+        return;
+      } else {
+        i++;
+      }
+    }
+
+    System.out.println("Object does not exist");
   }
 
   public static int getLineCount(String csv) throws IOException {
