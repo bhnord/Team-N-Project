@@ -5,7 +5,8 @@ public class Request {
   private RequestType type;
   private String content, notes;
 
-  public Request(RequestType type, int senderID, int receiverID, String content, String notes) {
+  public Request(
+      RequestType type, int receiverID, String roomNodeId, String content, String notes) {
     this.type = type;
     this.senderID = senderID;
     this.receiverID = receiverID;
