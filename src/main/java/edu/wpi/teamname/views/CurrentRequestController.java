@@ -43,4 +43,8 @@ public class CurrentRequestController extends masterController implements Initia
   public void advanceHome() throws IOException {
     super.advanceHome(loader, appPrimaryScene);
   }
+
+  public void markComplete(ActionEvent actionEvent) {
+
+  }
 }
