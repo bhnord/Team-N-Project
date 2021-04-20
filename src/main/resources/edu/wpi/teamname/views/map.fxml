@@ -16,12 +16,11 @@
          <children>
             <HBox prefHeight="744.0" prefWidth="1140.0">
                <children>
-                  <ImageView fx:id="mapimage" fitHeight="850.0" fitWidth="1250.0" onMouseMoved="#xyPrint" onMousePressed="#placeNode" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="mapimage" fitHeight="850.0" fitWidth="1250.0" onMouseMoved="#xyPrint" onMousePressed="#placeNode" mpickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image fx:id="mapimg" url="@/images/level1.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="nodeName" visible="false"/>
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <HBox.margin>
                         <Insets left="100.0" />

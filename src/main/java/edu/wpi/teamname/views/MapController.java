@@ -1,16 +1,10 @@
 package edu.wpi.teamname.views;
 
 import com.google.inject.Inject;
+import edu.wpi.teamname.services.algo.Edge;
 import edu.wpi.teamname.services.algo.Node;
 import edu.wpi.teamname.services.database.DatabaseService;
 import edu.wpi.teamname.state.HomeState;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -35,6 +29,17 @@ import javafx.scene.shape.Line;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.ResourceBundle;
 
 @Slf4j
 public class MapController extends masterController implements Initializable {
@@ -62,7 +67,10 @@ public class MapController extends masterController implements Initializable {
   int[] nodeinfo = new int[3];
   ObservableList<int[]> nodes = FXCollections.observableArrayList();
   HashMap<String, Node> nodeSet = new HashMap<>();
+  HashMap<String, Edge> edgeSet = new HashMap<>();
+
   String nodeName;
+  Boolean cancelOrSubmit;
 
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
@@ -78,6 +86,8 @@ public class MapController extends masterController implements Initializable {
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     log.debug(state.toString());
+    //    nodeSet = db.getAllNodes();
+    //    edgeSet = db.getAllEdges();
   }
 
   @FXML
@@ -116,15 +126,22 @@ public class MapController extends masterController implements Initializable {
    *
    * @param mouseEvent
    */
-  public void placeNode(MouseEvent mouseEvent) {
+  public void placeNode(MouseEvent mouseEvent) throws IOException {
     if (mouseEvent.getButton() == MouseButton.PRIMARY) {
-      String id = UUID.randomUUID().toString();
-      placeNode(id, (int) mouseEvent.getX(), (int) mouseEvent.getY());
+      NameNode nameNodeClass = new NameNode();
+      nameNodeClass.confirm(this);
+      if (cancelOrSubmit) placeNode(nodeName, (int) mouseEvent.getX(), (int) mouseEvent.getY());
     }
+
+    setCancelOrSubmit(false);
   }
 
   public void setNodeName(String nodeName) {
     this.nodeName = nodeName;
+  }
+
+  public void setCancelOrSubmit(Boolean sm) {
+    cancelOrSubmit = sm;
   }
 
   public void startLink(MouseEvent mouseEvent) {

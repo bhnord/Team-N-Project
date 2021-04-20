@@ -1,7 +1,6 @@
 package edu.wpi.teamname.views;
 
 import com.jfoenix.controls.JFXTextField;
-import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -10,6 +9,8 @@ import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class NameNode extends masterController implements Initializable {
   static Stage stage;
   static NameNode box;
@@ -17,7 +18,7 @@ public class NameNode extends masterController implements Initializable {
 
   @FXML private JFXTextField idName;
 
-  public static void confirm(MapController mapController) throws IOException {
+  public void confirm(MapController mapController) throws IOException {
 
     external = mapController;
 
@@ -38,11 +39,13 @@ public class NameNode extends masterController implements Initializable {
 
   @FXML
   public void cancel() throws IOException {
+    external.setCancelOrSubmit(false);
     box.stage.close();
   }
 
   @FXML
   public void submit() {
+    external.setCancelOrSubmit(true);
     external.setNodeName(idName.getText());
     box.stage.close();
   }
