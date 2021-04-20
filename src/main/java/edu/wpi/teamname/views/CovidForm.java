@@ -69,8 +69,6 @@ public class CovidForm extends masterController implements Initializable {
 
     comboBox6.getItems().add("yes");
     comboBox6.getItems().add("no");
-
-    // submit.setDisable(true);
   }
 
   @FXML
