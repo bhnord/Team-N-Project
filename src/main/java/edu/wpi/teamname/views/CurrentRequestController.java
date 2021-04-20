@@ -1,46 +1,118 @@
 package edu.wpi.teamname.views;
 
 import com.google.inject.Inject;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXListView;
+import com.jfoenix.controls.JFXTextField;
+import edu.wpi.teamname.services.algo.Node;
+import edu.wpi.teamname.services.database.requests.Request;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.input.MouseButton;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.ResourceBundle;
 
 public class CurrentRequestController extends masterController implements Initializable {
 
-  private Scene appPrimaryScene;
+    private Scene appPrimaryScene;
+    @FXML
+    private JFXListView<Label> listView;
+    @FXML
+    private JFXButton markCompleteButton;
+    @FXML
+    private JFXTextField RequestId;
+    @FXML
+    private JFXTextField requestType;
+    @FXML
+    private JFXTextField senderName;
+    @FXML
+    private JFXTextField ReceiverName;
+    @FXML
+    private JFXTextField contentField;
+    @FXML
+    private JFXTextField notesField;
+    private Label selectedLabel;
+    private HashMap<Integer, Request> requestMap;
 
-  @Inject
-  public void setAppPrimaryScene(Scene appPrimaryScene) {
-    this.appPrimaryScene = appPrimaryScene;
-  }
+    @Inject
+    public void setAppPrimaryScene(Scene appPrimaryScene) {
+        this.appPrimaryScene = appPrimaryScene;
+    }
 
-  @Override
-  public void initialize(URL url, ResourceBundle rb) {}
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        listView.getItems().clear();
+        HashSet<Request> set = db.getAllRequests();
+        for (Request request : set) {
+            requestMap.put(request.getId(), request);
+            Label lbl = new Label(Integer.toString(request.getId()));
+            lbl.setId(Integer.toString(request.getId()));
+            listView.getItems().add(lbl);
+        }
+        listView.setOnMouseClicked(
+                event -> {
+                    Label selected = listView.getSelectionModel().getSelectedItem();
+                    if (event.getButton() == MouseButton.PRIMARY && selected != null) {
+                        String id = selected.getId();
+                        Request clickedRequest = requestMap.get(Integer.valueOf(id));
+                        selectedLabel = selected;
+                        if (!(clickedRequest == null)) {
+                            updateTextFields(clickedRequest);
+                        } else {
+                            setEmptyFields();
+                        }
+                    }
+                });
+    }
 
-  @FXML
-  public void logOut() throws IOException {
-    super.logOut(loader, appPrimaryScene);
-  }
+    private void setEmptyFields() {
+        RequestId.setText("");
+        requestType.setText("");
+        senderName.setText("");
+        ReceiverName.setText("");
+        contentField.setText("");
+        notesField.setText("");
+    }
 
-  @FXML
-  private void exit(ActionEvent actionEvent) throws IOException {
-    super.cancel(actionEvent);
-  }
+    private void updateTextFields(Request clickedRequest) {
+        RequestId.setText(Integer.toString(clickedRequest.getId()));
+        requestType.setText(clickedRequest.getType().toString());
+        senderName.setText(Integer.toString(clickedRequest.getSenderID()));
+        ReceiverName.setText(Integer.toString(clickedRequest.getReceiverID()));
+        contentField.setText(clickedRequest.getContent());
+        notesField.setText(clickedRequest.getNotes());
+    }
 
-  public void advanceViews(ActionEvent actionEvent) throws IOException {
-    String file = ((Button) actionEvent.getSource()).getId() + ".fxml";
-    Parent root = loader.load(getClass().getResourceAsStream(file));
-    appPrimaryScene.setRoot(root);
-  }
+    @FXML
+    public void logOut() throws IOException {
+        super.logOut(loader, appPrimaryScene);
+    }
 
-  @FXML
-  public void advanceHome() throws IOException {
-    super.advanceHome(loader, appPrimaryScene);
-  }
+    @FXML
+    private void exit(ActionEvent actionEvent) throws IOException {
+        super.cancel(actionEvent);
+    }
+
+    public void advanceViews(ActionEvent actionEvent) throws IOException {
+        String file = ((Button) actionEvent.getSource()).getId() + ".fxml";
+        Parent root = loader.load(getClass().getResourceAsStream(file));
+        appPrimaryScene.setRoot(root);
+    }
+
+    @FXML
+    public void advanceHome() throws IOException {
+        super.advanceHome(loader, appPrimaryScene);
+    }
+
+    public void markComplete(ActionEvent actionEvent) {
+    }
 }

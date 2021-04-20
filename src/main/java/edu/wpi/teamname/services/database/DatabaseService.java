@@ -332,6 +332,17 @@ public class DatabaseService {
     }
   }
 
+  public HashSet<Request> getAllRequests() {
+    String str = "SELECT * FROM REQUESTS";
+    try {
+      ResultSet rs = stmt.executeQuery(str);
+      return resultSetToRequest(rs);
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return new HashSet<Request>();
+    }
+  }
+
   public HashSet<Request> getRequestBySender(int senderID) {
     String str = "SELECT * REQUESTS WHERE SENDERID = " + senderID;
     try {
