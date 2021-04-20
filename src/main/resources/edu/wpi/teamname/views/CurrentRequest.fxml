@@ -88,10 +88,15 @@
             </Tooltip>
          </tooltip>
       </JFXButton>
-      <Label fx:id="text" layoutX="72.0" layoutY="16.0" prefHeight="124.0" prefWidth="523.0" text="CSV EDGE EDITOR" textAlignment="CENTER">
+      <Label fx:id="text" layoutX="72.0" layoutY="16.0" prefHeight="124.0" prefWidth="523.0" text="CURRENT REQUESTS" textAlignment="CENTER">
          <font>
             <Font name="Arial Black" size="30.0" />
          </font>
       </Label>
+      <JFXButton fx:id="openFileButton" layoutX="410.0" layoutY="165.0" onAction="#markComplete" prefHeight="82.0" prefWidth="395.0" style="-fx-background-color: #0c00ae; -fx-background-radius: 15;" text="MARK COMPLETE" textFill="WHITE">
+         <font>
+            <Font name="Arial Black" size="14.0" />
+         </font>
+      </JFXButton>
    </children>
 </AnchorPane>
