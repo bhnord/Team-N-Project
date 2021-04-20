@@ -3,7 +3,8 @@ package edu.wpi.teamname.services.database.requests;
 public class Request {
   private int id, senderID, receiverID;
   private RequestType type;
-  private String content, notes;
+  private String content, notes, roomNodeId;
+
 
   public Request(
       RequestType type, int receiverID, String roomNodeId, String content, String notes) {
@@ -12,17 +13,29 @@ public class Request {
     this.receiverID = receiverID;
     this.content = content;
     this.notes = notes;
+    this.roomNodeId = roomNodeId;
   }
 
+
   public Request(
-      RequestType type, int requestID, int senderID, int receiverID, String content, String notes) {
+      RequestType type, int requestID, int senderID, int receiverID, String roomNodeId, String content, String notes) {
     this.type = type;
     this.id = requestID;
     this.senderID = senderID;
     this.receiverID = receiverID;
     this.content = content;
     this.notes = notes;
+    this.roomNodeId = roomNodeId;
   }
+
+  public String getRoomNodeId() {
+    return roomNodeId;
+  }
+
+  public void setRoomNodeId(String roomNodeId) {
+    this.roomNodeId = roomNodeId;
+  }
+
 
   public int getId() {
     return id;
