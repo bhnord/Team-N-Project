@@ -23,11 +23,11 @@
             <font>
                 <Font name="Serif Bold" size="38.0" />
             </font></JFXTextField>
-        <JFXTextField fx:id="txtStartRoom" focusColor="#211edd" labelFloat="true" layoutX="51.0" layoutY="183.0" promptText="Patient Room" unFocusColor="WHITE">
+        <JFXTextField fx:id="txtRoom" focusColor="#211edd" labelFloat="true" layoutX="51.0" layoutY="183.0" promptText="Patient Room" unFocusColor="WHITE">
             <font>
                 <Font name="Serif Bold" size="38.0" />
             </font></JFXTextField>
-        <JFXTextField fx:id="txtEndRoom" focusColor="#211edd" labelFloat="true" layoutX="51.0" layoutY="279.0" promptText="Time of request" unFocusColor="WHITE">
+        <JFXTextField fx:id="txtTimeOfRequest" focusColor="#211edd" labelFloat="true" layoutX="51.0" layoutY="279.0" promptText="Time of request" unFocusColor="WHITE">
             <font>
                 <Font name="Serif Bold" size="38.0" />
             </font></JFXTextField>
@@ -40,12 +40,12 @@
         <JFXButton fx:id="submit" layoutX="1142.0" layoutY="677.0" onAction="#Submit" ripplerFill="WHITE" text="Submit" textFill="WHITE" />
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#211edd" height="31.0" layoutX="1054.0" layoutY="677.0" stroke="TRANSPARENT" strokeType="INSIDE" width="60.0" />
         <JFXButton fx:id="submit1" layoutX="1051.0" layoutY="677.0" onAction="#help" prefWidth="67.0" ripplerFill="WHITE" text="Help" textFill="WHITE" />
-        <JFXTextField fx:id="txtEndRoom2" focusColor="#211edd" labelFloat="true" layoutX="51.0" layoutY="375.0" promptText="Necessary Equipment" unFocusColor="WHITE">
+        <JFXTextField fx:id="txtEquipment" focusColor="#211edd" labelFloat="true" layoutX="51.0" layoutY="375.0" promptText="Necessary Equipment" unFocusColor="WHITE">
             <font>
                 <Font name="Serif Bold" size="38.0" />
             </font>
         </JFXTextField>
-        <JFXTextField fx:id="txtEndRoom11" focusColor="#211edd" labelFloat="true" layoutX="51.0" layoutY="479.0" promptText="Comments" unFocusColor="WHITE">
+        <JFXTextField fx:id="txtComments" focusColor="#211edd" labelFloat="true" layoutX="51.0" layoutY="479.0" promptText="Comments" unFocusColor="WHITE">
             <font>
                 <Font name="Serif Bold" size="38.0" />
             </font>

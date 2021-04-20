@@ -5,7 +5,6 @@ public class Request {
   private RequestType type;
   private String content, notes, roomNodeId;
 
-
   public Request(
       RequestType type, int receiverID, String roomNodeId, String content, String notes) {
     this.type = type;
@@ -16,9 +15,14 @@ public class Request {
     this.roomNodeId = roomNodeId;
   }
 
-
   public Request(
-      RequestType type, int requestID, int senderID, int receiverID, String roomNodeId, String content, String notes) {
+      RequestType type,
+      int requestID,
+      int senderID,
+      int receiverID,
+      String roomNodeId,
+      String content,
+      String notes) {
     this.type = type;
     this.id = requestID;
     this.senderID = senderID;
@@ -35,7 +39,6 @@ public class Request {
   public void setRoomNodeId(String roomNodeId) {
     this.roomNodeId = roomNodeId;
   }
-
 
   public int getId() {
     return id;

@@ -30,6 +30,7 @@ public class CurrentRequestController extends masterController implements Initia
   @FXML private JFXTextField ReceiverName;
   @FXML private JFXTextField contentField;
   @FXML private JFXTextField notesField;
+  @FXML private JFXTextField roomName;
   private Label selectedLabel;
   private HashMap<Integer, Request> requestMap = new HashMap<>();
 
@@ -75,6 +76,7 @@ public class CurrentRequestController extends masterController implements Initia
     ReceiverName.setText("");
     contentField.setText("");
     notesField.setText("");
+    roomName.setText("");
   }
 
   private void updateTextFields(Request clickedRequest) {
@@ -84,6 +86,7 @@ public class CurrentRequestController extends masterController implements Initia
         db.getUserById(Integer.toString(clickedRequest.getSenderID())).getUsername());
     ReceiverName.setText(
         db.getUserById(Integer.toString(clickedRequest.getReceiverID())).getUsername());
+    roomName.setText(db.getNode(clickedRequest.getRoomNodeId()).get_longName());
     contentField.setText(clickedRequest.getContent());
     notesField.setText(clickedRequest.getNotes());
   }
