@@ -5,14 +5,14 @@ import edu.wpi.teamname.services.algo.Edge;
 import edu.wpi.teamname.services.algo.Node;
 import edu.wpi.teamname.services.database.requests.Request;
 import edu.wpi.teamname.services.database.requests.RequestType;
+import edu.wpi.teamname.services.database.users.*;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashSet;
 
-import edu.wpi.teamname.services.database.users.Employee;
-import edu.wpi.teamname.services.database.users.User;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -335,8 +335,19 @@ public class DatabaseService {
     }
   }
 
+  public Request getReqeust(int requestID){
+    String str = "SELECT * FROM REQUESTS WHERE id = " + requestID;
+    try{
+      ResultSet rs = stmt.executeQuery(str);
+      return (Request) resultSetToRequest(rs).toArray()[0];
+    } catch(SQLException e){
+      e.printStackTrace();
+      return null;
+    }
+  }
+
   public HashSet<Request> getRequestBySender(int senderID) {
-    String str = "SELECT * REQUESTS WHERE SENDERID = " + senderID;
+    String str = "SELECT * FROM REQUESTS WHERE SENDERID = " + senderID;
     try {
       ResultSet rs = stmt.executeQuery(str);
       return resultSetToRequest(rs);
@@ -347,7 +358,7 @@ public class DatabaseService {
   }
 
   public HashSet<Request> getRequestByReceiver(int receiverID) {
-    String str = "SELECT * REQUESTS WHERE SENDERID = " + receiverID;
+    String str = "SELECT * FROM REQUESTS WHERE SENDERID = " + receiverID;
     try {
       ResultSet rs = stmt.executeQuery(str);
       return resultSetToRequest(rs);
@@ -378,6 +389,87 @@ public class DatabaseService {
     } catch (SQLException e) {
       e.printStackTrace();
       return false;
+    }
+  }
+
+  public boolean addUser(User user, String password){
+    String str = "INSERT INTO USERS VALUES ("
+            + user.getId()
+            + ", '"
+            + user.getUsername()
+            + "', '"
+            + password
+            + "', '"
+            + user.getType().toString()
+            + "')";
+    try{
+      stmt.execute(str);
+      return true;
+    } catch (SQLException e){
+      e.printStackTrace();
+      return false;
+    }
+  }
+
+  public User getUserById(String id){
+    String str = "SELECT * FROM USERS WHERE ID = " + id;
+    try {
+      ResultSet rs = stmt.executeQuery(str);
+      return (User) resultSetToUsers(rs).toArray()[0];
+    } catch (SQLException e){
+      return null;
+    }
+  }
+
+  public User getUserByUsername(String username){
+    String str = "SELECT * FROM USERS WHERE USERNAME = " + username;
+    try{
+      ResultSet rs = stmt.executeQuery(str);
+      return (User) resultSetToUsers(rs).toArray()[0];
+    } catch (SQLException e){
+      e.printStackTrace();
+      return null;
+    }
+  }
+
+  public boolean deleteUser(String username){
+    String str = "DELETE USERS WHERE USERNAME = " + username;
+    try{
+      stmt.execute(str);
+      return true;
+    } catch (SQLException e){
+      return false;
+    }
+  }
+
+
+
+
+
+
+
+
+
+  private HashSet<User> resultSetToUsers(ResultSet rs) {
+    HashSet<User>  users = new HashSet<>();
+    try {
+      while (rs.next()) {
+        switch(rs.getString("USERTYPE")){
+          case "Patient":
+            users.add(new Patient(rs.getString("ID"), rs.getString("USERNAME")));
+            break;
+          case "Employee":
+            users.add(new Employee(rs.getString("ID"), rs.getString("USERNAME")));
+            break;
+          case "Administrator":
+            users.add(new Administrator(rs.getString("ID"), rs.getString("USERNAME")));
+            break;
+        }
+      }
+      return users;
+    } catch (SQLException e){
+      e.printStackTrace();
+      return null;
     }
   }
 
@@ -470,6 +562,7 @@ public class DatabaseService {
               + "Type varchar(30), "
               + "SenderID INT NOT NULL REFERENCES Users (id), "
               + "ReceiverID INT REFERENCES Users (id), "
+              + "Room varchar(25) REFERENCES Nodes (id),"
               + "Content varchar(700), "
               + "Notes varchar(200), "
               + "CONSTRAINT chk_Type CHECK (Type IN "
