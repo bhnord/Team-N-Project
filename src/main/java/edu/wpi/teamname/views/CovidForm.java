@@ -1,6 +1,7 @@
 package edu.wpi.teamname.views;
 
 import com.google.inject.Inject;
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import edu.wpi.teamname.services.database.DatabaseService;
 import edu.wpi.teamname.state.HomeState;
@@ -28,6 +29,8 @@ public class CovidForm extends masterController implements Initializable {
 
   static Stage primaryStage;
   private Scene appPrimaryScene;
+  @FXML private JFXButton submit;
+  int count = 0;
 
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
@@ -66,6 +69,8 @@ public class CovidForm extends masterController implements Initializable {
 
     comboBox6.getItems().add("yes");
     comboBox6.getItems().add("no");
+
+    // submit.setDisable(true);
   }
 
   @FXML
@@ -91,6 +96,23 @@ public class CovidForm extends masterController implements Initializable {
 
   @FXML
   public void continuePage(ActionEvent actionEvent) throws IOException {
-    goToRequestPage(loader, appPrimaryScene);
+    if (count == 0) {
+      submit.setDisable(true);
+    } else goToRequestPage(loader, appPrimaryScene);
+  }
+
+  @FXML
+  private void validateButton() {
+    if (comboBox.getValue() == null
+        || comboBox2.getValue() == null
+        || comboBox3.getValue() == null
+        || comboBox4.getValue() == null
+        || comboBox5.getValue() == null
+        || comboBox6.getValue() == null) {
+      submit.setDisable(true);
+    } else {
+      count += 1;
+      submit.setDisable(false);
+    }
   }
 }

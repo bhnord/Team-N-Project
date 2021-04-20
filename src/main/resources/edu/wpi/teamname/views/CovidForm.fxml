@@ -34,12 +34,12 @@
       <Label layoutX="134.0" layoutY="377.0" text="Have you or anyone in your household traveled in the U.S. in the past 21 days?" />
       <Label layoutX="134.0" layoutY="441.0" text="Have you or anyone in your household traveled on a cruise ship in the last 21 days?" />
       <Label layoutX="134.0" layoutY="502.0" text="Are you or anyone in your household a health care provider or emergency responder?" />
-      <JFXComboBox fx:id="comboBox" layoutX="820.0" layoutY="184.0" prefHeight="31.0" prefWidth="150.0" promptText="select yes or no"/>
-      <JFXComboBox fx:id="comboBox2" layoutX="820.0" layoutY="249.0" prefHeight="31.0" prefWidth="150.0" promptText="select yes or no"/>
-      <JFXComboBox fx:id="comboBox3" layoutX="820.0" layoutY="318.0" prefHeight="31.0" prefWidth="150.0" promptText="select yes or no"/>
-      <JFXComboBox fx:id="comboBox4" layoutX="820.0" layoutY="372.0" prefHeight="31.0" prefWidth="150.0" promptText="select yes or no"/>
-      <JFXComboBox fx:id="comboBox5" layoutX="820.0" layoutY="436.0" prefHeight="31.0" prefWidth="150.0" promptText="select yes or no"/>
-      <JFXComboBox fx:id="comboBox6" layoutX="820.0" layoutY="497.0" prefHeight="31.0" prefWidth="150.0" promptText="select yes or no"/>
+      <JFXComboBox fx:id="comboBox" layoutX="820.0" layoutY="184.0" prefHeight="31.0" prefWidth="150.0" onAction="#validateButton" promptText="select yes or no"/>
+      <JFXComboBox fx:id="comboBox2" layoutX="820.0" layoutY="249.0" prefHeight="31.0" prefWidth="150.0" onAction="#validateButton" promptText="select yes or no"/>
+      <JFXComboBox fx:id="comboBox3" layoutX="820.0" layoutY="318.0" prefHeight="31.0" prefWidth="150.0" onAction="#validateButton" promptText="select yes or no"/>
+      <JFXComboBox fx:id="comboBox4" layoutX="820.0" layoutY="372.0" prefHeight="31.0" prefWidth="150.0" onAction="#validateButton" promptText="select yes or no"/>
+      <JFXComboBox fx:id="comboBox5" layoutX="820.0" layoutY="436.0" prefHeight="31.0" prefWidth="150.0" onAction="#validateButton" promptText="select yes or no"/>
+      <JFXComboBox fx:id="comboBox6" layoutX="820.0" layoutY="497.0" prefHeight="31.0" prefWidth="150.0" onAction="#validateButton" promptText="select yes or no"/>
 
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0c00ae" height="69.0" layoutX="-1.0" layoutY="78.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.0" layoutX="27.0" layoutY="90.0" rotate="45.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" />
