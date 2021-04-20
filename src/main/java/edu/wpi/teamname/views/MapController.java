@@ -7,11 +7,6 @@ import edu.wpi.teamname.services.algo.Node;
 import edu.wpi.teamname.services.algo.PathFinder;
 import edu.wpi.teamname.services.database.DatabaseService;
 import edu.wpi.teamname.state.HomeState;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -34,6 +29,12 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.ResourceBundle;
 
 @Slf4j
 public class MapController extends masterController implements Initializable {
@@ -180,6 +181,21 @@ public class MapController extends masterController implements Initializable {
             current.setText(root.getId());
           }
         });
+    //    onMousePressed="#startLink" onMouseReleased="#releaseMouse"
+    root.setOnMousePressed(
+        new EventHandler<MouseEvent>() {
+          @Override
+          public void handle(MouseEvent event) {
+            startLink(event);
+          }
+        });
+    root.setOnMouseReleased(
+        new EventHandler<MouseEvent>() {
+          @Override
+          public void handle(MouseEvent event) {
+            releaseMouse(event);
+          }
+        });
     AnchorPane scene = (AnchorPane) appPrimaryScene.getRoot();
     scene.getChildren().add(root);
     Node n = new Node(x * 4, y * 4, id);
@@ -309,6 +325,7 @@ public class MapController extends masterController implements Initializable {
 
   // Loading from the database
   public void Load(ActionEvent actionEvent) {
+    //    if (nodeSet.isEmpty() && edgeSet.isEmpty()) {
     nodeSet.clear();
     edgeSet.clear();
     nodeSet = db.getAllNodesMap();
@@ -323,6 +340,7 @@ public class MapController extends masterController implements Initializable {
     for (HashMap.Entry<String, Node> node : nodeSet.entrySet()) {
       placeNode(node.getKey(), node.getValue().get_x() * .25, node.getValue().get_y() * .25);
     }
+    //    }
   }
 
   public void deleteCurrent(ActionEvent actionEvent) throws IOException {
