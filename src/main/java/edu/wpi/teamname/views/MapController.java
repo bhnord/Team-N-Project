@@ -142,7 +142,7 @@ public class MapController extends masterController implements Initializable {
   private void placeNode(String id, int x, int y) {
     Circle simpleNode = new Circle(x, y, 2.5);
     simpleNode.setFill(Color.BLUE);
-
+    Group root = new Group(simpleNode);
     root.setId(id);
     root.setOnMouseClicked(
         new EventHandler<MouseEvent>() {
