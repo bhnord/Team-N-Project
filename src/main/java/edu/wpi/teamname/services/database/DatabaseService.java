@@ -3,6 +3,9 @@ package edu.wpi.teamname.services.database;
 import com.google.inject.Inject;
 import edu.wpi.teamname.services.algo.Edge;
 import edu.wpi.teamname.services.algo.Node;
+import edu.wpi.teamname.services.database.requests.Request;
+import edu.wpi.teamname.services.database.requests.RequestType;
+import edu.wpi.teamname.services.database.users.*;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,6 +19,7 @@ public class DatabaseService {
   /*
    Database service class. This class will be loaded as a Singleton by Guice.
   */
+  User currentUser = new Employee("1", "username111"); // TODO IMPLEMENT WITH LOGIN PAGE
 
   private final Connection connection;
   private Statement stmt;
@@ -89,9 +93,9 @@ public class DatabaseService {
             + ", '"
             + node.get_floor()
             + "', '"
-            + node.get_floor()
+            + node.get_building()
             + "', '"
-            + node.get_nodeID()
+            + node.get_nodeType()
             + "', '"
             + node.get_longName()
             + "', '"
@@ -131,21 +135,20 @@ public class DatabaseService {
     String str =
         "UPDATE NODES SET xcoord = "
             + x
-            + ", ycoord = "
+            + ",ycoord = "
             + y
-            + ", floor = '"
+            + ", floor = "
             + floor
-            + "', building = '"
+            + ", building = "
             + building
-            + "', nodeType = '"
+            + ", nodeType = "
             + nodeType
-            + "', longName = '"
+            + ", longName = "
             + longName
-            + "', shortName = '"
+            + ", shortName = "
             + shortName
-            + "' WHERE id = '"
-            + id
-            + "'";
+            + " WHERE id ="
+            + id;
     try {
       stmt.execute(str);
       return true;
@@ -317,6 +320,198 @@ public class DatabaseService {
     }
   }
 
+  public boolean addRequest(Request request) {
+    String str =
+        "INSERT INTO REQUESTS (TYPE, SENDERID, RECEIVERID, ROOM, CONTENT, NOTES) VALUES ('"
+            + request.getType()
+            + "', "
+            + currentUser.getId()
+            + ", "
+            + request.getReceiverID()
+            + ", '"
+            + request.getRoomNodeId()
+            + "', '"
+            + request.getContent()
+            + "', '"
+            + request.getNotes()
+            + "')";
+    try {
+      return stmt.execute(str);
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return false;
+    }
+  }
+
+  public boolean deleteRequest(int requestID) {
+    String str = "DELETE FROM REQUESTS WHERE id = " + requestID;
+    try {
+      stmt.execute(str);
+      return true;
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return false;
+    }
+  }
+
+  public HashSet<Request> getAllRequests() {
+    String str = "SELECT * FROM REQUESTS";
+    try {
+      ResultSet rs = stmt.executeQuery(str);
+      return resultSetToRequest(rs);
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return new HashSet<Request>();
+    }
+  }
+
+  public Request getReqeust(int requestID) {
+    String str = "SELECT * FROM REQUESTS WHERE id = " + requestID;
+    try {
+      ResultSet rs = stmt.executeQuery(str);
+      return (Request) resultSetToRequest(rs).toArray()[0];
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return null;
+    }
+  }
+
+  public HashSet<Request> getRequestBySender(int senderID) {
+    String str = "SELECT * FROM REQUESTS WHERE SENDERID = " + senderID;
+    try {
+      ResultSet rs = stmt.executeQuery(str);
+      return resultSetToRequest(rs);
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return new HashSet<Request>();
+    }
+  }
+
+  public HashSet<Request> getRequestByReceiver(int receiverID) {
+    String str = "SELECT * FROM REQUESTS WHERE SENDERID = " + receiverID;
+    try {
+      ResultSet rs = stmt.executeQuery(str);
+      return resultSetToRequest(rs);
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return new HashSet<Request>();
+    }
+  }
+
+  public boolean updateRequest(
+      int requestID, RequestType type, int senderID, int receiverID, String content, String notes) {
+    String str =
+        "UPDATE REQUESTS SET TYPE = "
+            + type.toString()
+            + ", SENDERID = "
+            + senderID
+            + ", RECEIVERID = "
+            + receiverID
+            + ", CONTENT = "
+            + content
+            + ", NOTES = "
+            + notes
+            + " WHERE ID = "
+            + requestID;
+    try {
+      stmt.execute(str);
+      return true;
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return false;
+    }
+  }
+
+  public boolean addUser(User user, String password) {
+    String str =
+        "INSERT INTO USERS VALUES ("
+            + user.getId()
+            + ", '"
+            + user.getUsername()
+            + "', '"
+            + password
+            + "', '"
+            + user.getType().toString()
+            + "')";
+    try {
+      stmt.execute(str);
+      return true;
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return false;
+    }
+  }
+
+  public User getUserById(String id) {
+    String str = "SELECT * FROM USERS WHERE ID = " + id;
+    try {
+      ResultSet rs = stmt.executeQuery(str);
+      return (User) resultSetToUsers(rs).toArray()[0];
+    } catch (SQLException e) {
+      return null;
+    }
+  }
+
+  public User getUserByUsername(String username) {
+    String str = "SELECT * FROM USERS WHERE USERNAME = " + username;
+    try {
+      ResultSet rs = stmt.executeQuery(str);
+      return (User) resultSetToUsers(rs).toArray()[0];
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return null;
+    }
+  }
+
+  public boolean deleteUser(String username) {
+    String str = "DELETE USERS WHERE USERNAME = " + username;
+    try {
+      stmt.execute(str);
+      return true;
+    } catch (SQLException e) {
+      return false;
+    }
+  }
+
+  private HashSet<User> resultSetToUsers(ResultSet rs) {
+    HashSet<User> users = new HashSet<>();
+    try {
+      while (rs.next()) {
+        switch (rs.getString("USERTYPE")) {
+          case "Patient":
+            users.add(new Patient(rs.getString("ID"), rs.getString("USERNAME")));
+            break;
+          case "Employee":
+            users.add(new Employee(rs.getString("ID"), rs.getString("USERNAME")));
+            break;
+          case "Administrator":
+            users.add(new Administrator(rs.getString("ID"), rs.getString("USERNAME")));
+            break;
+        }
+      }
+      return users;
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return null;
+    }
+  }
+
+  private HashSet<Request> resultSetToRequest(ResultSet rs) throws SQLException {
+    HashSet<Request> requests = new HashSet<>();
+    while (rs.next()) {
+      requests.add(
+          new Request(
+              RequestType.valueOf(rs.getString("TYPE")),
+              rs.getInt("ID"),
+              rs.getInt("SENDERID"),
+              rs.getInt("RECEIVERID"),
+              rs.getString("ROOM"),
+              rs.getString("CONTENT"),
+              rs.getString("NOTES")));
+    }
+    return requests;
+  }
+
   private HashSet<Node> resultSetToNodes(ResultSet rs) {
     HashSet<Node> nodeSet = new HashSet<>();
     try {
@@ -388,15 +583,16 @@ public class DatabaseService {
       str =
           "CREATE TABLE Requests("
               + "id INT NOT NULL GENERATED ALWAYS AS IDENTITY, "
-              + "Type varchar(30), "
+              + "Type varchar(35), "
               + "SenderID INT NOT NULL REFERENCES Users (id), "
               + "ReceiverID INT REFERENCES Users (id), "
+              + "Room varchar(25) NOT NULL REFERENCES Nodes (id),"
               + "Content varchar(700), "
               + "Notes varchar(200), "
               + "CONSTRAINT chk_Type CHECK (Type IN "
-              + "('Food Delivery', 'Language Interpreter', 'Sanitation', 'Laundry', 'Gift Delivery', 'Floral Delivery', 'Medicine Delivery', "
-              + "'Religious Request', 'Internal Patient Transportation', 'External Patient Transportation', 'Security', 'Facilities Maintenance', "
-              + "'Computer Service', 'Audio/Visual')),"
+              + "('AUDIO_VISUAL', 'COMPUTER_SERVICE', 'EXTERNAL_PATIENT_TRANSPORTATION', 'FLORAL', 'FOOD_DELIVERY', 'GIFT_DELIVERY', 'INTERNAL_PATIENT_TRANSPORTATION', 'LANGUAGE_INTERPRETER', "
+              + "'LAUNDRY', 'MAINTENANCE', 'MEDICINE_DELIVERY', 'RELIGIOUS', "
+              + "'SANITATION', 'SECURITY')),"
               + "PRIMARY KEY (id))";
       stmt.execute(str);
     } catch (SQLException e) {
