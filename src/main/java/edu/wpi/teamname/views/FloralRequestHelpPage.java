@@ -18,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class FloralRequestHelpPage extends masterController implements Initializable {
 
-  static String path = "Requests/FloralRequest";
+  static String path = "Requests/FloralRequestController";
   static Stage stage;
   static FloralRequestHelpPage box;
   @Inject DatabaseService db;
