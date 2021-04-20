@@ -1,6 +1,6 @@
 package edu.wpi.teamname.services.database.users;
 
-abstract class User {
+abstract public class User {
   private String id, username;
 
   public User(String id, String username) {
