@@ -1,18 +1,28 @@
 package edu.wpi.teamname.services.database.requests;
 
 public enum RequestType {
-  AUDIO_VISUAL,
-  COMPUTER_SERVICE,
-  EXTERNAL_PATIENT_TRANSPORTATION,
-  FLORAL,
-  FOOD_DELIVERY,
-  GIFT_DELIVERY,
-  INTERNAL_PATIENT_TRANSPORTATION,
-  LANGUAGE_INTERPRETER,
-  LAUNDRY,
-  MAINTENANCE,
-  MEDICINE_DELIVERY,
-  RELIGIOUS,
-  SANITATION,
-  SECURITY
+  AUDIO_VISUAL("A/V"),
+  COMPUTER_SERVICE("Computer Service"),
+  EXTERNAL_PATIENT_TRANSPORTATION(" Ext. Patient Transport"),
+  FLORAL("Floral"),
+  FOOD_DELIVERY("Food Delivery"),
+  GIFT_DELIVERY("Gift Delivery"),
+  INTERNAL_PATIENT_TRANSPORTATION("Int. Patient Transport"),
+  LANGUAGE_INTERPRETER("Interpreter"),
+  LAUNDRY("Laundry"),
+  MAINTENANCE("Maintenance"),
+  MEDICINE_DELIVERY("Medicine Delivery"),
+  RELIGIOUS("Religious"),
+  SANITATION("Sanitation"),
+  SECURITY("Security");
+
+  String name;
+
+  RequestType(String name) {
+    this.name = name;
+  }
+
+  public String getName() {
+    return name;
+  }
 }
