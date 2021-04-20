@@ -8,7 +8,7 @@ public class PathFinder {
    * @param end target node
    * @return a stack of nodes containing the path from the start to the end
    */
-  public Stack<Node> Astar(Node start, Node end) {
+  public ArrayList<Node.Link> Astar(Node start, Node end) {
     // Node.reset() should be called on every node accessible to start
     Node curNode;
     start.set_localGoal(0);
@@ -29,13 +29,13 @@ public class PathFinder {
         if (!n.is_seen() || n.get_localGoal() > local) {
           n.set_localGoal(local);
           n.set_globalGoal(n.heuristic(end));
-          n.set_parent(curNode);
+          n.set_parent(l);
           open.add(n);
           used.add(n);
         }
       }
     } while (!open.isEmpty());
-    Stack<Node> ret = rebuild(start, end);
+    ArrayList<Node.Link> ret = rebuild(start, end);
     // reset manipulated nodes
     for (Node n : used) {
       n.reset();
@@ -48,11 +48,11 @@ public class PathFinder {
    * @return a stack of nodes where start is at the top and every next node's parent is the previous
    *     node in the stack
    */
-  private Stack<Node> rebuild(Node start, Node curNode) {
-    Stack<Node> ret = new Stack<>();
-    while (curNode != null) {
-      ret.push(curNode);
-      curNode = curNode.get_parent();
+  private ArrayList<Node.Link> rebuild(Node start, Node curNode) {
+    ArrayList<Node.Link> ret = new ArrayList<>();
+    while (curNode.get_parent() != null) {
+      ret.add(curNode.get_parent());
+      curNode = curNode.get_parent()._this;
     }
     return ret;
   }
