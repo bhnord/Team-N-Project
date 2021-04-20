@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
 import java.util.HashSet;
 import lombok.extern.slf4j.Slf4j;
 
@@ -38,6 +39,15 @@ public class DatabaseService {
       e.printStackTrace();
       return null;
     }
+  }
+
+  public HashMap<String, Node> getAllNodesMap() {
+    HashSet<Node> nodeSet = getAllNodes();
+    HashMap<String, Node> nodeMap = new HashMap<>();
+    for(Node node : nodeSet) {
+      nodeMap.put(node.get_nodeID(), node);
+    }
+    return nodeMap;
   }
 
   /**
@@ -199,6 +209,15 @@ public class DatabaseService {
       e.printStackTrace();
       return null;
     }
+  }
+
+  public HashMap<String, Edge> getAllEdgesMap() {
+    HashSet<Edge> edgeSet = getAllEdges();
+    HashMap<String, Edge> edgeMap = new HashMap<>();
+    for(Edge edge : edgeSet) {
+      edgeMap.put(edge.getEdgeID(), edge);
+    }
+    return edgeMap;
   }
 
   public Edge getEdge(String edgeID) {
