@@ -303,13 +303,15 @@ public class DatabaseService {
 
   public boolean addRequest(Request request) {
     String str =
-        "INSERT INTO REQUESTS (TYPE, SENDERID, RECEIVERID, CONTENT, NOTES) VALUES ('"
+        "INSERT INTO REQUESTS (TYPE, SENDERID, RECEIVERID, ROOM, CONTENT, NOTES) VALUES ('"
             + request.getType()
             + "', "
             + currentUser.getId()
             + ", "
             + request.getReceiverID()
             + ", '"
+            + request.getRoomNodeId()
+            + "', '"
             + request.getContent()
             + "', '"
             + request.getNotes()
@@ -484,6 +486,7 @@ public class DatabaseService {
               rs.getInt("ID"),
               rs.getInt("SENDERID"),
               rs.getInt("RECEIVERID"),
+              rs.getString("ROOM"),
               rs.getString("CONTENT"),
               rs.getString("NOTES")));
     }
@@ -564,7 +567,7 @@ public class DatabaseService {
               + "Type varchar(35), "
               + "SenderID INT NOT NULL REFERENCES Users (id), "
               + "ReceiverID INT REFERENCES Users (id), "
-              + "Room varchar(25) REFERENCES Nodes (id),"
+              + "Room varchar(25) NOT NULL REFERENCES Nodes (id),"
               + "Content varchar(700), "
               + "Notes varchar(200), "
               + "CONSTRAINT chk_Type CHECK (Type IN "
