@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.RequiredFieldValidator;
 import edu.wpi.teamname.services.database.DatabaseService;
 import edu.wpi.teamname.state.HomeState;
+import edu.wpi.teamname.state.Login;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -76,24 +77,15 @@ public class LaundryRequestController extends masterController implements Initia
   @FXML
   public void advanceHome() throws IOException {
 
-    /*if (loginAccount.getUsername().equals("p") && loginAccount.getPassword().equals("p")) {
-      // if (loginAccount.accountType().equals("patient"))
-      super.advanceServiceRequestPatient(loader, appPrimaryScene);
-    }
-    if (loginAccount.getUsername().equals("e") && loginAccount.getPassword().equals("e")) {
-      // if (loginAccount.accountType().equals("employee"))
-      super.advanceServiceRequestEmployee(loader, appPrimaryScene);
-    }
-    if (loginAccount.getUsername().equals("a") && loginAccount.getPassword().equals("a")) {
-      // if (loginAccount.accountType().equals("admin"))
-      super.advanceServiceRequestAdmin(loader, appPrimaryScene);
-    }
-    if (loginAccount.getUsername().equals("") && loginAccount.getPassword().equals("")) {
-      // if (loginAccount.accountType().equals("admin"))
-      System.out.println("didn't work");
-    }*/
+    Login login = Login.getLogin();
 
-    loginAccount.accountType();
+    if (login.getUsername().equals("p") && login.getPassword().equals("p")) {
+      super.advanceHomePatient(loader, appPrimaryScene);
+    } else if (login.getUsername().equals("e") && login.getPassword().equals("e")) {
+      super.advanceHome(loader, appPrimaryScene);
+    } else if (login.getUsername().equals("a") && login.getPassword().equals("a")) {
+      super.advanceHomeAdmin(loader, appPrimaryScene);
+    }
   }
 
   public void Submit(ActionEvent actionEvent) throws IOException {

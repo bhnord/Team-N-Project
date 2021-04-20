@@ -51,7 +51,7 @@ public class HomeController extends masterController implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    log.debug(state.toString());
+    //    log.debug(state.toString());
     CovidForm.setTooltip(ttCovidForm);
     logOutButton.setTooltip(ttLogOutButton);
     exit.setTooltip(ttExit);

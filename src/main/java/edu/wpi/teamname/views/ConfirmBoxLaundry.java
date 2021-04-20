@@ -1,5 +1,6 @@
 package edu.wpi.teamname.views;
 
+import com.google.inject.Inject;
 import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,9 +13,14 @@ import javafx.stage.Stage;
 public class ConfirmBoxLaundry extends masterController implements Initializable {
   static Stage stage;
   static ConfirmBoxLaundry box;
+  @Inject FXMLLoader loader2;
   private Scene appPrimaryScene;
   static LaundryRequestController laundry = new LaundryRequestController();
-  static LoginPage loginAccount = new LoginPage();
+
+  @Inject
+  public void setAppPrimaryScene(Scene appPrimaryScene) {
+    this.appPrimaryScene = appPrimaryScene;
+  }
 
   public static void confirm(LaundryRequestController laundryType) throws IOException {
 
@@ -54,22 +60,17 @@ public class ConfirmBoxLaundry extends masterController implements Initializable
   @FXML
   public void returnToHomeLaundry() throws IOException {
     box.stage.close();
-    // laundry.advanceHome();
-    /*
-    if (loginAccount.getUsername().equals("p") && loginAccount.getPassword().equals("p")) {
-      // if (loginAccount.accountType().equals("patient"))
-      super.advanceServiceRequestPatient(loader, appPrimaryScene);
-    }
-    if (loginAccount.getUsername().equals("e") && loginAccount.getPassword().equals("e")) {
-      // if (loginAccount.accountType().equals("employee"))
-      super.advanceServiceRequestEmployee(loader, appPrimaryScene);
-    }
-    if (loginAccount.getUsername().equals("a") && loginAccount.getPassword().equals("a")) {
-      // if (loginAccount.accountType().equals("admin"))
-      super.advanceServiceRequestAdmin(loader, appPrimaryScene);
-    }
+    laundry.advanceHome();
 
-    */
-    loginAccount.accountType();
+    // Login login = Login.getLogin();
+
+    /*if (login.getUsername().equals("p") && login.getPassword().equals("p")) {
+      super.advanceHomePatient(loader2, appPrimaryScene);
+    } else if (login.getUsername().equals("e") && login.getPassword().equals("e")) {
+      super.advanceHome(loader2, appPrimaryScene);
+    } else if (login.getUsername().equals("a") && login.getPassword().equals("a")) {
+      super.advanceHomeAdmin(loader2, appPrimaryScene);
+    }*/
+
   }
 }

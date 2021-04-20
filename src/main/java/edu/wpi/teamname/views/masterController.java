@@ -25,7 +25,7 @@ public class masterController implements Initializable {
   @Inject HomeState state;
   @FXML private Label text;
 
-  private Scene appPrimaryScene;
+  protected Scene appPrimaryScene;
 
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
