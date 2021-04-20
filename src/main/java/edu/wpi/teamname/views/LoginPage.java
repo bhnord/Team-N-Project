@@ -121,6 +121,7 @@ public class LoginPage extends masterController implements Initializable {
   @FXML
   private void continueToHomePage() throws IOException {
     if (getUsername().equals(patientUsername) && getPassword().equals(patientPassword)) {
+
       super.advanceHomePatient(loader, appPrimaryScene);
     } else if (getUsername().equals(employeeUsername) && getPassword().equals(employeePassword)) {
       super.advanceHome(loader, appPrimaryScene);

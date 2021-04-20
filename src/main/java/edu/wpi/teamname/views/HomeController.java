@@ -14,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
 import javafx.stage.Screen;
@@ -57,11 +58,15 @@ public class HomeController extends masterController implements Initializable {
   }
 
   public void advance(ActionEvent actionEvent) throws IOException {
-    super.advance(actionEvent);
+    String file = "Requests/" + ((Button) actionEvent.getSource()).getId() + ".fxml";
+    Parent root = loader.load(getClass().getResourceAsStream(file));
+    appPrimaryScene.setRoot(root);
   }
 
   public void advanceViews(ActionEvent actionEvent) throws IOException {
-    super.advanceViews(actionEvent);
+    String file = ((Button) actionEvent.getSource()).getId() + ".fxml";
+    Parent root = loader.load(getClass().getResourceAsStream(file));
+    appPrimaryScene.setRoot(root);
   }
 
   public void map(ActionEvent actionEvent) throws IOException {
