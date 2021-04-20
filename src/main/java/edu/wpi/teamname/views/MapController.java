@@ -30,12 +30,8 @@ import javafx.stage.Stage;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 import java.util.Stack;
@@ -64,6 +60,7 @@ public class MapController extends masterController implements Initializable {
   ObservableList<int[]> nodes = FXCollections.observableArrayList();
   HashMap<String, Node> nodeSet = new HashMap<>();
   HashMap<String, Edge> edgeSet = new HashMap<>();
+  HashMap<String, Integer> mapObjects = new HashMap<>();
 
   String nodeName;
   Boolean cancelOrSubmit;
@@ -178,6 +175,7 @@ public class MapController extends masterController implements Initializable {
     AnchorPane scene = (AnchorPane) appPrimaryScene.getRoot();
     scene.getChildren().add(root);
     Node n = new Node(x * 4, y * 4, id);
+    mapObjects.put(id, scene.getChildren().size() - 1);
     if (!nodeSet.containsKey(id)) {
       nodeSet.put(id, n);
       db.addNode(n);
@@ -211,53 +209,13 @@ public class MapController extends masterController implements Initializable {
         });
     AnchorPane scene = (AnchorPane) appPrimaryScene.getRoot();
     scene.getChildren().add(root);
+    mapObjects.put(edgeID, scene.getChildren().size() - 1);
     if (!edgeSet.containsKey(id)) {
       edgeSet.put(edgeID, new Edge(edgeID, node1.get_nodeID(), node2.get_nodeID()));
+
       db.addEdge(new Edge(edgeID, node1.get_nodeID(), node2.get_nodeID()));
     }
   }
-
-  public void PrintNode(ActionEvent actionEvent) {
-    for (int[] node : nodes) {
-      System.out.println(Arrays.toString(node) + ", ");
-    }
-  }
-
-  //  public void examplePathFind(ActionEvent actionEvent) throws IOException { CSV nodesCSV = new
-  // CSV("src/main/resources/MapCSV/MapNNodesAll.csv");
-  //    CSV edgesCSV = new CSV("src/main/resources/MapCSV/MapNEdgesAll.csv");
-  //    int nodesSize = nodesCSV.getLineCount();
-  //    int edgeSize = edgesCSV.getLineCount();
-  //
-  //    for (String node : nodesCSV) {
-  //      String[] line = node.split("[,]");
-  //      placeNode(
-  //          line[0],
-  //          ((int) (Integer.parseInt(line[1]) * 0.25 + 10)),
-  //          (int) (Integer.parseInt(line[2]) * 0.25 + 10));
-  //    }
-  //    for (String edge : edgesCSV) {
-  //      String[] line = edge.split("[,]");
-  //      placeLink(line[0], nodeSet.get(line[1]), nodeSet.get(line[2]));
-  //    }
-  //
-  //    Node node1 = nodeSet.get("CHALL004L1");
-  //    Node node2 = nodeSet.get("CLABS002L1");
-  //    PathFinder pathFinder = new PathFinder();
-  //    pathFinder.Astar(node1, node2);
-  //
-  //    Stack<Node> ret = pathFinder.Astar(node1, node2);
-  //    Cartesian c1 = (Cartesian) ret.pop();
-  //    while (!ret.empty()) {
-  //      Cartesian c2 = (Cartesian) ret.pop();
-  //      Line simpleNode = new Line(c1._x, c1._y, c2._x, c2._y);
-  //      simpleNode.setStroke(Color.BLUE);
-  //      Group root = new Group(simpleNode);
-  //      AnchorPane scene = (AnchorPane) appPrimaryScene.getRoot();
-  //      scene.getChildren().add(root);
-  //      c1 = c2;
-  //    }
-  //  }
 
   /**
    * restarts the map class. Needs work.
@@ -278,71 +236,6 @@ public class MapController extends masterController implements Initializable {
     appPrimaryScene.setRoot(root);
   }
 
-  // public void submit(ActionEvent actionEvent) {
-  // String input = Text.getText();
-  // String[] l = input.split("[ \t\n]+");
-  // for (int i = 0; i < l.length; ) {
-  // if (l[i].equals("node:")) {
-  // int x = Integer.parseInt(l[i + 2]);
-  // int y = Integer.parseInt(l[i + 3]);
-  // placeNode(l[i + 1], x, y);
-  // i += 4;
-  // } else if (l[i].equals("link:")) {
-  // placeLink(l[i + 1], l[i + 2]);
-  // i += 3;
-  // } else if (l[i].equals("path:")) {
-  // PathFinder pathFinder = new PathFinder();
-  // Cartesian node1 = nodeSet.get(l[i + 1]);
-  // Cartesian node2 = nodeSet.get(l[i + 2]);
-  // Stack<Node> ret = pathFinder.Astar(node1, node2);
-  // Cartesian c1 = (Cartesian) ret.pop();
-  // while (!ret.empty()) {
-  // Cartesian c2 = (Cartesian) ret.pop();
-  // Line simpleNode = new Line(c1._x, c1._y, c2._x, c2._y);
-  // simpleNode.setStroke(Color.RED);
-  // Group root = new Group(simpleNode);
-  // AnchorPane scene = (AnchorPane) appPrimaryScene.getRoot();
-  // scene.getChildren().add(root);
-  // c1 = c2;
-  // }
-  // i += 3;
-  // }
-  // }
-  // }
-
-  /**
-   * replaces MapNodes.csv with a new csv of the current nodesSet
-   *
-   * @param actionEvent
-   * @throws IOException
-   */
-  public void CreateCSV(ActionEvent actionEvent) throws IOException {
-    //    String[] nodeList = NodeNames.getText().split("[\n]");
-    //    FileWriter csvWriter = new FileWriter("src/main/resources/MapCSV/MapNodes.csv");
-    //    AnchorPane scene = (AnchorPane) appPrimaryScene.getRoot();
-    //    for (int i = 0; nodeList.length > i; i++) {
-    //      String[] singleNode = nodeList[i].split("[,]");
-    //      nodeSet.put(nodeList[i], new Cartesian(nodes.get(i)[0], nodes.get(i)[1]));
-    //      scene.getChildren().get(i + 1).setId(singleNode[0]);
-    //      csvWriter.append(singleNode[0]);
-    //      csvWriter.append(", ");
-    //      csvWriter.append(String.valueOf(nodes.get(i)[0]));
-    //      csvWriter.append(", ");
-    //      csvWriter.append(String.valueOf(nodes.get(i)[1]));
-    //      csvWriter.append("\n");
-    //    }
-    //    csvWriter.flush();
-    //    csvWriter.close();
-  }
-
-  //  public void CreateLinks(ActionEvent actionEvent) {
-  //    String[] links = LinkField.getText().split("[\n]");
-  //    for (String link : links) {
-  //      String[] l = link.split(",");
-  //      placeLink(l[0], l[1]);
-  //    }
-  //  }
-
   public void PathFind(ActionEvent actionEvent) {
     PathFinder pathFinder = new PathFinder();
     Node node1 = nodeSet.get(startNodePath);
@@ -353,11 +246,22 @@ public class MapController extends masterController implements Initializable {
     Node c1 = (Node) ret.pop();
     while (!ret.empty()) {
       Node c2 = (Node) ret.pop();
-      Line simpleNode = new Line(c1.get_x(), c1.get_y(), c2.get_x(), c2.get_y());
-      simpleNode.setStroke(Color.BLUE);
-      Group root = new Group(simpleNode);
+      //      Line simpleNode = new Line(c1.get_x(), c1.get_y(), c2.get_x(), c2.get_y());
+      String id1 = c2.get_nodeID() + "_" + c1.get_nodeID();
+      String id2 = c1.get_nodeID() + "_" + c2.get_nodeID();
       AnchorPane scene = (AnchorPane) appPrimaryScene.getRoot();
-      scene.getChildren().add(root);
+
+      if (edgeSet.containsKey(id1)) {
+        System.out.println(scene.getChildren().get(mapObjects.get(id1)));
+        // mapObjects.get(id1).setFill(Color.BLUE);
+      } else if (edgeSet.containsKey(id2)) {;
+        System.out.println(scene.getChildren().get(mapObjects.get(id2)));
+        // mapObjects.get(id2).setFill(Color.BLUE);
+      }
+      //      simpleNode.setStroke(Color.BLUE);
+      //      Group root = new Group(simpleNode);
+
+      //      scene.getChildren().add(root);
       c1 = c2;
     }
   }
@@ -373,17 +277,6 @@ public class MapController extends masterController implements Initializable {
         i++;
       }
     }
-  }
-
-  public static int getLineCount(String csv) throws IOException {
-    BufferedReader readCSV =
-        Files.newBufferedReader(Paths.get("src/main/resources/MapCSV/" + csv + ".csv"));
-    int lineCount = 0;
-    String data;
-    while ((data = readCSV.readLine()) != null) {
-      lineCount++;
-    }
-    return lineCount;
   }
 
   public void DeleteObjectDataBase() throws IOException {
@@ -402,7 +295,7 @@ public class MapController extends masterController implements Initializable {
     current.setText("No object Selected");
   }
 
-  public void examplePathFind(ActionEvent actionEvent) {
+  public void Load(ActionEvent actionEvent) {
     for (HashMap.Entry<String, Node> node : nodeSet.entrySet()) {
       node.getValue().set_x(node.getValue().get_x() * .25);
       node.getValue().set_y(node.getValue().get_y() * .25);

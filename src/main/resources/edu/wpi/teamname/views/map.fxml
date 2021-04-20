@@ -34,8 +34,7 @@
                <children>
                   <Button fx:id="HomeView1" mnemonicParsing="false" onAction="#advanceHome" prefHeight="30.0" prefWidth="100.0" text="Home" />
                   <Button fx:id="Clear" mnemonicParsing="false" onAction="#clear" prefHeight="30.0" prefWidth="100.0" text="Clear" />
-                  <Button fx:id="Print" mnemonicParsing="false" onAction="#PrintNode" prefHeight="30.0" prefWidth="100.0" text="Print" />
-                  <Button fx:id="pathFindingBtn" mnemonicParsing="false" onAction="#examplePathFind" text="Example Pathfind" />
+                  <Button fx:id="Load" mnemonicParsing="false" onAction="#Load" text="Load" />
                   <JFXColorPicker fx:id="colorPicker" promptText="Node Color" />
                   <Button fx:id="deleteCurrent" mnemonicParsing="false" onAction="#deleteCurrent" text="Delete Current" />
                   <Label fx:id="current" text="Current Object" />
