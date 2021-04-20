@@ -246,22 +246,13 @@ public class MapController extends masterController implements Initializable {
     Node c1 = (Node) ret.pop();
     while (!ret.empty()) {
       Node c2 = (Node) ret.pop();
-      //      Line simpleNode = new Line(c1.get_x(), c1.get_y(), c2.get_x(), c2.get_y());
-      String id1 = c2.get_nodeID() + "_" + c1.get_nodeID();
-      String id2 = c1.get_nodeID() + "_" + c2.get_nodeID();
+      Line simpleNode = new Line(c1.get_x(), c1.get_y(), c2.get_x(), c2.get_y());
+      simpleNode.setStrokeWidth(2);
+      simpleNode.setFill(colorPicker.getValue());
+      Group root = new Group(simpleNode);
       AnchorPane scene = (AnchorPane) appPrimaryScene.getRoot();
 
-      if (edgeSet.containsKey(id1)) {
-        System.out.println(scene.getChildren().get(mapObjects.get(id1)));
-        // mapObjects.get(id1).setFill(Color.BLUE);
-      } else if (edgeSet.containsKey(id2)) {;
-        System.out.println(scene.getChildren().get(mapObjects.get(id2)));
-        // mapObjects.get(id2).setFill(Color.BLUE);
-      }
-      //      simpleNode.setStroke(Color.BLUE);
-      //      Group root = new Group(simpleNode);
-
-      //      scene.getChildren().add(root);
+      scene.getChildren().add(root);
       c1 = c2;
     }
   }
