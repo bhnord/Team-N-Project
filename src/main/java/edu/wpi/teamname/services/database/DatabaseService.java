@@ -1,11 +1,16 @@
 package edu.wpi.teamname.services.database;
 
 import com.google.inject.Inject;
-import edu.wpi.teamname.services.algo.DataNode;
+import edu.wpi.teamname.services.algo.Node;
 import edu.wpi.teamname.services.algo.Edge;
-import java.sql.*;
-import java.util.HashSet;
+import edu.wpi.teamname.services.algo.Node;
 import lombok.extern.slf4j.Slf4j;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.HashSet;
 
 @Slf4j
 public class DatabaseService {
@@ -26,7 +31,7 @@ public class DatabaseService {
     }
   }
 
-  public HashSet<DataNode> getAllNodes() {
+  public HashSet<Node> getAllNodes() {
     String query = "SELECT * FROM NODES";
     try {
       ResultSet nodes = stmt.executeQuery(query);
@@ -43,13 +48,13 @@ public class DatabaseService {
    * @param nodeID
    * @return node from table
    */
-  public DataNode getNode(String nodeID) {
+  public Node getNode(String nodeID) {
     String query = "SELECT * FROM NODES WHERE id = '" + nodeID + "'";
     try {
       ResultSet rs = stmt.executeQuery(query);
-      HashSet<DataNode> set = resultSetToNodes(rs);
+      HashSet<Node> set = resultSetToNodes(rs);
       if (set.size() > 0) {
-        return (DataNode) set.toArray()[0];
+        return (Node) set.toArray()[0];
       } else {
         return null;
       }
@@ -65,7 +70,7 @@ public class DatabaseService {
    * @param node the node to add to table
    * @return whether operation was carried out successfully
    */
-  public boolean addNode(DataNode node) {
+  public boolean addNode(Node node) {
     String query =
         "INSERT INTO NODES VALUES ('"
             + node.getNodeID()
@@ -295,8 +300,8 @@ public class DatabaseService {
     }
   }
 
-  private HashSet<DataNode> resultSetToNodes(ResultSet rs) {
-    HashSet<DataNode> nodeSet = new HashSet<>();
+  private HashSet<Node> resultSetToNodes(ResultSet rs) {
+    HashSet<Node> nodeSet = new HashSet<>();
     try {
       while (rs.next()) {
         String nodeID = rs.getString("id");
@@ -308,7 +313,7 @@ public class DatabaseService {
         double xPos = rs.getDouble("XCOORD");
         double yPos = rs.getDouble("YCOORD");
         nodeSet.add(
-            new DataNode(xPos, yPos, nodeID, floor, building, nodeType, longName, shortName));
+            new Node(xPos, yPos, nodeID, floor, building, nodeType, longName, shortName));
       }
       return nodeSet;
     } catch (SQLException e) {
