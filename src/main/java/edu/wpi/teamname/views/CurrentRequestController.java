@@ -44,7 +44,5 @@ public class CurrentRequestController extends masterController implements Initia
     super.advanceHome(loader, appPrimaryScene);
   }
 
-  public void markComplete(ActionEvent actionEvent) {
-
-  }
+  public void markComplete(ActionEvent actionEvent) {}
 }
