@@ -1,8 +1,8 @@
 package edu.wpi.teamname.services.database.requests;
 
 public abstract class Request {
-  int id, senderID, receiverID;
-  String notes;
+  private int id, senderID, receiverID;
+  private String notes;
 
   public Request(int id, int senderID, int receiverID, String notes) {
     this.id = id;

@@ -58,6 +58,7 @@ public class MapController extends masterController implements Initializable {
   @FXML private TextField deletenodeID;
   @FXML private Label selectedNode;
   @FXML private JFXColorPicker colorPicker;
+  String nodeName;
 
   private Scene appPrimaryScene;
   int[] nodeinfo = new int[3];
@@ -78,6 +79,7 @@ public class MapController extends masterController implements Initializable {
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     log.debug(state.toString());
+    colorPicker.setValue(Color.BLUE);
   }
 
   @FXML
@@ -104,7 +106,7 @@ public class MapController extends masterController implements Initializable {
    *
    * @param mouseEvent
    */
-  public void placeNode(MouseEvent mouseEvent) {
+  public void placeNode(MouseEvent mouseEvent) throws IOException {
     Circle simpleNode = new Circle(mouseEvent.getX(), mouseEvent.getY(), 2.5);
     simpleNode.setFill(colorPicker.getValue());
     Group root = new Group(simpleNode);
@@ -115,13 +117,24 @@ public class MapController extends masterController implements Initializable {
             selectedNode.setText(root.getId());
           }
         });
+
+    NameNode nameNode = new NameNode();
+    NameNode.confirm(this);
+    System.out.println(nodeName);
+    root.setId(nodeName);
+
     AnchorPane scene = (AnchorPane) appPrimaryScene.getRoot();
     scene.getChildren().add(root);
     Stage stage = (Stage) appPrimaryScene.getWindow();
     nodeinfo = new int[] {(int) mouseEvent.getX(), (int) mouseEvent.getY(), nodes.size() + 1};
     nodes.add(nodeinfo);
-    NodeValues.setText(
-        NodeValues.getText() + "\nX:" + nodeinfo[0] + ", Y:" + nodeinfo[1] + ", ID:" + nodeinfo[2]);
+    //    NodeValues.setText(
+    //        NodeValues.getText() + "\nX:" + nodeinfo[0] + ", Y:" + nodeinfo[1] + ", ID:" +
+    // nodeinfo[2]);
+  }
+
+  public void setNodeName(String name) {
+    nodeName = name;
   }
 
   private void placeNode(String id, int x, int y) {

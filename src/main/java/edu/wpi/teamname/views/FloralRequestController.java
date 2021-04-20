@@ -88,4 +88,17 @@ public class FloralRequestController extends masterController implements Initial
     primaryStage.setAlwaysOnTop(true);
     primaryStage.show();
   }
+
+  public void exit(ActionEvent actionEvent) throws IOException {
+    super.cancel(actionEvent);
+  }
+
+  @FXML
+  public void logOut() throws IOException {
+    super.logOut(loader, appPrimaryScene);
+  }
+
+  public void advanceViews(ActionEvent actionEvent) throws IOException {
+    super.advanceViews(actionEvent);
+  }
 }
