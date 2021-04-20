@@ -45,7 +45,7 @@ public class CurrentRequestController extends masterController implements Initia
     for (Request request : set) {
       Label lbl =
           new Label(
-              request.getType().toString()
+              request.getType().getName()
                   + " request for "
                   + db.getUserById(Integer.toString(request.getReceiverID())).getUsername());
       lbl.setId(Integer.toString(request.getId()));
@@ -80,7 +80,7 @@ public class CurrentRequestController extends masterController implements Initia
 
   private void updateTextFields(Request clickedRequest) {
     requestId.setText(Integer.toString(clickedRequest.getId()));
-    requestType.setText(clickedRequest.getType().toString());
+    requestType.setText(clickedRequest.getType().getName());
     senderName.setText(
         db.getUserById(Integer.toString(clickedRequest.getSenderID())).getUsername());
     receiverName.setText(
