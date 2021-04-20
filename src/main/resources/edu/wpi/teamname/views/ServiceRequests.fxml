@@ -18,74 +18,74 @@
                 <Image url="@/images/CSVBackground.png" />
             </image>
         </ImageView>
-       <JFXButton fx:id="FoodDeliveryRequest" layoutX="270.0" layoutY="79.0" mnemonicParsing="false" onAction="#advance" prefHeight="30.0" prefWidth="200.0" text="Food Delivery Service">
+       <JFXButton fx:id="FoodDeliveryRequest" layoutX="268.0" layoutY="129.0" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" scaleX="2.0" scaleY="2.0" style="-fx-background-color: #0c00ae; -fx-background-radius: 15;" text="Food Delivery Service" textFill="WHITE">
          <font>
-            <Font name="Franklin Gothic Medium" size="17.0" />
+            <Font name="Arial Black" size="17.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="LanguageInterpretersRequest" layoutX="270.0" layoutY="115.0" mnemonicParsing="false" onAction="#advance" prefHeight="30.0" prefWidth="200.0" text="Language Interpreters">
+      <JFXButton fx:id="LanguageInterpretersRequest" layoutX="268.0" layoutY="215.0" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" scaleX="2.0" scaleY="2.0" style="-fx-background-color: #0c00ae; -fx-background-radius: 15;" text="Language Interpreters" textFill="WHITE">
          <font>
-            <Font name="Franklin Gothic Medium" size="17.0" />
+            <Font name="Arial Black" size="17.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="SanitationServicesRequest" layoutX="270.0" layoutY="150.0" mnemonicParsing="false" onAction="#advance" prefHeight="30.0" prefWidth="200.0" text="Sanitation Service">
+      <JFXButton fx:id="SanitationServicesRequest" layoutX="268.0" layoutY="300.0" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" scaleX="2.0" scaleY="2.0" style="-fx-background-color: #0c00ae; -fx-background-radius: 15;" text="Sanitation Service" textFill="WHITE">
          <font>
-            <Font name="Franklin Gothic Medium" size="17.0" />
+            <Font name="Arial Black" size="17.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="LaundryRequest" layoutX="270.0" layoutY="185.0" mnemonicParsing="false" onAction="#advance" prefHeight="30.0" prefWidth="200.0" text="Laundry Services">
+      <JFXButton fx:id="LaundryRequest" layoutX="268.0" layoutY="385.0" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" scaleX="2.0" scaleY="2.0" style="-fx-background-color: #0c00ae; -fx-background-radius: 15;" text="Laundry Services" textFill="WHITE">
          <font>
-            <Font name="Franklin Gothic Medium" size="17.0" />
+            <Font name="Arial Black" size="17.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="FloralRequest" layoutX="270.0" layoutY="220.0" mnemonicParsing="false" onAction="#advance" prefHeight="30.0" prefWidth="200.0" text="Floral Request">
+      <JFXButton fx:id="FloralRequest" layoutX="268.0" layoutY="470.0" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" scaleX="2.0" scaleY="2.0" style="-fx-background-color: #0c00ae; -fx-background-radius: 15;" text="Floral Request" textFill="WHITE">
          <font>
-            <Font name="Franklin Gothic Medium" size="17.0" />
+            <Font name="Arial Black" size="17.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="MedicineDeliveryRequest" layoutX="270.0" layoutY="255.0" mnemonicParsing="false" onAction="#advance" prefHeight="30.0" prefWidth="200.0" text="Medicine Delivery">
+      <JFXButton fx:id="MedicineDeliveryRequest" layoutX="268.0" layoutY="555.0" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" scaleX="2.0" scaleY="2.0" style="-fx-background-color: #0c00ae; -fx-background-radius: 15;" text="Medicine Delivery" textFill="WHITE">
          <font>
-            <Font name="Franklin Gothic Medium" size="17.0" />
+            <Font name="Arial Black" size="17.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="ReligiousRequest" layoutX="270.0" layoutY="290.0" mnemonicParsing="false" onAction="#advance" prefHeight="30.0" prefWidth="200.0" text="Religious Request">
+      <JFXButton fx:id="ReligiousRequest" layoutX="268.0" layoutY="640.0" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" scaleX="2.0" scaleY="2.0" style="-fx-background-color: #0c00ae; -fx-background-radius: 15;" text="Religious Request" textFill="WHITE">
          <font>
-            <Font name="Franklin Gothic Medium" size="17.0" />
+            <Font name="Arial Black" size="17.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="InternalPatientRequest" layoutX="485.0" layoutY="290.0" mnemonicParsing="false" onAction="#advance" prefHeight="30.0" prefWidth="200.0" text="Internal Transportation">
+      <JFXButton fx:id="InternalPatientRequest" layoutX="859.0" layoutY="641.0" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" scaleX="2.0" scaleY="2.0" style="-fx-background-color: #0c00ae; -fx-background-radius: 15;" text="Internal Transportation" textFill="WHITE">
          <font>
-            <Font name="Franklin Gothic Medium" size="17.0" />
+            <Font name="Arial Black" size="16.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="ExternalPatientRequest" layoutX="485.0" layoutY="79.0" mnemonicParsing="false" onAction="#advance" prefHeight="30.0" prefWidth="200.0" text="External Transportation">
+      <JFXButton fx:id="ExternalPatientRequest" layoutX="859.0" layoutY="130.0" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" scaleX="2.0" scaleY="2.0" style="-fx-background-color: #0c00ae; -fx-background-radius: 15;" text="External Transportation" textFill="WHITE">
          <font>
-            <Font name="Franklin Gothic Medium" size="17.0" />
+            <Font name="Arial Black" size="16.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="SecurityServicesRequest" layoutX="485.0" layoutY="115.0" mnemonicParsing="false" onAction="#advance" prefHeight="30.0" prefWidth="200.0" text="Security Services">
+      <JFXButton fx:id="SecurityServicesRequest" layoutX="859.0" layoutY="216.0" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" scaleX="2.0" scaleY="2.0" style="-fx-background-color: #0c00ae; -fx-background-radius: 15;" text="Security Services" textFill="WHITE">
          <font>
-            <Font name="Franklin Gothic Medium" size="17.0" />
+            <Font name="Arial Black" size="17.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="FacilityMaintenanceRequest" layoutX="485.0" layoutY="150.0" mnemonicParsing="false" onAction="#advance" prefHeight="30.0" prefWidth="200.0" text="Facility Maintenance">
+      <JFXButton fx:id="FacilityMaintenanceRequest" layoutX="859.0" layoutY="301.0" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" scaleX="2.0" scaleY="2.0" style="-fx-background-color: #0c00ae; -fx-background-radius: 15;" text="Facility Maintenance" textFill="WHITE">
          <font>
-            <Font name="Franklin Gothic Medium" size="17.0" />
+            <Font name="Arial Black" size="17.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="ComputerServiceRequest" layoutX="485.0" layoutY="185.0" mnemonicParsing="false" onAction="#advance" prefHeight="30.0" prefWidth="200.0" text="Computer Service">
+      <JFXButton fx:id="ComputerServiceRequest" layoutX="859.0" layoutY="386.0" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" scaleX="2.0" scaleY="2.0" style="-fx-background-color: #0c00ae; -fx-background-radius: 15;" text="Computer Service" textFill="WHITE">
          <font>
-            <Font name="Franklin Gothic Medium" size="17.0" />
+            <Font name="Arial Black" size="17.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="AudioVisualRequest" layoutX="485.0" layoutY="220.0" mnemonicParsing="false" onAction="#advance" prefHeight="30.0" prefWidth="200.0" text="Audio/Visual Request">
+      <JFXButton fx:id="AudioVisualRequest" layoutX="859.0" layoutY="471.0" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" scaleX="2.0" scaleY="2.0" style="-fx-background-color: #0c00ae; -fx-background-radius: 15;" text="Audio/Visual Request" textFill="WHITE">
          <font>
-            <Font name="Franklin Gothic Medium" size="17.0" />
+            <Font name="Arial Black" size="17.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="GiftDeliveryRequest" layoutX="485.0" layoutY="255.0" mnemonicParsing="false" onAction="#advance" prefHeight="30.0" prefWidth="200.0" text="Gift Delivery Service">
+      <JFXButton fx:id="GiftDeliveryRequest" layoutX="859.0" layoutY="556.0" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" scaleX="2.0" scaleY="2.0" style="-fx-background-color: #0c00ae; -fx-background-radius: 15;" text="Gift Delivery Service" textFill="WHITE">
          <font>
-            <Font name="Franklin Gothic Medium" size="17.0" />
+            <Font name="Arial Black" size="17.0" />
          </font>
       </JFXButton>
 
