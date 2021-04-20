@@ -4,6 +4,7 @@ import com.google.inject.Inject;
 import com.jfoenix.controls.JFXColorPicker;
 import edu.wpi.teamname.services.algo.Edge;
 import edu.wpi.teamname.services.algo.Node;
+import edu.wpi.teamname.services.algo.PathFinder;
 import edu.wpi.teamname.services.database.DatabaseService;
 import edu.wpi.teamname.state.HomeState;
 import javafx.collections.FXCollections;
@@ -37,6 +38,7 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.ResourceBundle;
+import java.util.Stack;
 
 @Slf4j
 public class MapController extends masterController implements Initializable {
@@ -53,6 +55,9 @@ public class MapController extends masterController implements Initializable {
   private String selectedID;
   private Node startNode;
   private Node endNode;
+
+  private String startNodePath;
+  private String endNodePath;
 
   private Scene appPrimaryScene;
   int[] nodeinfo = new int[3];
@@ -159,7 +164,7 @@ public class MapController extends masterController implements Initializable {
   }
 
   private void placeNode(String id, double x, double y) {
-    Circle simpleNode = new Circle(x, y, 2.5);
+    Circle simpleNode = new Circle(x, y, 3.5);
     simpleNode.setFill(Color.BLUE);
     Group root = new Group(simpleNode);
     root.setId(id);
@@ -172,7 +177,7 @@ public class MapController extends masterController implements Initializable {
         });
     AnchorPane scene = (AnchorPane) appPrimaryScene.getRoot();
     scene.getChildren().add(root);
-    Node n = new Node(x, y, id);
+    Node n = new Node(x * 4, y * 4, id);
     if (!nodeSet.containsKey(id)) {
       nodeSet.put(id, n);
       db.addNode(n);
@@ -195,7 +200,8 @@ public class MapController extends masterController implements Initializable {
     simpleNode.setStrokeWidth(2);
     simpleNode.setFill(Color.RED);
     Group root = new Group(simpleNode);
-    root.setId(id1 + "_" + id2);
+    String edgeID = id1 + "_" + id2;
+    root.setId(edgeID);
     root.setOnMouseClicked(
         new EventHandler<MouseEvent>() {
           @Override
@@ -206,8 +212,8 @@ public class MapController extends masterController implements Initializable {
     AnchorPane scene = (AnchorPane) appPrimaryScene.getRoot();
     scene.getChildren().add(root);
     if (!edgeSet.containsKey(id)) {
-      edgeSet.put(id, new Edge(id, node1.get_nodeID(), node2.get_nodeID()));
-      db.addEdge(new Edge(id, node1.get_nodeID(), node2.get_nodeID()));
+      edgeSet.put(edgeID, new Edge(edgeID, node1.get_nodeID(), node2.get_nodeID()));
+      db.addEdge(new Edge(edgeID, node1.get_nodeID(), node2.get_nodeID()));
     }
   }
 
@@ -338,29 +344,28 @@ public class MapController extends masterController implements Initializable {
   //  }
 
   public void PathFind(ActionEvent actionEvent) {
-    //    String[] S_E_nodes = pathFindNodes.getText().split("[,]");
-    //    PathFinder pathFinder = new PathFinder();
-    //    Node node1 = nodeSet.get(S_E_nodes[0]);
-    //    Node node2 = nodeSet.get(S_E_nodes[1]);
-    //    pathFinder.Astar(node1, node2);
-    //
-    //    Stack<Node> ret = pathFinder.Astar(node1, node2);
-    //    Cartesian c1 = (Cartesian) ret.pop();
-    //    while (!ret.empty()) {
-    //      Cartesian c2 = (Cartesian) ret.pop();
-    //      Line simpleNode = new Line(c1._x, c1._y, c2._x, c2._y);
-    //      simpleNode.setStroke(Color.BLUE);
-    //      Group root = new Group(simpleNode);
-    //      AnchorPane scene = (AnchorPane) appPrimaryScene.getRoot();
-    //      scene.getChildren().add(root);
-    //      c1 = c2;
-    //    }
+    PathFinder pathFinder = new PathFinder();
+    Node node1 = nodeSet.get(startNodePath);
+    Node node2 = nodeSet.get(endNodePath);
+    pathFinder.Astar(node1, node2);
+
+    Stack<Node> ret = pathFinder.Astar(node1, node2);
+    Node c1 = (Node) ret.pop();
+    while (!ret.empty()) {
+      Node c2 = (Node) ret.pop();
+      Line simpleNode = new Line(c1.get_x(), c1.get_y(), c2.get_x(), c2.get_y());
+      simpleNode.setStroke(Color.BLUE);
+      Group root = new Group(simpleNode);
+      AnchorPane scene = (AnchorPane) appPrimaryScene.getRoot();
+      scene.getChildren().add(root);
+      c1 = c2;
+    }
   }
 
   private void DeleteNodesFromMap() {
     AnchorPane scene = (AnchorPane) appPrimaryScene.getRoot();
     int i = 1;
-    for (javafx.scene.Node root : scene.getChildren().subList(1, scene.getChildren().size() - 1)) {
+    for (javafx.scene.Node root : scene.getChildren().subList(1, scene.getChildren().size())) {
       if (root.getId().equals(current.getText())) {
         scene.getChildren().remove(i);
         return;
@@ -368,8 +373,6 @@ public class MapController extends masterController implements Initializable {
         i++;
       }
     }
-
-    System.out.println("Object does not exist");
   }
 
   public static int getLineCount(String csv) throws IOException {
@@ -384,20 +387,25 @@ public class MapController extends masterController implements Initializable {
   }
 
   public void DeleteObjectDataBase() throws IOException {
-    if (nodeSet.containsKey(current.getText())) {
-      db.deleteNode(current.getText());
-    } else if (edgeSet.containsKey(current.getText())) {
-      db.deleteEdge(current.getText());
+    String id = current.getText();
+
+    if (nodeSet.containsKey(id)) {
+      db.deleteNode(id);
+      nodeSet.remove(id);
+    } else if (edgeSet.containsKey(id)) {
+      db.deleteEdge(id);
+      edgeSet.remove(id);
     } else {
       System.out.println("Object does not exist");
     }
+
+    current.setText("No object Selected");
   }
 
   public void examplePathFind(ActionEvent actionEvent) {
     for (HashMap.Entry<String, Node> node : nodeSet.entrySet()) {
       node.getValue().set_x(node.getValue().get_x() * .25);
       node.getValue().set_y(node.getValue().get_y() * .25);
-      placeNode(node.getKey(), node.getValue().get_x(), node.getValue().get_y());
     }
 
     for (HashMap.Entry<String, Edge> edge : edgeSet.entrySet()) {
@@ -406,10 +414,21 @@ public class MapController extends masterController implements Initializable {
           nodeSet.get(edge.getValue().getStartNode()),
           nodeSet.get(edge.getValue().getEndNode()));
     }
+    for (HashMap.Entry<String, Node> node : nodeSet.entrySet()) {
+      placeNode(node.getKey(), node.getValue().get_x(), node.getValue().get_y());
+    }
   }
 
   public void deleteCurrent(ActionEvent actionEvent) throws IOException {
-    DeleteObjectDataBase();
     DeleteNodesFromMap();
+    DeleteObjectDataBase();
+  }
+
+  public void SetStartNode(ActionEvent actionEvent) {
+    if (nodeSet.containsKey(current.getText())) startNodePath = current.getText();
+  }
+
+  public void SetEndNode(ActionEvent actionEvent) {
+    if (nodeSet.containsKey(current.getText())) endNodePath = current.getText();
   }
 }

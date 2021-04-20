@@ -39,6 +39,13 @@
                   <JFXColorPicker fx:id="colorPicker" promptText="Node Color" />
                   <Button fx:id="deleteCurrent" mnemonicParsing="false" onAction="#deleteCurrent" text="Delete Current" />
                   <Label fx:id="current" text="Current Object" />
+                  <Button mnemonicParsing="false" onAction="#SetStartNode" text="Start Node">
+                     <HBox.margin>
+                        <Insets left="50.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#SetEndNode" text="End Node" />
+                  <Button mnemonicParsing="false" onAction="#PathFind" text="Get Directions" />
                   <Label fx:id="pathtext" prefHeight="17.0" prefWidth="253.0" text="Path in blue from CHALL004L1 to CLABS002L1" visible="false">
                      <HBox.margin>
                         <Insets left="10.0" />
