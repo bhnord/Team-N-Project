@@ -232,7 +232,7 @@ public class CSVEditorNodes extends masterController implements Initializable {
     }
   }
 
-  public void DeleteNode(ActionEvent actionEvent) {
+  public void deleteNode(ActionEvent actionEvent) {
     if (listView.getItems().isEmpty() || selectedLabel == null) return;
     int index = listView.getItems().indexOf(selectedLabel);
     db.deleteNode(selectedLabel.getId());
