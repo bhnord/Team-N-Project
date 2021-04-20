@@ -23,9 +23,9 @@ public class PathFinder {
       //      if (curNode == end) {
       //        break;
       //      }
-      for (Edge l : curNode.get_neighbors()) {
-        Node n = l.get_endNode();
-        double local = curNode.get_localGoal() + l.get_distance();
+      for (Node.Link l : curNode.get_neighbors()) {
+        Node n = l._other;
+        double local = curNode.get_localGoal() + l._distance;
         if (!n.is_seen() || n.get_localGoal() > local) {
           n.set_localGoal(local);
           n.set_globalGoal(n.heuristic(end));

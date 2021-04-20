@@ -1,7 +1,7 @@
 package edu.wpi.teamname.services.database;
 
-import edu.wpi.teamname.services.algo.DataNode;
 import edu.wpi.teamname.services.algo.Edge;
+import edu.wpi.teamname.services.algo.Node;
 import java.sql.*;
 import java.util.HashSet;
 
@@ -31,7 +31,7 @@ public class DatabaseAccessor {
     return single_instance;
   }
 
-  public static HashSet<DataNode> getAllNodes() {
+  public static HashSet<Node> getAllNodes() {
     String query = "SELECT * FROM NODES";
     try {
       ResultSet nodes = stmt.executeQuery(query);
@@ -42,18 +42,18 @@ public class DatabaseAccessor {
     }
   }
 
-  public static DataNode getNode(String nodeID) {
+  public static Node getNode(String nodeID) {
     String query = "SELECT * FROM NODES WHERE id = '" + nodeID + "'";
     try {
       ResultSet rs = stmt.executeQuery(query);
-      return (DataNode) resultSetToNodes(rs).toArray()[0];
+      return (Node) resultSetToNodes(rs).toArray()[0];
     } catch (SQLException e) {
       e.printStackTrace();
       return null;
     }
   }
 
-  public static boolean addNode(DataNode node) {
+  public static boolean addNode(Node node) {
     String query =
         "INSERT INTO NODES VALUES ('"
             + node.get_nodeID()
@@ -133,8 +133,8 @@ public class DatabaseAccessor {
     }
   }
 
-  private static HashSet<DataNode> resultSetToNodes(ResultSet rs) {
-    HashSet<DataNode> nodeSet = new HashSet<>();
+  private static HashSet<Node> resultSetToNodes(ResultSet rs) {
+    HashSet<Node> nodeSet = new HashSet<>();
     try {
       while (rs.next()) {
         String nodeID = rs.getString("id");
@@ -145,8 +145,7 @@ public class DatabaseAccessor {
         String shortName = rs.getString("SHORTNAME");
         double xPos = rs.getDouble("XCOORD");
         double yPos = rs.getDouble("YCOORD");
-        nodeSet.add(
-            new DataNode(xPos, yPos, nodeID, floor, building, nodeType, longName, shortName));
+        nodeSet.add(new Node(xPos, yPos, nodeID, floor, building, nodeType, longName, shortName));
       }
       return nodeSet;
     } catch (SQLException e) {
@@ -162,7 +161,7 @@ public class DatabaseAccessor {
         String edgeID = rs.getString("id");
         String startNode = rs.getString("StartNodeID");
         String endNode = rs.getString("EndNodeID");
-        edgeSet.add(new Edge(edgeID, startNode, edgeID));
+        edgeSet.add(new Edge(edgeID, startNode, endNode));
       }
       return edgeSet;
     } catch (SQLException e) {
@@ -175,7 +174,7 @@ public class DatabaseAccessor {
 class test {
   public static void main(String[] args) {
     DatabaseAccessor db = DatabaseAccessor.getInstance();
-    HashSet<DataNode> nodes = db.getAllNodes();
+    HashSet<Node> nodes = db.getAllNodes();
     nodes.forEach(node -> System.out.println(node));
     System.out.println();
 
@@ -198,6 +197,6 @@ class test {
     String shortName = "testsname";
     double xPos = 0;
     double yPos = 1;
-    // db.addNode(new DataNode(xPos, yPos, nodeID, floor, building, nodeType, longName, shortName));
+    // db.addNode(new Node(xPos, yPos, nodeID, floor, building, nodeType, longName, shortName));
   }
 }

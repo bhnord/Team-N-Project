@@ -7,6 +7,18 @@ import lombok.NonNull;
 
 public class Node implements Comparable<Node> {
 
+  public static class Link {
+    String _id;
+    Node _other;
+    double _distance;
+
+    public Link(String id, Node other, double distance) {
+      this._id = id;
+      this._distance = distance;
+      this._other = other;
+    }
+  }
+
   public double get_localGoal() {
     return _localGoal;
   }
@@ -39,11 +51,11 @@ public class Node implements Comparable<Node> {
     this._parent = _parent;
   }
 
-  public List<Edge> get_neighbors() {
+  public List<Link> get_neighbors() {
     return _neighbors;
   }
 
-  public void set_neighbors(List<Edge> _neighbors) {
+  public void set_neighbors(List<Link> _neighbors) {
     this._neighbors = _neighbors;
   }
 
@@ -87,16 +99,86 @@ public class Node implements Comparable<Node> {
   private double _globalGoal;
   private boolean _seen;
   private Node _parent;
-  private List<Edge> _neighbors;
+  private List<Link> _neighbors;
+
+  public String get_floor() {
+    return _floor;
+  }
+
+  public void set_floor(String _floor) {
+    this._floor = _floor;
+  }
+
+  public String get_building() {
+    return _building;
+  }
+
+  public void set_building(String _building) {
+    this._building = _building;
+  }
+
+  public String get_nodeType() {
+    return _nodeType;
+  }
+
+  public void set_nodeType(String _nodeType) {
+    this._nodeType = _nodeType;
+  }
+
+  public String get_longName() {
+    return _longName;
+  }
+
+  public void set_longName(String _longName) {
+    this._longName = _longName;
+  }
+
+  public String get_shortName() {
+    return _shortName;
+  }
+
+  public void set_shortName(String _shortName) {
+    this._shortName = _shortName;
+  }
+
+  private String _floor;
+  private String _building;
+  private String _nodeType;
+  private String _longName;
+  private String _shortName;
 
   public double heuristic(Node other) {
     return Math.sqrt(
         (other._x - this._x) * (other._x - this._x) + (other._y - this._y) * (other._y - this._y));
   }
 
-  public Node() {
+  public Node(double x, double y, String nodeID) {
     _neighbors = new ArrayList<>();
     reset();
+    this._x = x;
+    this._y = y;
+    this._nodeID = nodeID;
+  }
+
+  public Node(
+      double x,
+      double y,
+      String nodeID,
+      String floor,
+      String building,
+      String nodeType,
+      String longName,
+      String shortName) {
+    _neighbors = new ArrayList<>();
+    reset();
+    this._x = x;
+    this._y = y;
+    this._nodeID = nodeID;
+    this._floor = floor;
+    this._building = building;
+    this._nodeType = nodeType;
+    this._longName = longName;
+    this._shortName = shortName;
   }
 
   /** resets all node parameters to default */
@@ -108,7 +190,7 @@ public class Node implements Comparable<Node> {
   }
 
   public void addNeighbor(String id, Node other, double distance) {
-    this._neighbors.add(new Edge(id, this, other, distance));
+    this._neighbors.add(new Link(id, other, distance));
   }
 
   @Override

@@ -130,7 +130,7 @@ public class CSVEditorNodes extends masterController implements Initializable {
     Label lbl = new Label("New Node");
     String uuid = UUID.randomUUID().toString();
     lbl.setId(uuid);
-    nodeMap.put(uuid, new DataNode(0, 0, "", "", "", "", "", ""));
+    nodeMap.put(uuid, new Node(0, 0, "", "", "", "", "", ""));
     listView.getItems().add(lbl);
   }
 
@@ -141,7 +141,7 @@ public class CSVEditorNodes extends masterController implements Initializable {
 
   public void commitChanges(ActionEvent actionEvent) {
     try {
-      DataNode selectedNode = nodeMap.get(selectedLabel.getId());
+      Node selectedNode = nodeMap.get(selectedLabel.getId());
       double xcoord = Double.parseDouble(XCoord.getText());
       double ycoord = Double.parseDouble(YCoord.getText());
       selectedNode.set_nodeID(ID.getText());
@@ -185,14 +185,14 @@ public class CSVEditorNodes extends masterController implements Initializable {
     loadSuccess.setText("File successfully loaded!");
     messageLabel.setText("" + file);
     listView.getItems().clear();
-    for (DataNode node : nodeMap.values()) {
+    for (Node node : nodeMap.values()) {
       Label lbl = new Label(node.get_nodeID());
       lbl.setId(node.get_nodeID());
       listView.getItems().add(lbl);
     }
   }
 
-  private HashMap<String, DataNode> csvToNodes(File file) throws FileNotFoundException {
+  private HashMap<String, Node> csvToNodes(File file) throws FileNotFoundException {
     Scanner scanner = new Scanner(file);
     if (!scanner.hasNextLine()) return nodeMap;
     String line = scanner.nextLine();
@@ -215,8 +215,7 @@ public class CSVEditorNodes extends masterController implements Initializable {
         String longName = entries[6];
         String shortName = entries[7];
         nodeMap.put(
-            nodeID,
-            new DataNode(xPos, yPos, nodeID, floor, building, nodeType, longName, shortName));
+            nodeID, new Node(xPos, yPos, nodeID, floor, building, nodeType, longName, shortName));
       }
       line = scanner.nextLine();
     } while (scanner.hasNextLine());
@@ -225,7 +224,7 @@ public class CSVEditorNodes extends masterController implements Initializable {
 
   private void nodesToCsv(String outputPath) throws IOException {
     Writer fileWriter = new FileWriter(outputPath, false);
-    for (DataNode node : nodeMap.values()) {
+    for (Node node : nodeMap.values()) {
       String outputString = "";
       outputString += node.get_nodeID();
       outputString += ",";
@@ -260,7 +259,7 @@ public class CSVEditorNodes extends masterController implements Initializable {
     listView.getItems().remove(selectedLabel);
     if (index != 0) index--;
     selectedLabel = listView.getItems().get(index);
-    DataNode clickedNode = nodeMap.get(selectedLabel.getId());
+    Node clickedNode = nodeMap.get(selectedLabel.getId());
     ID.setText(clickedNode.get_nodeID());
     XCoord.setText(Double.toString(clickedNode.get_x()));
     YCoord.setText(Double.toString(clickedNode.get_y()));

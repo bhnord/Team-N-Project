@@ -1,10 +1,8 @@
 package edu.wpi.teamname.views;
 
 import com.google.inject.Inject;
-import edu.wpi.teamname.entity.CSV;
 import edu.wpi.teamname.services.ServiceTwo;
 import edu.wpi.teamname.services.algo.*;
-import edu.wpi.teamname.services.algo.Cartesian;
 import edu.wpi.teamname.services.database.DatabaseService;
 import edu.wpi.teamname.state.HomeState;
 import java.io.*;
@@ -101,11 +99,10 @@ public class MapController extends masterController implements Initializable {
   }
 
   private Node get(double x, double y) {
-    Node temp = new Cartesian(x, y);
     double min = Double.MAX_VALUE;
     Node closest = null;
     for (Node c : nodeSet.values()) {
-      double distance = c.heuristic(temp);
+      double distance = (c.get_x() - x) * (c.get_x() - x) + (c.get_y() - y) * (c.get_y() - y);
       if (distance < min) {
         closest = c;
         min = distance;
@@ -120,20 +117,8 @@ public class MapController extends masterController implements Initializable {
    */
   public void placeNode(MouseEvent mouseEvent) {
     if (mouseEvent.getButton() == MouseButton.PRIMARY) {
-      Circle simpleNode = new Circle(mouseEvent.getX(), mouseEvent.getY(), 2.5);
-      simpleNode.setFill(Color.BLUE);
-      Group root = new Group(simpleNode);
-      root.setOnMouseClicked(
-          new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-              selectedNodelbl.setText(root.getId());
-            }
-          });
-      AnchorPane scene = (AnchorPane) appPrimaryScene.getRoot();
-      scene.getChildren().add(root);
-      Stage stage = (Stage) appPrimaryScene.getWindow();
-      nodeSet.put(UUID.randomUUID().toString(), new Node());
+      String id = UUID.randomUUID().toString();
+      placeNode(id, (int) mouseEvent.getX(), (int) mouseEvent.getY());
     }
   }
 
@@ -149,7 +134,7 @@ public class MapController extends masterController implements Initializable {
       System.out.println("endingLink");
       Node other = get(mouseEvent.getX(), mouseEvent.getY());
       if (other != startNode) {
-        placeLink(UUID.randomUUID().toString(), startNode, other);
+        placeLink(startNode.get_nodeID() + "_" + endNode.get_nodeID(), startNode, other);
       }
     }
   }
@@ -157,7 +142,7 @@ public class MapController extends masterController implements Initializable {
   private void placeNode(String id, int x, int y) {
     Circle simpleNode = new Circle(x, y, 2.5);
     simpleNode.setFill(Color.BLUE);
-    Group root = new Group(simpleNode);
+
     root.setId(id);
     root.setOnMouseClicked(
         new EventHandler<MouseEvent>() {
@@ -168,7 +153,7 @@ public class MapController extends masterController implements Initializable {
         });
     AnchorPane scene = (AnchorPane) appPrimaryScene.getRoot();
     scene.getChildren().add(root);
-    Cartesian n = new Cartesian(x, y);
+    Node n = new Node(x, y, id);
     nodeSet.put(id, n);
   }
 
@@ -206,41 +191,41 @@ public class MapController extends masterController implements Initializable {
     }
   }
 
-  public void examplePathFind(ActionEvent actionEvent) throws IOException {
-    CSV nodesCSV = new CSV("src/main/resources/MapCSV/MapNNodesAll.csv");
-    CSV edgesCSV = new CSV("src/main/resources/MapCSV/MapNEdgesAll.csv");
-    int nodesSize = nodesCSV.getLineCount();
-    int edgeSize = edgesCSV.getLineCount();
-
-    for (String node : nodesCSV) {
-      String[] line = node.split("[,]");
-      placeNode(
-          line[0],
-          ((int) (Integer.parseInt(line[1]) * 0.25 + 10)),
-          (int) (Integer.parseInt(line[2]) * 0.25 + 10));
-    }
-    for (String edge : edgesCSV) {
-      String[] line = edge.split("[,]");
-      placeLink(line[0], nodeSet.get(line[1]), nodeSet.get(line[2]));
-    }
-
-    Node node1 = nodeSet.get("CHALL004L1");
-    Node node2 = nodeSet.get("CLABS002L1");
-    PathFinder pathFinder = new PathFinder();
-    pathFinder.Astar(node1, node2);
-
-    Stack<Node> ret = pathFinder.Astar(node1, node2);
-    Cartesian c1 = (Cartesian) ret.pop();
-    while (!ret.empty()) {
-      Cartesian c2 = (Cartesian) ret.pop();
-      Line simpleNode = new Line(c1._x, c1._y, c2._x, c2._y);
-      simpleNode.setStroke(Color.BLUE);
-      Group root = new Group(simpleNode);
-      AnchorPane scene = (AnchorPane) appPrimaryScene.getRoot();
-      scene.getChildren().add(root);
-      c1 = c2;
-    }
-  }
+  //  public void examplePathFind(ActionEvent actionEvent) throws IOException { CSV nodesCSV = new
+  // CSV("src/main/resources/MapCSV/MapNNodesAll.csv");
+  //    CSV edgesCSV = new CSV("src/main/resources/MapCSV/MapNEdgesAll.csv");
+  //    int nodesSize = nodesCSV.getLineCount();
+  //    int edgeSize = edgesCSV.getLineCount();
+  //
+  //    for (String node : nodesCSV) {
+  //      String[] line = node.split("[,]");
+  //      placeNode(
+  //          line[0],
+  //          ((int) (Integer.parseInt(line[1]) * 0.25 + 10)),
+  //          (int) (Integer.parseInt(line[2]) * 0.25 + 10));
+  //    }
+  //    for (String edge : edgesCSV) {
+  //      String[] line = edge.split("[,]");
+  //      placeLink(line[0], nodeSet.get(line[1]), nodeSet.get(line[2]));
+  //    }
+  //
+  //    Node node1 = nodeSet.get("CHALL004L1");
+  //    Node node2 = nodeSet.get("CLABS002L1");
+  //    PathFinder pathFinder = new PathFinder();
+  //    pathFinder.Astar(node1, node2);
+  //
+  //    Stack<Node> ret = pathFinder.Astar(node1, node2);
+  //    Cartesian c1 = (Cartesian) ret.pop();
+  //    while (!ret.empty()) {
+  //      Cartesian c2 = (Cartesian) ret.pop();
+  //      Line simpleNode = new Line(c1._x, c1._y, c2._x, c2._y);
+  //      simpleNode.setStroke(Color.BLUE);
+  //      Group root = new Group(simpleNode);
+  //      AnchorPane scene = (AnchorPane) appPrimaryScene.getRoot();
+  //      scene.getChildren().add(root);
+  //      c1 = c2;
+  //    }
+  //  }
 
   /**
    * restarts the map class. Needs work.
@@ -300,22 +285,22 @@ public class MapController extends masterController implements Initializable {
    * @throws IOException
    */
   public void CreateCSV(ActionEvent actionEvent) throws IOException {
-    String[] nodeList = NodeNames.getText().split("[\n]");
-    FileWriter csvWriter = new FileWriter("src/main/resources/MapCSV/MapNodes.csv");
-    AnchorPane scene = (AnchorPane) appPrimaryScene.getRoot();
-    for (int i = 0; nodeList.length > i; i++) {
-      String[] singleNode = nodeList[i].split("[,]");
-      nodeSet.put(nodeList[i], new Cartesian(nodes.get(i)[0], nodes.get(i)[1]));
-      scene.getChildren().get(i + 1).setId(singleNode[0]);
-      csvWriter.append(singleNode[0]);
-      csvWriter.append(", ");
-      csvWriter.append(String.valueOf(nodes.get(i)[0]));
-      csvWriter.append(", ");
-      csvWriter.append(String.valueOf(nodes.get(i)[1]));
-      csvWriter.append("\n");
-    }
-    csvWriter.flush();
-    csvWriter.close();
+    //    String[] nodeList = NodeNames.getText().split("[\n]");
+    //    FileWriter csvWriter = new FileWriter("src/main/resources/MapCSV/MapNodes.csv");
+    //    AnchorPane scene = (AnchorPane) appPrimaryScene.getRoot();
+    //    for (int i = 0; nodeList.length > i; i++) {
+    //      String[] singleNode = nodeList[i].split("[,]");
+    //      nodeSet.put(nodeList[i], new Cartesian(nodes.get(i)[0], nodes.get(i)[1]));
+    //      scene.getChildren().get(i + 1).setId(singleNode[0]);
+    //      csvWriter.append(singleNode[0]);
+    //      csvWriter.append(", ");
+    //      csvWriter.append(String.valueOf(nodes.get(i)[0]));
+    //      csvWriter.append(", ");
+    //      csvWriter.append(String.valueOf(nodes.get(i)[1]));
+    //      csvWriter.append("\n");
+    //    }
+    //    csvWriter.flush();
+    //    csvWriter.close();
   }
 
   //  public void CreateLinks(ActionEvent actionEvent) {
@@ -327,23 +312,23 @@ public class MapController extends masterController implements Initializable {
   //  }
 
   public void PathFind(ActionEvent actionEvent) {
-    String[] S_E_nodes = pathFindNodes.getText().split("[,]");
-    PathFinder pathFinder = new PathFinder();
-    Node node1 = nodeSet.get(S_E_nodes[0]);
-    Node node2 = nodeSet.get(S_E_nodes[1]);
-    pathFinder.Astar(node1, node2);
-
-    Stack<Node> ret = pathFinder.Astar(node1, node2);
-    Cartesian c1 = (Cartesian) ret.pop();
-    while (!ret.empty()) {
-      Cartesian c2 = (Cartesian) ret.pop();
-      Line simpleNode = new Line(c1._x, c1._y, c2._x, c2._y);
-      simpleNode.setStroke(Color.BLUE);
-      Group root = new Group(simpleNode);
-      AnchorPane scene = (AnchorPane) appPrimaryScene.getRoot();
-      scene.getChildren().add(root);
-      c1 = c2;
-    }
+    //    String[] S_E_nodes = pathFindNodes.getText().split("[,]");
+    //    PathFinder pathFinder = new PathFinder();
+    //    Node node1 = nodeSet.get(S_E_nodes[0]);
+    //    Node node2 = nodeSet.get(S_E_nodes[1]);
+    //    pathFinder.Astar(node1, node2);
+    //
+    //    Stack<Node> ret = pathFinder.Astar(node1, node2);
+    //    Cartesian c1 = (Cartesian) ret.pop();
+    //    while (!ret.empty()) {
+    //      Cartesian c2 = (Cartesian) ret.pop();
+    //      Line simpleNode = new Line(c1._x, c1._y, c2._x, c2._y);
+    //      simpleNode.setStroke(Color.BLUE);
+    //      Group root = new Group(simpleNode);
+    //      AnchorPane scene = (AnchorPane) appPrimaryScene.getRoot();
+    //      scene.getChildren().add(root);
+    //      c1 = c2;
+    //    }
   }
 
   public void DeleteNodes(ActionEvent actionEvent) throws IOException {

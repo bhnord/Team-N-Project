@@ -4,8 +4,8 @@ import javafx.scene.shape.Shape;
 
 public class Edge {
   private String _edgeID;
-  private Node _startNode;
-  private Node _endNode;
+  private String _startNode;
+  private String _endNode;
 
   public double get_distance() {
     return _distance;
@@ -31,11 +31,11 @@ public class Edge {
     return _edgeID;
   }
 
-  public Node get_startNode() {
+  public String get_startNode() {
     return _startNode;
   }
 
-  public Node get_endNode() {
+  public String get_endNode() {
     return _endNode;
   }
 
@@ -43,18 +43,18 @@ public class Edge {
     this._edgeID = _edgeID;
   }
 
-  public void set_startNode(Node _startNode) {
+  public void set_startNode(String _startNode) {
     this._startNode = _startNode;
   }
 
-  public void set_endNode(Node _endNode) {
+  public void set_endNode(String _endNode) {
     this._endNode = _endNode;
   }
 
-  public Edge(String _edgeID, Node _startNode, Node _endNode, double distance) {
-    this._edgeID = _edgeID;
-    this._startNode = _startNode;
-    this._endNode = _endNode;
+  public Edge(String edgeID, String startNode, String endNode) {
+    this._edgeID = edgeID;
+    this._startNode = startNode;
+    this._endNode = endNode;
   }
 
   @Override
