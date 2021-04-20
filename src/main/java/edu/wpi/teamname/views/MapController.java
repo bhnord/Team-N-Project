@@ -1,6 +1,7 @@
 package edu.wpi.teamname.views;
 
 import com.google.inject.Inject;
+import com.jfoenix.controls.JFXColorPicker;
 import edu.wpi.teamname.services.algo.Edge;
 import edu.wpi.teamname.services.algo.Node;
 import edu.wpi.teamname.services.database.DatabaseService;
@@ -17,9 +18,6 @@ import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -28,21 +26,21 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.ResourceBundle;
 
 @Slf4j
 public class MapController extends masterController implements Initializable {
+  @FXML private JFXColorPicker colorPicker;
   @Inject DatabaseService db;
   // @Inject ServiceTwo graph;
   @Inject FXMLLoader loader;
@@ -50,14 +48,7 @@ public class MapController extends masterController implements Initializable {
 
   @FXML private Label XLabel;
   @FXML private Label YLabel;
-  @FXML private TextArea Text;
-  @FXML private Label NodeValues;
-  @FXML private TextArea NodeNames;
-  @FXML private ImageView mapimage;
-  @FXML private TextArea LinkField;
-  @FXML private TextField pathFindNodes;
-  @FXML private TextField deletenodeID;
-  @FXML private Label selectedNodelbl;
+  @FXML private Label current;
 
   private String selectedID;
   private Node startNode;
@@ -83,11 +74,14 @@ public class MapController extends masterController implements Initializable {
     this.appPrimaryScene = appPrimaryScene;
   }
 
+  @SneakyThrows
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     log.debug(state.toString());
-    //    nodeSet = db.getAllNodes();
-    //    edgeSet = db.getAllEdges();
+    colorPicker.setValue(Color.BLUE);
+
+    nodeSet = db.getAllNodesMap();
+    edgeSet = db.getAllEdgesMap();
   }
 
   @FXML
@@ -121,16 +115,19 @@ public class MapController extends masterController implements Initializable {
     }
     return closest;
   }
+
   /**
    * on mouse click on the map places a node with no id but when clicked it returns the node FX:ID
    *
    * @param mouseEvent
    */
-  public void placeNode(MouseEvent mouseEvent) throws IOException {
+  public void placeNodeClick(MouseEvent mouseEvent) throws IOException {
     if (mouseEvent.getButton() == MouseButton.PRIMARY) {
       NameNode nameNodeClass = new NameNode();
       nameNodeClass.confirm(this);
-      if (cancelOrSubmit) placeNode(nodeName, (int) mouseEvent.getX(), (int) mouseEvent.getY());
+      if (cancelOrSubmit) {
+        placeNode(nodeName, mouseEvent.getX(), mouseEvent.getY());
+      }
     }
 
     setCancelOrSubmit(false);
@@ -156,12 +153,12 @@ public class MapController extends masterController implements Initializable {
       System.out.println("endingLink");
       Node other = get(mouseEvent.getX(), mouseEvent.getY());
       if (other != startNode) {
-        placeLink(startNode.get_nodeID() + "_" + endNode.get_nodeID(), startNode, other);
+        placeLink(startNode.get_nodeID() + "_" + other.get_nodeID(), startNode, other);
       }
     }
   }
 
-  private void placeNode(String id, int x, int y) {
+  private void placeNode(String id, double x, double y) {
     Circle simpleNode = new Circle(x, y, 2.5);
     simpleNode.setFill(Color.BLUE);
     Group root = new Group(simpleNode);
@@ -170,13 +167,16 @@ public class MapController extends masterController implements Initializable {
         new EventHandler<MouseEvent>() {
           @Override
           public void handle(MouseEvent event) {
-            selectedNodelbl.setText(root.getId());
+            current.setText(root.getId());
           }
         });
     AnchorPane scene = (AnchorPane) appPrimaryScene.getRoot();
     scene.getChildren().add(root);
     Node n = new Node(x, y, id);
-    nodeSet.put(id, n);
+    if (!nodeSet.containsKey(id)) {
+      nodeSet.put(id, n);
+      db.addNode(n);
+    }
   }
 
   /**
@@ -200,11 +200,15 @@ public class MapController extends masterController implements Initializable {
         new EventHandler<MouseEvent>() {
           @Override
           public void handle(MouseEvent event) {
-            selectedNodelbl.setText(root.getId());
+            current.setText(root.getId());
           }
         });
     AnchorPane scene = (AnchorPane) appPrimaryScene.getRoot();
     scene.getChildren().add(root);
+    if (!edgeSet.containsKey(id)) {
+      edgeSet.put(id, new Edge(id, node1.get_nodeID(), node2.get_nodeID()));
+      db.addEdge(new Edge(id, node1.get_nodeID(), node2.get_nodeID()));
+    }
   }
 
   public void PrintNode(ActionEvent actionEvent) {
@@ -353,19 +357,9 @@ public class MapController extends masterController implements Initializable {
     //    }
   }
 
-  public void DeleteNodes(ActionEvent actionEvent) throws IOException {
-    DeleteNodesFromMap();
-    DeleteNodesFromCSV();
-  }
-
   private void DeleteNodesFromMap() {
     AnchorPane scene = (AnchorPane) appPrimaryScene.getRoot();
-    List<String> nodesToBeDeletedID = Arrays.asList(deletenodeID.getText().split("[,]"));
-    for (int i = 0; scene.getChildren().size() > i; i++) {
-      if (nodesToBeDeletedID.contains(scene.getChildren().get(i).getId())) {
-        scene.getChildren().remove(i);
-      }
-    }
+    scene.getChildren().remove(current.getText());
   }
 
   public static int getLineCount(String csv) throws IOException {
@@ -379,30 +373,33 @@ public class MapController extends masterController implements Initializable {
     return lineCount;
   }
 
-  public void DeleteNodesFromCSV() throws IOException {
-    BufferedReader readCSV =
-        Files.newBufferedReader(Paths.get("src/main/resources/MapCSV/MapNodes.csv"));
-    String finalCSV = "";
-    String line;
-
-    List<String> nodesToBeDeletedID = Arrays.asList(deletenodeID.getText().split("[,]"));
-
-    for (int i = 0; getLineCount("MapNodes") > i; i++) {
-      line = readCSV.readLine();
-      String id = line.split("[,]")[0];
-      if (nodesToBeDeletedID.contains(id)) ;
-      else {
-        if (finalCSV.equals("")) finalCSV = line;
-        else finalCSV = finalCSV + "\n" + line;
-      }
+  public void DeleteObjectDataBase() throws IOException {
+    if (nodeSet.containsKey(current.getText())) {
+      db.deleteNode(current.getText());
+    } else if (edgeSet.containsKey(current.getText())) {
+      db.deleteEdge(current.getText());
+    } else {
+      System.out.println("Object does not exist");
     }
-    BufferedWriter csvWriter =
-        Files.newBufferedWriter(Paths.get("src/main/resources/MapCSV/MapNodes.csv"));
-    csvWriter.write(finalCSV);
-
-    csvWriter.flush();
-    csvWriter.close();
   }
 
-  public void examplePathFind(ActionEvent actionEvent) {}
+  public void examplePathFind(ActionEvent actionEvent) {
+    for (HashMap.Entry<String, Node> node : nodeSet.entrySet()) {
+      node.getValue().set_x(node.getValue().get_x() * .25);
+      node.getValue().set_y(node.getValue().get_y() * .25);
+      placeNode(node.getKey(), node.getValue().get_x(), node.getValue().get_y());
+    }
+
+    for (HashMap.Entry<String, Edge> edge : edgeSet.entrySet()) {
+      placeLink(
+          edge.getKey(),
+          nodeSet.get(edge.getValue().getStartNode()),
+          nodeSet.get(edge.getValue().getEndNode()));
+    }
+  }
+
+  public void deleteCurrent(ActionEvent actionEvent) throws IOException {
+    DeleteObjectDataBase();
+    DeleteNodesFromMap();
+  }
 }

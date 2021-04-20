@@ -1,6 +1,7 @@
 package edu.wpi.teamname.views;
 
 import com.jfoenix.controls.JFXTextField;
+import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -8,8 +9,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
-import java.io.IOException;
 
 public class NameNode extends masterController implements Initializable {
   static Stage stage;
