@@ -10,6 +10,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashSet;
+
+import edu.wpi.teamname.services.database.users.Employee;
+import edu.wpi.teamname.services.database.users.User;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -17,6 +20,7 @@ public class DatabaseService {
   /*
    Database service class. This class will be loaded as a Singleton by Guice.
   */
+  User currentUser = new Employee("1", "username111");
 
   private final Connection connection;
   private Statement stmt;
@@ -300,12 +304,11 @@ public class DatabaseService {
   }
 
   public boolean addRequest(Request request) {
-
     String str =
         "INSERT INTO REQUESTS (TYPE, SENDERID, RECEIVERID, CONTENT, NOTES) VALUES ('"
             + request.getType()
             + "', "
-            + request.getSenderID()
+            + currentUser.getId()
             + ", "
             + request.getReceiverID()
             + ", '"
@@ -481,9 +484,9 @@ public class DatabaseService {
               + "Content varchar(700), "
               + "Notes varchar(200), "
               + "CONSTRAINT chk_Type CHECK (Type IN "
-              + "('Food Delivery', 'Language Interpreter', 'Sanitation', 'Laundry', 'Gift Delivery', 'Floral Delivery', 'Medicine Delivery', "
-              + "'Religious Request', 'Internal Patient Transportation', 'External Patient Transportation', 'Security', 'Facilities Maintenance', "
-              + "'Computer Service', 'Audio/Visual')),"
+              + "('AUDIO_VISUAL', 'COMPUTER_SERVICE', 'EXTERNAL_PATIENT_TRANSPORTATION', 'FLORAL', 'FOOD_DELIVERY', 'GIFT_DELIVERY', ' INTERNAL_PATIENT_TRANSPORTATION', 'LANGUAGE_INTERPRETER', "
+              + "'LAUNDRY', 'MAINTENANCE', 'MEDICINE_DELIVERY', 'RELIGIOUS', "
+              + "'SANITATION', 'SECURITY')),"
               + "PRIMARY KEY (id))";
       stmt.execute(str);
     } catch (SQLException e) {
