@@ -1,6 +1,7 @@
 package edu.wpi.teamname.views;
 
 import com.google.inject.Inject;
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.RequiredFieldValidator;
 import edu.wpi.teamname.services.database.DatabaseService;
@@ -27,6 +28,12 @@ public class ExternalPatientRequestController extends masterController implement
   @FXML private JFXTextField txtEmployeeName;
   @FXML private JFXTextField txtStartRoom;
   @FXML private JFXTextField txtEndRoom;
+
+  @FXML private JFXButton submit21;
+  @FXML private JFXButton submit22;
+  @FXML private JFXButton submit2;
+  @FXML private JFXTextField location;
+
   private Scene appPrimaryScene;
   String helpPagePath = "ExternalRequestHelpPage";
   Stage primaryStage;
@@ -41,9 +48,22 @@ public class ExternalPatientRequestController extends masterController implement
     this.appPrimaryScene = appPrimaryScene;
   }
 
+  @FXML
+  private void validateButton() {
+    if (!location.getText().isEmpty()) {
+      submit21.setDisable(false);
+      submit22.setDisable(false);
+      submit2.setDisable(false);
+    }
+  }
+
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     log.debug(state.toString());
+    submit21.setDisable(true);
+    submit22.setDisable(true);
+    submit2.setDisable(true);
+
     /** USERNAME input and password* */
     RequiredFieldValidator reqInputValid = new RequiredFieldValidator();
     reqInputValid.setMessage("Cannot be empty");
@@ -83,5 +103,18 @@ public class ExternalPatientRequestController extends masterController implement
 
   public void help(ActionEvent actionEvent) throws IOException {
     super.returnToRequest(loader, appPrimaryScene, helpPagePath);
+  }
+
+  public void exit(ActionEvent actionEvent) throws IOException {
+    super.cancel(actionEvent);
+  }
+
+  @FXML
+  public void logOut() throws IOException {
+    super.logOut(loader, appPrimaryScene);
+  }
+
+  public void advanceViews(ActionEvent actionEvent) throws IOException {
+    super.advanceViews(actionEvent);
   }
 }

@@ -63,69 +63,69 @@
             <Font name="Arial Black" size="30.0" />
          </font>
       </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0c00ae" height="69.0" layoutX="-1.0" layoutY="77.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.0" layoutX="27.0" layoutY="89.0" rotate="-45.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.0" layoutX="27.0" layoutY="89.0" rotate="45.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" />
-      <JFXButton fx:id="exit" layoutY="76.0" onAction="#exit" prefHeight="71.0" prefWidth="66.0" textFill="WHITE">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0c00ae" height="69.0" layoutX="-1.0" layoutY="78.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.0" layoutX="27.0" layoutY="90.0" rotate="45.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.0" layoutX="27.0" layoutY="90.0" rotate="-45.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" />
+      <JFXButton fx:id="exit1" layoutY="77.0" onAction="#exit" prefHeight="71.0" prefWidth="66.0" textFill="WHITE">
          <font>
             <Font name="System Bold" size="9.0" />
          </font>
          <tooltip>
-            <Tooltip fx:id="ttExit" text="Exit App">
+            <Tooltip fx:id="ttExit1" text="Exit App">
                <font>
                   <Font size="18.0" />
                </font>
             </Tooltip>
          </tooltip>
       </JFXButton>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0c00ae" height="69.0" layoutX="-1.0" layoutY="149.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
-      <ImageView fitHeight="50.0" fitWidth="59.0" layoutX="4.0" layoutY="158.0" pickOnBounds="true" preserveRatio="true">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0c00ae" height="69.0" layoutX="-1.0" layoutY="150.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
+      <ImageView fitHeight="50.0" fitWidth="59.0" layoutX="4.0" layoutY="159.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@/images/LogOut.png" />
          </image>
       </ImageView>
-      <JFXButton fx:id="logOutButton" layoutX="-1.0" layoutY="148.0" onAction="#logOut" prefHeight="71.0" prefWidth="66.0" textFill="WHITE">
+      <JFXButton fx:id="logOutButton1" layoutX="-1.0" layoutY="149.0" onAction="#logOut" prefHeight="71.0" prefWidth="66.0" textFill="WHITE">
          <font>
             <Font name="System Bold" size="9.0" />
          </font>
          <tooltip>
-            <Tooltip fx:id="ttLogOutButton" text="Log Out">
+            <Tooltip fx:id="ttLogOutButton2" text="Log Out">
                <font>
                   <Font size="18.0" />
                </font>
             </Tooltip>
          </tooltip>
       </JFXButton>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0c00ae" height="69.0" layoutX="-1.0" layoutY="221.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
-      <ImageView fitHeight="50.0" fitWidth="59.0" layoutX="6.0" layoutY="231.0" pickOnBounds="true" preserveRatio="true">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0c00ae" height="69.0" layoutX="-1.0" layoutY="222.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
+      <ImageView fitHeight="50.0" fitWidth="59.0" layoutX="6.0" layoutY="232.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@/images/ButtonCovid.png" />
          </image>
       </ImageView>
-      <JFXButton fx:id="CovidForm" layoutX="-1.0" layoutY="220.0" onAction="#advanceViews" prefHeight="71.0" prefWidth="66.0" text="Button" textFill="WHITE">
+      <JFXButton fx:id="CovidForm1" layoutX="-1.0" layoutY="221.0" onAction="#advanceViews" prefHeight="71.0" prefWidth="66.0" text="Button" textFill="WHITE">
          <font>
             <Font name="System Bold" size="9.0" />
          </font>
          <tooltip>
-            <Tooltip fx:id="ttCovidForm" text="Covid Form">
+            <Tooltip fx:id="ttCovidForm1" text="Covid Form">
                <font>
                   <Font size="18.0" />
                </font>
             </Tooltip>
          </tooltip>
       </JFXButton>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0c00ae" height="69.0" layoutX="-1.0" layoutY="295.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
-      <ImageView fitHeight="58.0" fitWidth="59.0" layoutX="2.0" layoutY="300.0" pickOnBounds="true" preserveRatio="true">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0c00ae" height="69.0" layoutX="-1.0" layoutY="293.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
+      <ImageView fitHeight="50.0" fitWidth="59.0" layoutX="6.0" layoutY="303.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@/images/IconHome.png" />
          </image>
       </ImageView>
-      <JFXButton fx:id="HomeView1" layoutY="294.0" onAction="#advanceHome" prefHeight="71.0" prefWidth="66.0" textFill="WHITE">
+      <JFXButton fx:id="HomeView2" layoutX="-1.0" layoutY="293.0" onAction="#advanceHome" prefHeight="71.0" prefWidth="66.0" text=" " textFill="WHITE">
          <font>
             <Font name="System Bold" size="9.0" />
          </font>
          <tooltip>
-            <Tooltip fx:id="ttLogOutButton1" text="Home">
+            <Tooltip fx:id="ttHomeView" text="  ">
                <font>
                   <Font size="18.0" />
                </font>
