@@ -248,7 +248,7 @@ public class MapController extends masterController implements Initializable {
       Node c2 = (Node) ret.pop();
       Line simpleNode = new Line(c1.get_x(), c1.get_y(), c2.get_x(), c2.get_y());
       simpleNode.setStrokeWidth(2);
-      simpleNode.setFill(colorPicker.getValue());
+      simpleNode.setStroke(Color.BLUE);
       Group root = new Group(simpleNode);
       AnchorPane scene = (AnchorPane) appPrimaryScene.getRoot();
 
