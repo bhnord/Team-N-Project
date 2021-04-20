@@ -147,5 +147,6 @@
          </font>
       </Text>
       <Label layoutX="751.0" layoutY="44.0" prefHeight="50.0" prefWidth="163.0" text="Employee" />
+      <JFXButton fx:id="CurrentRequest" layoutX="171.0" layoutY="419.0" onAction="#advanceViews" prefHeight="85.0" prefWidth="273.0" style="-fx-background-radius: 20; -fx-background-color: #0c00ae;" text="CURRENT REQUESTS" textFill="WHITE" />
    </children>
 </AnchorPane>
