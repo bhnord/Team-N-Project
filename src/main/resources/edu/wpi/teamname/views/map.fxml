@@ -9,6 +9,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamname.views.MapController">
    <children>
@@ -57,5 +60,41 @@
             <Insets />
          </opaqueInsets>
       </VBox>
+      <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#0c00ae" height="798.0" layoutX="1170.0" layoutY="58.0" stroke="TRANSPARENT" strokeType="INSIDE" width="300.0" />
+      <Text fill="WHITE" layoutX="1184.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HELP">
+         <font>
+            <Font name="Arial Black" size="46.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="1187.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To create a Node, click anywhere on map, and give the node an ID" wrappingWidth="266.3515625">
+         <font>
+            <Font name="Arial Narrow" size="22.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="1186.0" layoutY="239.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To create an edge, right click and drag from one Nodes area onto another Node" wrappingWidth="266.3515625">
+         <font>
+            <Font name="Arial Narrow" size="22.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="1187.0" layoutY="336.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Load will display the current database visibly onto the map in form of Nodes and Edges" wrappingWidth="266.3515625">
+         <font>
+            <Font name="Arial Narrow" size="22.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="1187.0" layoutY="423.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Clear will remove all the current Nodes from the map, but will still be held in the database" wrappingWidth="266.3515625">
+         <font>
+            <Font name="Arial Narrow" size="22.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="1187.0" layoutY="516.0" strokeType="OUTSIDE" strokeWidth="0.0" text="While a Node or Edge is selected, the ID will show to the right of the Delete Current button, and is used to get rid of that object from the database" wrappingWidth="266.3515625">
+         <font>
+            <Font name="Arial Narrow" size="22.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="1187.0" layoutY="667.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To create a path from one Node to the next, select a Node and press Start Node, then do the same for End Node, press Get Directions to pathfind between the two" wrappingWidth="266.3515625">
+         <font>
+            <Font name="Arial Narrow" size="22.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
