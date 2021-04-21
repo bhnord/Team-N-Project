@@ -4,6 +4,7 @@ import com.google.inject.Inject;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.RequiredFieldValidator;
+import edu.wpi.teamname.services.algo.Node;
 import edu.wpi.teamname.services.database.DatabaseService;
 import edu.wpi.teamname.services.database.requests.Request;
 import edu.wpi.teamname.services.database.requests.RequestType;
@@ -33,14 +34,14 @@ public class AudioVisualRequestController extends masterController implements In
   String helpPagePath = "AudioVisualRequestHelpPage";
   @FXML private Label text;
   @FXML private Label errorLabel;
-  //  @FXML private JFXTextField txtEmployeeName;
-  @FXML private JFXTextField txtRoom;
   @FXML private JFXTextField txtTimeOfRequest;
   @FXML private JFXTextField txtEquipment;
   @FXML private JFXTextField txtComments;
   @FXML private JFXComboBox<Label> employeeDropdown;
+  @FXML private JFXComboBox<Label> roomDropdown;
   private Scene appPrimaryScene;
   private HashMap<String, User> users;
+  private HashMap<String, Node> rooms;
 
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
@@ -57,7 +58,6 @@ public class AudioVisualRequestController extends masterController implements In
   public void initialize(URL location, ResourceBundle resources) {
     //    log.debug(state.toString());
     /** USERNAME input and password* */
-    users = db.getUsersByType(UserType.EMPLOYEE);
     RequiredFieldValidator reqInputValid = new RequiredFieldValidator();
     reqInputValid.setMessage("Cannot be empty");
     employeeDropdown.getValidators().add(reqInputValid);
@@ -69,21 +69,21 @@ public class AudioVisualRequestController extends masterController implements In
                 employeeDropdown.validate();
               }
             });
-    //    txtEmployeeName.getValidators().add(reqInputValid);
-    //    txtEmployeeName
+    //        txtEmployeeName.getValidators().add(reqInputValid);
+    //        txtEmployeeName
+    //            .focusedProperty()
+    //            .addListener(
+    //                (o, oldVal, newVal) -> {
+    //                  if (!newVal) txtEmployeeName.validate();
+    //                });
+    reqInputValid.setMessage("Cannot be empty");
+    //    txtRoom.getValidators().add(reqInputValid);
+    //    txtRoom
     //        .focusedProperty()
     //        .addListener(
     //            (o, oldVal, newVal) -> {
-    //              if (!newVal) txtEmployeeName.validate();
+    //              if (!newVal) txtRoom.validate();
     //            });
-    reqInputValid.setMessage("Cannot be empty");
-    txtRoom.getValidators().add(reqInputValid);
-    txtRoom
-        .focusedProperty()
-        .addListener(
-            (o, oldVal, newVal) -> {
-              if (!newVal) txtRoom.validate();
-            });
     reqInputValid.setMessage("Cannot be empty");
     txtEquipment.getValidators().add(reqInputValid);
     txtEquipment
@@ -94,6 +94,7 @@ public class AudioVisualRequestController extends masterController implements In
             });
 
     loadEmployeeDropdown();
+    loadRoomDropdown();
   }
 
   @FXML
@@ -103,15 +104,15 @@ public class AudioVisualRequestController extends masterController implements In
 
   public void Submit(ActionEvent actionEvent) throws IOException {
     employeeDropdown.setValidators();
-    if (employeeDropdown.getSelectionModel().isEmpty()) return;
+    if (employeeDropdown.getSelectionModel().isEmpty()
+        || roomDropdown.getSelectionModel().isEmpty()) return;
     ConfirmBoxAudioVisual.confirm(this);
 
     Request r =
         new Request(
             RequestType.AUDIO_VISUAL,
-            Integer.parseInt(
-                users.get(employeeDropdown.getSelectionModel().getSelectedItem().getId()).getId()),
-            txtRoom.getText(),
+            Integer.parseInt(employeeDropdown.getSelectionModel().getSelectedItem().getId()),
+            roomDropdown.getSelectionModel().getSelectedItem().getId(),
             txtEquipment.getText(),
             txtComments.getText());
     if (!db.addRequest(r)) {
@@ -124,10 +125,22 @@ public class AudioVisualRequestController extends masterController implements In
   }
 
   private void loadEmployeeDropdown() {
+    users = db.getUsersByType(UserType.EMPLOYEE);
     for (User user : users.values()) {
       Label lbl = new Label(user.getUsername());
       lbl.setId(user.getId());
       employeeDropdown.getItems().add(lbl);
     }
+    new AutoCompleteComboBoxListener(employeeDropdown);
+  }
+
+  private void loadRoomDropdown() {
+    rooms = db.getAllNodesMap();
+    for (Node node : rooms.values()) {
+      Label lbl = new Label(node.get_longName());
+      lbl.setId(node.get_nodeID());
+      roomDropdown.getItems().add(lbl);
+    }
+    new AutoCompleteComboBoxListener(roomDropdown);
   }
 }

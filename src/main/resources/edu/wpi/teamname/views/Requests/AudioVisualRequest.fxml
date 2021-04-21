@@ -20,10 +20,6 @@
                 <Font name="Serif Bold" size="29.0" />
             </font>
         </Label>
-        <JFXTextField fx:id="txtRoom" focusColor="#211edd" labelFloat="true" layoutX="51.0" layoutY="183.0" promptText="Patient Room" unFocusColor="WHITE">
-            <font>
-                <Font name="Serif Bold" size="38.0" />
-            </font></JFXTextField>
         <JFXTextField fx:id="txtTimeOfRequest" focusColor="#211edd" labelFloat="true" layoutX="51.0" layoutY="279.0" promptText="Time of request" unFocusColor="WHITE">
             <font>
                 <Font name="Serif Bold" size="38.0" />
@@ -52,6 +48,7 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <JFXComboBox fx:id="employeeDropdown" layoutX="51.0" layoutY="89.0" prefHeight="32.0" prefWidth="170.0" promptText="Employee Name" />
+      <JFXComboBox fx:id="employeeDropdown" editable="true" layoutX="51.0" layoutY="89.0" prefHeight="32.0" prefWidth="170.0" promptText="Employee Name" />
+      <JFXComboBox fx:id="roomDropdown" editable="true" layoutX="51.0" layoutY="180.0" prefHeight="32.0" prefWidth="170.0" promptText="Patient Room" />
     </children>
 </AnchorPane>
