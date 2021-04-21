@@ -10,6 +10,7 @@ import edu.wpi.teamname.services.database.DatabaseService;
 import edu.wpi.teamname.services.database.requests.Request;
 import edu.wpi.teamname.services.database.requests.RequestType;
 import edu.wpi.teamname.state.HomeState;
+import edu.wpi.teamname.state.Login;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -23,7 +24,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -41,9 +41,8 @@ public class AudioVisualRequestController extends masterController implements In
   @FXML private JFXTextField txtComments;
   @FXML private Button helpButton;
   @FXML private StackPane myStackPane;
-
   private Scene appPrimaryScene;
-  Stage primaryStage;
+
   String helpPagePath = "AudioVisualRequestHelpPage";
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
@@ -89,7 +88,16 @@ public class AudioVisualRequestController extends masterController implements In
 
   @FXML
   public void advanceHome() throws IOException {
-    super.advanceServiceRequest(loader, appPrimaryScene);
+
+    Login login = Login.getLogin();
+
+    if (login.getUsername().equals("p") && login.getPassword().equals("p")) {
+      super.advanceServiceRequestPatient(loader, appPrimaryScene);
+    } else if (login.getUsername().equals("e") && login.getPassword().equals("e")) {
+      super.advanceServiceRequestEmployee(loader, appPrimaryScene);
+    } else if (login.getUsername().equals("a") && login.getPassword().equals("a")) {
+      super.advanceServiceRequestAdmin(loader, appPrimaryScene);
+    }
   }
 
   public void Submit(ActionEvent actionEvent) throws IOException {

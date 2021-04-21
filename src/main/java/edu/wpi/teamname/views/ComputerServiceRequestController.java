@@ -98,10 +98,10 @@ public class ComputerServiceRequestController extends masterController implement
     dialogContent.setBody(
         (new Text(
             "* Employee Name refers to the employee being requested to complete the job\n"
-                + "* Patient Room is the room that the employee will deliver the medicine to\n"
-                + "* Time of request refers to time the medicine should be delivered to the patient\n"
-                + "* Necessary Equipment refers to additional services/equipment the patient requires\n"
-                + "* Necessary Equipment refers to additional services/equipment the patient requires\n")));
+                + "* Hospital Location refers to the area of the hospital in need of computer service\n"
+                + "* Comments refer to additional information pertaining to the service\n"
+                + "* Time of Request refers to the time the service was submitted\n"
+                + "* Name refers to the name of the person in need of computer service\n")));
     JFXButton close = new JFXButton("close");
     close.setButtonType(JFXButton.ButtonType.RAISED);
     close.setStyle("-fx-background-color : #00bfff:");
