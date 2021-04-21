@@ -130,8 +130,10 @@ public class AudioVisualRequestController extends masterController implements In
           @Override
           public void handle(ActionEvent event) {
             dialog.close();
+            helpButton.setDisable(false);
           }
         });
+    helpButton.setDisable(true);
     dialog.show();
   }
 }
