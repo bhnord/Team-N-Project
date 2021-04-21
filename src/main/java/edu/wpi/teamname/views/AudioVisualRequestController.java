@@ -1,6 +1,9 @@
 package edu.wpi.teamname.views;
 
 import com.google.inject.Inject;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.JFXDialogLayout;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.RequiredFieldValidator;
 import edu.wpi.teamname.services.database.DatabaseService;
@@ -11,11 +14,15 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 
@@ -32,6 +39,8 @@ public class AudioVisualRequestController extends masterController implements In
   @FXML private JFXTextField txtTimeOfRequest;
   @FXML private JFXTextField txtEquipment;
   @FXML private JFXTextField txtComments;
+  @FXML private Button helpButton;
+  @FXML private StackPane myStackPane;
 
   private Scene appPrimaryScene;
   Stage primaryStage;
@@ -99,6 +108,25 @@ public class AudioVisualRequestController extends masterController implements In
   }
 
   public void help(ActionEvent actionEvent) throws IOException {
-    super.returnToRequest(loader, appPrimaryScene, helpPagePath);
+    // super.returnToRequest(loader, appPrimaryScene, helpPagePath);
+    String title = "JFoenix Dialog";
+    String content = "you clicked the help button";
+    JFXDialogLayout dialogContent = new JFXDialogLayout();
+    dialogContent.setHeading(new Text(title));
+    dialogContent.setBody((new Text(content)));
+    JFXButton close = new JFXButton("close");
+    close.setButtonType(JFXButton.ButtonType.RAISED);
+    close.setStyle("-fx-background-color : #00bfff:");
+    dialogContent.setActions(close);
+
+    JFXDialog dialog = new JFXDialog(myStackPane, dialogContent, JFXDialog.DialogTransition.BOTTOM);
+    close.setOnAction(
+        new EventHandler<ActionEvent>() {
+          @Override
+          public void handle(ActionEvent event) {
+            dialog.close();
+          }
+        });
+    dialog.show();
   }
 }

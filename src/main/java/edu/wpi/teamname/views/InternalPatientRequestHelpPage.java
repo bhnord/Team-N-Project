@@ -42,7 +42,5 @@ public class InternalPatientRequestHelpPage extends masterController implements 
   public void returnToRequestPage(ActionEvent actionEvent) throws IOException {
 
     super.returnToRequest(loader, appPrimaryScene, path);
-    // super.returnToRequest(loader, appPrimaryScene);
-
   }
 }
