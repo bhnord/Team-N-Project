@@ -110,7 +110,6 @@ public class AudioVisualRequestController extends masterController implements In
   public void help(ActionEvent actionEvent) throws IOException {
     // super.returnToRequest(loader, appPrimaryScene, helpPagePath);
     String title = "Help";
-    // String content = "you clicked the help button";
     JFXDialogLayout dialogContent = new JFXDialogLayout();
     dialogContent.setHeading(new Text(title));
     dialogContent.setBody(
