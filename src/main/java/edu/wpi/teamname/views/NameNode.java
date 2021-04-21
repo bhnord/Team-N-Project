@@ -14,6 +14,10 @@ public class NameNode extends masterController implements Initializable {
   static Stage stage;
   static NameNode box;
   static MapController external;
+  public JFXTextField floor;
+  public JFXTextField buidling;
+  public JFXTextField longName;
+  public JFXTextField shortName;
 
   @FXML private JFXTextField idName;
 
@@ -45,7 +49,12 @@ public class NameNode extends masterController implements Initializable {
   @FXML
   public void submit() {
     external.setCancelOrSubmit(true);
-    external.setNodeName(idName.getText());
+    external.setNodeProperties(
+        idName.getText(),
+        floor.getText(),
+        buidling.getText(),
+        longName.getText(),
+        shortName.getText());
     box.stage.close();
   }
 }

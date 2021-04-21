@@ -7,11 +7,6 @@ import edu.wpi.teamname.services.algo.Node;
 import edu.wpi.teamname.services.algo.PathFinder;
 import edu.wpi.teamname.services.database.DatabaseService;
 import edu.wpi.teamname.state.HomeState;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -34,6 +29,12 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.ResourceBundle;
 
 @Slf4j
 public class MapController extends masterController implements Initializable {
@@ -63,6 +64,10 @@ public class MapController extends masterController implements Initializable {
   ArrayList<Node.Link> path = new ArrayList<>();
 
   String nodeName;
+  String building;
+  String floor;
+  String longname;
+  String shortname;
   Boolean cancelOrSubmit = false;
 
   /**
@@ -141,8 +146,13 @@ public class MapController extends masterController implements Initializable {
     setCancelOrSubmit(false);
   }
 
-  public void setNodeName(String nodeName) {
+  public void setNodeProperties(
+      String nodeName, String floor, String building, String longname, String shortname) {
     this.nodeName = nodeName;
+    this.floor = floor;
+    this.longname = longname;
+    this.shortname = shortname;
+    this.building = building;
   }
 
   public void setCancelOrSubmit(Boolean sm) {
@@ -196,12 +206,14 @@ public class MapController extends masterController implements Initializable {
         });
     AnchorPane scene = (AnchorPane) appPrimaryScene.getRoot();
     scene.getChildren().add(root);
-    Node n = new Node(x * 4, y * 4, id);
+    Node n =
+        new Node(x * 4, y * 4, id, this.floor, this.building, "", this.longname, this.shortname);
     n.set_shape(simpleNode);
     if (!nodeSet.containsKey(id)) {
       mapObjects.put(id, scene.getChildren().size() - 1);
       nodeSet.put(id, n);
       db.addNode(n);
+      setNodeProperties("", "", "", "", "");
     }
   }
 

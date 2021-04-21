@@ -5,11 +5,19 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="240.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamname.views.NameNode">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="364.0" prefWidth="267.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamname.views.NameNode">
    <children>
-      <Button fx:id="cancel" layoutX="40.0" layoutY="220.0" mnemonicParsing="false" onAction="#cancel" text="cancel" />
-      <Button fx:id="submit" layoutX="135.0" layoutY="220.0" mnemonicParsing="false" onAction="#submit" text="submit" />
+      <Button fx:id="cancel" layoutX="45.0" layoutY="312.0" mnemonicParsing="false" onAction="#cancel" text="cancel" />
+      <Button fx:id="submit" layoutX="149.0" layoutY="312.0" mnemonicParsing="false" onAction="#submit" text="submit" />
       <JFXTextField fx:id="idName" layoutX="14.0" layoutY="31.0" />
       <Label layoutX="14.0" layoutY="14.0" text="ID" />
+      <Label layoutX="12.0" layoutY="67.0" text="Floor" />
+      <Label layoutX="12.0" layoutY="117.0" text="Building" />
+      <Label layoutX="10.0" layoutY="175.0" prefHeight="17.0" prefWidth="70.0" text="Long Name" />
+      <Label layoutX="13.0" layoutY="250.0" text="Short Name" />
+      <JFXTextField fx:id="floor" layoutX="14.0" layoutY="84.0" />
+      <JFXTextField fx:id="buidling" layoutX="14.0" layoutY="141.0" />
+      <JFXTextField fx:id="longName" layoutX="13.0" layoutY="192.0" />
+      <JFXTextField fx:id="shortName" layoutX="10.0" layoutY="267.0" />
    </children>
 </AnchorPane>
