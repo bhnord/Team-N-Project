@@ -55,7 +55,7 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <StackPane fx:id="myStackPane" layoutX="928.0" layoutY="245.0" prefHeight="150.0" prefWidth="200.0" />
+      <StackPane fx:id="myStackPane" layoutX="664.0" layoutY="245.0" prefHeight="243.0" prefWidth="464.0" />
         <JFXButton fx:id="helpButton" layoutX="1042.0" layoutY="676.0" onAction="#help" prefWidth="67.0" ripplerFill="WHITE" text="Help" textFill="WHITE" />
     </children>
 </AnchorPane>

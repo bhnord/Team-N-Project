@@ -109,11 +109,17 @@ public class AudioVisualRequestController extends masterController implements In
 
   public void help(ActionEvent actionEvent) throws IOException {
     // super.returnToRequest(loader, appPrimaryScene, helpPagePath);
-    String title = "JFoenix Dialog";
-    String content = "you clicked the help button";
+    String title = "Help";
+    // String content = "you clicked the help button";
     JFXDialogLayout dialogContent = new JFXDialogLayout();
     dialogContent.setHeading(new Text(title));
-    dialogContent.setBody((new Text(content)));
+    dialogContent.setBody(
+        (new Text(
+            "* Employee Name refers to the employee being requested to complete the job\n"
+                + "* Patient Room is the room that the employee will deliver the medicine to\n"
+                + "* Time of request refers to time the medicine should be delivered to the patient\n"
+                + "* Necessary Equipment refers to additional services/equipment the patient requires\n"
+                + "* Necessary Equipment refers to additional services/equipment the patient requires\n")));
     JFXButton close = new JFXButton("close");
     close.setButtonType(JFXButton.ButtonType.RAISED);
     close.setStyle("-fx-background-color : #00bfff:");
