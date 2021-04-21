@@ -463,6 +463,25 @@ public class DatabaseService {
     }
   }
 
+  public HashMap<String, User> getUsersByType(UserType userType) {
+    String userTypeString =
+        userType.toString().charAt(0) + userType.toString().substring(1).toLowerCase();
+    String str = "SELECT * FROM USERS WHERE USERTYPE = '" + userTypeString + "'";
+    HashMap<String, User> userMap = new HashMap<>();
+    try {
+      ResultSet rs = stmt.executeQuery(str);
+      HashSet<User> usersSet = resultSetToUsers(rs);
+      assert usersSet != null;
+      for (User user : usersSet) {
+        userMap.put(user.getId(), user);
+      }
+      return userMap;
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return userMap;
+    }
+  }
+
   public boolean deleteUser(String username) {
     String str = "DELETE USERS WHERE USERNAME = " + username;
     try {
