@@ -64,7 +64,7 @@ public class MapController extends masterController implements Initializable {
   ArrayList<Node.Link> path = new ArrayList<>();
 
   String nodeName;
-  Boolean cancelOrSubmit;
+  Boolean cancelOrSubmit = false;
 
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
@@ -293,7 +293,7 @@ public class MapController extends masterController implements Initializable {
     }
   }
 
-  private void DeleteNodesFromMap() {
+  private void DeleteNodesFromMap() throws IOException {
     AnchorPane scene = (AnchorPane) appPrimaryScene.getRoot();
     int i = 9;
     System.out.println(scene.getChildren().size());
@@ -325,7 +325,6 @@ public class MapController extends masterController implements Initializable {
 
   // Loading from the database
   public void Load(ActionEvent actionEvent) {
-    //    if (nodeSet.isEmpty() && edgeSet.isEmpty()) {
     nodeSet.clear();
     edgeSet.clear();
     nodeSet = db.getAllNodesMap();
@@ -340,10 +339,9 @@ public class MapController extends masterController implements Initializable {
     for (HashMap.Entry<String, Node> node : nodeSet.entrySet()) {
       placeNode(node.getKey(), node.getValue().get_x() * .25, node.getValue().get_y() * .25);
     }
-    //    }
   }
 
-  public void deleteCurrent(ActionEvent actionEvent) throws IOException {
+  public void deleteCurrent(ActionEvent actionEvent) throws IOException, InterruptedException {
     DeleteNodesFromMap();
     DeleteObjectDataBase();
   }
