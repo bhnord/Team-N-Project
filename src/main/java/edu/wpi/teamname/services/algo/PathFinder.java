@@ -17,12 +17,12 @@ public class PathFinder {
     ArrayList<Node> used = new ArrayList<>();
     used.add(start);
     open.add(start);
+    start.set_seen(true);
     do {
       curNode = open.remove();
-      curNode.set_seen(true);
-      //      if (curNode == end) {
-      //        break;
-      //      }
+      if (curNode == end) {
+        break;
+      }
       for (Node.Link l : curNode.get_neighbors()) {
         Node n = l._other;
         double local = curNode.get_localGoal() + l._distance;
@@ -30,6 +30,7 @@ public class PathFinder {
           n.set_localGoal(local);
           n.set_globalGoal(n.heuristic(end));
           n.set_parent(l);
+          n.set_seen(true);
           open.add(n);
           used.add(n);
         }
