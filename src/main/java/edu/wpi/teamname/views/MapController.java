@@ -2,7 +2,7 @@ package edu.wpi.teamname.views;
 
 import com.google.inject.Inject;
 import com.jfoenix.controls.JFXColorPicker;
-import edu.wpi.teamname.Zoom;
+import com.jfoenix.controls.JFXScrollPane;
 import edu.wpi.teamname.services.algo.Edge;
 import edu.wpi.teamname.services.algo.Node;
 import edu.wpi.teamname.services.algo.PathFinder;
@@ -13,6 +13,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -26,7 +30,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -52,7 +55,7 @@ public class MapController extends masterController implements Initializable {
   @FXML private Label YLabel;
   @FXML private Label current;
   @FXML private ImageView mapImageView;
-  @FXML private Image mapImage;
+  @FXML private JFXScrollPane scrollPane;
 
   private String selectedID;
   private Node startNode;
@@ -60,6 +63,7 @@ public class MapController extends masterController implements Initializable {
 
   private String startNodePath;
   private String endNodePath;
+  final DoubleProperty zoomProperty = new SimpleDoubleProperty();
 
   private Scene appPrimaryScene;
   int[] nodeinfo = new int[3];
@@ -98,6 +102,8 @@ public class MapController extends masterController implements Initializable {
     nodeSet = new HashMap<>();
     edgeSet = new HashMap<>();
     mapObjects = new HashMap<>();
+
+    zoomProperty.set(841);
   }
 
   @FXML
@@ -388,7 +394,26 @@ public class MapController extends masterController implements Initializable {
   }
 
   public void zoom(ScrollEvent scrollEvent) throws Exception {
-    Zoom zoom = new Zoom();
-    zoom.start((Stage) appPrimaryScene.getWindow());
+    zoomProperty.addListener(
+        new InvalidationListener() {
+          @Override
+          public void invalidated(Observable arg0) {
+            mapImageView.setFitWidth(zoomProperty.get());
+            mapImageView.setFitHeight(zoomProperty.get());
+          }
+        });
+
+    scrollPane.addEventFilter(
+        ScrollEvent.ANY,
+        new EventHandler<ScrollEvent>() {
+          @Override
+          public void handle(ScrollEvent event) {
+            if (event.getDeltaY() > 0 && zoomProperty.get() < 841) {
+              zoomProperty.set(zoomProperty.get() * 1.001);
+            } else if (event.getDeltaY() < 0 && zoomProperty.get() > 400) {
+              zoomProperty.set(zoomProperty.get() / 1.001);
+            }
+          }
+        });
   }
 }
