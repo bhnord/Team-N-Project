@@ -21,6 +21,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.effect.BoxBlur;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -45,6 +46,7 @@ public class AudioVisualRequestController extends masterController implements In
   @FXML private Button submit;
   @FXML private StackPane myStackPane2;
   private Scene appPrimaryScene;
+  // @FXML private AnchorPane anchorPage;
   static Stage stage;
 
   String helpPagePath = "AudioVisualRequestHelpPage";
@@ -192,6 +194,7 @@ public class AudioVisualRequestController extends masterController implements In
 
   public void help(ActionEvent actionEvent) throws IOException {
     String title = "Help Page";
+    BoxBlur blur = new BoxBlur(3, 3, 3);
     JFXDialogLayout dialogContent = new JFXDialogLayout();
     dialogContent.setHeading(new Text(title));
     dialogContent.setBody(
@@ -211,11 +214,13 @@ public class AudioVisualRequestController extends masterController implements In
         new EventHandler<ActionEvent>() {
           @Override
           public void handle(ActionEvent event) {
+            // anchorPage.setEffect(null);
             dialog.close();
             helpButton.setDisable(false);
           }
         });
     helpButton.setDisable(true);
     dialog.show();
+    // anchorPage.setEffect(blur);
   }
 }

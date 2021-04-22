@@ -24,7 +24,7 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <StackPane fx:id="myStackPane" layoutX="727.0" layoutY="295.0" prefHeight="209.0" prefWidth="412.0" />
+      <StackPane fx:id="myStackPane" layoutX="693.0" layoutY="279.0" prefHeight="209.0" prefWidth="412.0" />
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0c00ae" height="69.0" layoutX="-1.0" layoutY="78.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.0" layoutX="27.0" layoutY="90.0" rotate="45.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" />
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.0" layoutX="27.0" layoutY="90.0" rotate="-45.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" />
@@ -90,10 +90,10 @@
             </tooltip>
         </JFXButton>
 
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0c00ae" height="69.0" layoutX="-1.0" layoutY="365.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
-        <JFXButton fx:id="helpButton" layoutX="-1.0" layoutY="370.0" onAction="#help" prefWidth="67.0" ripplerFill="WHITE" text="Help" textFill="WHITE">
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0c00ae" height="47.0" layoutX="834.0" layoutY="602.0" stroke="TRANSPARENT" strokeType="INSIDE" width="130.0" />
+        <JFXButton fx:id="helpButton" layoutX="834.0" layoutY="602.0" onAction="#help" prefHeight="47.0" prefWidth="130.0" ripplerFill="WHITE" text="Help" textFill="WHITE">
         <font>
-                <Font name="System Bold" size="9.0" />
+                <Font name="System Bold" size="22.0" />
             </font>
             <tooltip>
                 <Tooltip fx:id="tthelpButton" text="Help Page">
