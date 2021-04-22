@@ -14,7 +14,7 @@ import java.sql.SQLException;
 public class DatabaseServiceProvider extends AbstractModule {
 
   private final String realDbUrl =
-      "jdbc:derby:src/main/java/edu/wpi/teamname/services/database/DerbyDB;user=admin;password=admin;create=true";
+      "jdbc:derby:src/main/java/edu/wpi/TeamN/services/database/DerbyDB;user=admin;password=admin;create=true";
 
   @Override
   protected void configure() {}
