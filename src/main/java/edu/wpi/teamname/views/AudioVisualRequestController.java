@@ -42,6 +42,7 @@ public class AudioVisualRequestController extends masterController implements In
   private Scene appPrimaryScene;
   private HashMap<String, User> users;
   private HashMap<String, Node> rooms;
+  JFXComboBox test = new JFXComboBox<>();
 
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
@@ -59,16 +60,7 @@ public class AudioVisualRequestController extends masterController implements In
     //    log.debug(state.toString());
     /** USERNAME input and password* */
     RequiredFieldValidator reqInputValid = new RequiredFieldValidator();
-    reqInputValid.setMessage("Cannot be empty");
-    employeeDropdown.getValidators().add(reqInputValid);
-    employeeDropdown
-        .focusedProperty()
-        .addListener(
-            (o, oldVal, newVal) -> {
-              if (employeeDropdown.getSelectionModel().isEmpty()) {
-                employeeDropdown.validate();
-              }
-            });
+
     //        txtEmployeeName.getValidators().add(reqInputValid);
     //        txtEmployeeName
     //            .focusedProperty()
@@ -76,14 +68,6 @@ public class AudioVisualRequestController extends masterController implements In
     //                (o, oldVal, newVal) -> {
     //                  if (!newVal) txtEmployeeName.validate();
     //                });
-    reqInputValid.setMessage("Cannot be empty");
-    //    txtRoom.getValidators().add(reqInputValid);
-    //    txtRoom
-    //        .focusedProperty()
-    //        .addListener(
-    //            (o, oldVal, newVal) -> {
-    //              if (!newVal) txtRoom.validate();
-    //            });
     reqInputValid.setMessage("Cannot be empty");
     txtEquipment.getValidators().add(reqInputValid);
     txtEquipment
@@ -131,6 +115,17 @@ public class AudioVisualRequestController extends masterController implements In
       lbl.setId(user.getId());
       employeeDropdown.getItems().add(lbl);
     }
+//    RequiredFieldValidator reqInputValid = new RequiredFieldValidator();
+//    reqInputValid.setMessage("Cannot be empty");
+//    employeeDropdown.getValidators().add(reqInputValid);
+//    employeeDropdown
+//            .focusedProperty()
+//            .addListener(
+//                    (o, oldVal, newVal) -> {
+//                      if (employeeDropdown.getSelectionModel().isEmpty()) {
+//                        employeeDropdown.validate();
+//                      }
+//                    });
     new AutoCompleteComboBoxListener(employeeDropdown);
   }
 

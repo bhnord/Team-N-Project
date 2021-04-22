@@ -1,9 +1,9 @@
 package edu.wpi.teamname.views;
 
+import com.jfoenix.controls.JFXComboBox;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -11,20 +11,20 @@ import javafx.util.StringConverter;
 
 public class AutoCompleteComboBoxListener implements EventHandler<KeyEvent> {
 
-  private ComboBox comboBox;
+  //  private ComboBox comboBox;
+  private JFXComboBox comboBox;
   private StringBuilder sb;
   private ObservableList<Label> data;
   private boolean moveCaretToPos = false;
   private int caretPos;
   private String promptText;
 
-  public AutoCompleteComboBoxListener(final ComboBox comboBox) {
+  public AutoCompleteComboBoxListener(final JFXComboBox<Label> comboBox) {
     this.comboBox = comboBox;
     sb = new StringBuilder();
     data = comboBox.getItems();
     promptText = comboBox.getPromptText();
 
-    //TODO This somehow causes the prompt text to not go away when you start typing
     comboBox.setConverter(
         new StringConverter<Label>() {
 
@@ -44,14 +44,8 @@ public class AutoCompleteComboBoxListener implements EventHandler<KeyEvent> {
 
     this.comboBox.setEditable(true);
     this.comboBox.autosize();
-    //    this.comboBox.setOnMousePressed(t -> comboBox.show());
-    //    this.comboBox.setOnKeyPressed(
-    //        t -> {
-    //          System.out.println(comboBox.getEditor().getText());
-    //
-    //        });
+    this.comboBox.setOnMousePressed(t -> comboBox.show());
     this.comboBox.setOnKeyReleased(AutoCompleteComboBoxListener.this);
-    //    comboBox.text
   }
 
   @Override
@@ -74,6 +68,7 @@ public class AutoCompleteComboBoxListener implements EventHandler<KeyEvent> {
         moveCaretToPos = true;
         caretPos = comboBox.getEditor().getCaretPosition();
         break;
+      case ENTER:
       case ESCAPE:
         comboBox.hide();
         return;
@@ -102,6 +97,10 @@ public class AutoCompleteComboBoxListener implements EventHandler<KeyEvent> {
     String t = comboBox.getEditor().getText();
 
     comboBox.setItems(list);
+    if (!comboBox.isLabelFloat()) {
+      if (t.length() == 1) comboBox.setPromptText("");
+      else if (t.length() == 0) comboBox.setPromptText(promptText);
+    }
     comboBox.getEditor().setText(t);
     if (!moveCaretToPos) {
       caretPos = -1;

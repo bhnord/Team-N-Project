@@ -48,7 +48,7 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <JFXComboBox fx:id="employeeDropdown" editable="true" layoutX="51.0" layoutY="89.0" prefHeight="32.0" prefWidth="170.0" promptText="Employee Name" />
-      <JFXComboBox fx:id="roomDropdown" editable="true" layoutX="51.0" layoutY="180.0" prefHeight="32.0" prefWidth="170.0" promptText="Patient Room" />
+      <JFXComboBox fx:id="employeeDropdown" editable="true" labelFloat="true" layoutX="51.0" layoutY="89.0" prefHeight="32.0" prefWidth="170.0" promptText="Employee Name" />
+      <JFXComboBox fx:id="roomDropdown" editable="true" labelFloat="true" layoutX="51.0" layoutY="185.0" prefHeight="32.0" prefWidth="170.0" promptText="Patient Room" />
     </children>
 </AnchorPane>
