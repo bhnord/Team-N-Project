@@ -127,17 +127,18 @@
             </Tooltip>
          </tooltip>
       </JFXButton>
-      <VBox layoutX="114.0" layoutY="125.0" minHeight="732.0" minWidth="1000.0" prefHeight="732.0" prefWidth="1184.0" AnchorPane.bottomAnchor="118.0" AnchorPane.leftAnchor="114.0" AnchorPane.rightAnchor="152.0" AnchorPane.topAnchor="125.0">
+      <AnchorPane layoutX="100.0" layoutY="100.0" prefHeight="572.0" prefWidth="1100.0">
          <children>
-            <HBox prefHeight="744.0" prefWidth="1140.0">
-               <children>
-                  <ImageView fx:id="mapimage" fitHeight="571.5" fitWidth="1563.0" onMouseClicked="#placeNodeClick" onMouseMoved="#xyPrint" onMousePressed="#startLink" onMouseReleased="#releaseMouse" preserveRatio="true">
-                     <image>
-                        <Image fx:id="mapimg" url="@/images/level1.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </HBox>
+            <ImageView fx:id="mapimage" fitHeight="571.5" fitWidth="884.0" onMouseClicked="#placeNodeClick" onMouseMoved="#xyPrint" onMousePressed="#startLink" onMouseReleased="#releaseMouse" preserveRatio="true">
+               <image>
+                  <Image fx:id="mapimg" url="@/images/level1.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <VBox layoutX="114.0" layoutY="225.0" minHeight="732.0" minWidth="1000.0" prefHeight="732.0" prefWidth="1184.0" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="114.0" AnchorPane.rightAnchor="152.0" AnchorPane.topAnchor="225.0">
+         <children>
+            <HBox prefHeight="744.0" prefWidth="1140.0" />
             <Label fx:id="XLabel" prefHeight="47.0" prefWidth="120.0" text="X-Value" />
             <Label fx:id="YLabel" prefHeight="47.0" prefWidth="120.0" text="y-Value" />
             <HBox prefHeight="100.0" prefWidth="200.0">
