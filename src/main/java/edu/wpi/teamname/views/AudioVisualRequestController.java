@@ -111,7 +111,6 @@ public class AudioVisualRequestController extends masterController implements In
     } else if (login.getUsername().equals("a") && login.getPassword().equals("a")) {
       super.advanceHomeAdmin(loader, appPrimaryScene);
     }
-    // super.advanceServiceRequest(loader, appPrimaryScene);
   }
 
   @FXML

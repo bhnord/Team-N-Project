@@ -88,6 +88,20 @@ public class LaundryRequestController extends masterController implements Initia
     }
   }
 
+  @FXML
+  public void back() throws IOException {
+
+    Login login = Login.getLogin();
+
+    if (login.getUsername().equals("p") && login.getPassword().equals("p")) {
+      super.advanceServiceRequestPatient(loader, appPrimaryScene);
+    } else if (login.getUsername().equals("e") && login.getPassword().equals("e")) {
+      super.advanceServiceRequestEmployee(loader, appPrimaryScene);
+    } else if (login.getUsername().equals("a") && login.getPassword().equals("a")) {
+      super.advanceServiceRequestAdmin(loader, appPrimaryScene);
+    }
+  }
+
   public void Submit(ActionEvent actionEvent) throws IOException {
     ConfirmBoxLaundry.confirm(this);
   }
