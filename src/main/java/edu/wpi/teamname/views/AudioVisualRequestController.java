@@ -86,8 +86,32 @@ public class AudioVisualRequestController extends masterController implements In
             });
   }
 
+  public void exit(ActionEvent actionEvent) throws IOException {
+    super.cancel(actionEvent);
+  }
+
+  @FXML
+  public void logOut() throws IOException {
+    super.logOut(loader, appPrimaryScene);
+  }
+
   @FXML
   public void advanceHome() throws IOException {
+
+    Login login = Login.getLogin();
+
+    if (login.getUsername().equals("p") && login.getPassword().equals("p")) {
+      super.advanceHomePatient(loader, appPrimaryScene);
+    } else if (login.getUsername().equals("e") && login.getPassword().equals("e")) {
+      super.advanceHome(loader, appPrimaryScene);
+    } else if (login.getUsername().equals("a") && login.getPassword().equals("a")) {
+      super.advanceHomeAdmin(loader, appPrimaryScene);
+    }
+    // super.advanceServiceRequest(loader, appPrimaryScene);
+  }
+
+  @FXML
+  public void back() throws IOException {
 
     Login login = Login.getLogin();
 
