@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import edu.wpi.teamname.services.database.DatabaseService;
 import edu.wpi.teamname.state.HomeState;
+import edu.wpi.teamname.state.Login;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
@@ -16,7 +17,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -26,11 +26,8 @@ public class CovidForm extends masterController implements Initializable {
   @Inject FXMLLoader loader;
   @Inject HomeState state;
   @FXML private Label text;
-
-  static Stage primaryStage;
   private Scene appPrimaryScene;
   @FXML private JFXButton submit = new JFXButton();
-  int count = 0;
 
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
@@ -74,7 +71,15 @@ public class CovidForm extends masterController implements Initializable {
 
   @FXML
   public void advanceHome() throws IOException {
-    super.advanceHome(loader, appPrimaryScene);
+    Login login = Login.getLogin();
+
+    if (login.getUsername().equals("p") && login.getPassword().equals("p")) {
+      super.advanceHomePatient(loader, appPrimaryScene);
+    } else if (login.getUsername().equals("e") && login.getPassword().equals("e")) {
+      super.advanceHome(loader, appPrimaryScene);
+    } else if (login.getUsername().equals("a") && login.getPassword().equals("a")) {
+      super.advanceHomeAdmin(loader, appPrimaryScene);
+    }
   }
 
   @FXML
