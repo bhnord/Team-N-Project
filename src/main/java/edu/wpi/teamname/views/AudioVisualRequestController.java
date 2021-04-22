@@ -115,17 +115,17 @@ public class AudioVisualRequestController extends masterController implements In
       lbl.setId(user.getId());
       employeeDropdown.getItems().add(lbl);
     }
-//    RequiredFieldValidator reqInputValid = new RequiredFieldValidator();
-//    reqInputValid.setMessage("Cannot be empty");
-//    employeeDropdown.getValidators().add(reqInputValid);
-//    employeeDropdown
-//            .focusedProperty()
-//            .addListener(
-//                    (o, oldVal, newVal) -> {
-//                      if (employeeDropdown.getSelectionModel().isEmpty()) {
-//                        employeeDropdown.validate();
-//                      }
-//                    });
+    //    RequiredFieldValidator reqInputValid = new RequiredFieldValidator();
+    //    reqInputValid.setMessage("Cannot be empty");
+    //    employeeDropdown.getValidators().add(reqInputValid);
+    //    employeeDropdown
+    //            .focusedProperty()
+    //            .addListener(
+    //                    (o, oldVal, newVal) -> {
+    //                      if (employeeDropdown.getSelectionModel().isEmpty()) {
+    //                        employeeDropdown.validate();
+    //                      }
+    //                    });
     new AutoCompleteComboBoxListener(employeeDropdown);
   }
 

@@ -45,6 +45,16 @@ public class AutoCompleteComboBoxListener implements EventHandler<KeyEvent> {
     this.comboBox.setEditable(true);
     this.comboBox.autosize();
     this.comboBox.setOnMousePressed(t -> comboBox.show());
+    this.comboBox
+        .focusedProperty()
+        .addListener(
+            (o, oldVal, newVal) -> {
+              if (newVal) {
+                this.comboBox.show();
+              } else {
+                this.comboBox.hide();
+              }
+            });
     this.comboBox.setOnKeyReleased(AutoCompleteComboBoxListener.this);
   }
 
