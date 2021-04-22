@@ -1,11 +1,7 @@
 package edu.wpi.teamname.views;
 
 import com.google.inject.Inject;
-import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXDialog;
-import com.jfoenix.controls.JFXDialogLayout;
-import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.*;
 import com.jfoenix.validation.RequiredFieldValidator;
 import edu.wpi.teamname.services.algo.Node;
 import edu.wpi.teamname.services.database.DatabaseService;
@@ -47,11 +43,9 @@ public class AudioVisualRequestController extends masterController implements In
   @FXML private Button helpButton;
   @FXML private StackPane myStackPane;
   private Scene appPrimaryScene;
-
-  String helpPagePath = "AudioVisualRequestHelpPage";
   private HashMap<String, User> users;
   private HashMap<String, Node> rooms;
-  JFXComboBox test = new JFXComboBox<>();
+  String helpPagePath = "AudioVisualRequestHelpPage";
 
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
