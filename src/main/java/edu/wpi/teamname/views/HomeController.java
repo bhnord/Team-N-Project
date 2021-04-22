@@ -75,10 +75,10 @@ public class HomeController extends masterController implements Initializable {
     Rectangle2D bounds = screen.getVisualBounds();
 
     Stage stage = (Stage) appPrimaryScene.getWindow();
-    stage.setX(bounds.getMinX());
-    stage.setY(bounds.getMinY());
-    stage.setWidth(bounds.getWidth());
-    stage.setHeight(bounds.getHeight());
+    // stage.setX(bounds.getMinX());
+    // stage.setY(bounds.getMinY());
+    // stage.setWidth(bounds.getWidth());
+    // stage.setHeight(bounds.getHeight());
     appPrimaryScene.setRoot(root);
   }
 
