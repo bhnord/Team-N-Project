@@ -36,7 +36,6 @@ public class FacilityMaintenanceRequestController extends masterController
   @Inject HomeState state;
   @FXML private Label text;
   @FXML private Label errorLabel;
-  @FXML private JFXTextField txtEmployeeName;
   @FXML private JFXTextField txtRoom;
   @FXML private JFXTextField txtTimeOfRequest;
   @FXML private JFXTextField txtEquipment;
@@ -46,10 +45,9 @@ public class FacilityMaintenanceRequestController extends masterController
   @FXML private Button submit;
   @FXML private StackPane myStackPane2;
   private Scene appPrimaryScene;
-  // @FXML private AnchorPane anchorPage;
+  @FXML JFXComboBox<String> txtEmployeeName = new JFXComboBox<>();
   static Stage stage;
 
-  String helpPagePath = "AudioVisualRequestHelpPage";
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
    * JavaFX thread
@@ -64,16 +62,20 @@ public class FacilityMaintenanceRequestController extends masterController
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     log.debug(state.toString());
+
+    txtEmployeeName.getItems().add("person1");
+    txtEmployeeName.getItems().add("person2");
+
     /** USERNAME input and password* */
     RequiredFieldValidator reqInputValid = new RequiredFieldValidator();
-    reqInputValid.setMessage("Cannot be empty");
+    /* reqInputValid.setMessage("Cannot be empty");
     txtEmployeeName.getValidators().add(reqInputValid);
     txtEmployeeName
         .focusedProperty()
         .addListener(
             (o, oldVal, newVal) -> {
               if (!newVal) txtEmployeeName.validate();
-            });
+            });*/
     reqInputValid.setMessage("Cannot be empty");
     txtRoom.getValidators().add(reqInputValid);
     txtRoom
@@ -130,54 +132,6 @@ public class FacilityMaintenanceRequestController extends masterController
   }
 
   public void Submit(ActionEvent actionEvent) throws IOException {
-    /*
-    String title = "Confirm";
-    JFXDialogLayout dialogContent = new JFXDialogLayout();
-    dialogContent.setHeading(new Text(title));
-    dialogContent.setBody((new Text("Are you sure the information you have entered is correct\n")));
-
-    JFXButton close = new JFXButton("Cancel");
-    close.setButtonType(JFXButton.ButtonType.RAISED);
-    close.setStyle("-fx-background-color : #00bfff:");
-    // close.setTranslateX(100);
-    // close.setTranslateY(100);
-
-    dialogContent.setActions(close);
-
-    JFXButton continueButton = new JFXButton("Continue");
-    continueButton.setButtonType(JFXButton.ButtonType.RAISED);
-    continueButton.setStyle("-fx-background-color : #00bfff:");
-    dialogContent.setActions(continueButton);
-
-    JFXDialog dialog =
-        new JFXDialog(myStackPane2, dialogContent, JFXDialog.DialogTransition.BOTTOM);
-
-    close.setOnAction(
-        new EventHandler<ActionEvent>() {
-          @Override
-          public void handle(ActionEvent event) {
-            dialog.close();
-            submit.setDisable(false);
-          }
-        });
-
-    continueButton.setOnAction(
-        new EventHandler<ActionEvent>() {
-          @SneakyThrows
-          @Override
-          public void handle(ActionEvent event) {
-            // dialog.close();
-            Parent root =
-                loader.load(getClass().getResourceAsStream("ConfirmationPageAudioVisual.fxml"));
-            appPrimaryScene.setRoot(root);
-            submit.setDisable(false);
-          }
-        });
-
-    submit.setDisable(true);
-    dialog.show();*/
-
-    ///////////////////////////////////////////////////////////////////////////////////////////////
 
     VBox manuContainer = new VBox();
     Label lbl1 = new Label("Are you sure the information you have provided is correct?");
@@ -190,8 +144,14 @@ public class FacilityMaintenanceRequestController extends masterController
     cancelButton.setButtonType(JFXButton.ButtonType.RAISED);
     cancelButton.setStyle("-fx-background-color : #00bfff:");
 
+    cancelButton.setTranslateX(100);
+    cancelButton.setTranslateY(65);
+
+    continueButton.setTranslateX(200);
+    continueButton.setTranslateY(25);
+
     manuContainer.getChildren().addAll(lbl1, cancelButton, continueButton);
-    manuContainer.setPadding(new Insets(10, 50, 50, 50));
+    manuContainer.setPadding(new Insets(30, 50, 50, 50));
     manuContainer.setSpacing(10);
     JFXPopup popup1 = new JFXPopup(manuContainer);
 
@@ -211,7 +171,7 @@ public class FacilityMaintenanceRequestController extends masterController
           public void handle(ActionEvent event) {
             popup1.hide();
             Parent root =
-                loader.load(getClass().getResourceAsStream("ConfirmationPageAudioVisual.fxml"));
+                loader.load(getClass().getResourceAsStream("ConfirmationPageMaintenance.fxml"));
             appPrimaryScene.setRoot(root);
             submit.setDisable(false);
           }
@@ -219,20 +179,6 @@ public class FacilityMaintenanceRequestController extends masterController
     submit.setDisable(true);
     popup1.show(myStackPane2, JFXPopup.PopupVPosition.BOTTOM, JFXPopup.PopupHPosition.LEFT);
   }
-
-  /*
-      Request r =
-          new Request(
-              RequestType.AUDIO_VISUAL,
-              2,
-              txtRoom.getText(),
-              txtEquipment.getText(),
-              txtComments.getText());
-      if (!db.addRequest(r)) {
-        errorLabel.setText("Invalid Input(s)");
-      }
-
-  */
 
   public void help(ActionEvent actionEvent) throws IOException {
     String title = "Help Page";

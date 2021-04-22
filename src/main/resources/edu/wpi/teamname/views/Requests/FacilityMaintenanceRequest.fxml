@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tooltip?>
@@ -104,11 +105,6 @@
             </tooltip>
         </JFXButton>
         <Rectangle arcHeight="50.0" arcWidth="50.0" fill="WHITE" height="517.0" layoutX="143.0" layoutY="193.0" stroke="TRANSPARENT" strokeType="INSIDE" width="476.0" />
-
-        <JFXTextField fx:id="txtEmployeeName" focusColor="#211edd" labelFloat="true" layoutX="187.0" layoutY="233.0" prefHeight="31.0" prefWidth="336.0" promptText="Employee Name" unFocusColor="WHITE">
-            <font>
-                <Font name="Serif Bold" size="26.0" />
-            </font></JFXTextField>
         <JFXTextField fx:id="txtRoom" focusColor="#211edd" labelFloat="true" layoutX="187.0" layoutY="304.0" prefHeight="8.0" prefWidth="336.0" promptText="Patient Room" unFocusColor="WHITE">
             <font>
                 <Font name="Serif Bold" size="26.0" />
@@ -130,13 +126,14 @@
 
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0c00ae" height="40.0" layoutX="522.0" layoutY="644.0" stroke="TRANSPARENT" strokeType="INSIDE" width="74.0" />
         <JFXButton fx:id="submit" layoutX="526.0" layoutY="649.0" onAction="#Submit" ripplerFill="WHITE" text="Submit" textFill="WHITE" />
-        <Rectangle arcWidth="5.0" fill="#0c00ae" height="47.0" layoutX="182.0" layoutY="121.0" stroke="TRANSPARENT" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="INSIDE" width="382.0" />
-        <Label fx:id="text1" layoutX="194.0" layoutY="121.0" prefHeight="47.0" prefWidth="359.0" text="AUDIO VISUAL REQUEST" textAlignment="CENTER" textFill="WHITE">
+        <Rectangle arcWidth="5.0" fill="#0c00ae" height="47.0" layoutX="120.0" layoutY="127.0" stroke="TRANSPARENT" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="INSIDE" width="523.0" />
+        <Label fx:id="text1" layoutX="127.0" layoutY="127.0" prefHeight="47.0" prefWidth="509.0" text="FACILITY MAINTENANCE REQUEST" textAlignment="CENTER" textFill="WHITE">
             <font>
                 <Font name="Serif Regular" size="30.0" />
             </font>
         </Label>
         <StackPane fx:id="myStackPane2" layoutX="596.0" layoutY="473.0" prefHeight="166.0" prefWidth="328.0" />
+      <JFXComboBox fx:id="txtEmployeeName" layoutX="187.0" layoutY="241.0" prefHeight="31.0" prefWidth="150.0" promptText="Select Employee" />
 
 
 

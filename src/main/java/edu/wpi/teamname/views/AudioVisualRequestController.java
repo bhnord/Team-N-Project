@@ -48,7 +48,6 @@ public class AudioVisualRequestController extends masterController implements In
   // @FXML private AnchorPane anchorPage;
   static Stage stage;
 
-  String helpPagePath = "AudioVisualRequestHelpPage";
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
    * JavaFX thread
@@ -129,54 +128,6 @@ public class AudioVisualRequestController extends masterController implements In
   }
 
   public void Submit(ActionEvent actionEvent) throws IOException {
-    /*
-    String title = "Confirm";
-    JFXDialogLayout dialogContent = new JFXDialogLayout();
-    dialogContent.setHeading(new Text(title));
-    dialogContent.setBody((new Text("Are you sure the information you have entered is correct\n")));
-
-    JFXButton close = new JFXButton("Cancel");
-    close.setButtonType(JFXButton.ButtonType.RAISED);
-    close.setStyle("-fx-background-color : #00bfff:");
-    // close.setTranslateX(100);
-    // close.setTranslateY(100);
-
-    dialogContent.setActions(close);
-
-    JFXButton continueButton = new JFXButton("Continue");
-    continueButton.setButtonType(JFXButton.ButtonType.RAISED);
-    continueButton.setStyle("-fx-background-color : #00bfff:");
-    dialogContent.setActions(continueButton);
-
-    JFXDialog dialog =
-        new JFXDialog(myStackPane2, dialogContent, JFXDialog.DialogTransition.BOTTOM);
-
-    close.setOnAction(
-        new EventHandler<ActionEvent>() {
-          @Override
-          public void handle(ActionEvent event) {
-            dialog.close();
-            submit.setDisable(false);
-          }
-        });
-
-    continueButton.setOnAction(
-        new EventHandler<ActionEvent>() {
-          @SneakyThrows
-          @Override
-          public void handle(ActionEvent event) {
-            // dialog.close();
-            Parent root =
-                loader.load(getClass().getResourceAsStream("ConfirmationPageAudioVisual.fxml"));
-            appPrimaryScene.setRoot(root);
-            submit.setDisable(false);
-          }
-        });
-
-    submit.setDisable(true);
-    dialog.show();*/
-
-    ///////////////////////////////////////////////////////////////////////////////////////////////
 
     VBox manuContainer = new VBox();
     Label lbl1 = new Label("Are you sure the information you have provided is correct?");
@@ -224,20 +175,6 @@ public class AudioVisualRequestController extends masterController implements In
     submit.setDisable(true);
     popup1.show(myStackPane2, JFXPopup.PopupVPosition.BOTTOM, JFXPopup.PopupHPosition.LEFT);
   }
-
-  /*
-      Request r =
-          new Request(
-              RequestType.AUDIO_VISUAL,
-              2,
-              txtRoom.getText(),
-              txtEquipment.getText(),
-              txtComments.getText());
-      if (!db.addRequest(r)) {
-        errorLabel.setText("Invalid Input(s)");
-      }
-
-  */
 
   public void help(ActionEvent actionEvent) throws IOException {
     String title = "Help Page";
