@@ -189,8 +189,14 @@ public class AudioVisualRequestController extends masterController implements In
     cancelButton.setButtonType(JFXButton.ButtonType.RAISED);
     cancelButton.setStyle("-fx-background-color : #00bfff:");
 
+    cancelButton.setTranslateX(100);
+    cancelButton.setTranslateY(65);
+
+    continueButton.setTranslateX(200);
+    continueButton.setTranslateY(25);
+
     manuContainer.getChildren().addAll(lbl1, cancelButton, continueButton);
-    manuContainer.setPadding(new Insets(10, 50, 50, 50));
+    manuContainer.setPadding(new Insets(30, 50, 50, 50));
     manuContainer.setSpacing(10);
     JFXPopup popup1 = new JFXPopup(manuContainer);
 
