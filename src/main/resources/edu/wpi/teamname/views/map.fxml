@@ -2,7 +2,9 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXColorPicker?>
+<?import com.jfoenix.controls.JFXScrollPane?>
 <?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tooltip?>
@@ -159,14 +161,17 @@
             <Font name="Arial Black" size="30.0" />
          </font>
       </Label>
-      <AnchorPane layoutX="100.0" layoutY="100.0" prefHeight="572.0" prefWidth="1100.0">
+      <JFXScrollPane fx:id="scrollPane" layoutX="110.0" layoutY="115.0">
          <children>
             <ImageView fx:id="mapImageView" fitHeight="571.5" fitWidth="884.0" onMouseClicked="#placeNodeClick" onMouseMoved="#xyPrint" onMousePressed="#startLink" onMouseReleased="#releaseMouse" onScroll="#zoom" preserveRatio="true">
                <image>
                   <Image fx:id="mapimg" url="@/images/level1.png" />
                </image>
+               <viewport>
+                  <Rectangle2D />
+               </viewport>
             </ImageView>
          </children>
-      </AnchorPane>
+      </JFXScrollPane>
    </children>
 </AnchorPane>
