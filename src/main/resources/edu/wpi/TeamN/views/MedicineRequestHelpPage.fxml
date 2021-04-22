@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="639.0" prefWidth="1353.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.TeamN.views.MedicineRequestHelpPage">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f8cea9" height="820.0" layoutY="-172.0" stroke="TRANSPARENT" strokeType="INSIDE" width="1563.0" />
+      <Label layoutX="638.0" layoutY="82.0" prefHeight="48.0" prefWidth="438.0" text="* Employee Name refers to the employee">
+         <font>
+            <Font name="Serif Bold" size="25.0" />
+         </font></Label>
+      <Label layoutX="638.0" layoutY="184.0" prefHeight="29.0" prefWidth="540.0" text="* Patient Room is the room that the employee ">
+         <font>
+            <Font name="Serif Bold" size="25.0" />
+         </font></Label>
+      <Label layoutX="642.0" layoutY="469.0" prefHeight="29.0" prefWidth="479.0" text="* Comments refer to additional information ">
+         <font>
+            <Font name="Serif Bold" size="25.0" />
+         </font></Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1fbddb" height="48.0" layoutX="687.0" layoutY="570.0" stroke="TRANSPARENT" strokeType="INSIDE" width="364.0" />
+      <JFXButton layoutX="693.0" layoutY="576.0" onAction="#returnToRequestPage" prefHeight="37.0" prefWidth="353.0" text="Return to medical delivery request form" textFill="WHITE">
+         <font>
+            <Font name="Serif Regular" size="20.0" />
+         </font>
+      </JFXButton>
+      <Label layoutX="637.0" layoutY="272.0" prefHeight="29.0" prefWidth="878.0" text="* Time of request refers to time the medicine">
+         <font>
+            <Font name="Serif Bold" size="25.0" />
+         </font>
+      </Label>
+      <Label layoutX="637.0" layoutY="370.0" prefHeight="29.0" prefWidth="418.0" text="* Medicine Type refers to the patient's ">
+         <font>
+            <Font name="Serif Bold" size="25.0" />
+         </font>
+      </Label>
+      <Label layoutX="687.0" layoutY="119.0" prefHeight="37.0" prefWidth="389.0" text="being requested to complete the job">
+         <font>
+            <Font name="Serif Bold" size="25.0" />
+         </font>
+      </Label>
+      <Label layoutX="698.0" layoutY="213.0" prefHeight="29.0" prefWidth="438.0" text="will deliver the medicine to">
+         <font>
+            <Font name="Serif Bold" size="25.0" />
+         </font>
+      </Label>
+      <Label layoutX="705.0" layoutY="301.0" prefHeight="29.0" prefWidth="418.0" text="should be delivered to the patient">
+         <font>
+            <Font name="Serif Bold" size="25.0" />
+         </font>
+      </Label>
+      <Label layoutX="705.0" layoutY="399.0" prefHeight="29.0" prefWidth="226.0" text="perscribed medicine">
+         <font>
+            <Font name="Serif Bold" size="25.0" />
+         </font>
+      </Label>
+      <Label layoutX="705.0" layoutY="498.0" prefHeight="29.0" prefWidth="444.0" text="pertaining to the medical delivery service">
+         <font>
+            <Font name="Serif Bold" size="25.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1fbddb" height="406.0" layoutX="102.0" layoutY="121.0" stroke="TRANSPARENT" strokeType="INSIDE" width="407.0" />
+      <Label layoutX="132.0" layoutY="238.0" prefHeight="69.0" prefWidth="344.0" text="Medical Delivery" textFill="WHITE">
+         <font>
+            <Font name="Serif Bold" size="46.0" />
+         </font></Label>
+      <Label layoutX="178.0" layoutY="314.0" prefHeight="33.0" prefWidth="240.0" text="Request Help Page" textFill="WHITE">
+         <font>
+            <Font name="Serif Bold" size="29.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
