@@ -129,7 +129,7 @@
       </JFXButton>
       <AnchorPane layoutX="100.0" layoutY="100.0" prefHeight="572.0" prefWidth="1100.0">
          <children>
-            <ImageView fx:id="mapimage" fitHeight="571.5" fitWidth="884.0" onMouseClicked="#placeNodeClick" onMouseMoved="#xyPrint" onMousePressed="#startLink" onMouseReleased="#releaseMouse" preserveRatio="true">
+            <ImageView fx:id="mapImageView" fitHeight="571.5" fitWidth="884.0" onMouseClicked="#placeNodeClick" onMouseMoved="#xyPrint" onMousePressed="#startLink" onMouseReleased="#releaseMouse" onScroll="#zoom" preserveRatio="true">
                <image>
                   <Image fx:id="mapimg" url="@/images/level1.png" />
                </image>

@@ -25,8 +25,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -47,6 +50,8 @@ public class MapController extends masterController implements Initializable {
   @FXML private Label XLabel;
   @FXML private Label YLabel;
   @FXML private Label current;
+  @FXML private ImageView mapImageView;
+  @FXML private Image mapImage;
 
   private String selectedID;
   private Node startNode;
@@ -379,5 +384,10 @@ public class MapController extends masterController implements Initializable {
     String file = ((Button) actionEvent.getSource()).getId() + ".fxml";
     Parent root = loader.load(getClass().getResourceAsStream(file));
     appPrimaryScene.setRoot(root);
+  }
+
+  public void zoom(ScrollEvent scrollEvent) {
+    mapImageView.setFitHeight(400);
+    mapImageView.setFitWidth(400);
   }
 }
