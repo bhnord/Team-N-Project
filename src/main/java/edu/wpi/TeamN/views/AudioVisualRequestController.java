@@ -3,6 +3,7 @@ package edu.wpi.TeamN.views;
 import com.google.inject.Inject;
 import com.jfoenix.controls.*;
 import com.jfoenix.validation.RequiredFieldValidator;
+import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.database.DatabaseService;
 import edu.wpi.TeamN.services.database.users.User;
 import edu.wpi.TeamN.services.database.users.UserType;
@@ -50,7 +51,7 @@ public class AudioVisualRequestController extends masterController implements In
   @FXML private StackPane myStackPane2;
   private Scene appPrimaryScene;
   private HashMap<String, User> users;
-  private HashMap<String, edu.wpi.TeamN.services.algo.Node> rooms;
+  private HashMap<String, Node> rooms;
   @FXML private JFXComboBox<Label> txtEmployeeName = new JFXComboBox<>();
   // @FXML private AnchorPane anchorPage;
   static Stage stage;
@@ -70,8 +71,8 @@ public class AudioVisualRequestController extends masterController implements In
   public void initialize(URL location, ResourceBundle resources) {
     log.debug(state.toString());
 
-    txtEmployeeName.getItems().add(person1);
-    txtEmployeeName.getItems().add(person2);
+    //    txtEmployeeName.getItems().add(person1);
+    //    txtEmployeeName.getItems().add(person2);
 
     /** USERNAME input and password* */
     RequiredFieldValidator reqInputValid = new RequiredFieldValidator();
