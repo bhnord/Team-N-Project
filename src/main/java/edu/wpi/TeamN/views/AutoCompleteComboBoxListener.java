@@ -42,7 +42,6 @@ public class AutoCompleteComboBoxListener implements EventHandler<KeyEvent> {
         });
 
     this.comboBox.setEditable(true);
-    this.comboBox.autosize();
     this.comboBox
         .focusedProperty()
         .addListener(
@@ -105,6 +104,8 @@ public class AutoCompleteComboBoxListener implements EventHandler<KeyEvent> {
     String t = comboBox.getEditor().getText();
 
     comboBox.setItems(list);
+    this.comboBox.autosize();
+
     if (!comboBox.isLabelFloat()) {
       if (t.length() == 1) comboBox.setPromptText("");
       else if (t.length() == 0) comboBox.setPromptText(promptText);
