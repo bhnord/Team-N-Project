@@ -129,7 +129,7 @@
             </Tooltip>
          </tooltip>
       </JFXButton>
-      <VBox layoutX="114.0" layoutY="225.0" minHeight="732.0" minWidth="1000.0" prefHeight="732.0" prefWidth="1184.0" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="114.0" AnchorPane.rightAnchor="152.0" AnchorPane.topAnchor="225.0">
+      <VBox layoutX="114.0" layoutY="691.0" minHeight="58.0" minWidth="1000.0" prefHeight="58.0" prefWidth="1100.0" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="114.0" AnchorPane.rightAnchor="152.0" AnchorPane.topAnchor="691.0">
          <children>
             <HBox prefHeight="744.0" prefWidth="1140.0" />
             <Label fx:id="XLabel" prefHeight="47.0" prefWidth="120.0" text="X-Value" />

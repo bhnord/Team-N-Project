@@ -60,6 +60,7 @@ public class MapController extends masterController implements Initializable {
   private String selectedID;
   private Node startNode;
   private Node endNode;
+  private double scale = 1;
 
   private String startNodePath;
   private String endNodePath;
@@ -403,15 +404,33 @@ public class MapController extends masterController implements Initializable {
           }
         });
 
-    scrollPane.addEventFilter(
+    mapImageView.addEventFilter(
         ScrollEvent.ANY,
         new EventHandler<ScrollEvent>() {
           @Override
           public void handle(ScrollEvent event) {
-            if (event.getDeltaY() > 0 && zoomProperty.get() < 841) {
-              zoomProperty.set(zoomProperty.get() * 1.001);
+            if (event.getDeltaY() > 0 && zoomProperty.get() < 1500 /*841*/) {
+              // zoomProperty.set(zoomProperty.get() * 1.001);
+              scale = scale * 1.001;
+              Rectangle2D rec =
+                  new Rectangle2D(
+                      200,
+                      200,
+                      mapImageView.getFitWidth() * scale,
+                      mapImageView.getFitHeight() * scale);
+
+              mapImageView.setViewport(rec);
             } else if (event.getDeltaY() < 0 && zoomProperty.get() > 400) {
-              zoomProperty.set(zoomProperty.get() / 1.001);
+              // zoomProperty.set(zoomProperty.get() / 1.001);
+              scale = scale / 1.001;
+              Rectangle2D rec =
+                  new Rectangle2D(
+                      0,
+                      0,
+                      mapImageView.getFitWidth() * scale,
+                      mapImageView.getFitHeight() * scale);
+
+              mapImageView.setViewport(rec);
             }
           }
         });
