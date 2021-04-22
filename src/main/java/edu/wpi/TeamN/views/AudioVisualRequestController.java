@@ -35,7 +35,6 @@ public class AudioVisualRequestController extends masterController implements In
   @Inject HomeState state;
   @FXML private Label text;
   @FXML private Label errorLabel;
-  @FXML private JFXTextField txtEmployeeName;
   @FXML private JFXTextField txtRoom;
   @FXML private JFXTextField txtTimeOfRequest;
   @FXML private JFXTextField txtEquipment;
@@ -45,6 +44,7 @@ public class AudioVisualRequestController extends masterController implements In
   @FXML private Button submit;
   @FXML private StackPane myStackPane2;
   private Scene appPrimaryScene;
+  @FXML private JFXComboBox<String> txtEmployeeName = new JFXComboBox<>();
   // @FXML private AnchorPane anchorPage;
   static Stage stage;
 
@@ -62,16 +62,12 @@ public class AudioVisualRequestController extends masterController implements In
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     log.debug(state.toString());
+
+    txtEmployeeName.getItems().add("yes");
+    txtEmployeeName.getItems().add("no");
+
     /** USERNAME input and password* */
     RequiredFieldValidator reqInputValid = new RequiredFieldValidator();
-    reqInputValid.setMessage("Cannot be empty");
-    txtEmployeeName.getValidators().add(reqInputValid);
-    txtEmployeeName
-        .focusedProperty()
-        .addListener(
-            (o, oldVal, newVal) -> {
-              if (!newVal) txtEmployeeName.validate();
-            });
     reqInputValid.setMessage("Cannot be empty");
     txtRoom.getValidators().add(reqInputValid);
     txtRoom

@@ -20,7 +20,7 @@ public class InternalPatientRequestHelpPage extends masterController implements 
 
   static String path = "Requests/InternalPatientRequest";
   static Stage stage;
-  static FoodRequestHelpPage box;
+  static InternalPatientRequestHelpPage box;
   @Inject DatabaseService db;
   @Inject FXMLLoader loader;
   @Inject HomeState state;
