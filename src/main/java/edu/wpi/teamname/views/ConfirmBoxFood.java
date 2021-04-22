@@ -18,8 +18,7 @@ import javafx.stage.Stage;
 public class ConfirmBoxFood extends masterController implements Initializable {
   static Stage stage;
   static ConfirmBoxFood box;
-  static FoodDeliveryRequestController food;
-  int count = 0;
+  static FoodDeliveryRequestController food = new FoodDeliveryRequestController();
 
   @FXML private JFXProgressBar jfxProgressBar;
 
@@ -58,10 +57,6 @@ public class ConfirmBoxFood extends masterController implements Initializable {
     box.stage.close();
   }
 
-  public void disable() throws IOException {
-    returnHomeButton.setDisable(true);
-  }
-
   @FXML
   public void continuePage() throws IOException {
 
@@ -74,17 +69,14 @@ public class ConfirmBoxFood extends masterController implements Initializable {
 
   @FXML
   public void complete(ActionEvent actionEvent) throws IOException {
-    count += 1;
+
     message.setText("Confirmation: request marked as completed.");
   }
 
   @FXML
   public void returnToHome(ActionEvent actionEvent) throws IOException {
-    if (count > 0) {
-      box.stage.close();
-      food.advanceHome();
-    } else {
-      message.setText("You have to wait for the request to be completed before exiting. ");
-    }
+
+    box.stage.close();
+    food.advanceHome();
   }
 }
