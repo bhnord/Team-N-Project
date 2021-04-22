@@ -2,6 +2,7 @@ package edu.wpi.teamname.views;
 
 import com.google.inject.Inject;
 import com.jfoenix.controls.JFXColorPicker;
+import edu.wpi.teamname.Zoom;
 import edu.wpi.teamname.services.algo.Edge;
 import edu.wpi.teamname.services.algo.Node;
 import edu.wpi.teamname.services.algo.PathFinder;
@@ -386,8 +387,8 @@ public class MapController extends masterController implements Initializable {
     appPrimaryScene.setRoot(root);
   }
 
-  public void zoom(ScrollEvent scrollEvent) {
-    mapImageView.setFitHeight(400);
-    mapImageView.setFitWidth(400);
+  public void zoom(ScrollEvent scrollEvent) throws Exception {
+    Zoom zoom = new Zoom();
+    zoom.start((Stage) appPrimaryScene.getWindow());
   }
 }
