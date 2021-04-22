@@ -126,8 +126,8 @@
 
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0c00ae" height="40.0" layoutX="522.0" layoutY="644.0" stroke="TRANSPARENT" strokeType="INSIDE" width="74.0" />
         <JFXButton fx:id="submit" layoutX="526.0" layoutY="649.0" onAction="#Submit" ripplerFill="WHITE" text="Submit" textFill="WHITE" />
-        <Rectangle arcWidth="5.0" fill="#0c00ae" height="47.0" layoutX="120.0" layoutY="127.0" stroke="TRANSPARENT" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="INSIDE" width="523.0" />
-        <Label fx:id="text1" layoutX="127.0" layoutY="127.0" prefHeight="47.0" prefWidth="509.0" text="FACILITY MAINTENANCE REQUEST" textAlignment="CENTER" textFill="WHITE">
+        <Rectangle arcWidth="5.0" fill="#0c00ae" height="47.0" layoutX="231.0" layoutY="124.0" stroke="TRANSPARENT" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="INSIDE" width="280.0" />
+        <Label fx:id="text1" layoutX="242.0" layoutY="124.0" prefHeight="47.0" prefWidth="262.0" text="FLORAL REQUEST" textAlignment="CENTER" textFill="WHITE">
             <font>
                 <Font name="Serif Regular" size="30.0" />
             </font>
