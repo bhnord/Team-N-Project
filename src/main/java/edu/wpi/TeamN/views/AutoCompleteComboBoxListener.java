@@ -1,4 +1,4 @@
-package edu.wpi.teamname.views;
+package edu.wpi.TeamN.views;
 
 import com.jfoenix.controls.JFXComboBox;
 import javafx.collections.FXCollections;
@@ -11,7 +11,6 @@ import javafx.util.StringConverter;
 
 public class AutoCompleteComboBoxListener implements EventHandler<KeyEvent> {
 
-  //  private ComboBox comboBox;
   private JFXComboBox comboBox;
   private StringBuilder sb;
   private ObservableList<Label> data;
@@ -44,7 +43,6 @@ public class AutoCompleteComboBoxListener implements EventHandler<KeyEvent> {
 
     this.comboBox.setEditable(true);
     this.comboBox.autosize();
-    this.comboBox.setOnMousePressed(t -> comboBox.show());
     this.comboBox
         .focusedProperty()
         .addListener(
