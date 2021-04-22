@@ -386,8 +386,5 @@ public class MapController extends masterController implements Initializable {
     appPrimaryScene.setRoot(root);
   }
 
-  public void zoom(ScrollEvent scrollEvent) {
-    mapImageView.setFitHeight(400);
-    mapImageView.setFitWidth(400);
-  }
+  public void zoom(ScrollEvent scrollEvent) {}
 }
