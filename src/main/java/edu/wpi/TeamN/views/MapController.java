@@ -8,6 +8,11 @@ import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.algo.PathFinder;
 import edu.wpi.TeamN.services.database.DatabaseService;
 import edu.wpi.TeamN.state.HomeState;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.ResourceBundle;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.beans.property.DoubleProperty;
@@ -37,12 +42,6 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.ResourceBundle;
 
 @Slf4j
 public class MapController extends masterController implements Initializable {
