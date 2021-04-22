@@ -7,8 +7,6 @@ import com.jfoenix.controls.JFXDialogLayout;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.RequiredFieldValidator;
 import edu.wpi.teamname.services.database.DatabaseService;
-import edu.wpi.teamname.services.database.requests.Request;
-import edu.wpi.teamname.services.database.requests.RequestType;
 import edu.wpi.teamname.state.HomeState;
 import edu.wpi.teamname.state.Login;
 import java.io.IOException;
@@ -19,11 +17,14 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -41,7 +42,10 @@ public class AudioVisualRequestController extends masterController implements In
   @FXML private JFXTextField txtComments;
   @FXML private Button helpButton;
   @FXML private StackPane myStackPane;
+  @FXML private Button submit;
+  @FXML private StackPane myStackPane2;
   private Scene appPrimaryScene;
+  static Stage stage;
 
   String helpPagePath = "AudioVisualRequestHelpPage";
   /**
@@ -125,19 +129,67 @@ public class AudioVisualRequestController extends masterController implements In
   }
 
   public void Submit(ActionEvent actionEvent) throws IOException {
-    ConfirmBoxAudioVisual.confirm(this);
 
-    Request r =
-        new Request(
-            RequestType.AUDIO_VISUAL,
-            2,
-            txtRoom.getText(),
-            txtEquipment.getText(),
-            txtComments.getText());
-    if (!db.addRequest(r)) {
-      errorLabel.setText("Invalid Input(s)");
-    }
+    String title = "Confirm";
+    JFXDialogLayout dialogContent = new JFXDialogLayout();
+    dialogContent.setHeading(new Text(title));
+    dialogContent.setBody((new Text("Are you sure the information you have entered is correct\n")));
+
+    JFXButton close = new JFXButton("Cancel");
+    close.setButtonType(JFXButton.ButtonType.RAISED);
+    close.setStyle("-fx-background-color : #00bfff:");
+    // close.setTranslateX(100);
+    // close.setTranslateY(100);
+
+    dialogContent.setActions(close);
+
+    JFXButton continueButton = new JFXButton("Continue");
+    continueButton.setButtonType(JFXButton.ButtonType.RAISED);
+    continueButton.setStyle("-fx-background-color : #00bfff:");
+    dialogContent.setActions(continueButton);
+
+    JFXDialog dialog =
+        new JFXDialog(myStackPane2, dialogContent, JFXDialog.DialogTransition.BOTTOM);
+
+    close.setOnAction(
+        new EventHandler<ActionEvent>() {
+          @Override
+          public void handle(ActionEvent event) {
+            dialog.close();
+            submit.setDisable(false);
+          }
+        });
+
+    continueButton.setOnAction(
+        new EventHandler<ActionEvent>() {
+          @SneakyThrows
+          @Override
+          public void handle(ActionEvent event) {
+            // dialog.close();
+            Parent root =
+                loader.load(getClass().getResourceAsStream("ConfirmationPageAudioVisual.fxml"));
+            appPrimaryScene.setRoot(root);
+            submit.setDisable(false);
+          }
+        });
+
+    submit.setDisable(true);
+    dialog.show();
   }
+
+  /*
+      Request r =
+          new Request(
+              RequestType.AUDIO_VISUAL,
+              2,
+              txtRoom.getText(),
+              txtEquipment.getText(),
+              txtComments.getText());
+      if (!db.addRequest(r)) {
+        errorLabel.setText("Invalid Input(s)");
+      }
+
+  */
 
   public void help(ActionEvent actionEvent) throws IOException {
     String title = "Help Page";
