@@ -12,7 +12,7 @@
     <children>
         <ImageView fitHeight="400.0" fitWidth="600.0" layoutX="-5.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@/images/CSVBackground.png" />
+                <Image url="@/images/confirmBoxBackground.png" />
             </image>
         </ImageView>
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0c00ae" height="30.0" layoutX="205.0" layoutY="260.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
