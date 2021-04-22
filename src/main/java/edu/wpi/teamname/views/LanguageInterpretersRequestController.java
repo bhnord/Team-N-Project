@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.RequiredFieldValidator;
 import edu.wpi.teamname.services.database.DatabaseService;
 import edu.wpi.teamname.state.HomeState;
+import edu.wpi.teamname.state.Login;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -74,8 +75,30 @@ public class LanguageInterpretersRequestController extends masterController
   }
 
   @FXML
+  public void back() throws IOException {
+
+    Login login = Login.getLogin();
+
+    if (login.getUsername().equals("p") && login.getPassword().equals("p")) {
+      super.advanceServiceRequestPatient(loader, appPrimaryScene);
+    } else if (login.getUsername().equals("e") && login.getPassword().equals("e")) {
+      super.advanceServiceRequestEmployee(loader, appPrimaryScene);
+    } else if (login.getUsername().equals("a") && login.getPassword().equals("a")) {
+      super.advanceServiceRequestAdmin(loader, appPrimaryScene);
+    }
+  }
+
+  @FXML
   public void advanceHome() throws IOException {
-    super.advanceServiceRequest(loader, appPrimaryScene);
+    Login login = Login.getLogin();
+
+    if (login.getUsername().equals("p") && login.getPassword().equals("p")) {
+      super.advanceHomePatient(loader, appPrimaryScene);
+    } else if (login.getUsername().equals("e") && login.getPassword().equals("e")) {
+      super.advanceHome(loader, appPrimaryScene);
+    } else if (login.getUsername().equals("a") && login.getPassword().equals("a")) {
+      super.advanceHomeAdmin(loader, appPrimaryScene);
+    }
   }
 
   public void Submit(ActionEvent actionEvent) throws IOException {
