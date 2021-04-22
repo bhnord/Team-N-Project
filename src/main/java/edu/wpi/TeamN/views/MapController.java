@@ -8,11 +8,6 @@ import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.algo.PathFinder;
 import edu.wpi.TeamN.services.database.DatabaseService;
 import edu.wpi.TeamN.state.HomeState;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.ResourceBundle;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.beans.property.DoubleProperty;
@@ -25,6 +20,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -42,6 +38,12 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.ResourceBundle;
 
 @Slf4j
 public class MapController extends masterController implements Initializable {
@@ -61,6 +63,8 @@ public class MapController extends masterController implements Initializable {
   private Node startNode;
   private Node endNode;
   private double scale = 1;
+  static double initx;
+  static double inity;
 
   private String startNodePath;
   private String endNodePath;
@@ -433,6 +437,23 @@ public class MapController extends masterController implements Initializable {
               mapImageView.setViewport(rec);
             }
           }
+        });
+
+    scrollPane.setCursor(Cursor.OPEN_HAND);
+    mapImageView.setOnMousePressed(
+        e -> {
+          initx = e.getSceneX();
+          inity = e.getSceneY();
+          scrollPane.setCursor(Cursor.CLOSED_HAND);
+        });
+    mapImageView.setOnMouseReleased(
+        e -> {
+          mapImageView.setCursor(Cursor.OPEN_HAND);
+        });
+    mapImageView.setOnMouseDragged(
+        e -> {
+          initx = e.getSceneX();
+          inity = e.getSceneY();
         });
   }
 }
