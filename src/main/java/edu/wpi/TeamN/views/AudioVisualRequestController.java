@@ -4,10 +4,13 @@ import com.google.inject.Inject;
 import com.jfoenix.controls.*;
 import com.jfoenix.validation.RequiredFieldValidator;
 import edu.wpi.TeamN.services.database.DatabaseService;
+import edu.wpi.TeamN.services.database.users.User;
+import edu.wpi.TeamN.services.database.users.UserType;
 import edu.wpi.TeamN.state.HomeState;
 import edu.wpi.TeamN.state.Login;
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -35,7 +38,8 @@ public class AudioVisualRequestController extends masterController implements In
   @Inject HomeState state;
   @FXML private Label text;
   @FXML private Label errorLabel;
-  @FXML private JFXTextField txtEmployeeName;
+  private Label person1;
+  private Label person2;
   @FXML private JFXTextField txtRoom;
   @FXML private JFXTextField txtTimeOfRequest;
   @FXML private JFXTextField txtEquipment;
@@ -45,6 +49,9 @@ public class AudioVisualRequestController extends masterController implements In
   @FXML private Button submit;
   @FXML private StackPane myStackPane2;
   private Scene appPrimaryScene;
+  private HashMap<String, User> users;
+  private HashMap<String, edu.wpi.TeamN.services.algo.Node> rooms;
+  @FXML private JFXComboBox<Label> txtEmployeeName = new JFXComboBox<>();
   // @FXML private AnchorPane anchorPage;
   static Stage stage;
 
@@ -62,16 +69,12 @@ public class AudioVisualRequestController extends masterController implements In
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     log.debug(state.toString());
+
+    txtEmployeeName.getItems().add(person1);
+    txtEmployeeName.getItems().add(person2);
+
     /** USERNAME input and password* */
     RequiredFieldValidator reqInputValid = new RequiredFieldValidator();
-    reqInputValid.setMessage("Cannot be empty");
-    txtEmployeeName.getValidators().add(reqInputValid);
-    txtEmployeeName
-        .focusedProperty()
-        .addListener(
-            (o, oldVal, newVal) -> {
-              if (!newVal) txtEmployeeName.validate();
-            });
     reqInputValid.setMessage("Cannot be empty");
     txtRoom.getValidators().add(reqInputValid);
     txtRoom
@@ -88,6 +91,10 @@ public class AudioVisualRequestController extends masterController implements In
             (o, oldVal, newVal) -> {
               if (!newVal) txtEquipment.validate();
             });
+
+    loadEmployeeDropdown();
+    // loadRoomDropdown();
+
   }
 
   public void exit(ActionEvent actionEvent) throws IOException {
@@ -128,6 +135,11 @@ public class AudioVisualRequestController extends masterController implements In
   }
 
   public void Submit(ActionEvent actionEvent) throws IOException {
+
+    txtEmployeeName.setValidators();
+    if (txtEmployeeName.getSelectionModel().isEmpty()
+    // || roomDropdown.getSelectionModel().isEmpty()
+    ) return;
 
     VBox manuContainer = new VBox();
     Label lbl1 = new Label("Are you sure the information you have provided is correct?");
@@ -207,4 +219,25 @@ public class AudioVisualRequestController extends masterController implements In
     dialog.show();
     // anchorPage.setEffect(blur);
   }
+
+  private void loadEmployeeDropdown() {
+    users = db.getUsersByType(UserType.EMPLOYEE);
+    for (User user : users.values()) {
+      Label lbl = new Label(user.getUsername());
+      lbl.setId(user.getId());
+      txtEmployeeName.getItems().add((lbl));
+    }
+    new AutoCompleteComboBoxListener(txtEmployeeName);
+  }
+
+  /*private void loadRoomDropdown() {
+    rooms = db.getAllNodesMap();
+    for (Node node : rooms.values()) {
+      Label lbl = new Label(node.get_longName());
+      lbl.setId(node.get_nodeID());
+      roomDropdown.getItems().add(lbl);
+    }
+    new AutoCompleteComboBoxListener(roomDropdown);
+  }*/
+
 }
