@@ -29,7 +29,7 @@ public class CovidForm extends masterController implements Initializable {
 
   static Stage primaryStage;
   private Scene appPrimaryScene;
-  @FXML private JFXButton submit;
+  @FXML private JFXButton submit = new JFXButton();
   int count = 0;
 
   /**
@@ -52,6 +52,7 @@ public class CovidForm extends masterController implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+    submit.setDisable(true);
     comboBox.getItems().add("yes");
     comboBox.getItems().add("no");
 
@@ -94,9 +95,7 @@ public class CovidForm extends masterController implements Initializable {
 
   @FXML
   public void continuePage(ActionEvent actionEvent) throws IOException {
-    if (count == 0) {
-      submit.setDisable(true);
-    } else goToRequestPage(loader, appPrimaryScene);
+    goToRequestPage(loader, appPrimaryScene);
   }
 
   @FXML
@@ -109,7 +108,6 @@ public class CovidForm extends masterController implements Initializable {
         || comboBox6.getValue() == null) {
       submit.setDisable(true);
     } else {
-      count += 1;
       submit.setDisable(false);
     }
   }
