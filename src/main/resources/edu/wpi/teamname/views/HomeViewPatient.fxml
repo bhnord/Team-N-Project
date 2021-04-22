@@ -84,7 +84,7 @@
       <JFXButton fx:id="CSVEditor2" layoutX="529.0" layoutY="636.0" onAction="#advanceViews" prefHeight="85.0" prefWidth="273.0" scaleX="1.25" scaleY="1.25" style="-fx-background-radius: 20;" />
       <JFXButton fx:id="CSVEditor" layoutX="154.0" layoutY="636.0" onAction="#advanceViews" prefHeight="85.0" prefWidth="273.0" scaleX="1.25" scaleY="1.25" style="-fx-background-radius: 20;" />
       <JFXButton fx:id="map" layoutX="933.0" layoutY="489.0" onAction="#map" prefHeight="217.0" prefWidth="325.0" scaleX="1.25" scaleY="1.25" style="-fx-background-radius: 40;" />
-      <JFXButton fx:id="serviceRequests" layoutX="892.0" layoutY="107.0" onAction="#advanceViews" prefHeight="332.0" prefWidth="408.0" style="-fx-background-radius: 45;" />
+      <JFXButton fx:id="serviceRequestsPatient" layoutX="892.0" layoutY="107.0" onAction="#advanceViews" prefHeight="332.0" prefWidth="408.0" style="-fx-background-radius: 45;" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0c00ae" height="69.0" layoutX="-1.0" layoutY="77.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.0" layoutX="27.0" layoutY="89.0" rotate="45.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.0" layoutX="27.0" layoutY="89.0" rotate="-45.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" />

@@ -2,6 +2,9 @@ package edu.wpi.teamname.views;
 
 import com.google.inject.Inject;
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.JFXDialogLayout;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.RequiredFieldValidator;
 import edu.wpi.teamname.services.algo.Node;
@@ -11,17 +14,21 @@ import edu.wpi.teamname.services.database.requests.RequestType;
 import edu.wpi.teamname.services.database.users.User;
 import edu.wpi.teamname.services.database.users.UserType;
 import edu.wpi.teamname.state.HomeState;
+import edu.wpi.teamname.state.Login;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.stage.Stage;
+import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -30,8 +37,6 @@ public class AudioVisualRequestController extends masterController implements In
   @Inject DatabaseService db;
   @Inject FXMLLoader loader;
   @Inject HomeState state;
-  Stage primaryStage;
-  String helpPagePath = "AudioVisualRequestHelpPage";
   @FXML private Label text;
   @FXML private Label errorLabel;
   @FXML private JFXTextField txtTimeOfRequest;
@@ -39,7 +44,11 @@ public class AudioVisualRequestController extends masterController implements In
   @FXML private JFXTextField txtComments;
   @FXML private JFXComboBox<Label> employeeDropdown;
   @FXML private JFXComboBox<Label> roomDropdown;
+  @FXML private Button helpButton;
+  @FXML private StackPane myStackPane;
   private Scene appPrimaryScene;
+
+  String helpPagePath = "AudioVisualRequestHelpPage";
   private HashMap<String, User> users;
   private HashMap<String, Node> rooms;
   JFXComboBox test = new JFXComboBox<>();
@@ -83,7 +92,16 @@ public class AudioVisualRequestController extends masterController implements In
 
   @FXML
   public void advanceHome() throws IOException {
-    super.advanceServiceRequest(loader, appPrimaryScene);
+
+    Login login = Login.getLogin();
+
+    if (login.getUsername().equals("p") && login.getPassword().equals("p")) {
+      super.advanceServiceRequestPatient(loader, appPrimaryScene);
+    } else if (login.getUsername().equals("e") && login.getPassword().equals("e")) {
+      super.advanceServiceRequestEmployee(loader, appPrimaryScene);
+    } else if (login.getUsername().equals("a") && login.getPassword().equals("a")) {
+      super.advanceServiceRequestAdmin(loader, appPrimaryScene);
+    }
   }
 
   public void Submit(ActionEvent actionEvent) throws IOException {
@@ -105,7 +123,32 @@ public class AudioVisualRequestController extends masterController implements In
   }
 
   public void help(ActionEvent actionEvent) throws IOException {
-    super.returnToRequest(loader, appPrimaryScene, helpPagePath);
+    String title = "Help Page";
+    JFXDialogLayout dialogContent = new JFXDialogLayout();
+    dialogContent.setHeading(new Text(title));
+    dialogContent.setBody(
+        (new Text(
+            "* Employee Name refers to the employee being requested to complete the job\n"
+                + "* Patient Room is the room that the employee will deliver the medicine to\n"
+                + "* Time of request refers to time the medicine should be delivered to the patient\n"
+                + "* Necessary Equipment refers to additional services/equipment the patient requires\n"
+                + "* Necessary Equipment refers to additional services/equipment the patient requires\n")));
+    JFXButton close = new JFXButton("close");
+    close.setButtonType(JFXButton.ButtonType.RAISED);
+    close.setStyle("-fx-background-color : #00bfff:");
+    dialogContent.setActions(close);
+
+    JFXDialog dialog = new JFXDialog(myStackPane, dialogContent, JFXDialog.DialogTransition.BOTTOM);
+    close.setOnAction(
+        new EventHandler<ActionEvent>() {
+          @Override
+          public void handle(ActionEvent event) {
+            dialog.close();
+            helpButton.setDisable(false);
+          }
+        });
+    helpButton.setDisable(true);
+    dialog.show();
   }
 
   private void loadEmployeeDropdown() {
