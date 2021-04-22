@@ -136,7 +136,7 @@
             <Font name="Serif Regular" size="30.0" />
          </font>
       </Label>
-      <StackPane fx:id="myStackPane2" layoutX="388.0" layoutY="202.0" prefHeight="166.0" prefWidth="328.0" />
+      <StackPane fx:id="myStackPane2" layoutX="400.0" layoutY="425.0" prefHeight="166.0" prefWidth="328.0" />
 
 
 

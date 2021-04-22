@@ -1,10 +1,7 @@
 package edu.wpi.teamname.views;
 
 import com.google.inject.Inject;
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXDialog;
-import com.jfoenix.controls.JFXDialogLayout;
-import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.*;
 import com.jfoenix.validation.RequiredFieldValidator;
 import edu.wpi.teamname.services.database.DatabaseService;
 import edu.wpi.teamname.state.HomeState;
@@ -17,12 +14,14 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.BoxBlur;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import lombok.SneakyThrows;
@@ -130,7 +129,7 @@ public class AudioVisualRequestController extends masterController implements In
   }
 
   public void Submit(ActionEvent actionEvent) throws IOException {
-
+    /*
     String title = "Confirm";
     JFXDialogLayout dialogContent = new JFXDialogLayout();
     dialogContent.setHeading(new Text(title));
@@ -175,7 +174,49 @@ public class AudioVisualRequestController extends masterController implements In
         });
 
     submit.setDisable(true);
-    dialog.show();
+    dialog.show();*/
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+
+    VBox manuContainer = new VBox();
+    Label lbl1 = new Label("Are you sure the information you have provided is correct?");
+
+    JFXButton continueButton = new JFXButton("Continue");
+    continueButton.setButtonType(JFXButton.ButtonType.RAISED);
+    continueButton.setStyle("-fx-background-color : #00bfff:");
+
+    JFXButton cancelButton = new JFXButton("Cancel");
+    cancelButton.setButtonType(JFXButton.ButtonType.RAISED);
+    cancelButton.setStyle("-fx-background-color : #00bfff:");
+
+    manuContainer.getChildren().addAll(lbl1, cancelButton, continueButton);
+    manuContainer.setPadding(new Insets(10, 50, 50, 50));
+    manuContainer.setSpacing(10);
+    JFXPopup popup1 = new JFXPopup(manuContainer);
+
+    cancelButton.setOnAction(
+        new EventHandler<ActionEvent>() {
+          @Override
+          public void handle(ActionEvent event) {
+            popup1.hide();
+            submit.setDisable(false);
+          }
+        });
+
+    continueButton.setOnAction(
+        new EventHandler<ActionEvent>() {
+          @SneakyThrows
+          @Override
+          public void handle(ActionEvent event) {
+            popup1.hide();
+            Parent root =
+                loader.load(getClass().getResourceAsStream("ConfirmationPageAudioVisual.fxml"));
+            appPrimaryScene.setRoot(root);
+            submit.setDisable(false);
+          }
+        });
+    submit.setDisable(true);
+    popup1.show(myStackPane2, JFXPopup.PopupVPosition.BOTTOM, JFXPopup.PopupHPosition.LEFT);
   }
 
   /*
