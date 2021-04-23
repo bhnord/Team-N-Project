@@ -418,8 +418,8 @@ public class MapController extends masterController implements Initializable {
   public void zoom() throws Exception {
     zoomLvl.setMax(4);
     zoomLvl.setMin(1);
-    offSetX = width / 2;
-    offSetY = height / 2;
+    offSetX = width;
+    offSetY = height;
 
     hMapBar
         .valueProperty()
@@ -439,8 +439,8 @@ public class MapController extends masterController implements Initializable {
                   new Rectangle2D(
                       offSetX - ((width / newValue) / 2),
                       offSetY - ((height / newValue) / 2),
-                      width / newValue,
-                      height / newValue));
+                      width * newValue,
+                      height * newValue));
             });
     vMapBar
         .valueProperty()
@@ -459,8 +459,8 @@ public class MapController extends masterController implements Initializable {
                   new Rectangle2D(
                       offSetX - ((width / newValue) / 2),
                       offSetY - ((height / newValue) / 2),
-                      width / newValue,
-                      height / newValue));
+                      width * newValue,
+                      height * newValue));
             });
     zoomLvl
         .valueProperty()
@@ -482,12 +482,13 @@ public class MapController extends masterController implements Initializable {
               }
               hMapBar.setValue(offSetX);
               vMapBar.setValue(height - offSetY);
+
               mapImageView.setViewport(
                   new Rectangle2D(
                       offSetX - ((width / newValue) / 2),
                       offSetY - ((height / newValue) / 2),
-                      width / newValue,
-                      height / newValue));
+                      width * newValue,
+                      height * newValue));
             });
     mapImageView.setOnMousePressed(
         e -> {
