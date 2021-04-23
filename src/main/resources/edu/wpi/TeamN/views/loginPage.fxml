@@ -15,26 +15,26 @@
    <children>
       <ImageView fitHeight="768.0" fitWidth="1360.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="/images/LogInBackground.png" />
+            <Image url="images/LogInBackground.png" />
          </image>
       </ImageView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="50.0" layoutX="645.0" layoutY="471.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" width="75.0" />
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="592.0" layoutY="196.0" text="SIGN IN" textFill="WHITE">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="592.0" layoutY="196.0" stylesheets="@/Fonts/Roboto-Light.css" text="SIGN IN" textFill="WHITE">
          <font>
-            <Font name="Javanese Text" size="48.0" />
+            <Font size="48.0" />
          </font>
       </Label>
       <Rectangle arcWidth="5.0" fill="WHITE" height="25.0" layoutX="578.0" layoutY="328.0" stroke="TRANSPARENT" strokeType="INSIDE" width="207.0" />
-      <JFXTextField fx:id="usernameField" focusColor="RED" labelFloat="true" layoutX="578.0" layoutY="327.0" onKeyReleased="#validateButton" prefHeight="25.0" prefWidth="207.0" promptText="Username" unFocusColor="WHITE">
+      <JFXTextField fx:id="usernameField" focusColor="RED" labelFloat="true" layoutX="578.0" layoutY="327.0" onKeyReleased="#validateButton" prefHeight="25.0" prefWidth="207.0" promptText="Username" stylesheets="@/Fonts/Roboto-Light.css" unFocusColor="WHITE">
          <font>
             <Font name="Times New Roman" size="12.0" />
          </font></JFXTextField>
       <Rectangle arcWidth="5.0" fill="WHITE" height="25.0" layoutX="578.0" layoutY="384.0" stroke="TRANSPARENT" strokeType="INSIDE" width="207.0" />
-      <JFXPasswordField fx:id="passwordField" focusColor="RED" labelFloat="true" layoutX="578.0" layoutY="383.0" onKeyReleased="#validateButton" prefHeight="25.0" prefWidth="207.0" promptText="Password" unFocusColor="WHITE">
+      <JFXPasswordField fx:id="passwordField" focusColor="RED" labelFloat="true" layoutX="578.0" layoutY="383.0" onKeyReleased="#validateButton" prefHeight="25.0" prefWidth="207.0" promptText="Password" stylesheets="@/Fonts/Roboto-Light.css" unFocusColor="WHITE">
          <font>
             <Font name="Times New Roman" size="12.0" />
          </font></JFXPasswordField>
-      <JFXButton fx:id="goToHomePage" layoutX="645.0" layoutY="471.0" onAction="#continueToHomePage" prefHeight="33.0" prefWidth="75.0" text="SUBMIT" textFill="WHITE">
+      <JFXButton fx:id="goToHomePage" layoutX="645.0" layoutY="471.0" onAction="#continueToHomePage" prefHeight="33.0" prefWidth="75.0" stylesheets="@/Fonts/Roboto-Light.css" text="SUBMIT" textFill="WHITE">
          <font>
             <Font name="Javanese Text" size="14.0" />
          </font></JFXButton>
