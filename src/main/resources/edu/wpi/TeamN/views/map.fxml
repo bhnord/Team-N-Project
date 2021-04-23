@@ -180,13 +180,13 @@
 <!--            </JFXScrollPane>-->
          </center>
          <top>
-            <ScrollBar fx:id="zoomLvl"  BorderPane.alignment="CENTER" />
+            <JFXSlider fx:id="zoomLvl"  BorderPane.alignment="CENTER" />
          </top>
          <right>
-            <ScrollBar fx:id="vMapBar" orientation="VERTICAL" BorderPane.alignment="CENTER" />
+            <JFXSlider fx:id="vMapBar" orientation="VERTICAL" BorderPane.alignment="CENTER" />
          </right>
          <bottom>
-            <ScrollBar fx:id="hMapBar" BorderPane.alignment="CENTER" />
+            <JFXSlider fx:id="hMapBar" BorderPane.alignment="CENTER" />
          </bottom>
       </BorderPane>
    </children>
