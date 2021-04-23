@@ -2,8 +2,6 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXColorPicker?>
-<?import com.jfoenix.controls.JFXScrollPane?>
-<?import com.jfoenix.controls.JFXSlider?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Button?>
@@ -12,132 +10,119 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<?import javafx.scene.control.ScrollBar?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="767.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.TeamN.views.MapController">
    <children>
-      <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#0c00ae" height="758.0" layoutX="1037.0" layoutY="1.0" stroke="TRANSPARENT" strokeType="INSIDE" width="300.0" />
-      <Text fill="WHITE" layoutX="1051.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HELP">
-         <font>
-            <Font name="Arial Black" size="46.0" />
-         </font>
-      </Text>
-      <Text fill="WHITE" layoutX="1054.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To create a Node, click anywhere on map, and give the node an ID" wrappingWidth="266.3515625">
-         <font>
-            <Font name="Arial Narrow" size="22.0" />
-         </font>
-      </Text>
-      <Text fill="WHITE" layoutX="1053.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To create an edge, right click and drag from one Nodes area onto another Node" wrappingWidth="266.3515625">
-         <font>
-            <Font name="Arial Narrow" size="22.0" />
-         </font>
-      </Text>
-      <Text fill="WHITE" layoutX="1054.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Load will display the current database visibly onto the map in form of Nodes and Edges" wrappingWidth="266.3515625">
-         <font>
-            <Font name="Arial Narrow" size="22.0" />
-         </font>
-      </Text>
-      <Text fill="WHITE" layoutX="1054.0" layoutY="357.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Clear will remove all the current Nodes from the map, but will still be held in the database" wrappingWidth="266.3515625">
-         <font>
-            <Font name="Arial Narrow" size="22.0" />
-         </font>
-      </Text>
-      <Text fill="WHITE" layoutX="1054.0" layoutY="450.0" strokeType="OUTSIDE" strokeWidth="0.0" text="While a Node or Edge is selected, the ID will show to the right of the Delete Current button, and is used to get rid of that object from the database" wrappingWidth="266.3515625">
-         <font>
-            <Font name="Arial Narrow" size="22.0" />
-         </font>
-      </Text>
-      <Text fill="WHITE" layoutX="1054.0" layoutY="601.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To create a path from one Node to the next, select a Node and press Start Node, then do the same for End Node, press Get Directions to pathfind between the two" wrappingWidth="266.3515625">
-         <font>
-            <Font name="Arial Narrow" size="22.0" />
-         </font>
-      </Text>
-      <ImageView fitHeight="766.0" fitWidth="1360.0" layoutX="-5.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="766.0" fitWidth="1360.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@/images/CSVBackground.png" />
          </image>
       </ImageView>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0c00ae" height="69.0" layoutX="-1.0" layoutY="77.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.0" layoutX="27.0" layoutY="89.0" rotate="-45.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.0" layoutX="27.0" layoutY="89.0" rotate="45.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" />
-      <JFXButton fx:id="exit" layoutY="76.0" onAction="#exit" prefHeight="71.0" prefWidth="66.0" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="9.0" />
-         </font>
-         <tooltip>
-            <Tooltip fx:id="ttExit" text="Exit App">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Tooltip>
-         </tooltip>
-      </JFXButton>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0c00ae" height="69.0" layoutX="-1.0" layoutY="149.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
-      <ImageView fitHeight="50.0" fitWidth="59.0" layoutX="4.0" layoutY="158.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@/images/LogOut.png" />
-         </image>
-      </ImageView>
-      <JFXButton fx:id="logOutButton" layoutX="-1.0" layoutY="148.0" onAction="#logOut" prefHeight="71.0" prefWidth="66.0" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="9.0" />
-         </font>
-         <tooltip>
-            <Tooltip fx:id="ttLogOutButton" text="Log Out">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Tooltip>
-         </tooltip>
-      </JFXButton>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0c00ae" height="69.0" layoutX="-1.0" layoutY="221.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
-      <ImageView fitHeight="50.0" fitWidth="59.0" layoutX="6.0" layoutY="231.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@/images/ButtonCovid.png" />
-         </image>
-      </ImageView>
-      <JFXButton fx:id="CovidForm" layoutX="-1.0" layoutY="220.0" onAction="#advanceViews" prefHeight="71.0" prefWidth="66.0" text="Button" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="9.0" />
-         </font>
-         <tooltip>
-            <Tooltip fx:id="ttCovidForm" text="Covid Form">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Tooltip>
-         </tooltip>
-      </JFXButton>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0c00ae" height="69.0" layoutX="-1.0" layoutY="295.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
-      <ImageView fitHeight="58.0" fitWidth="59.0" layoutX="2.0" layoutY="300.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@/images/IconHome.png" />
-         </image>
-      </ImageView>
-      <JFXButton fx:id="HomeView" layoutY="294.0" onAction="#advanceHome" prefHeight="71.0" prefWidth="66.0" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="9.0" />
-         </font>
-         <tooltip>
-            <Tooltip fx:id="ttLogOutButton1" text="Home">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Tooltip>
-         </tooltip>
-      </JFXButton>
-      <VBox layoutX="114.0" layoutY="691.0" minHeight="58.0" minWidth="1000.0" prefHeight="58.0" prefWidth="1100.0" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="114.0" AnchorPane.rightAnchor="152.0" AnchorPane.topAnchor="691.0">
+      <GridPane prefHeight="767.0" prefWidth="1366.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="687.0" minWidth="0.0" prefWidth="11.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="1078.0" minWidth="10.0" prefWidth="1078.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="188.0" minHeight="5.0" prefHeight="89.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="329.0" minHeight="10.0" prefHeight="329.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="312.0" minHeight="10.0" prefHeight="297.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="154.0" minHeight="6.0" prefHeight="36.0" vgrow="SOMETIMES" />
+        </rowConstraints>
          <children>
-            <HBox prefHeight="744.0" prefWidth="1140.0" />
-            <Label fx:id="XLabel" prefHeight="47.0" prefWidth="120.0" text="X-Value" />
-            <Label fx:id="YLabel" prefHeight="47.0" prefWidth="120.0" text="y-Value" />
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <VBox minHeight="58.0" minWidth="1000.0" prefHeight="100.0" prefWidth="1078.0" GridPane.columnIndex="1">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </VBox>
+            <Label fx:id="text" prefHeight="79.0" prefWidth="523.0" text="MAP EDITOR" textAlignment="CENTER" GridPane.columnIndex="1">
+               <font>
+                  <Font name="Arial Black" size="30.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets top="50.0" />
+               </GridPane.margin>
+            </Label>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowSpan="3">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0c00ae" height="69.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" AnchorPane.topAnchor="75.0" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0c00ae" height="69.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" AnchorPane.topAnchor="225.0" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0c00ae" height="69.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" AnchorPane.topAnchor="150.0" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0c00ae" height="69.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" AnchorPane.topAnchor="300.0" />
+                  <ImageView fitHeight="50.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="150.0">
+                     <image>
+                        <Image url="@/images/LogOut.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="58.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="300.0">
+                     <image>
+                        <Image url="@/images/IconHome.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="50.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="225.0">
+                     <image>
+                        <Image url="@/images/ButtonCovid.png" />
+                     </image>
+                  </ImageView>
+                  <JFXButton fx:id="HomeView" onAction="#advanceHome" prefHeight="71.0" prefWidth="66.0" textFill="WHITE" AnchorPane.topAnchor="300.0">
+                     <font>
+                        <Font name="System Bold" size="9.0" />
+                     </font>
+                     <tooltip>
+                        <Tooltip fx:id="ttLogOutButton1" text="Home">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Tooltip>
+                     </tooltip>
+                  </JFXButton>
+                  <JFXButton fx:id="logOutButton" onAction="#logOut" prefHeight="71.0" prefWidth="66.0" textFill="WHITE" AnchorPane.topAnchor="150.0">
+                     <font>
+                        <Font name="System Bold" size="9.0" />
+                     </font>
+                     <tooltip>
+                        <Tooltip fx:id="ttLogOutButton" text="Log Out">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Tooltip>
+                     </tooltip>
+                  </JFXButton>
+                  <JFXButton fx:id="exit" onAction="#exit" prefHeight="71.0" prefWidth="66.0" textFill="WHITE" AnchorPane.topAnchor="75.0">
+                     <font>
+                        <Font name="System Bold" size="9.0" />
+                     </font>
+                     <tooltip>
+                        <Tooltip fx:id="ttExit" text="Exit App">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Tooltip>
+                     </tooltip>
+                  </JFXButton>
+                  <JFXButton fx:id="CovidForm" onAction="#advanceViews" prefHeight="71.0" prefWidth="66.0" text="Button" textFill="WHITE" AnchorPane.topAnchor="225.0">
+                     <font>
+                        <Font name="System Bold" size="9.0" />
+                     </font>
+                     <tooltip>
+                        <Tooltip fx:id="ttCovidForm" text="Covid Form">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Tooltip>
+                     </tooltip>
+                  </JFXButton>
+               </children>
+            </AnchorPane>
+            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <children>
                   <Button fx:id="HomeView1" mnemonicParsing="false" onAction="#advanceHome" prefHeight="30.0" prefWidth="100.0" text="Home" />
                   <Button fx:id="Clear" mnemonicParsing="false" onAction="#clear" prefHeight="30.0" prefWidth="100.0" text="Clear" />
@@ -154,40 +139,31 @@
                   <Button mnemonicParsing="false" onAction="#PathFind" text="Get Directions" />
                </children>
             </HBox>
+            <Label fx:id="YLabel" prefHeight="47.0" prefWidth="120.0" text="y-Value" GridPane.columnIndex="2">
+               <GridPane.margin>
+                  <Insets top="50.0" />
+               </GridPane.margin>
+            </Label>
+            <Label fx:id="XLabel" prefHeight="47.0" prefWidth="120.0" text="X-Value" GridPane.columnIndex="2">
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </Label>
+            <AnchorPane fx:id="mapAnchor" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="2">
+               <children>
+      <!--            <JFXScrollPane fx:id="scrollPane" BorderPane.alignment="CENTER">-->
+      <!--               <children>-->
+                        <ImageView fx:id="mapImageView" fitHeight="571.5" fitWidth="884.0" onMouseClicked="#placeNodeClick" onMouseMoved="#xyPrint" preserveRatio="true">
+                           <image>
+                              <Image fx:id="mapimg" url="@/images/level1.png" />
+                           </image>
+                           <viewport>
+                              <Rectangle2D />
+                           </viewport>
+                        </ImageView>
+               </children>
+            </AnchorPane>
          </children>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-      </VBox>
-      <Label fx:id="text" layoutX="74.0" layoutY="17.0" prefHeight="124.0" prefWidth="523.0" text="MAP EDITOR" textAlignment="CENTER">
-         <font>
-            <Font name="Arial Black" size="30.0" />
-         </font>
-      </Label>
-      <BorderPane layoutX="114.0" layoutY="100.0" maxHeight="571.5" maxWidth="884.0">
-         <center>
-<!--            <JFXScrollPane fx:id="scrollPane" BorderPane.alignment="CENTER">-->
-<!--               <children>-->
-                  <ImageView fx:id="mapImageView" fitHeight="571.5" fitWidth="884.0"  onMouseMoved="#xyPrint" onScroll="#zoom" preserveRatio="true">
-                     <image>
-                        <Image fx:id="mapimg" url="@/images/level1.png" />
-                     </image>
-                     <viewport>
-                        <Rectangle2D />
-                     </viewport>
-                  </ImageView>
-<!--               </children>-->
-<!--            </JFXScrollPane>-->
-         </center>
-         <top>
-            <JFXSlider fx:id="zoomLvl"  BorderPane.alignment="CENTER" />
-         </top>
-         <right>
-            <JFXSlider fx:id="vMapBar" orientation="VERTICAL" BorderPane.alignment="CENTER" />
-         </right>
-         <bottom>
-            <JFXSlider fx:id="hMapBar" BorderPane.alignment="CENTER" />
-         </bottom>
-      </BorderPane>
+      </GridPane>
    </children>
 </AnchorPane>
