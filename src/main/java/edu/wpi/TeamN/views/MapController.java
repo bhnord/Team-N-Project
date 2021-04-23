@@ -8,13 +8,6 @@ import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.algo.PathFinder;
 import edu.wpi.TeamN.services.database.DatabaseService;
 import edu.wpi.TeamN.state.HomeState;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.ResourceBundle;
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.collections.FXCollections;
@@ -30,10 +23,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollBar;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -42,6 +35,12 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.ResourceBundle;
 
 @Slf4j
 public class MapController extends masterController implements Initializable {
@@ -56,11 +55,19 @@ public class MapController extends masterController implements Initializable {
   @FXML private Label current;
   @FXML private ImageView mapImageView;
   @FXML private JFXScrollPane scrollPane;
+  @FXML private ScrollBar vMapBar;
+  @FXML private ScrollBar hMapBar;
+  @FXML private ScrollBar zoomLvl;
+  static int height;
+  static int width;
+  static double offSetX, offSetY, zoomlvl;
 
   private String selectedID;
   private Node startNode;
   private Node endNode;
   private double scale = 1;
+  static double initx;
+  static double inity;
 
   private String startNodePath;
   private String endNodePath;
@@ -105,6 +112,23 @@ public class MapController extends masterController implements Initializable {
     mapObjects = new HashMap<>();
 
     zoomProperty.set(841);
+
+    zoomLvl.setMax(4);
+    zoomLvl.setMin(1);
+    height = (int) mapImageView.getFitHeight();
+    width = (int) mapImageView.getFitWidth();
+
+    hMapBar.setMin(0);
+    hMapBar.setMax(width);
+    hMapBar.setMaxWidth(mapImageView.getFitWidth());
+    hMapBar.setMinWidth(mapImageView.getFitWidth());
+
+    vMapBar.setMin(0);
+    vMapBar.setMax(height);
+    vMapBar.setMaxHeight(mapImageView.getFitHeight());
+    vMapBar.setMinHeight(mapImageView.getFitHeight());
+
+    zoom();
   }
 
   @FXML
@@ -394,45 +418,130 @@ public class MapController extends masterController implements Initializable {
     appPrimaryScene.setRoot(root);
   }
 
-  public void zoom(ScrollEvent scrollEvent) throws Exception {
-    zoomProperty.addListener(
-        new InvalidationListener() {
-          @Override
-          public void invalidated(Observable arg0) {
-            mapImageView.setFitWidth(zoomProperty.get());
-            mapImageView.setFitHeight(zoomProperty.get());
-          }
+  public void zoom() throws Exception {
+    zoomLvl.setMax(4);
+    zoomLvl.setMin(1);
+    offSetX = width / 2;
+    offSetY = height / 2;
+
+    hMapBar
+        .valueProperty()
+        .addListener(
+            e -> {
+              offSetX = hMapBar.getValue();
+              zoomlvl = zoomLvl.getValue();
+              double newValue = (double) ((int) (zoomlvl * 10)) / 10;
+              if (offSetX < (width / newValue) / 2) {
+                offSetX = (width / newValue) / 2;
+              }
+              if (offSetX > width - ((width / newValue) / 2)) {
+                offSetX = width - ((width / newValue) / 2);
+              }
+
+              mapImageView.setViewport(
+                  new Rectangle2D(
+                      offSetX - ((width / newValue) / 2),
+                      offSetY - ((height / newValue) / 2),
+                      width / newValue,
+                      height / newValue));
+            });
+    vMapBar
+        .valueProperty()
+        .addListener(
+            e -> {
+              offSetY = height - vMapBar.getValue();
+              zoomlvl = zoomLvl.getValue();
+              double newValue = (double) ((int) (zoomlvl * 10)) / 10;
+              if (offSetY < (height / newValue) / 2) {
+                offSetY = (height / newValue) / 2;
+              }
+              if (offSetY > height - ((height / newValue) / 2)) {
+                offSetY = height - ((height / newValue) / 2);
+              }
+              mapImageView.setViewport(
+                  new Rectangle2D(
+                      offSetX - ((width / newValue) / 2),
+                      offSetY - ((height / newValue) / 2),
+                      width / newValue,
+                      height / newValue));
+            });
+    zoomLvl
+        .valueProperty()
+        .addListener(
+            e -> {
+              zoomlvl = zoomLvl.getValue();
+              double newValue = (double) ((int) (zoomlvl * 10)) / 10;
+              if (offSetX < (width / newValue) / 2) {
+                offSetX = (width / newValue) / 2;
+              }
+              if (offSetX > width - ((width / newValue) / 2)) {
+                offSetX = width - ((width / newValue) / 2);
+              }
+              if (offSetY < (height / newValue) / 2) {
+                offSetY = (height / newValue) / 2;
+              }
+              if (offSetY > height - ((height / newValue) / 2)) {
+                offSetY = height - ((height / newValue) / 2);
+              }
+              hMapBar.setValue(offSetX);
+              vMapBar.setValue(height - offSetY);
+              mapImageView.setViewport(
+                  new Rectangle2D(
+                      offSetX - ((width / newValue) / 2),
+                      offSetY - ((height / newValue) / 2),
+                      width / newValue,
+                      height / newValue));
+            });
+    mapImageView.setOnMousePressed(
+        e -> {
+          initx = e.getSceneX();
+          inity = e.getSceneY();
         });
-
-    mapImageView.addEventFilter(
-        ScrollEvent.ANY,
-        new EventHandler<ScrollEvent>() {
-          @Override
-          public void handle(ScrollEvent event) {
-            if (event.getDeltaY() > 0 && zoomProperty.get() < 1500 /*841*/) {
-              // zoomProperty.set(zoomProperty.get() * 1.001);
-              scale = scale * 1.001;
-              Rectangle2D rec =
-                  new Rectangle2D(
-                      200,
-                      200,
-                      mapImageView.getFitWidth() * scale,
-                      mapImageView.getFitHeight() * scale);
-
-              mapImageView.setViewport(rec);
-            } else if (event.getDeltaY() < 0 && zoomProperty.get() > 400) {
-              // zoomProperty.set(zoomProperty.get() / 1.001);
-              scale = scale / 1.001;
-              Rectangle2D rec =
-                  new Rectangle2D(
-                      0,
-                      0,
-                      mapImageView.getFitWidth() * scale,
-                      mapImageView.getFitHeight() * scale);
-
-              mapImageView.setViewport(rec);
-            }
-          }
+    mapImageView.setOnMouseDragged(
+        e -> {
+          hMapBar.setValue(hMapBar.getValue() + (initx - e.getSceneX()));
+          vMapBar.setValue(vMapBar.getValue() - (inity - e.getSceneY()));
+          initx = e.getSceneX();
+          inity = e.getSceneY();
         });
   }
+  //    zoomProperty.addListener(
+  //        new InvalidationListener() {
+  //          @Override
+  //          public void invalidated(Observable arg0) {
+  //            mapImageView.setFitWidth(zoomProperty.get());
+  //            mapImageView.setFitHeight(zoomProperty.get());
+  //          }
+  //        });
+  //
+  //    mapImageView.addEventFilter(
+  //        ScrollEvent.ANY,
+  //        new EventHandler<ScrollEvent>() {
+  //          @Override
+  //          public void handle(ScrollEvent event) {
+  //            if (event.getDeltaY() > 0 && zoomProperty.get() < 1500 /*841*/) {
+  //              // zoomProperty.set(zoomProperty.get() * 1.001);
+  //              scale = scale * 1.001;
+  //              Rectangle2D rec =
+  //                  new Rectangle2D(
+  //                      200,
+  //                      200,
+  //                      mapImageView.getFitWidth() * scale,
+  //                      mapImageView.getFitHeight() * scale);
+  //
+  //              mapImageView.setViewport(rec);
+  //            } else if (event.getDeltaY() < 0 && zoomProperty.get() > 400) {
+  //              // zoomProperty.set(zoomProperty.get() / 1.001);
+  //              scale = scale / 1.001;
+  //              Rectangle2D rec =
+  //                  new Rectangle2D(
+  //                      0,
+  //                      0,
+  //                      mapImageView.getFitWidth() * scale,
+  //                      mapImageView.getFitHeight() * scale);
+  //
+  //              mapImageView.setViewport(rec);
+  //            }
+  //          }
+  //        });
 }

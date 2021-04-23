@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXColorPicker?>
 <?import com.jfoenix.controls.JFXScrollPane?>
+<?import com.jfoenix.controls.JFXSlider?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Button?>
@@ -11,12 +12,14 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
+<?import javafx.scene.control.ScrollBar?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="767.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.TeamN.views.MapController">
    <children>
       <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#0c00ae" height="758.0" layoutX="1037.0" layoutY="1.0" stroke="TRANSPARENT" strokeType="INSIDE" width="300.0" />
@@ -161,17 +164,30 @@
             <Font name="Arial Black" size="30.0" />
          </font>
       </Label>
-      <JFXScrollPane fx:id="scrollPane" layoutX="110.0" layoutY="115.0">
-         <children>
-            <ImageView fx:id="mapImageView" fitHeight="571.5" fitWidth="884.0" onMouseClicked="#placeNodeClick" onMouseMoved="#xyPrint" onMousePressed="#startLink" onMouseReleased="#releaseMouse" onScroll="#zoom" preserveRatio="true">
-               <image>
-                  <Image fx:id="mapimg" url="@/images/level1.png" />
-               </image>
-               <viewport>
-                  <Rectangle2D />
-               </viewport>
-            </ImageView>
-         </children>
-      </JFXScrollPane>
+      <BorderPane layoutX="114.0" layoutY="100.0" maxHeight="571.5" maxWidth="884.0">
+         <center>
+<!--            <JFXScrollPane fx:id="scrollPane" BorderPane.alignment="CENTER">-->
+<!--               <children>-->
+                  <ImageView fx:id="mapImageView" fitHeight="571.5" fitWidth="884.0"  onMouseMoved="#xyPrint" onScroll="#zoom" preserveRatio="true">
+                     <image>
+                        <Image fx:id="mapimg" url="@/images/level1.png" />
+                     </image>
+                     <viewport>
+                        <Rectangle2D />
+                     </viewport>
+                  </ImageView>
+<!--               </children>-->
+<!--            </JFXScrollPane>-->
+         </center>
+         <top>
+            <ScrollBar fx:id="zoomLvl"  BorderPane.alignment="CENTER" />
+         </top>
+         <right>
+            <ScrollBar fx:id="vMapBar" orientation="VERTICAL" BorderPane.alignment="CENTER" />
+         </right>
+         <bottom>
+            <ScrollBar fx:id="hMapBar" BorderPane.alignment="CENTER" />
+         </bottom>
+      </BorderPane>
    </children>
 </AnchorPane>
