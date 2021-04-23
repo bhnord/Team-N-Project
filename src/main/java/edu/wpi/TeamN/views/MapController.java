@@ -3,7 +3,6 @@ package edu.wpi.TeamN.views;
 import com.google.inject.Inject;
 import com.jfoenix.controls.JFXColorPicker;
 import com.jfoenix.controls.JFXScrollPane;
-import com.jfoenix.controls.JFXSlider;
 import edu.wpi.TeamN.services.algo.Edge;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.algo.PathFinder;
@@ -24,6 +23,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollBar;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -55,9 +55,9 @@ public class MapController extends masterController implements Initializable {
   @FXML private Label current;
   @FXML private ImageView mapImageView;
   @FXML private JFXScrollPane scrollPane;
-  @FXML private JFXSlider vMapBar;
-  @FXML private JFXSlider hMapBar;
-  @FXML private JFXSlider zoomLvl;
+  @FXML private ScrollBar vMapBar;
+  @FXML private ScrollBar hMapBar;
+  @FXML private ScrollBar zoomLvl;
   static int height;
   static int width;
   static double offSetX, offSetY, zoomlvl;
@@ -112,6 +112,22 @@ public class MapController extends masterController implements Initializable {
     mapObjects = new HashMap<>();
 
     zoomProperty.set(841);
+
+    zoomLvl.setMax(4);
+    zoomLvl.setMin(1);
+    height = (int) mapImageView.getFitHeight();
+    width = (int) mapImageView.getFitWidth();
+
+    hMapBar.setMin(0);
+    hMapBar.setMax(width);
+    hMapBar.setMaxWidth(mapImageView.getFitWidth());
+    hMapBar.setMinWidth(mapImageView.getFitWidth());
+
+    vMapBar.setMin(0);
+    vMapBar.setMax(height);
+    vMapBar.setMaxHeight(mapImageView.getFitHeight());
+    vMapBar.setMinHeight(mapImageView.getFitHeight());
+
     zoom();
   }
 
