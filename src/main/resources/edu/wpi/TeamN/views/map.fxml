@@ -3,11 +3,11 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXColorPicker?>
 <?import com.jfoenix.controls.JFXScrollPane?>
+<?import com.jfoenix.controls.JFXSlider?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollBar?>
 <?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -165,9 +165,9 @@
       </Label>
       <BorderPane layoutX="114.0" layoutY="100.0" maxHeight="571.5" maxWidth="884.0">
          <center>
-            <JFXScrollPane fx:id="scrollPane" BorderPane.alignment="CENTER">
-               <children>
-                  <ImageView fx:id="mapImageView" fitHeight="571.5" fitWidth="884.0" onMouseClicked="#placeNodeClick" onMouseMoved="#xyPrint" onMousePressed="#startLink" onMouseReleased="#releaseMouse" onScroll="#zoom" preserveRatio="true">
+<!--            <JFXScrollPane fx:id="scrollPane" BorderPane.alignment="CENTER">-->
+<!--               <children>-->
+                  <ImageView fx:id="mapImageView" fitHeight="571.5" fitWidth="884.0"  onMouseMoved="#xyPrint" onScroll="#zoom" preserveRatio="true">
                      <image>
                         <Image fx:id="mapimg" url="@/images/level1.png" />
                      </image>
@@ -175,14 +175,17 @@
                         <Rectangle2D />
                      </viewport>
                   </ImageView>
-               </children>
-            </JFXScrollPane>
+<!--               </children>-->
+<!--            </JFXScrollPane>-->
          </center>
+         <top>
+            <JFXSlider fx:id="zoomLvl"  BorderPane.alignment="CENTER" />
+         </top>
          <right>
-            <ScrollBar orientation="VERTICAL" BorderPane.alignment="CENTER" />
+            <JFXSlider fx:id="vMapBar" orientation="VERTICAL" BorderPane.alignment="CENTER" />
          </right>
          <bottom>
-            <ScrollBar BorderPane.alignment="CENTER" />
+            <JFXSlider fx:id="hMapBar" BorderPane.alignment="CENTER" />
          </bottom>
       </BorderPane>
    </children>
