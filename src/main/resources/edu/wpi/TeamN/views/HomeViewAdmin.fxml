@@ -78,7 +78,7 @@
       <Button fx:id="CovidForm2" layoutX="14.0" layoutY="308.0" mnemonicParsing="false" onAction="#advanceViews" text="Virtual Check-In" />
       <ImageView fitHeight="768.0" fitWidth="1366.0" layoutX="-5.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@/images/HomeViewBackground.png" />
+            <Image url="@/images/CSVBackground.png" />
          </image>
       </ImageView>
       <JFXButton fx:id="CSVEditor2" layoutX="529.0" layoutY="636.0" onAction="#advanceViews" prefHeight="85.0" prefWidth="273.0" scaleX="1.25" scaleY="1.25" style="-fx-background-radius: 20;" />
