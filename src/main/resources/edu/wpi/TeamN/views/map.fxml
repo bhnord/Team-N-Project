@@ -7,10 +7,12 @@
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollBar?>
 <?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
@@ -161,17 +163,27 @@
             <Font name="Arial Black" size="30.0" />
          </font>
       </Label>
-      <JFXScrollPane fx:id="scrollPane" layoutX="110.0" layoutY="115.0">
-         <children>
-            <ImageView fx:id="mapImageView" fitHeight="571.5" fitWidth="884.0" onMouseClicked="#placeNodeClick" onMouseMoved="#xyPrint" onMousePressed="#startLink" onMouseReleased="#releaseMouse" onScroll="#zoom" preserveRatio="true">
-               <image>
-                  <Image fx:id="mapimg" url="@/images/level1.png" />
-               </image>
-               <viewport>
-                  <Rectangle2D />
-               </viewport>
-            </ImageView>
-         </children>
-      </JFXScrollPane>
+      <BorderPane layoutX="114.0" layoutY="100.0" maxHeight="571.5" maxWidth="884.0">
+         <center>
+            <JFXScrollPane fx:id="scrollPane" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fx:id="mapImageView" fitHeight="571.5" fitWidth="884.0" onMouseClicked="#placeNodeClick" onMouseMoved="#xyPrint" onMousePressed="#startLink" onMouseReleased="#releaseMouse" onScroll="#zoom" preserveRatio="true">
+                     <image>
+                        <Image fx:id="mapimg" url="@/images/level1.png" />
+                     </image>
+                     <viewport>
+                        <Rectangle2D />
+                     </viewport>
+                  </ImageView>
+               </children>
+            </JFXScrollPane>
+         </center>
+         <right>
+            <ScrollBar orientation="VERTICAL" BorderPane.alignment="CENTER" />
+         </right>
+         <bottom>
+            <ScrollBar BorderPane.alignment="CENTER" />
+         </bottom>
+      </BorderPane>
    </children>
 </AnchorPane>

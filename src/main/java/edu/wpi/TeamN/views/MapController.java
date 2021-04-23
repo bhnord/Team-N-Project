@@ -20,12 +20,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollBar;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -58,6 +58,7 @@ public class MapController extends masterController implements Initializable {
   @FXML private Label current;
   @FXML private ImageView mapImageView;
   @FXML private JFXScrollPane scrollPane;
+  @FXML private ScrollBar verticalMapBar;
 
   private String selectedID;
   private Node startNode;
@@ -437,23 +438,6 @@ public class MapController extends masterController implements Initializable {
               mapImageView.setViewport(rec);
             }
           }
-        });
-
-    scrollPane.setCursor(Cursor.OPEN_HAND);
-    mapImageView.setOnMousePressed(
-        e -> {
-          initx = e.getSceneX();
-          inity = e.getSceneY();
-          scrollPane.setCursor(Cursor.CLOSED_HAND);
-        });
-    mapImageView.setOnMouseReleased(
-        e -> {
-          mapImageView.setCursor(Cursor.OPEN_HAND);
-        });
-    mapImageView.setOnMouseDragged(
-        e -> {
-          initx = e.getSceneX();
-          inity = e.getSceneY();
         });
   }
 }
