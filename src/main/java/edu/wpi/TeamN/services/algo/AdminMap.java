@@ -1,6 +1,7 @@
 package edu.wpi.TeamN.services.algo;
 
 import edu.wpi.TeamN.services.database.DatabaseService;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class AdminMap {
@@ -11,6 +12,9 @@ public class AdminMap {
 
   private final double downScale = .168;
   private final double upScale = 5.9523;
+
+  private String startNodePath;
+  private String endNodePath;
 
   public AdminMap(DatabaseService db) {
     this.db = db;
@@ -59,5 +63,21 @@ public class AdminMap {
       }
     }
     return closest;
+  }
+
+  public ArrayList<Node.Link> pathfind() {
+    PathFinder pathFinder = new PathFinder();
+    Node node1 = getNodeSet().get(startNodePath);
+    Node node2 = getNodeSet().get(endNodePath);
+
+    return pathFinder.Astar(node1, node2);
+  }
+
+  public void SetStartNode(String snp) {
+    if (getNodeSet().containsKey(snp)) startNodePath = snp;
+  }
+
+  public void SetEndNode(String enp) {
+    if (getNodeSet().containsKey(enp)) endNodePath = enp;
   }
 }
