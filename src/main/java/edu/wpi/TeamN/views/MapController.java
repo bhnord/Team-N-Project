@@ -2,20 +2,14 @@ package edu.wpi.TeamN.views;
 
 import com.google.inject.Inject;
 import com.jfoenix.controls.JFXColorPicker;
+import edu.wpi.TeamN.services.algo.AdminMap;
 import edu.wpi.TeamN.services.algo.Edge;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.algo.PathFinder;
 import edu.wpi.TeamN.services.database.DatabaseService;
 import edu.wpi.TeamN.state.HomeState;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.ResourceBundle;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -39,13 +33,19 @@ import javafx.stage.Stage;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.ResourceBundle;
+
 @Slf4j
 public class MapController extends masterController implements Initializable {
   @FXML private JFXColorPicker colorPicker;
-  @Inject DatabaseService db;
   // @Inject ServiceTwo graph;
   @Inject FXMLLoader loader;
   @Inject HomeState state;
+  @Inject DatabaseService db;
 
   @FXML private Label XLabel;
   @FXML private Label YLabel;
@@ -53,6 +53,7 @@ public class MapController extends masterController implements Initializable {
   @FXML private ImageView mapImageView;
   @FXML private AnchorPane mapAnchor;
 
+  AdminMap adminMap;
   private String selectedID;
   private Node startNode;
   private Node endNode;
@@ -64,10 +65,6 @@ public class MapController extends masterController implements Initializable {
   final DoubleProperty zoomProperty = new SimpleDoubleProperty();
 
   private Scene appPrimaryScene;
-  int[] nodeinfo = new int[3];
-  ObservableList<int[]> nodes = FXCollections.observableArrayList();
-  HashMap<String, Node> nodeSet = new HashMap<>();
-  HashMap<String, Edge> edgeSet = new HashMap<>();
   HashMap<String, Integer> mapObjects = new HashMap<>();
   ArrayList<Node.Link> path = new ArrayList<>();
 
@@ -77,6 +74,9 @@ public class MapController extends masterController implements Initializable {
   String longname;
   String shortname;
   Boolean cancelOrSubmit = false;
+
+  HashMap<String, Node> nodeSet = new HashMap<>();
+  HashMap<String, Edge> edgeSet = new HashMap<>();
 
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
@@ -95,11 +95,7 @@ public class MapController extends masterController implements Initializable {
     log.debug(state.toString());
     colorPicker.setValue(Color.BLUE);
 
-    // nodeSet = db.getAllNodesMap();
-    // edgeSet = db.getAllEdgesMap();
-    nodeSet = new HashMap<>();
-    edgeSet = new HashMap<>();
-    mapObjects = new HashMap<>();
+    adminMap = new AdminMap(db);
   }
 
   @FXML
@@ -119,22 +115,6 @@ public class MapController extends masterController implements Initializable {
   public void xyPrint(MouseEvent mouseDragEvent) {
     XLabel.setText(String.valueOf(mouseDragEvent.getX()));
     YLabel.setText(String.valueOf(mouseDragEvent.getY()));
-  }
-
-  // Getting the closest node to the mouse
-  private Node get(double x, double y) {
-    x *= upScale;
-    y *= upScale;
-    double min = Double.MAX_VALUE;
-    Node closest = null;
-    for (Node c : nodeSet.values()) {
-      double distance = (c.get_x() - x) * (c.get_x() - x) + (c.get_y() - y) * (c.get_y() - y);
-      if (distance < min) {
-        closest = c;
-        min = distance;
-      }
-    }
-    return closest;
   }
 
   /**
@@ -171,14 +151,14 @@ public class MapController extends masterController implements Initializable {
     if (mouseEvent.getButton() != MouseButton.PRIMARY) {
       System.out.println(mouseEvent.getX() + ":" + mouseEvent.getY());
       System.out.println("startingLink");
-      startNode = get(mouseEvent.getX(), mouseEvent.getY());
+      startNode = adminMap.get(mouseEvent.getX(), mouseEvent.getY());
     }
   }
 
   public void releaseMouse(MouseEvent mouseEvent) {
     if (mouseEvent.getButton() != MouseButton.PRIMARY) {
       System.out.println("endingLink");
-      Node other = get(mouseEvent.getX(), mouseEvent.getY());
+      Node other = adminMap.get(mouseEvent.getX(), mouseEvent.getY());
       System.out.println(startNode.get_nodeID() + "_" + other.get_nodeID());
       if (other != startNode) {
         placeLink(startNode.get_nodeID() + "_" + other.get_nodeID(), startNode, other);
@@ -225,10 +205,8 @@ public class MapController extends masterController implements Initializable {
             this.longname,
             this.shortname);
     n.set_shape(simpleNode);
-    if (!nodeSet.containsKey(id)) {
-      mapObjects.put(id, mapAnchor.getChildren().size() - 1);
-      nodeSet.put(id, n);
-      db.addNode(n);
+    if (!adminMap.getNodeSet().containsKey(id)) {
+      adminMap.addNode(n);
       setNodeProperties("", "", "", "", "");
     }
   }
@@ -264,11 +242,8 @@ public class MapController extends masterController implements Initializable {
           }
         });
     mapAnchor.getChildren().add(root);
-    mapObjects.put(edgeID, mapAnchor.getChildren().size() - 1);
-    if (!edgeSet.containsKey(id)) {
-      edgeSet.put(edgeID, new Edge(edgeID, node1.get_nodeID(), node2.get_nodeID()));
-
-      db.addEdge(new Edge(edgeID, node1.get_nodeID(), node2.get_nodeID()));
+    if (!adminMap.getEdgeSet().containsKey(id)) {
+      adminMap.addEdge(new Edge(edgeID, node1.get_nodeID(), node2.get_nodeID()));
     }
   }
 
@@ -300,8 +275,8 @@ public class MapController extends masterController implements Initializable {
   public void PathFind(ActionEvent actionEvent) {
     resetColors();
     PathFinder pathFinder = new PathFinder();
-    Node node1 = nodeSet.get(startNodePath);
-    Node node2 = nodeSet.get(endNodePath);
+    Node node1 = adminMap.getNodeSet().get(startNodePath);
+    Node node2 = adminMap.getNodeSet().get(endNodePath);
 
     path = pathFinder.Astar(node1, node2);
     colorPath(colorPicker.getValue(), path);
@@ -316,7 +291,7 @@ public class MapController extends masterController implements Initializable {
   }
 
   private void resetColors() {
-    for (Node n : nodeSet.values()) {
+    for (Node n : adminMap.getNodeSet().values()) {
       for (Node.Link l : n.get_neighbors()) {
         l._shape.setStroke(Color.BLACK);
       }
@@ -339,12 +314,10 @@ public class MapController extends masterController implements Initializable {
   public void DeleteObjectDataBase() throws IOException {
     String id = current.getText();
 
-    if (nodeSet.containsKey(id)) {
-      db.deleteNode(id);
-      nodeSet.remove(id);
-    } else if (edgeSet.containsKey(id)) {
-      db.deleteEdge(id);
-      edgeSet.remove(id);
+    if (adminMap.getNodeSet().containsKey(id)) {
+      adminMap.deleteNode(id);
+    } else if (adminMap.getEdgeSet().containsKey(id)) {
+      adminMap.deleteEdge(id);
     } else {
       System.out.println("Object does not exist");
     }
@@ -354,18 +327,14 @@ public class MapController extends masterController implements Initializable {
 
   // Loading from the database
   public void Load(ActionEvent actionEvent) {
-    nodeSet.clear();
-    edgeSet.clear();
-    nodeSet = db.getAllNodesMap();
-    edgeSet = db.getAllEdgesMap();
-
-    for (HashMap.Entry<String, Edge> edge : edgeSet.entrySet()) {
+    for (HashMap.Entry<String, Edge> edge : adminMap.getEdgeSet().entrySet()) {
       placeLink(
           edge.getKey(),
-          nodeSet.get(edge.getValue().getStartNode()),
-          nodeSet.get(edge.getValue().getEndNode()));
+          adminMap.getNodeSet().get(edge.getValue().getStartNode()),
+          adminMap.getNodeSet().get(edge.getValue().getEndNode()));
     }
-    for (HashMap.Entry<String, Node> node : nodeSet.entrySet()) {
+    for (HashMap.Entry<String, Node> node : adminMap.getNodeSet().entrySet()) {
+      System.out.println(node.toString());
       placeNode(
           node.getKey(), node.getValue().get_x() * downScale, node.getValue().get_y() * downScale);
     }
@@ -377,11 +346,11 @@ public class MapController extends masterController implements Initializable {
   }
 
   public void SetStartNode(ActionEvent actionEvent) {
-    if (nodeSet.containsKey(current.getText())) startNodePath = current.getText();
+    if (adminMap.getNodeSet().containsKey(current.getText())) startNodePath = current.getText();
   }
 
   public void SetEndNode(ActionEvent actionEvent) {
-    if (nodeSet.containsKey(current.getText())) endNodePath = current.getText();
+    if (adminMap.getNodeSet().containsKey(current.getText())) endNodePath = current.getText();
   }
 
   @FXML
