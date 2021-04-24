@@ -6,12 +6,8 @@ import edu.wpi.TeamN.services.algo.AdminMap;
 import edu.wpi.TeamN.services.algo.Edge;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.algo.PathFinder;
+import edu.wpi.TeamN.services.database.DatabaseService;
 import edu.wpi.TeamN.state.HomeState;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.ResourceBundle;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.event.ActionEvent;
@@ -37,12 +33,19 @@ import javafx.stage.Stage;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.ResourceBundle;
+
 @Slf4j
 public class MapController extends masterController implements Initializable {
   @FXML private JFXColorPicker colorPicker;
   // @Inject ServiceTwo graph;
   @Inject FXMLLoader loader;
   @Inject HomeState state;
+  @Inject DatabaseService db;
 
   @FXML private Label XLabel;
   @FXML private Label YLabel;
@@ -92,9 +95,7 @@ public class MapController extends masterController implements Initializable {
     log.debug(state.toString());
     colorPicker.setValue(Color.BLUE);
 
-    nodeSet = db.getAllNodesMap();
-    edgeSet = db.getAllEdgesMap();
-    adminMap = new AdminMap();
+    adminMap = new AdminMap(db);
   }
 
   @FXML
@@ -241,7 +242,6 @@ public class MapController extends masterController implements Initializable {
           }
         });
     mapAnchor.getChildren().add(root);
-    mapObjects.put(edgeID, mapAnchor.getChildren().size() - 1);
     if (!adminMap.getEdgeSet().containsKey(id)) {
       adminMap.addEdge(new Edge(edgeID, node1.get_nodeID(), node2.get_nodeID()));
     }
@@ -327,8 +327,6 @@ public class MapController extends masterController implements Initializable {
 
   // Loading from the database
   public void Load(ActionEvent actionEvent) {
-    adminMap = new AdminMap();
-
     for (HashMap.Entry<String, Edge> edge : adminMap.getEdgeSet().entrySet()) {
       placeLink(
           edge.getKey(),
@@ -336,6 +334,7 @@ public class MapController extends masterController implements Initializable {
           adminMap.getNodeSet().get(edge.getValue().getEndNode()));
     }
     for (HashMap.Entry<String, Node> node : adminMap.getNodeSet().entrySet()) {
+      System.out.println(node.toString());
       placeNode(
           node.getKey(), node.getValue().get_x() * downScale, node.getValue().get_y() * downScale);
     }
