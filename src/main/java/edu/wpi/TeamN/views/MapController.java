@@ -334,7 +334,6 @@ public class MapController extends masterController implements Initializable {
           adminMap.getNodeSet().get(edge.getValue().getEndNode()));
     }
     for (HashMap.Entry<String, Node> node : adminMap.getNodeSet().entrySet()) {
-      System.out.println(node.toString());
       placeNode(
           node.getKey(), node.getValue().get_x() * downScale, node.getValue().get_y() * downScale);
     }
