@@ -215,12 +215,12 @@ public class MapController extends masterController implements Initializable {
   }
 
   public void newColor(ActionEvent actionEvent) {
-    adminMap.colorPath(colorPicker.getValue(), path);
+    mapDrawing.colorPath(colorPicker.getValue(), path);
   }
 
   public void PathFind(ActionEvent actionEvent) {
-    adminMap.resetColors();
-    adminMap.colorPath(colorPicker.getValue(), adminMap.pathfind());
+    mapDrawing.resetColors();
+    mapDrawing.colorPath(colorPicker.getValue(), adminMap.pathfind());
   }
 
   private void DeleteNodesFromMap() throws IOException {
@@ -307,5 +307,13 @@ public class MapController extends masterController implements Initializable {
 
   public Label getCurrent() {
     return current;
+  }
+
+  public MapDrawing getMapDrawing() {
+    return mapDrawing;
+  }
+
+  public AdminMap getAdminMap() {
+    return adminMap;
   }
 }

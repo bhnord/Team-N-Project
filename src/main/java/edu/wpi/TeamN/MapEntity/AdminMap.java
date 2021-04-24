@@ -6,7 +6,6 @@ import edu.wpi.TeamN.services.algo.PathFinder;
 import edu.wpi.TeamN.services.database.DatabaseService;
 import java.util.ArrayList;
 import java.util.HashMap;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 
 public class AdminMap {
@@ -84,21 +83,6 @@ public class AdminMap {
 
   public void SetEndNode(String enp) {
     if (getNodeSet().containsKey(enp)) endNodePath = enp;
-  }
-
-  public void colorPath(Color color, ArrayList<Node.Link> ret) {
-    for (Node.Link c2 : ret) {
-      Line simpleNode = c2._shape;
-      simpleNode.setStroke(color);
-    }
-  }
-
-  public void resetColors() {
-    for (Node n : getNodeSet().values()) {
-      for (Node.Link l : n.get_neighbors()) {
-        l._shape.setStroke(Color.BLACK);
-      }
-    }
   }
 
   public void makeEdge(String id, Node node1, Node node2, Line simpleNode) {
