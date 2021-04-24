@@ -5,9 +5,10 @@ import edu.wpi.TeamN.services.algo.Edge;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.database.requests.Request;
 import edu.wpi.TeamN.services.database.requests.RequestType;
-import edu.wpi.TeamN.services.database.users.*;
+import edu.wpi.TeamN.services.database.users.Employee;
+import edu.wpi.TeamN.services.database.users.User;
+import edu.wpi.TeamN.services.database.users.UserType;
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
@@ -16,16 +17,16 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class DatabaseService {
+  private final Connection connection;
   /*
    Database service class. This class will be loaded as a Singleton by Guice.
   */
   User currentUser = new Employee("1", "username111"); // TODO IMPLEMENT WITH LOGIN PAGE
-
-  private final Connection connection;
-  private Statement stmt;
   @Inject UsersTable usersTable;
   @Inject NodesTable nodesTable;
   @Inject EdgesTable edgesTable;
+  @Inject RequestTable requestTable;
+  private Statement stmt;
 
   @Inject
   DatabaseService(Connection connection) {
@@ -111,128 +112,33 @@ public class DatabaseService {
     edgesTable.deleteEdgeRows();
   }
 
-  /**
-   * loads CSV files into Database.
-   *
-   * @param csvPath full path to CSV File. (needs .csv)
-   * @param tableName table name to put CSV File in. --Note table name needs to be in all caps.--
-   */
-  public boolean loadCSVtoTable(String csvPath, String tableName) {
-    String str =
-        "CALL SYSCS_UTIL.SYSCS_IMPORT_TABLE(null, '"
-            + tableName
-            + "', '"
-            + csvPath
-            + "', ',', '\"', 'UTF-8',0)";
-    try {
-      stmt.execute(str);
-      return true;
-    } catch (SQLException e) {
-      e.printStackTrace();
-      return false;
-    }
-  }
-
   public boolean addRequest(Request request) {
-    String str =
-        "INSERT INTO REQUESTS (TYPE, SENDERID, RECEIVERID, ROOM, CONTENT, NOTES) VALUES ('"
-            + request.getType()
-            + "', "
-            + currentUser.getId()
-            + ", "
-            + request.getReceiverID()
-            + ", '"
-            + request.getRoomNodeId()
-            + "', '"
-            + request.getContent()
-            + "', '"
-            + request.getNotes()
-            + "')";
-    try {
-      return stmt.execute(str);
-    } catch (SQLException e) {
-      e.printStackTrace();
-      return false;
-    }
+    return requestTable.addRequest(request, currentUser);
   }
 
   public boolean deleteRequest(int requestID) {
-    String str = "DELETE FROM REQUESTS WHERE id = " + requestID;
-    try {
-      stmt.execute(str);
-      return true;
-    } catch (SQLException e) {
-      e.printStackTrace();
-      return false;
-    }
+    return requestTable.deleteRequest(requestID);
   }
 
   public HashSet<Request> getAllRequests() {
-    String str = "SELECT * FROM REQUESTS";
-    try {
-      ResultSet rs = stmt.executeQuery(str);
-      return resultSetToRequest(rs);
-    } catch (SQLException e) {
-      e.printStackTrace();
-      return new HashSet<Request>();
-    }
+    return requestTable.getAllRequests();
   }
 
-  public Request getReqeust(int requestID) {
-    String str = "SELECT * FROM REQUESTS WHERE id = " + requestID;
-    try {
-      ResultSet rs = stmt.executeQuery(str);
-      return (Request) resultSetToRequest(rs).toArray()[0];
-    } catch (SQLException e) {
-      e.printStackTrace();
-      return null;
-    }
+  public Request getRequest(int requestID) {
+    return requestTable.getRequest(requestID);
   }
 
   public HashSet<Request> getRequestBySender(int senderID) {
-    String str = "SELECT * FROM REQUESTS WHERE SENDERID = " + senderID;
-    try {
-      ResultSet rs = stmt.executeQuery(str);
-      return resultSetToRequest(rs);
-    } catch (SQLException e) {
-      e.printStackTrace();
-      return new HashSet<Request>();
-    }
+    return requestTable.getRequestBySender(senderID);
   }
 
   public HashSet<Request> getRequestByReceiver(int receiverID) {
-    String str = "SELECT * FROM REQUESTS WHERE SENDERID = " + receiverID;
-    try {
-      ResultSet rs = stmt.executeQuery(str);
-      return resultSetToRequest(rs);
-    } catch (SQLException e) {
-      e.printStackTrace();
-      return new HashSet<Request>();
-    }
+    return requestTable.getRequestByReceiver(receiverID);
   }
 
   public boolean updateRequest(
       int requestID, RequestType type, int senderID, int receiverID, String content, String notes) {
-    String str =
-        "UPDATE REQUESTS SET TYPE = "
-            + type.toString()
-            + ", SENDERID = "
-            + senderID
-            + ", RECEIVERID = "
-            + receiverID
-            + ", CONTENT = "
-            + content
-            + ", NOTES = "
-            + notes
-            + " WHERE ID = "
-            + requestID;
-    try {
-      stmt.execute(str);
-      return true;
-    } catch (SQLException e) {
-      e.printStackTrace();
-      return false;
-    }
+    return requestTable.updateRequest(requestID, type, senderID, receiverID, content, notes);
   }
 
   //////////////////////////
@@ -256,20 +162,26 @@ public class DatabaseService {
     return usersTable.deleteUser(username);
   }
 
-  private HashSet<Request> resultSetToRequest(ResultSet rs) throws SQLException {
-    HashSet<Request> requests = new HashSet<>();
-    while (rs.next()) {
-      requests.add(
-          new Request(
-              RequestType.valueOf(rs.getString("TYPE")),
-              rs.getInt("ID"),
-              rs.getInt("SENDERID"),
-              rs.getInt("RECEIVERID"),
-              rs.getString("ROOM"),
-              rs.getString("CONTENT"),
-              rs.getString("NOTES")));
+  /**
+   * loads CSV files into Database.
+   *
+   * @param csvPath full path to CSV File. (needs .csv)
+   * @param tableName table name to put CSV File in. --Note table name needs to be in all caps.--
+   */
+  public boolean loadCSVtoTable(String csvPath, String tableName) {
+    String str =
+        "CALL SYSCS_UTIL.SYSCS_IMPORT_TABLE(null, '"
+            + tableName
+            + "', '"
+            + csvPath
+            + "', ',', '\"', 'UTF-8',0)";
+    try {
+      stmt.execute(str);
+      return true;
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return false;
     }
-    return requests;
   }
 
   public void initTables() {
