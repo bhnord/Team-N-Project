@@ -75,21 +75,21 @@ public class AudioVisualRequestController extends masterController implements In
     /** USERNAME input and password* */
     RequiredFieldValidator reqInputValid = new RequiredFieldValidator();
     reqInputValid.setMessage("Cannot be empty");
-      txtTimeOfRequest.getValidators().add(reqInputValid);
-      txtTimeOfRequest
+    txtTimeOfRequest.getValidators().add(reqInputValid);
+    txtTimeOfRequest
         .focusedProperty()
         .addListener(
             (o, oldVal, newVal) -> {
               if (!newVal) txtTimeOfRequest.validate();
             });
-      reqInputValid.setMessage("Cannot be empty");
-      txtComments.getValidators().add(reqInputValid);
-      txtComments
-              .focusedProperty()
-              .addListener(
-                      (o, oldVal, newVal) -> {
-                          if (!newVal) txtComments.validate();
-                      });
+    reqInputValid.setMessage("Cannot be empty");
+    txtComments.getValidators().add(reqInputValid);
+    txtComments
+        .focusedProperty()
+        .addListener(
+            (o, oldVal, newVal) -> {
+              if (!newVal) txtComments.validate();
+            });
     reqInputValid.setMessage("Cannot be empty");
     txtEquipment.getValidators().add(reqInputValid);
     txtEquipment
@@ -101,7 +101,6 @@ public class AudioVisualRequestController extends masterController implements In
 
     loadEmployeeDropdown();
     loadRoomDropdown();
-
   }
 
   public void exit(ActionEvent actionEvent) throws IOException {
@@ -144,9 +143,8 @@ public class AudioVisualRequestController extends masterController implements In
   public void Submit(ActionEvent actionEvent) throws IOException {
 
     txtEmployeeName.setValidators();
-    if (txtEmployeeName.getSelectionModel().isEmpty()
-     || roomDropdown.getSelectionModel().isEmpty()
-    ) return;
+    if (txtEmployeeName.getSelectionModel().isEmpty() || roomDropdown.getSelectionModel().isEmpty())
+      return;
 
     VBox manuContainer = new VBox();
     Label lbl1 = new Label("Are you sure the information you have provided is correct?");
@@ -246,5 +244,4 @@ public class AudioVisualRequestController extends masterController implements In
     }
     new AutoCompleteComboBoxListener(roomDropdown);
   }
-
 }
