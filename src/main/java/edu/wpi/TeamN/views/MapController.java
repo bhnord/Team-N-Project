@@ -2,16 +2,12 @@ package edu.wpi.TeamN.views;
 
 import com.google.inject.Inject;
 import com.jfoenix.controls.JFXColorPicker;
-import edu.wpi.TeamN.services.algo.AdminMap;
+import edu.wpi.TeamN.MapEntity.AdminMap;
+import edu.wpi.TeamN.MapEntity.NodeActionHandling;
 import edu.wpi.TeamN.services.algo.Edge;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.database.DatabaseService;
 import edu.wpi.TeamN.state.HomeState;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.ResourceBundle;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.event.ActionEvent;
@@ -37,6 +33,12 @@ import javafx.stage.Stage;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.ResourceBundle;
+
 @Slf4j
 public class MapController extends masterController implements Initializable {
   @FXML private JFXColorPicker colorPicker;
@@ -49,6 +51,11 @@ public class MapController extends masterController implements Initializable {
   @FXML private Label YLabel;
   @FXML private Label current;
   @FXML private ImageView mapImageView;
+
+  public Label getCurrent() {
+    return current;
+  }
+
   @FXML private AnchorPane mapAnchor;
 
   AdminMap adminMap;
@@ -170,27 +177,7 @@ public class MapController extends masterController implements Initializable {
     simpleNode.setFill(Color.BLUE);
     Group root = new Group(simpleNode);
     root.setId(id);
-    root.setOnMouseClicked(
-        new EventHandler<MouseEvent>() {
-          @Override
-          public void handle(MouseEvent event) {
-            current.setText(root.getId());
-          }
-        });
-    root.setOnMousePressed(
-        new EventHandler<MouseEvent>() {
-          @Override
-          public void handle(MouseEvent event) {
-            startLink(event);
-          }
-        });
-    root.setOnMouseReleased(
-        new EventHandler<MouseEvent>() {
-          @Override
-          public void handle(MouseEvent event) {
-            releaseMouse(event);
-          }
-        });
+    new NodeActionHandling(root, this);
     mapAnchor.getChildren().add(root);
     Node n =
         new Node(
@@ -311,7 +298,6 @@ public class MapController extends masterController implements Initializable {
     } else {
       System.out.println("Object does not exist");
     }
-
     current.setText("No object Selected");
   }
 
