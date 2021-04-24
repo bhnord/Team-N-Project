@@ -3,11 +3,15 @@ package edu.wpi.TeamN.views;
 import com.google.inject.Inject;
 import com.jfoenix.controls.*;
 import com.jfoenix.validation.RequiredFieldValidator;
+import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.database.DatabaseService;
+import edu.wpi.TeamN.services.database.users.User;
+import edu.wpi.TeamN.services.database.users.UserType;
 import edu.wpi.TeamN.state.HomeState;
 import edu.wpi.TeamN.state.Login;
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -35,7 +39,7 @@ public class ComputerServiceRequestController extends masterController implement
   @Inject HomeState state;
   @FXML private Label text;
   @FXML private Label errorLabel;
-  @FXML private JFXTextField txtRoom;
+  private Label person1;
   @FXML private JFXTextField txtTimeOfRequest;
   @FXML private JFXTextField txtEquipment;
   @FXML private JFXTextField txtComments;
@@ -44,7 +48,11 @@ public class ComputerServiceRequestController extends masterController implement
   @FXML private Button submit;
   @FXML private StackPane myStackPane2;
   private Scene appPrimaryScene;
-  @FXML JFXComboBox<String> txtEmployeeName = new JFXComboBox<>();
+  private HashMap<String, User> users;
+  private HashMap<String, Node> rooms;
+  @FXML private JFXComboBox<Label> txtEmployeeName = new JFXComboBox<>();
+  @FXML private JFXComboBox<Label> roomDropdown = new JFXComboBox<>();
+  // @FXML private AnchorPane anchorPage;
   static Stage stage;
 
   /**
@@ -61,27 +69,25 @@ public class ComputerServiceRequestController extends masterController implement
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     log.debug(state.toString());
-
-    txtEmployeeName.getItems().add("person1");
-    txtEmployeeName.getItems().add("person2");
+    submit.setDisable(true);
 
     /** USERNAME input and password* */
     RequiredFieldValidator reqInputValid = new RequiredFieldValidator();
-    /* reqInputValid.setMessage("Cannot be empty");
-    txtEmployeeName.getValidators().add(reqInputValid);
-    txtEmployeeName
-        .focusedProperty()
-        .addListener(
-            (o, oldVal, newVal) -> {
-              if (!newVal) txtEmployeeName.validate();
-            });*/
     reqInputValid.setMessage("Cannot be empty");
-    txtRoom.getValidators().add(reqInputValid);
-    txtRoom
+    txtTimeOfRequest.getValidators().add(reqInputValid);
+    txtTimeOfRequest
         .focusedProperty()
         .addListener(
             (o, oldVal, newVal) -> {
-              if (!newVal) txtRoom.validate();
+              if (!newVal) txtTimeOfRequest.validate();
+            });
+    reqInputValid.setMessage("Cannot be empty");
+    txtComments.getValidators().add(reqInputValid);
+    txtComments
+        .focusedProperty()
+        .addListener(
+            (o, oldVal, newVal) -> {
+              if (!newVal) txtComments.validate();
             });
     reqInputValid.setMessage("Cannot be empty");
     txtEquipment.getValidators().add(reqInputValid);
@@ -91,6 +97,20 @@ public class ComputerServiceRequestController extends masterController implement
             (o, oldVal, newVal) -> {
               if (!newVal) txtEquipment.validate();
             });
+
+    loadEmployeeDropdown();
+    loadRoomDropdown();
+  }
+
+  @FXML
+  private void validateButton() {
+    if (!txtTimeOfRequest.getText().isEmpty()
+        && !txtEquipment.getText().isEmpty()
+        && !txtComments.getText().isEmpty()) {
+      submit.setDisable(false);
+    } else {
+      submit.setDisable(true);
+    }
   }
 
   public void exit(ActionEvent actionEvent) throws IOException {
@@ -132,6 +152,10 @@ public class ComputerServiceRequestController extends masterController implement
 
   public void Submit(ActionEvent actionEvent) throws IOException {
 
+    txtEmployeeName.setValidators();
+    if (txtEmployeeName.getSelectionModel().isEmpty() || roomDropdown.getSelectionModel().isEmpty())
+      return;
+
     VBox manuContainer = new VBox();
     Label lbl1 = new Label("Are you sure the information you have provided is correct?");
 
@@ -170,7 +194,7 @@ public class ComputerServiceRequestController extends masterController implement
           public void handle(ActionEvent event) {
             popup1.hide();
             Parent root =
-                loader.load(getClass().getResourceAsStream("ConfirmationPageComputer.fxml"));
+                loader.load(getClass().getResourceAsStream("ConfirmationPageAudioVisual.fxml"));
             appPrimaryScene.setRoot(root);
             submit.setDisable(false);
           }
@@ -209,5 +233,25 @@ public class ComputerServiceRequestController extends masterController implement
     helpButton.setDisable(true);
     dialog.show();
     // anchorPage.setEffect(blur);
+  }
+
+  private void loadEmployeeDropdown() {
+    users = db.getUsersByType(UserType.EMPLOYEE);
+    for (User user : users.values()) {
+      Label lbl = new Label(user.getUsername());
+      lbl.setId(user.getId());
+      txtEmployeeName.getItems().add((lbl));
+    }
+    new AutoCompleteComboBoxListener(txtEmployeeName);
+  }
+
+  private void loadRoomDropdown() {
+    rooms = db.getAllNodesMap();
+    for (Node node : rooms.values()) {
+      Label lbl = new Label(node.get_longName());
+      lbl.setId(node.get_nodeID());
+      roomDropdown.getItems().add(lbl);
+    }
+    new AutoCompleteComboBoxListener(roomDropdown);
   }
 }

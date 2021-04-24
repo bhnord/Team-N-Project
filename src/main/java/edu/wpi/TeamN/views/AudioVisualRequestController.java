@@ -69,6 +69,7 @@ public class AudioVisualRequestController extends masterController implements In
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     log.debug(state.toString());
+    submit.setDisable(true);
 
     /** USERNAME input and password* */
     RequiredFieldValidator reqInputValid = new RequiredFieldValidator();
@@ -99,6 +100,17 @@ public class AudioVisualRequestController extends masterController implements In
 
     loadEmployeeDropdown();
     loadRoomDropdown();
+  }
+
+  @FXML
+  private void validateButton() {
+    if (!txtTimeOfRequest.getText().isEmpty()
+        && !txtEquipment.getText().isEmpty()
+        && !txtComments.getText().isEmpty()) {
+      submit.setDisable(false);
+    } else {
+      submit.setDisable(true);
+    }
   }
 
   public void exit(ActionEvent actionEvent) throws IOException {

@@ -59,7 +59,7 @@ public class ExternalPatientRequestController extends masterController implement
   @FXML private JFXComboBox<Label> roomDropdown = new JFXComboBox<>();
   // @FXML private AnchorPane anchorPage;
   static Stage stage;
-  //  GeoApiContext apiContext = new AutoCompl
+
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
    * JavaFX thread
@@ -73,6 +73,9 @@ public class ExternalPatientRequestController extends masterController implement
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+    log.debug(state.toString());
+    submit.setDisable(true);
+
     /** USERNAME input and password* */
     RequiredFieldValidator reqInputValid = new RequiredFieldValidator();
     reqInputValid.setMessage("Cannot be empty");
@@ -186,13 +189,24 @@ public class ExternalPatientRequestController extends masterController implement
           public void handle(ActionEvent event) {
             popup1.hide();
             Parent root =
-                loader.load(getClass().getResourceAsStream("ConfirmationPageAudioVisual.fxml"));
+                loader.load(getClass().getResourceAsStream("ConfirmationPageExternal.fxml"));
             appPrimaryScene.setRoot(root);
             submit.setDisable(false);
           }
         });
     submit.setDisable(true);
     popup1.show(myStackPane2, JFXPopup.PopupVPosition.BOTTOM, JFXPopup.PopupHPosition.LEFT);
+  }
+
+  @FXML
+  private void validateButton() {
+    if (!txtTimeOfRequest.getText().isEmpty()
+        && !txtEquipment.getText().isEmpty()
+        && !txtComments.getText().isEmpty()) {
+      submit.setDisable(false);
+    } else {
+      submit.setDisable(true);
+    }
   }
 
   public void help(ActionEvent actionEvent) throws IOException {

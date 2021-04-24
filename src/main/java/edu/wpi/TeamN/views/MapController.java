@@ -9,13 +9,6 @@ import edu.wpi.TeamN.services.algo.Edge;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.database.DatabaseService;
 import edu.wpi.TeamN.state.HomeState;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.ResourceBundle;
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleDoubleProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -38,10 +31,14 @@ import javafx.stage.Stage;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+
 @Slf4j
 public class MapController extends masterController implements Initializable {
   @FXML private JFXColorPicker colorPicker;
-  // @Inject ServiceTwo graph;
   @Inject FXMLLoader loader;
   @Inject HomeState state;
   @Inject DatabaseService db;
@@ -58,19 +55,13 @@ public class MapController extends masterController implements Initializable {
   @FXML private AnchorPane mapAnchor;
 
   AdminMap adminMap;
-  private String selectedID;
   private Node startNode;
-  private Node endNode;
   private final double downScale = .168;
   private final double upScale = 5.9523;
 
-  private String startNodePath;
-  private String endNodePath;
-  final DoubleProperty zoomProperty = new SimpleDoubleProperty();
   ActionHandlingI actionHandling;
 
   private Scene appPrimaryScene;
-  HashMap<String, Integer> mapObjects = new HashMap<>();
   ArrayList<Node.Link> path = new ArrayList<>();
 
   String nodeName;
@@ -79,9 +70,6 @@ public class MapController extends masterController implements Initializable {
   String longname;
   String shortname;
   Boolean cancelOrSubmit = false;
-
-  HashMap<String, Node> nodeSet = new HashMap<>();
-  HashMap<String, Edge> edgeSet = new HashMap<>();
 
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
@@ -101,6 +89,7 @@ public class MapController extends masterController implements Initializable {
     colorPicker.setValue(Color.BLUE);
     adminMap = new AdminMap(db);
     actionHandling = new NodeActionHandling(this);
+    this.Load(new ActionEvent());
   }
 
   @FXML
@@ -201,9 +190,6 @@ public class MapController extends masterController implements Initializable {
    * @param node2 node id of the second node
    */
   private void placeLink(String id, Node node1, Node node2) {
-    String id1 = node1.get_nodeID();
-    String id2 = node2.get_nodeID();
-    double distance = node1.heuristic(node2);
     Line simpleNode =
         new Line(
             node1.get_x() * downScale,
@@ -211,16 +197,14 @@ public class MapController extends masterController implements Initializable {
             node2.get_x() * downScale,
             node2.get_y() * downScale);
     simpleNode.setTranslateZ(5);
-    node1.addNeighbor(id, node2, distance, simpleNode);
-    node2.addNeighbor(id, node1, distance, simpleNode);
     simpleNode.setStrokeWidth(3);
     Group root = new Group(simpleNode);
-    String edgeID = id1 + "_" + id2;
-    root.setId(edgeID);
+    root.setId(id);
+    adminMap.makeEdge(id, node1, node2, simpleNode);
     actionHandling.setEdgeInfo(root);
     mapAnchor.getChildren().add(root);
     if (!adminMap.getEdgeSet().containsKey(id)) {
-      adminMap.addEdge(new Edge(edgeID, node1.get_nodeID(), node2.get_nodeID()));
+      adminMap.addEdge(new Edge(id, node1.get_nodeID(), node2.get_nodeID()));
     }
   }
 
@@ -245,27 +229,12 @@ public class MapController extends masterController implements Initializable {
   }
 
   public void newColor(ActionEvent actionEvent) {
-    colorPath(colorPicker.getValue(), path);
+    adminMap.colorPath(colorPicker.getValue(), path);
   }
 
   public void PathFind(ActionEvent actionEvent) {
-    resetColors();
-    colorPath(colorPicker.getValue(), adminMap.pathfind());
-  }
-
-  private void colorPath(Color color, ArrayList<Node.Link> ret) {
-    for (Node.Link c2 : ret) {
-      Line simpleNode = c2._shape;
-      simpleNode.setStroke(color);
-    }
-  }
-
-  private void resetColors() {
-    for (Node n : adminMap.getNodeSet().values()) {
-      for (Node.Link l : n.get_neighbors()) {
-        l._shape.setStroke(Color.BLACK);
-      }
-    }
+    adminMap.resetColors();
+    adminMap.colorPath(colorPicker.getValue(), adminMap.pathfind());
   }
 
   private void DeleteNodesFromMap() throws IOException {
