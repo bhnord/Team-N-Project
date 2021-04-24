@@ -29,11 +29,11 @@ public class HomeController extends masterController implements Initializable {
   @Inject HomeState state;
   @FXML private Label text;
 
-  @FXML private JFXButton CovidForm;
+  @FXML private JFXButton CovidForm = new JFXButton();
   @FXML private Tooltip ttCovidForm;
-  @FXML private JFXButton exit;
+  @FXML private JFXButton exit = new JFXButton();
   @FXML private Tooltip ttExit;
-  @FXML private JFXButton logOutButton;
+  @FXML private JFXButton logOutButton = new JFXButton();
   @FXML private Tooltip ttLogOutButton;
 
   private Scene appPrimaryScene;
@@ -51,7 +51,7 @@ public class HomeController extends masterController implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    //    log.debug(state.toString());
+    log.debug(state.toString());
     CovidForm.setTooltip(ttCovidForm);
     logOutButton.setTooltip(ttLogOutButton);
     exit.setTooltip(ttExit);
