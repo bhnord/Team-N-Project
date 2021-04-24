@@ -2,7 +2,6 @@ package edu.wpi.TeamN.views;
 
 import com.google.inject.Inject;
 import com.jfoenix.controls.JFXColorPicker;
-import com.jfoenix.controls.JFXScrollPane;
 import edu.wpi.TeamN.services.algo.Edge;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.algo.PathFinder;
@@ -13,8 +12,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.collections.FXCollections;
@@ -33,7 +30,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -55,12 +51,13 @@ public class MapController extends masterController implements Initializable {
   @FXML private Label YLabel;
   @FXML private Label current;
   @FXML private ImageView mapImageView;
-  @FXML private JFXScrollPane scrollPane;
+  @FXML private AnchorPane mapAnchor;
 
   private String selectedID;
   private Node startNode;
   private Node endNode;
-  private double scale = 1;
+  private final double downScale = .168;
+  private final double upScale = 5.9523;
 
   private String startNodePath;
   private String endNodePath;
@@ -103,8 +100,6 @@ public class MapController extends masterController implements Initializable {
     nodeSet = new HashMap<>();
     edgeSet = new HashMap<>();
     mapObjects = new HashMap<>();
-
-    zoomProperty.set(841);
   }
 
   @FXML
@@ -128,8 +123,8 @@ public class MapController extends masterController implements Initializable {
 
   // Getting the closest node to the mouse
   private Node get(double x, double y) {
-    x *= 4;
-    y *= 4;
+    x *= upScale;
+    y *= upScale;
     double min = Double.MAX_VALUE;
     Node closest = null;
     for (Node c : nodeSet.values()) {
@@ -174,6 +169,7 @@ public class MapController extends masterController implements Initializable {
 
   public void startLink(MouseEvent mouseEvent) {
     if (mouseEvent.getButton() != MouseButton.PRIMARY) {
+      System.out.println(mouseEvent.getX() + ":" + mouseEvent.getY());
       System.out.println("startingLink");
       startNode = get(mouseEvent.getX(), mouseEvent.getY());
     }
@@ -217,13 +213,20 @@ public class MapController extends masterController implements Initializable {
             releaseMouse(event);
           }
         });
-    AnchorPane scene = (AnchorPane) appPrimaryScene.getRoot();
-    scene.getChildren().add(root);
+    mapAnchor.getChildren().add(root);
     Node n =
-        new Node(x * 4, y * 4, id, this.floor, this.building, "", this.longname, this.shortname);
+        new Node(
+            x * upScale,
+            y * upScale,
+            id,
+            this.floor,
+            this.building,
+            "",
+            this.longname,
+            this.shortname);
     n.set_shape(simpleNode);
     if (!nodeSet.containsKey(id)) {
-      mapObjects.put(id, scene.getChildren().size() - 1);
+      mapObjects.put(id, mapAnchor.getChildren().size() - 1);
       nodeSet.put(id, n);
       db.addNode(n);
       setNodeProperties("", "", "", "", "");
@@ -241,7 +244,11 @@ public class MapController extends masterController implements Initializable {
     String id2 = node2.get_nodeID();
     double distance = node1.heuristic(node2);
     Line simpleNode =
-        new Line(node1.get_x() / 4, node1.get_y() / 4, node2.get_x() / 4, node2.get_y() / 4);
+        new Line(
+            node1.get_x() * downScale,
+            node1.get_y() * downScale,
+            node2.get_x() * downScale,
+            node2.get_y() * downScale);
     simpleNode.setTranslateZ(5);
     node1.addNeighbor(id, node2, distance, simpleNode);
     node2.addNeighbor(id, node1, distance, simpleNode);
@@ -256,9 +263,8 @@ public class MapController extends masterController implements Initializable {
             current.setText(root.getId());
           }
         });
-    AnchorPane scene = (AnchorPane) appPrimaryScene.getRoot();
-    scene.getChildren().add(root);
-    mapObjects.put(edgeID, scene.getChildren().size() - 1);
+    mapAnchor.getChildren().add(root);
+    mapObjects.put(edgeID, mapAnchor.getChildren().size() - 1);
     if (!edgeSet.containsKey(id)) {
       edgeSet.put(edgeID, new Edge(edgeID, node1.get_nodeID(), node2.get_nodeID()));
 
@@ -318,12 +324,11 @@ public class MapController extends masterController implements Initializable {
   }
 
   private void DeleteNodesFromMap() throws IOException {
-    AnchorPane scene = (AnchorPane) appPrimaryScene.getRoot();
-    int i = 9;
-    System.out.println(scene.getChildren().size());
-    for (javafx.scene.Node root : scene.getChildren().subList(9, scene.getChildren().size() - 1)) {
+    int i = 1;
+    for (javafx.scene.Node root :
+        mapAnchor.getChildren().subList(1, mapAnchor.getChildren().size() - 1)) {
       if (root.getId().equals(current.getText())) {
-        scene.getChildren().remove(i);
+        mapAnchor.getChildren().remove(i);
         return;
       } else {
         i++;
@@ -361,7 +366,8 @@ public class MapController extends masterController implements Initializable {
           nodeSet.get(edge.getValue().getEndNode()));
     }
     for (HashMap.Entry<String, Node> node : nodeSet.entrySet()) {
-      placeNode(node.getKey(), node.getValue().get_x() * .25, node.getValue().get_y() * .25);
+      placeNode(
+          node.getKey(), node.getValue().get_x() * downScale, node.getValue().get_y() * downScale);
     }
   }
 
@@ -392,47 +398,5 @@ public class MapController extends masterController implements Initializable {
     String file = ((Button) actionEvent.getSource()).getId() + ".fxml";
     Parent root = loader.load(getClass().getResourceAsStream(file));
     appPrimaryScene.setRoot(root);
-  }
-
-  public void zoom(ScrollEvent scrollEvent) throws Exception {
-    zoomProperty.addListener(
-        new InvalidationListener() {
-          @Override
-          public void invalidated(Observable arg0) {
-            mapImageView.setFitWidth(zoomProperty.get());
-            mapImageView.setFitHeight(zoomProperty.get());
-          }
-        });
-
-    mapImageView.addEventFilter(
-        ScrollEvent.ANY,
-        new EventHandler<ScrollEvent>() {
-          @Override
-          public void handle(ScrollEvent event) {
-            if (event.getDeltaY() > 0 && zoomProperty.get() < 1500 /*841*/) {
-              // zoomProperty.set(zoomProperty.get() * 1.001);
-              scale = scale * 1.001;
-              Rectangle2D rec =
-                  new Rectangle2D(
-                      200,
-                      200,
-                      mapImageView.getFitWidth() * scale,
-                      mapImageView.getFitHeight() * scale);
-
-              mapImageView.setViewport(rec);
-            } else if (event.getDeltaY() < 0 && zoomProperty.get() > 400) {
-              // zoomProperty.set(zoomProperty.get() / 1.001);
-              scale = scale / 1.001;
-              Rectangle2D rec =
-                  new Rectangle2D(
-                      0,
-                      0,
-                      mapImageView.getFitWidth() * scale,
-                      mapImageView.getFitHeight() * scale);
-
-              mapImageView.setViewport(rec);
-            }
-          }
-        });
   }
 }
