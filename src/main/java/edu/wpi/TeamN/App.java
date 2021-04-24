@@ -61,6 +61,7 @@ public class App extends Application {
     primaryScene.setRoot(root);
     primaryStage.setScene(primaryScene);
     //    primaryStage.setAlwaysOnTop(true);
+    primaryStage.setMaximized(true);
     primaryStage.show();
   }
 
