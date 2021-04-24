@@ -109,7 +109,6 @@ public class MapController extends masterController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         log.debug(state.toString());
         colorPicker.setValue(Color.BLUE);
-
         adminMap = new AdminMap(db);
         actionHandling = new NodeActionHandling(this);
     }
@@ -170,9 +169,7 @@ public class MapController extends masterController implements Initializable {
 
     public void releaseMouse(MouseEvent mouseEvent) {
         if (mouseEvent.getButton() != MouseButton.PRIMARY) {
-            System.out.println("endingLink");
             Node other = adminMap.get(mouseEvent.getX(), mouseEvent.getY());
-            System.out.println(startNode.get_nodeID() + "_" + other.get_nodeID());
             if (other != startNode) {
                 placeLink(startNode.get_nodeID() + "_" + other.get_nodeID(), startNode, other);
             }
