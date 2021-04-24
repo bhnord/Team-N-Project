@@ -1,6 +1,9 @@
 package edu.wpi.TeamN.views;
 
 import com.google.inject.Inject;
+import com.google.maps.*;
+import com.google.maps.errors.ApiException;
+import com.google.maps.model.AutocompletePrediction;
 import com.jfoenix.controls.*;
 import com.jfoenix.validation.RequiredFieldValidator;
 import edu.wpi.TeamN.services.algo.Node;
@@ -11,8 +14,7 @@ import edu.wpi.TeamN.state.HomeState;
 import edu.wpi.TeamN.state.Login;
 import java.io.IOException;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.ResourceBundle;
+import java.util.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -47,6 +49,7 @@ public class ExternalPatientRequestController extends masterController implement
   @FXML private StackPane myStackPane;
   @FXML private Button submit;
   @FXML private StackPane myStackPane2;
+  @FXML private JFXComboBox addressBox = new JFXComboBox();
   private Scene appPrimaryScene;
   private HashMap<String, User> users;
   private HashMap<String, Node> rooms;
@@ -54,7 +57,7 @@ public class ExternalPatientRequestController extends masterController implement
   @FXML private JFXComboBox<Label> roomDropdown = new JFXComboBox<>();
   // @FXML private AnchorPane anchorPage;
   static Stage stage;
-
+  //  GeoApiContext apiContext = new AutoCompl
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
    * JavaFX thread
@@ -68,8 +71,6 @@ public class ExternalPatientRequestController extends masterController implement
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    log.debug(state.toString());
-
     /** USERNAME input and password* */
     RequiredFieldValidator reqInputValid = new RequiredFieldValidator();
     reqInputValid.setMessage("Cannot be empty");
@@ -99,6 +100,7 @@ public class ExternalPatientRequestController extends masterController implement
 
     loadEmployeeDropdown();
     loadRoomDropdown();
+    loadMapsStuff();
   }
 
   public void exit(ActionEvent actionEvent) throws IOException {
@@ -241,5 +243,48 @@ public class ExternalPatientRequestController extends masterController implement
       roomDropdown.getItems().add(lbl);
     }
     new AutoCompleteComboBoxListener(roomDropdown);
+  }
+
+  private void loadMapsStuff() {
+
+    GeoApiContext test =
+        new GeoApiContext.Builder().apiKey("AIzaSyBBszEPZvetVvgsIbt3pLtXLbPap6dT-KY" + "").build();
+    PlaceAutocompleteRequest.SessionToken token = new PlaceAutocompleteRequest.SessionToken();
+
+    addressBox.setOnKeyReleased(
+        key -> {
+          System.out.println("here");
+          log.debug("Here");
+          AutocompletePrediction[] predictions = new AutocompletePrediction[0];
+          try {
+            predictions =
+                PlacesApi.placeAutocomplete(test, addressBox.getEditor().getText(), token).await();
+            System.out.println(predictions[0].description);
+          } catch (ApiException e) {
+            e.printStackTrace();
+          } catch (InterruptedException e) {
+            e.printStackTrace();
+          } catch (IOException e) {
+            e.printStackTrace();
+          }
+          Collection<String> address = new HashSet<>();
+          for (AutocompletePrediction prediction : predictions) {
+            address.add(prediction.description);
+          }
+          addressBox.getItems().setAll(address);
+          addressBox.show();
+          System.out.println(predictions[0].description);
+        });
+  }
+}
+
+class test {
+  public static void main(String[] args) throws IOException, InterruptedException, ApiException {
+    GeoApiContext test =
+        new GeoApiContext.Builder().apiKey("AIzaSyBBszEPZvetVvgsIbt3pLtXLbPap6dT-KY" + "").build();
+    PlaceAutocompleteRequest.SessionToken token = new PlaceAutocompleteRequest.SessionToken();
+    AutocompletePrediction[] predictions =
+        PlacesApi.placeAutocomplete(test, "3817 Colg", token).await();
+    System.out.println(predictions[0].description);
   }
 }

@@ -40,304 +40,305 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class MapController extends masterController implements Initializable {
-    @FXML
-    private JFXColorPicker colorPicker;
-    // @Inject ServiceTwo graph;
-    @Inject
-    FXMLLoader loader;
-    @Inject
-    HomeState state;
-    @Inject
-    DatabaseService db;
+  @FXML private JFXColorPicker colorPicker;
+  // @Inject ServiceTwo graph;
+  @Inject FXMLLoader loader;
+  @Inject HomeState state;
+  @Inject DatabaseService db;
 
-    @FXML
-    private Label XLabel;
-    @FXML
-    private Label YLabel;
-    @FXML
-    private Label current;
-    @FXML
-    private ImageView mapImageView;
+  @FXML private Label XLabel;
+  @FXML private Label YLabel;
+  @FXML private Label current;
+  @FXML private ImageView mapImageView;
 
-    public Label getCurrent() {
-        return current;
+  public Label getCurrent() {
+    return current;
+  }
+
+  @FXML private AnchorPane mapAnchor;
+
+  AdminMap adminMap;
+  private String selectedID;
+  private Node startNode;
+  private Node endNode;
+  private final double downScale = .168;
+  private final double upScale = 5.9523;
+
+  private String startNodePath;
+  private String endNodePath;
+  final DoubleProperty zoomProperty = new SimpleDoubleProperty();
+  ActionHandlingI actionHandling;
+
+  private Scene appPrimaryScene;
+  HashMap<String, Integer> mapObjects = new HashMap<>();
+  ArrayList<Node.Link> path = new ArrayList<>();
+
+  String nodeName;
+  String building;
+  String floor;
+  String longname;
+  String shortname;
+  Boolean cancelOrSubmit = false;
+
+  HashMap<String, Node> nodeSet = new HashMap<>();
+  HashMap<String, Edge> edgeSet = new HashMap<>();
+
+  /**
+   * This method allows the tests to inject the scene at a later time, since it must be done on the
+   * JavaFX thread
+   *
+   * @param appPrimaryScene Primary scene of the app whose root will be changed
+   */
+  @Inject
+  public void setAppPrimaryScene(Scene appPrimaryScene) {
+    this.appPrimaryScene = appPrimaryScene;
+  }
+
+  @SneakyThrows
+  @Override
+  public void initialize(URL location, ResourceBundle resources) {
+    log.debug(state.toString());
+    colorPicker.setValue(Color.BLUE);
+    adminMap = new AdminMap(db);
+    actionHandling = new NodeActionHandling(this);
+  }
+
+  @FXML
+  public void advanceHome() throws IOException {
+    super.advanceHome(loader, appPrimaryScene);
+    Stage stage = (Stage) appPrimaryScene.getWindow();
+    // stage.setHeight(800);
+    // stage.setWidth(1366);
+    stage.centerOnScreen();
+  }
+
+  /**
+   * Prints the x and y values of the cursor on the bottom left of the screen
+   *
+   * @param mouseDragEvent
+   */
+  public void xyPrint(MouseEvent mouseDragEvent) {
+    XLabel.setText(String.valueOf(mouseDragEvent.getX()));
+    YLabel.setText(String.valueOf(mouseDragEvent.getY()));
+  }
+
+  /**
+   * on mouse click on the map places a node with no id but when clicked it returns the node FX:ID
+   *
+   * @param mouseEvent
+   */
+  public void placeNodeClick(MouseEvent mouseEvent) throws IOException {
+    if (mouseEvent.getButton() == MouseButton.PRIMARY) {
+      NameNode nameNodeClass = new NameNode();
+      nameNodeClass.confirm(this);
+      if (cancelOrSubmit && !nodeName.equals("")) {
+        placeNode(nodeName, mouseEvent.getX(), mouseEvent.getY());
+      }
     }
 
-    @FXML
-    private AnchorPane mapAnchor;
+    setCancelOrSubmit(false);
+  }
 
-    AdminMap adminMap;
-    private String selectedID;
-    private Node startNode;
-    private Node endNode;
-    private final double downScale = .168;
-    private final double upScale = 5.9523;
+  public void setNodeProperties(
+      String nodeName, String floor, String building, String longname, String shortname) {
+    this.nodeName = nodeName;
+    this.floor = floor;
+    this.longname = longname;
+    this.shortname = shortname;
+    this.building = building;
+  }
 
-    private String startNodePath;
-    private String endNodePath;
-    final DoubleProperty zoomProperty = new SimpleDoubleProperty();
-    ActionHandlingI actionHandling;
+  public void setCancelOrSubmit(Boolean sm) {
+    cancelOrSubmit = sm;
+  }
 
-    private Scene appPrimaryScene;
-    HashMap<String, Integer> mapObjects = new HashMap<>();
-    ArrayList<Node.Link> path = new ArrayList<>();
-
-    String nodeName;
-    String building;
-    String floor;
-    String longname;
-    String shortname;
-    Boolean cancelOrSubmit = false;
-
-    HashMap<String, Node> nodeSet = new HashMap<>();
-    HashMap<String, Edge> edgeSet = new HashMap<>();
-
-    /**
-     * This method allows the tests to inject the scene at a later time, since it must be done on the
-     * JavaFX thread
-     *
-     * @param appPrimaryScene Primary scene of the app whose root will be changed
-     */
-    @Inject
-    public void setAppPrimaryScene(Scene appPrimaryScene) {
-        this.appPrimaryScene = appPrimaryScene;
+  public void startLink(MouseEvent mouseEvent) {
+    if (mouseEvent.getButton() != MouseButton.PRIMARY) {
+      startNode = adminMap.get(mouseEvent.getX(), mouseEvent.getY());
     }
+  }
 
-    @SneakyThrows
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        log.debug(state.toString());
-        colorPicker.setValue(Color.BLUE);
-        adminMap = new AdminMap(db);
-        actionHandling = new NodeActionHandling(this);
+  public void releaseMouse(MouseEvent mouseEvent) {
+    if (mouseEvent.getButton() != MouseButton.PRIMARY) {
+      Node other = adminMap.get(mouseEvent.getX(), mouseEvent.getY());
+      if (other != startNode) {
+        placeLink(startNode.get_nodeID() + "_" + other.get_nodeID(), startNode, other);
+      }
     }
+  }
 
-    @FXML
-    public void advanceHome() throws IOException {
-        super.advanceHome(loader, appPrimaryScene);
-        Stage stage = (Stage) appPrimaryScene.getWindow();
-        // stage.setHeight(800);
-        // stage.setWidth(1366);
-        stage.centerOnScreen();
+  private void placeNode(String id, double x, double y) {
+    Circle simpleNode = new Circle(x, y, 4.5);
+    simpleNode.setTranslateZ(10);
+    simpleNode.setFill(Color.BLUE);
+    Group root = new Group(simpleNode);
+    root.setId(id);
+    actionHandling.setNodeInfo(root);
+    actionHandling.setNodeStartLink(root);
+    actionHandling.setNodeEndLink(root);
+    mapAnchor.getChildren().add(root);
+    Node n =
+        new Node(
+            x * upScale,
+            y * upScale,
+            id,
+            this.floor,
+            this.building,
+            "",
+            this.longname,
+            this.shortname);
+    n.set_shape(simpleNode);
+    if (!adminMap.getNodeSet().containsKey(id)) {
+      adminMap.addNode(n);
+      setNodeProperties("", "", "", "", "");
     }
+  }
 
-    /**
-     * Prints the x and y values of the cursor on the bottom left of the screen
-     *
-     * @param mouseDragEvent
-     */
-    public void xyPrint(MouseEvent mouseDragEvent) {
-        XLabel.setText(String.valueOf(mouseDragEvent.getX()));
-        YLabel.setText(String.valueOf(mouseDragEvent.getY()));
+  /**
+   * Places a line between two nodes
+   *
+   * @param node1 node id of first node
+   * @param node2 node id of the second node
+   */
+  private void placeLink(String id, Node node1, Node node2) {
+    String id1 = node1.get_nodeID();
+    String id2 = node2.get_nodeID();
+    double distance = node1.heuristic(node2);
+    Line simpleNode =
+        new Line(
+            node1.get_x() * downScale,
+            node1.get_y() * downScale,
+            node2.get_x() * downScale,
+            node2.get_y() * downScale);
+    simpleNode.setTranslateZ(5);
+    node1.addNeighbor(id, node2, distance, simpleNode);
+    node2.addNeighbor(id, node1, distance, simpleNode);
+    simpleNode.setStrokeWidth(3);
+    Group root = new Group(simpleNode);
+    String edgeID = id1 + "_" + id2;
+    root.setId(edgeID);
+    actionHandling.setEdgeInfo(root);
+    mapAnchor.getChildren().add(root);
+    if (!adminMap.getEdgeSet().containsKey(id)) {
+      adminMap.addEdge(new Edge(edgeID, node1.get_nodeID(), node2.get_nodeID()));
     }
+  }
 
-    /**
-     * on mouse click on the map places a node with no id but when clicked it returns the node FX:ID
-     *
-     * @param mouseEvent
-     */
-    public void placeNodeClick(MouseEvent mouseEvent) throws IOException {
-        if (mouseEvent.getButton() == MouseButton.PRIMARY) {
-            NameNode nameNodeClass = new NameNode();
-            nameNodeClass.confirm(this);
-            if (cancelOrSubmit && !nodeName.equals("")) {
-                placeNode(nodeName, mouseEvent.getX(), mouseEvent.getY());
-            }
-        }
+  /**
+   * restarts the map class. Needs work.
+   *
+   * @param actionEvent
+   * @throws IOException
+   */
+  // Reloading the map scene
+  public void clear(ActionEvent actionEvent) throws IOException {
+    Parent root = loader.load(getClass().getResourceAsStream("map.fxml"));
+    Screen screen = Screen.getPrimary();
+    Rectangle2D bounds = screen.getVisualBounds();
 
-        setCancelOrSubmit(false);
+    Stage stage = (Stage) appPrimaryScene.getWindow();
+    // stage.setX(bounds.getMinX());
+    // stage.setY(bounds.getMinY());
+    // stage.setWidth(bounds.getWidth());
+    // stage.setHeight(bounds.getHeight());
+    appPrimaryScene.setRoot(root);
+  }
+
+  public void newColor(ActionEvent actionEvent) {
+    colorPath(colorPicker.getValue(), path);
+  }
+
+  public void PathFind(ActionEvent actionEvent) {
+    resetColors();
+    colorPath(colorPicker.getValue(), adminMap.pathfind());
+  }
+
+  private void colorPath(Color color, ArrayList<Node.Link> ret) {
+    for (Node.Link c2 : ret) {
+      Line simpleNode = c2._shape;
+      simpleNode.setStroke(color);
     }
+  }
 
-    public void setNodeProperties(String nodeName, String floor, String building, String longname, String shortname) {
-        this.nodeName = nodeName;
-        this.floor = floor;
-        this.longname = longname;
-        this.shortname = shortname;
-        this.building = building;
+  private void resetColors() {
+    for (Node n : adminMap.getNodeSet().values()) {
+      for (Node.Link l : n.get_neighbors()) {
+        l._shape.setStroke(Color.BLACK);
+      }
     }
+  }
 
-    public void setCancelOrSubmit(Boolean sm) {
-        cancelOrSubmit = sm;
+  private void DeleteNodesFromMap() throws IOException {
+    int i = 1;
+    for (javafx.scene.Node root :
+        mapAnchor.getChildren().subList(1, mapAnchor.getChildren().size() - 1)) {
+      if (root.getId().equals(current.getText())) {
+        mapAnchor.getChildren().remove(i);
+        return;
+      } else {
+        i++;
+      }
     }
+  }
 
-    public void startLink(MouseEvent mouseEvent) {
-        if (mouseEvent.getButton() != MouseButton.PRIMARY) {
-            startNode = adminMap.get(mouseEvent.getX(), mouseEvent.getY());
-        }
+  public void DeleteObjectDataBase() throws IOException {
+    String id = current.getText();
+    if (adminMap.getNodeSet().containsKey(id)) {
+      adminMap.deleteNode(id);
+    } else if (adminMap.getEdgeSet().containsKey(id)) {
+      adminMap.deleteEdge(id);
+    } else {
+      System.out.println("Object does not exist");
     }
+    current.setText("No object Selected");
+  }
 
-    public void releaseMouse(MouseEvent mouseEvent) {
-        if (mouseEvent.getButton() != MouseButton.PRIMARY) {
-            Node other = adminMap.get(mouseEvent.getX(), mouseEvent.getY());
-            if (other != startNode) {
-                placeLink(startNode.get_nodeID() + "_" + other.get_nodeID(), startNode, other);
-            }
-        }
-    }
+  // Loading from the database
+  public void Load(ActionEvent actionEvent) {
 
-    private void placeNode(String id, double x, double y) {
-        Circle simpleNode = new Circle(x, y, 4.5);
-        simpleNode.setTranslateZ(10);
-        simpleNode.setFill(Color.BLUE);
-        Group root = new Group(simpleNode);
-        root.setId(id);
-        actionHandling.setNodeInfo(root);
-        actionHandling.setNodeStartLink(root);
-        actionHandling.setNodeEndLink(root);
-        mapAnchor.getChildren().add(root);
-        Node n = new Node(x * upScale, y * upScale, id, this.floor, this.building, "", this.longname, this.shortname);
-        n.set_shape(simpleNode);
-        if (!adminMap.getNodeSet().containsKey(id)) {
-            adminMap.addNode(n);
-            setNodeProperties("", "", "", "", "");
-        }
-    }
+    adminMap
+        .getEdgeSet()
+        .forEach(
+            (key, value) -> {
+              placeLink(
+                  key,
+                  adminMap.getNodeSet().get(value.getStartNode()),
+                  adminMap.getNodeSet().get(value.getEndNode()));
+            });
+    adminMap
+        .getNodeSet()
+        .forEach(
+            (key, value) -> {
+              placeNode(key, value.get_x() * downScale, value.get_y() * downScale);
+            });
+  }
 
-    /**
-     * Places a line between two nodes
-     *
-     * @param node1 node id of first node
-     * @param node2 node id of the second node
-     */
-    private void placeLink(String id, Node node1, Node node2) {
-        String id1 = node1.get_nodeID();
-        String id2 = node2.get_nodeID();
-        double distance = node1.heuristic(node2);
-        Line simpleNode =
-                new Line(
-                        node1.get_x() * downScale,
-                        node1.get_y() * downScale,
-                        node2.get_x() * downScale,
-                        node2.get_y() * downScale);
-        simpleNode.setTranslateZ(5);
-        node1.addNeighbor(id, node2, distance, simpleNode);
-        node2.addNeighbor(id, node1, distance, simpleNode);
-        simpleNode.setStrokeWidth(3);
-        Group root = new Group(simpleNode);
-        String edgeID = id1 + "_" + id2;
-        root.setId(edgeID);
-        actionHandling.setEdgeInfo(root);
-        mapAnchor.getChildren().add(root);
-        if (!adminMap.getEdgeSet().containsKey(id)) {
-            adminMap.addEdge(new Edge(edgeID, node1.get_nodeID(), node2.get_nodeID()));
-        }
-    }
+  public void deleteCurrent(ActionEvent actionEvent) throws IOException, InterruptedException {
+    DeleteNodesFromMap();
+    DeleteObjectDataBase();
+  }
 
-    /**
-     * restarts the map class. Needs work.
-     *
-     * @param actionEvent
-     * @throws IOException
-     */
-    // Reloading the map scene
-    public void clear(ActionEvent actionEvent) throws IOException {
-        Parent root = loader.load(getClass().getResourceAsStream("map.fxml"));
-        Screen screen = Screen.getPrimary();
-        Rectangle2D bounds = screen.getVisualBounds();
+  public void SetStartNode(ActionEvent actionEvent) {
+    adminMap.SetStartNode(current.getText());
+  }
 
-        Stage stage = (Stage) appPrimaryScene.getWindow();
-        // stage.setX(bounds.getMinX());
-        // stage.setY(bounds.getMinY());
-        // stage.setWidth(bounds.getWidth());
-        // stage.setHeight(bounds.getHeight());
-        appPrimaryScene.setRoot(root);
-    }
+  public void SetEndNode(ActionEvent actionEvent) {
+    adminMap.SetEndNode(current.getText());
+  }
 
-    public void newColor(ActionEvent actionEvent) {
-        colorPath(colorPicker.getValue(), path);
-    }
+  @FXML
+  public void logOut() throws IOException {
+    super.logOut(loader, appPrimaryScene);
+  }
 
-    public void PathFind(ActionEvent actionEvent) {
-        resetColors();
-        colorPath(colorPicker.getValue(), adminMap.pathfind());
-    }
+  @FXML
+  private void exit(ActionEvent actionEvent) throws IOException {
+    super.cancel(actionEvent);
+  }
 
-    private void colorPath(Color color, ArrayList<Node.Link> ret) {
-        for (Node.Link c2 : ret) {
-            Line simpleNode = c2._shape;
-            simpleNode.setStroke(color);
-        }
-    }
-
-    private void resetColors() {
-        for (Node n : adminMap.getNodeSet().values()) {
-            for (Node.Link l : n.get_neighbors()) {
-                l._shape.setStroke(Color.BLACK);
-            }
-        }
-    }
-
-    private void DeleteNodesFromMap() throws IOException {
-        int i = 1;
-        for (javafx.scene.Node root :
-                mapAnchor.getChildren().subList(1, mapAnchor.getChildren().size() - 1)) {
-            if (root.getId().equals(current.getText())) {
-                mapAnchor.getChildren().remove(i);
-                return;
-            } else {
-                i++;
-            }
-        }
-    }
-
-    public void DeleteObjectDataBase() throws IOException {
-        String id = current.getText();
-        if (adminMap.getNodeSet().containsKey(id)) {
-            adminMap.deleteNode(id);
-        } else if (adminMap.getEdgeSet().containsKey(id)) {
-            adminMap.deleteEdge(id);
-        } else {
-            System.out.println("Object does not exist");
-        }
-        current.setText("No object Selected");
-    }
-
-    // Loading from the database
-    public void Load(ActionEvent actionEvent) {
-
-        adminMap
-                .getEdgeSet()
-                .forEach(
-                        (key, value) -> {
-                            placeLink(
-                                    key,
-                                    adminMap.getNodeSet().get(value.getStartNode()),
-                                    adminMap.getNodeSet().get(value.getEndNode()));
-                        });
-        adminMap
-                .getNodeSet()
-                .forEach(
-                        (key, value) -> {
-                            placeNode(key, value.get_x() * downScale, value.get_y() * downScale);
-                        });
-    }
-
-    public void deleteCurrent(ActionEvent actionEvent) throws IOException, InterruptedException {
-        DeleteNodesFromMap();
-        DeleteObjectDataBase();
-    }
-
-    public void SetStartNode(ActionEvent actionEvent) {
-        adminMap.SetStartNode(current.getText());
-    }
-
-    public void SetEndNode(ActionEvent actionEvent) {
-        adminMap.SetEndNode(current.getText());
-    }
-
-    @FXML
-    public void logOut() throws IOException {
-        super.logOut(loader, appPrimaryScene);
-    }
-
-    @FXML
-    private void exit(ActionEvent actionEvent) throws IOException {
-        super.cancel(actionEvent);
-    }
-
-    public void advanceViews(ActionEvent actionEvent) throws IOException {
-        String file = ((Button) actionEvent.getSource()).getId() + ".fxml";
-        Parent root = loader.load(getClass().getResourceAsStream(file));
-        appPrimaryScene.setRoot(root);
-    }
+  public void advanceViews(ActionEvent actionEvent) throws IOException {
+    String file = ((Button) actionEvent.getSource()).getId() + ".fxml";
+    Parent root = loader.load(getClass().getResourceAsStream(file));
+    appPrimaryScene.setRoot(root);
+  }
 }
