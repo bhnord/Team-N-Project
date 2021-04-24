@@ -2,12 +2,11 @@ package edu.wpi.TeamN.MapEntity;
 
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.views.MapController;
+import java.util.ArrayList;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
-
-import java.util.ArrayList;
 
 public class MapDrawing {
   private MapController mapController;

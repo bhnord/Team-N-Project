@@ -10,6 +10,10 @@ import edu.wpi.TeamN.services.algo.Edge;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.database.DatabaseService;
 import edu.wpi.TeamN.state.HomeState;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,11 +36,6 @@ import javafx.stage.Stage;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
-
 @Slf4j
 public class MapController extends masterController implements Initializable {
   @FXML private JFXColorPicker colorPicker;
@@ -50,9 +49,9 @@ public class MapController extends masterController implements Initializable {
   @FXML private ImageView mapImageView;
 
   @FXML private AnchorPane mapAnchor;
-  private Node startNode;
-  public final double downScale = .168;
+  private Node startNodePath;
 
+  public final double downScale = .168;
   public final double upScale = 5.9523;
 
   private ActionHandlingI actionHandling;
@@ -63,9 +62,9 @@ public class MapController extends masterController implements Initializable {
   ArrayList<Node.Link> path = new ArrayList<>();
 
   String nodeName;
-  String building;
-  String floor;
-  String longname;
+  String buildings;
+  String floors;
+  String longnames;
   String shortname;
   Boolean cancelOrSubmit = false;
 
@@ -130,10 +129,10 @@ public class MapController extends masterController implements Initializable {
   public void setNodeProperties(
       String nodeName, String floor, String building, String longname, String shortname) {
     this.nodeName = nodeName;
-    this.floor = floor;
-    this.longname = longname;
+    this.floors = floor;
+    this.longnames = longname;
     this.shortname = shortname;
-    this.building = building;
+    this.buildings = building;
   }
 
   public void setCancelOrSubmit(Boolean sm) {
@@ -142,15 +141,15 @@ public class MapController extends masterController implements Initializable {
 
   public void startLink(MouseEvent mouseEvent) {
     if (mouseEvent.getButton() != MouseButton.PRIMARY) {
-      startNode = adminMap.get(mouseEvent.getX(), mouseEvent.getY());
+      startNodePath = adminMap.get(mouseEvent.getX(), mouseEvent.getY());
     }
   }
 
   public void releaseMouse(MouseEvent mouseEvent) {
     if (mouseEvent.getButton() != MouseButton.PRIMARY) {
       Node other = adminMap.get(mouseEvent.getX(), mouseEvent.getY());
-      if (other != startNode) {
-        placeLink(startNode.get_nodeID() + "_" + other.get_nodeID(), startNode, other);
+      if (other != startNodePath) {
+        placeLink(startNodePath.get_nodeID() + "_" + other.get_nodeID(), startNodePath, other);
       }
     }
   }
@@ -166,10 +165,10 @@ public class MapController extends masterController implements Initializable {
             x * getUpScale(),
             y * getUpScale(),
             id,
-            this.floor,
-            this.building,
+            this.floors,
+            this.buildings,
             "",
-            this.longname,
+            this.longnames,
             this.shortname);
     n.set_shape((Shape) root.getChildren().get(0));
     if (!adminMap.getNodeSet().containsKey(id)) {
@@ -250,7 +249,6 @@ public class MapController extends masterController implements Initializable {
 
   // Loading from the database
   public void Load(ActionEvent actionEvent) {
-
     adminMap
         .getEdgeSet()
         .forEach(
