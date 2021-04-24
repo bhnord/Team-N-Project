@@ -69,6 +69,7 @@ public class AudioVisualRequestController extends masterController implements In
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     log.debug(state.toString());
+    submit.setDisable(true);
 
     /** USERNAME input and password* */
     RequiredFieldValidator reqInputValid = new RequiredFieldValidator();
@@ -99,6 +100,17 @@ public class AudioVisualRequestController extends masterController implements In
 
     loadEmployeeDropdown();
     loadRoomDropdown();
+  }
+
+  @FXML
+  private void validateButton() {
+    if (!txtTimeOfRequest.getText().isEmpty()
+        && !txtEquipment.getText().isEmpty()
+        && !txtComments.getText().isEmpty()) {
+      submit.setDisable(false);
+    } else {
+      submit.setDisable(true);
+    }
   }
 
   public void exit(ActionEvent actionEvent) throws IOException {
@@ -149,11 +161,11 @@ public class AudioVisualRequestController extends masterController implements In
 
     JFXButton continueButton = new JFXButton("Continue");
     continueButton.setButtonType(JFXButton.ButtonType.RAISED);
-    continueButton.setStyle("-fx-background-color : #00bfff:");
+    continueButton.setStyle("-fx-background-color : #00bfff;");
 
     JFXButton cancelButton = new JFXButton("Cancel");
     cancelButton.setButtonType(JFXButton.ButtonType.RAISED);
-    cancelButton.setStyle("-fx-background-color : #00bfff:");
+    cancelButton.setStyle("-fx-background-color : #00bfff;");
 
     cancelButton.setTranslateX(100);
     cancelButton.setTranslateY(65);
@@ -205,7 +217,7 @@ public class AudioVisualRequestController extends masterController implements In
                 + "* Necessary Equipment refers to additional services/equipment the patient requires\n")));
     JFXButton close = new JFXButton("close");
     close.setButtonType(JFXButton.ButtonType.RAISED);
-    close.setStyle("-fx-background-color : #00bfff:");
+    close.setStyle("-fx-background-color : #00bfff;");
     dialogContent.setActions(close);
 
     JFXDialog dialog = new JFXDialog(myStackPane, dialogContent, JFXDialog.DialogTransition.BOTTOM);

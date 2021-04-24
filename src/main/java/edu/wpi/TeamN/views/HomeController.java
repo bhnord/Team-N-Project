@@ -65,6 +65,7 @@ public class HomeController extends masterController implements Initializable {
   }
 
   public void advanceViews(ActionEvent actionEvent) throws IOException {
+    System.out.println("BEEP");
     String file = ((Button) actionEvent.getSource()).getId() + ".fxml";
     Parent root = loader.load(getClass().getResourceAsStream(file));
     appPrimaryScene.setRoot(root);
