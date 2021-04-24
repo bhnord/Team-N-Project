@@ -41,6 +41,7 @@ public class HomeController extends masterController implements Initializable {
 
   @FXML private ImageView SRbutton;
   @FXML private JFXButton ServiceRequests;
+  @FXML private GridPane BigBoiPane;
 
   private Scene appPrimaryScene;
 
@@ -73,8 +74,11 @@ public class HomeController extends masterController implements Initializable {
     //            BackgroundSize.DEFAULT);
     //    Background bSR = new Background(bgSR);
     //    ServiceRequests.setBackground(bSR);
+
+    BigBoiPane.setMinSize(1366, 768);
+    // BigBoiPane.set
     ServiceRequests.setStyle(
-        "-fx-background-image: url('/images/ButtonSR.png'); -fx-background-size: cover");
+        "-fx-background-image: url('/images/ButtonSR.png'); -fx-background-size: cover; -fx-background-radius: 25");
   }
 
   public void advance(ActionEvent actionEvent) throws IOException {
