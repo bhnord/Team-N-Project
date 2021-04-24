@@ -23,6 +23,8 @@ public class DatabaseService {
 
   private final Connection connection;
   private Statement stmt;
+  @Inject UsersTable usersTable;
+
 
   @Inject
   DatabaseService(Connection connection) {
@@ -422,98 +424,25 @@ public class DatabaseService {
     }
   }
 
-  public boolean addUser(User user, String password) {
-    String str =
-        "INSERT INTO USERS VALUES ("
-            + user.getId()
-            + ", '"
-            + user.getUsername()
-            + "', '"
-            + password
-            + "', '"
-            + user.getType().toString()
-            + "')";
-    try {
-      stmt.execute(str);
-      return true;
-    } catch (SQLException e) {
-      e.printStackTrace();
-      return false;
-    }
+  //////////////////////////
+  boolean addUser(User user, String password){
+    return usersTable.addUser(user, password);
   }
-
   public User getUserById(String id) {
-    String str = "SELECT * FROM USERS WHERE ID = " + id;
-    try {
-      ResultSet rs = stmt.executeQuery(str);
-      return (User) resultSetToUsers(rs).toArray()[0];
-    } catch (SQLException e) {
-      return null;
-    }
+    return usersTable.getUserById(id);
   }
-
-  public User getUserByUsername(String username) {
-    String str = "SELECT * FROM USERS WHERE USERNAME = " + username;
-    try {
-      ResultSet rs = stmt.executeQuery(str);
-      return (User) resultSetToUsers(rs).toArray()[0];
-    } catch (SQLException e) {
-      e.printStackTrace();
-      return null;
-    }
+  public User getUserByUsername(String username){
+    return usersTable.getUserByUsername(username);
   }
-
   public HashMap<String, User> getUsersByType(UserType userType) {
-    String userTypeString =
-        userType.toString().charAt(0) + userType.toString().substring(1).toLowerCase();
-    String str = "SELECT * FROM USERS WHERE USERTYPE = '" + userTypeString + "'";
-    HashMap<String, User> userMap = new HashMap<>();
-    try {
-      ResultSet rs = stmt.executeQuery(str);
-      HashSet<User> usersSet = resultSetToUsers(rs);
-      assert usersSet != null;
-      for (User user : usersSet) {
-        userMap.put(user.getId(), user);
-      }
-      return userMap;
-    } catch (SQLException e) {
-      e.printStackTrace();
-      return userMap;
-    }
+    return usersTable.getUsersByType(userType);
   }
-
   public boolean deleteUser(String username) {
-    String str = "DELETE USERS WHERE USERNAME = " + username;
-    try {
-      stmt.execute(str);
-      return true;
-    } catch (SQLException e) {
-      return false;
-    }
+    return usersTable.deleteUser(username);
   }
 
-  private HashSet<User> resultSetToUsers(ResultSet rs) {
-    HashSet<User> users = new HashSet<>();
-    try {
-      while (rs.next()) {
-        switch (rs.getString("USERTYPE")) {
-          case "Patient":
-            users.add(new Patient(rs.getString("ID"), rs.getString("USERNAME")));
-            break;
-          case "Employee":
-            users.add(new Employee(rs.getString("ID"), rs.getString("USERNAME")));
-            break;
-          case "Administrator":
-            users.add(new Administrator(rs.getString("ID"), rs.getString("USERNAME")));
-            break;
-        }
-      }
-      return users;
-    } catch (SQLException e) {
-      e.printStackTrace();
-      return null;
-    }
-  }
+
+
 
   private HashSet<Request> resultSetToRequest(ResultSet rs) throws SQLException {
     HashSet<Request> requests = new HashSet<>();
