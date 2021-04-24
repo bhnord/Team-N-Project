@@ -4,6 +4,7 @@ import com.google.inject.Inject;
 import com.google.maps.*;
 import com.google.maps.errors.ApiException;
 import com.google.maps.model.AutocompletePrediction;
+import com.google.maps.model.LatLng;
 import com.jfoenix.controls.*;
 import com.jfoenix.validation.RequiredFieldValidator;
 import edu.wpi.TeamN.services.algo.Node;
@@ -26,6 +27,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.BoxBlur;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -253,12 +255,14 @@ public class ExternalPatientRequestController extends masterController implement
 
     addressBox.setOnKeyReleased(
         key -> {
-          System.out.println("here");
-          log.debug("Here");
+          if (key.getCode() == KeyCode.DOWN || key.getCode() == KeyCode.UP) return;
           AutocompletePrediction[] predictions = new AutocompletePrediction[0];
+          LatLng origin = new LatLng(42.335570023832496, -71.10628519976504);
           try {
             predictions =
-                PlacesApi.placeAutocomplete(test, addressBox.getEditor().getText(), token).await();
+                PlacesApi.placeAutocomplete(test, addressBox.getEditor().getText(), token)
+                    .origin(origin)
+                    .await();
             System.out.println(predictions[0].description);
           } catch (ApiException e) {
             e.printStackTrace();
@@ -273,7 +277,6 @@ public class ExternalPatientRequestController extends masterController implement
           }
           addressBox.getItems().setAll(address);
           addressBox.show();
-          System.out.println(predictions[0].description);
         });
   }
 }
