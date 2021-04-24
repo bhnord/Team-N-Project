@@ -43,7 +43,7 @@ public class App extends Application {
               }
             });
     DatabaseService db = injector.getInstance(DatabaseService.class);
-    db.initTables();
+    // db.initTables();
     loader = new FXMLLoader();
     loader.setControllerFactory(injector::getInstance);
   }
@@ -61,6 +61,7 @@ public class App extends Application {
     primaryScene.setRoot(root);
     primaryStage.setScene(primaryScene);
     //    primaryStage.setAlwaysOnTop(true);
+    primaryStage.setMaximized(true);
     primaryStage.show();
   }
 
