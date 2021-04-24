@@ -4,11 +4,10 @@ import edu.wpi.TeamN.services.algo.Edge;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.algo.PathFinder;
 import edu.wpi.TeamN.services.database.DatabaseService;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Line;
-
 import java.util.ArrayList;
 import java.util.HashMap;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
 
 public class AdminMap {
   private DatabaseService db;
@@ -100,5 +99,11 @@ public class AdminMap {
         l._shape.setStroke(Color.BLACK);
       }
     }
+  }
+
+  public void makeEdge(String id, Node node1, Node node2, Line simpleNode) {
+    double distance = node1.heuristic(node2);
+    node1.addNeighbor(id, node2, distance, simpleNode);
+    node2.addNeighbor(id, node1, distance, simpleNode);
   }
 }

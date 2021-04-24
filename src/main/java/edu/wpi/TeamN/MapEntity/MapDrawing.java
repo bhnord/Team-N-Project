@@ -1,4 +1,3 @@
 package edu.wpi.TeamN.MapEntity;
 
-public class MapDrawing {
-}
+public class MapDrawing {}
