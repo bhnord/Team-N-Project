@@ -70,8 +70,6 @@ public class AudioVisualRequestController extends masterController implements In
   public void initialize(URL location, ResourceBundle resources) {
     log.debug(state.toString());
 
-    txtEmployeeName.getItems().add(person1);
-
     /** USERNAME input and password* */
     RequiredFieldValidator reqInputValid = new RequiredFieldValidator();
     reqInputValid.setMessage("Cannot be empty");
