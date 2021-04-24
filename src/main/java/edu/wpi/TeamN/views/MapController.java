@@ -4,6 +4,7 @@ import com.google.inject.Inject;
 import com.jfoenix.controls.JFXColorPicker;
 import edu.wpi.TeamN.MapEntity.ActionHandlingI;
 import edu.wpi.TeamN.MapEntity.AdminMap;
+import edu.wpi.TeamN.MapEntity.MapDrawing;
 import edu.wpi.TeamN.MapEntity.NodeActionHandling;
 import edu.wpi.TeamN.services.algo.Edge;
 import edu.wpi.TeamN.services.algo.Node;
@@ -24,8 +25,8 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.Shape;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import lombok.SneakyThrows;
@@ -48,18 +49,15 @@ public class MapController extends masterController implements Initializable {
   @FXML private Label current;
   @FXML private ImageView mapImageView;
 
-  public Label getCurrent() {
-    return current;
-  }
-
   @FXML private AnchorPane mapAnchor;
-
-  AdminMap adminMap;
   private Node startNode;
-  private final double downScale = .168;
-  private final double upScale = 5.9523;
+  public final double downScale = .168;
 
-  ActionHandlingI actionHandling;
+  public final double upScale = 5.9523;
+
+  private ActionHandlingI actionHandling;
+  private AdminMap adminMap;
+  private MapDrawing mapDrawing;
 
   private Scene appPrimaryScene;
   ArrayList<Node.Link> path = new ArrayList<>();
@@ -89,6 +87,7 @@ public class MapController extends masterController implements Initializable {
     colorPicker.setValue(Color.BLUE);
     adminMap = new AdminMap(db);
     actionHandling = new NodeActionHandling(this);
+    mapDrawing = new MapDrawing(this);
     this.Load(new ActionEvent());
   }
 
@@ -157,26 +156,22 @@ public class MapController extends masterController implements Initializable {
   }
 
   private void placeNode(String id, double x, double y) {
-    Circle simpleNode = new Circle(x, y, 4.5);
-    simpleNode.setTranslateZ(10);
-    simpleNode.setFill(Color.BLUE);
-    Group root = new Group(simpleNode);
-    root.setId(id);
+    Group root = mapDrawing.drawNode(id, x, y);
     actionHandling.setNodeInfo(root);
     actionHandling.setNodeStartLink(root);
     actionHandling.setNodeEndLink(root);
     mapAnchor.getChildren().add(root);
     Node n =
         new Node(
-            x * upScale,
-            y * upScale,
+            x * getUpScale(),
+            y * getUpScale(),
             id,
             this.floor,
             this.building,
             "",
             this.longname,
             this.shortname);
-    n.set_shape(simpleNode);
+    n.set_shape((Shape) root.getChildren().get(0));
     if (!adminMap.getNodeSet().containsKey(id)) {
       adminMap.addNode(n);
       setNodeProperties("", "", "", "", "");
@@ -190,17 +185,8 @@ public class MapController extends masterController implements Initializable {
    * @param node2 node id of the second node
    */
   private void placeLink(String id, Node node1, Node node2) {
-    Line simpleNode =
-        new Line(
-            node1.get_x() * downScale,
-            node1.get_y() * downScale,
-            node2.get_x() * downScale,
-            node2.get_y() * downScale);
-    simpleNode.setTranslateZ(5);
-    simpleNode.setStrokeWidth(3);
-    Group root = new Group(simpleNode);
-    root.setId(id);
-    adminMap.makeEdge(id, node1, node2, simpleNode);
+    Group root = mapDrawing.drawLine(id, node1, node2);
+    adminMap.makeEdge(id, node1, node2, (Line) root.getChildren().get(0));
     actionHandling.setEdgeInfo(root);
     mapAnchor.getChildren().add(root);
     if (!adminMap.getEdgeSet().containsKey(id)) {
@@ -309,5 +295,17 @@ public class MapController extends masterController implements Initializable {
     String file = ((Button) actionEvent.getSource()).getId() + ".fxml";
     Parent root = loader.load(getClass().getResourceAsStream(file));
     appPrimaryScene.setRoot(root);
+  }
+
+  public double getDownScale() {
+    return downScale;
+  }
+
+  public double getUpScale() {
+    return upScale;
+  }
+
+  public Label getCurrent() {
+    return current;
   }
 }
