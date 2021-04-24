@@ -161,11 +161,11 @@ public class MedicineDeliveryRequestController extends masterController implemen
 
     JFXButton continueButton = new JFXButton("Continue");
     continueButton.setButtonType(JFXButton.ButtonType.RAISED);
-    continueButton.setStyle("-fx-background-color : #00bfff:");
+    continueButton.setStyle("-fx-background-color : #00bfff;");
 
     JFXButton cancelButton = new JFXButton("Cancel");
     cancelButton.setButtonType(JFXButton.ButtonType.RAISED);
-    cancelButton.setStyle("-fx-background-color : #00bfff:");
+    cancelButton.setStyle("-fx-background-color : #00bfff;");
 
     cancelButton.setTranslateX(100);
     cancelButton.setTranslateY(65);
