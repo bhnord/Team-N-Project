@@ -31,6 +31,7 @@ public class HomeController extends masterController implements Initializable {
 
   @FXML private JFXButton CovidForm = new JFXButton();
   @FXML private Tooltip ttCovidForm;
+  //
   @FXML private JFXButton exit = new JFXButton();
   @FXML private Tooltip ttExit;
   @FXML private JFXButton logOutButton = new JFXButton();
