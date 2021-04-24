@@ -5,7 +5,6 @@ import com.jfoenix.controls.JFXColorPicker;
 import edu.wpi.TeamN.services.algo.AdminMap;
 import edu.wpi.TeamN.services.algo.Edge;
 import edu.wpi.TeamN.services.algo.Node;
-import edu.wpi.TeamN.services.algo.PathFinder;
 import edu.wpi.TeamN.services.database.DatabaseService;
 import edu.wpi.TeamN.state.HomeState;
 import java.io.IOException;
@@ -267,23 +266,16 @@ public class MapController extends masterController implements Initializable {
   }
 
   public void newColor(ActionEvent actionEvent) {
-    System.out.println(path.size());
     colorPath(colorPicker.getValue(), path);
   }
 
   public void PathFind(ActionEvent actionEvent) {
     resetColors();
-    PathFinder pathFinder = new PathFinder();
-    Node node1 = adminMap.getNodeSet().get(startNodePath);
-    Node node2 = adminMap.getNodeSet().get(endNodePath);
-
-    path = pathFinder.Astar(node1, node2);
-    colorPath(colorPicker.getValue(), path);
+    colorPath(colorPicker.getValue(), adminMap.pathfind());
   }
 
   private void colorPath(Color color, ArrayList<Node.Link> ret) {
     for (Node.Link c2 : ret) {
-      System.out.println("HERE");
       Line simpleNode = c2._shape;
       simpleNode.setStroke(color);
     }
@@ -312,7 +304,6 @@ public class MapController extends masterController implements Initializable {
 
   public void DeleteObjectDataBase() throws IOException {
     String id = current.getText();
-
     if (adminMap.getNodeSet().containsKey(id)) {
       adminMap.deleteNode(id);
     } else if (adminMap.getEdgeSet().containsKey(id)) {
@@ -326,16 +317,22 @@ public class MapController extends masterController implements Initializable {
 
   // Loading from the database
   public void Load(ActionEvent actionEvent) {
-    for (HashMap.Entry<String, Edge> edge : adminMap.getEdgeSet().entrySet()) {
-      placeLink(
-          edge.getKey(),
-          adminMap.getNodeSet().get(edge.getValue().getStartNode()),
-          adminMap.getNodeSet().get(edge.getValue().getEndNode()));
-    }
-    for (HashMap.Entry<String, Node> node : adminMap.getNodeSet().entrySet()) {
-      placeNode(
-          node.getKey(), node.getValue().get_x() * downScale, node.getValue().get_y() * downScale);
-    }
+
+    adminMap
+        .getEdgeSet()
+        .forEach(
+            (key, value) -> {
+              placeLink(
+                  key,
+                  adminMap.getNodeSet().get(value.getStartNode()),
+                  adminMap.getNodeSet().get(value.getEndNode()));
+            });
+    adminMap
+        .getNodeSet()
+        .forEach(
+            (key, value) -> {
+              placeNode(key, value.get_x() * downScale, value.get_y() * downScale);
+            });
   }
 
   public void deleteCurrent(ActionEvent actionEvent) throws IOException, InterruptedException {
@@ -344,11 +341,11 @@ public class MapController extends masterController implements Initializable {
   }
 
   public void SetStartNode(ActionEvent actionEvent) {
-    if (adminMap.getNodeSet().containsKey(current.getText())) startNodePath = current.getText();
+    adminMap.SetStartNode(current.getText());
   }
 
   public void SetEndNode(ActionEvent actionEvent) {
-    if (adminMap.getNodeSet().containsKey(current.getText())) endNodePath = current.getText();
+    adminMap.SetEndNode(current.getText());
   }
 
   @FXML
