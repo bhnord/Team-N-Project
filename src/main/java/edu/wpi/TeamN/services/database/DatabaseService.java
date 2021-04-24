@@ -25,6 +25,7 @@ public class DatabaseService {
   private Statement stmt;
   @Inject UsersTable usersTable;
   @Inject NodesTable nodesTable;
+  @Inject EdgesTable edgesTable;
 
   @Inject
   DatabaseService(Connection connection) {
@@ -73,117 +74,41 @@ public class DatabaseService {
     return nodesTable.deleteNode(nodeID);
   }
 
+  /// EDGES
   public boolean addEdge(Edge e) {
-    String str =
-        "INSERT INTO EDGES VALUES ('"
-            + e.getEdgeID()
-            + "', '"
-            + e.getStartNode()
-            + "', '"
-            + e.getEndNode()
-            + "')";
-    try {
-      stmt.execute(str);
-      return true;
-    } catch (SQLException exception) {
-      exception.printStackTrace();
-      return false;
-    }
+    return edgesTable.addEdge(e);
   }
 
   public HashSet<Edge> getAllEdges() {
-    String query = "SELECT * FROM EDGES";
-    try {
-      ResultSet rs = stmt.executeQuery(query);
-      return resultSetToEdges(rs);
-    } catch (SQLException e) {
-      e.printStackTrace();
-      return null;
-    }
+    return edgesTable.getAllEdges();
   }
 
   public HashMap<String, Edge> getAllEdgesMap() {
-    HashSet<Edge> edgeSet = getAllEdges();
-    HashMap<String, Edge> edgeMap = new HashMap<>();
-    for (Edge edge : edgeSet) {
-      edgeMap.put(edge.getEdgeID(), edge);
-    }
-    return edgeMap;
+    return edgesTable.getAllEdgesMap();
   }
 
   public Edge getEdge(String edgeID) {
-    String query = "SELECT * FROM EDGES WHERE id = '" + edgeID + "'";
-    try {
-      ResultSet rs = stmt.executeQuery(query);
-      HashSet<Edge> edge = resultSetToEdges(rs);
-      if (edge.size() > 0) {
-        return (Edge) edge.toArray()[0];
-      } else {
-        return null;
-      }
-    } catch (SQLException e) {
-      e.printStackTrace();
-      return null;
-    }
+    return edgesTable.getEdge(edgeID);
   }
 
   public boolean updateEdge(String edgeID, String startNodeID, String endNodeID) {
-    String str =
-        "UPDATE EDGES SET startNodeID = "
-            + startNodeID
-            + ", endNodeID = "
-            + endNodeID
-            + " WHERE edgeID = "
-            + edgeID;
-    try {
-      stmt.execute(str);
-      return true;
-    } catch (SQLException e) {
-      e.printStackTrace();
-      return false;
-    }
+    return edgesTable.updateEdge(edgeID, startNodeID, endNodeID);
   }
 
   public boolean deleteEdge(String edgeID) {
-    String st = "DELETE FROM EDGES WHERE id = '" + edgeID + "'";
-    try {
-      stmt.execute(st);
-      return true;
-    } catch (SQLException e) {
-      e.printStackTrace();
-      return false;
-    }
+    return edgesTable.deleteEdge(edgeID);
   }
 
   public HashSet<Edge> getEdgesFromStartNode(String startNode) {
-    String query = "SELECT * FROM EDGES WHERE StartNodeID = '" + startNode + "'";
-    try {
-      ResultSet rs = stmt.executeQuery(query);
-      return resultSetToEdges(rs);
-    } catch (SQLException e) {
-      e.printStackTrace();
-      return null;
-    }
+    return edgesTable.getEdgesFromStartNode(startNode);
   }
 
   public HashSet<Edge> getEdgesFromEndNode(String endNode) {
-    String query = "SELECT * FROM EDGES WHERE EndNodeID = '" + endNode + "'";
-    try {
-      ResultSet rs = stmt.executeQuery(query);
-      return resultSetToEdges(rs);
-    } catch (SQLException e) {
-      e.printStackTrace();
-      return null;
-    }
+    return edgesTable.getEdgesFromEndNode(endNode);
   }
 
   public void deleteEdgeRows() {
-    String str = "DELETE FROM EDGES";
-    try {
-      stmt.execute(str);
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
+    edgesTable.deleteEdgeRows();
   }
 
   /**
@@ -345,22 +270,6 @@ public class DatabaseService {
               rs.getString("NOTES")));
     }
     return requests;
-  }
-
-  private HashSet<Edge> resultSetToEdges(ResultSet rs) {
-    HashSet<Edge> edgeSet = new HashSet<>();
-    try {
-      while (rs.next()) {
-        String edgeID = rs.getString("id");
-        String startNode = rs.getString("StartNodeID");
-        String endNode = rs.getString("EndNodeID");
-        edgeSet.add(new Edge(edgeID, startNode, endNode));
-      }
-      return edgeSet;
-    } catch (SQLException e) {
-      e.printStackTrace();
-      return null;
-    }
   }
 
   public void initTables() {
