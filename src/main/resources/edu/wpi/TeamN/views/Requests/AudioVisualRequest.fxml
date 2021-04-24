@@ -93,10 +93,6 @@
 
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0c00ae" height="47.0" layoutX="834.0" layoutY="602.0" stroke="TRANSPARENT" strokeType="INSIDE" width="130.0" />
       <Rectangle arcHeight="50.0" arcWidth="50.0" fill="WHITE" height="517.0" layoutX="143.0" layoutY="193.0" stroke="TRANSPARENT" strokeType="INSIDE" width="476.0" />
-        <JFXTextField fx:id="txtRoom" focusColor="#211edd" labelFloat="true" layoutX="187.0" layoutY="304.0" prefHeight="8.0" prefWidth="336.0" promptText="Patient Room" unFocusColor="WHITE">
-            <font>
-                <Font name="Serif Bold" size="26.0" />
-            </font></JFXTextField>
         <JFXTextField fx:id="txtTimeOfRequest" focusColor="#211edd" labelFloat="true" layoutX="187.0" layoutY="375.0" prefHeight="50.0" prefWidth="273.0" promptText="Time of request" unFocusColor="WHITE">
             <font>
                 <Font name="Serif Bold" size="26.0" />
@@ -134,6 +130,7 @@
             </tooltip>
         </JFXButton>
       <JFXComboBox fx:id="txtEmployeeName" layoutX="187.0" layoutY="241.0" prefHeight="31.0" prefWidth="150.0" promptText="Select Employee" />
+      <JFXComboBox fx:id="roomDropdown" layoutX="187.0" layoutY="313.0" prefHeight="31.0" prefWidth="176.0" promptText="Select Patient Room" />
 
 
 

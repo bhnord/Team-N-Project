@@ -3,6 +3,7 @@ package edu.wpi.TeamN.views;
 import com.google.inject.Inject;
 import com.jfoenix.controls.*;
 import com.jfoenix.validation.RequiredFieldValidator;
+import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.database.DatabaseService;
 import edu.wpi.TeamN.services.database.users.User;
 import edu.wpi.TeamN.services.database.users.UserType;
@@ -40,7 +41,6 @@ public class AudioVisualRequestController extends masterController implements In
   @FXML private Label errorLabel;
   private Label person1;
   private Label person2;
-  @FXML private JFXTextField txtRoom;
   @FXML private JFXTextField txtTimeOfRequest;
   @FXML private JFXTextField txtEquipment;
   @FXML private JFXTextField txtComments;
@@ -52,6 +52,7 @@ public class AudioVisualRequestController extends masterController implements In
   private HashMap<String, User> users;
   private HashMap<String, edu.wpi.TeamN.services.algo.Node> rooms;
   @FXML private JFXComboBox<Label> txtEmployeeName = new JFXComboBox<>();
+  @FXML private JFXComboBox<Label> roomDropdown = new JFXComboBox<>();
   // @FXML private AnchorPane anchorPage;
   static Stage stage;
 
@@ -71,17 +72,16 @@ public class AudioVisualRequestController extends masterController implements In
     log.debug(state.toString());
 
     txtEmployeeName.getItems().add(person1);
-    txtEmployeeName.getItems().add(person2);
 
     /** USERNAME input and password* */
     RequiredFieldValidator reqInputValid = new RequiredFieldValidator();
     reqInputValid.setMessage("Cannot be empty");
-    txtRoom.getValidators().add(reqInputValid);
-    txtRoom
+    txtComments.getValidators().add(reqInputValid);
+    txtComments
         .focusedProperty()
         .addListener(
             (o, oldVal, newVal) -> {
-              if (!newVal) txtRoom.validate();
+              if (!newVal) txtComments.validate();
             });
     reqInputValid.setMessage("Cannot be empty");
     txtEquipment.getValidators().add(reqInputValid);
@@ -91,10 +91,17 @@ public class AudioVisualRequestController extends masterController implements In
             (o, oldVal, newVal) -> {
               if (!newVal) txtEquipment.validate();
             });
+    reqInputValid.setMessage("Cannot be empty");
+    txtTimeOfRequest.getValidators().add(reqInputValid);
+    txtTimeOfRequest
+        .focusedProperty()
+        .addListener(
+            (o, oldVal, newVal) -> {
+              if (!newVal) txtTimeOfRequest.validate();
+            });
 
     loadEmployeeDropdown();
-    // loadRoomDropdown();
-
+    loadRoomDropdown();
   }
 
   public void exit(ActionEvent actionEvent) throws IOException {
@@ -137,9 +144,8 @@ public class AudioVisualRequestController extends masterController implements In
   public void Submit(ActionEvent actionEvent) throws IOException {
 
     txtEmployeeName.setValidators();
-    if (txtEmployeeName.getSelectionModel().isEmpty()
-    // || roomDropdown.getSelectionModel().isEmpty()
-    ) return;
+    if (txtEmployeeName.getSelectionModel().isEmpty() || roomDropdown.getSelectionModel().isEmpty())
+      return;
 
     VBox manuContainer = new VBox();
     Label lbl1 = new Label("Are you sure the information you have provided is correct?");
@@ -230,7 +236,7 @@ public class AudioVisualRequestController extends masterController implements In
     new AutoCompleteComboBoxListener(txtEmployeeName);
   }
 
-  /*private void loadRoomDropdown() {
+  private void loadRoomDropdown() {
     rooms = db.getAllNodesMap();
     for (Node node : rooms.values()) {
       Label lbl = new Label(node.get_longName());
@@ -238,6 +244,5 @@ public class AudioVisualRequestController extends masterController implements In
       roomDropdown.getItems().add(lbl);
     }
     new AutoCompleteComboBoxListener(roomDropdown);
-  }*/
-
+  }
 }
