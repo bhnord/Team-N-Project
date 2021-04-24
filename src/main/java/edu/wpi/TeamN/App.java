@@ -60,7 +60,9 @@ public class App extends Application {
     primaryStage.setTitle("Team N Application");
     primaryScene.setRoot(root);
     primaryStage.setScene(primaryScene);
+    // primaryStage.setResizable(false);
     //    primaryStage.setAlwaysOnTop(true);
+
     primaryStage.setMaximized(true);
     primaryStage.show();
   }

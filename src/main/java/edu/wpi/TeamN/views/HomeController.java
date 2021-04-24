@@ -17,6 +17,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
@@ -37,6 +39,9 @@ public class HomeController extends masterController implements Initializable {
   @FXML private JFXButton logOutButton = new JFXButton();
   @FXML private Tooltip ttLogOutButton;
 
+  @FXML private ImageView SRbutton;
+  @FXML private JFXButton ServiceRequests;
+
   private Scene appPrimaryScene;
 
   /**
@@ -56,6 +61,20 @@ public class HomeController extends masterController implements Initializable {
     CovidForm.setTooltip(ttCovidForm);
     logOutButton.setTooltip(ttLogOutButton);
     exit.setTooltip(ttExit);
+
+    // button for SR
+    //    Image imSR = new Image("-fx-background-image: url('/testing/background.jpg')");
+    //    BackgroundImage bgSR =
+    //        new BackgroundImage(
+    //            imSR,
+    //            BackgroundRepeat.NO_REPEAT,
+    //            BackgroundRepeat.NO_REPEAT,
+    //            BackgroundPosition.DEFAULT,
+    //            BackgroundSize.DEFAULT);
+    //    Background bSR = new Background(bgSR);
+    //    ServiceRequests.setBackground(bSR);
+    ServiceRequests.setStyle(
+        "-fx-background-image: url('/images/ButtonSR.png'); -fx-background-size: cover");
   }
 
   public void advance(ActionEvent actionEvent) throws IOException {
