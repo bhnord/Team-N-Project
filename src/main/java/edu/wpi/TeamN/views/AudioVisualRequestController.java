@@ -19,11 +19,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.BoxBlur;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -52,7 +52,10 @@ public class AudioVisualRequestController extends masterController implements In
   private HashMap<String, Node> rooms;
   @FXML private JFXComboBox<Label> txtEmployeeName = new JFXComboBox<>();
   @FXML private JFXComboBox<Label> roomDropdown = new JFXComboBox<>();
-  // @FXML private AnchorPane anchorPage;
+
+  @FXML private AnchorPane anchorPage;
+
+  @FXML private StackPane confirmationStackPane;
   static Stage stage;
 
   /**
@@ -150,7 +153,7 @@ public class AudioVisualRequestController extends masterController implements In
     }
   }
 
-  public void Submit(ActionEvent actionEvent) throws IOException {
+  public void Submit(ActionEvent actionEvent) throws IOException, InterruptedException {
 
     txtEmployeeName.setValidators();
     if (txtEmployeeName.getSelectionModel().isEmpty() || roomDropdown.getSelectionModel().isEmpty())
@@ -177,6 +180,8 @@ public class AudioVisualRequestController extends masterController implements In
     manuContainer.setPadding(new Insets(30, 50, 50, 50));
     manuContainer.setSpacing(10);
     JFXPopup popup1 = new JFXPopup(manuContainer);
+    actionEvent.consume();
+    popup1.setAutoHide(false);
 
     cancelButton.setOnAction(
         new EventHandler<ActionEvent>() {
@@ -193,9 +198,67 @@ public class AudioVisualRequestController extends masterController implements In
           @Override
           public void handle(ActionEvent event) {
             popup1.hide();
-            Parent root =
-                loader.load(getClass().getResourceAsStream("ConfirmationPageAudioVisual.fxml"));
-            appPrimaryScene.setRoot(root);
+            BoxBlur blur = new BoxBlur(7, 7, 7);
+
+            VBox manuContainer = new VBox();
+            Label lbl1 =
+                new Label(
+                    "Your request Has been submitted!                                                          ");
+
+            JFXButton continueButton = new JFXButton("Return To Home");
+            continueButton.setButtonType(JFXButton.ButtonType.RAISED);
+            continueButton.setStyle("-fx-background-color : #00bfff;");
+
+            JFXButton cancelButton = new JFXButton("Complete Another Request");
+            cancelButton.setButtonType(JFXButton.ButtonType.RAISED);
+            cancelButton.setStyle("-fx-background-color : #00bfff;");
+
+            cancelButton.setTranslateX(0);
+            cancelButton.setTranslateY(65);
+
+            continueButton.setTranslateX(350);
+            continueButton.setTranslateY(25);
+
+            manuContainer.getChildren().addAll(lbl1, cancelButton, continueButton);
+            manuContainer.setPadding(new Insets(30, 50, 50, 50));
+            manuContainer.setSpacing(10);
+            JFXPopup popup1 = new JFXPopup(manuContainer);
+            actionEvent.consume();
+            popup1.setAutoHide(false);
+
+            // return to request page
+            cancelButton.setOnAction(
+                new EventHandler<ActionEvent>() {
+                  @SneakyThrows
+                  @Override
+                  public void handle(ActionEvent event) {
+                    popup1.hide();
+                    submit.setDisable(false);
+                    back();
+                  }
+                });
+
+            // go back to home page
+            continueButton.setOnAction(
+                new EventHandler<ActionEvent>() {
+                  @SneakyThrows
+                  @Override
+                  public void handle(ActionEvent event) {
+                    anchorPage.setEffect(null);
+                    txtEmployeeName.setEffect(null);
+
+                    popup1.hide();
+                    advanceHome();
+                    submit.setDisable(false);
+                  }
+                });
+            submit.setDisable(true);
+            anchorPage.setEffect(blur);
+            txtEmployeeName.setEffect(blur);
+            popup1.show(
+                confirmationStackPane,
+                JFXPopup.PopupVPosition.BOTTOM,
+                JFXPopup.PopupHPosition.LEFT);
             submit.setDisable(false);
           }
         });
@@ -203,9 +266,8 @@ public class AudioVisualRequestController extends masterController implements In
     popup1.show(myStackPane2, JFXPopup.PopupVPosition.BOTTOM, JFXPopup.PopupHPosition.LEFT);
   }
 
-  public void help(ActionEvent actionEvent) throws IOException {
+  public void help(ActionEvent actionEvent) throws IOException, InterruptedException {
     String title = "Help Page";
-    BoxBlur blur = new BoxBlur(3, 3, 3);
     JFXDialogLayout dialogContent = new JFXDialogLayout();
     dialogContent.setHeading(new Text(title));
     dialogContent.setBody(
@@ -221,18 +283,17 @@ public class AudioVisualRequestController extends masterController implements In
     dialogContent.setActions(close);
 
     JFXDialog dialog = new JFXDialog(myStackPane, dialogContent, JFXDialog.DialogTransition.BOTTOM);
+    actionEvent.consume();
     close.setOnAction(
         new EventHandler<ActionEvent>() {
           @Override
           public void handle(ActionEvent event) {
-            // anchorPage.setEffect(null);
             dialog.close();
             helpButton.setDisable(false);
           }
         });
     helpButton.setDisable(true);
     dialog.show();
-    // anchorPage.setEffect(blur);
   }
 
   private void loadEmployeeDropdown() {

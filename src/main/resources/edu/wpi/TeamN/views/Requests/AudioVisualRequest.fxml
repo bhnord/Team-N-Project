@@ -18,16 +18,19 @@
 
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.TeamN.views.AudioVisualRequestController">
     <columnConstraints>
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1366.0" minWidth="10.0" prefWidth="1366.0" />
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.0" minWidth="0.0" prefWidth="0.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1366.0" minWidth="0.0" prefWidth="0.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1366.0" minWidth="0.0" prefWidth="132.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1366.0" minWidth="0.0" prefWidth="692.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1366.0" minWidth="10.0" prefWidth="542.0" />
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints maxHeight="128.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="732.0" minHeight="10.0" prefHeight="732.0" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="36.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="443.0" minHeight="10.0" prefHeight="343.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="480.0" minHeight="0.0" prefHeight="81.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="750.0" minHeight="10.0" prefHeight="148.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="253.0" minHeight="0.0" prefHeight="196.0" vgrow="SOMETIMES" />
     </rowConstraints>
     <children>
-        <AnchorPane prefHeight="927.0" prefWidth="1366.0" GridPane.rowIndex="1">
+        <AnchorPane fx:id="anchorPage" prefHeight="749.0" prefWidth="996.0" GridPane.rowIndex="1">
             <children>
                 <ImageView fitHeight="766.0" fitWidth="1360.0" layoutX="-5.0" pickOnBounds="true" preserveRatio="true">
                     <image>
@@ -39,10 +42,7 @@
                         <Font size="24.0" />
                     </font>
                 </Label>
-                <StackPane fx:id="myStackPane" layoutX="693.0" layoutY="279.0" prefHeight="209.0" prefWidth="412.0">
-               <children>
-                  <StackPane fx:id="myStackPane2" prefHeight="101.0" prefWidth="531.0" />
-               </children></StackPane>
+                <StackPane fx:id="myStackPane" layoutX="693.0" layoutY="279.0" prefHeight="209.0" prefWidth="412.0" />
                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#5b63e1" height="69.0" layoutX="-1.0" layoutY="78.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.0" layoutX="27.0" layoutY="90.0" rotate="45.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" />
                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.0" layoutX="27.0" layoutY="90.0" rotate="-45.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" />
@@ -120,7 +120,7 @@
                         </Tooltip>
                     </tooltip>
                 </JFXButton>
-                <Rectangle arcHeight="50.0" arcWidth="50.0" fill="WHITE" height="517.0" layoutX="143.0" layoutY="193.0" stroke="TRANSPARENT" strokeType="INSIDE" width="476.0" />
+                <Rectangle arcHeight="50.0" arcWidth="50.0" fill="WHITE" height="517.0" layoutX="144.0" layoutY="185.0" stroke="TRANSPARENT" strokeType="INSIDE" width="476.0" />
                 <JFXTextField fx:id="txtTimeOfRequest" focusColor="#5b63e1" labelFloat="true" layoutX="187.0" layoutY="379.0" onKeyReleased="#validateButton" prefHeight="47.0" prefWidth="273.0" promptText="Time of request" unFocusColor="WHITE">
                     <font>
                         <Font name="Roboto Medium" size="26.0" />
@@ -140,17 +140,18 @@
                <effect>
                   <DropShadow color="#c6b8b8" offsetY="5.0" />
                </effect></Rectangle>
-                <JFXButton fx:id="submit" layoutX="522.0" layoutY="646.0" onAction="#Submit" prefHeight="31.0" prefWidth="66.0" ripplerFill="WHITE" text="Submit" textFill="WHITE" />
-                <Rectangle arcWidth="5.0" fill="#5b63e1" height="47.0" layoutX="149.0" layoutY="136.0" stroke="TRANSPARENT" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="INSIDE" width="465.0" />
-                <Label fx:id="text1" layoutX="156.0" layoutY="136.0" prefHeight="47.0" prefWidth="451.0" text="Audio Visual Reqest" textAlignment="CENTER" textFill="WHITE">
+                <JFXButton fx:id="submit" layoutX="514.0" layoutY="638.0" onAction="#Submit" prefHeight="47.0" prefWidth="83.0" ripplerFill="WHITE" text="Submit" textFill="WHITE" />
+                <Rectangle arcWidth="5.0" fill="#5b63e1" height="47.0" layoutX="234.0" layoutY="136.0" stroke="TRANSPARENT" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="INSIDE" width="294.0" />
+                <Label fx:id="text1" layoutX="241.0" layoutY="136.0" prefHeight="47.0" prefWidth="281.0" text="Audio Visual Request" textAlignment="CENTER" textFill="WHITE">
                     <font>
                         <Font name="Roboto Medium" size="30.0" />
                     </font>
                 </Label>
                 <JFXComboBox fx:id="txtEmployeeName" layoutX="187.0" layoutY="241.0" prefHeight="31.0" prefWidth="150.0" promptText="Select Employee" />
                 <JFXComboBox fx:id="roomDropdown" layoutX="187.0" layoutY="313.0" prefHeight="31.0" prefWidth="176.0" promptText="Select Patient Room" />
+            <StackPane fx:id="myStackPane2" layoutX="346.0" layoutY="526.0" prefHeight="101.0" prefWidth="531.0" />
             </children>
         </AnchorPane>
-      <AnchorPane prefHeight="50.0" prefWidth="50.0" />
+      <StackPane fx:id="confirmationStackPane" prefHeight="148.0" prefWidth="564.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
     </children>
 </GridPane>
