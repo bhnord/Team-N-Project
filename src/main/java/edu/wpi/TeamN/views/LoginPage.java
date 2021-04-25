@@ -101,6 +101,9 @@ public class LoginPage extends masterController implements Initializable {
   }
 
   @FXML
+  private void continueToHomePageGuest() throws IOException {}
+
+  @FXML
   private void validateButton() {
     if (!usernameField.getText().isEmpty() && !passwordField.getText().isEmpty()) {
       goToHomePage.setDisable(false);
