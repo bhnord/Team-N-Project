@@ -149,7 +149,7 @@
                   </ImageView>
                </children>
             </GridPane>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#414f81" height="1153.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" GridPane.valignment="BASELINE" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#363d54" height="1153.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" GridPane.valignment="BASELINE" />
             <GridPane GridPane.hgrow="NEVER" GridPane.vgrow="NEVER">
               <columnConstraints>
                 <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
@@ -168,8 +168,8 @@
                 <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
               </rowConstraints>
                <children>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#5476ea" height="65.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" GridPane.rowIndex="1" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#5778e8" height="65.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" GridPane.rowIndex="2" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="65.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" GridPane.rowIndex="1" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="65.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" GridPane.rowIndex="2" />
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="65.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" GridPane.rowIndex="3" />
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.0" rotate="-45.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.0" rotate="45.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
@@ -219,6 +219,11 @@
                         </Tooltip>
                      </tooltip>
                   </JFXButton>
+                  <ImageView fitHeight="61.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <image>
+                        <Image url="@/images/BWHLogo.png" />
+                     </image>
+                  </ImageView>
                </children>
             </GridPane>
          </children>
