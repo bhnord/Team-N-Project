@@ -39,7 +39,10 @@
                         <Font size="24.0" />
                     </font>
                 </Label>
-                <StackPane fx:id="myStackPane" layoutX="693.0" layoutY="279.0" prefHeight="209.0" prefWidth="412.0" />
+                <StackPane fx:id="myStackPane" layoutX="693.0" layoutY="279.0" prefHeight="209.0" prefWidth="412.0">
+               <children>
+                  <StackPane fx:id="myStackPane2" prefHeight="101.0" prefWidth="531.0" />
+               </children></StackPane>
                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#5b63e1" height="69.0" layoutX="-1.0" layoutY="78.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.0" layoutX="27.0" layoutY="90.0" rotate="45.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" />
                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.0" layoutX="27.0" layoutY="90.0" rotate="-45.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" />
@@ -144,10 +147,10 @@
                         <Font name="Roboto Medium" size="30.0" />
                     </font>
                 </Label>
-                <StackPane fx:id="myStackPane2" layoutX="596.0" layoutY="473.0" prefHeight="166.0" prefWidth="328.0" />
                 <JFXComboBox fx:id="txtEmployeeName" layoutX="187.0" layoutY="241.0" prefHeight="31.0" prefWidth="150.0" promptText="Select Employee" />
                 <JFXComboBox fx:id="roomDropdown" layoutX="187.0" layoutY="313.0" prefHeight="31.0" prefWidth="176.0" promptText="Select Patient Room" />
             </children>
         </AnchorPane>
+      <AnchorPane prefHeight="50.0" prefWidth="50.0" />
     </children>
 </GridPane>
