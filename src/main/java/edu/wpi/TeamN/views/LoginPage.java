@@ -93,12 +93,15 @@ public class LoginPage extends masterController implements Initializable {
     } else if (getUsername().equals(employeeUsername) && getPassword().equals(employeePassword)) {
       super.advanceHome(loader, appPrimaryScene);
     } else if (getUsername().equals(adminUsername) && getPassword().equals(adminPassword)) {
-      super.advanceHome2(loader, appPrimaryScene);
+      super.advanceHomeAdmin(loader, appPrimaryScene);
     } else {
       incorrectLogin.setText("INCORRECT USERNAME OR PASSWORD, TRY AGAIN");
       incorrectLogin.setAlignment(Pos.CENTER);
     }
   }
+
+  @FXML
+  private void continueToHomePageGuest() throws IOException {}
 
   @FXML
   private void validateButton() {

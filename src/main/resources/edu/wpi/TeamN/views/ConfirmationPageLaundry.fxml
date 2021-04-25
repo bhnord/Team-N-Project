@@ -16,11 +16,11 @@
                 <Image url="@/images/confirmBoxBackground.png" />
             </image>
         </ImageView>
-        <Label layoutX="185.0" layoutY="132.0" text="Request Confirmed!">
+        <Label layoutX="185.0" layoutY="132.0" stylesheets="@../../../../Fonts/Roboto-Light.css" text="Request Confirmed!">
             <font>
                 <Font size="31.0" />
             </font></Label>
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#211edd" height="31.0" layoutX="238.0" layoutY="230.0" stroke="TRANSPARENT" strokeType="INSIDE" width="125.0" />
-        <JFXButton layoutX="238.0" layoutY="230.0" mnemonicParsing="false" onAction="#advanceHome" text="Return to home" textFill="WHITE" />
+        <Rectangle arcHeight="15.0" arcWidth="15.0" fill="#211edd" height="31.0" layoutX="238.0" layoutY="230.0" stroke="TRANSPARENT" strokeType="INSIDE" width="125.0" />
+        <JFXButton layoutX="251.0" layoutY="233.0" mnemonicParsing="false" onAction="#advanceHome" stylesheets="@../../../../Fonts/Roboto-Light.css" text="Return to home" textFill="WHITE" />
     </children>
 </AnchorPane>

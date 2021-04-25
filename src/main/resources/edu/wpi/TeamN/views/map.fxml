@@ -2,10 +2,14 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXColorPicker?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -14,7 +18,6 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
@@ -38,11 +41,6 @@
             <RowConstraints maxHeight="154.0" minHeight="6.0" prefHeight="36.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <VBox minHeight="58.0" minWidth="1000.0" prefHeight="100.0" prefWidth="1078.0" GridPane.columnIndex="1">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </VBox>
             <Label fx:id="text" prefHeight="79.0" prefWidth="523.0" text="MAP EDITOR" textAlignment="CENTER" GridPane.columnIndex="1">
                <font>
                   <Font name="Arial Black" size="30.0" />
@@ -129,7 +127,6 @@
                   <Button fx:id="Load" mnemonicParsing="false" onAction="#Load" text="Load" />
                   <JFXColorPicker fx:id="colorPicker" onAction="#newColor" promptText="Node Color" />
                   <Button fx:id="deleteCurrent" mnemonicParsing="false" onAction="#deleteCurrent" text="Delete Current" />
-                  <Label fx:id="current" text="Current Object" />
                   <Button mnemonicParsing="false" onAction="#SetStartNode" text="Start Node">
                      <HBox.margin>
                         <Insets left="50.0" />
@@ -160,9 +157,56 @@
                            <viewport>
                               <Rectangle2D />
                            </viewport>
+                     <cursor>
+                        <Cursor fx:constant="CROSSHAIR" />
+                     </cursor>
                         </ImageView>
                </children>
             </AnchorPane>
+            <JFXTabPane GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.rowSpan="2">
+               <tabs>
+                  <Tab text="Node">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <JFXTextField fx:id="nodeId" layoutY="23.0" />
+                              <Label layoutY="6.0" text="Node ID" />
+                              <JFXTextField fx:id="XCoord" layoutY="73.0" />
+                              <Label layoutY="56.0" text="XCoord" />
+                              <JFXTextField fx:id="YCoord" layoutY="132.0" />
+                              <Label layoutY="115.0" text="YCoord" />
+                              <JFXTextField fx:id="floor" layoutY="189.0" />
+                              <Label layoutY="172.0" text="Floor" />
+                              <JFXTextField fx:id="building" layoutY="242.0" />
+                              <Label layoutY="225.0" text="Building" />
+                              <JFXTextField fx:id="nodeType" layoutY="295.0" />
+                              <Label layoutY="278.0" text="Node Type" />
+                              <JFXTextField fx:id="longName" layoutY="353.0" />
+                              <Label layoutY="336.0" text="Long Name" />
+                              <JFXTextField fx:id="shortName" layoutY="405.0" />
+                              <Label layoutY="388.0" text="Short Name" />
+                              <Button layoutY="500" fx:id="savebtnNode" mnemonicParsing="false" onAction="#saveNode" text="Save Node" />
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </Tab>
+                  <Tab text="Edge">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <Label layoutY="6.0" text="Edge ID" />
+                              <JFXTextField fx:id="edgeID" layoutY="23.0" />
+                              <Label layoutY="64.0" text="Start Node" />
+                              <JFXTextField fx:id="startNode" layoutY="81.0" />
+                              <Label layoutY="121.0" text="End Node" />
+                              <JFXTextField fx:id="endNode" layoutY="138.0" />
+                              <Button layoutY="500" fx:id="savebtnEdge" mnemonicParsing="false" onAction="#saveEdge" text="Save Edge" />
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </Tab>
+               </tabs>
+            </JFXTabPane>
          </children>
       </GridPane>
    </children>

@@ -33,16 +33,14 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class FoodDeliveryRequestController extends masterController implements Initializable {
-
   @Inject DatabaseService db;
   @Inject FXMLLoader loader;
   @Inject HomeState state;
-  @FXML private Label text;
-  @FXML private Label errorLabel;
-  private Label person1;
   @FXML private JFXTextField txtTimeOfRequest;
-  @FXML private JFXTextField txtEquipment;
   @FXML private JFXTextField txtComments;
+  @FXML private JFXComboBox<Label> mainDish = new JFXComboBox<>();
+  @FXML private JFXComboBox<Label> sideDish = new JFXComboBox<>();
+  @FXML private JFXComboBox<Label> drinkDish = new JFXComboBox<>();
   @FXML private Button helpButton;
   @FXML private StackPane myStackPane;
   @FXML private Button submit;
@@ -90,16 +88,10 @@ public class FoodDeliveryRequestController extends masterController implements I
               if (!newVal) txtComments.validate();
             });
     reqInputValid.setMessage("Cannot be empty");
-    txtEquipment.getValidators().add(reqInputValid);
-    txtEquipment
-        .focusedProperty()
-        .addListener(
-            (o, oldVal, newVal) -> {
-              if (!newVal) txtEquipment.validate();
-            });
 
     loadEmployeeDropdown();
     loadRoomDropdown();
+    loadDishes();
   }
 
   public void exit(ActionEvent actionEvent) throws IOException {
@@ -150,11 +142,11 @@ public class FoodDeliveryRequestController extends masterController implements I
 
     JFXButton continueButton = new JFXButton("Continue");
     continueButton.setButtonType(JFXButton.ButtonType.RAISED);
-    continueButton.setStyle("-fx-background-color : #00bfff:");
+    continueButton.setStyle("-fx-background-color : #00bfff;");
 
     JFXButton cancelButton = new JFXButton("Cancel");
     cancelButton.setButtonType(JFXButton.ButtonType.RAISED);
-    cancelButton.setStyle("-fx-background-color : #00bfff:");
+    cancelButton.setStyle("-fx-background-color : #00bfff;");
 
     cancelButton.setTranslateX(100);
     cancelButton.setTranslateY(65);
@@ -193,9 +185,7 @@ public class FoodDeliveryRequestController extends masterController implements I
 
   @FXML
   private void validateButton() {
-    if (!txtTimeOfRequest.getText().isEmpty()
-        && !txtEquipment.getText().isEmpty()
-        && !txtComments.getText().isEmpty()) {
+    if (!txtTimeOfRequest.getText().isEmpty() && !txtComments.getText().isEmpty()) {
       submit.setDisable(false);
     } else {
       submit.setDisable(true);
@@ -210,13 +200,12 @@ public class FoodDeliveryRequestController extends masterController implements I
     dialogContent.setBody(
         (new Text(
             "* Employee Name refers to the employee being requested to complete the job\n"
-                + "* Patient Room is the room that the employee will deliver the medicine to\n"
-                + "* Time of request refers to time the medicine should be delivered to the patient\n"
-                + "* Necessary Equipment refers to additional services/equipment the patient requires\n"
-                + "* Necessary Equipment refers to additional services/equipment the patient requires\n")));
+                + "* Room is the room that the employee will deliver the food to\n"
+                + "* Time of request refers to time the food should be delivered to the requester\n"
+                + "* Necessary Equipment refers to additional services/equipment the requester requires\n")));
     JFXButton close = new JFXButton("close");
     close.setButtonType(JFXButton.ButtonType.RAISED);
-    close.setStyle("-fx-background-color : #00bfff:");
+    close.setStyle("-fx-background-color : #00bfff;");
     dialogContent.setActions(close);
 
     JFXDialog dialog = new JFXDialog(myStackPane, dialogContent, JFXDialog.DialogTransition.BOTTOM);
@@ -252,5 +241,30 @@ public class FoodDeliveryRequestController extends masterController implements I
       roomDropdown.getItems().add(lbl);
     }
     new AutoCompleteComboBoxListener(roomDropdown);
+  }
+
+  private void loadDishes() {
+    String[] mainDishes = {"Beef Stew", "Cheese Pizza", "Salad"};
+    String[] sideDishes = {"Apple slices", "Vanilla Pudding", "side Salad"};
+    String[] drinks = {"Apple Juice", "Orange Juice", "Water"};
+
+    for (String dish : mainDishes) {
+      Label lbl = new Label(dish);
+      lbl.setId(dish);
+      mainDish.getItems().add(lbl);
+      new AutoCompleteComboBoxListener(mainDish);
+    }
+    for (String dish : sideDishes) {
+      Label lbl = new Label(dish);
+      lbl.setId(dish);
+      sideDish.getItems().add(lbl);
+      new AutoCompleteComboBoxListener(sideDish);
+    }
+    for (String drink : drinks) {
+      Label lbl = new Label(drink);
+      lbl.setId(drink);
+      drinkDish.getItems().add(lbl);
+      new AutoCompleteComboBoxListener(drinkDish);
+    }
   }
 }

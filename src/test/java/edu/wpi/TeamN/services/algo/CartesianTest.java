@@ -11,4 +11,10 @@ public class CartesianTest {
   public void testGetEmployeeName() {
     assertEquals(1, 1);
   }
+
+  @Test
+  public void testWordDistance() {
+    WordDistanceComputer wordDistanceComputer = new WordDistanceComputer();
+    assertEquals(2, wordDistanceComputer.getDistance("aa", "b"));
+  }
 }

@@ -2,9 +2,8 @@ package edu.wpi.TeamN.views;
 
 import com.google.inject.Inject;
 import com.jfoenix.controls.JFXColorPicker;
-import edu.wpi.TeamN.MapEntity.ActionHandlingI;
-import edu.wpi.TeamN.MapEntity.AdminMap;
-import edu.wpi.TeamN.MapEntity.NodeActionHandling;
+import com.jfoenix.controls.JFXTextField;
+import edu.wpi.TeamN.MapEntity.*;
 import edu.wpi.TeamN.services.algo.Edge;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.database.DatabaseService;
@@ -18,6 +17,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -28,8 +28,8 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.Shape;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import lombok.SneakyThrows;
@@ -44,32 +44,39 @@ public class MapController extends masterController implements Initializable {
 
   @FXML private Label XLabel;
   @FXML private Label YLabel;
-  @FXML private Label current;
   @FXML private ImageView mapImageView;
-
-  public Label getCurrent() {
-    return current;
-  }
-
   @FXML private AnchorPane mapAnchor;
 
-  AdminMap adminMap;
-  private Node startNode;
-  private final double downScale = .168;
-  private final double upScale = 5.9523;
+  private Group current;
+  private Node startNodePath;
 
-  ActionHandlingI actionHandling;
+  public final double downScale = .168;
+  public final double upScale = 5.9523;
+  private int nodeCount = 0;
+
+  private ActionHandlingI actionHandling;
+  private AdminMap adminMap;
+  private MapDrawing mapDrawing;
+  private MapNodeEditor mapNodeEditor;
+  private MapEdgeEditor mapEdgeEditor;
 
   private Scene appPrimaryScene;
   ArrayList<Node.Link> path = new ArrayList<>();
 
-  String nodeName;
-  String building;
-  String floor;
-  String longname;
-  String shortname;
-  Boolean cancelOrSubmit = false;
+  @FXML private JFXTextField nodeId;
+  @FXML private JFXTextField building;
+  @FXML private JFXTextField floor;
+  @FXML private JFXTextField longName;
+  @FXML private JFXTextField shortName;
+  @FXML private JFXTextField nodeType;
+  @FXML private JFXTextField XCoord;
+  @FXML private JFXTextField YCoord;
 
+  @FXML private JFXTextField edgeID;
+  @FXML private JFXTextField startNode;
+  @FXML private JFXTextField endNode;
+
+  Boolean cancelOrSubmit = false;
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
    * JavaFX thread
@@ -87,7 +94,11 @@ public class MapController extends masterController implements Initializable {
     log.debug(state.toString());
     colorPicker.setValue(Color.BLUE);
     adminMap = new AdminMap(db);
-    actionHandling = new NodeActionHandling(this);
+    mapNodeEditor = new MapNodeEditor(this);
+    mapEdgeEditor = new MapEdgeEditor(this);
+    actionHandling = new NodeActionHandling(this, this.mapNodeEditor, this.mapEdgeEditor);
+    mapDrawing = new MapDrawing(this);
+    mapImageView.setCursor(Cursor.CROSSHAIR);
     this.Load(new ActionEvent());
   }
 
@@ -117,23 +128,10 @@ public class MapController extends masterController implements Initializable {
    */
   public void placeNodeClick(MouseEvent mouseEvent) throws IOException {
     if (mouseEvent.getButton() == MouseButton.PRIMARY) {
-      NameNode nameNodeClass = new NameNode();
-      nameNodeClass.confirm(this);
-      if (cancelOrSubmit && !nodeName.equals("")) {
-        placeNode(nodeName, mouseEvent.getX(), mouseEvent.getY());
-      }
+      placeNode("node_" + Integer.toString(nodeCount), mouseEvent.getX(), mouseEvent.getY());
     }
 
     setCancelOrSubmit(false);
-  }
-
-  public void setNodeProperties(
-      String nodeName, String floor, String building, String longname, String shortname) {
-    this.nodeName = nodeName;
-    this.floor = floor;
-    this.longname = longname;
-    this.shortname = shortname;
-    this.building = building;
   }
 
   public void setCancelOrSubmit(Boolean sm) {
@@ -142,43 +140,41 @@ public class MapController extends masterController implements Initializable {
 
   public void startLink(MouseEvent mouseEvent) {
     if (mouseEvent.getButton() != MouseButton.PRIMARY) {
-      startNode = adminMap.get(mouseEvent.getX(), mouseEvent.getY());
+      startNodePath = adminMap.get(mouseEvent.getX(), mouseEvent.getY());
     }
   }
 
   public void releaseMouse(MouseEvent mouseEvent) {
     if (mouseEvent.getButton() != MouseButton.PRIMARY) {
       Node other = adminMap.get(mouseEvent.getX(), mouseEvent.getY());
-      if (other != startNode) {
-        placeLink(startNode.get_nodeID() + "_" + other.get_nodeID(), startNode, other);
+      if (other != startNodePath) {
+        placeLink(startNodePath.get_nodeID() + "_" + other.get_nodeID(), startNodePath, other);
       }
     }
   }
 
   private void placeNode(String id, double x, double y) {
-    Circle simpleNode = new Circle(x, y, 4.5);
-    simpleNode.setTranslateZ(10);
-    simpleNode.setFill(Color.BLUE);
-    Group root = new Group(simpleNode);
-    root.setId(id);
+    Group root = mapDrawing.drawNode(id, x, y);
     actionHandling.setNodeInfo(root);
     actionHandling.setNodeStartLink(root);
     actionHandling.setNodeEndLink(root);
     mapAnchor.getChildren().add(root);
     Node n =
         new Node(
-            x * upScale,
-            y * upScale,
+            x * getUpScale(),
+            y * getUpScale(),
             id,
-            this.floor,
-            this.building,
+            getFloor().getText(),
+            getBuilding().getText(),
             "",
-            this.longname,
-            this.shortname);
-    n.set_shape(simpleNode);
+            getLongName().getText(),
+            getShortName().getText());
+    n.set_shape((Shape) root.getChildren().get(0));
+    root.setCursor(Cursor.CROSSHAIR);
     if (!adminMap.getNodeSet().containsKey(id)) {
       adminMap.addNode(n);
-      setNodeProperties("", "", "", "", "");
+      mapNodeEditor.showNodeProperties(root);
+      nodeCount++;
     }
   }
 
@@ -189,21 +185,14 @@ public class MapController extends masterController implements Initializable {
    * @param node2 node id of the second node
    */
   private void placeLink(String id, Node node1, Node node2) {
-    Line simpleNode =
-        new Line(
-            node1.get_x() * downScale,
-            node1.get_y() * downScale,
-            node2.get_x() * downScale,
-            node2.get_y() * downScale);
-    simpleNode.setTranslateZ(5);
-    simpleNode.setStrokeWidth(3);
-    Group root = new Group(simpleNode);
-    root.setId(id);
-    adminMap.makeEdge(id, node1, node2, simpleNode);
+    Group root = mapDrawing.drawLine(id, node1, node2);
+    adminMap.makeEdge(id, node1, node2, (Line) root.getChildren().get(0));
     actionHandling.setEdgeInfo(root);
     mapAnchor.getChildren().add(root);
+    root.setCursor(Cursor.CROSSHAIR);
     if (!adminMap.getEdgeSet().containsKey(id)) {
       adminMap.addEdge(new Edge(id, node1.get_nodeID(), node2.get_nodeID()));
+      mapEdgeEditor.showEdgeProperties(root);
     }
   }
 
@@ -228,19 +217,19 @@ public class MapController extends masterController implements Initializable {
   }
 
   public void newColor(ActionEvent actionEvent) {
-    adminMap.colorPath(colorPicker.getValue(), path);
+    mapDrawing.colorPath(colorPicker.getValue(), path);
   }
 
   public void PathFind(ActionEvent actionEvent) {
-    adminMap.resetColors();
-    adminMap.colorPath(colorPicker.getValue(), adminMap.pathfind());
+    mapDrawing.resetColors();
+    mapDrawing.colorPath(colorPicker.getValue(), adminMap.pathfind());
   }
 
   private void DeleteNodesFromMap() throws IOException {
     int i = 1;
     for (javafx.scene.Node root :
-        mapAnchor.getChildren().subList(1, mapAnchor.getChildren().size() - 1)) {
-      if (root.getId().equals(current.getText())) {
+        mapAnchor.getChildren().subList(i, mapAnchor.getChildren().size())) {
+      if (root.getId().equals(current.getId())) {
         mapAnchor.getChildren().remove(i);
         return;
       } else {
@@ -250,7 +239,7 @@ public class MapController extends masterController implements Initializable {
   }
 
   public void DeleteObjectDataBase() throws IOException {
-    String id = current.getText();
+    String id = current.getId();
     if (adminMap.getNodeSet().containsKey(id)) {
       adminMap.deleteNode(id);
     } else if (adminMap.getEdgeSet().containsKey(id)) {
@@ -258,12 +247,10 @@ public class MapController extends masterController implements Initializable {
     } else {
       System.out.println("Object does not exist");
     }
-    current.setText("No object Selected");
   }
 
   // Loading from the database
   public void Load(ActionEvent actionEvent) {
-
     adminMap
         .getEdgeSet()
         .forEach(
@@ -287,11 +274,11 @@ public class MapController extends masterController implements Initializable {
   }
 
   public void SetStartNode(ActionEvent actionEvent) {
-    adminMap.SetStartNode(current.getText());
+    adminMap.SetStartNode(nodeId.getText());
   }
 
   public void SetEndNode(ActionEvent actionEvent) {
-    adminMap.SetEndNode(current.getText());
+    adminMap.SetEndNode(nodeId.getText());
   }
 
   @FXML
@@ -308,5 +295,125 @@ public class MapController extends masterController implements Initializable {
     String file = ((Button) actionEvent.getSource()).getId() + ".fxml";
     Parent root = loader.load(getClass().getResourceAsStream(file));
     appPrimaryScene.setRoot(root);
+  }
+
+  public double getDownScale() {
+    return downScale;
+  }
+
+  public double getUpScale() {
+    return upScale;
+  }
+
+  public MapDrawing getMapDrawing() {
+    return mapDrawing;
+  }
+
+  public AdminMap getAdminMap() {
+    return adminMap;
+  }
+
+  public void setNodeId(String nodeId) {
+    this.nodeId.setText(nodeId);
+  }
+
+  public void setBuilding(String building) {
+    this.building.setText(building);
+  }
+
+  public void setFloor(String floor) {
+    this.floor.setText(floor);
+  }
+
+  public void setLongName(String longName) {
+    this.longName.setText(longName);
+  }
+
+  public void setShortName(String shortName) {
+    this.shortName.setText(shortName);
+  }
+
+  public void setNodeType(String nodeType) {
+    this.nodeType.setText(nodeType);
+  }
+
+  public void setXCoord(String XCoord) {
+    this.XCoord.setText(XCoord);
+  }
+
+  public void setYCoord(String YCoord) {
+    this.YCoord.setText(YCoord);
+  }
+
+  public JFXTextField getNodeId() {
+    return nodeId;
+  }
+
+  public JFXTextField getBuilding() {
+    return building;
+  }
+
+  public JFXTextField getFloor() {
+    return floor;
+  }
+
+  public JFXTextField getLongName() {
+    return longName;
+  }
+
+  public JFXTextField getShortName() {
+    return shortName;
+  }
+
+  public JFXTextField getNodeType() {
+    return nodeType;
+  }
+
+  public JFXTextField getXCoord() {
+    return XCoord;
+  }
+
+  public JFXTextField getYCoord() {
+    return YCoord;
+  }
+
+  public void saveNode(ActionEvent actionEvent) {
+    mapNodeEditor.commitChanges(current);
+  }
+
+  public void setCurrent(Group current) {
+    this.current = current;
+  }
+
+  public Group getCurrent() {
+    return current;
+  }
+
+  public void saveEdge(ActionEvent actionEvent) {
+    mapEdgeEditor.saveEdge(current);
+  }
+
+  public JFXTextField getEdgeID() {
+    return edgeID;
+  }
+
+  public JFXTextField getStartNode() {
+    return startNode;
+  }
+
+  public JFXTextField getEndNode() {
+    return endNode;
+  }
+
+  public void setEdgeID(String s) {
+    edgeID.setText(s);
+  }
+
+  public void setStartNode(String s) {
+    startNode.setText(s);
+  }
+
+  public void setEndNode(String s) {
+    endNode.setText(s);
   }
 }

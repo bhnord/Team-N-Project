@@ -17,6 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
+import javafx.scene.layout.*;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
@@ -37,6 +38,13 @@ public class HomeController extends masterController implements Initializable {
   @FXML private JFXButton logOutButton = new JFXButton();
   @FXML private Tooltip ttLogOutButton;
 
+  @FXML private JFXButton ServiceRequests;
+  @FXML private JFXButton CurrentRequest;
+  @FXML private JFXButton map;
+  @FXML private JFXButton helpS, helpSB;
+
+  @FXML private GridPane BigBoiPane;
+
   private Scene appPrimaryScene;
 
   /**
@@ -56,6 +64,19 @@ public class HomeController extends masterController implements Initializable {
     CovidForm.setTooltip(ttCovidForm);
     logOutButton.setTooltip(ttLogOutButton);
     exit.setTooltip(ttExit);
+    // helpS.setDisable(true);
+    // helpSB.setDisable(true);
+
+    BigBoiPane.setMinSize(1366, 768);
+    // BigBoiPane.set
+    ServiceRequests.setStyle(
+        "-fx-background-image: url('/images/ButtonSR.png'); -fx-background-size: cover; -fx-background-radius: 25");
+    CurrentRequest.setStyle(
+        "-fx-background-image: url('/images/ButtonCR.png'); -fx-background-size: cover; -fx-background-radius: 25");
+    map.setStyle(
+        "-fx-background-image: url('/images/ButtonM.png'); -fx-background-size: cover; -fx-background-radius: 25");
+    helpS.setStyle(
+        "-fx-background-image: url('/images/ButtonH.png'); -fx-background-size: cover; -fx-background-radius: 25");
   }
 
   public void advance(ActionEvent actionEvent) throws IOException {

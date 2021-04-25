@@ -1,0 +1,15 @@
+@font-face {
+    src: url("../Fonts/Roboto/Roboto-Black.ttf");
+}
+
+.label {
+    -fx-font-family: 'Roboto Black';
+}
+
+.text-field {
+    -fx-font-family: 'Roboto Black';
+}
+.jfx-button{
+    -fx-font-family: 'Roboto Black';
+    -fx-font-size: 22;
+}

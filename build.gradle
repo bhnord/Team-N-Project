@@ -8,7 +8,7 @@ plugins {
 
 sourceCompatibility = '1.8'
 targetCompatibility = '1.8'
-mainClassName = 'edu.wpi.teamname.Main'
+mainClassName = 'edu.wpi.TeamN.Main'
 
 repositories {
     mavenCentral()
@@ -65,14 +65,14 @@ jar {
 
 
 def codeCoverageExcludes = [
-        'edu.wpi.teamname.App',
-        'edu.wpi.teamname.services.database.DatabaseServiceProvider',
-        'edu.wpi.teamname.services.*',
-        'edu.wpi.teamname.views.FXMLLoaderProvider',
-        'edu.wpi.teamname.views.HomeController',
-        'edu.wpi.teamname.Main',
-        'edu.wpi.teamname.state.HomeStateProvider',
-        'edu.wpi.teamname.App.1',
+        'edu.wpi.TeamN.App',
+        'edu.wpi.TeamN.services.database.DatabaseServiceProvider',
+        'edu.wpi.TeamN.services.*',
+        'edu.wpi.TeamN.views.FXMLLoaderProvider',
+        'edu.wpi.TeamN.views.HomeController',
+        'edu.wpi.TeamN.Main',
+        'edu.wpi.TeamN.state.HomeStateProvider',
+        'edu.wpi.TeamN.App.1',
 ]
 jacoco {
     toolVersion = "0.8.4"

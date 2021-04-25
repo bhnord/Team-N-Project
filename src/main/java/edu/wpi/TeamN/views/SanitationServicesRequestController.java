@@ -19,11 +19,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.BoxBlur;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -52,7 +52,8 @@ public class SanitationServicesRequestController extends masterController implem
   private HashMap<String, Node> rooms;
   @FXML private JFXComboBox<Label> txtEmployeeName = new JFXComboBox<>();
   @FXML private JFXComboBox<Label> roomDropdown = new JFXComboBox<>();
-  // @FXML private AnchorPane anchorPage;
+  @FXML private AnchorPane anchorPage;
+  @FXML private StackPane confirmationStackPane;
   static Stage stage;
 
   /**
@@ -69,7 +70,7 @@ public class SanitationServicesRequestController extends masterController implem
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     log.debug(state.toString());
-    submit.setDisable(true);
+    // submit.setDisable(true);
 
     /** USERNAME input and password* */
     RequiredFieldValidator reqInputValid = new RequiredFieldValidator();
@@ -150,71 +151,155 @@ public class SanitationServicesRequestController extends masterController implem
     }
   }
 
-  public void Submit(ActionEvent actionEvent) throws IOException {
+  public void Submit(ActionEvent actionEvent) throws IOException, InterruptedException {
 
+    /*
     txtEmployeeName.setValidators();
     if (txtEmployeeName.getSelectionModel().isEmpty() || roomDropdown.getSelectionModel().isEmpty())
       return;
+      txtEmployeeName.getValue() == null
+        ||
+     */
+    if (roomDropdown.getValue() == null
+        || txtTimeOfRequest.getText().isEmpty()
+        || txtEquipment.getText().isEmpty()) {
+      String missingFieldTitle = "Missing Fields";
+      JFXDialogLayout warnDialog = new JFXDialogLayout();
+      warnDialog.setHeading(new Text(missingFieldTitle));
+      warnDialog.setBody(
+          (new Text("You have missing fields to be filled out before submission is allowed.\n")));
+      JFXButton closebutton = new JFXButton("close");
+      closebutton.setButtonType(JFXButton.ButtonType.RAISED);
+      closebutton.setStyle("-fx-background-color : #00bfff;");
+      warnDialog.setActions(closebutton);
 
-    VBox manuContainer = new VBox();
-    Label lbl1 = new Label("Are you sure the information you have provided is correct?");
+      JFXDialog mDialog = new JFXDialog(myStackPane, warnDialog, JFXDialog.DialogTransition.BOTTOM);
+      actionEvent.consume();
+      closebutton.setOnAction(
+          new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+              mDialog.close();
+              helpButton.setDisable(false);
+            }
+          });
+      helpButton.setDisable(true);
+      mDialog.show();
+    } else {
+      VBox menuContainer = new VBox();
+      Label lbl1 = new Label("Are you sure the information you have provided is correct?");
 
-    JFXButton continueButton = new JFXButton("Continue");
-    continueButton.setButtonType(JFXButton.ButtonType.RAISED);
-    continueButton.setStyle("-fx-background-color : #00bfff:");
+      JFXButton continueButton = new JFXButton("Continue");
+      continueButton.setButtonType(JFXButton.ButtonType.RAISED);
+      continueButton.setStyle("-fx-background-color : #00bfff:");
 
-    JFXButton cancelButton = new JFXButton("Cancel");
-    cancelButton.setButtonType(JFXButton.ButtonType.RAISED);
-    cancelButton.setStyle("-fx-background-color : #00bfff:");
+      JFXButton cancelButton = new JFXButton("Cancel");
+      cancelButton.setButtonType(JFXButton.ButtonType.RAISED);
+      cancelButton.setStyle("-fx-background-color : #00bfff:");
 
-    cancelButton.setTranslateX(100);
-    cancelButton.setTranslateY(65);
+      cancelButton.setTranslateX(100);
+      cancelButton.setTranslateY(65);
 
-    continueButton.setTranslateX(200);
-    continueButton.setTranslateY(25);
+      continueButton.setTranslateX(200);
+      continueButton.setTranslateY(25);
 
-    manuContainer.getChildren().addAll(lbl1, cancelButton, continueButton);
-    manuContainer.setPadding(new Insets(30, 50, 50, 50));
-    manuContainer.setSpacing(10);
-    JFXPopup popup1 = new JFXPopup(manuContainer);
+      menuContainer.getChildren().addAll(lbl1, cancelButton, continueButton);
+      menuContainer.setPadding(new Insets(30, 50, 50, 50));
+      menuContainer.setSpacing(10);
+      JFXPopup popup1 = new JFXPopup(menuContainer);
 
-    cancelButton.setOnAction(
-        new EventHandler<ActionEvent>() {
-          @Override
-          public void handle(ActionEvent event) {
-            popup1.hide();
-            submit.setDisable(false);
-          }
-        });
+      cancelButton.setOnAction(
+          new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+              popup1.hide();
+              submit.setDisable(false);
+            }
+          });
 
-    continueButton.setOnAction(
-        new EventHandler<ActionEvent>() {
-          @SneakyThrows
-          @Override
-          public void handle(ActionEvent event) {
-            popup1.hide();
-            Parent root =
-                loader.load(getClass().getResourceAsStream("ConfirmationPageSanitation.fxml"));
-            appPrimaryScene.setRoot(root);
-            submit.setDisable(false);
-          }
-        });
-    submit.setDisable(true);
-    popup1.show(myStackPane2, JFXPopup.PopupVPosition.BOTTOM, JFXPopup.PopupHPosition.LEFT);
+      continueButton.setOnAction(
+          new EventHandler<ActionEvent>() {
+            @SneakyThrows
+            @Override
+            public void handle(ActionEvent event) {
+              popup1.hide();
+              BoxBlur blur = new BoxBlur(5, 5, 5);
+              VBox menu = new VBox();
+              Label lbl =
+                  new Label(
+                      "Your request has been submitted!\n"
+                          + "Please wait while we process your request.");
+
+              JFXButton returnToRequest = new JFXButton("Submit Another Request");
+              returnToRequest.setButtonType(JFXButton.ButtonType.RAISED);
+              returnToRequest.setStyle("-fx-background-color: #00bfff");
+              returnToRequest.setTranslateX(0);
+              returnToRequest.setTranslateY(65);
+
+              JFXButton backToHome = new JFXButton("Return to Main Menu");
+              backToHome.setButtonType(JFXButton.ButtonType.RAISED);
+              backToHome.setStyle("-fx-background-color: #00bfff");
+              returnToRequest.setTranslateX(350);
+              returnToRequest.setTranslateY(25);
+
+              menuContainer.getChildren().addAll(lbl, returnToRequest, backToHome);
+              menuContainer.setPadding(new Insets(30, 50, 50, 50));
+              menuContainer.setSpacing(10);
+              JFXPopup pop = new JFXPopup(menuContainer);
+              actionEvent.consume();
+              pop.setAutoHide(false);
+
+              returnToRequest.setOnAction(
+                  new EventHandler<ActionEvent>() {
+                    @SneakyThrows
+                    @Override
+                    public void handle(ActionEvent event) {
+                      pop.hide();
+                      submit.setDisable(false);
+                      back();
+                    }
+                  });
+
+              backToHome.setOnAction(
+                  new EventHandler<ActionEvent>() {
+                    @SneakyThrows
+                    @Override
+                    public void handle(ActionEvent event) {
+                      anchorPage.setEffect(null);
+                      txtEmployeeName.setEffect(null);
+                      pop.hide();
+                      advanceHome();
+                      submit.setDisable(false);
+                    }
+                  });
+
+              submit.setDisable(true);
+              anchorPage.setEffect(blur);
+              txtEmployeeName.setEffect(blur);
+              pop.show(
+                  confirmationStackPane,
+                  JFXPopup.PopupVPosition.BOTTOM,
+                  JFXPopup.PopupHPosition.LEFT);
+              submit.setDisable(false);
+            }
+          });
+      submit.setDisable(true);
+      popup1.show(myStackPane2, JFXPopup.PopupVPosition.BOTTOM, JFXPopup.PopupHPosition.LEFT);
+    }
   }
 
   public void help(ActionEvent actionEvent) throws IOException {
-    String title = "Help Page";
+    String title = "Help";
     BoxBlur blur = new BoxBlur(3, 3, 3);
     JFXDialogLayout dialogContent = new JFXDialogLayout();
     dialogContent.setHeading(new Text(title));
     dialogContent.setBody(
         (new Text(
             "* Employee Name refers to the employee being requested to complete the job\n"
-                + "* Patient Room is the room that the employee will deliver the medicine to\n"
-                + "* Time of request refers to time the medicine should be delivered to the patient\n"
-                + "* Necessary Equipment refers to additional services/equipment the patient requires\n"
-                + "* Necessary Equipment refers to additional services/equipment the patient requires\n")));
+                + "* Sanitary location: The place where sanitation is requested.\n"
+                + "* Sanitary details: Why do you need to sanitize this location?(Spills, dirt...)\n"
+                + "* Necessary Equipment: Additional services/equipment the patient requires.\n"
+                + "* Additional comments on the request.\n")));
     JFXButton close = new JFXButton("close");
     close.setButtonType(JFXButton.ButtonType.RAISED);
     close.setStyle("-fx-background-color : #00bfff:");
