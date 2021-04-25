@@ -14,13 +14,15 @@ public class Node implements Comparable<Node> {
     Node _this;
     double _distance;
     public Line _shape;
+    public boolean _isStair;
 
-    public Link(String id, Node _this, Node other, double distance, Line shape) {
+    public Link(String id, Node _this, Node other, double distance, Line shape, boolean isStair) {
       this._id = id;
       this._distance = distance;
       this._other = other;
       this._shape = shape;
       this._this = _this;
+      this._isStair = isStair;
     }
   }
 
@@ -194,8 +196,8 @@ public class Node implements Comparable<Node> {
     this._parent = null;
   }
 
-  public void addNeighbor(String id, Node other, double distance, Line shape) {
-    this._neighbors.add(new Link(id, this, other, distance, shape));
+  public void addNeighbor(String id, Node other, double distance, Line shape, boolean isStair) {
+    this._neighbors.add(new Link(id, this, other, distance, shape, isStair));
   }
 
   @Override
