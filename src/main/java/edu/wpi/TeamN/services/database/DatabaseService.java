@@ -41,22 +41,53 @@ public class DatabaseService {
   }
 
   /// NODES
+
+  /**
+   * retrieves all nodes from the Database
+   * @return all nodes in the database as a HashSet
+   */
   public HashSet<Node> getAllNodes() {
     return nodesTable.getAllNodes();
   }
 
+  /**
+   * retrieves all nodes from the Database
+   * @return all nodes in the database as a HashMap
+   */
   public HashMap<String, Node> getAllNodesMap() {
     return nodesTable.getAllNodesMap();
   }
 
+  /**
+   * retrieves single node from Database
+   * @param nodeID the ID of the node that you want to retrieve
+   * @return a Node of type Node from the database
+   */
   public Node getNode(String nodeID) {
     return nodesTable.getNode(nodeID);
   }
 
+  /**
+   * adds node to the Database
+   * @param node a Node of type Node to add to the Database
+   * @return whether the operation was carried out successfully
+   */
   public boolean addNode(Node node) {
     return nodesTable.addNode(node);
   }
 
+  /**
+   * updates node in Database based on given ID (you cannot change the ID of a node once set)
+   * @param id the ID of the desired node to be changed
+   * @param x
+   * @param y
+   * @param floor
+   * @param building
+   * @param nodeType
+   * @param longName
+   * @param shortName
+   * @return whether the operation was carried out successfully
+   */
   public boolean updateNode(
       String id,
       double x,
@@ -69,97 +100,215 @@ public class DatabaseService {
     return nodesTable.updateNode(id, x, y, floor, building, nodeType, longName, shortName);
   }
 
-  public void deleteNodeRows() {
-    nodesTable.deleteNodeRows();
-  }
-
+  /**
+   * deletes a single node from the database
+   * @param nodeID the ID of the node you want to delete
+   * @return whether the operation was carried out successfully
+   */
   public boolean deleteNode(String nodeID) {
     return nodesTable.deleteNode(nodeID);
   }
 
-  /// EDGES
-  public boolean addEdge(Edge e) {
-    return edgesTable.addEdge(e);
+  /**
+   * DELETES ALL DATA IN NODES TABLE
+   */
+  public void deleteNodeRows() {
+    nodesTable.deleteNodeRows();
   }
 
+
+  /// EDGES
+  /**
+   * retrieves all edges from the Database
+   * @return all edges in the database as a HashSet
+   */
   public HashSet<Edge> getAllEdges() {
     return edgesTable.getAllEdges();
   }
 
+  /**
+   * retrieves all edges from the Database
+   * @return all edges in the database as a HashMap
+   */
   public HashMap<String, Edge> getAllEdgesMap() {
     return edgesTable.getAllEdgesMap();
   }
 
+  /**
+   * adds an edge to the Database
+   * @param edge an Edge of type Edge to add to the Database
+   * @return whether the operation was carried out successfully
+   */
+  public boolean addEdge(Edge edge) {
+    return edgesTable.addEdge(edge);
+  }
+
+  /**
+   * retrieves a single edge from the database
+   * @param edgeID the ID of the desired edge
+   * @return an Edge of type Edge from the Database
+   */
   public Edge getEdge(String edgeID) {
     return edgesTable.getEdge(edgeID);
   }
 
+  /**
+   * updates an existing edge in the Database (cannot change the ID of an existing edge)
+   * @param edgeID the ID of the edge you want to change
+   * @param startNodeID the valid ID of a node
+   * @param endNodeID the valid ID of a node
+   * @return whether the operation was carried out successfully
+   */
   public boolean updateEdge(String edgeID, String startNodeID, String endNodeID) {
     return edgesTable.updateEdge(edgeID, startNodeID, endNodeID);
   }
 
+  /**
+   * deletes specified edge from the Database
+   * @param edgeID the ID of the edge you want to delete
+   * @return whether the operation was carried out successfully
+   */
   public boolean deleteEdge(String edgeID) {
     return edgesTable.deleteEdge(edgeID);
   }
 
-  public HashSet<Edge> getEdgesFromStartNode(String startNode) {
-    return edgesTable.getEdgesFromStartNode(startNode);
+  /**
+   * retrieves all edges with the specified start node
+   * @param startNodeID the ID of a valid node
+   * @return all of the edges with a start node matching input or null if invalid ID
+   */
+  public HashSet<Edge> getEdgesFromStartNode(String startNodeID) {
+    return edgesTable.getEdgesFromStartNode(startNodeID);
   }
 
-  public HashSet<Edge> getEdgesFromEndNode(String endNode) {
-    return edgesTable.getEdgesFromEndNode(endNode);
+  /**
+   * retrieves all edges with the specified end node
+   * @param endNodeID the ID of a valid node
+   * @return all of the edges with an end node matching input or null if invalid ID
+   */
+  public HashSet<Edge> getEdgesFromEndNode(String endNodeID) {
+    return edgesTable.getEdgesFromEndNode(endNodeID);
   }
 
+  /**
+   * DELETES ALL DATA IN EDGES TABLE
+   */
   public void deleteEdgeRows() {
     edgesTable.deleteEdgeRows();
   }
 
+  /**
+   * adds a request to the Database
+   * @param request a Request of type Request to add to the Database
+   * @return whether the operation was carried out successfully
+   */
   public boolean addRequest(Request request) {
     return requestsTable.addRequest(request, currentUser);
   }
 
+  /**
+   * deletes specified request from Database
+   * @param requestID the ID of the request you want to delete
+   * @return whether the operation was carried out successfully
+   */
   public boolean deleteRequest(int requestID) {
     return requestsTable.deleteRequest(requestID);
   }
 
+  /**
+   * retrieves all requests from the Database
+   * @return all requests in the database as a HashSet
+   */
   public HashSet<Request> getAllRequests() {
     return requestsTable.getAllRequests();
   }
 
+  /**
+   * retrieves a single request from the database
+   * @param requestID the ID of the desired request
+   * @return a Request of type Request from the Database
+   */
   public Request getRequest(int requestID) {
     return requestsTable.getRequest(requestID);
   }
 
+  /**
+   * retrieves all requests with the specified senderID
+   * @param senderID the ID of a valid user
+   * @return all of the requests with a senderID matching input or null if invalid ID
+   */
   public HashSet<Request> getRequestBySender(int senderID) {
     return requestsTable.getRequestBySender(senderID);
   }
 
+  /**
+   * retrieves all requests with the specified receiverID
+   * @param receiverID the ID of a valid user
+   * @return all of the requests with a receiverID matching input or null if invalid ID
+   */
   public HashSet<Request> getRequestByReceiver(int receiverID) {
     return requestsTable.getRequestByReceiver(receiverID);
   }
 
+  /**
+   * updates an existing request in the Database (cannot change the ID of an existing request)
+   * @param requestID
+   * @param type
+   * @param senderID
+   * @param receiverID
+   * @param content
+   * @param notes
+   * @return whether the operation was carried out successfully
+   */
   public boolean updateRequest(
       int requestID, RequestType type, int senderID, int receiverID, String content, String notes) {
     return requestsTable.updateRequest(requestID, type, senderID, receiverID, content, notes);
   }
 
   //////////////////////////
+
+  /**
+   *
+   * @param user a User of type User to input into the database
+   * @param password the password to be associated with given user
+   * @return whether or not the operation was carried out successfully
+   */
   boolean addUser(User user, String password) {
     return usersTable.addUser(user, password);
   }
 
+  /**
+   * retrieves a single user from the Database with matching ID
+   * @param id the ID of desired user
+   * @return a User of type User from the Database with matching ID
+   */
   public User getUserById(String id) {
     return usersTable.getUserById(id);
   }
 
+  /**
+   * retrieves a single user from the Database with matching username
+   * @param username the username of desired user
+   * @return a User of type User from the Database with matching username
+   */
   public User getUserByUsername(String username) {
     return usersTable.getUserByUsername(username);
   }
 
+  /**
+   * retrieves all users with matching type from Database
+   * @param userType a UserType of which you want to get users from
+   * @return a HashMap of users with matching type
+   */
   public HashMap<String, User> getUsersByType(UserType userType) {
     return usersTable.getUsersByType(userType);
   }
 
+  /**
+   * deletes a single user from the Database
+   * @param username the username of the desired user to be deleted
+   * @return whether the operation was carried out successfully
+   */
   public boolean deleteUser(String username) {
     return usersTable.deleteUser(username);
   }
@@ -168,7 +317,8 @@ public class DatabaseService {
    * loads CSV files into Database.
    *
    * @param csvPath full path to CSV File. (needs .csv)
-   * @param tableName table name to put CSV File in. --Note table name needs to be in all caps.--
+   * @param tableName table name in which to import CSV data --Note: table name needs to be in all caps.--
+   * @return whether the operation was carried out successfully
    */
   public boolean loadCSVtoTable(String csvPath, String tableName) {
     String str =
@@ -186,6 +336,9 @@ public class DatabaseService {
     }
   }
 
+  /**
+   * initializes all tables in the database
+   */
   public void initTables() {
     try {
       String str =
