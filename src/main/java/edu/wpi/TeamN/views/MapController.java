@@ -8,6 +8,10 @@ import edu.wpi.TeamN.services.algo.Edge;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.database.DatabaseService;
 import edu.wpi.TeamN.state.HomeState;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,11 +34,6 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
 
 @Slf4j
 public class MapController extends masterController implements Initializable {
@@ -229,8 +228,8 @@ public class MapController extends masterController implements Initializable {
   private void DeleteNodesFromMap() throws IOException {
     int i = 1;
     for (javafx.scene.Node root :
-        mapAnchor.getChildren().subList(1, mapAnchor.getChildren().size() - 1)) {
-      if (root.getId().equals(nodeId.getText())) {
+        mapAnchor.getChildren().subList(i, mapAnchor.getChildren().size())) {
+      if (root.getId().equals(current.getId())) {
         mapAnchor.getChildren().remove(i);
         return;
       } else {
@@ -240,7 +239,7 @@ public class MapController extends masterController implements Initializable {
   }
 
   public void DeleteObjectDataBase() throws IOException {
-    String id = nodeId.getText();
+    String id = current.getId();
     if (adminMap.getNodeSet().containsKey(id)) {
       adminMap.deleteNode(id);
     } else if (adminMap.getEdgeSet().containsKey(id)) {
