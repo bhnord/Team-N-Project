@@ -25,6 +25,7 @@ public class NodeActionHandling implements ActionHandlingI {
           @Override
           public void handle(MouseEvent event) {
             mapNodeEditor.showNodeProperties(root);
+            mapController.setCurrent(root);
           }
         });
   }
@@ -35,7 +36,8 @@ public class NodeActionHandling implements ActionHandlingI {
         new EventHandler<MouseEvent>() {
           @Override
           public void handle(MouseEvent event) {
-            //            mapController.getCurrent().setText(root.getId());
+            mapEdgeEditor.showEdgeProperties(root);
+            mapController.setCurrent(root);
           }
         });
   }
