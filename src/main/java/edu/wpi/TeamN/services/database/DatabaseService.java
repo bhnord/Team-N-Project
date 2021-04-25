@@ -29,7 +29,6 @@ public class DatabaseService {
   @Inject EdgesTable edgesTable;
   @Inject RequestsTable requestsTable;
 
-
   @Inject
   DatabaseService(Connection connection) {
     this.connection = connection;
@@ -44,6 +43,7 @@ public class DatabaseService {
 
   /**
    * retrieves all nodes from the Database
+   *
    * @return all nodes in the database as a HashSet
    */
   public HashSet<Node> getAllNodes() {
@@ -52,6 +52,7 @@ public class DatabaseService {
 
   /**
    * retrieves all nodes from the Database
+   *
    * @return all nodes in the database as a HashMap
    */
   public HashMap<String, Node> getAllNodesMap() {
@@ -60,6 +61,7 @@ public class DatabaseService {
 
   /**
    * retrieves single node from Database
+   *
    * @param nodeID the ID of the node that you want to retrieve
    * @return a Node of type Node from the database
    */
@@ -69,6 +71,7 @@ public class DatabaseService {
 
   /**
    * adds node to the Database
+   *
    * @param node a Node of type Node to add to the Database
    * @return whether the operation was carried out successfully
    */
@@ -78,6 +81,7 @@ public class DatabaseService {
 
   /**
    * updates node in Database based on given ID (you cannot change the ID of a node once set)
+   *
    * @param id the ID of the desired node to be changed
    * @param x
    * @param y
@@ -102,6 +106,7 @@ public class DatabaseService {
 
   /**
    * deletes a single node from the database
+   *
    * @param nodeID the ID of the node you want to delete
    * @return whether the operation was carried out successfully
    */
@@ -109,17 +114,15 @@ public class DatabaseService {
     return nodesTable.deleteNode(nodeID);
   }
 
-  /**
-   * DELETES ALL DATA IN NODES TABLE
-   */
+  /** DELETES ALL DATA IN NODES TABLE */
   public void deleteNodeRows() {
     nodesTable.deleteNodeRows();
   }
 
-
   /// EDGES
   /**
    * retrieves all edges from the Database
+   *
    * @return all edges in the database as a HashSet
    */
   public HashSet<Edge> getAllEdges() {
@@ -128,6 +131,7 @@ public class DatabaseService {
 
   /**
    * retrieves all edges from the Database
+   *
    * @return all edges in the database as a HashMap
    */
   public HashMap<String, Edge> getAllEdgesMap() {
@@ -136,6 +140,7 @@ public class DatabaseService {
 
   /**
    * adds an edge to the Database
+   *
    * @param edge an Edge of type Edge to add to the Database
    * @return whether the operation was carried out successfully
    */
@@ -145,6 +150,7 @@ public class DatabaseService {
 
   /**
    * retrieves a single edge from the database
+   *
    * @param edgeID the ID of the desired edge
    * @return an Edge of type Edge from the Database
    */
@@ -154,6 +160,7 @@ public class DatabaseService {
 
   /**
    * updates an existing edge in the Database (cannot change the ID of an existing edge)
+   *
    * @param edgeID the ID of the edge you want to change
    * @param startNodeID the valid ID of a node
    * @param endNodeID the valid ID of a node
@@ -165,6 +172,7 @@ public class DatabaseService {
 
   /**
    * deletes specified edge from the Database
+   *
    * @param edgeID the ID of the edge you want to delete
    * @return whether the operation was carried out successfully
    */
@@ -174,6 +182,7 @@ public class DatabaseService {
 
   /**
    * retrieves all edges with the specified start node
+   *
    * @param startNodeID the ID of a valid node
    * @return all of the edges with a start node matching input or null if invalid ID
    */
@@ -183,6 +192,7 @@ public class DatabaseService {
 
   /**
    * retrieves all edges with the specified end node
+   *
    * @param endNodeID the ID of a valid node
    * @return all of the edges with an end node matching input or null if invalid ID
    */
@@ -190,15 +200,14 @@ public class DatabaseService {
     return edgesTable.getEdgesFromEndNode(endNodeID);
   }
 
-  /**
-   * DELETES ALL DATA IN EDGES TABLE
-   */
+  /** DELETES ALL DATA IN EDGES TABLE */
   public void deleteEdgeRows() {
     edgesTable.deleteEdgeRows();
   }
 
   /**
    * adds a request to the Database
+   *
    * @param request a Request of type Request to add to the Database
    * @return whether the operation was carried out successfully
    */
@@ -208,6 +217,7 @@ public class DatabaseService {
 
   /**
    * deletes specified request from Database
+   *
    * @param requestID the ID of the request you want to delete
    * @return whether the operation was carried out successfully
    */
@@ -217,6 +227,7 @@ public class DatabaseService {
 
   /**
    * retrieves all requests from the Database
+   *
    * @return all requests in the database as a HashSet
    */
   public HashSet<Request> getAllRequests() {
@@ -225,6 +236,7 @@ public class DatabaseService {
 
   /**
    * retrieves a single request from the database
+   *
    * @param requestID the ID of the desired request
    * @return a Request of type Request from the Database
    */
@@ -234,6 +246,7 @@ public class DatabaseService {
 
   /**
    * retrieves all requests with the specified senderID
+   *
    * @param senderID the ID of a valid user
    * @return all of the requests with a senderID matching input or null if invalid ID
    */
@@ -243,6 +256,7 @@ public class DatabaseService {
 
   /**
    * retrieves all requests with the specified receiverID
+   *
    * @param receiverID the ID of a valid user
    * @return all of the requests with a receiverID matching input or null if invalid ID
    */
@@ -252,6 +266,7 @@ public class DatabaseService {
 
   /**
    * updates an existing request in the Database (cannot change the ID of an existing request)
+   *
    * @param requestID
    * @param type
    * @param senderID
@@ -268,7 +283,6 @@ public class DatabaseService {
   //////////////////////////
 
   /**
-   *
    * @param user a User of type User to input into the database
    * @param password the password to be associated with given user
    * @return whether or not the operation was carried out successfully
@@ -279,6 +293,7 @@ public class DatabaseService {
 
   /**
    * retrieves a single user from the Database with matching ID
+   *
    * @param id the ID of desired user
    * @return a User of type User from the Database with matching ID
    */
@@ -288,6 +303,7 @@ public class DatabaseService {
 
   /**
    * retrieves a single user from the Database with matching username
+   *
    * @param username the username of desired user
    * @return a User of type User from the Database with matching username
    */
@@ -297,6 +313,7 @@ public class DatabaseService {
 
   /**
    * retrieves all users with matching type from Database
+   *
    * @param userType a UserType of which you want to get users from
    * @return a HashMap of users with matching type
    */
@@ -306,6 +323,7 @@ public class DatabaseService {
 
   /**
    * deletes a single user from the Database
+   *
    * @param username the username of the desired user to be deleted
    * @return whether the operation was carried out successfully
    */
@@ -317,7 +335,8 @@ public class DatabaseService {
    * loads CSV files into Database.
    *
    * @param csvPath full path to CSV File. (needs .csv)
-   * @param tableName table name in which to import CSV data --Note: table name needs to be in all caps.--
+   * @param tableName table name in which to import CSV data --Note: table name needs to be in all
+   *     caps.--
    * @return whether the operation was carried out successfully
    */
   public boolean loadCSVtoTable(String csvPath, String tableName) {
@@ -336,9 +355,7 @@ public class DatabaseService {
     }
   }
 
-  /**
-   * initializes all tables in the database
-   */
+  /** initializes all tables in the database */
   public void initTables() {
     try {
       String str =
