@@ -5,9 +5,10 @@ import edu.wpi.TeamN.services.algo.Edge;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.database.requests.Request;
 import edu.wpi.TeamN.services.database.requests.RequestType;
-import edu.wpi.TeamN.services.database.users.*;
+import edu.wpi.TeamN.services.database.users.Employee;
+import edu.wpi.TeamN.services.database.users.User;
+import edu.wpi.TeamN.services.database.users.UserType;
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
@@ -16,13 +17,18 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class DatabaseService {
+  private final Connection connection;
+  private Statement stmt;
+
   /*
    Database service class. This class will be loaded as a Singleton by Guice.
   */
   User currentUser = new Employee("1", "username111"); // TODO IMPLEMENT WITH LOGIN PAGE
+  @Inject UsersTable usersTable;
+  @Inject NodesTable nodesTable;
+  @Inject EdgesTable edgesTable;
+  @Inject RequestsTable requestsTable;
 
-  private final Connection connection;
-  private Statement stmt;
 
   @Inject
   DatabaseService(Connection connection) {
@@ -34,86 +40,45 @@ public class DatabaseService {
     }
   }
 
-  public HashSet<Node> getAllNodes() {
-    String query = "SELECT * FROM NODES";
-    try {
-      ResultSet nodes = stmt.executeQuery(query);
-      return resultSetToNodes(nodes);
-    } catch (SQLException e) {
-      e.printStackTrace();
-      return null;
-    }
-  }
+  /// NODES
 
-  public HashMap<String, Node> getAllNodesMap() {
-    HashSet<Node> nodeSet = getAllNodes();
-    HashMap<String, Node> nodeMap = new HashMap<>();
-    for (Node node : nodeSet) {
-      nodeMap.put(node.get_nodeID(), node);
-    }
-    return nodeMap;
+  /**
+   * retrieves all nodes from the Database
+   * @return all nodes in the database as a HashSet
+   */
+  public HashSet<Node> getAllNodes() {
+    return nodesTable.getAllNodes();
   }
 
   /**
-   * gets node from the NODES table
-   *
-   * @param nodeID
-   * @return node from table
+   * retrieves all nodes from the Database
+   * @return all nodes in the database as a HashMap
+   */
+  public HashMap<String, Node> getAllNodesMap() {
+    return nodesTable.getAllNodesMap();
+  }
+
+  /**
+   * retrieves single node from Database
+   * @param nodeID the ID of the node that you want to retrieve
+   * @return a Node of type Node from the database
    */
   public Node getNode(String nodeID) {
-    String query = "SELECT * FROM NODES WHERE id = '" + nodeID + "'";
-    try {
-      ResultSet rs = stmt.executeQuery(query);
-      HashSet<Node> set = resultSetToNodes(rs);
-      if (set.size() > 0) {
-        return (Node) set.toArray()[0];
-      } else {
-        return null;
-      }
-    } catch (SQLException e) {
-      e.printStackTrace();
-      return null;
-    }
+    return nodesTable.getNode(nodeID);
   }
 
   /**
-   * adds given node to the NODES table
-   *
-   * @param node the node to add to table
-   * @return whether operation was carried out successfully
+   * adds node to the Database
+   * @param node a Node of type Node to add to the Database
+   * @return whether the operation was carried out successfully
    */
   public boolean addNode(Node node) {
-    String query =
-        "INSERT INTO NODES VALUES ('"
-            + node.get_nodeID()
-            + "', "
-            + node.get_x()
-            + ", "
-            + node.get_y()
-            + ", '"
-            + node.get_floor()
-            + "', '"
-            + node.get_building()
-            + "', '"
-            + node.get_nodeType()
-            + "', '"
-            + node.get_longName()
-            + "', '"
-            + node.get_shortName()
-            + "')";
-    try {
-      stmt.execute(query);
-      return true;
-    } catch (SQLException e) {
-      e.printStackTrace();
-      return false;
-    }
+    return nodesTable.addNode(node);
   }
 
   /**
-   * updates selected node data (id stays the same.)
-   *
-   * @param id
+   * updates node in Database based on given ID (you cannot change the ID of a node once set)
+   * @param id the ID of the desired node to be changed
    * @param x
    * @param y
    * @param floor
@@ -121,7 +86,7 @@ public class DatabaseService {
    * @param nodeType
    * @param longName
    * @param shortName
-   * @return
+   * @return whether the operation was carried out successfully
    */
   public boolean updateNode(
       String id,
@@ -132,177 +97,228 @@ public class DatabaseService {
       String nodeType,
       String longName,
       String shortName) {
-    String str =
-        "UPDATE NODES SET xcoord = "
-            + x
-            + ",ycoord = "
-            + y
-            + ", floor = "
-            + floor
-            + ", building = "
-            + building
-            + ", nodeType = "
-            + nodeType
-            + ", longName = "
-            + longName
-            + ", shortName = "
-            + shortName
-            + " WHERE id ="
-            + id;
-    try {
-      stmt.execute(str);
-      return true;
-    } catch (SQLException e) {
-      e.printStackTrace();
-      return false;
-    }
-  }
-
-  /** deletes all rows from NODES table */
-  public void deleteNodeRows() {
-    String str = "DELETE FROM NODES";
-    try {
-      stmt.execute(str);
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
+    return nodesTable.updateNode(id, x, y, floor, building, nodeType, longName, shortName);
   }
 
   /**
-   * deletes node from DB - WILL ALSO DELETE ANY ASSOCIATED EDGES -
-   *
-   * @param nodeID node's id
+   * deletes a single node from the database
+   * @param nodeID the ID of the node you want to delete
    * @return whether the operation was carried out successfully
    */
   public boolean deleteNode(String nodeID) {
-    String st = "DELETE FROM NODES WHERE id = '" + nodeID + "'";
-    try {
-      stmt.execute(st);
-      return true;
-    } catch (SQLException e) {
-      e.printStackTrace();
-      return false;
-    }
+    return nodesTable.deleteNode(nodeID);
   }
 
-  public boolean addEdge(Edge e) {
-    String str =
-        "INSERT INTO EDGES VALUES ('"
-            + e.getEdgeID()
-            + "', '"
-            + e.getStartNode()
-            + "', '"
-            + e.getEndNode()
-            + "')";
-    try {
-      stmt.execute(str);
-      return true;
-    } catch (SQLException exception) {
-      exception.printStackTrace();
-      return false;
-    }
+  /**
+   * DELETES ALL DATA IN NODES TABLE
+   */
+  public void deleteNodeRows() {
+    nodesTable.deleteNodeRows();
   }
 
+
+  /// EDGES
+  /**
+   * retrieves all edges from the Database
+   * @return all edges in the database as a HashSet
+   */
   public HashSet<Edge> getAllEdges() {
-    String query = "SELECT * FROM EDGES";
-    try {
-      ResultSet rs = stmt.executeQuery(query);
-      return resultSetToEdges(rs);
-    } catch (SQLException e) {
-      e.printStackTrace();
-      return null;
-    }
+    return edgesTable.getAllEdges();
   }
 
+  /**
+   * retrieves all edges from the Database
+   * @return all edges in the database as a HashMap
+   */
   public HashMap<String, Edge> getAllEdgesMap() {
-    HashSet<Edge> edgeSet = getAllEdges();
-    HashMap<String, Edge> edgeMap = new HashMap<>();
-    for (Edge edge : edgeSet) {
-      edgeMap.put(edge.getEdgeID(), edge);
-    }
-    return edgeMap;
+    return edgesTable.getAllEdgesMap();
   }
 
+  /**
+   * adds an edge to the Database
+   * @param edge an Edge of type Edge to add to the Database
+   * @return whether the operation was carried out successfully
+   */
+  public boolean addEdge(Edge edge) {
+    return edgesTable.addEdge(edge);
+  }
+
+  /**
+   * retrieves a single edge from the database
+   * @param edgeID the ID of the desired edge
+   * @return an Edge of type Edge from the Database
+   */
   public Edge getEdge(String edgeID) {
-    String query = "SELECT * FROM EDGES WHERE id = '" + edgeID + "'";
-    try {
-      ResultSet rs = stmt.executeQuery(query);
-      HashSet<Edge> edge = resultSetToEdges(rs);
-      if (edge.size() > 0) {
-        return (Edge) edge.toArray()[0];
-      } else {
-        return null;
-      }
-    } catch (SQLException e) {
-      e.printStackTrace();
-      return null;
-    }
+    return edgesTable.getEdge(edgeID);
   }
 
+  /**
+   * updates an existing edge in the Database (cannot change the ID of an existing edge)
+   * @param edgeID the ID of the edge you want to change
+   * @param startNodeID the valid ID of a node
+   * @param endNodeID the valid ID of a node
+   * @return whether the operation was carried out successfully
+   */
   public boolean updateEdge(String edgeID, String startNodeID, String endNodeID) {
-    String str =
-        "UPDATE EDGES SET startNodeID = "
-            + startNodeID
-            + ", endNodeID = "
-            + endNodeID
-            + " WHERE edgeID = "
-            + edgeID;
-    try {
-      stmt.execute(str);
-      return true;
-    } catch (SQLException e) {
-      e.printStackTrace();
-      return false;
-    }
+    return edgesTable.updateEdge(edgeID, startNodeID, endNodeID);
   }
 
+  /**
+   * deletes specified edge from the Database
+   * @param edgeID the ID of the edge you want to delete
+   * @return whether the operation was carried out successfully
+   */
   public boolean deleteEdge(String edgeID) {
-    String st = "DELETE FROM EDGES WHERE id = '" + edgeID + "'";
-    try {
-      stmt.execute(st);
-      return true;
-    } catch (SQLException e) {
-      e.printStackTrace();
-      return false;
-    }
+    return edgesTable.deleteEdge(edgeID);
   }
 
-  public HashSet<Edge> getEdgesFromStartNode(String startNode) {
-    String query = "SELECT * FROM EDGES WHERE StartNodeID = '" + startNode + "'";
-    try {
-      ResultSet rs = stmt.executeQuery(query);
-      return resultSetToEdges(rs);
-    } catch (SQLException e) {
-      e.printStackTrace();
-      return null;
-    }
+  /**
+   * retrieves all edges with the specified start node
+   * @param startNodeID the ID of a valid node
+   * @return all of the edges with a start node matching input or null if invalid ID
+   */
+  public HashSet<Edge> getEdgesFromStartNode(String startNodeID) {
+    return edgesTable.getEdgesFromStartNode(startNodeID);
   }
 
-  public HashSet<Edge> getEdgesFromEndNode(String endNode) {
-    String query = "SELECT * FROM EDGES WHERE EndNodeID = '" + endNode + "'";
-    try {
-      ResultSet rs = stmt.executeQuery(query);
-      return resultSetToEdges(rs);
-    } catch (SQLException e) {
-      e.printStackTrace();
-      return null;
-    }
+  /**
+   * retrieves all edges with the specified end node
+   * @param endNodeID the ID of a valid node
+   * @return all of the edges with an end node matching input or null if invalid ID
+   */
+  public HashSet<Edge> getEdgesFromEndNode(String endNodeID) {
+    return edgesTable.getEdgesFromEndNode(endNodeID);
   }
 
+  /**
+   * DELETES ALL DATA IN EDGES TABLE
+   */
   public void deleteEdgeRows() {
-    String str = "DELETE FROM EDGES";
-    try {
-      stmt.execute(str);
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
+    edgesTable.deleteEdgeRows();
+  }
+
+  /**
+   * adds a request to the Database
+   * @param request a Request of type Request to add to the Database
+   * @return whether the operation was carried out successfully
+   */
+  public boolean addRequest(Request request) {
+    return requestsTable.addRequest(request, currentUser);
+  }
+
+  /**
+   * deletes specified request from Database
+   * @param requestID the ID of the request you want to delete
+   * @return whether the operation was carried out successfully
+   */
+  public boolean deleteRequest(int requestID) {
+    return requestsTable.deleteRequest(requestID);
+  }
+
+  /**
+   * retrieves all requests from the Database
+   * @return all requests in the database as a HashSet
+   */
+  public HashSet<Request> getAllRequests() {
+    return requestsTable.getAllRequests();
+  }
+
+  /**
+   * retrieves a single request from the database
+   * @param requestID the ID of the desired request
+   * @return a Request of type Request from the Database
+   */
+  public Request getRequest(int requestID) {
+    return requestsTable.getRequest(requestID);
+  }
+
+  /**
+   * retrieves all requests with the specified senderID
+   * @param senderID the ID of a valid user
+   * @return all of the requests with a senderID matching input or null if invalid ID
+   */
+  public HashSet<Request> getRequestBySender(int senderID) {
+    return requestsTable.getRequestBySender(senderID);
+  }
+
+  /**
+   * retrieves all requests with the specified receiverID
+   * @param receiverID the ID of a valid user
+   * @return all of the requests with a receiverID matching input or null if invalid ID
+   */
+  public HashSet<Request> getRequestByReceiver(int receiverID) {
+    return requestsTable.getRequestByReceiver(receiverID);
+  }
+
+  /**
+   * updates an existing request in the Database (cannot change the ID of an existing request)
+   * @param requestID
+   * @param type
+   * @param senderID
+   * @param receiverID
+   * @param content
+   * @param notes
+   * @return whether the operation was carried out successfully
+   */
+  public boolean updateRequest(
+      int requestID, RequestType type, int senderID, int receiverID, String content, String notes) {
+    return requestsTable.updateRequest(requestID, type, senderID, receiverID, content, notes);
+  }
+
+  //////////////////////////
+
+  /**
+   *
+   * @param user a User of type User to input into the database
+   * @param password the password to be associated with given user
+   * @return whether or not the operation was carried out successfully
+   */
+  boolean addUser(User user, String password) {
+    return usersTable.addUser(user, password);
+  }
+
+  /**
+   * retrieves a single user from the Database with matching ID
+   * @param id the ID of desired user
+   * @return a User of type User from the Database with matching ID
+   */
+  public User getUserById(String id) {
+    return usersTable.getUserById(id);
+  }
+
+  /**
+   * retrieves a single user from the Database with matching username
+   * @param username the username of desired user
+   * @return a User of type User from the Database with matching username
+   */
+  public User getUserByUsername(String username) {
+    return usersTable.getUserByUsername(username);
+  }
+
+  /**
+   * retrieves all users with matching type from Database
+   * @param userType a UserType of which you want to get users from
+   * @return a HashMap of users with matching type
+   */
+  public HashMap<String, User> getUsersByType(UserType userType) {
+    return usersTable.getUsersByType(userType);
+  }
+
+  /**
+   * deletes a single user from the Database
+   * @param username the username of the desired user to be deleted
+   * @return whether the operation was carried out successfully
+   */
+  public boolean deleteUser(String username) {
+    return usersTable.deleteUser(username);
   }
 
   /**
    * loads CSV files into Database.
    *
    * @param csvPath full path to CSV File. (needs .csv)
-   * @param tableName table name to put CSV File in. --Note table name needs to be in all caps.--
+   * @param tableName table name in which to import CSV data --Note: table name needs to be in all caps.--
+   * @return whether the operation was carried out successfully
    */
   public boolean loadCSVtoTable(String csvPath, String tableName) {
     String str =
@@ -320,255 +336,9 @@ public class DatabaseService {
     }
   }
 
-  public boolean addRequest(Request request) {
-    String str =
-        "INSERT INTO REQUESTS (TYPE, SENDERID, RECEIVERID, ROOM, CONTENT, NOTES) VALUES ('"
-            + request.getType()
-            + "', "
-            + currentUser.getId()
-            + ", "
-            + request.getReceiverID()
-            + ", '"
-            + request.getRoomNodeId()
-            + "', '"
-            + request.getContent()
-            + "', '"
-            + request.getNotes()
-            + "')";
-    try {
-      stmt.execute(str);
-      return true;
-    } catch (SQLException e) {
-      e.printStackTrace();
-      return false;
-    }
-  }
-
-  public boolean deleteRequest(int requestID) {
-    String str = "DELETE FROM REQUESTS WHERE id = " + requestID;
-    try {
-      stmt.execute(str);
-      return true;
-    } catch (SQLException e) {
-      e.printStackTrace();
-      return false;
-    }
-  }
-
-  public HashSet<Request> getAllRequests() {
-    String str = "SELECT * FROM REQUESTS";
-    try {
-      ResultSet rs = stmt.executeQuery(str);
-      return resultSetToRequest(rs);
-    } catch (SQLException e) {
-      e.printStackTrace();
-      return new HashSet<Request>();
-    }
-  }
-
-  public Request getReqeust(int requestID) {
-    String str = "SELECT * FROM REQUESTS WHERE id = " + requestID;
-    try {
-      ResultSet rs = stmt.executeQuery(str);
-      return (Request) resultSetToRequest(rs).toArray()[0];
-    } catch (SQLException e) {
-      e.printStackTrace();
-      return null;
-    }
-  }
-
-  public HashSet<Request> getRequestBySender(int senderID) {
-    String str = "SELECT * FROM REQUESTS WHERE SENDERID = " + senderID;
-    try {
-      ResultSet rs = stmt.executeQuery(str);
-      return resultSetToRequest(rs);
-    } catch (SQLException e) {
-      e.printStackTrace();
-      return new HashSet<Request>();
-    }
-  }
-
-  public HashSet<Request> getRequestByReceiver(int receiverID) {
-    String str = "SELECT * FROM REQUESTS WHERE SENDERID = " + receiverID;
-    try {
-      ResultSet rs = stmt.executeQuery(str);
-      return resultSetToRequest(rs);
-    } catch (SQLException e) {
-      e.printStackTrace();
-      return new HashSet<Request>();
-    }
-  }
-
-  public boolean updateRequest(
-      int requestID, RequestType type, int senderID, int receiverID, String content, String notes) {
-    String str =
-        "UPDATE REQUESTS SET TYPE = "
-            + type.toString()
-            + ", SENDERID = "
-            + senderID
-            + ", RECEIVERID = "
-            + receiverID
-            + ", CONTENT = "
-            + content
-            + ", NOTES = "
-            + notes
-            + " WHERE ID = "
-            + requestID;
-    try {
-      stmt.execute(str);
-      return true;
-    } catch (SQLException e) {
-      e.printStackTrace();
-      return false;
-    }
-  }
-
-  public boolean addUser(User user, String password) {
-    String str =
-        "INSERT INTO USERS VALUES ("
-            + user.getId()
-            + ", '"
-            + user.getUsername()
-            + "', '"
-            + password
-            + "', '"
-            + user.getType().toString()
-            + "')";
-    try {
-      stmt.execute(str);
-      return true;
-    } catch (SQLException e) {
-      e.printStackTrace();
-      return false;
-    }
-  }
-
-  public User getUserById(String id) {
-    String str = "SELECT * FROM USERS WHERE ID = " + id;
-    try {
-      ResultSet rs = stmt.executeQuery(str);
-      return (User) resultSetToUsers(rs).toArray()[0];
-    } catch (SQLException e) {
-      return null;
-    }
-  }
-
-  public User getUserByUsername(String username) {
-    String str = "SELECT * FROM USERS WHERE USERNAME = " + username;
-    try {
-      ResultSet rs = stmt.executeQuery(str);
-      return (User) resultSetToUsers(rs).toArray()[0];
-    } catch (SQLException e) {
-      e.printStackTrace();
-      return null;
-    }
-  }
-
-  public HashMap<String, User> getUsersByType(UserType userType) {
-    String userTypeString =
-        userType.toString().charAt(0) + userType.toString().substring(1).toLowerCase();
-    String str = "SELECT * FROM USERS WHERE USERTYPE = '" + userTypeString + "'";
-    HashMap<String, User> userMap = new HashMap<>();
-    try {
-      ResultSet rs = stmt.executeQuery(str);
-      HashSet<User> usersSet = resultSetToUsers(rs);
-      assert usersSet != null;
-      for (User user : usersSet) {
-        userMap.put(user.getId(), user);
-      }
-      return userMap;
-    } catch (SQLException e) {
-      e.printStackTrace();
-      return userMap;
-    }
-  }
-
-  public boolean deleteUser(String username) {
-    String str = "DELETE USERS WHERE USERNAME = " + username;
-    try {
-      stmt.execute(str);
-      return true;
-    } catch (SQLException e) {
-      return false;
-    }
-  }
-
-  private HashSet<User> resultSetToUsers(ResultSet rs) {
-    HashSet<User> users = new HashSet<>();
-    try {
-      while (rs.next()) {
-        switch (rs.getString("USERTYPE")) {
-          case "Patient":
-            users.add(new Patient(rs.getString("ID"), rs.getString("USERNAME")));
-            break;
-          case "Employee":
-            users.add(new Employee(rs.getString("ID"), rs.getString("USERNAME")));
-            break;
-          case "Administrator":
-            users.add(new Administrator(rs.getString("ID"), rs.getString("USERNAME")));
-            break;
-        }
-      }
-      return users;
-    } catch (SQLException e) {
-      e.printStackTrace();
-      return null;
-    }
-  }
-
-  private HashSet<Request> resultSetToRequest(ResultSet rs) throws SQLException {
-    HashSet<Request> requests = new HashSet<>();
-    while (rs.next()) {
-      requests.add(
-          new Request(
-              RequestType.valueOf(rs.getString("TYPE")),
-              rs.getInt("ID"),
-              rs.getInt("SENDERID"),
-              rs.getInt("RECEIVERID"),
-              rs.getString("ROOM"),
-              rs.getString("CONTENT"),
-              rs.getString("NOTES")));
-    }
-    return requests;
-  }
-
-  private HashSet<Node> resultSetToNodes(ResultSet rs) {
-    HashSet<Node> nodeSet = new HashSet<>();
-    try {
-      while (rs.next()) {
-        String nodeID = rs.getString("id");
-        String floor = rs.getString("FLOOR");
-        String building = rs.getString("BUILDING");
-        String nodeType = rs.getString("NODETYPE");
-        String longName = rs.getString("LONGNAME");
-        String shortName = rs.getString("SHORTNAME");
-        double xPos = rs.getDouble("XCOORD");
-        double yPos = rs.getDouble("YCOORD");
-        nodeSet.add(new Node(xPos, yPos, nodeID, floor, building, nodeType, longName, shortName));
-      }
-      return nodeSet;
-    } catch (SQLException e) {
-      e.printStackTrace();
-      return null;
-    }
-  }
-
-  private HashSet<Edge> resultSetToEdges(ResultSet rs) {
-    HashSet<Edge> edgeSet = new HashSet<>();
-    try {
-      while (rs.next()) {
-        String edgeID = rs.getString("id");
-        String startNode = rs.getString("StartNodeID");
-        String endNode = rs.getString("EndNodeID");
-        edgeSet.add(new Edge(edgeID, startNode, endNode));
-      }
-      return edgeSet;
-    } catch (SQLException e) {
-      e.printStackTrace();
-      return null;
-    }
-  }
-
+  /**
+   * initializes all tables in the database
+   */
   public void initTables() {
     try {
       String str =
