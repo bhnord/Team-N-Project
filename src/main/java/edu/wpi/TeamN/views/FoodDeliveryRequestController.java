@@ -11,6 +11,10 @@ import edu.wpi.TeamN.services.database.users.User;
 import edu.wpi.TeamN.services.database.users.UserType;
 import edu.wpi.TeamN.state.HomeState;
 import edu.wpi.TeamN.state.Login;
+import java.io.IOException;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -29,11 +33,6 @@ import javafx.stage.Stage;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.ResourceBundle;
-
 @Slf4j
 public class FoodDeliveryRequestController extends masterController implements Initializable {
   @Inject DatabaseService db;
@@ -51,7 +50,7 @@ public class FoodDeliveryRequestController extends masterController implements I
   private Scene appPrimaryScene;
   private HashMap<String, User> users;
   private HashMap<String, Node> rooms;
-  @FXML private JFXComboBox<Label> txtEmployeeName = new JFXComboBox<>();
+  @FXML private JFXComboBox<Label> employeeDropDown = new JFXComboBox<>();
   @FXML private JFXComboBox<Label> roomDropdown = new JFXComboBox<>();
   // @FXML private AnchorPane anchorPage;
   static Stage stage;
@@ -136,9 +135,9 @@ public class FoodDeliveryRequestController extends masterController implements I
 
   public void Submit(ActionEvent actionEvent) throws IOException {
 
-    txtEmployeeName.setValidators();
-    if (txtEmployeeName.getSelectionModel().isEmpty() || roomDropdown.getSelectionModel().isEmpty())
-      return;
+    employeeDropDown.setValidators();
+    if (employeeDropDown.getSelectionModel().isEmpty()
+        || roomDropdown.getSelectionModel().isEmpty()) return;
 
     VBox manuContainer = new VBox();
     Label lbl1 = new Label("Are you sure the information you have provided is correct?");
@@ -184,18 +183,21 @@ public class FoodDeliveryRequestController extends masterController implements I
         });
     submit.setDisable(true);
     popup1.show(myStackPane2, JFXPopup.PopupVPosition.BOTTOM, JFXPopup.PopupHPosition.LEFT);
-    db.addRequest(
+    submit.setDisable(true);
+    popup1.show(myStackPane2, JFXPopup.PopupVPosition.BOTTOM, JFXPopup.PopupHPosition.LEFT);
+    Request r =
         new Request(
             RequestType.FOOD_DELIVERY,
-            Integer.parseInt(db.getUsersByType(UserType.EMPLOYEE).get("1").getId()),
-            roomDropdown.getValue().getText(),
-            "MainDish:"
+            Integer.parseInt(employeeDropDown.getSelectionModel().getSelectedItem().getId()),
+            roomDropdown.getSelectionModel().getSelectedItem().getId(),
+            " MainDish:"
                 + mainDish.getValue().getText()
                 + ", Side Dish:"
                 + sideDish.getValue().getText()
                 + ", Drink"
                 + drinkDish.getValue().getText(),
-            txtComments.getText()));
+            txtComments.getText());
+    db.addRequest(r);
   }
 
   @FXML
@@ -243,9 +245,9 @@ public class FoodDeliveryRequestController extends masterController implements I
     for (User user : users.values()) {
       Label lbl = new Label(user.getUsername());
       lbl.setId(user.getId());
-      txtEmployeeName.getItems().add((lbl));
+      employeeDropDown.getItems().add((lbl));
     }
-    new AutoCompleteComboBoxListener(txtEmployeeName);
+    new AutoCompleteComboBoxListener(employeeDropDown);
   }
 
   private void loadRoomDropdown() {
