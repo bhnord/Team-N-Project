@@ -87,7 +87,7 @@ public class AdminMap {
 
   public void makeEdge(String id, Node node1, Node node2, Line simpleNode) {
     double distance = node1.heuristic(node2);
-    node1.addNeighbor(id, node2, distance, simpleNode);
-    node2.addNeighbor(id, node1, distance, simpleNode);
+    node1.addNeighbor(id, node2, distance, simpleNode, false);
+    node2.addNeighbor(id, node1, distance, simpleNode, false);
   }
 }
