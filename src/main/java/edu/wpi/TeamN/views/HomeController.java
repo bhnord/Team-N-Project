@@ -41,6 +41,9 @@ public class HomeController extends masterController implements Initializable {
 
   @FXML private ImageView SRbutton;
   @FXML private JFXButton ServiceRequests;
+  @FXML private JFXButton CurrentRequest;
+  @FXML private JFXButton map;
+
   @FXML private GridPane BigBoiPane;
 
   private Scene appPrimaryScene;
@@ -67,6 +70,10 @@ public class HomeController extends masterController implements Initializable {
     // BigBoiPane.set
     ServiceRequests.setStyle(
         "-fx-background-image: url('/images/ButtonSR.png'); -fx-background-size: cover; -fx-background-radius: 25");
+    CurrentRequest.setStyle(
+        "-fx-background-image: url('/images/ButtonCR.png'); -fx-background-size: cover; -fx-background-radius: 25");
+    map.setStyle(
+        "-fx-background-image: url('/images/ButtonM.png'); -fx-background-size: cover; -fx-background-radius: 25");
   }
 
   public void advance(ActionEvent actionEvent) throws IOException {
