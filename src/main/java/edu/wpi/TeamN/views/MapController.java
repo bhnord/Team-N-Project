@@ -228,8 +228,8 @@ public class MapController extends masterController implements Initializable {
   private void DeleteNodesFromMap() throws IOException {
     int i = 1;
     for (javafx.scene.Node root :
-        mapAnchor.getChildren().subList(1, mapAnchor.getChildren().size() - 1)) {
-      if (root.getId().equals(nodeId.getText())) {
+        mapAnchor.getChildren().subList(i, mapAnchor.getChildren().size())) {
+      if (root.getId().equals(current.getId())) {
         mapAnchor.getChildren().remove(i);
         return;
       } else {
@@ -239,7 +239,7 @@ public class MapController extends masterController implements Initializable {
   }
 
   public void DeleteObjectDataBase() throws IOException {
-    String id = nodeId.getText();
+    String id = current.getId();
     if (adminMap.getNodeSet().containsKey(id)) {
       adminMap.deleteNode(id);
     } else if (adminMap.getEdgeSet().containsKey(id)) {
