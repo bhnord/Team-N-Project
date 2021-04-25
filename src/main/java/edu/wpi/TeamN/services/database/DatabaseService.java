@@ -19,7 +19,7 @@ public class DatabaseService {
   /*
    Database service class. This class will be loaded as a Singleton by Guice.
   */
-  User currentUser = new Employee("1", "username111"); // TODO IMPLEMENT WITH LOGIN PAGE
+  User currentUser;
 
   private final Connection connection;
   private Statement stmt;
@@ -617,5 +617,32 @@ public class DatabaseService {
     } catch (SQLException e) {
       e.printStackTrace();
     }
+  }
+
+  /**
+   * logs in to the Database (used to keep track of sending of service requests)
+   *
+   * @param username the username of a valid user
+   * @param password the password of a the same valid user
+   * @return
+   */
+  public boolean login(String username, String password) {
+    String str =
+        "SELECT * FROM USERS WHERE username = '" + username + "' AND password = '" + password + "'";
+    try {
+      ResultSet rs = stmt.executeQuery(str);
+      HashSet<User> set = resultSetToUsers(rs);
+      if (set.size() > 0) {
+        currentUser = (User) set.toArray()[0];
+        return true;
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return false;
+  }
+
+  public User getCurrentUser() {
+    return currentUser;
   }
 }
