@@ -3,12 +3,23 @@ package edu.wpi.TeamN.services.algo;
 import java.util.*;
 
 public class PathFinder {
+  public interface Reduce {
+    boolean isValid(Node.Link l);
+  }
   /**
    * @param start node to start search from
    * @param end target node
    * @return a stack of nodes containing the path from the start to the end
    */
   public ArrayList<Node.Link> Astar(Node start, Node end) {
+    return AstarFull(start, end, (l) -> true);
+  }
+
+  public ArrayList<Node.Link> AstarNoStairs(Node start, Node end) {
+    return AstarFull(start, end, (l) -> !l._isStair);
+  }
+
+  public ArrayList<Node.Link> AstarFull(Node start, Node end, Reduce filter) {
     // Node.reset() should be called on every node accessible to start
     Node curNode;
     start.set_localGoal(0);
@@ -24,6 +35,9 @@ public class PathFinder {
         break;
       }
       for (Node.Link l : curNode.get_neighbors()) {
+        if (!filter.isValid(l)) {
+          continue;
+        }
         Node n = l._other;
         double local = curNode.get_localGoal() + l._distance;
         if (!n.is_seen() || n.get_localGoal() > local) {
