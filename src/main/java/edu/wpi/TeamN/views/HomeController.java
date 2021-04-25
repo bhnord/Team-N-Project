@@ -63,18 +63,6 @@ public class HomeController extends masterController implements Initializable {
     logOutButton.setTooltip(ttLogOutButton);
     exit.setTooltip(ttExit);
 
-    // button for SR
-    //    Image imSR = new Image("-fx-background-image: url('/testing/background.jpg')");
-    //    BackgroundImage bgSR =
-    //        new BackgroundImage(
-    //            imSR,
-    //            BackgroundRepeat.NO_REPEAT,
-    //            BackgroundRepeat.NO_REPEAT,
-    //            BackgroundPosition.DEFAULT,
-    //            BackgroundSize.DEFAULT);
-    //    Background bSR = new Background(bgSR);
-    //    ServiceRequests.setBackground(bSR);
-
     BigBoiPane.setMinSize(1366, 768);
     // BigBoiPane.set
     ServiceRequests.setStyle(
