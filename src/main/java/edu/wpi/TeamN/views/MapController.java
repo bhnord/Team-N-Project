@@ -8,11 +8,6 @@ import edu.wpi.TeamN.services.algo.Edge;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.database.DatabaseService;
 import edu.wpi.TeamN.state.HomeState;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
-import java.util.UUID;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -36,6 +31,11 @@ import javafx.stage.Stage;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+
 @Slf4j
 public class MapController extends masterController implements Initializable {
   @FXML private JFXColorPicker colorPicker;
@@ -48,11 +48,12 @@ public class MapController extends masterController implements Initializable {
   @FXML private ImageView mapImageView;
   @FXML private AnchorPane mapAnchor;
 
-  private Node current;
+  private Group current;
   private Node startNodePath;
 
   public final double downScale = .168;
   public final double upScale = 5.9523;
+  private int nodeCount = 0;
 
   private ActionHandlingI actionHandling;
   private AdminMap adminMap;
@@ -71,6 +72,11 @@ public class MapController extends masterController implements Initializable {
   @FXML private JFXTextField nodeType;
   @FXML private JFXTextField XCoord;
   @FXML private JFXTextField YCoord;
+
+  @FXML private JFXTextField edgeID;
+  @FXML private JFXTextField startNode;
+  @FXML private JFXTextField endNode;
+
   Boolean cancelOrSubmit = false;
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
@@ -90,7 +96,7 @@ public class MapController extends masterController implements Initializable {
     colorPicker.setValue(Color.BLUE);
     adminMap = new AdminMap(db);
     mapNodeEditor = new MapNodeEditor(this);
-    mapEdgeEditor = new MapEdgeEditor();
+    mapEdgeEditor = new MapEdgeEditor(this);
     actionHandling = new NodeActionHandling(this, this.mapNodeEditor, this.mapEdgeEditor);
     mapDrawing = new MapDrawing(this);
     mapImageView.setCursor(Cursor.CROSSHAIR);
@@ -123,9 +129,7 @@ public class MapController extends masterController implements Initializable {
    */
   public void placeNodeClick(MouseEvent mouseEvent) throws IOException {
     if (mouseEvent.getButton() == MouseButton.PRIMARY) {
-      //      NameNode nameNodeClass = new NameNode();
-      //      nameNodeClass.confirm(this);
-      placeNode(UUID.randomUUID().toString(), mouseEvent.getX(), mouseEvent.getY());
+      placeNode("node_" + Integer.toString(nodeCount), mouseEvent.getX(), mouseEvent.getY());
     }
 
     setCancelOrSubmit(false);
@@ -170,6 +174,8 @@ public class MapController extends masterController implements Initializable {
     root.setCursor(Cursor.CROSSHAIR);
     if (!adminMap.getNodeSet().containsKey(id)) {
       adminMap.addNode(n);
+      mapNodeEditor.showNodeProperties(root);
+      nodeCount++;
     }
   }
 
@@ -187,6 +193,7 @@ public class MapController extends masterController implements Initializable {
     root.setCursor(Cursor.CROSSHAIR);
     if (!adminMap.getEdgeSet().containsKey(id)) {
       adminMap.addEdge(new Edge(id, node1.get_nodeID(), node2.get_nodeID()));
+      mapEdgeEditor.showEdgeProperties(root);
     }
   }
 
@@ -371,13 +378,43 @@ public class MapController extends masterController implements Initializable {
     return YCoord;
   }
 
-  public DatabaseService getDb() {
-    return db;
-  }
-
   public void saveNode(ActionEvent actionEvent) {
-    mapNodeEditor.commitChanges(actionEvent);
+    mapNodeEditor.commitChanges(current);
   }
 
-  public void saveEdge(ActionEvent actionEvent) {}
+  public void setCurrent(Group current) {
+    this.current = current;
+  }
+
+  public Group getCurrent() {
+    return current;
+  }
+
+  public void saveEdge(ActionEvent actionEvent) {
+    mapEdgeEditor.saveEdge(current);
+  }
+
+  public JFXTextField getEdgeID() {
+    return edgeID;
+  }
+
+  public JFXTextField getStartNode() {
+    return startNode;
+  }
+
+  public JFXTextField getEndNode() {
+    return endNode;
+  }
+
+  public void setEdgeID(String s) {
+    edgeID.setText(s);
+  }
+
+  public void setStartNode(String s) {
+    startNode.setText(s);
+  }
+
+  public void setEndNode(String s) {
+    endNode.setText(s);
+  }
 }
