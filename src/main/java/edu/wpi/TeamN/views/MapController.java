@@ -8,10 +8,6 @@ import edu.wpi.TeamN.services.algo.Edge;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.database.DatabaseService;
 import edu.wpi.TeamN.state.HomeState;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -34,6 +30,11 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 @Slf4j
 public class MapController extends masterController implements Initializable {
@@ -204,15 +205,11 @@ public class MapController extends masterController implements Initializable {
    */
   // Reloading the map scene
   public void clear(ActionEvent actionEvent) throws IOException {
-    Parent root = loader.load(getClass().getResourceAsStream("map.fxml"));
+    Parent root = loader.load(getClass().getResourceAsStream("mapAdmin.fxml"));
     Screen screen = Screen.getPrimary();
     Rectangle2D bounds = screen.getVisualBounds();
 
     Stage stage = (Stage) appPrimaryScene.getWindow();
-    // stage.setX(bounds.getMinX());
-    // stage.setY(bounds.getMinY());
-    // stage.setWidth(bounds.getWidth());
-    // stage.setHeight(bounds.getHeight());
     appPrimaryScene.setRoot(root);
   }
 
@@ -303,10 +300,6 @@ public class MapController extends masterController implements Initializable {
 
   public double getUpScale() {
     return upScale;
-  }
-
-  public MapDrawing getMapDrawing() {
-    return mapDrawing;
   }
 
   public AdminMap getAdminMap() {
