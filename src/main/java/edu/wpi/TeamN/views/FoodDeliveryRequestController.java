@@ -5,14 +5,12 @@ import com.jfoenix.controls.*;
 import com.jfoenix.validation.RequiredFieldValidator;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.database.DatabaseService;
+import edu.wpi.TeamN.services.database.requests.Request;
+import edu.wpi.TeamN.services.database.requests.RequestType;
 import edu.wpi.TeamN.services.database.users.User;
 import edu.wpi.TeamN.services.database.users.UserType;
 import edu.wpi.TeamN.state.HomeState;
 import edu.wpi.TeamN.state.Login;
-import java.io.IOException;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -30,6 +28,11 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.ResourceBundle;
 
 @Slf4j
 public class FoodDeliveryRequestController extends masterController implements Initializable {
@@ -181,6 +184,18 @@ public class FoodDeliveryRequestController extends masterController implements I
         });
     submit.setDisable(true);
     popup1.show(myStackPane2, JFXPopup.PopupVPosition.BOTTOM, JFXPopup.PopupHPosition.LEFT);
+    db.addRequest(
+        new Request(
+            RequestType.FOOD_DELIVERY,
+            Integer.parseInt(db.getUsersByType(UserType.EMPLOYEE).get("1").getId()),
+            roomDropdown.getValue().getText(),
+            "MainDish:"
+                + mainDish.getValue().getText()
+                + ", Side Dish:"
+                + sideDish.getValue().getText()
+                + ", Drink"
+                + drinkDish.getValue().getText(),
+            txtComments.getText()));
   }
 
   @FXML
