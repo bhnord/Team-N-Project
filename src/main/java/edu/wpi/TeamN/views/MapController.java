@@ -2,10 +2,8 @@ package edu.wpi.TeamN.views;
 
 import com.google.inject.Inject;
 import com.jfoenix.controls.JFXColorPicker;
-import edu.wpi.TeamN.MapEntity.ActionHandlingI;
-import edu.wpi.TeamN.MapEntity.AdminMap;
-import edu.wpi.TeamN.MapEntity.MapDrawing;
-import edu.wpi.TeamN.MapEntity.NodeActionHandling;
+import com.jfoenix.controls.JFXTextField;
+import edu.wpi.TeamN.MapEntity.*;
 import edu.wpi.TeamN.services.algo.Edge;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.database.DatabaseService;
@@ -14,11 +12,13 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.UUID;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -45,10 +45,10 @@ public class MapController extends masterController implements Initializable {
 
   @FXML private Label XLabel;
   @FXML private Label YLabel;
-  @FXML private Label current;
   @FXML private ImageView mapImageView;
-
   @FXML private AnchorPane mapAnchor;
+
+  private Node current;
   private Node startNodePath;
 
   public final double downScale = .168;
@@ -57,17 +57,21 @@ public class MapController extends masterController implements Initializable {
   private ActionHandlingI actionHandling;
   private AdminMap adminMap;
   private MapDrawing mapDrawing;
+  private MapNodeEditor mapNodeEditor;
+  private MapEdgeEditor mapEdgeEditor;
 
   private Scene appPrimaryScene;
   ArrayList<Node.Link> path = new ArrayList<>();
 
-  String nodeName;
-  String buildings;
-  String floors;
-  String longnames;
-  String shortname;
+  @FXML private JFXTextField nodeId;
+  @FXML private JFXTextField building;
+  @FXML private JFXTextField floor;
+  @FXML private JFXTextField longName;
+  @FXML private JFXTextField shortName;
+  @FXML private JFXTextField nodeType;
+  @FXML private JFXTextField XCoord;
+  @FXML private JFXTextField YCoord;
   Boolean cancelOrSubmit = false;
-
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
    * JavaFX thread
@@ -85,8 +89,11 @@ public class MapController extends masterController implements Initializable {
     log.debug(state.toString());
     colorPicker.setValue(Color.BLUE);
     adminMap = new AdminMap(db);
-    actionHandling = new NodeActionHandling(this);
+    mapNodeEditor = new MapNodeEditor(this);
+    mapEdgeEditor = new MapEdgeEditor();
+    actionHandling = new NodeActionHandling(this, this.mapNodeEditor, this.mapEdgeEditor);
     mapDrawing = new MapDrawing(this);
+    mapImageView.setCursor(Cursor.CROSSHAIR);
     this.Load(new ActionEvent());
   }
 
@@ -116,23 +123,12 @@ public class MapController extends masterController implements Initializable {
    */
   public void placeNodeClick(MouseEvent mouseEvent) throws IOException {
     if (mouseEvent.getButton() == MouseButton.PRIMARY) {
-      NameNode nameNodeClass = new NameNode();
-      nameNodeClass.confirm(this);
-      if (cancelOrSubmit && !nodeName.equals("")) {
-        placeNode(nodeName, mouseEvent.getX(), mouseEvent.getY());
-      }
+      //      NameNode nameNodeClass = new NameNode();
+      //      nameNodeClass.confirm(this);
+      placeNode(UUID.randomUUID().toString(), mouseEvent.getX(), mouseEvent.getY());
     }
 
     setCancelOrSubmit(false);
-  }
-
-  public void setNodeProperties(
-      String nodeName, String floor, String building, String longname, String shortname) {
-    this.nodeName = nodeName;
-    this.floors = floor;
-    this.longnames = longname;
-    this.shortname = shortname;
-    this.buildings = building;
   }
 
   public void setCancelOrSubmit(Boolean sm) {
@@ -165,15 +161,15 @@ public class MapController extends masterController implements Initializable {
             x * getUpScale(),
             y * getUpScale(),
             id,
-            this.floors,
-            this.buildings,
+            getFloor().getText(),
+            getBuilding().getText(),
             "",
-            this.longnames,
-            this.shortname);
+            getLongName().getText(),
+            getShortName().getText());
     n.set_shape((Shape) root.getChildren().get(0));
+    root.setCursor(Cursor.CROSSHAIR);
     if (!adminMap.getNodeSet().containsKey(id)) {
       adminMap.addNode(n);
-      setNodeProperties("", "", "", "", "");
     }
   }
 
@@ -188,6 +184,7 @@ public class MapController extends masterController implements Initializable {
     adminMap.makeEdge(id, node1, node2, (Line) root.getChildren().get(0));
     actionHandling.setEdgeInfo(root);
     mapAnchor.getChildren().add(root);
+    root.setCursor(Cursor.CROSSHAIR);
     if (!adminMap.getEdgeSet().containsKey(id)) {
       adminMap.addEdge(new Edge(id, node1.get_nodeID(), node2.get_nodeID()));
     }
@@ -226,7 +223,7 @@ public class MapController extends masterController implements Initializable {
     int i = 1;
     for (javafx.scene.Node root :
         mapAnchor.getChildren().subList(1, mapAnchor.getChildren().size() - 1)) {
-      if (root.getId().equals(current.getText())) {
+      if (root.getId().equals(nodeId.getText())) {
         mapAnchor.getChildren().remove(i);
         return;
       } else {
@@ -236,7 +233,7 @@ public class MapController extends masterController implements Initializable {
   }
 
   public void DeleteObjectDataBase() throws IOException {
-    String id = current.getText();
+    String id = nodeId.getText();
     if (adminMap.getNodeSet().containsKey(id)) {
       adminMap.deleteNode(id);
     } else if (adminMap.getEdgeSet().containsKey(id)) {
@@ -244,7 +241,6 @@ public class MapController extends masterController implements Initializable {
     } else {
       System.out.println("Object does not exist");
     }
-    current.setText("No object Selected");
   }
 
   // Loading from the database
@@ -272,11 +268,11 @@ public class MapController extends masterController implements Initializable {
   }
 
   public void SetStartNode(ActionEvent actionEvent) {
-    adminMap.SetStartNode(current.getText());
+    adminMap.SetStartNode(nodeId.getText());
   }
 
   public void SetEndNode(ActionEvent actionEvent) {
-    adminMap.SetEndNode(current.getText());
+    adminMap.SetEndNode(nodeId.getText());
   }
 
   @FXML
@@ -303,10 +299,6 @@ public class MapController extends masterController implements Initializable {
     return upScale;
   }
 
-  public Label getCurrent() {
-    return current;
-  }
-
   public MapDrawing getMapDrawing() {
     return mapDrawing;
   }
@@ -314,4 +306,78 @@ public class MapController extends masterController implements Initializable {
   public AdminMap getAdminMap() {
     return adminMap;
   }
+
+  public void setNodeId(String nodeId) {
+    this.nodeId.setText(nodeId);
+  }
+
+  public void setBuilding(String building) {
+    this.building.setText(building);
+  }
+
+  public void setFloor(String floor) {
+    this.floor.setText(floor);
+  }
+
+  public void setLongName(String longName) {
+    this.longName.setText(longName);
+  }
+
+  public void setShortName(String shortName) {
+    this.shortName.setText(shortName);
+  }
+
+  public void setNodeType(String nodeType) {
+    this.nodeType.setText(nodeType);
+  }
+
+  public void setXCoord(String XCoord) {
+    this.XCoord.setText(XCoord);
+  }
+
+  public void setYCoord(String YCoord) {
+    this.YCoord.setText(YCoord);
+  }
+
+  public JFXTextField getNodeId() {
+    return nodeId;
+  }
+
+  public JFXTextField getBuilding() {
+    return building;
+  }
+
+  public JFXTextField getFloor() {
+    return floor;
+  }
+
+  public JFXTextField getLongName() {
+    return longName;
+  }
+
+  public JFXTextField getShortName() {
+    return shortName;
+  }
+
+  public JFXTextField getNodeType() {
+    return nodeType;
+  }
+
+  public JFXTextField getXCoord() {
+    return XCoord;
+  }
+
+  public JFXTextField getYCoord() {
+    return YCoord;
+  }
+
+  public DatabaseService getDb() {
+    return db;
+  }
+
+  public void saveNode(ActionEvent actionEvent) {
+    mapNodeEditor.commitChanges(actionEvent);
+  }
+
+  public void saveEdge(ActionEvent actionEvent) {}
 }

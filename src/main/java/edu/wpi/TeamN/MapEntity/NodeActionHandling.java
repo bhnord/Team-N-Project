@@ -8,9 +8,14 @@ import javafx.scene.input.MouseEvent;
 public class NodeActionHandling implements ActionHandlingI {
 
   private final MapController mapController;
+  private final MapNodeEditor mapNodeEditor;
+  private final MapEdgeEditor mapEdgeEditor;
 
-  public NodeActionHandling(MapController mapController) {
+  public NodeActionHandling(
+      MapController mapController, MapNodeEditor mapNodeEditor, MapEdgeEditor mapEdgeEditor) {
     this.mapController = mapController;
+    this.mapNodeEditor = mapNodeEditor;
+    this.mapEdgeEditor = mapEdgeEditor;
   }
 
   @Override
@@ -19,7 +24,7 @@ public class NodeActionHandling implements ActionHandlingI {
         new EventHandler<MouseEvent>() {
           @Override
           public void handle(MouseEvent event) {
-            mapController.getCurrent().setText(root.getId());
+            mapNodeEditor.showNodeProperties(root);
           }
         });
   }
@@ -30,7 +35,7 @@ public class NodeActionHandling implements ActionHandlingI {
         new EventHandler<MouseEvent>() {
           @Override
           public void handle(MouseEvent event) {
-            mapController.getCurrent().setText(root.getId());
+            //            mapController.getCurrent().setText(root.getId());
           }
         });
   }

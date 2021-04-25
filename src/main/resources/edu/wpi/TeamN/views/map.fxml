@@ -127,7 +127,6 @@
                   <Button fx:id="Load" mnemonicParsing="false" onAction="#Load" text="Load" />
                   <JFXColorPicker fx:id="colorPicker" onAction="#newColor" promptText="Node Color" />
                   <Button fx:id="deleteCurrent" mnemonicParsing="false" onAction="#deleteCurrent" text="Delete Current" />
-                  <Label fx:id="current" text="Current Object" />
                   <Button mnemonicParsing="false" onAction="#SetStartNode" text="Start Node">
                      <HBox.margin>
                         <Insets left="50.0" />
@@ -186,6 +185,7 @@
                               <Label layoutY="336.0" text="Long Name" />
                               <JFXTextField fx:id="shortName" layoutY="405.0" />
                               <Label layoutY="388.0" text="Short Name" />
+                              <Button layoutY="500" fx:id="savebtnNode" mnemonicParsing="false" onAction="#saveNode" text="Save Node" />
                            </children>
                         </AnchorPane>
                     </content>
@@ -200,6 +200,7 @@
                               <JFXTextField fx:id="startNode" layoutY="81.0" />
                               <Label layoutY="121.0" text="End Node" />
                               <JFXTextField fx:id="endNode" layoutY="138.0" />
+                              <Button layoutY="500" fx:id="savebtnEdge" mnemonicParsing="false" onAction="#saveEdge" text="Save Edge" />
                            </children>
                         </AnchorPane>
                     </content>

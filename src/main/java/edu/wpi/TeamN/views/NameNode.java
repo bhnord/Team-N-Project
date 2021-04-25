@@ -46,15 +46,15 @@ public class NameNode extends masterController implements Initializable {
     box.stage.close();
   }
 
-  @FXML
-  public void submit() {
-    external.setCancelOrSubmit(true);
-    external.setNodeProperties(
-        idName.getText(),
-        floor.getText(),
-        buidling.getText(),
-        longName.getText(),
-        shortName.getText());
-    box.stage.close();
-  }
+  //  @FXML
+  //  public void submit() {
+  //    external.setCancelOrSubmit(true);
+  //    external.setNodeProperties(
+  //        idName.getText(),
+  //        floor.getText(),
+  //        buidling.getText(),
+  //        longName.getText(),
+  //        shortName.getText());
+  //    box.stage.close();
+  //  }
 }
