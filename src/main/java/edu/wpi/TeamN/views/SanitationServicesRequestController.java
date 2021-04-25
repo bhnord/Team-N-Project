@@ -204,17 +204,17 @@ public class SanitationServicesRequestController extends masterController implem
   }
 
   public void help(ActionEvent actionEvent) throws IOException {
-    String title = "Help Page";
+    String title = "Help";
     BoxBlur blur = new BoxBlur(3, 3, 3);
     JFXDialogLayout dialogContent = new JFXDialogLayout();
     dialogContent.setHeading(new Text(title));
     dialogContent.setBody(
         (new Text(
             "* Employee Name refers to the employee being requested to complete the job\n"
-                + "* Patient Room is the room that the employee will deliver the medicine to\n"
-                + "* Time of request refers to time the medicine should be delivered to the patient\n"
-                + "* Necessary Equipment refers to additional services/equipment the patient requires\n"
-                + "* Necessary Equipment refers to additional services/equipment the patient requires\n")));
+                + "* Sanitary location: The place where sanitation is requested.\n"
+                + "* Sanitary details: Why do you need to sanitize this location?(Spills, dirt...)\n"
+                + "* Necessary Equipment: Additional services/equipment the patient requires.\n"
+                + "* Additional comments on the request.\n")));
     JFXButton close = new JFXButton("close");
     close.setButtonType(JFXButton.ButtonType.RAISED);
     close.setStyle("-fx-background-color : #00bfff:");

@@ -41,6 +41,9 @@ public class HomeController extends masterController implements Initializable {
 
   @FXML private ImageView SRbutton;
   @FXML private JFXButton ServiceRequests;
+  @FXML private JFXButton CurrentRequest;
+  @FXML private JFXButton map;
+
   @FXML private GridPane BigBoiPane;
 
   private Scene appPrimaryScene;
@@ -63,22 +66,14 @@ public class HomeController extends masterController implements Initializable {
     logOutButton.setTooltip(ttLogOutButton);
     exit.setTooltip(ttExit);
 
-    // button for SR
-    //    Image imSR = new Image("-fx-background-image: url('/testing/background.jpg')");
-    //    BackgroundImage bgSR =
-    //        new BackgroundImage(
-    //            imSR,
-    //            BackgroundRepeat.NO_REPEAT,
-    //            BackgroundRepeat.NO_REPEAT,
-    //            BackgroundPosition.DEFAULT,
-    //            BackgroundSize.DEFAULT);
-    //    Background bSR = new Background(bgSR);
-    //    ServiceRequests.setBackground(bSR);
-
     BigBoiPane.setMinSize(1366, 768);
     // BigBoiPane.set
     ServiceRequests.setStyle(
         "-fx-background-image: url('/images/ButtonSR.png'); -fx-background-size: cover; -fx-background-radius: 25");
+    CurrentRequest.setStyle(
+        "-fx-background-image: url('/images/ButtonCR.png'); -fx-background-size: cover; -fx-background-radius: 25");
+    map.setStyle(
+        "-fx-background-image: url('/images/ButtonM.png'); -fx-background-size: cover; -fx-background-radius: 25");
   }
 
   public void advance(ActionEvent actionEvent) throws IOException {
