@@ -10,12 +10,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashSet;
 
-public class RequestTable {
+public class RequestsTable {
   private final Connection connection;
   private Statement stmt;
 
   @Inject
-  RequestTable(Connection connection) {
+  RequestsTable(Connection connection) {
     this.connection = connection;
     try {
       this.stmt = connection.createStatement();

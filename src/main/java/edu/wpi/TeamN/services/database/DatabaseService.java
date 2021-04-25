@@ -18,6 +18,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class DatabaseService {
   private final Connection connection;
+  private Statement stmt;
+
   /*
    Database service class. This class will be loaded as a Singleton by Guice.
   */
@@ -25,8 +27,8 @@ public class DatabaseService {
   @Inject UsersTable usersTable;
   @Inject NodesTable nodesTable;
   @Inject EdgesTable edgesTable;
-  @Inject RequestTable requestTable;
-  private Statement stmt;
+  @Inject RequestsTable requestsTable;
+
 
   @Inject
   DatabaseService(Connection connection) {
@@ -113,32 +115,32 @@ public class DatabaseService {
   }
 
   public boolean addRequest(Request request) {
-    return requestTable.addRequest(request, currentUser);
+    return requestsTable.addRequest(request, currentUser);
   }
 
   public boolean deleteRequest(int requestID) {
-    return requestTable.deleteRequest(requestID);
+    return requestsTable.deleteRequest(requestID);
   }
 
   public HashSet<Request> getAllRequests() {
-    return requestTable.getAllRequests();
+    return requestsTable.getAllRequests();
   }
 
   public Request getRequest(int requestID) {
-    return requestTable.getRequest(requestID);
+    return requestsTable.getRequest(requestID);
   }
 
   public HashSet<Request> getRequestBySender(int senderID) {
-    return requestTable.getRequestBySender(senderID);
+    return requestsTable.getRequestBySender(senderID);
   }
 
   public HashSet<Request> getRequestByReceiver(int receiverID) {
-    return requestTable.getRequestByReceiver(receiverID);
+    return requestsTable.getRequestByReceiver(receiverID);
   }
 
   public boolean updateRequest(
       int requestID, RequestType type, int senderID, int receiverID, String content, String notes) {
-    return requestTable.updateRequest(requestID, type, senderID, receiverID, content, notes);
+    return requestsTable.updateRequest(requestID, type, senderID, receiverID, content, notes);
   }
 
   //////////////////////////
