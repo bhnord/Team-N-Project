@@ -102,7 +102,7 @@
                 </JFXButton>
                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0c00ae" height="47.0" layoutX="834.0" layoutY="661.0" stroke="TRANSPARENT" strokeType="INSIDE" width="130.0" />
                 <Rectangle arcHeight="50.0" arcWidth="50.0" fill="WHITE" height="517.0" layoutX="143.0" layoutY="193.0" stroke="TRANSPARENT" strokeType="INSIDE" width="476.0" />
-                <Label fx:id="errorLabel" layoutX="280.0" layoutY="647.0" prefHeight="35.0" prefWidth="160.0" stylesheets="@/Fonts/Roboto-Light.css">
+                <Label fx:id="errorLabel" alignment="CENTER" layoutX="195.0" layoutY="647.0" prefHeight="35.0" prefWidth="296.0" stylesheets="@/Fonts/Roboto-Light.css">
                     <font>
                         <Font size="24.0" />
                     </font>
