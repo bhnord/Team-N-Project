@@ -48,7 +48,7 @@
                         <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                      </GridPane.margin>
                   </JFXButton>
-                  <JFXButton fx:id="map1" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#map" prefHeight="217.0" prefWidth="325.0" style="-fx-background-radius: 0; -fx-background-color: BLUE;" text="MAP" textFill="WHITE">
+                  <JFXButton fx:id="map1" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#map" prefHeight="217.0" prefWidth="325.0" style="-fx-background-radius: 0; -fx-background-color: BLUE;" stylesheets="@/Fonts/Roboto-Black.css" text="MAP" textFill="WHITE">
                      <font>
                         <Font name="Arial Black" size="18.0" />
                      </font>
@@ -81,7 +81,7 @@
                               <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                            </GridPane.margin>
                         </JFXButton>
-                        <JFXButton fx:id="CSVEditor2" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#advanceViews" prefHeight="85.0" prefWidth="273.0" style="-fx-background-radius: 0; -fx-background-color: BLUE;" text="CSV EDGE EDITOR" textFill="WHITE" GridPane.columnIndex="1">
+                        <JFXButton fx:id="CSVEditor2" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#advanceViews" prefHeight="85.0" prefWidth="273.0" style="-fx-background-radius: 0; -fx-background-color: BLUE;" stylesheets="@/Fonts/Roboto-Black.css" text="CSV EDGE EDITOR" textFill="WHITE" GridPane.columnIndex="1">
                            <font>
                               <Font name="Arial Black" size="18.0" />
                            </font>
@@ -89,7 +89,7 @@
                               <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
                            </GridPane.margin>
                         </JFXButton>
-                        <JFXButton fx:id="CSVEditor" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#advanceViews" prefHeight="85.0" prefWidth="273.0" style="-fx-background-radius: 0; -fx-background-color: BLUE;" text="CSV NODE EDITOR" textFill="WHITE">
+                        <JFXButton fx:id="CSVEditor" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#advanceViews" prefHeight="85.0" prefWidth="273.0" style="-fx-background-radius: 0; -fx-background-color: BLUE;" stylesheets="@/Fonts/Roboto-Black.css" text="CSV NODE EDITOR" textFill="WHITE">
                            <font>
                               <Font name="Arial Black" size="18.0" />
                            </font>
@@ -141,7 +141,7 @@
                         <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                      </GridPane.margin>
                   </JFXButton>
-                  <JFXButton fx:id="map" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#map" prefHeight="217.0" prefWidth="325.0" style="-fx-background-radius: 0; -fx-background-color: BLUE;" text="MAP" textFill="WHITE" GridPane.rowIndex="2">
+                  <JFXButton fx:id="map" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#map" prefHeight="217.0" prefWidth="325.0" style="-fx-background-radius: 0; -fx-background-color: BLUE;" stylesheets="@/Fonts/Roboto-Black.css" text="MAP" textFill="WHITE" GridPane.rowIndex="2">
                      <font>
                         <Font name="Arial Black" size="18.0" />
                      </font>
@@ -149,7 +149,7 @@
                         <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
                      </GridPane.margin>
                   </JFXButton>
-                  <JFXButton fx:id="CurrentRequest" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#advanceViews" prefHeight="82.0" prefWidth="406.0" style="-fx-background-radius: 0; -fx-background-color: BLUE;" text="CURRENT REQUESTS" textFill="WHITE" GridPane.rowIndex="1">
+                  <JFXButton fx:id="CurrentRequest" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#advanceViews" prefHeight="82.0" prefWidth="406.0" style="-fx-background-radius: 0; -fx-background-color: BLUE;" stylesheets="@/Fonts/Roboto-Black.css" text="CURRENT REQUESTS" textFill="WHITE" GridPane.rowIndex="1">
                      <font>
                         <Font name="Arial Black" size="18.0" />
                      </font>
@@ -160,7 +160,7 @@
                         <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
                      </GridPane.margin>
                   </JFXButton>
-                  <JFXButton fx:id="ServiceRequests" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#advanceViews" prefHeight="248.0" prefWidth="408.0" style="-fx-background-radius: 0; -fx-background-color: BLUE;" text=" SERVICE REQUESTS" textFill="WHITE" textOverrun="CLIP">
+                  <JFXButton fx:id="ServiceRequests" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#advanceViews" prefHeight="248.0" prefWidth="408.0" style="-fx-background-radius: 0; -fx-background-color: BLUE;" stylesheets="@/Fonts/Roboto-Black.css" text=" SERVICE REQUESTS" textFill="WHITE" textOverrun="CLIP">
                      <font>
                         <Font name="Arial Black" size="18.0" />
                      </font>
