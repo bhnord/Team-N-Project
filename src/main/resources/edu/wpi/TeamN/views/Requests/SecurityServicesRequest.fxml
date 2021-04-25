@@ -122,7 +122,7 @@
                         <Font name="Serif Bold" size="26.0" />
                     </font>
                 </JFXTextField>
-                <JFXTextField fx:id="txtEquipment" onKeyReleased="#validateButton" focusColor="#211edd" labelFloat="true" layoutX="187.0" layoutY="457.0" prefHeight="47.0" prefWidth="372.0" promptText="Necessary Equipment" unFocusColor="WHITE">
+                <JFXTextField fx:id="txtSecurity" onKeyReleased="#validateButton" focusColor="#211edd" labelFloat="true" layoutX="187.0" layoutY="457.0" prefHeight="47.0" prefWidth="372.0" promptText="Specific Security" unFocusColor="WHITE">
                     <font>
                         <Font name="Serif Bold" size="26.0" />
                     </font>
