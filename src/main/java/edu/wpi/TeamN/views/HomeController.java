@@ -64,8 +64,8 @@ public class HomeController extends masterController implements Initializable {
     CovidForm.setTooltip(ttCovidForm);
     logOutButton.setTooltip(ttLogOutButton);
     exit.setTooltip(ttExit);
-    helpS.setDisable(true);
-    helpSB.setDisable(true);
+    // helpS.setDisable(true);
+    // helpSB.setDisable(true);
 
     BigBoiPane.setMinSize(1366, 768);
     // BigBoiPane.set
@@ -75,6 +75,8 @@ public class HomeController extends masterController implements Initializable {
         "-fx-background-image: url('/images/ButtonCR.png'); -fx-background-size: cover; -fx-background-radius: 25");
     map.setStyle(
         "-fx-background-image: url('/images/ButtonM.png'); -fx-background-size: cover; -fx-background-radius: 25");
+    helpS.setStyle(
+        "-fx-background-image: url('/images/ButtonH.png'); -fx-background-size: cover; -fx-background-radius: 25");
   }
 
   public void advance(ActionEvent actionEvent) throws IOException {
