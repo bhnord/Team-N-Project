@@ -41,7 +41,7 @@ public class SecurityServicesRequestController extends masterController implemen
   @FXML private Label errorLabel;
   private Label person1;
   @FXML private JFXTextField txtTimeOfRequest;
-  @FXML private JFXTextField txtEquipment;
+  @FXML private JFXTextField txtSecurity;
   @FXML private JFXTextField txtComments;
   @FXML private Button helpButton;
   @FXML private StackPane myStackPane;
@@ -90,12 +90,12 @@ public class SecurityServicesRequestController extends masterController implemen
               if (!newVal) txtComments.validate();
             });
     reqInputValid.setMessage("Cannot be empty");
-    txtEquipment.getValidators().add(reqInputValid);
-    txtEquipment
+    txtSecurity.getValidators().add(reqInputValid);
+    txtSecurity
         .focusedProperty()
         .addListener(
             (o, oldVal, newVal) -> {
-              if (!newVal) txtEquipment.validate();
+              if (!newVal) txtSecurity.validate();
             });
 
     loadEmployeeDropdown();
@@ -109,7 +109,7 @@ public class SecurityServicesRequestController extends masterController implemen
   @FXML
   private void validateButton() {
     if (!txtTimeOfRequest.getText().isEmpty()
-        && !txtEquipment.getText().isEmpty()
+        && !txtSecurity.getText().isEmpty()
         && !txtComments.getText().isEmpty()) {
       submit.setDisable(false);
     } else {
@@ -161,11 +161,11 @@ public class SecurityServicesRequestController extends masterController implemen
 
     JFXButton continueButton = new JFXButton("Continue");
     continueButton.setButtonType(JFXButton.ButtonType.RAISED);
-    continueButton.setStyle("-fx-background-color : #00bfff:");
+    continueButton.setStyle("-fx-background-color : #00bfff;");
 
     JFXButton cancelButton = new JFXButton("Cancel");
     cancelButton.setButtonType(JFXButton.ButtonType.RAISED);
-    cancelButton.setStyle("-fx-background-color : #00bfff:");
+    cancelButton.setStyle("-fx-background-color : #00bfff;");
 
     cancelButton.setTranslateX(100);
     cancelButton.setTranslateY(65);
@@ -211,13 +211,13 @@ public class SecurityServicesRequestController extends masterController implemen
     dialogContent.setBody(
         (new Text(
             "* Employee Name refers to the employee being requested to complete the job\n"
-                + "* Patient Room is the room that the employee will deliver the medicine to\n"
-                + "* Time of request refers to time the medicine should be delivered to the patient\n"
-                + "* Necessary Equipment refers to additional services/equipment the patient requires\n"
-                + "* Necessary Equipment refers to additional services/equipment the patient requires\n")));
+                + "* Patient Room is the room that the employee will deliver the security request to\n"
+                + "* Time of request refers to time the security choice should be delivered to the patient\n"
+                + "* Security Requests refers to the specific security personnel the patient wants\n"
+                + "* Comments refers to additional services/equipment the patient requires\n")));
     JFXButton close = new JFXButton("close");
     close.setButtonType(JFXButton.ButtonType.RAISED);
-    close.setStyle("-fx-background-color : #00bfff:");
+    close.setStyle("-fx-background-color : #00bfff;");
     dialogContent.setActions(close);
 
     JFXDialog dialog = new JFXDialog(myStackPane, dialogContent, JFXDialog.DialogTransition.BOTTOM);
