@@ -1,8 +1,21 @@
 package edu.wpi.TeamN.services.database.users;
 
 public enum UserType {
-  ADMINISTRATOR,
-  EMPLOYEE,
-  PATIENT,
-  GUEST;
+  ADMINISTRATOR {
+    public String toString() {
+      return "Administrator";
+    }
+  },
+  EMPLOYEE {
+    public String toString() {
+      return "Employee";
+    }
+  },
+  PATIENT {
+    public String toString() {
+
+      return "Patient";
+    }
+  },
+  GUEST
 }

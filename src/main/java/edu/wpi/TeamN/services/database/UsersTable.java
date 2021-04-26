@@ -25,15 +25,32 @@ public class UsersTable {
 
   public boolean addUser(User user, String password) {
     String str =
-        "INSERT INTO USERS VALUES ("
-            + user.getId()
-            + ", '"
+        "INSERT INTO USERS (USERNAME, PASSWORD, USERTYPE) VALUES  ('"
             + user.getUsername()
             + "', '"
             + password
             + "', '"
             + user.getType().toString()
             + "')";
+    try {
+      stmt.execute(str);
+      return true;
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return false;
+    }
+  }
+
+  public boolean updateUser(int id, String username, String password, UserType type) {
+    String str =
+        "UPDATE USERS SET USERNAME = '"
+            + username
+            + "', PASSWORD = '"
+            + password
+            + "', USERTYPE = '"
+            + type.toString()
+            + "' WHERE ID = "
+            + id;
     try {
       stmt.execute(str);
       return true;
@@ -54,16 +71,22 @@ public class UsersTable {
   }
 
   public User getUserByUsername(String username) {
-    String str = "SELECT * FROM USERS WHERE USERNAME = " + username;
+    String str = "SELECT * FROM USERS WHERE USERNAME = '" + username + "'";
     try {
       ResultSet rs = stmt.executeQuery(str);
-      return (User) resultSetToUsers(rs).toArray()[0];
+      HashSet<User> set = resultSetToUsers(rs);
+      if (set.size() > 0) {
+        return (User) set.toArray()[0];
+      } else {
+        return null;
+      }
     } catch (SQLException e) {
       e.printStackTrace();
       return null;
     }
   }
 
+  // TODO CHANGE
   public HashMap<String, User> getUsersByType(UserType userType) {
     String userTypeString =
         userType.toString().charAt(0) + userType.toString().substring(1).toLowerCase();
@@ -80,6 +103,17 @@ public class UsersTable {
     } catch (SQLException e) {
       e.printStackTrace();
       return userMap;
+    }
+  }
+
+  public HashSet<User> getAllUsers() {
+    String str = "SELECT * FROM USERS";
+    try {
+      ResultSet rs = stmt.executeQuery(str);
+      return resultSetToUsers(rs);
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return null;
     }
   }
 
