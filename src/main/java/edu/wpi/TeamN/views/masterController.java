@@ -69,6 +69,13 @@ public class masterController implements Initializable {
   }
 
   @FXML
+  public void register(ActionEvent actionEvent) throws IOException {
+    String file = ((Button) actionEvent.getSource()).getId() + ".fxml";
+    Parent root = loader.load(getClass().getResourceAsStream(file));
+    appPrimaryScene.setRoot(root);
+  }
+
+  @FXML
   public void advanceHomeGuest(FXMLLoader childLoader, Scene ChildAppPrimaryScene)
       throws IOException {
     Parent root = childLoader.load(getClass().getResourceAsStream("HomeViewGuest.fxml"));

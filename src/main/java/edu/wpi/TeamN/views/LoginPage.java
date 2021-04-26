@@ -107,7 +107,9 @@ public class LoginPage extends masterController implements Initializable {
   }
 
   @FXML
-  private void continueToHomePageGuest() throws IOException {}
+  public void register(ActionEvent actionEvent) throws IOException {
+    super.register(actionEvent);
+  }
 
   @FXML
   private void validateButton() {
