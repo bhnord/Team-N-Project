@@ -56,6 +56,8 @@ public class LoginPage extends masterController implements Initializable {
             (o, oldVal, newVal) -> {
               if (!newVal) passwordField.validate();
             });
+
+    goToHomePage.setDefaultButton(true);
   }
 
   public String getUsername() {
