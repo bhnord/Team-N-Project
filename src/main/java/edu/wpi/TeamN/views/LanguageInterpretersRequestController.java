@@ -5,6 +5,7 @@ import com.jfoenix.controls.*;
 import com.jfoenix.validation.RequiredFieldValidator;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.database.DatabaseService;
+import edu.wpi.TeamN.services.database.requests.RequestType;
 import edu.wpi.TeamN.services.database.users.User;
 import edu.wpi.TeamN.services.database.users.UserType;
 import edu.wpi.TeamN.state.HomeState;
@@ -35,14 +36,18 @@ import lombok.extern.slf4j.Slf4j;
 public class LanguageInterpretersRequestController extends masterController
     implements Initializable {
 
+  public JFXComboBox employeeDropdown;
+  public JFXComboBox patientRoomDropdown;
+  public JFXTimePicker timePicker;
+  public JFXComboBox languageDropdown;
+
+
   @Inject DatabaseService db;
   @Inject FXMLLoader loader;
   @Inject HomeState state;
   @FXML private Label text;
   @FXML private Label errorLabel;
   private Label person1;
-  @FXML private JFXTextField txtTimeOfRequest;
-  @FXML private JFXTextField txtEquipment;
   @FXML private JFXTextField txtComments;
   @FXML private Button helpButton;
   @FXML private StackPane myStackPane;
@@ -75,30 +80,17 @@ public class LanguageInterpretersRequestController extends masterController
     /** USERNAME input and password* */
     RequiredFieldValidator reqInputValid = new RequiredFieldValidator();
     reqInputValid.setMessage("Cannot be empty");
-    txtTimeOfRequest.getValidators().add(reqInputValid);
-    txtTimeOfRequest
-        .focusedProperty()
-        .addListener(
-            (o, oldVal, newVal) -> {
-              if (!newVal) txtTimeOfRequest.validate();
-            });
-    reqInputValid.setMessage("Cannot be empty");
-    txtComments.getValidators().add(reqInputValid);
-    txtComments
-        .focusedProperty()
-        .addListener(
-            (o, oldVal, newVal) -> {
-              if (!newVal) txtComments.validate();
-            });
-    reqInputValid.setMessage("Cannot be empty");
-    txtEquipment.getValidators().add(reqInputValid);
-    txtEquipment
-        .focusedProperty()
-        .addListener(
-            (o, oldVal, newVal) -> {
-              if (!newVal) txtEquipment.validate();
-            });
 
+    reqInputValid.setMessage("Cannot be empty");
+//    employeeDropdown.getValidators().add(reqInputValid);
+//    txtComments
+//        .focusedProperty()
+//        .addListener(
+//            (o, oldVal, newVal) -> {
+//              if (!newVal) txtComments.validate();
+//            });
+
+    loadLanguagesDropdown();
     loadEmployeeDropdown();
     loadRoomDropdown();
   }
@@ -151,11 +143,11 @@ public class LanguageInterpretersRequestController extends masterController
 
     JFXButton continueButton = new JFXButton("Continue");
     continueButton.setButtonType(JFXButton.ButtonType.RAISED);
-    continueButton.setStyle("-fx-background-color : #00bfff:");
+    continueButton.setStyle("-fx-background-color : #00bfff;");
 
     JFXButton cancelButton = new JFXButton("Cancel");
     cancelButton.setButtonType(JFXButton.ButtonType.RAISED);
-    cancelButton.setStyle("-fx-background-color : #00bfff:");
+    cancelButton.setStyle("-fx-background-color : #00bfff;");
 
     cancelButton.setTranslateX(100);
     cancelButton.setTranslateY(65);
@@ -201,13 +193,12 @@ public class LanguageInterpretersRequestController extends masterController
     dialogContent.setBody(
         (new Text(
             "* Employee Name refers to the employee being requested to complete the job\n"
-                + "* Patient Room is the room that the employee will deliver the medicine to\n"
-                + "* Time of request refers to time the medicine should be delivered to the patient\n"
-                + "* Necessary Equipment refers to additional services/equipment the patient requires\n"
-                + "* Necessary Equipment refers to additional services/equipment the patient requires\n")));
+                + "* Patient Room is the room with the patient where the Translation is required\n"
+                + "* Time of request refers to time at which the translation is needed\n"
+                + "* Desired language refers to the language that needs to be translated\n")));
     JFXButton close = new JFXButton("close");
     close.setButtonType(JFXButton.ButtonType.RAISED);
-    close.setStyle("-fx-background-color : #00bfff:");
+    close.setStyle("-fx-background-color : #00bfff;");
     dialogContent.setActions(close);
 
     JFXDialog dialog = new JFXDialog(myStackPane, dialogContent, JFXDialog.DialogTransition.BOTTOM);
@@ -230,16 +221,15 @@ public class LanguageInterpretersRequestController extends masterController
     for (User user : users.values()) {
       Label lbl = new Label(user.getUsername());
       lbl.setId(user.getId());
-      txtEmployeeName.getItems().add((lbl));
+      employeeDropdown.getItems().add((lbl));
     }
     new AutoCompleteComboBoxListener(txtEmployeeName);
   }
 
   @FXML
   private void validateButton() {
-    if (!txtTimeOfRequest.getText().isEmpty()
-        && !txtEquipment.getText().isEmpty()
-        && !txtComments.getText().isEmpty()) {
+    if (!employeeDropdown.getEditor().getText().isEmpty() && !patientRoomDropdown.getEditor().getText().isEmpty() && !languageDropdown.getEditor().getText().isEmpty()
+    && !timePicker.getEditor().getText().isEmpty()) {
       submit.setDisable(false);
     } else {
       submit.setDisable(true);
@@ -254,5 +244,21 @@ public class LanguageInterpretersRequestController extends masterController
       roomDropdown.getItems().add(lbl);
     }
     new AutoCompleteComboBoxListener(roomDropdown);
+  }
+
+  private void loadLanguagesDropdown(){
+    String arr[] = {"ASL", "Spanish", "French", "Mandarin"};
+    for(String s: arr){
+      Label lbl = new Label(s);
+      lbl.setId(s);
+      languageDropdown.getItems().add(lbl);
+    }
+    new AutoCompleteComboBoxListener(languageDropdown);
+  }
+
+  public void submit(ActionEvent actionEvent) {
+    RequestType type = RequestType.LANGUAGE_INTERPRETER;
+    int recieverID = (employeeDropdown.getSelectionModel().getSelectedItem().getId());
+
   }
 }
