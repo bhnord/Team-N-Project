@@ -69,6 +69,13 @@ public class masterController implements Initializable {
   }
 
   @FXML
+  public void advanceHomeGuest(FXMLLoader childLoader, Scene ChildAppPrimaryScene)
+      throws IOException {
+    Parent root = childLoader.load(getClass().getResourceAsStream("HomeViewGuest.fxml"));
+    ChildAppPrimaryScene.setRoot(root);
+  }
+
+  @FXML
   public void advanceHome2(FXMLLoader childLoader, Scene ChildAppPrimaryScene) throws IOException {
     Parent root = childLoader.load(getClass().getResourceAsStream("HomeView2.fxml"));
     ChildAppPrimaryScene.setRoot(root);
