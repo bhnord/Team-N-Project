@@ -5,10 +5,9 @@ import edu.wpi.TeamN.services.algo.Edge;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.database.requests.Request;
 import edu.wpi.TeamN.services.database.requests.RequestType;
-import edu.wpi.TeamN.services.database.users.Employee;
-import edu.wpi.TeamN.services.database.users.User;
-import edu.wpi.TeamN.services.database.users.UserType;
+import edu.wpi.TeamN.services.database.users.*;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
@@ -17,13 +16,17 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class DatabaseService {
+  /*
+   Database service class. This class will be loaded as a Singleton by Guice.
+  */
+  User currentUser;
+
   private final Connection connection;
   private Statement stmt;
 
   /*
    Database service class. This class will be loaded as a Singleton by Guice.
   */
-  User currentUser = new Employee("1", "username111"); // TODO IMPLEMENT WITH LOGIN PAGE
   @Inject UsersTable usersTable;
   @Inject NodesTable nodesTable;
   @Inject EdgesTable edgesTable;
@@ -120,6 +123,7 @@ public class DatabaseService {
   }
 
   /// EDGES
+
   /**
    * retrieves all edges from the Database
    *
@@ -405,5 +409,41 @@ public class DatabaseService {
     } catch (SQLException e) {
       e.printStackTrace();
     }
+  }
+
+  /**
+   * logs in to the Database (used to keep track of sending of service requests)
+   *
+   * @param username the username of a valid user
+   * @param password the password of a the same valid user
+   * @return
+   */
+  public boolean login(String username, String password) {
+    String str =
+        "SELECT * FROM USERS WHERE username = '" + username + "' AND password = '" + password + "'";
+    try {
+      ResultSet rs = stmt.executeQuery(str);
+
+      rs.next();
+      switch (rs.getString("USERTYPE")) {
+        case "Patient":
+          currentUser = (new Patient(rs.getString("ID"), rs.getString("USERNAME")));
+          break;
+        case "Employee":
+          currentUser = (new Employee(rs.getString("ID"), rs.getString("USERNAME")));
+          break;
+        case "Administrator":
+          currentUser = (new Administrator(rs.getString("ID"), rs.getString("USERNAME")));
+          break;
+      }
+      return true;
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return false;
+  }
+
+  public User getCurrentUser() {
+    return currentUser;
   }
 }
