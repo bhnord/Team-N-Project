@@ -34,18 +34,6 @@ public class LoginPage extends masterController implements Initializable {
   public String accountUsername = "";
   public String accountPassword = "";
 
-  String guestUsername = "guest";
-  String guestPassword = "guest";
-
-  String patientUsername = "p";
-  String patientPassword = "p";
-
-  String employeeUsername = "e";
-  String employeePassword = "e";
-
-  String adminUsername = "a";
-  String adminPassword = "a";
-
   public void initialize(URL url, ResourceBundle rb) {
     /** Locking submit button to start* */
     goToHomePage.setDisable(true);
@@ -92,14 +80,18 @@ public class LoginPage extends masterController implements Initializable {
     login.setPassword(getPassword());
     login.setUsername(getUsername());
 
-    if (getUsername().equals(patientUsername) && getPassword().equals(patientPassword)) {
-      super.advanceHomePatient(loader, appPrimaryScene);
-    } else if (getUsername().equals(employeeUsername) && getPassword().equals(employeePassword)) {
-      super.advanceHome(loader, appPrimaryScene);
-    } else if (getUsername().equals(adminUsername) && getPassword().equals(adminPassword)) {
-      super.advanceHomeAdmin(loader, appPrimaryScene);
-    } else if (getUsername().equals(guestUsername) && getPassword().equals(guestPassword)) {
-      super.advanceHomeGuest(loader, appPrimaryScene);
+    if (db.login(getUsername(), getPassword())) {
+      switch (db.getCurrentUser().getType()) {
+        case ADMINISTRATOR:
+          super.advanceHome2(loader, appPrimaryScene);
+          break;
+        case EMPLOYEE:
+          super.advanceHome(loader, appPrimaryScene);
+          break;
+        case PATIENT:
+          super.advanceHomePatient(loader, appPrimaryScene);
+          break;
+      }
     } else {
       incorrectLogin.setText("INCORRECT USERNAME OR PASSWORD, TRY AGAIN");
       incorrectLogin.setAlignment(Pos.CENTER);
