@@ -68,5 +68,4 @@ public class Astar implements PathFinderI {
     }
     return ret;
   }
-
 }
