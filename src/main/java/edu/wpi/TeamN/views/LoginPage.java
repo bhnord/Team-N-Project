@@ -79,15 +79,8 @@ public class LoginPage extends masterController implements Initializable {
     login = Login.getLogin();
     login.setPassword(getPassword());
     login.setUsername(getUsername());
-
-    if (login.getUsername().equals("patient") && login.getPassword().equals("patient")) {
-      super.advanceHomePatient(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("staff") && login.getPassword().equals("staff")) {
+    if(!login.getUsername().equals("")) {
       super.advanceHome(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("admin") && login.getPassword().equals("admin")) {
-      super.advanceHomeAdmin(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("guest") && login.getPassword().equals("guest")) {
-      super.advanceHomeGuest(loader, appPrimaryScene);
     } else {
       incorrectLogin.setText("INCORRECT USERNAME OR PASSWORD, TRY AGAIN");
       incorrectLogin.setAlignment(Pos.CENTER);

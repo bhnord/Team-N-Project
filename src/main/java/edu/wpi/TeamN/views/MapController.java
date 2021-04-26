@@ -116,15 +116,7 @@ public class MapController extends masterController implements Initializable {
 
     Login login = Login.getLogin();
 
-    if (login.getUsername().equals("p") && login.getPassword().equals("p")) {
-      super.advanceHomePatient(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("e") && login.getPassword().equals("e")) {
-      super.advanceHome(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("a") && login.getPassword().equals("a")) {
-      super.advanceHomeAdmin(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("guest") && login.getPassword().equals("guest")) {
-      super.advanceHomeGuest(loader, appPrimaryScene);
-    }
+    super.advanceHome(loader, appPrimaryScene);
   }
 
   /**

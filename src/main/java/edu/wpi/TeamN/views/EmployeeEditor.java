@@ -16,7 +16,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -98,7 +97,7 @@ public class EmployeeEditor extends masterController implements Initializable {
 
   @FXML
   public void advanceHome() throws IOException {
-    super.advanceHomeAdmin(loader, appPrimaryScene);
+    super.advanceHome(loader, appPrimaryScene);
   }
 
   public void commitChanges(ActionEvent actionEvent) {
@@ -190,8 +189,6 @@ public class EmployeeEditor extends masterController implements Initializable {
   }
 
   public void advanceViews(ActionEvent actionEvent) throws IOException {
-    String file = ((Button) actionEvent.getSource()).getId() + ".fxml";
-    Parent root = loader.load(getClass().getResourceAsStream(file));
-    appPrimaryScene.setRoot(root);
+    super.advanceViews(actionEvent);
   }
 }

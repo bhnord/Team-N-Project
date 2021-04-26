@@ -65,29 +65,25 @@ public class masterController implements Initializable {
     }
   }
 
-  @FXML
-  public void advanceHomeStaff(FXMLLoader childLoader, Scene ChildAppPrimaryScene)
+  private void advanceHomeStaff(FXMLLoader childLoader, Scene ChildAppPrimaryScene)
       throws IOException {
     Parent root = childLoader.load(getClass().getResourceAsStream("HomeView.fxml"));
     ChildAppPrimaryScene.setRoot(root);
   }
 
-  @FXML
-  public void advanceHomePatient(FXMLLoader childLoader, Scene ChildAppPrimaryScene)
+  private void advanceHomePatient(FXMLLoader childLoader, Scene ChildAppPrimaryScene)
       throws IOException {
     Parent root = childLoader.load(getClass().getResourceAsStream("HomeViewPatient.fxml"));
     ChildAppPrimaryScene.setRoot(root);
   }
 
-  @FXML
-  public void advanceHomeAdmin(FXMLLoader childLoader, Scene ChildAppPrimaryScene)
+  private void advanceHomeAdmin(FXMLLoader childLoader, Scene ChildAppPrimaryScene)
       throws IOException {
     Parent root = childLoader.load(getClass().getResourceAsStream("HomeViewAdmin.fxml"));
     ChildAppPrimaryScene.setRoot(root);
   }
 
-  @FXML
-  public void advanceHomeGuest(FXMLLoader childLoader, Scene ChildAppPrimaryScene)
+  private void advanceHomeGuest(FXMLLoader childLoader, Scene ChildAppPrimaryScene)
       throws IOException {
     Parent root = childLoader.load(getClass().getResourceAsStream("HomeViewGuest.fxml"));
     ChildAppPrimaryScene.setRoot(root);
@@ -105,19 +101,19 @@ public class masterController implements Initializable {
     ChildAppPrimaryScene.setRoot(root);
   }
 
-  public void advanceServiceRequestPatient(FXMLLoader childLoader, Scene ChildAppPrimaryScene)
+  private void advanceServiceRequestPatient(FXMLLoader childLoader, Scene ChildAppPrimaryScene)
       throws IOException {
     Parent root = childLoader.load(getClass().getResourceAsStream("ServiceRequestsPatient.fxml"));
     ChildAppPrimaryScene.setRoot(root);
   }
 
-  public void advanceServiceRequestAdmin(FXMLLoader childLoader, Scene ChildAppPrimaryScene)
+  private void advanceServiceRequestAdmin(FXMLLoader childLoader, Scene ChildAppPrimaryScene)
       throws IOException {
     Parent root = childLoader.load(getClass().getResourceAsStream("ServiceRequestsAdmin.fxml"));
     ChildAppPrimaryScene.setRoot(root);
   }
 
-  public void advanceServiceRequestEmployee(FXMLLoader childLoader, Scene ChildAppPrimaryScene)
+  private void advanceServiceRequestEmployee(FXMLLoader childLoader, Scene ChildAppPrimaryScene)
       throws IOException {
     Parent root = childLoader.load(getClass().getResourceAsStream("ServiceRequests.fxml"));
     ChildAppPrimaryScene.setRoot(root);
