@@ -107,13 +107,6 @@ public class MapController extends masterController implements Initializable {
   @FXML
   public void advanceHome() throws IOException {
 
-    /*
-    super.advanceHome(loader, appPrimaryScene);
-    Stage stage = (Stage) appPrimaryScene.getWindow();
-      // stage.setHeight(800);
-      // stage.setWidth(1366);
-    stage.centerOnScreen();*/
-
     Login login = Login.getLogin();
 
     if (login.getUsername().equals("patient") && login.getPassword().equals("patient")) {
