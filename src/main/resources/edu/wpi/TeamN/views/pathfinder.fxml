@@ -153,16 +153,6 @@
                               <Insets top="50.0" />
                            </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#SetStartNode" text="Start Node">
-                           <HBox.margin>
-                              <Insets top="50.0" />
-                           </HBox.margin>
-                        </Button>
-                        <Button mnemonicParsing="false" onAction="#SetEndNode" text="End Node">
-                           <HBox.margin>
-                              <Insets top="50.0" />
-                           </HBox.margin>
-                        </Button>
                         <Button mnemonicParsing="false" onAction="#PathFind" text="Get Directions">
                            <HBox.margin>
                               <Insets top="50.0" />
