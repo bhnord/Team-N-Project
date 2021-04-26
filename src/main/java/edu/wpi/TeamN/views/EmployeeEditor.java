@@ -107,13 +107,18 @@ public class EmployeeEditor extends masterController implements Initializable {
     }
     String username = txtUsername.getText();
     String password = txtPassword.getText();
+
     UserType type =
         UserType.valueOf(
             userTypeDropdown.getSelectionModel().getSelectedItem().getText().toUpperCase());
     User selectedUser = db.getUserByUsername(selectedLabel.getText());
 
     if (!(selectedUser == null)) {
-      if (!db.updateUser(Integer.parseInt(selectedUser.getId()), username, password, type)) {
+      if (password.equals("********")) {
+        if (!db.updateUserUsernameType(Integer.parseInt(selectedUser.getId()), username, type)) {
+          messageLabel.setText("Invalid inputs");
+        }
+      } else if (!db.updateUser(Integer.parseInt(selectedUser.getId()), username, password, type)) {
         messageLabel.setText("Invalid inputs");
       }
     } else if (db.addUser(username, password, type)) {

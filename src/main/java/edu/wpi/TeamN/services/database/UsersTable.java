@@ -30,7 +30,7 @@ public class UsersTable {
             + "', '"
             + password
             + "', '"
-            + type.getName()
+            + type.toString()
             + "')";
     try {
       stmt.execute(str);
@@ -64,23 +64,33 @@ public class UsersTable {
     String str = "SELECT * FROM USERS WHERE ID = " + id;
     try {
       ResultSet rs = stmt.executeQuery(str);
-      return (User) resultSetToUsers(rs).toArray()[0];
+      HashSet<User> u = resultSetToUsers(rs);
+      if (u.size() > 0) {
+        return (User) u.toArray()[0];
+      } else {
+        return null;
+      }
     } catch (SQLException e) {
+      e.printStackTrace();
       return null;
     }
   }
 
   public User getUserByUsername(String username) {
-    String str = "SELECT * FROM USERS WHERE USERNAME = " + username;
+    String str = "SELECT * FROM USERS WHERE USERNAME = '" + username + "'";
     User returnUser;
     try {
       ResultSet rs = stmt.executeQuery(str);
-      returnUser = (User) resultSetToUsers(rs).toArray()[0];
+      HashSet<User> u = resultSetToUsers(rs);
+      if (u.size() > 0) {
+        return (User) u.toArray()[0];
+      } else {
+        return null;
+      }
     } catch (SQLException e) {
       e.printStackTrace();
-      returnUser = null;
+      return null;
     }
-    return returnUser;
   }
 
   // TODO CHANGE
@@ -115,11 +125,12 @@ public class UsersTable {
   }
 
   public boolean deleteUser(String username) {
-    String str = "DELETE USERS WHERE USERNAME = " + username;
+    String str = "DELETE FROM USERS WHERE USERNAME = '" + username + "'";
     try {
       stmt.execute(str);
       return true;
     } catch (SQLException e) {
+      e.printStackTrace();
       return false;
     }
   }
@@ -144,6 +155,23 @@ public class UsersTable {
     } catch (SQLException e) {
       e.printStackTrace();
       return null;
+    }
+  }
+
+  public boolean updateUserUsernameType(int id, String username, UserType type) {
+    String str =
+        "UPDATE USERS SET USERNAME = '"
+            + username
+            + "', USERTYPE = '"
+            + type.toString()
+            + "' WHERE ID = "
+            + id;
+    try {
+      stmt.execute(str);
+      return true;
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return false;
     }
   }
 }
