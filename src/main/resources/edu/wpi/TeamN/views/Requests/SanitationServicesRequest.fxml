@@ -25,8 +25,8 @@
                 <Font size="24.0" />
             </font>
         </Label>
-        <StackPane fx:id="myStackPane" layoutX="693.0" layoutY="279.0" prefHeight="209.0" prefWidth="412.0" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0c00ae" height="69.0" layoutX="-1.0" layoutY="78.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
+        <StackPane fx:id="myStackPane" layoutX="704.0" layoutY="279.0" prefHeight="209.0" prefWidth="412.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="69.0" layoutX="-1.0" layoutY="78.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.0" layoutX="27.0" layoutY="90.0" rotate="45.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" />
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.0" layoutX="27.0" layoutY="90.0" rotate="-45.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" />
         <JFXButton fx:id="exit1" layoutY="77.0" onAction="#exit" prefHeight="71.0" prefWidth="66.0" text=" " textFill="WHITE">
@@ -41,7 +41,7 @@
                 </Tooltip>
             </tooltip>
         </JFXButton>
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0c00ae" height="69.0" layoutX="-1.0" layoutY="150.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="69.0" layoutX="-1.0" layoutY="150.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
         <ImageView fitHeight="50.0" fitWidth="59.0" layoutX="4.0" layoutY="159.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@/images/LogOut.png" />
@@ -59,7 +59,7 @@
                 </Tooltip>
             </tooltip>
         </JFXButton>
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0c00ae" height="69.0" layoutX="-1.0" layoutY="222.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="69.0" layoutX="-1.0" layoutY="222.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
         <JFXButton fx:id="BackButton" layoutX="-1.0" layoutY="221.0" onAction="#back" prefHeight="71.0" prefWidth="66.0" text="Back" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="9.0" />
@@ -72,7 +72,7 @@
                 </Tooltip>
             </tooltip>
         </JFXButton>
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0c00ae" height="69.0" layoutX="-1.0" layoutY="293.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="69.0" layoutX="-1.0" layoutY="293.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
         <ImageView fitHeight="50.0" fitWidth="59.0" layoutX="6.0" layoutY="303.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@/images/IconHome.png" />
@@ -91,8 +91,8 @@
             </tooltip>
         </JFXButton>
 
-        <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#0c00ae" height="47.0" layoutX="794.0" layoutY="661.0" stroke="TRANSPARENT" strokeType="INSIDE" width="130.0" />
-        <JFXButton fx:id="helpButton" layoutX="794.0" layoutY="660.0" onAction="#help" prefHeight="47.0" prefWidth="130.0" ripplerFill="WHITE" stylesheets="@../../../../../Fonts/Roboto-Light.css" text="Help" textFill="WHITE">
+        <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#748cdc" height="47.0" layoutX="794.0" layoutY="661.0" stroke="TRANSPARENT" strokeType="INSIDE" width="130.0" />
+        <JFXButton fx:id="helpButton" buttonType="RAISED" layoutX="794.0" layoutY="660.0" onAction="#help" prefHeight="47.0" prefWidth="130.0" ripplerFill="WHITE" stylesheets="@../../../../../Fonts/Roboto-Light.css" text="Help" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="22.0" />
             </font>
@@ -106,37 +106,40 @@
         </JFXButton>
         <Rectangle arcHeight="50.0" arcWidth="50.0" fill="WHITE" height="517.0" layoutX="143.0" layoutY="193.0" stroke="TRANSPARENT" strokeType="INSIDE" width="476.0" />
         <JFXTextField fx:id="txtRoom" focusColor="#211edd" labelFloat="true" layoutX="187.0" layoutY="313.0" prefHeight="8.0" prefWidth="336.0" promptText="Sanitary Location" stylesheets="@../../../../../Fonts/Roboto-Light.css" unFocusColor="WHITE">
+         <font>
+            <Font name="Serif Bold" size="22.0" />
+         </font></JFXTextField>
+        <JFXTextField fx:id="txtTimeOfRequest" focusColor="#211edd" labelFloat="true" layoutX="187.0" layoutY="402.0" prefHeight="50.0" prefWidth="336.0" promptText="Sanitary Details" stylesheets="@../../../../../Fonts/Roboto-Light.css" unFocusColor="WHITE">
             <font>
-                <Font name="Serif Bold" size="26.0" />
+                <Font name="Serif Bold" size="22.0" />
             </font></JFXTextField>
-        <JFXTextField fx:id="txtTimeOfRequest" focusColor="#211edd" labelFloat="true" layoutX="187.0" layoutY="401.0" prefHeight="50.0" prefWidth="273.0" promptText="Sanitary Details" stylesheets="@../../../../../Fonts/Roboto-Light.css" unFocusColor="WHITE">
+        <JFXTextField fx:id="txtEquipment" focusColor="#211edd" labelFloat="true" layoutX="187.0" layoutY="488.0" prefHeight="47.0" prefWidth="336.0" promptText="Necessary Equipment" stylesheets="@../../../../../Fonts/Roboto-Light.css" unFocusColor="WHITE">
             <font>
-                <Font name="Serif Bold" size="26.0" />
-            </font></JFXTextField>
-        <JFXTextField fx:id="txtEquipment" focusColor="#211edd" labelFloat="true" layoutX="187.0" layoutY="488.0" prefHeight="47.0" prefWidth="372.0" promptText="Necessary Equipment" stylesheets="@../../../../../Fonts/Roboto-Light.css" unFocusColor="WHITE">
-            <font>
-                <Font name="Serif Bold" size="26.0" />
+                <Font name="Serif Bold" size="22.0" />
             </font>
         </JFXTextField>
-        <JFXTextField fx:id="txtComments" focusColor="#211edd" labelFloat="true" layoutX="187.0" layoutY="572.0" prefHeight="40.0" prefWidth="203.0" promptText="Comments" stylesheets="@../../../../../Fonts/Roboto-Light.css" unFocusColor="WHITE">
+        <JFXTextField fx:id="txtComments" focusColor="#211edd" labelFloat="true" layoutX="187.0" layoutY="572.0" prefHeight="44.0" prefWidth="336.0" promptText="Comments" stylesheets="@../../../../../Fonts/Roboto-Light.css" unFocusColor="WHITE">
             <font>
-                <Font name="Serif Bold" size="26.0" />
+                <Font name="Serif Bold" size="22.0" />
             </font>
         </JFXTextField>
 
-        <Rectangle arcHeight="15.0" arcWidth="15.0" fill="#0c00ae" height="40.0" layoutX="522.0" layoutY="644.0" stroke="TRANSPARENT" strokeType="INSIDE" width="74.0" />
-        <JFXButton fx:id="submit" layoutX="525.0" layoutY="649.0" onAction="#Submit" ripplerFill="WHITE" stylesheets="@../../../../../Fonts/Roboto-Light.css" text="Submit" textFill="WHITE">
+        <Rectangle arcHeight="15.0" arcWidth="15.0" fill="#748cdc" height="40.0" layoutX="522.0" layoutY="644.0" stroke="TRANSPARENT" strokeType="INSIDE" width="74.0" />
+        <JFXButton fx:id="submit" buttonType="RAISED" layoutX="527.0" layoutY="650.0" onAction="#Submit" ripplerFill="WHITE" stylesheets="@../../../../../Fonts/Roboto-Light.css" text="Submit" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></JFXButton>
-        <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#0c00ae" height="47.0" layoutX="139.0" layoutY="124.0" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="INSIDE" width="476.0" />
+        <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#748cdc99" height="47.0" layoutX="139.0" layoutY="124.0" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="INSIDE" width="476.0" />
         <Label fx:id="text1" layoutX="149.0" layoutY="124.0" prefHeight="47.0" prefWidth="457.0" stylesheets="@../../../../../Fonts/Roboto-Light.css" text="SANITATION SERVICE REQUEST" textAlignment="CENTER" textFill="WHITE">
             <font>
                 <Font name="Serif Regular" size="30.0" />
             </font>
         </Label>
         <StackPane fx:id="myStackPane2" layoutX="596.0" layoutY="473.0" prefHeight="166.0" prefWidth="328.0" />
-        <JFXComboBox fx:id="txtEmployeeName" layoutX="187.0" layoutY="241.0" prefHeight="31.0" prefWidth="150.0" promptText="Select Employee" stylesheets="@../../../../../Fonts/Roboto-Light.css" />
+        <JFXComboBox fx:id="txtEmployeeName" layoutX="187.0" layoutY="241.0" prefHeight="30.0" prefWidth="203.0" promptText="Select Employee" stylesheets="@../../../../../Fonts/Roboto-Light.css" />
+      <Label layoutX="168.0" layoutY="248.0" text="*" />
+      <Label layoutX="168.0" layoutY="327.0" text="*" />
+      <Label layoutX="165.0" layoutY="419.0" text="*" />
 
 
 
