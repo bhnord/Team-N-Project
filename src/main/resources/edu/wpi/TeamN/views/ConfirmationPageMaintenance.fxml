@@ -20,7 +20,10 @@
             <font>
                 <Font size="31.0" />
             </font></Label>
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#211edd" height="31.0" layoutX="238.0" layoutY="230.0" stroke="TRANSPARENT" strokeType="INSIDE" width="125.0" />
-        <JFXButton layoutX="238.0" layoutY="230.0" mnemonicParsing="false" onAction="#advanceHome" text="Return to home" textFill="WHITE" />
+        <Rectangle arcHeight="15.0" arcWidth="15.0" fill="#211edd" height="31.0" layoutX="238.0" layoutY="230.0" stroke="TRANSPARENT" strokeType="INSIDE" width="125.0" />
+        <JFXButton layoutX="238.0" layoutY="231.0" mnemonicParsing="false" onAction="#advanceHome" prefHeight="25.0" prefWidth="125.0" text="Return to home" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></JFXButton>
     </children>
 </AnchorPane>
