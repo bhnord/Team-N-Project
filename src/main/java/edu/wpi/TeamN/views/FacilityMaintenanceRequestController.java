@@ -151,11 +151,11 @@ public class FacilityMaintenanceRequestController extends masterController
 
     JFXButton continueButton = new JFXButton("Continue");
     continueButton.setButtonType(JFXButton.ButtonType.RAISED);
-    continueButton.setStyle("-fx-background-color : #00bfff:");
+    continueButton.setStyle("-fx-background-color : #748cdc:");
 
     JFXButton cancelButton = new JFXButton("Cancel");
     cancelButton.setButtonType(JFXButton.ButtonType.RAISED);
-    cancelButton.setStyle("-fx-background-color : #00bfff:");
+    cancelButton.setStyle("-fx-background-color : #748cdc:");
 
     cancelButton.setTranslateX(100);
     cancelButton.setTranslateY(65);
@@ -211,14 +211,14 @@ public class FacilityMaintenanceRequestController extends masterController
     dialogContent.setHeading(new Text(title));
     dialogContent.setBody(
         (new Text(
-            "* Employee Name refers to the employee being requested to complete the job\n"
-                + "* Patient Room is the room that the employee will deliver the medicine to\n"
-                + "* Time of request refers to time the medicine should be delivered to the patient\n"
-                + "* Necessary Equipment refers to additional services/equipment the patient requires\n"
-                + "* Necessary Equipment refers to additional services/equipment the patient requires\n")));
+            "* Select Employee: Employee that is requesting the job\n"
+                + "* Maintenance Location: Select the location of the requested job\n"
+                + "* Time of request: Refers to time the maintenance should be started\n"
+                + "* Maintenance Type: Specify the type of maintenance you are requesting\n"
+                + "* Request Description: Specify any additional specifications for the maintenance \n")));
     JFXButton close = new JFXButton("close");
     close.setButtonType(JFXButton.ButtonType.RAISED);
-    close.setStyle("-fx-background-color : #00bfff:");
+    close.setStyle("-fx-background-color : #748cdc:");
     dialogContent.setActions(close);
 
     JFXDialog dialog = new JFXDialog(myStackPane, dialogContent, JFXDialog.DialogTransition.BOTTOM);
