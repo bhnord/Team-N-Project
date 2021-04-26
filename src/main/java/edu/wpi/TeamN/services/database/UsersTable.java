@@ -77,7 +77,7 @@ public class UsersTable {
       ResultSet rs = stmt.executeQuery(str);
       returnUser = (User) resultSetToUsers(rs).toArray()[0];
     } catch (SQLException e) {
-      e.printStackTrace();
+//      e.printStackTrace();
       returnUser = null;
     }
     return returnUser;
