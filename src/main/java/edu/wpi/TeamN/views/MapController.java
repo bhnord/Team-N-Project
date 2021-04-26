@@ -8,17 +8,15 @@ import edu.wpi.TeamN.services.algo.Edge;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.database.DatabaseService;
 import edu.wpi.TeamN.state.HomeState;
+import edu.wpi.TeamN.state.Login;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
-import edu.wpi.TeamN.state.Login;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Cursor;
 import javafx.scene.Group;
@@ -124,11 +122,9 @@ public class MapController extends masterController implements Initializable {
       super.advanceHome(loader, appPrimaryScene);
     } else if (login.getUsername().equals("a") && login.getPassword().equals("a")) {
       super.advanceHomeAdmin(loader, appPrimaryScene);
-    }
-    else if (login.getUsername().equals("guest") && login.getPassword().equals("guest")) {
+    } else if (login.getUsername().equals("guest") && login.getPassword().equals("guest")) {
       super.advanceHomeGuest(loader, appPrimaryScene);
-  }
-
+    }
   }
 
   /**

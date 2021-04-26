@@ -155,16 +155,7 @@
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <JFXButton fx:id="guestLogin" mnemonicParsing="false" onAction="#continueToHomePageGuest" text="login as guest" GridPane.columnIndex="1" GridPane.halignment="CENTER">
-                                 <GridPane.margin>
-                                    <Insets />
-                                 </GridPane.margin>
-                                 <stylesheets>
-                                    <URL value="@/StyleSheet/style.css" />
-                                    <URL value="@/Fonts/Roboto-Light.css" />
-                                 </stylesheets>
-                              </JFXButton>
-                              <JFXRadioButton GridPane.halignment="CENTER">
+                              <JFXRadioButton text="RadioButton" GridPane.halignment="CENTER">
                                  <stylesheets>
                                     <URL value="@/StyleSheet/style.css" />
                                     <URL value="@/Fonts/Roboto-Light.css" />
