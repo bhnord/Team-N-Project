@@ -88,11 +88,12 @@
             </GridPane>
             <GridPane fx:id="RightButtons" GridPane.columnIndex="2">
                <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="100.0" />
                </columnConstraints>
                <rowConstraints>
                   <RowConstraints maxHeight="1.7976931348623157E308" minHeight="-Infinity" prefHeight="456.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="1.7976931348623157E308" minHeight="-Infinity" prefHeight="312.0" vgrow="ALWAYS" />
+                  <RowConstraints maxHeight="1.7976931348623157E308" minHeight="-Infinity" prefHeight="194.0" vgrow="ALWAYS" />
+                  <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="128.0" vgrow="ALWAYS" />
                </rowConstraints>
                <children>
                   <JFXButton fx:id="map2" alignment="TOP_LEFT" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="217.0" prefWidth="325.0" style="-fx-background-radius: 25; -fx-background-color: #748cdc;" textFill="WHITE">
@@ -147,6 +148,10 @@
                         <Cursor fx:constant="S_RESIZE" />
                      </cursor>
                   </ImageView>
+                  <JFXButton fx:id="EmployeeEditor" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#advanceViews" prefHeight="88.0" prefWidth="563.0" style="-fx-background-color: blue; -fx-background-radius: 25;" stylesheets="@../../../../Fonts/Roboto-Black.css" text="EMPLOYEE EDITOR" textFill="WHITE" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                     </GridPane.margin></JFXButton>
                </children>
             </GridPane>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#363d54" height="1153.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" GridPane.valignment="BASELINE" />
