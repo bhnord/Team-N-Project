@@ -80,7 +80,19 @@ public class LoginPage extends masterController implements Initializable {
     login.setPassword(getPassword());
     login.setUsername(getUsername());
 
-    if (db.login(getUsername(), getPassword())) {
+    if (login.getUsername().equals("patient") && login.getPassword().equals("patient")) {
+      super.advanceHomePatient(loader, appPrimaryScene);
+    } else if (login.getUsername().equals("staff") && login.getPassword().equals("staff")) {
+      super.advanceHome(loader, appPrimaryScene);
+    } else if (login.getUsername().equals("admin") && login.getPassword().equals("admin")) {
+      super.advanceHomeAdmin(loader, appPrimaryScene);
+    } else if (login.getUsername().equals("guest") && login.getPassword().equals("guest")) {
+      super.advanceHomeGuest(loader, appPrimaryScene);
+    } else {
+      incorrectLogin.setText("INCORRECT USERNAME OR PASSWORD, TRY AGAIN");
+      incorrectLogin.setAlignment(Pos.CENTER);
+    }
+    /*    if (db.login(getUsername(), getPassword())) {
       switch (db.getCurrentUser().getType()) {
         case ADMINISTRATOR:
           super.advanceHomeAdmin(loader, appPrimaryScene);
@@ -98,7 +110,7 @@ public class LoginPage extends masterController implements Initializable {
     } else {
       incorrectLogin.setText("INCORRECT USERNAME OR PASSWORD, TRY AGAIN");
       incorrectLogin.setAlignment(Pos.CENTER);
-    }
+    }*/
   }
 
   @FXML

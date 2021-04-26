@@ -124,7 +124,7 @@ public class SanitationServicesRequestController extends masterController implem
     } else if (login.getUsername().equals("admin") && login.getPassword().equals("admin")) {
       super.advanceHomeAdmin(loader, appPrimaryScene);
     } else if (login.getUsername().equals("guest") && login.getPassword().equals("guest")) {
-      super.advanceHomeAdmin(loader, appPrimaryScene);
+      super.advanceHomeGuest(loader, appPrimaryScene);
     }
   }
 
@@ -152,7 +152,6 @@ public class SanitationServicesRequestController extends masterController implem
       submit.setDisable(true);
     }
   }
-
 
   public void Submit(ActionEvent actionEvent) throws IOException, InterruptedException {
 

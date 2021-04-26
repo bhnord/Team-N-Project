@@ -110,7 +110,7 @@ public class ExternalPatientRequestController extends masterController implement
     } else if (login.getUsername().equals("admin") && login.getPassword().equals("admin")) {
       super.advanceHomeAdmin(loader, appPrimaryScene);
     } else if (login.getUsername().equals("guest") && login.getPassword().equals("guest")) {
-      super.advanceHomeAdmin(loader, appPrimaryScene);
+      super.advanceHomeGuest(loader, appPrimaryScene);
     }
   }
 
