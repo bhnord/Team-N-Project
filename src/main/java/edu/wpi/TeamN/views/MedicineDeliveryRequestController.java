@@ -28,6 +28,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.BoxBlur;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -56,7 +57,10 @@ public class MedicineDeliveryRequestController extends masterController implemen
   @FXML private JFXComboBox<Label> txtEmployeeName = new JFXComboBox<>();
   @FXML private JFXComboBox<Label> roomDropdown = new JFXComboBox<>();
   @FXML private JFXComboBox<Label> txtEquipment = new JFXComboBox<>();
-  // @FXML private AnchorPane anchorPage;
+
+  @FXML private AnchorPane anchorPage;
+
+  @FXML private StackPane confirmationStackPane;
   static Stage stage;
 
   /**
@@ -73,7 +77,7 @@ public class MedicineDeliveryRequestController extends masterController implemen
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     log.debug(state.toString());
-    submit.setDisable(true);
+    // submit.setDisable(true);
 
     /** USERNAME input and password* */
     RequiredFieldValidator reqInputValid = new RequiredFieldValidator();
@@ -84,14 +88,6 @@ public class MedicineDeliveryRequestController extends masterController implemen
         .addListener(
             (o, oldVal, newVal) -> {
               if (!newVal) txtTimeOfRequest.validate();
-            });
-    reqInputValid.setMessage("Cannot be empty");
-    txtComments.getValidators().add(reqInputValid);
-    txtComments
-        .focusedProperty()
-        .addListener(
-            (o, oldVal, newVal) -> {
-              if (!newVal) txtComments.validate();
             });
     reqInputValid.setMessage("Cannot be empty");
     txtEquipment.getValidators().add(reqInputValid);
@@ -143,17 +139,6 @@ public class MedicineDeliveryRequestController extends masterController implemen
       super.advanceServiceRequestEmployee(loader, appPrimaryScene);
     } else if (login.getUsername().equals("admin") && login.getPassword().equals("admin")) {
       super.advanceServiceRequestAdmin(loader, appPrimaryScene);
-    }
-  }
-
-  @FXML
-  private void validateButton() {
-    if (!txtTimeOfRequest.getEditor().getText().isEmpty()
-        && !txtEquipment.getSelectionModel().getSelectedItem().getText().isEmpty()
-        && !txtComments.getText().isEmpty()) {
-      submit.setDisable(false);
-    } else {
-      submit.setDisable(true);
     }
   }
 
@@ -228,22 +213,8 @@ public class MedicineDeliveryRequestController extends masterController implemen
             @Override
             public void handle(ActionEvent event) {
               popup1.hide();
-              //              BoxBlur blur = new BoxBlur(7, 7, 7);
-              Request r =
-                  new Request(
-                      RequestType.MEDICINE_DELIVERY,
-                      Integer.parseInt(
-                          txtEmployeeName.getSelectionModel().getSelectedItem().getId()),
-                      roomDropdown.getSelectionModel().getSelectedItem().getId(),
-                      txtEquipment.getSelectionModel().getSelectedItem().getText(),
-                      txtComments.getText());
-              if (!db.addRequest(r)) {
-                System.out.println("HERE");
-                errorLabel.setText("Invalid Input(s)");
-              }
-              for (Request re : db.getAllRequests()) {
-                System.out.println(re.getContent());
-              }
+
+              BoxBlur blur = new BoxBlur(7, 7, 7);
 
               VBox manuContainer = new VBox();
               Label lbl1 =
@@ -289,26 +260,40 @@ public class MedicineDeliveryRequestController extends masterController implemen
                     @SneakyThrows
                     @Override
                     public void handle(ActionEvent event) {
-                      // anchorPage.setEffect(null);
+                      anchorPage.setEffect(null);
                       txtEmployeeName.setEffect(null);
-
                       popup1.hide();
                       advanceHome();
                       submit.setDisable(false);
                     }
                   });
               submit.setDisable(true);
-              // anchorPage.setEffect(blur);
-              //              txtEmployeeName.setEffect(blur);
-              //                  popup1.show(
-              //                          confirmationStackPane,
-              //                          JFXPopup.PopupVPosition.BOTTOM,
-              //                          JFXPopup.PopupHPosition.LEFT);
+              anchorPage.setEffect(blur);
+              txtEmployeeName.setEffect(blur);
+              popup1.show(
+                  confirmationStackPane,
+                  JFXPopup.PopupVPosition.BOTTOM,
+                  JFXPopup.PopupHPosition.LEFT);
               submit.setDisable(false);
             }
           });
       submit.setDisable(true);
       popup1.show(myStackPane2, JFXPopup.PopupVPosition.BOTTOM, JFXPopup.PopupHPosition.LEFT);
+    }
+
+    Request r =
+        new Request(
+            RequestType.MEDICINE_DELIVERY,
+            Integer.parseInt(txtEmployeeName.getSelectionModel().getSelectedItem().getId()),
+            roomDropdown.getSelectionModel().getSelectedItem().getId(),
+            txtEquipment.getSelectionModel().getSelectedItem().getText(),
+            txtComments.getText());
+    if (!db.addRequest(r)) {
+      System.out.println("HERE");
+      errorLabel.setText("Invalid Input(s)");
+    }
+    for (Request re : db.getAllRequests()) {
+      System.out.println(re.getContent());
     }
   }
 
