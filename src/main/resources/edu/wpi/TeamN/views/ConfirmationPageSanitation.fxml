@@ -20,7 +20,7 @@
             <font>
                 <Font size="31.0" />
             </font></Label>
-        <Rectangle arcHeight="15.0" arcWidth="15.0" fill="#00bfff" height="31.0" layoutX="238.0" layoutY="230.0" stroke="TRANSPARENT" strokeType="INSIDE" width="125.0" />
+        <Rectangle arcHeight="15.0" arcWidth="15.0" fill="#748cdc" height="31.0" layoutX="238.0" layoutY="230.0" stroke="TRANSPARENT" strokeType="INSIDE" width="125.0" />
         <JFXButton buttonType="RAISED" layoutX="246.0" layoutY="231.0" mnemonicParsing="false" onAction="#advanceHome" stylesheets="@../../../../Fonts/Roboto-Light.css" text="Return to home" textFill="WHITE">
          <font>
             <Font size="13.0" />

@@ -27,7 +27,7 @@
             </font>
         </Label>
         <StackPane fx:id="myStackPane" layoutX="704.0" layoutY="279.0" prefHeight="209.0" prefWidth="412.0" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00a9ff" height="69.0" layoutX="-1.0" layoutY="78.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="69.0" layoutX="-1.0" layoutY="78.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.0" layoutX="27.0" layoutY="90.0" rotate="45.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" />
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.0" layoutX="27.0" layoutY="90.0" rotate="-45.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" />
         <JFXButton fx:id="exit1" layoutY="77.0" onAction="#exit" prefHeight="71.0" prefWidth="66.0" text=" " textFill="WHITE">
@@ -42,7 +42,7 @@
                 </Tooltip>
             </tooltip>
         </JFXButton>
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00a9ff" height="69.0" layoutX="-1.0" layoutY="150.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="69.0" layoutX="-1.0" layoutY="150.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
         <ImageView fitHeight="50.0" fitWidth="59.0" layoutX="4.0" layoutY="159.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@/images/LogOut.png" />
@@ -60,7 +60,7 @@
                 </Tooltip>
             </tooltip>
         </JFXButton>
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00a9ff" height="69.0" layoutX="-1.0" layoutY="222.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="69.0" layoutX="-1.0" layoutY="222.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
         <JFXButton fx:id="BackButton" layoutX="-1.0" layoutY="221.0" onAction="#back" prefHeight="71.0" prefWidth="66.0" text="Back" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="9.0" />
@@ -73,7 +73,7 @@
                 </Tooltip>
             </tooltip>
         </JFXButton>
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00a9ff" height="69.0" layoutX="-1.0" layoutY="293.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="69.0" layoutX="-1.0" layoutY="293.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
         <ImageView fitHeight="50.0" fitWidth="59.0" layoutX="6.0" layoutY="303.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@/images/IconHome.png" />
@@ -92,7 +92,7 @@
             </tooltip>
         </JFXButton>
 
-        <Rectangle arcHeight="20.0" arcWidth="20.0" fill="DEEPSKYBLUE" height="47.0" layoutX="794.0" layoutY="661.0" stroke="TRANSPARENT" strokeType="INSIDE" width="130.0" />
+        <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#748cdc" height="47.0" layoutX="794.0" layoutY="661.0" stroke="TRANSPARENT" strokeType="INSIDE" width="130.0" />
         <JFXButton fx:id="helpButton" buttonType="RAISED" layoutX="794.0" layoutY="660.0" onAction="#help" prefHeight="47.0" prefWidth="130.0" ripplerFill="WHITE" stylesheets="@../../../../../Fonts/Roboto-Light.css" text="Help" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="22.0" />
@@ -129,12 +129,12 @@
             </font>
         </JFXTextField>
 
-        <Rectangle arcHeight="15.0" arcWidth="15.0" fill="#00bfff" height="40.0" layoutX="522.0" layoutY="644.0" stroke="TRANSPARENT" strokeType="INSIDE" width="74.0" />
-        <JFXButton fx:id="submit" buttonType="RAISED" layoutX="525.0" layoutY="649.0" onAction="#Submit" ripplerFill="WHITE" stylesheets="@../../../../../Fonts/Roboto-Light.css" text="Submit" textFill="WHITE">
+        <Rectangle arcHeight="15.0" arcWidth="15.0" fill="#748cdc" height="40.0" layoutX="522.0" layoutY="644.0" stroke="TRANSPARENT" strokeType="INSIDE" width="74.0" />
+        <JFXButton fx:id="submit" buttonType="RAISED" layoutX="527.0" layoutY="650.0" onAction="#Submit" ripplerFill="WHITE" stylesheets="@../../../../../Fonts/Roboto-Light.css" text="Submit" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></JFXButton>
-        <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#00bfff99" height="47.0" layoutX="139.0" layoutY="124.0" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="INSIDE" width="476.0" />
+        <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#748cdc99" height="47.0" layoutX="139.0" layoutY="124.0" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="INSIDE" width="476.0" />
         <Label fx:id="text1" layoutX="149.0" layoutY="124.0" prefHeight="47.0" prefWidth="457.0" stylesheets="@../../../../../Fonts/Roboto-Light.css" text="SANITATION SERVICE REQUEST" textAlignment="CENTER" textFill="WHITE">
             <font>
                 <Font name="Serif Regular" size="30.0" />
