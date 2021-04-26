@@ -159,10 +159,9 @@ public class SanitationServicesRequestController extends masterController implem
     txtEmployeeName.setValidators();
     if (txtEmployeeName.getSelectionModel().isEmpty() || roomDropdown.getSelectionModel().isEmpty())
       return;
-      txtEmployeeName.getValue() == null
-        ||
+
      */
-    if (roomDropdown.getValue() == null
+    if (txtEmployeeName.getValue() == null
         || txtTimeOfRequest.getText().isEmpty()
         || txtEquipment.getText().isEmpty()) {
       String missingFieldTitle = "Missing Fields";
