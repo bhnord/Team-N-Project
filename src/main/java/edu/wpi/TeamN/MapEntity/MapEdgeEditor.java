@@ -20,7 +20,7 @@ public class MapEdgeEditor {
 
   public void saveEdge(Group root) {
     Edge edge = mapController.getAdminMap().getEdgeSet().get(mapController.getEdgeID().getText());
-    String id = mapController.getEdgeID().getId();
+    String id = mapController.getEdgeID().getText();
     String sn = mapController.getStartNode().getText();
     String en = mapController.getEndNode().getText();
 

@@ -8,7 +8,6 @@ public class Astar implements PathFinderI {
    * @param end target node
    * @return a stack of nodes containing the path from the start to the end
    */
-
   public ArrayList<Node.Link> pathfindFull(Node start, Node end, Reduce filter) {
     // Node.reset() should be called on every node accessible to start
     Node curNode;
@@ -47,5 +46,4 @@ public class Astar implements PathFinderI {
     }
     return ret;
   }
-
 }
