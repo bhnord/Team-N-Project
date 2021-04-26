@@ -83,7 +83,7 @@ public class LoginPage extends masterController implements Initializable {
     if (db.login(getUsername(), getPassword())) {
       switch (db.getCurrentUser().getType()) {
         case ADMINISTRATOR:
-          super.advanceHome2(loader, appPrimaryScene);
+          super.advanceHomeAdmin(loader, appPrimaryScene);
           break;
         case EMPLOYEE:
           super.advanceHome(loader, appPrimaryScene);
