@@ -20,8 +20,8 @@
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.TeamN.views.FoodDeliveryRequestController">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="1366.0" minWidth="0.0" prefWidth="0.0" />
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1366.0" minWidth="0.0" prefWidth="639.0" />
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1366.0" minWidth="0.0" prefWidth="185.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1366.0" minWidth="0.0" prefWidth="131.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1366.0" minWidth="0.0" prefWidth="693.0" />
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="1366.0" minWidth="10.0" prefWidth="542.0" />
     </columnConstraints>
     <rowConstraints>
@@ -114,7 +114,10 @@
                     <effect>
                         <DropShadow color="#c6b8b8" offsetY="5.0" />
                     </effect></Rectangle>
-                <JFXButton fx:id="submit" layoutX="505.0" layoutY="636.0" onAction="#Submit" prefHeight="50.0" prefWidth="95.0" ripplerFill="WHITE" text="Submit" textFill="WHITE" />
+                <JFXButton fx:id="submit" layoutX="505.0" layoutY="636.0" onAction="#Submit" prefHeight="50.0" prefWidth="95.0" ripplerFill="WHITE" text="Submit" textFill="WHITE">
+               <font>
+                  <Font name="Serif Regular" size="15.0" />
+               </font></JFXButton>
                 <JFXComboBox fx:id="txtEmployeeName" layoutX="187.0" layoutY="241.0" prefHeight="31.0" prefWidth="150.0" promptText="Select Employee" />
                 <JFXComboBox fx:id="roomDropdown" layoutX="187.0" layoutY="302.0" prefHeight="31.0" prefWidth="176.0" promptText="Select Patient Room" />
                 <StackPane fx:id="myStackPane2" layoutX="346.0" layoutY="526.0" prefHeight="101.0" prefWidth="531.0" />
