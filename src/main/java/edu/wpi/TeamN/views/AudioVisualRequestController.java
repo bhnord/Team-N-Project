@@ -111,7 +111,6 @@ public class AudioVisualRequestController extends masterController implements In
   public void advanceHome() throws IOException {
 
     Login login = Login.getLogin();
-
     if (login.getUsername().equals("p") && login.getPassword().equals("p")) {
       super.advanceHomePatient(loader, appPrimaryScene);
     } else if (login.getUsername().equals("e") && login.getPassword().equals("e")) {
