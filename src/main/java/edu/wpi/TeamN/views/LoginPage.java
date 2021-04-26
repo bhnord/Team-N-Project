@@ -33,6 +33,10 @@ public class LoginPage extends masterController implements Initializable {
   private Login login;
   public String accountUsername = "";
   public String accountPassword = "";
+
+  String guestUsername = "guest";
+  String guestPassword = "guest";
+
   String patientUsername = "p";
   String patientPassword = "p";
 
@@ -94,6 +98,8 @@ public class LoginPage extends masterController implements Initializable {
       super.advanceHome(loader, appPrimaryScene);
     } else if (getUsername().equals(adminUsername) && getPassword().equals(adminPassword)) {
       super.advanceHomeAdmin(loader, appPrimaryScene);
+    } else if (getUsername().equals(guestUsername) && getPassword().equals(guestPassword)) {
+      super.advanceHomeGuest(loader, appPrimaryScene);
     } else {
       incorrectLogin.setText("INCORRECT USERNAME OR PASSWORD, TRY AGAIN");
       incorrectLogin.setAlignment(Pos.CENTER);

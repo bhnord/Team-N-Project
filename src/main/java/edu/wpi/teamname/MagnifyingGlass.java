@@ -48,7 +48,7 @@ public class MagnifyingGlass extends Application {
     viewportCenterY.bind(centerY.multiply(factor));
     viewportSize.bind(GLASS_SIZE.multiply(factor).multiply(magnification));
 
-    image = new Image(ClassLoader.getSystemResourceAsStream("images/level1.png"));
+    image = new Image(ClassLoader.getSystemResourceAsStream("images/L1.png"));
 
     Pane root = new Pane();
     scene = new Scene(root, 900, 700);
