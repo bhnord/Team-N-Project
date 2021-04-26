@@ -74,7 +74,7 @@ public class AdminMap {
     Node node1 = getNodeSet().get(startNodePath);
     Node node2 = getNodeSet().get(endNodePath);
 
-    return pathFinder.Astar(node1, node2);
+    return pathFinder.pathfindNoStairs(node1, node2);
   }
 
   public void SetStartNode(String snp) {
