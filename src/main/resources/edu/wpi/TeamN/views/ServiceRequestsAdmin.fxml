@@ -1,168 +1,256 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.TeamN.views.ServiceRequests">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.TeamN.views.ServiceRequests">
     <children>
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0c00ae" height="69.0" layoutX="-1.0" layoutY="75.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.0" layoutX="27.0" layoutY="87.0" rotate="45.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.0" layoutX="27.0" layoutY="87.0" rotate="-45.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" />
-        <ImageView fitHeight="766.0" fitWidth="1360.0" layoutX="-5.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="1766.0" fitWidth="1458.0" pickOnBounds="true" preserveRatio="true" scaleX="2.0" scaleY="2.0" StackPane.alignment="TOP_LEFT">
             <image>
                 <Image url="@/images/CSVBackground.png" />
             </image>
         </ImageView>
-        <JFXButton fx:id="FoodDeliveryRequest" layoutX="268.0" layoutY="129.0" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" scaleX="2.0" scaleY="2.0" style="-fx-background-color: #0c00ae; -fx-background-radius: 15;" text="Food Delivery Service" textFill="WHITE">
-            <font>
-                <Font name="Arial Black" size="17.0" />
-            </font>
-        </JFXButton>
-        <JFXButton fx:id="LanguageInterpretersRequest" layoutX="268.0" layoutY="215.0" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" scaleX="2.0" scaleY="2.0" style="-fx-background-color: #0c00ae; -fx-background-radius: 15;" text="Language Interpreters" textFill="WHITE">
-            <font>
-                <Font name="Arial Black" size="17.0" />
-            </font>
-        </JFXButton>
-        <JFXButton fx:id="SanitationServicesRequest" layoutX="268.0" layoutY="300.0" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" scaleX="2.0" scaleY="2.0" style="-fx-background-color: #0c00ae; -fx-background-radius: 15;" text="Sanitation Service" textFill="WHITE">
-            <font>
-                <Font name="Arial Black" size="17.0" />
-            </font>
-        </JFXButton>
-        <JFXButton fx:id="LaundryRequest" layoutX="268.0" layoutY="385.0" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" scaleX="2.0" scaleY="2.0" style="-fx-background-color: #0c00ae; -fx-background-radius: 15;" text="Laundry Services" textFill="WHITE">
-            <font>
-                <Font name="Arial Black" size="17.0" />
-            </font>
-        </JFXButton>
-        <JFXButton fx:id="FloralRequest" layoutX="268.0" layoutY="470.0" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" scaleX="2.0" scaleY="2.0" style="-fx-background-color: #0c00ae; -fx-background-radius: 15;" text="Floral Request" textFill="WHITE">
-            <font>
-                <Font name="Arial Black" size="17.0" />
-            </font>
-        </JFXButton>
-        <JFXButton fx:id="MedicineDeliveryRequest" layoutX="268.0" layoutY="555.0" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" scaleX="2.0" scaleY="2.0" style="-fx-background-color: #0c00ae; -fx-background-radius: 15;" text="Medicine Delivery" textFill="WHITE">
-            <font>
-                <Font name="Arial Black" size="17.0" />
-            </font>
-        </JFXButton>
-        <JFXButton fx:id="ReligiousRequest" layoutX="268.0" layoutY="640.0" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" scaleX="2.0" scaleY="2.0" style="-fx-background-color: #0c00ae; -fx-background-radius: 15;" text="Religious Request" textFill="WHITE">
-            <font>
-                <Font name="Arial Black" size="17.0" />
-            </font>
-        </JFXButton>
-        <JFXButton fx:id="InternalPatientRequest" layoutX="859.0" layoutY="641.0" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" scaleX="2.0" scaleY="2.0" style="-fx-background-color: #0c00ae; -fx-background-radius: 15;" text="Internal Transportation" textFill="WHITE">
-            <font>
-                <Font name="Arial Black" size="16.0" />
-            </font>
-        </JFXButton>
-        <JFXButton fx:id="ExternalPatientRequest" layoutX="859.0" layoutY="130.0" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" scaleX="2.0" scaleY="2.0" style="-fx-background-color: #0c00ae; -fx-background-radius: 15;" text="External Transportation" textFill="WHITE">
-            <font>
-                <Font name="Arial Black" size="16.0" />
-            </font>
-        </JFXButton>
-        <JFXButton fx:id="SecurityServicesRequest" layoutX="859.0" layoutY="216.0" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" scaleX="2.0" scaleY="2.0" style="-fx-background-color: #0c00ae; -fx-background-radius: 15;" text="Security Services" textFill="WHITE">
-            <font>
-                <Font name="Arial Black" size="17.0" />
-            </font>
-        </JFXButton>
-        <JFXButton fx:id="FacilityMaintenanceRequest" layoutX="859.0" layoutY="301.0" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" scaleX="2.0" scaleY="2.0" style="-fx-background-color: #0c00ae; -fx-background-radius: 15;" text="Facility Maintenance" textFill="WHITE">
-            <font>
-                <Font name="Arial Black" size="17.0" />
-            </font>
-        </JFXButton>
-        <JFXButton fx:id="ComputerServiceRequest" layoutX="859.0" layoutY="386.0" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" scaleX="2.0" scaleY="2.0" style="-fx-background-color: #0c00ae; -fx-background-radius: 15;" text="Computer Service" textFill="WHITE">
-            <font>
-                <Font name="Arial Black" size="17.0" />
-            </font>
-        </JFXButton>
-        <JFXButton fx:id="AudioVisualRequest" layoutX="859.0" layoutY="471.0" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" scaleX="2.0" scaleY="2.0" style="-fx-background-color: #0c00ae; -fx-background-radius: 15;" text="Audio/Visual Request" textFill="WHITE">
-            <font>
-                <Font name="Arial Black" size="17.0" />
-            </font>
-        </JFXButton>
-        <JFXButton fx:id="GiftDeliveryRequest" layoutX="859.0" layoutY="556.0" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" scaleX="2.0" scaleY="2.0" style="-fx-background-color: #0c00ae; -fx-background-radius: 15;" text="Gift Delivery Service" textFill="WHITE">
-            <font>
-                <Font name="Arial Black" size="17.0" />
-            </font>
-        </JFXButton>
-
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0c00ae" height="69.0" layoutX="-1.0" layoutY="78.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.0" layoutX="27.0" layoutY="90.0" rotate="45.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.0" layoutX="27.0" layoutY="90.0" rotate="-45.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" />
-        <JFXButton fx:id="exit" layoutY="77.0" onAction="#exit" prefHeight="71.0" prefWidth="66.0" textFill="WHITE">
-            <font>
-                <Font name="System Bold" size="9.0" />
-            </font>
-            <tooltip>
-                <Tooltip fx:id="ttExit" text="Exit App">
-                    <font>
-                        <Font size="18.0" />
-                    </font>
-                </Tooltip>
-            </tooltip>
-        </JFXButton>
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0c00ae" height="69.0" layoutX="-1.0" layoutY="150.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
-        <ImageView fitHeight="50.0" fitWidth="59.0" layoutX="4.0" layoutY="159.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@/images/LogOut.png" />
-            </image>
-        </ImageView>
-        <JFXButton fx:id="logOutButton" layoutX="-1.0" layoutY="149.0" onAction="#logOut" prefHeight="71.0" prefWidth="66.0" textFill="WHITE">
-            <font>
-                <Font name="System Bold" size="9.0" />
-            </font>
-            <tooltip>
-                <Tooltip fx:id="ttLogOutButton" text="Log Out">
-                    <font>
-                        <Font size="18.0" />
-                    </font>
-                </Tooltip>
-            </tooltip>
-        </JFXButton>
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0c00ae" height="69.0" layoutX="-1.0" layoutY="222.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
-        <ImageView fitHeight="50.0" fitWidth="59.0" layoutX="6.0" layoutY="232.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@/images/ButtonCovid.png" />
-            </image>
-        </ImageView>
-        <JFXButton fx:id="CovidForm" layoutX="-1.0" layoutY="221.0" onAction="#advanceViews" prefHeight="71.0" prefWidth="66.0" text="Button" textFill="WHITE">
-            <font>
-                <Font name="System Bold" size="9.0" />
-            </font>
-            <tooltip>
-                <Tooltip fx:id="ttCovidForm" text="Covid Form">
-                    <font>
-                        <Font size="18.0" />
-                    </font>
-                </Tooltip>
-            </tooltip>
-        </JFXButton>
-
-
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0c00ae" height="69.0" layoutX="-1.0" layoutY="293.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
-        <ImageView fitHeight="50.0" fitWidth="59.0" layoutX="6.0" layoutY="303.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@/images/IconHome.png" />
-            </image>
-        </ImageView>
-        <JFXButton fx:id="HomeView" layoutX="-1.0" layoutY="293.0" onAction="#advanceHome" prefHeight="71.0" prefWidth="66.0" text=" " textFill="WHITE">
-            <font>
-                <Font name="System Bold" size="9.0" />
-            </font>
-            <tooltip>
-                <Tooltip fx:id="ttHomeView" text="  ">
-                    <font>
-                        <Font size="18.0" />
-                    </font>
-                </Tooltip>
-            </tooltip>
-        </JFXButton>
-
-
-
-
+        <GridPane fx:id="BigBoiPane">
+            <columnConstraints>
+                <ColumnConstraints hgrow="NEVER" maxWidth="451.0" minWidth="66.0" prefWidth="66.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="722.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="566.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="768.0" prefHeight="768.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#363d54" height="1153.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" GridPane.valignment="BASELINE" />
+                <GridPane GridPane.hgrow="NEVER" GridPane.vgrow="NEVER">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
+                    </rowConstraints>
+                    <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="65.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" GridPane.rowIndex="1" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="65.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" GridPane.rowIndex="2" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="65.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" GridPane.rowIndex="3" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.0" rotate="-45.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.0" rotate="45.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                        <JFXButton fx:id="exit" onAction="#exit" prefHeight="64.0" prefWidth="66.0" textFill="WHITE" GridPane.rowIndex="1">
+                            <font>
+                                <Font name="System Bold" size="9.0" />
+                            </font>
+                            <tooltip>
+                                <Tooltip fx:id="ttExit" text="Exit App">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                </Tooltip>
+                            </tooltip>
+                        </JFXButton>
+                        <ImageView fitHeight="50.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                            <image>
+                                <Image url="@/images/LogOut.png" />
+                            </image>
+                        </ImageView>
+                        <JFXButton fx:id="logOutButton" onAction="#logOut" prefHeight="64.0" prefWidth="66.0" textFill="WHITE" GridPane.rowIndex="2">
+                            <font>
+                                <Font name="System Bold" size="9.0" />
+                            </font>
+                            <tooltip>
+                                <Tooltip fx:id="ttLogOutButton" text="Log Out">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                </Tooltip>
+                            </tooltip>
+                        </JFXButton>
+                        <ImageView fitHeight="50.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                            <image>
+                                <Image url="@/images/ButtonCovid.png" />
+                            </image>
+                        </ImageView>
+                        <JFXButton fx:id="CovidForm" onAction="#advanceViews" prefHeight="64.0" prefWidth="66.0" text="Button" textFill="WHITE" GridPane.rowIndex="3">
+                            <font>
+                                <Font name="System Bold" size="9.0" />
+                            </font>
+                            <tooltip>
+                                <Tooltip fx:id="ttCovidForm" text="Covid Form">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                </Tooltip>
+                            </tooltip>
+                        </JFXButton>
+                        <ImageView fitHeight="61.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                            <image>
+                                <Image url="@/images/BWHLogo.png" />
+                            </image>
+                        </ImageView>
+                    </children>
+                </GridPane>
+                <GridPane GridPane.columnIndex="1">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <JFXButton fx:id="AudioVisualRequest" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="Audio/Visual Request" textFill="WHITE" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                            <font>
+                                <Font name="Arial Black" size="17.0" />
+                            </font>
+                            <GridPane.margin>
+                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                            </GridPane.margin>
+                        </JFXButton>
+                        <JFXButton fx:id="GiftDeliveryRequest" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="Gift Delivery Service" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                            <font>
+                                <Font name="Arial Black" size="17.0" />
+                            </font>
+                            <GridPane.margin>
+                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                            </GridPane.margin>
+                        </JFXButton>
+                        <JFXButton fx:id="SecurityServicesRequest" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="Security Services" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                            <font>
+                                <Font name="Arial Black" size="17.0" />
+                            </font>
+                            <GridPane.margin>
+                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                            </GridPane.margin>
+                        </JFXButton>
+                        <JFXButton fx:id="FacilityMaintenanceRequest" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="Facility Maintenance" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                            <font>
+                                <Font name="Arial Black" size="17.0" />
+                            </font>
+                            <GridPane.margin>
+                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                            </GridPane.margin>
+                        </JFXButton>
+                        <JFXButton fx:id="ComputerServiceRequest" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="Computer Service" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+                            <font>
+                                <Font name="Arial Black" size="17.0" />
+                            </font>
+                            <GridPane.margin>
+                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                            </GridPane.margin>
+                        </JFXButton>
+                        <JFXButton fx:id="InternalPatientRequest" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="Internal Transportation" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                            <font>
+                                <Font name="Arial Black" size="16.0" />
+                            </font>
+                            <GridPane.margin>
+                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                            </GridPane.margin>
+                        </JFXButton>
+                        <JFXButton fx:id="ExternalPatientRequest" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="External Transportation" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                            <font>
+                                <Font name="Arial Black" size="16.0" />
+                            </font>
+                            <GridPane.margin>
+                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                            </GridPane.margin>
+                        </JFXButton>
+                    </children>
+                </GridPane>
+                <GridPane GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <JFXButton fx:id="MedicineDeliveryRequest" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="Medicine Delivery" textFill="WHITE" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                            <font>
+                                <Font name="Arial Black" size="17.0" />
+                            </font>
+                            <GridPane.margin>
+                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                            </GridPane.margin>
+                        </JFXButton>
+                        <JFXButton fx:id="FloralRequest" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="Floral Request" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                            <font>
+                                <Font name="Arial Black" size="17.0" />
+                            </font>
+                            <GridPane.margin>
+                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                            </GridPane.margin>
+                        </JFXButton>
+                        <JFXButton fx:id="LaundryRequest" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="Laundry Services" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                            <font>
+                                <Font name="Arial Black" size="17.0" />
+                            </font>
+                            <GridPane.margin>
+                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                            </GridPane.margin>
+                        </JFXButton>
+                        <JFXButton fx:id="SanitationServicesRequest" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="Sanitation Service" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                            <font>
+                                <Font name="Arial Black" size="17.0" />
+                            </font>
+                            <GridPane.margin>
+                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                            </GridPane.margin>
+                        </JFXButton>
+                        <JFXButton fx:id="LanguageInterpretersRequest" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="Language Interpreters" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                            <font>
+                                <Font name="Arial Black" size="17.0" />
+                            </font>
+                            <GridPane.margin>
+                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                            </GridPane.margin>
+                        </JFXButton>
+                        <JFXButton fx:id="FoodDeliveryRequest" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="Food Delivery Service" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+                            <font>
+                                <Font name="Arial Black" size="17.0" />
+                            </font>
+                            <GridPane.margin>
+                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                            </GridPane.margin>
+                        </JFXButton>
+                        <JFXButton fx:id="ReligiousRequest" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="Religious Request" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                            <font>
+                                <Font name="Arial Black" size="17.0" />
+                            </font>
+                            <GridPane.margin>
+                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                            </GridPane.margin>
+                        </JFXButton>
+                    </children>
+                </GridPane>
+            </children>
+        </GridPane>
     </children>
-</AnchorPane>
+</StackPane>
