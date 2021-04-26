@@ -238,7 +238,7 @@ public class MapController extends masterController implements Initializable {
   }
 
   private void DeleteNodesFromMap() throws IOException {
-    int i = 7;
+    int i = 1;
     for (javafx.scene.Node root :
         mapAnchor.getChildren().subList(i, mapAnchor.getChildren().size())) {
       if (root.getId().equals(current.getId())) {
@@ -264,7 +264,7 @@ public class MapController extends masterController implements Initializable {
   // Loading from the database
   public void Load(ActionEvent actionEvent) {
     for (javafx.scene.Node root :
-        mapAnchor.getChildren().subList(7, mapAnchor.getChildren().size())) {
+        mapAnchor.getChildren().subList(1, mapAnchor.getChildren().size())) {
       root.setVisible(false);
     }
     adminMap
