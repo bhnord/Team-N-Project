@@ -296,12 +296,13 @@ public class DatabaseService {
   }
 
   /**
-   * @param user a User of type User to input into the database
+   * @param username username of the user to be added
    * @param password the password to be associated with given user
+   * @param type the type of the user to be added
    * @return whether or not the operation was carried out successfully
    */
-  public boolean addUser(User user, String password) {
-    return usersTable.addUser(user, password);
+  public boolean addUser(String username, String password, UserType type) {
+    return usersTable.addUser(username, password, type);
   }
 
   /**
