@@ -99,7 +99,9 @@ public class LoginPage extends masterController implements Initializable {
   }
 
   @FXML
-  private void continueToHomePageGuest() throws IOException {}
+  public void register() throws IOException {
+    super.register(loader, appPrimaryScene);
+  }
 
   @FXML
   private void validateButton() {
