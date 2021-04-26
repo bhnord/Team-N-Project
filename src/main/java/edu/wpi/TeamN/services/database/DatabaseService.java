@@ -287,14 +287,40 @@ public class DatabaseService {
   //////////////////////////
 
   /**
-   * @param user a User of type User to input into the database
-   * @param password the password to be associated with given user
-   * @return whether or not the operation was carried out successfully
+   * retrieves all users from the Database
+   *
+   * @return all users in the Database as a HashSet
    */
-  boolean addUser(User user, String password) {
-    return usersTable.addUser(user, password);
+  public HashSet<User> getAllUsers() {
+    return usersTable.getAllUsers();
   }
 
+  /**
+   * @param username username of the user to be added
+   * @param password the password to be associated with given user
+   * @param type the type of the user to be added
+   * @return whether or not the operation was carried out successfully
+   */
+  public boolean addUser(String username, String password, UserType type) {
+    return usersTable.addUser(username, password, type);
+  }
+
+  /**
+   * updates an existing user in the Database
+   *
+   * @param id
+   * @param username
+   * @param password
+   * @param type
+   * @return
+   */
+  public boolean updateUser(int id, String username, String password, UserType type) {
+    return usersTable.updateUser(id, username, password, type);
+  }
+
+  public boolean updateUserUsernameType(int id, String username, UserType type) {
+    return usersTable.updateUserUsernameType(id, username, type);
+  }
   /**
    * retrieves a single user from the Database with matching ID
    *
