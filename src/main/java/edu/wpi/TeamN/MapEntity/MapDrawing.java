@@ -4,7 +4,6 @@ import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.views.MapController;
 import java.util.ArrayList;
 import java.util.Objects;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
@@ -15,11 +14,9 @@ public class MapDrawing {
   private final MapController mapController;
   private final String[] maps = {"L1", "L2", "g", "F1", "F2", "F3"};
   private String currentMap;
-  private final FXMLLoader loader;
 
-  public MapDrawing(MapController mapController, FXMLLoader loader) {
+  public MapDrawing(MapController mapController) {
     this.mapController = mapController;
-    this.loader = loader;
     currentMap = maps[0];
   }
 
@@ -31,14 +28,14 @@ public class MapDrawing {
             node2.get_x() * mapController.getDownScale(),
             node2.get_y() * mapController.getDownScale());
     simpleNode.setTranslateZ(5);
-    simpleNode.setStrokeWidth(2.5);
+    simpleNode.setStrokeWidth(3.5);
     Group root = new Group(simpleNode);
     root.setId(id);
     return root;
   }
 
   public Group drawNode(String id, double x, double y) {
-    Circle simpleNode = new Circle(x, y, 3.5);
+    Circle simpleNode = new Circle(x, y, 4);
     simpleNode.setTranslateZ(10);
     simpleNode.setFill(Color.BLUE);
     Group root = new Group(simpleNode);

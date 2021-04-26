@@ -99,7 +99,7 @@ public class MapController extends masterController implements Initializable {
     mapNodeEditor = new MapNodeEditor(this);
     mapEdgeEditor = new MapEdgeEditor(this);
     actionHandling = new NodeActionHandling(this, this.mapNodeEditor, this.mapEdgeEditor);
-    mapDrawing = new MapDrawing(this, loader);
+    mapDrawing = new MapDrawing(this);
     mapImageView.setCursor(Cursor.CROSSHAIR);
     this.Load(new ActionEvent());
   }
