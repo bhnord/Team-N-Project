@@ -17,6 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
@@ -35,6 +36,11 @@ public class HomeControllerGuest extends masterController implements Initializab
   @FXML private Tooltip ttExit;
   @FXML private JFXButton logOutButton;
   @FXML private Tooltip ttLogOutButton;
+
+  @FXML private JFXButton map, map1;
+  @FXML private JFXButton helpS, helpSB;
+
+  @FXML private GridPane BigBoiPane;
 
   private Scene appPrimaryScene;
 
@@ -55,6 +61,13 @@ public class HomeControllerGuest extends masterController implements Initializab
     CovidForm.setTooltip(ttCovidForm);
     logOutButton.setTooltip(ttLogOutButton);
     exit.setTooltip(ttExit);
+
+    BigBoiPane.setMinSize(1366, 768);
+    // BigBoiPane.set
+    map.setStyle(
+        "-fx-background-image: url('/images/ButtonM.png'); -fx-background-size: cover; -fx-background-radius: 25");
+    map1.setStyle(
+        "-fx-background-image: url('/images/ButtonH.png'); -fx-background-size: cover; -fx-background-radius: 25");
   }
 
   public void advance(ActionEvent actionEvent) throws IOException {
