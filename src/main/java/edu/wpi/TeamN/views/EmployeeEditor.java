@@ -98,7 +98,7 @@ public class EmployeeEditor extends masterController implements Initializable {
 
   @FXML
   public void advanceHome() throws IOException {
-    super.advanceHome(loader, appPrimaryScene);
+    super.advanceHomeAdmin(loader, appPrimaryScene);
   }
 
   public void commitChanges(ActionEvent actionEvent) {
