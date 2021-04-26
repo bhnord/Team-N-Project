@@ -8,13 +8,6 @@ public class Astar implements PathFinderI {
    * @param end target node
    * @return a stack of nodes containing the path from the start to the end
    */
-  public ArrayList<Node.Link> pathfind(Node start, Node end) {
-    return pathfindFull(start, end, (l) -> true);
-  }
-
-  public ArrayList<Node.Link> pathfindNoStairs(Node start, Node end) {
-    return pathfindFull(start, end, (l) -> !l._isStair);
-  }
 
   public ArrayList<Node.Link> pathfindFull(Node start, Node end, Reduce filter) {
     // Node.reset() should be called on every node accessible to start
@@ -47,25 +40,12 @@ public class Astar implements PathFinderI {
         }
       }
     } while (!open.isEmpty());
-    ArrayList<Node.Link> ret = rebuild(start, end);
+    ArrayList<Node.Link> ret = PathFinder.rebuild(start, end);
     // reset manipulated nodes
     for (Node n : used) {
       n.reset();
     }
     return ret;
   }
-  /**
-   * @param start node to walk back to
-   * @param curNode node to start walking back from
-   * @return a stack of nodes where start is at the top and every next node's parent is the previous
-   *     node in the stack
-   */
-  private ArrayList<Node.Link> rebuild(Node start, Node curNode) {
-    ArrayList<Node.Link> ret = new ArrayList<>();
-    while (curNode.get_parent() != null) {
-      ret.add(curNode.get_parent());
-      curNode = curNode.get_parent()._this;
-    }
-    return ret;
-  }
+
 }

@@ -13,14 +13,12 @@ public class PathFinder implements PathFinderI {
     this.impl = new Astar();
   }
 
-  @Override
   public ArrayList<Node.Link> pathfind(Node start, Node end) {
-    return impl.pathfind(start, end);
+    return impl.pathfindFull(start, end, (l) -> true);
   }
 
-  @Override
   public ArrayList<Node.Link> pathfindNoStairs(Node start, Node end) {
-    return impl.pathfindNoStairs(start, end);
+    return impl.pathfindFull(start, end, (l) -> !l._isStair);
   }
 
   @Override
@@ -35,5 +33,20 @@ public class PathFinder implements PathFinderI {
       stringBuilder.append("\n");
     }
     return stringBuilder.toString();
+  }
+
+  /**
+   * @param start node to walk back to
+   * @param curNode node to start walking back from
+   * @return a stack of nodes where start is at the top and every next node's parent is the previous
+   *     node in the stack
+   */
+  protected static ArrayList<Node.Link> rebuild(Node start, Node curNode) {
+    ArrayList<Node.Link> ret = new ArrayList<>();
+    while (curNode.get_parent() != null) {
+      ret.add(curNode.get_parent());
+      curNode = curNode.get_parent()._this;
+    }
+    return ret;
   }
 }
