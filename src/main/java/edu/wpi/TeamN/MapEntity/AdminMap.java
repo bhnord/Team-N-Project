@@ -14,8 +14,8 @@ public class AdminMap {
   private HashMap<String, Node> nodeSet = new HashMap<>();
   private HashMap<String, Edge> edgeSet = new HashMap<>();
 
-  private final double downScale = .168;
-  private final double upScale = 5.9523;
+  private final double downScale = .25;
+  private final double upScale = 4;
 
   private String startNodePath;
   private String endNodePath;
@@ -74,7 +74,7 @@ public class AdminMap {
     Node node1 = getNodeSet().get(startNodePath);
     Node node2 = getNodeSet().get(endNodePath);
 
-    return pathFinder.Astar(node1, node2);
+    return pathFinder.pathfindNoStairs(node1, node2);
   }
 
   public void SetStartNode(String snp) {

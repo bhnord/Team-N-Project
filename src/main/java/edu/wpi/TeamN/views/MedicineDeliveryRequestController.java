@@ -11,10 +11,13 @@ import edu.wpi.TeamN.services.database.users.User;
 import edu.wpi.TeamN.services.database.users.UserType;
 import edu.wpi.TeamN.state.HomeState;
 import edu.wpi.TeamN.state.Login;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
+import java.util.Scanner;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -25,6 +28,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.BoxBlur;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -41,8 +45,7 @@ public class MedicineDeliveryRequestController extends masterController implemen
   @FXML private Label text;
   @FXML private Label errorLabel;
   private Label person1;
-  @FXML private JFXTextField txtTimeOfRequest;
-  @FXML private JFXTextField txtEquipment;
+  @FXML private JFXTimePicker txtTimeOfRequest;
   @FXML private JFXTextField txtComments;
   @FXML private Button helpButton;
   @FXML private StackPane myStackPane;
@@ -53,7 +56,11 @@ public class MedicineDeliveryRequestController extends masterController implemen
   private HashMap<String, Node> rooms;
   @FXML private JFXComboBox<Label> txtEmployeeName = new JFXComboBox<>();
   @FXML private JFXComboBox<Label> roomDropdown = new JFXComboBox<>();
-  // @FXML private AnchorPane anchorPage;
+  @FXML private JFXComboBox<Label> txtEquipment = new JFXComboBox<>();
+
+  @FXML private AnchorPane anchorPage;
+
+  @FXML private StackPane confirmationStackPane;
   static Stage stage;
 
   /**
@@ -70,7 +77,7 @@ public class MedicineDeliveryRequestController extends masterController implemen
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     log.debug(state.toString());
-    submit.setDisable(true);
+    // submit.setDisable(true);
 
     /** USERNAME input and password* */
     RequiredFieldValidator reqInputValid = new RequiredFieldValidator();
@@ -83,14 +90,6 @@ public class MedicineDeliveryRequestController extends masterController implemen
               if (!newVal) txtTimeOfRequest.validate();
             });
     reqInputValid.setMessage("Cannot be empty");
-    txtComments.getValidators().add(reqInputValid);
-    txtComments
-        .focusedProperty()
-        .addListener(
-            (o, oldVal, newVal) -> {
-              if (!newVal) txtComments.validate();
-            });
-    reqInputValid.setMessage("Cannot be empty");
     txtEquipment.getValidators().add(reqInputValid);
     txtEquipment
         .focusedProperty()
@@ -101,6 +100,7 @@ public class MedicineDeliveryRequestController extends masterController implemen
 
     loadEmployeeDropdown();
     loadRoomDropdown();
+    loadMedicine();
   }
 
   public void exit(ActionEvent actionEvent) throws IOException {
@@ -117,23 +117,14 @@ public class MedicineDeliveryRequestController extends masterController implemen
 
     Login login = Login.getLogin();
 
-    if (login.getUsername().equals("p") && login.getPassword().equals("p")) {
+    if (login.getUsername().equals("patient") && login.getPassword().equals("patient")) {
       super.advanceHomePatient(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("e") && login.getPassword().equals("e")) {
+    } else if (login.getUsername().equals("staff") && login.getPassword().equals("staff")) {
       super.advanceHome(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("a") && login.getPassword().equals("a")) {
+    } else if (login.getUsername().equals("admin") && login.getPassword().equals("admin")) {
       super.advanceHomeAdmin(loader, appPrimaryScene);
-    }
-  }
-
-  @FXML
-  private void validateButton() {
-    if (!txtTimeOfRequest.getText().isEmpty()
-        && !txtEquipment.getText().isEmpty()
-        && !txtComments.getText().isEmpty()) {
-      submit.setDisable(false);
-    } else {
-      submit.setDisable(true);
+    } else if (login.getUsername().equals("guest") && login.getPassword().equals("guest")) {
+      super.advanceHomeGuest(loader, appPrimaryScene);
     }
   }
 
@@ -142,11 +133,11 @@ public class MedicineDeliveryRequestController extends masterController implemen
 
     Login login = Login.getLogin();
 
-    if (login.getUsername().equals("p") && login.getPassword().equals("p")) {
+    if (login.getUsername().equals("patient") && login.getPassword().equals("patient")) {
       super.advanceServiceRequestPatient(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("e") && login.getPassword().equals("e")) {
+    } else if (login.getUsername().equals("staff") && login.getPassword().equals("staff")) {
       super.advanceServiceRequestEmployee(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("a") && login.getPassword().equals("a")) {
+    } else if (login.getUsername().equals("admin") && login.getPassword().equals("admin")) {
       super.advanceServiceRequestAdmin(loader, appPrimaryScene);
     }
   }
@@ -155,8 +146,8 @@ public class MedicineDeliveryRequestController extends masterController implemen
 
     if (txtEmployeeName.getValue() == null
         || roomDropdown.getValue() == null
-        || txtTimeOfRequest.getText().isEmpty()
-        || txtEquipment.getText().isEmpty()) {
+        || txtTimeOfRequest.getEditor().getText().isEmpty()
+        || txtEquipment.getSelectionModel().getSelectedItem().getText().isEmpty()) {
       String title = "Missing Fields";
       JFXDialogLayout dialogContent = new JFXDialogLayout();
       dialogContent.setHeading(new Text(title));
@@ -222,22 +213,8 @@ public class MedicineDeliveryRequestController extends masterController implemen
             @Override
             public void handle(ActionEvent event) {
               popup1.hide();
+
               BoxBlur blur = new BoxBlur(7, 7, 7);
-              Request r =
-                  new Request(
-                      RequestType.MEDICINE_DELIVERY,
-                      Integer.parseInt(
-                          txtEmployeeName.getSelectionModel().getSelectedItem().getId()),
-                      roomDropdown.getSelectionModel().getSelectedItem().getId(),
-                      txtEquipment.getText(),
-                      txtComments.getText());
-              if (!db.addRequest(r)) {
-                System.out.println("HERE");
-                errorLabel.setText("Invalid Input(s)");
-              }
-              for (Request re : db.getAllRequests()) {
-                System.out.println(re.getContent());
-              }
 
               VBox manuContainer = new VBox();
               Label lbl1 =
@@ -283,26 +260,40 @@ public class MedicineDeliveryRequestController extends masterController implemen
                     @SneakyThrows
                     @Override
                     public void handle(ActionEvent event) {
-                      // anchorPage.setEffect(null);
+                      anchorPage.setEffect(null);
                       txtEmployeeName.setEffect(null);
-
                       popup1.hide();
                       advanceHome();
                       submit.setDisable(false);
                     }
                   });
               submit.setDisable(true);
-              // anchorPage.setEffect(blur);
+              anchorPage.setEffect(blur);
               txtEmployeeName.setEffect(blur);
-              //                  popup1.show(
-              //                          confirmationStackPane,
-              //                          JFXPopup.PopupVPosition.BOTTOM,
-              //                          JFXPopup.PopupHPosition.LEFT);
+              popup1.show(
+                  confirmationStackPane,
+                  JFXPopup.PopupVPosition.BOTTOM,
+                  JFXPopup.PopupHPosition.LEFT);
               submit.setDisable(false);
             }
           });
       submit.setDisable(true);
       popup1.show(myStackPane2, JFXPopup.PopupVPosition.BOTTOM, JFXPopup.PopupHPosition.LEFT);
+    }
+
+    Request r =
+        new Request(
+            RequestType.MEDICINE_DELIVERY,
+            Integer.parseInt(txtEmployeeName.getSelectionModel().getSelectedItem().getId()),
+            roomDropdown.getSelectionModel().getSelectedItem().getId(),
+            txtEquipment.getSelectionModel().getSelectedItem().getText(),
+            txtComments.getText());
+    if (!db.addRequest(r)) {
+      System.out.println("HERE");
+      errorLabel.setText("Invalid Input(s)");
+    }
+    for (Request re : db.getAllRequests()) {
+      System.out.println(re.getContent());
     }
   }
 
@@ -345,8 +336,24 @@ public class MedicineDeliveryRequestController extends masterController implemen
       lbl.setId(user.getId());
       txtEmployeeName.getItems().add((lbl));
     }
-    txtEmployeeName.getItems().add((new Label("test")));
     new AutoCompleteComboBoxListener(txtEmployeeName);
+  }
+
+  private void loadMedicine() {
+    Scanner scan = null;
+    try {
+      scan = new Scanner(new File("src/main/resources/tempCSV/drugs.txt"));
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
+    }
+    while (scan.hasNextLine()) {
+      String line = scan.nextLine();
+      Label lbl = new Label(line);
+      lbl.setId(line);
+      txtEquipment.getItems().add(lbl);
+    }
+    scan.close();
+    new AutoCompleteComboBoxListener(txtEquipment);
   }
 
   private void loadRoomDropdown() {
@@ -356,7 +363,6 @@ public class MedicineDeliveryRequestController extends masterController implemen
       lbl.setId(node.get_nodeID());
       roomDropdown.getItems().add(lbl);
     }
-    roomDropdown.getItems().add((new Label("test")));
     new AutoCompleteComboBoxListener(roomDropdown);
   }
 }

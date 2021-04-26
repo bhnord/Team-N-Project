@@ -8,6 +8,11 @@ import edu.wpi.TeamN.services.algo.Edge;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.database.DatabaseService;
 import edu.wpi.TeamN.state.HomeState;
+import edu.wpi.TeamN.state.Login;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -31,11 +36,6 @@ import javafx.stage.Stage;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
-
 @Slf4j
 public class MapController extends masterController implements Initializable {
   @FXML private JFXColorPicker colorPicker;
@@ -51,8 +51,8 @@ public class MapController extends masterController implements Initializable {
   private Group current;
   private Node startNodePath;
 
-  public final double downScale = .168;
-  public final double upScale = 5.9523;
+  public final double downScale = 0.25;
+  public final double upScale = 4;
   private int nodeCount = 0;
 
   private ActionHandlingI actionHandling;
@@ -78,6 +78,7 @@ public class MapController extends masterController implements Initializable {
   @FXML private JFXTextField endNode;
 
   Boolean cancelOrSubmit = false;
+
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
    * JavaFX thread
@@ -105,11 +106,25 @@ public class MapController extends masterController implements Initializable {
 
   @FXML
   public void advanceHome() throws IOException {
+
+    /*
     super.advanceHome(loader, appPrimaryScene);
     Stage stage = (Stage) appPrimaryScene.getWindow();
-    // stage.setHeight(800);
-    // stage.setWidth(1366);
-    stage.centerOnScreen();
+      // stage.setHeight(800);
+      // stage.setWidth(1366);
+    stage.centerOnScreen();*/
+
+    Login login = Login.getLogin();
+
+    if (login.getUsername().equals("p") && login.getPassword().equals("p")) {
+      super.advanceHomePatient(loader, appPrimaryScene);
+    } else if (login.getUsername().equals("e") && login.getPassword().equals("e")) {
+      super.advanceHome(loader, appPrimaryScene);
+    } else if (login.getUsername().equals("a") && login.getPassword().equals("a")) {
+      super.advanceHomeAdmin(loader, appPrimaryScene);
+    } else if (login.getUsername().equals("guest") && login.getPassword().equals("guest")) {
+      super.advanceHomeGuest(loader, appPrimaryScene);
+    }
   }
 
   /**
@@ -165,7 +180,7 @@ public class MapController extends masterController implements Initializable {
             x * getUpScale(),
             y * getUpScale(),
             id,
-            getFloor().getText(),
+            mapDrawing.getCurrentMap(),
             getBuilding().getText(),
             "",
             getLongName().getText(),
@@ -223,7 +238,7 @@ public class MapController extends masterController implements Initializable {
   }
 
   private void DeleteNodesFromMap() throws IOException {
-    int i = 1;
+    int i = 7;
     for (javafx.scene.Node root :
         mapAnchor.getChildren().subList(i, mapAnchor.getChildren().size())) {
       if (root.getId().equals(current.getId())) {
@@ -248,20 +263,32 @@ public class MapController extends masterController implements Initializable {
 
   // Loading from the database
   public void Load(ActionEvent actionEvent) {
+    for (javafx.scene.Node root :
+        mapAnchor.getChildren().subList(7, mapAnchor.getChildren().size())) {
+      root.setVisible(false);
+    }
     adminMap
         .getEdgeSet()
         .forEach(
             (key, value) -> {
-              placeLink(
-                  key,
-                  adminMap.getNodeSet().get(value.getStartNode()),
-                  adminMap.getNodeSet().get(value.getEndNode()));
+              if (adminMap
+                  .getNodeSet()
+                  .get(value.getStartNode())
+                  .get_floor()
+                  .equals(mapDrawing.getCurrentMap())) {
+                placeLink(
+                    key,
+                    adminMap.getNodeSet().get(value.getStartNode()),
+                    adminMap.getNodeSet().get(value.getEndNode()));
+              }
             });
     adminMap
         .getNodeSet()
         .forEach(
             (key, value) -> {
-              placeNode(key, value.get_x() * downScale, value.get_y() * downScale);
+              if (value.get_floor().equals(mapDrawing.getCurrentMap())) {
+                placeNode(key, value.get_x() * downScale, value.get_y() * downScale);
+              }
             });
   }
 
@@ -408,5 +435,18 @@ public class MapController extends masterController implements Initializable {
 
   public void setEndNode(String s) {
     endNode.setText(s);
+  }
+
+  public ImageView getMapImageView() {
+    return mapImageView;
+  }
+
+  public void setMapImageView(ImageView mapImageView) {
+    this.mapImageView = mapImageView;
+  }
+
+  public void setMap(ActionEvent actionEvent) {
+    mapDrawing.setMap(((Button) actionEvent.getSource()).getId());
+    this.Load(actionEvent);
   }
 }

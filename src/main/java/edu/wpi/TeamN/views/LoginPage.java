@@ -33,14 +33,6 @@ public class LoginPage extends masterController implements Initializable {
   private Login login;
   public String accountUsername = "";
   public String accountPassword = "";
-  String patientUsername = "p";
-  String patientPassword = "p";
-
-  String employeeUsername = "e";
-  String employeePassword = "e";
-
-  String adminUsername = "a";
-  String adminPassword = "a";
 
   public void initialize(URL url, ResourceBundle rb) {
     /** Locking submit button to start* */
@@ -88,20 +80,43 @@ public class LoginPage extends masterController implements Initializable {
     login.setPassword(getPassword());
     login.setUsername(getUsername());
 
-    if (getUsername().equals(patientUsername) && getPassword().equals(patientPassword)) {
+    if (login.getUsername().equals("patient") && login.getPassword().equals("patient")) {
       super.advanceHomePatient(loader, appPrimaryScene);
-    } else if (getUsername().equals(employeeUsername) && getPassword().equals(employeePassword)) {
+    } else if (login.getUsername().equals("staff") && login.getPassword().equals("staff")) {
       super.advanceHome(loader, appPrimaryScene);
-    } else if (getUsername().equals(adminUsername) && getPassword().equals(adminPassword)) {
+    } else if (login.getUsername().equals("admin") && login.getPassword().equals("admin")) {
       super.advanceHomeAdmin(loader, appPrimaryScene);
+    } else if (login.getUsername().equals("guest") && login.getPassword().equals("guest")) {
+      super.advanceHomeGuest(loader, appPrimaryScene);
     } else {
       incorrectLogin.setText("INCORRECT USERNAME OR PASSWORD, TRY AGAIN");
       incorrectLogin.setAlignment(Pos.CENTER);
     }
+    /*    if (db.login(getUsername(), getPassword())) {
+      switch (db.getCurrentUser().getType()) {
+        case ADMINISTRATOR:
+          super.advanceHomeAdmin(loader, appPrimaryScene);
+          break;
+        case EMPLOYEE:
+          super.advanceHome(loader, appPrimaryScene);
+          break;
+        case PATIENT:
+          super.advanceHomePatient(loader, appPrimaryScene);
+          break;
+        case GUEST:
+          super.advanceHomeGuest(loader, appPrimaryScene);
+          break;
+      }
+    } else {
+      incorrectLogin.setText("INCORRECT USERNAME OR PASSWORD, TRY AGAIN");
+      incorrectLogin.setAlignment(Pos.CENTER);
+    }*/
   }
 
   @FXML
-  private void continueToHomePageGuest() throws IOException {}
+  public void register() throws IOException {
+    super.register(loader, appPrimaryScene);
+  }
 
   @FXML
   private void validateButton() {

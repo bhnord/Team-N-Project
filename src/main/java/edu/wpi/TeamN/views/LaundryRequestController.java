@@ -19,11 +19,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.BoxBlur;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -40,18 +40,25 @@ public class LaundryRequestController extends masterController implements Initia
   @FXML private Label text;
   @FXML private Label errorLabel;
   private Label person1;
-  @FXML private JFXTextField txtTimeOfRequest;
-  @FXML private JFXTextField txtEquipment;
   @FXML private JFXTextField txtComments;
   @FXML private Button helpButton;
   @FXML private StackPane myStackPane;
-  @FXML private Button submit;
   @FXML private StackPane myStackPane2;
   private Scene appPrimaryScene;
+  @FXML private Button submit;
   private HashMap<String, User> users;
   private HashMap<String, Node> rooms;
+
+  @FXML private AnchorPane anchorPage;
+
+  @FXML private StackPane confirmationStackPane;
+
+  // @FXML private JFXButton submitButton;
   @FXML private JFXComboBox<Label> txtEmployeeName = new JFXComboBox<>();
   @FXML private JFXComboBox<Label> roomDropdown = new JFXComboBox<>();
+  @FXML private JFXTimePicker timePicker;
+  @FXML private JFXTextField maintenanceRequest;
+
   // @FXML private AnchorPane anchorPage;
   static Stage stage;
 
@@ -69,48 +76,21 @@ public class LaundryRequestController extends masterController implements Initia
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     log.debug(state.toString());
-    submit.setDisable(true);
+    //  submitButton.setDisable(true);
 
     /** USERNAME input and password* */
     RequiredFieldValidator reqInputValid = new RequiredFieldValidator();
     reqInputValid.setMessage("Cannot be empty");
-    txtTimeOfRequest.getValidators().add(reqInputValid);
-    txtTimeOfRequest
+    txtEmployeeName.getValidators().add(reqInputValid);
+    txtEmployeeName
         .focusedProperty()
         .addListener(
             (o, oldVal, newVal) -> {
-              if (!newVal) txtTimeOfRequest.validate();
-            });
-    reqInputValid.setMessage("Cannot be empty");
-    txtComments.getValidators().add(reqInputValid);
-    txtComments
-        .focusedProperty()
-        .addListener(
-            (o, oldVal, newVal) -> {
-              if (!newVal) txtComments.validate();
-            });
-    reqInputValid.setMessage("Cannot be empty");
-    txtEquipment.getValidators().add(reqInputValid);
-    txtEquipment
-        .focusedProperty()
-        .addListener(
-            (o, oldVal, newVal) -> {
-              if (!newVal) txtEquipment.validate();
+              if (!newVal) txtEmployeeName.validate();
             });
 
     loadEmployeeDropdown();
     loadRoomDropdown();
-  }
-
-  @FXML
-  private void validateButton() {
-    if (!txtTimeOfRequest.getText().isEmpty()
-        && !txtEquipment.getText().isEmpty()
-        && !txtComments.getText().isEmpty()) {
-      submit.setDisable(false);
-    } else {
-      submit.setDisable(true);
-    }
   }
 
   public void exit(ActionEvent actionEvent) throws IOException {
@@ -127,12 +107,14 @@ public class LaundryRequestController extends masterController implements Initia
 
     Login login = Login.getLogin();
 
-    if (login.getUsername().equals("p") && login.getPassword().equals("p")) {
+    if (login.getUsername().equals("patient") && login.getPassword().equals("patient")) {
       super.advanceHomePatient(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("e") && login.getPassword().equals("e")) {
+    } else if (login.getUsername().equals("staff") && login.getPassword().equals("staff")) {
       super.advanceHome(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("a") && login.getPassword().equals("a")) {
+    } else if (login.getUsername().equals("admin") && login.getPassword().equals("admin")) {
       super.advanceHomeAdmin(loader, appPrimaryScene);
+    } else if (login.getUsername().equals("guest") && login.getPassword().equals("guest")) {
+      super.advanceHomeGuest(loader, appPrimaryScene);
     }
   }
 
@@ -141,66 +123,153 @@ public class LaundryRequestController extends masterController implements Initia
 
     Login login = Login.getLogin();
 
-    if (login.getUsername().equals("p") && login.getPassword().equals("p")) {
+    if (login.getUsername().equals("patient") && login.getPassword().equals("patient")) {
       super.advanceServiceRequestPatient(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("e") && login.getPassword().equals("e")) {
+    } else if (login.getUsername().equals("staff") && login.getPassword().equals("staff")) {
       super.advanceServiceRequestEmployee(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("a") && login.getPassword().equals("a")) {
+    } else if (login.getUsername().equals("admin") && login.getPassword().equals("admin")) {
       super.advanceServiceRequestAdmin(loader, appPrimaryScene);
     }
   }
 
-  public void Submit(ActionEvent actionEvent) throws IOException {
+  public void submit(ActionEvent actionEvent) throws IOException {
 
-    txtEmployeeName.setValidators();
-    if (txtEmployeeName.getSelectionModel().isEmpty() || roomDropdown.getSelectionModel().isEmpty())
-      return;
+    if (timePicker.getEditor().getText().isEmpty()
+        || maintenanceRequest.getText().isEmpty()
+        || txtEmployeeName.getEditor().getText().isEmpty()
+        || roomDropdown.getEditor().getText().isEmpty()) {
+      String title = "Missing Fields";
+      JFXDialogLayout dialogContent = new JFXDialogLayout();
+      dialogContent.setHeading(new Text(title));
+      dialogContent.setBody(
+          (new Text("* You must fill out all required fields of the request to continue\n")));
+      JFXButton close = new JFXButton("close");
+      close.setButtonType(JFXButton.ButtonType.RAISED);
+      close.setStyle("-fx-background-color : #00bfff;");
+      dialogContent.setActions(close);
 
-    VBox manuContainer = new VBox();
-    Label lbl1 = new Label("Are you sure the information you have provided is correct?");
+      JFXDialog dialog =
+          new JFXDialog(myStackPane, dialogContent, JFXDialog.DialogTransition.BOTTOM);
+      actionEvent.consume();
+      close.setOnAction(
+          new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+              dialog.close();
+              helpButton.setDisable(false);
+            }
+          });
+      helpButton.setDisable(true);
+      dialog.show();
 
-    JFXButton continueButton = new JFXButton("Continue");
-    continueButton.setButtonType(JFXButton.ButtonType.RAISED);
-    continueButton.setStyle("-fx-background-color : #00bfff:");
+    } else {
 
-    JFXButton cancelButton = new JFXButton("Cancel");
-    cancelButton.setButtonType(JFXButton.ButtonType.RAISED);
-    cancelButton.setStyle("-fx-background-color : #00bfff:");
+      VBox menuContainer = new VBox();
+      Label lbl1 = new Label("Are you sure the information you have provided is correct?");
 
-    cancelButton.setTranslateX(100);
-    cancelButton.setTranslateY(65);
+      JFXButton continueButton = new JFXButton("Continue");
+      continueButton.setButtonType(JFXButton.ButtonType.RAISED);
+      continueButton.setStyle("-fx-background-color : #00bfff");
 
-    continueButton.setTranslateX(200);
-    continueButton.setTranslateY(25);
+      JFXButton cancelButton = new JFXButton("Cancel");
+      cancelButton.setButtonType(JFXButton.ButtonType.RAISED);
+      cancelButton.setStyle("-fx-background-color : #00bfff");
 
-    manuContainer.getChildren().addAll(lbl1, cancelButton, continueButton);
-    manuContainer.setPadding(new Insets(30, 50, 50, 50));
-    manuContainer.setSpacing(10);
-    JFXPopup popup1 = new JFXPopup(manuContainer);
+      cancelButton.setTranslateX(100);
+      cancelButton.setTranslateY(65);
 
-    cancelButton.setOnAction(
-        new EventHandler<ActionEvent>() {
-          @Override
-          public void handle(ActionEvent event) {
-            popup1.hide();
-            submit.setDisable(false);
-          }
-        });
+      continueButton.setTranslateX(200);
+      continueButton.setTranslateY(25);
 
-    continueButton.setOnAction(
-        new EventHandler<ActionEvent>() {
-          @SneakyThrows
-          @Override
-          public void handle(ActionEvent event) {
-            popup1.hide();
-            Parent root =
-                loader.load(getClass().getResourceAsStream("ConfirmationPageLaundry.fxml"));
-            appPrimaryScene.setRoot(root);
-            submit.setDisable(false);
-          }
-        });
-    submit.setDisable(true);
-    popup1.show(myStackPane2, JFXPopup.PopupVPosition.BOTTOM, JFXPopup.PopupHPosition.LEFT);
+      menuContainer.getChildren().addAll(lbl1, cancelButton, continueButton);
+      menuContainer.setPadding(new Insets(30, 50, 50, 50));
+      menuContainer.setSpacing(10);
+      JFXPopup popup1 = new JFXPopup(menuContainer);
+      actionEvent.consume();
+      popup1.setAutoHide(false);
+
+      cancelButton.setOnAction(
+          new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+              popup1.hide();
+              submit.setDisable(false);
+            }
+          });
+
+      continueButton.setOnAction(
+          new EventHandler<ActionEvent>() {
+            @SneakyThrows
+            @Override
+            public void handle(ActionEvent event) {
+              popup1.hide();
+
+              BoxBlur blur = new BoxBlur(7, 7, 7);
+
+              VBox manuContainer = new VBox();
+              Label lbl1 =
+                  new Label(
+                      "Your request Has been submitted!                                                          ");
+
+              JFXButton continueButton = new JFXButton("Return To Home");
+              continueButton.setButtonType(JFXButton.ButtonType.RAISED);
+              continueButton.setStyle("-fx-background-color : #00bfff;");
+
+              JFXButton cancelButton = new JFXButton("Complete Another Request");
+              cancelButton.setButtonType(JFXButton.ButtonType.RAISED);
+              cancelButton.setStyle("-fx-background-color : #00bfff;");
+
+              cancelButton.setTranslateX(0);
+              cancelButton.setTranslateY(65);
+
+              continueButton.setTranslateX(350);
+              continueButton.setTranslateY(25);
+
+              manuContainer.getChildren().addAll(lbl1, cancelButton, continueButton);
+              manuContainer.setPadding(new Insets(30, 50, 50, 50));
+              manuContainer.setSpacing(10);
+              JFXPopup popup1 = new JFXPopup(manuContainer);
+              actionEvent.consume();
+              popup1.setAutoHide(false);
+
+              // return to request page
+              cancelButton.setOnAction(
+                  new EventHandler<ActionEvent>() {
+                    @SneakyThrows
+                    @Override
+                    public void handle(ActionEvent event) {
+                      popup1.hide();
+                      submit.setDisable(false);
+                      back();
+                    }
+                  });
+
+              // go back to home page
+              continueButton.setOnAction(
+                  new EventHandler<ActionEvent>() {
+                    @SneakyThrows
+                    @Override
+                    public void handle(ActionEvent event) {
+                      anchorPage.setEffect(null);
+                      // txtEmployeeName.setEffect(null);
+                      popup1.hide();
+                      advanceHome();
+                      //   submit.setDisable(false);
+                    }
+                  });
+              // submit.setDisable(true);
+              anchorPage.setEffect(blur);
+              //  txtEmployeeName.setEffect(blur);
+              popup1.show(
+                  confirmationStackPane,
+                  JFXPopup.PopupVPosition.BOTTOM,
+                  JFXPopup.PopupHPosition.LEFT);
+              // submit.setDisable(false);
+            }
+          });
+      // submit.setDisable(true);
+      popup1.show(myStackPane2, JFXPopup.PopupVPosition.BOTTOM, JFXPopup.PopupHPosition.LEFT);
+    }
   }
 
   public void help(ActionEvent actionEvent) throws IOException {
@@ -211,13 +280,12 @@ public class LaundryRequestController extends masterController implements Initia
     dialogContent.setBody(
         (new Text(
             "* Employee Name refers to the employee being requested to complete the job\n"
-                + "* Patient Room is the room that the employee will deliver the medicine to\n"
-                + "* Time of request refers to time the medicine should be delivered to the patient\n"
-                + "* Necessary Equipment refers to additional services/equipment the patient requires\n"
-                + "* Necessary Equipment refers to additional services/equipment the patient requires\n")));
+                + "* Patient Room is the room with the patient where the Translation is required\n"
+                + "* Time of request refers to time at which the translation is needed\n"
+                + "* Desired language refers to the language that needs to be translated\n")));
     JFXButton close = new JFXButton("close");
     close.setButtonType(JFXButton.ButtonType.RAISED);
-    close.setStyle("-fx-background-color : #00bfff:");
+    close.setStyle("-fx-background-color : #00bfff;");
     dialogContent.setActions(close);
 
     JFXDialog dialog = new JFXDialog(myStackPane, dialogContent, JFXDialog.DialogTransition.BOTTOM);

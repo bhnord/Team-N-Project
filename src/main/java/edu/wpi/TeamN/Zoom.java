@@ -45,7 +45,7 @@ public class Zoom extends Application {
           }
         });
 
-    imageView.setImage(new Image(ClassLoader.getSystemResourceAsStream("images/level1.png")));
+    imageView.setImage(new Image(ClassLoader.getSystemResourceAsStream("images/L1.png")));
     imageView.preserveRatioProperty().set(true);
     scrollPane.setContent(imageView);
 
