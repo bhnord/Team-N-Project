@@ -134,32 +134,32 @@ public class ExternalPatientRequestController extends masterController implement
   public void Submit(ActionEvent actionEvent) throws IOException {
 
     if (departureTIme.getEditor().getText().isEmpty()
-        && transportTypeDropdown.getSelectionModel().isEmpty()
-        && patientRoomDropdown.getEditor().getText().isEmpty()
-        && employeeDropdown.getEditor().getText().isEmpty()
-        && addressBox.getEditor().getText().isEmpty()
-        && commentsBox.getText().isEmpty()) {
+            && transportTypeDropdown.getSelectionModel().isEmpty()
+            && patientRoomDropdown.getEditor().getText().isEmpty()
+            && employeeDropdown.getEditor().getText().isEmpty()
+            && addressBox.getEditor().getText().isEmpty()
+            && commentsBox.getText().isEmpty()) {
       String title = "Missing Fields";
       JFXDialogLayout dialogContent = new JFXDialogLayout();
       dialogContent.setHeading(new Text(title));
       dialogContent.setBody(
-          (new Text("* You must fill out all required fields of the request to continue\n")));
+              (new Text("* You must fill out all required fields of the request to continue\n")));
       JFXButton close = new JFXButton("close");
       close.setButtonType(JFXButton.ButtonType.RAISED);
       close.setStyle("-fx-background-color : #00bfff;");
       dialogContent.setActions(close);
 
       JFXDialog dialog =
-          new JFXDialog(myStackPane, dialogContent, JFXDialog.DialogTransition.BOTTOM);
+              new JFXDialog(myStackPane, dialogContent, JFXDialog.DialogTransition.BOTTOM);
       actionEvent.consume();
       close.setOnAction(
-          new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-              dialog.close();
-              helpButton.setDisable(false);
-            }
-          });
+              new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                  dialog.close();
+                  helpButton.setDisable(false);
+                }
+              });
       helpButton.setDisable(true);
       dialog.show();
 
@@ -190,84 +190,84 @@ public class ExternalPatientRequestController extends masterController implement
       popup1.setAutoHide(false);
 
       cancelButton.setOnAction(
-          new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-              popup1.hide();
-              submit.setDisable(false);
-            }
-          });
+              new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                  popup1.hide();
+                  submit.setDisable(false);
+                }
+              });
 
       continueButton.setOnAction(
-          new EventHandler<ActionEvent>() {
-            @SneakyThrows
-            @Override
-            public void handle(ActionEvent event) {
-              popup1.hide();
+              new EventHandler<ActionEvent>() {
+                @SneakyThrows
+                @Override
+                public void handle(ActionEvent event) {
+                  popup1.hide();
 
-              BoxBlur blur = new BoxBlur(7, 7, 7);
+                  BoxBlur blur = new BoxBlur(7, 7, 7);
 
-              VBox manuContainer = new VBox();
-              Label lbl1 =
-                  new Label(
-                      "Your request Has been submitted!                                                          ");
+                  VBox manuContainer = new VBox();
+                  Label lbl1 =
+                          new Label(
+                                  "Your request Has been submitted!                                                          ");
 
-              JFXButton continueButton = new JFXButton("Return To Home");
-              continueButton.setButtonType(JFXButton.ButtonType.RAISED);
-              continueButton.setStyle("-fx-background-color : #00bfff;");
+                  JFXButton continueButton = new JFXButton("Return To Home");
+                  continueButton.setButtonType(JFXButton.ButtonType.RAISED);
+                  continueButton.setStyle("-fx-background-color : #00bfff;");
 
-              JFXButton cancelButton = new JFXButton("Complete Another Request");
-              cancelButton.setButtonType(JFXButton.ButtonType.RAISED);
-              cancelButton.setStyle("-fx-background-color : #00bfff;");
+                  JFXButton cancelButton = new JFXButton("Complete Another Request");
+                  cancelButton.setButtonType(JFXButton.ButtonType.RAISED);
+                  cancelButton.setStyle("-fx-background-color : #00bfff;");
 
-              cancelButton.setTranslateX(0);
-              cancelButton.setTranslateY(65);
+                  cancelButton.setTranslateX(0);
+                  cancelButton.setTranslateY(65);
 
-              continueButton.setTranslateX(350);
-              continueButton.setTranslateY(25);
+                  continueButton.setTranslateX(350);
+                  continueButton.setTranslateY(25);
 
-              manuContainer.getChildren().addAll(lbl1, cancelButton, continueButton);
-              manuContainer.setPadding(new Insets(30, 50, 50, 50));
-              manuContainer.setSpacing(10);
-              JFXPopup popup1 = new JFXPopup(manuContainer);
-              actionEvent.consume();
-              popup1.setAutoHide(false);
+                  manuContainer.getChildren().addAll(lbl1, cancelButton, continueButton);
+                  manuContainer.setPadding(new Insets(30, 50, 50, 50));
+                  manuContainer.setSpacing(10);
+                  JFXPopup popup1 = new JFXPopup(manuContainer);
+                  actionEvent.consume();
+                  popup1.setAutoHide(false);
 
-              // return to request page
-              cancelButton.setOnAction(
-                  new EventHandler<ActionEvent>() {
-                    @SneakyThrows
-                    @Override
-                    public void handle(ActionEvent event) {
-                      popup1.hide();
-                      submit.setDisable(false);
-                      back();
-                    }
-                  });
+                  // return to request page
+                  cancelButton.setOnAction(
+                          new EventHandler<ActionEvent>() {
+                            @SneakyThrows
+                            @Override
+                            public void handle(ActionEvent event) {
+                              popup1.hide();
+                              submit.setDisable(false);
+                              back();
+                            }
+                          });
 
-              // go back to home page
-              continueButton.setOnAction(
-                  new EventHandler<ActionEvent>() {
-                    @SneakyThrows
-                    @Override
-                    public void handle(ActionEvent event) {
-                      anchorPage.setEffect(null);
-                      // txtEmployeeName.setEffect(null);
-                      popup1.hide();
-                      advanceHome();
-                      submit.setDisable(false);
-                    }
-                  });
-              submit.setDisable(true);
-              anchorPage.setEffect(blur);
-              //  txtEmployeeName.setEffect(blur);
-              popup1.show(
-                  confirmationStackPane,
-                  JFXPopup.PopupVPosition.BOTTOM,
-                  JFXPopup.PopupHPosition.LEFT);
-              submit.setDisable(false);
-            }
-          });
+                  // go back to home page
+                  continueButton.setOnAction(
+                          new EventHandler<ActionEvent>() {
+                            @SneakyThrows
+                            @Override
+                            public void handle(ActionEvent event) {
+                              anchorPage.setEffect(null);
+                              // txtEmployeeName.setEffect(null);
+                              popup1.hide();
+                              advanceHome();
+                              submit.setDisable(false);
+                            }
+                          });
+                  submit.setDisable(true);
+                  anchorPage.setEffect(blur);
+                  //  txtEmployeeName.setEffect(blur);
+                  popup1.show(
+                          confirmationStackPane,
+                          JFXPopup.PopupVPosition.BOTTOM,
+                          JFXPopup.PopupHPosition.LEFT);
+                  submit.setDisable(false);
+                }
+              });
       submit.setDisable(true);
       popup1.show(myStackPane2, JFXPopup.PopupVPosition.BOTTOM, JFXPopup.PopupHPosition.LEFT);
     }
@@ -276,11 +276,11 @@ public class ExternalPatientRequestController extends masterController implement
   @FXML
   private void validateButton() {
     if (!departureTIme.getEditor().getText().isEmpty()
-        && !transportTypeDropdown.getSelectionModel().isEmpty()
-        && !patientRoomDropdown.getEditor().getText().isEmpty()
-        && !employeeDropdown.getEditor().getText().isEmpty()
-        && !addressBox.getEditor().getText().isEmpty()
-        && !commentsBox.getText().isEmpty()) {
+            && !transportTypeDropdown.getSelectionModel().isEmpty()
+            && !patientRoomDropdown.getEditor().getText().isEmpty()
+            && !employeeDropdown.getEditor().getText().isEmpty()
+            && !addressBox.getEditor().getText().isEmpty()
+            && !commentsBox.getText().isEmpty()) {
       submit.setDisable(false);
     } else {
       submit.setDisable(true);
@@ -292,12 +292,12 @@ public class ExternalPatientRequestController extends masterController implement
     JFXDialogLayout dialogContent = new JFXDialogLayout();
     dialogContent.setHeading(new Text(title));
     dialogContent.setBody(
-        (new Text(
-            "* Employee Name refers to the employee being requested to complete the job\n"
-                + "* Patient Room is the room that the employee will deliver the medicine to\n"
-                + "* Time of request refers to time the medicine should be delivered to the patient\n"
-                + "* Necessary Equipment refers to additional services/equipment the patient requires\n"
-                + "* Necessary Equipment refers to additional services/equipment the patient requires\n")));
+            (new Text(
+                    "* Employee Name refers to the employee being requested to complete the job\n"
+                            + "* Patient Room is the room that the employee will deliver the medicine to\n"
+                            + "* Time of request refers to time the medicine should be delivered to the patient\n"
+                            + "* Necessary Equipment refers to additional services/equipment the patient requires\n"
+                            + "* Necessary Equipment refers to additional services/equipment the patient requires\n")));
     JFXButton close = new JFXButton("close");
     close.setButtonType(JFXButton.ButtonType.RAISED);
     close.setStyle("-fx-background-color : #00bfff");
@@ -305,28 +305,28 @@ public class ExternalPatientRequestController extends masterController implement
 
     JFXDialog dialog = new JFXDialog(myStackPane, dialogContent, JFXDialog.DialogTransition.BOTTOM);
     close.setOnAction(
-        new EventHandler<ActionEvent>() {
-          @Override
-          public void handle(ActionEvent event) {
-            dialog.close();
-            helpButton.setDisable(false);
-          }
-        });
+            new EventHandler<ActionEvent>() {
+              @Override
+              public void handle(ActionEvent event) {
+                dialog.close();
+                helpButton.setDisable(false);
+              }
+            });
     helpButton.setDisable(true);
     dialog.show();
   }
 
   private boolean submitToDatabase() {
     Request request =
-        new Request(
-            RequestType.EXTERNAL_PATIENT_TRANSPORTATION,
-            Integer.parseInt(employeeDropdown.getSelectionModel().getSelectedItem().getId()),
-            patientRoomDropdown.getSelectionModel().getSelectedItem().getId(),
-            "Transportation Method: "
-                + transportTypeDropdown.getSelectionModel().getSelectedItem()
-                + " Destination: "
-                + addressBox.getSelectionModel().getSelectedItem(),
-            commentsBox.getText());
+            new Request(
+                    RequestType.EXTERNAL_PATIENT_TRANSPORTATION,
+                    Integer.parseInt(employeeDropdown.getSelectionModel().getSelectedItem().getId()),
+                    patientRoomDropdown.getSelectionModel().getSelectedItem().getId(),
+                    "Transportation Method: "
+                            + transportTypeDropdown.getSelectionModel().getSelectedItem()
+                            + " Destination: "
+                            + addressBox.getSelectionModel().getSelectedItem(),
+                    commentsBox.getText());
     return db.addRequest(request);
   }
 
@@ -353,30 +353,30 @@ public class ExternalPatientRequestController extends masterController implement
   private void loadMapsStuff() {
 
     GeoApiContext test =
-        new GeoApiContext.Builder().apiKey("AIzaSyBBszEPZvetVvgsIbt3pLtXLbPap6dT-KY" + "").build();
+            new GeoApiContext.Builder().apiKey("AIzaSyBBszEPZvetVvgsIbt3pLtXLbPap6dT-KY" + "").build();
     PlaceAutocompleteRequest.SessionToken token = new PlaceAutocompleteRequest.SessionToken();
 
     addressBox.setOnKeyReleased(
-        key -> {
-          if (key.getCode() == KeyCode.DOWN || key.getCode() == KeyCode.UP) return;
-          AutocompletePrediction[] predictions = new AutocompletePrediction[0];
-          LatLng origin = new LatLng(42.335570023832496, -71.10628519976504);
-          try {
-            predictions =
-                PlacesApi.placeAutocomplete(test, addressBox.getEditor().getText(), token)
-                    .origin(origin)
-                    .radius(160934) // 100 miles in meters
-                    .await();
-          } catch (ApiException | InterruptedException | IOException e) {
-            e.printStackTrace();
-          }
-          Collection<String> address = new HashSet<>();
-          for (AutocompletePrediction prediction : predictions) {
-            address.add(prediction.description);
-          }
-          addressBox.getItems().setAll(address);
-          addressBox.show();
-        });
+            key -> {
+              if (key.getCode() == KeyCode.DOWN || key.getCode() == KeyCode.UP) return;
+              AutocompletePrediction[] predictions = new AutocompletePrediction[0];
+              LatLng origin = new LatLng(42.335570023832496, -71.10628519976504);
+              try {
+                predictions =
+                        PlacesApi.placeAutocomplete(test, addressBox.getEditor().getText(), token)
+                                .origin(origin)
+                                .radius(160934) // 100 miles in meters
+                                .await();
+              } catch (ApiException | InterruptedException | IOException e) {
+                e.printStackTrace();
+              }
+              Collection<String> address = new HashSet<>();
+              for (AutocompletePrediction prediction : predictions) {
+                address.add(prediction.description);
+              }
+              addressBox.getItems().setAll(address);
+              addressBox.show();
+            });
   }
 
   private void setupValidation() {
@@ -384,55 +384,55 @@ public class ExternalPatientRequestController extends masterController implement
     reqInputValid.setMessage("Cannot be empty");
     commentsBox.getValidators().add(reqInputValid);
     commentsBox
-        .focusedProperty()
-        .addListener(
-            (o, oldVal, newVal) -> {
-              if (!newVal) commentsBox.validate();
-            });
+            .focusedProperty()
+            .addListener(
+                    (o, oldVal, newVal) -> {
+                      if (!newVal) commentsBox.validate();
+                    });
 
     reqInputValid.setMessage("Cannot be empty");
     transportTypeDropdown.getValidators().add(reqInputValid);
     transportTypeDropdown
-        .focusedProperty()
-        .addListener(
-            (o, oldVal, newVal) -> {
-              if (!newVal) transportTypeDropdown.validate();
-            });
+            .focusedProperty()
+            .addListener(
+                    (o, oldVal, newVal) -> {
+                      if (!newVal) transportTypeDropdown.validate();
+                    });
 
     reqInputValid.setMessage("Cannot be empty");
     patientRoomDropdown.getValidators().add(reqInputValid);
     patientRoomDropdown
-        .focusedProperty()
-        .addListener(
-            (o, oldVal, newVal) -> {
-              if (!newVal) patientRoomDropdown.validate();
-            });
+            .focusedProperty()
+            .addListener(
+                    (o, oldVal, newVal) -> {
+                      if (!newVal) patientRoomDropdown.validate();
+                    });
 
     reqInputValid.setMessage("Cannot be empty");
     employeeDropdown.getValidators().add(reqInputValid);
     employeeDropdown
-        .focusedProperty()
-        .addListener(
-            (o, oldVal, newVal) -> {
-              if (!newVal) employeeDropdown.validate();
-            });
+            .focusedProperty()
+            .addListener(
+                    (o, oldVal, newVal) -> {
+                      if (!newVal) employeeDropdown.validate();
+                    });
 
     reqInputValid.setMessage("Cannot be empty");
     addressBox.getValidators().add(reqInputValid);
     addressBox
-        .focusedProperty()
-        .addListener(
-            (o, oldVal, newVal) -> {
-              if (!newVal) addressBox.validate();
-            });
+            .focusedProperty()
+            .addListener(
+                    (o, oldVal, newVal) -> {
+                      if (!newVal) addressBox.validate();
+                    });
 
     reqInputValid.setMessage("Cannot be empty");
     departureTIme.getValidators().add(reqInputValid);
     departureTIme
-        .focusedProperty()
-        .addListener(
-            (o, oldVal, newVal) -> {
-              if (!newVal) departureTIme.validate();
-            });
+            .focusedProperty()
+            .addListener(
+                    (o, oldVal, newVal) -> {
+                      if (!newVal) departureTIme.validate();
+                    });
   }
 }
