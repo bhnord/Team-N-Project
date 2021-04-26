@@ -18,26 +18,50 @@
 <?import javafx.scene.text.Font?>
 
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.TeamN.views.FloralRequestController">
+
     <columnConstraints>
+
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="1366.0" minWidth="0.0" prefWidth="0.0" />
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1366.0" minWidth="0.0" prefWidth="137.0" />
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1366.0" minWidth="0.0" prefWidth="687.0" />
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1366.0" minWidth="10.0" prefWidth="542.0" />
+
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1366.0" minWidth="0.0" prefWidth="0.0" />
+
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1366.0" minWidth="0.0" prefWidth="773.0" />
+
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1366.0" minWidth="10.0" prefWidth="593.0" />
+
     </columnConstraints>
+
     <rowConstraints>
-        <RowConstraints maxHeight="443.0" minHeight="10.0" prefHeight="343.0" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="480.0" minHeight="0.0" prefHeight="81.0" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="750.0" minHeight="10.0" prefHeight="148.0" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="253.0" minHeight="0.0" prefHeight="196.0" vgrow="SOMETIMES" />
+
+        <RowConstraints maxHeight="572.0" minHeight="10.0" prefHeight="572.0" vgrow="SOMETIMES" />
+
+        <RowConstraints maxHeight="480.0" minHeight="0.0" prefHeight="196.0" vgrow="SOMETIMES" />
+
+        <RowConstraints maxHeight="750.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+
+        <RowConstraints maxHeight="253.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+
     </rowConstraints>
+
     <children>
-        <AnchorPane fx:id="anchorPage" prefHeight="749.0" prefWidth="996.0" GridPane.rowIndex="1">
+
+        <ImageView fitHeight="1500.0" fitWidth="3500.0" layoutX="-5.0" pickOnBounds="true" preserveRatio="true">
+
+            <image>
+
+                <Image url="@/images/CSVBackground.png" />
+
+            </image>
+
+        </ImageView>
+
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#363d54" height="1153.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" GridPane.valignment="BASELINE" />
+
+
+        <AnchorPane fx:id="anchorPage" prefHeight="749.0" prefWidth="996.0">
+
             <children>
-                <ImageView fitHeight="766.0" fitWidth="1360.0" layoutX="-5.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@/images/CSVBackground.png" />
-                    </image>
-                </ImageView>
+
                 <Label fx:id="errorLabel" layoutX="297.0" layoutY="664.0" prefHeight="35.0" prefWidth="130.0">
                     <font>
                         <Font size="24.0" />
