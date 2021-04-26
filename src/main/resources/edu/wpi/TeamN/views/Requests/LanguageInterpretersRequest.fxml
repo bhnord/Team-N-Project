@@ -20,8 +20,8 @@
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.TeamN.views.LanguageInterpretersRequestController">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="1366.0" minWidth="0.0" prefWidth="0.0" />
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1366.0" minWidth="0.0" prefWidth="133.0" />
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1366.0" minWidth="0.0" prefWidth="691.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1366.0" minWidth="0.0" prefWidth="626.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1366.0" minWidth="0.0" prefWidth="198.0" />
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="1366.0" minWidth="10.0" prefWidth="542.0" />
     </columnConstraints>
     <rowConstraints>
@@ -111,7 +111,7 @@
                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="47.0" layoutX="834.0" layoutY="661.0" stroke="TRANSPARENT" strokeType="INSIDE" width="130.0" />
                 <JFXButton fx:id="helpButton" layoutX="834.0" layoutY="661.0" onAction="#help" prefHeight="47.0" prefWidth="130.0" ripplerFill="WHITE" text="Help" textFill="WHITE">
                     <font>
-                        <Font name="System Bold" size="22.0" />
+                        <Font name="Serif Regular" size="22.0" />
                     </font>
                     <tooltip>
                         <Tooltip fx:id="tthelpButton" text="Help Page">
@@ -122,16 +122,14 @@
                     </tooltip>
                 </JFXButton>
                 <Rectangle arcHeight="50.0" arcWidth="50.0" fill="WHITE" height="517.0" layoutX="144.0" layoutY="185.0" stroke="TRANSPARENT" strokeType="INSIDE" width="476.0" />
-                <JFXTextField fx:id="txtComments" focusColor="#5b63e1" labelFloat="true" layoutX="187.0" layoutY="517.0" prefHeight="40.0" prefWidth="203.0" promptText="Comments" scaleShape="false" unFocusColor="WHITE">
-                    <font>
-                        <Font size="20.0" />
-                    </font>
-                </JFXTextField>
                 <Rectangle arcHeight="8.0" arcWidth="8.0" fill="#748cdc" height="40.0" layoutX="518.0" layoutY="641.0" stroke="TRANSPARENT" strokeType="INSIDE" width="74.0">
                     <effect>
                         <DropShadow color="#c6b8b8" offsetY="5.0" />
                     </effect></Rectangle>
-                <JFXButton fx:id="submit" layoutX="505.0" layoutY="636.0" onAction="#submit" prefHeight="50.0" prefWidth="95.0" ripplerFill="WHITE" text="Submit" textFill="WHITE" />
+                <JFXButton fx:id="submit" layoutX="505.0" layoutY="636.0" onAction="#submit" prefHeight="50.0" prefWidth="95.0" ripplerFill="WHITE" text="Submit" textFill="WHITE">
+               <font>
+                  <Font name="Serif Regular" size="15.0" />
+               </font></JFXButton>
                 <JFXComboBox fx:id="txtEmployeeName" layoutX="187.0" layoutY="241.0" prefHeight="31.0" prefWidth="150.0" promptText="Select Employee" />
                 <JFXComboBox fx:id="roomDropdown" layoutX="187.0" layoutY="313.0" prefHeight="31.0" prefWidth="176.0" promptText="Select Patient Room" />
                 <StackPane fx:id="myStackPane2" layoutX="346.0" layoutY="526.0" prefHeight="101.0" prefWidth="531.0" />
@@ -145,8 +143,13 @@
                         <Font name="Serif Regular" size="30.0" />
                     </font>
                 </Label>
-                <JFXTimePicker fx:id="timePicker" layoutX="186.0" layoutY="382.0" onAction="#validateButton" promptText="Select Time of Request" />
+                <JFXTimePicker fx:id="timePicker" defaultColor="#a6c3e3" layoutX="186.0" layoutY="382.0" onAction="#validateButton" promptText="Select Time of Request" />
                 <JFXComboBox fx:id="languageDropdown" layoutX="187.0" layoutY="444.0" onAction="#validateButton" prefHeight="31.0" prefWidth="203.0" promptText="Select Desired Language" />
+            <JFXTextField fx:id="txtComments" focusColor="#5b63e1" labelFloat="true" layoutX="187.0" layoutY="506.0" prefHeight="40.0" prefWidth="203.0" promptText="Comments" scaleShape="false" unFocusColor="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXTextField>
             </children>
         </AnchorPane>
         <StackPane fx:id="confirmationStackPane" prefHeight="148.0" prefWidth="564.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
