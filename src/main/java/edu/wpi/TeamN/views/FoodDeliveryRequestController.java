@@ -269,9 +269,7 @@ public class FoodDeliveryRequestController extends masterController implements I
               anchorPage.setEffect(blur);
               txtEmployeeName.setEffect(blur);
               popup1.show(
-                  confirmationStackPane,
-                  JFXPopup.PopupVPosition.BOTTOM,
-                  JFXPopup.PopupHPosition.LEFT);
+                  myStackPane, JFXPopup.PopupVPosition.BOTTOM, JFXPopup.PopupHPosition.LEFT);
               submit.setDisable(false);
             }
           });
