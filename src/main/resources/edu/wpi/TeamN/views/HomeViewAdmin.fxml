@@ -148,7 +148,7 @@
                         <Cursor fx:constant="S_RESIZE" />
                      </cursor>
                   </ImageView>
-                  <JFXButton fx:id="EmployeeEditor" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#advanceViews" prefHeight="88.0" prefWidth="563.0" style="-fx-background-color: blue; -fx-background-radius: 25;" stylesheets="@../../../../Fonts/Roboto-Black.css" text="EMPLOYEE EDITOR" textFill="WHITE" GridPane.rowIndex="2">
+                  <JFXButton fx:id="EmployeeEditor" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#advanceViews" prefHeight="88.0" prefWidth="563.0" style="-fx-background-color: blue; -fx-background-radius: 25;" stylesheets="@/Fonts/Roboto-Black.css" text="EMPLOYEE EDITOR" textFill="WHITE" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                      </GridPane.margin></JFXButton>
