@@ -12,10 +12,13 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+import edu.wpi.TeamN.state.Login;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Cursor;
 import javafx.scene.Group;
@@ -105,11 +108,27 @@ public class MapController extends masterController implements Initializable {
 
   @FXML
   public void advanceHome() throws IOException {
+
+    /*
     super.advanceHome(loader, appPrimaryScene);
     Stage stage = (Stage) appPrimaryScene.getWindow();
-    // stage.setHeight(800);
-    // stage.setWidth(1366);
-    stage.centerOnScreen();
+      // stage.setHeight(800);
+      // stage.setWidth(1366);
+    stage.centerOnScreen();*/
+
+    Login login = Login.getLogin();
+
+    if (login.getUsername().equals("p") && login.getPassword().equals("p")) {
+      super.advanceHomePatient(loader, appPrimaryScene);
+    } else if (login.getUsername().equals("e") && login.getPassword().equals("e")) {
+      super.advanceHome(loader, appPrimaryScene);
+    } else if (login.getUsername().equals("a") && login.getPassword().equals("a")) {
+      super.advanceHomeAdmin(loader, appPrimaryScene);
+    }
+    else if (login.getUsername().equals("guest") && login.getPassword().equals("guest")) {
+      super.advanceHomeGuest(loader, appPrimaryScene);
+  }
+
   }
 
   /**
