@@ -117,15 +117,14 @@ public class AutoCompleteComboBoxListener implements EventHandler<KeyEvent> {
       words.add(
           new WordIntPair(
               wordDistanceComputer.getDistance(
-                  l.getText().toLowerCase().substring(0, word.length() + 3), word),
+                  l.getText()
+                      .toLowerCase()
+                      .substring(0, Math.min(word.length(), l.getText().length())),
+                  word),
               l));
     }
     for (int i = 0; i < 15; i++) {
       WordIntPair wip = Objects.requireNonNull(words.poll());
-      System.out.println(wip._word.getText() + " " + wip._distance);
-      wip._distance +=
-          wordDistanceComputer.getDistance(wip._word.getText(), word) / 2
-              - wip._word.getText().length() / 2;
       words2.add(wip);
     }
     for (int i = 0; i < 15; i++) {
