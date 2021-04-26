@@ -5,19 +5,13 @@ import com.jfoenix.controls.*;
 import com.jfoenix.validation.RequiredFieldValidator;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.database.DatabaseService;
-import edu.wpi.TeamN.services.database.requests.Request;
-import edu.wpi.TeamN.services.database.requests.RequestType;
 import edu.wpi.TeamN.services.database.users.User;
-import edu.wpi.TeamN.services.database.users.UserType;
 import edu.wpi.TeamN.state.HomeState;
 import edu.wpi.TeamN.state.Login;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
-import java.util.Scanner;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -28,6 +22,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.BoxBlur;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -36,15 +31,18 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class MedicineDeliveryRequestController extends masterController implements Initializable {
+public class RegisterNewUser extends masterController implements Initializable {
 
   @Inject DatabaseService db;
   @Inject FXMLLoader loader;
   @Inject HomeState state;
   @FXML private Label text;
   @FXML private Label errorLabel;
-  private Label person1;
-  @FXML private JFXTimePicker txtTimeOfRequest;
+  private Label Employee;
+  private Label Patient;
+  private Label Admin;
+  @FXML private JFXTextField txtTimeOfRequest;
+  @FXML private JFXTextField txtEquipment;
   @FXML private JFXTextField txtComments;
   @FXML private Button helpButton;
   @FXML private StackPane myStackPane;
@@ -53,10 +51,11 @@ public class MedicineDeliveryRequestController extends masterController implemen
   private Scene appPrimaryScene;
   private HashMap<String, User> users;
   private HashMap<String, Node> rooms;
-  @FXML private JFXComboBox<Label> txtEmployeeName = new JFXComboBox<>();
-  @FXML private JFXComboBox<Label> roomDropdown = new JFXComboBox<>();
-  @FXML private JFXComboBox<Label> txtEquipment = new JFXComboBox<>();
-  // @FXML private AnchorPane anchorPage;
+  @FXML private JFXComboBox<String> txtEmployeeName = new JFXComboBox<>();
+
+  @FXML private AnchorPane anchorPage;
+
+  @FXML private StackPane confirmationStackPane;
   static Stage stage;
 
   /**
@@ -73,7 +72,11 @@ public class MedicineDeliveryRequestController extends masterController implemen
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     log.debug(state.toString());
-    submit.setDisable(true);
+    // submit.setDisable(true);
+
+    txtEmployeeName.getItems().add("Patient");
+    txtEmployeeName.getItems().add("Employee");
+    txtEmployeeName.getItems().add("Admin");
 
     /** USERNAME input and password* */
     RequiredFieldValidator reqInputValid = new RequiredFieldValidator();
@@ -86,14 +89,6 @@ public class MedicineDeliveryRequestController extends masterController implemen
               if (!newVal) txtTimeOfRequest.validate();
             });
     reqInputValid.setMessage("Cannot be empty");
-    txtComments.getValidators().add(reqInputValid);
-    txtComments
-        .focusedProperty()
-        .addListener(
-            (o, oldVal, newVal) -> {
-              if (!newVal) txtComments.validate();
-            });
-    reqInputValid.setMessage("Cannot be empty");
     txtEquipment.getValidators().add(reqInputValid);
     txtEquipment
         .focusedProperty()
@@ -101,10 +96,6 @@ public class MedicineDeliveryRequestController extends masterController implemen
             (o, oldVal, newVal) -> {
               if (!newVal) txtEquipment.validate();
             });
-
-    loadEmployeeDropdown();
-    loadRoomDropdown();
-    loadMedicine();
   }
 
   public void exit(ActionEvent actionEvent) throws IOException {
@@ -121,13 +112,11 @@ public class MedicineDeliveryRequestController extends masterController implemen
 
     Login login = Login.getLogin();
 
-    if (login.getUsername().equals("patient") && login.getPassword().equals("patient")) {
+    if (login.getUsername().equals("p") && login.getPassword().equals("p")) {
       super.advanceHomePatient(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("staff") && login.getPassword().equals("staff")) {
+    } else if (login.getUsername().equals("e") && login.getPassword().equals("e")) {
       super.advanceHome(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("admin") && login.getPassword().equals("admin")) {
-      super.advanceHomeAdmin(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("guest") && login.getPassword().equals("guest")) {
+    } else if (login.getUsername().equals("a") && login.getPassword().equals("a")) {
       super.advanceHomeAdmin(loader, appPrimaryScene);
     }
   }
@@ -137,32 +126,43 @@ public class MedicineDeliveryRequestController extends masterController implemen
 
     Login login = Login.getLogin();
 
-    if (login.getUsername().equals("patient") && login.getPassword().equals("patient")) {
+    if (login.getUsername().equals("p") && login.getPassword().equals("p")) {
       super.advanceServiceRequestPatient(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("staff") && login.getPassword().equals("staff")) {
+    } else if (login.getUsername().equals("e") && login.getPassword().equals("e")) {
       super.advanceServiceRequestEmployee(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("admin") && login.getPassword().equals("admin")) {
+    } else if (login.getUsername().equals("a") && login.getPassword().equals("a")) {
       super.advanceServiceRequestAdmin(loader, appPrimaryScene);
     }
   }
 
-  @FXML
-  private void validateButton() {
-    if (!txtTimeOfRequest.getEditor().getText().isEmpty()
-        && !txtEquipment.getSelectionModel().getSelectedItem().getText().isEmpty()
-        && !txtComments.getText().isEmpty()) {
-      submit.setDisable(false);
-    } else {
-      submit.setDisable(true);
-    }
-  }
+  public void Submit(ActionEvent actionEvent) throws IOException, InterruptedException {
 
-  public void Submit(ActionEvent actionEvent) throws IOException {
+    if (!(txtEquipment.getText().equals(txtComments.getText()))) {
+      String title = "Invalid Entry";
+      JFXDialogLayout dialogContent = new JFXDialogLayout();
+      dialogContent.setHeading(new Text(title));
+      dialogContent.setBody((new Text("* Passwords do not match. Retype passwords. \n")));
+      JFXButton close = new JFXButton("close");
+      close.setButtonType(JFXButton.ButtonType.RAISED);
+      close.setStyle("-fx-background-color : #00bfff;");
+      dialogContent.setActions(close);
 
-    if (txtEmployeeName.getValue() == null
-        || roomDropdown.getValue() == null
-        || txtTimeOfRequest.getEditor().getText().isEmpty()
-        || txtEquipment.getSelectionModel().getSelectedItem().getText().isEmpty()) {
+      JFXDialog dialog =
+          new JFXDialog(myStackPane, dialogContent, JFXDialog.DialogTransition.BOTTOM);
+      actionEvent.consume();
+      close.setOnAction(
+          new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+              dialog.close();
+              helpButton.setDisable(false);
+            }
+          });
+      helpButton.setDisable(true);
+      dialog.show();
+    } else if (txtEmployeeName.getValue() == null
+        || txtTimeOfRequest.getText().isEmpty()
+        || txtEquipment.getText().isEmpty()) {
       String title = "Missing Fields";
       JFXDialogLayout dialogContent = new JFXDialogLayout();
       dialogContent.setHeading(new Text(title));
@@ -228,82 +228,47 @@ public class MedicineDeliveryRequestController extends masterController implemen
             @Override
             public void handle(ActionEvent event) {
               popup1.hide();
-              //              BoxBlur blur = new BoxBlur(7, 7, 7);
-              Request r =
-                  new Request(
-                      RequestType.MEDICINE_DELIVERY,
-                      Integer.parseInt(
-                          txtEmployeeName.getSelectionModel().getSelectedItem().getId()),
-                      roomDropdown.getSelectionModel().getSelectedItem().getId(),
-                      txtEquipment.getSelectionModel().getSelectedItem().getText(),
-                      txtComments.getText());
-              if (!db.addRequest(r)) {
-                System.out.println("HERE");
-                errorLabel.setText("Invalid Input(s)");
-              }
-              for (Request re : db.getAllRequests()) {
-                System.out.println(re.getContent());
-              }
+
+              BoxBlur blur = new BoxBlur(7, 7, 7);
 
               VBox manuContainer = new VBox();
               Label lbl1 =
                   new Label(
                       "Your request Has been submitted!                                                          ");
 
-              JFXButton continueButton = new JFXButton("Return To Home");
+              JFXButton continueButton = new JFXButton("Return To Login Screen");
               continueButton.setButtonType(JFXButton.ButtonType.RAISED);
               continueButton.setStyle("-fx-background-color : #00bfff;");
 
-              JFXButton cancelButton = new JFXButton("Complete Another Request");
-              cancelButton.setButtonType(JFXButton.ButtonType.RAISED);
-              cancelButton.setStyle("-fx-background-color : #00bfff;");
+              //         continueButton.setTranslateX(350);
+              //         continueButton.setTranslateY(25);
 
-              cancelButton.setTranslateX(0);
-              cancelButton.setTranslateY(65);
-
-              continueButton.setTranslateX(350);
-              continueButton.setTranslateY(25);
-
-              manuContainer.getChildren().addAll(lbl1, cancelButton, continueButton);
+              manuContainer.getChildren().addAll(lbl1, continueButton);
               manuContainer.setPadding(new Insets(30, 50, 50, 50));
               manuContainer.setSpacing(10);
               JFXPopup popup1 = new JFXPopup(manuContainer);
               actionEvent.consume();
               popup1.setAutoHide(false);
 
-              // return to request page
-              cancelButton.setOnAction(
-                  new EventHandler<ActionEvent>() {
-                    @SneakyThrows
-                    @Override
-                    public void handle(ActionEvent event) {
-                      popup1.hide();
-                      submit.setDisable(false);
-                      back();
-                    }
-                  });
-
-              // go back to home page
               continueButton.setOnAction(
                   new EventHandler<ActionEvent>() {
                     @SneakyThrows
                     @Override
                     public void handle(ActionEvent event) {
-                      // anchorPage.setEffect(null);
+                      anchorPage.setEffect(null);
                       txtEmployeeName.setEffect(null);
-
                       popup1.hide();
-                      advanceHome();
+                      logOut();
                       submit.setDisable(false);
                     }
                   });
               submit.setDisable(true);
-              // anchorPage.setEffect(blur);
-              //              txtEmployeeName.setEffect(blur);
-              //                  popup1.show(
-              //                          confirmationStackPane,
-              //                          JFXPopup.PopupVPosition.BOTTOM,
-              //                          JFXPopup.PopupHPosition.LEFT);
+              anchorPage.setEffect(blur);
+              txtEmployeeName.setEffect(blur);
+              popup1.show(
+                  confirmationStackPane,
+                  JFXPopup.PopupVPosition.BOTTOM,
+                  JFXPopup.PopupHPosition.LEFT);
               submit.setDisable(false);
             }
           });
@@ -312,72 +277,32 @@ public class MedicineDeliveryRequestController extends masterController implemen
     }
   }
 
-  public void help(ActionEvent actionEvent) throws IOException {
+  public void help(ActionEvent actionEvent) throws IOException, InterruptedException {
     String title = "Help Page";
-    BoxBlur blur = new BoxBlur(3, 3, 3);
     JFXDialogLayout dialogContent = new JFXDialogLayout();
     dialogContent.setHeading(new Text(title));
     dialogContent.setBody(
         (new Text(
-            "* Employee Name refers to the employee being requested to complete the job\n"
-                + "* Patient Room is the room that the employee will deliver the medicine to\n"
-                + "* Time of request refers to time the medicine should be delivered to the patient\n"
-                + "* Necessary Equipment refers to additional services/equipment the patient requires\n"
-                + "* Necessary Equipment refers to additional services/equipment the patient requires\n")));
+            "* 'Select Login Type' refers to the type of user '\n"
+                + "* 'Enter Username' refers to the username you will use everytime you login to the application\n"
+                + "* 'Enter Password' refers to your unique password that you will use everytime you login to the application\n"
+                + "* 'Retype Password' helps authenticate your password to ensure a secure account\n")));
     JFXButton close = new JFXButton("close");
     close.setButtonType(JFXButton.ButtonType.RAISED);
     close.setStyle("-fx-background-color : #00bfff;");
     dialogContent.setActions(close);
 
     JFXDialog dialog = new JFXDialog(myStackPane, dialogContent, JFXDialog.DialogTransition.BOTTOM);
+    actionEvent.consume();
     close.setOnAction(
         new EventHandler<ActionEvent>() {
           @Override
           public void handle(ActionEvent event) {
-            // anchorPage.setEffect(null);
             dialog.close();
             helpButton.setDisable(false);
           }
         });
     helpButton.setDisable(true);
     dialog.show();
-    // anchorPage.setEffect(blur);
-  }
-
-  private void loadEmployeeDropdown() {
-    users = db.getUsersByType(UserType.EMPLOYEE);
-    for (User user : users.values()) {
-      Label lbl = new Label(user.getUsername());
-      lbl.setId(user.getId());
-      txtEmployeeName.getItems().add((lbl));
-    }
-    new AutoCompleteComboBoxListener(txtEmployeeName);
-  }
-
-  private void loadMedicine() {
-    Scanner scan = null;
-    try {
-      scan = new Scanner(new File("src/main/resources/tempCSV/drugs.txt"));
-    } catch (FileNotFoundException e) {
-      e.printStackTrace();
-    }
-    while (scan.hasNextLine()) {
-      String line = scan.nextLine();
-      Label lbl = new Label(line);
-      lbl.setId(line);
-      txtEquipment.getItems().add(lbl);
-    }
-    scan.close();
-    new AutoCompleteComboBoxListener(txtEquipment);
-  }
-
-  private void loadRoomDropdown() {
-    rooms = db.getAllNodesMap();
-    for (Node node : rooms.values()) {
-      Label lbl = new Label(node.get_longName());
-      lbl.setId(node.get_nodeID());
-      roomDropdown.getItems().add(lbl);
-    }
-    new AutoCompleteComboBoxListener(roomDropdown);
   }
 }

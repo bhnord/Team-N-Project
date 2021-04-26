@@ -16,5 +16,6 @@ public enum UserType {
 
       return "Patient";
     }
-  }
+  },
+  GUEST
 }

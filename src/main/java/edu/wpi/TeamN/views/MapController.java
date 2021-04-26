@@ -263,7 +263,10 @@ public class MapController extends masterController implements Initializable {
 
   // Loading from the database
   public void Load(ActionEvent actionEvent) {
-    mapAnchor.getChildren().remove(7, mapAnchor.getChildren().size());
+    for (javafx.scene.Node root :
+        mapAnchor.getChildren().subList(7, mapAnchor.getChildren().size())) {
+      root.setVisible(false);
+    }
     adminMap
         .getEdgeSet()
         .forEach(

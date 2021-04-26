@@ -91,6 +91,9 @@ public class LoginPage extends masterController implements Initializable {
         case PATIENT:
           super.advanceHomePatient(loader, appPrimaryScene);
           break;
+        case GUEST:
+          super.advanceHomeGuest(loader, appPrimaryScene);
+          break;
       }
     } else {
       incorrectLogin.setText("INCORRECT USERNAME OR PASSWORD, TRY AGAIN");
@@ -99,7 +102,9 @@ public class LoginPage extends masterController implements Initializable {
   }
 
   @FXML
-  private void continueToHomePageGuest() throws IOException {}
+  public void register() throws IOException {
+    super.register(loader, appPrimaryScene);
+  }
 
   @FXML
   private void validateButton() {
