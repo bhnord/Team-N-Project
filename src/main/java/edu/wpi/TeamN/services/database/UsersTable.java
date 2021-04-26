@@ -23,14 +23,14 @@ public class UsersTable {
     }
   }
 
-  public boolean addUser(User user, String password) {
+  public boolean addUser(String username, String password, UserType type) {
     String str =
-        "INSERT INTO USERS (USERNAME, PASSWORD, USERTYPE) VALUES  ('"
-            + user.getUsername()
+        "INSERT INTO USERS (USERNAME, PASSWORD, USERTYPE) VALUES ('"
+            + username
             + "', '"
             + password
             + "', '"
-            + user.getType().toString()
+            + type.getName()
             + "')";
     try {
       stmt.execute(str);
@@ -72,18 +72,14 @@ public class UsersTable {
 
   public User getUserByUsername(String username) {
     String str = "SELECT * FROM USERS WHERE USERNAME = '" + username + "'";
+    User returnUser;
     try {
       ResultSet rs = stmt.executeQuery(str);
-      HashSet<User> set = resultSetToUsers(rs);
-      if (set.size() > 0) {
-        return (User) set.toArray()[0];
-      } else {
-        return null;
-      }
+      returnUser = (User) resultSetToUsers(rs).toArray()[0];
     } catch (SQLException e) {
-      e.printStackTrace();
-      return null;
+      returnUser = null;
     }
+    return returnUser;
   }
 
   // TODO CHANGE

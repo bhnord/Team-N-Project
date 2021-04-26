@@ -5,7 +5,8 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
 import edu.wpi.TeamN.services.database.DatabaseService;
-import edu.wpi.TeamN.services.database.users.*;
+import edu.wpi.TeamN.services.database.users.User;
+import edu.wpi.TeamN.services.database.users.UserType;
 import edu.wpi.TeamN.state.HomeState;
 import java.io.IOException;
 import java.net.URL;
@@ -115,26 +116,10 @@ public class EmployeeEditor extends masterController implements Initializable {
       if (!db.updateUser(Integer.parseInt(selectedUser.getId()), username, password, type)) {
         messageLabel.setText("Invalid inputs");
       }
+    } else if (db.addUser(username, password, type)) {
+      updateSelectedLabel(db.getUserByUsername(username));
     } else {
-      User u;
-      switch (type) {
-        case PATIENT:
-          u = new Patient("", username);
-          break;
-        case ADMINISTRATOR:
-          u = new Administrator("", username);
-          break;
-        case EMPLOYEE:
-          u = new Employee("", username);
-          break;
-        default:
-          u = new Patient("", username);
-      }
-      if (db.addUser(u, password)) {
-        updateSelectedLabel(db.getUserByUsername(username));
-      } else {
-        messageLabel.setText("Invalid inputs");
-      }
+      messageLabel.setText("Invalid inputs");
     }
   }
 

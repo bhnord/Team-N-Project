@@ -3,6 +3,7 @@ package edu.wpi.TeamN;
 import com.google.inject.*;
 import edu.wpi.TeamN.services.database.DatabaseService;
 import edu.wpi.TeamN.services.database.DatabaseServiceProvider;
+import edu.wpi.TeamN.services.database.users.UserType;
 import edu.wpi.TeamN.state.HomeStateProvider;
 import edu.wpi.TeamN.views.FXMLLoaderProvider;
 import java.io.IOException;
@@ -46,6 +47,9 @@ public class App extends Application {
     //    db.initTables();
     loader = new FXMLLoader();
     loader.setControllerFactory(injector::getInstance);
+    if (db.getUserByUsername("admin") == null) db.addUser("admin", "admin", UserType.ADMINISTRATOR);
+    if (db.getUserByUsername("staff") == null) db.addUser("staff", "staff", UserType.EMPLOYEE);
+    if (db.getUserByUsername("guest") == null) db.addUser("guest", "guest", UserType.PATIENT);
   }
 
   @Override
@@ -60,6 +64,9 @@ public class App extends Application {
     primaryStage.setTitle("Team N Application");
     primaryScene.setRoot(root);
     primaryStage.setScene(primaryScene);
+    primaryStage.setMinHeight(800);
+    primaryStage.setMinWidth(1366);
+
     // primaryStage.setResizable(false);
     //    primaryStage.setAlwaysOnTop(true);
 
