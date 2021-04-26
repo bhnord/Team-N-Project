@@ -3,6 +3,7 @@ package edu.wpi.TeamN.views;
 import com.google.inject.Inject;
 import edu.wpi.TeamN.services.database.DatabaseService;
 import edu.wpi.TeamN.state.HomeState;
+import edu.wpi.TeamN.state.Login;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -26,6 +27,7 @@ public class masterController implements Initializable {
   @FXML private Label text;
 
   protected Scene appPrimaryScene;
+  private Login login = Login.getLogin();
 
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
@@ -50,8 +52,17 @@ public class masterController implements Initializable {
 
   @FXML
   public void advanceHome(FXMLLoader childLoader, Scene ChildAppPrimaryScene) throws IOException {
-    Parent root = childLoader.load(getClass().getResourceAsStream("HomeView.fxml"));
-    ChildAppPrimaryScene.setRoot(root);
+    //    Parent root = childLoader.load(getClass().getResourceAsStream("HomeView.fxml"));
+    //    ChildAppPrimaryScene.setRoot(root);
+    if (login.getUsername().equals("patient") && login.getPassword().equals("patient")) {
+      advanceHomePatient(childLoader, ChildAppPrimaryScene);
+    } else if (login.getUsername().equals("staff") && login.getPassword().equals("staff")) {
+      advanceHome(childLoader, ChildAppPrimaryScene);
+    } else if (login.getUsername().equals("admin") && login.getPassword().equals("admin")) {
+      advanceHomeAdmin(childLoader, ChildAppPrimaryScene);
+    } else if (login.getUsername().equals("guest") && login.getPassword().equals("guest")) {
+      advanceHomeGuest(childLoader, ChildAppPrimaryScene);
+    }
   }
 
   @FXML
@@ -107,8 +118,15 @@ public class masterController implements Initializable {
 
   public void advanceServiceRequest(FXMLLoader childLoader, Scene ChildAppPrimaryScene)
       throws IOException {
-    Parent root = childLoader.load(getClass().getResourceAsStream("ServiceRequests.fxml"));
-    ChildAppPrimaryScene.setRoot(root);
+    //    Parent root = childLoader.load(getClass().getResourceAsStream("ServiceRequests.fxml"));
+    //    ChildAppPrimaryScene.setRoot(root);
+    if (login.getUsername().equals("patient") && login.getPassword().equals("patient")) {
+      advanceServiceRequestPatient(childLoader, ChildAppPrimaryScene);
+    } else if (login.getUsername().equals("staff") && login.getPassword().equals("staff")) {
+      advanceServiceRequestEmployee(childLoader, ChildAppPrimaryScene);
+    } else if (login.getUsername().equals("admin") && login.getPassword().equals("admin")) {
+      advanceServiceRequestAdmin(childLoader, ChildAppPrimaryScene);
+    }
   }
 
   @FXML
