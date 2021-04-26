@@ -71,13 +71,13 @@ public class UsersTable {
   }
 
   public User getUserByUsername(String username) {
-    String str = "SELECT * FROM USERS WHERE USERNAME = " + username;
+    String str = "SELECT * FROM USERS WHERE USERNAME = '" + username + "'";
     User returnUser;
     try {
       ResultSet rs = stmt.executeQuery(str);
       returnUser = (User) resultSetToUsers(rs).toArray()[0];
     } catch (SQLException e) {
-//      e.printStackTrace();
+      e.printStackTrace();
       returnUser = null;
     }
     return returnUser;
