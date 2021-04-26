@@ -38,7 +38,7 @@ public class FoodDeliveryRequestController extends masterController implements I
   @Inject DatabaseService db;
   @Inject FXMLLoader loader;
   @Inject HomeState state;
-  @FXML private JFXTextField txtTimeOfRequest;
+  @FXML private JFXTimePicker txtTimeOfRequest;
   @FXML private JFXTextField txtComments;
   @FXML private JFXComboBox<Label> mainDish = new JFXComboBox<>();
   @FXML private JFXComboBox<Label> sideDish = new JFXComboBox<>();
@@ -145,7 +145,7 @@ public class FoodDeliveryRequestController extends masterController implements I
         || drinkDish.getValue() == null
         || txtEmployeeName.getValue() == null
         || roomDropdown.getValue() == null
-        || txtTimeOfRequest.getText().isEmpty()) {
+        || txtTimeOfRequest.getEditor().getText().isEmpty()) {
       String title = "Missing Fields";
       JFXDialogLayout dialogContent = new JFXDialogLayout();
       dialogContent.setHeading(new Text(title));
@@ -293,14 +293,14 @@ public class FoodDeliveryRequestController extends masterController implements I
     db.addRequest(r);
   }
 
-  @FXML
+  /* @FXML
   private void validateButton() {
     if (!txtTimeOfRequest.getText().isEmpty() && !txtComments.getText().isEmpty()) {
       submit.setDisable(false);
     } else {
       submit.setDisable(true);
     }
-  }
+  }*/
 
   public void help(ActionEvent actionEvent) throws IOException {
     String title = "Help Page";
