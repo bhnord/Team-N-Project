@@ -132,8 +132,8 @@
                         <DropShadow color="#c6b8b8" offsetY="5.0" />
                     </effect></Rectangle>
                 <JFXButton fx:id="submit" layoutX="505.0" layoutY="636.0" onAction="#submit" prefHeight="50.0" prefWidth="95.0" ripplerFill="WHITE" text="Submit" textFill="WHITE" />
-                <JFXComboBox fx:id="txtEmployeeName" layoutX="187.0" layoutY="241.0" prefHeight="31.0" prefWidth="150.0" promptText="Select Employee" />
-                <JFXComboBox fx:id="roomDropdown" layoutX="187.0" layoutY="313.0" prefHeight="31.0" prefWidth="176.0" promptText="Select Patient Room" />
+                <JFXComboBox fx:id="txtEmployeeName" layoutX="187.0" layoutY="241.0" prefHeight="31.0" prefWidth="150.0" promptText="Select Service" />
+                <JFXComboBox fx:id="roomDropdown" layoutX="187.0" layoutY="313.0" prefHeight="31.0" prefWidth="176.0" promptText="Select location of Service" />
                 <StackPane fx:id="myStackPane2" layoutX="346.0" layoutY="526.0" prefHeight="101.0" prefWidth="531.0" />
                 <Label layoutX="169.0" layoutY="246.0" text="*" />
                 <Label layoutX="166.0" layoutY="317.0" text="*" />
