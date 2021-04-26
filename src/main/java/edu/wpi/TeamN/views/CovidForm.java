@@ -48,7 +48,7 @@ public class CovidForm extends masterController implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    submit.setDisable(true);
+    // submit.setDisable(true);
     comboBox.getItems().add("yes");
     comboBox.getItems().add("no");
 
@@ -72,11 +72,11 @@ public class CovidForm extends masterController implements Initializable {
   public void advanceHome() throws IOException {
     Login login = Login.getLogin();
 
-    if (login.getUsername().equals("p") && login.getPassword().equals("p")) {
+    if (login.getUsername().equals("patient") && login.getPassword().equals("patient")) {
       super.advanceHomePatient(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("e") && login.getPassword().equals("e")) {
+    } else if (login.getUsername().equals("employee") && login.getPassword().equals("employee")) {
       super.advanceHome(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("a") && login.getPassword().equals("a")) {
+    } else if (login.getUsername().equals("admin") && login.getPassword().equals("admin")) {
       super.advanceHomeAdmin(loader, appPrimaryScene);
     }
   }
@@ -104,7 +104,7 @@ public class CovidForm extends masterController implements Initializable {
 
   @FXML
   private void validateButton() {
-    if (comboBox.getValue() == null
+    /* if (comboBox.getValue() == null
         || comboBox2.getValue() == null
         || comboBox3.getValue() == null
         || comboBox4.getValue() == null
@@ -113,6 +113,6 @@ public class CovidForm extends masterController implements Initializable {
       submit.setDisable(true);
     } else {
       submit.setDisable(false);
-    }
+    }*/
   }
 }
