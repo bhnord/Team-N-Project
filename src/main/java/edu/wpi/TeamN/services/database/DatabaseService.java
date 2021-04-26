@@ -318,6 +318,9 @@ public class DatabaseService {
     return usersTable.updateUser(id, username, password, type);
   }
 
+  public boolean updateUserUsernameType(int id, String username, UserType type) {
+    return usersTable.updateUserUsernameType(id, username, type);
+  }
   /**
    * retrieves a single user from the Database with matching ID
    *
