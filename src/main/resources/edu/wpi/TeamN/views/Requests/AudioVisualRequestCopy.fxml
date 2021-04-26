@@ -6,6 +6,7 @@
 <?import com.jfoenix.controls.JFXTimePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -17,29 +18,37 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.TeamN.views.ExternalPatientRequestController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.TeamN.views.AudioVisualRequestController">
     <columnConstraints>
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1366.0" minWidth="10.0" prefWidth="1366.0" />
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.0" minWidth="0.0" prefWidth="0.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1366.0" minWidth="0.0" prefWidth="0.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1366.0" minWidth="0.0" prefWidth="129.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1366.0" minWidth="0.0" prefWidth="695.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1366.0" minWidth="10.0" prefWidth="542.0" />
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints maxHeight="128.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="732.0" minHeight="10.0" prefHeight="732.0" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="36.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="443.0" minHeight="10.0" prefHeight="343.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="480.0" minHeight="0.0" prefHeight="81.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="750.0" minHeight="10.0" prefHeight="148.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="253.0" minHeight="0.0" prefHeight="196.0" vgrow="SOMETIMES" />
     </rowConstraints>
     <children>
-        <AnchorPane prefHeight="927.0" prefWidth="1366.0" GridPane.rowIndex="1">
+        <AnchorPane fx:id="anchorPage" prefHeight="749.0" prefWidth="996.0" GridPane.rowIndex="1">
             <children>
                 <ImageView fitHeight="766.0" fitWidth="1360.0" layoutX="-5.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@/images/CSVBackground.png" />
                     </image>
                 </ImageView>
+                <Label fx:id="errorLabel" layoutX="297.0" layoutY="664.0" prefHeight="35.0" prefWidth="130.0">
+                    <font>
+                        <Font size="24.0" />
+                    </font>
+                </Label>
                 <StackPane fx:id="myStackPane" layoutX="693.0" layoutY="279.0" prefHeight="209.0" prefWidth="412.0" />
                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="69.0" layoutX="-1.0" layoutY="78.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.0" layoutX="27.0" layoutY="90.0" rotate="45.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" />
                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.0" layoutX="27.0" layoutY="90.0" rotate="-45.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" />
-                <JFXButton fx:id="exit1" layoutY="76.0" onAction="#exit" prefHeight="71.0" prefWidth="66.0" text=" " textFill="WHITE">
+                <JFXButton fx:id="exit1" layoutY="77.0" onAction="#exit" prefHeight="71.0" prefWidth="66.0" text=" " textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="9.0" />
                     </font>
@@ -57,7 +66,7 @@
                         <Image url="@/images/LogOut.png" />
                     </image>
                 </ImageView>
-                <JFXButton fx:id="logOutButton1" layoutX="-1.0" layoutY="146.0" onAction="#logOut" prefHeight="71.0" prefWidth="66.0" textFill="WHITE">
+                <JFXButton fx:id="logOutButton1" layoutX="-1.0" layoutY="149.0" onAction="#logOut" prefHeight="71.0" prefWidth="66.0" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="9.0" />
                     </font>
@@ -70,9 +79,9 @@
                     </tooltip>
                 </JFXButton>
                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="69.0" layoutX="-1.0" layoutY="222.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
-                <JFXButton fx:id="BackButton" layoutX="-1.0" layoutY="221.0" onAction="#back" prefHeight="71.0" prefWidth="66.0" styleClass="label" stylesheets="@/Fonts/Roboto-Light.css" text="Back" textFill="WHITE">
+                <JFXButton fx:id="BackButton" layoutX="-1.0" layoutY="221.0" onAction="#back" prefHeight="71.0" prefWidth="66.0" text="Back" textFill="WHITE">
                     <font>
-                        <Font name="System Bold" size="18.0" />
+                        <Font name="System Bold" size="9.0" />
                     </font>
                     <tooltip>
                         <Tooltip fx:id="ttBackButton" text="Back to Requests">
@@ -101,13 +110,7 @@
                     </tooltip>
                 </JFXButton>
                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="47.0" layoutX="834.0" layoutY="661.0" stroke="TRANSPARENT" strokeType="INSIDE" width="130.0" />
-                <Rectangle arcHeight="50.0" arcWidth="50.0" fill="WHITE" height="517.0" layoutX="143.0" layoutY="193.0" stroke="TRANSPARENT" strokeType="INSIDE" width="476.0" />
-                <Label fx:id="errorLabel" alignment="CENTER" layoutX="195.0" layoutY="647.0" prefHeight="35.0" prefWidth="296.0" stylesheets="@/Fonts/Roboto-Light.css">
-                    <font>
-                        <Font size="24.0" />
-                    </font>
-                </Label>
-                <JFXButton fx:id="helpButton" layoutX="834.0" layoutY="661.0" onAction="#help" prefHeight="47.0" prefWidth="130.0" ripplerFill="WHITE" styleClass="label" stylesheets="@/Fonts/Roboto-Light.css" text="Help" textFill="WHITE">
+                <JFXButton fx:id="helpButton" layoutX="834.0" layoutY="661.0" onAction="#help" prefHeight="47.0" prefWidth="130.0" ripplerFill="WHITE" text="Help" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="22.0" />
                     </font>
@@ -119,31 +122,40 @@
                         </Tooltip>
                     </tooltip>
                 </JFXButton>
-            <VBox alignment="CENTER_LEFT" layoutX="164.0" layoutY="230.0" prefHeight="400.0" prefWidth="203.0" spacing="37.0">
+                <Rectangle arcHeight="50.0" arcWidth="50.0" fill="WHITE" height="517.0" layoutX="144.0" layoutY="186.0" stroke="TRANSPARENT" strokeType="INSIDE" width="476.0" />
+                <Rectangle arcHeight="8.0" arcWidth="8.0" fill="#748cdc" height="40.0" layoutX="518.0" layoutY="641.0" stroke="TRANSPARENT" strokeType="INSIDE" width="74.0">
+               <effect>
+                  <DropShadow color="#c6b8b8" offsetY="5.0" />
+               </effect></Rectangle>
+                <JFXButton fx:id="submit" layoutX="508.0" layoutY="637.0" onAction="#Submit" prefHeight="50.0" prefWidth="95.0" ripplerFill="WHITE" text="Submit" textFill="WHITE" />
+            <StackPane fx:id="myStackPane2" layoutX="346.0" layoutY="526.0" prefHeight="101.0" prefWidth="531.0" />
+            <Label layoutX="163.0" layoutY="246.0" text="*" />
+            <Label layoutX="160.0" layoutY="303.0" prefHeight="21.0" prefWidth="0.0" text="*" />
+            <Label layoutX="160.0" layoutY="383.0" text="*" />
+            <Label layoutX="160.0" layoutY="444.0" text="*" />
+            <Label layoutX="170.0" layoutY="641.0" text="*Required Fields" />
+            <VBox alignment="CENTER_LEFT" layoutX="179.0" layoutY="222.0" prefHeight="400.0" prefWidth="203.0" spacing="37.0">
                <children>
                   <JFXComboBox fx:id="transportTypeDropdown" focusColor="#748cdc" labelFloat="true" onAction="#validateButton" prefHeight="31.0" prefWidth="206.0" promptText="Transportation Type" styleClass="text-field" stylesheets="@/Fonts/Roboto-Light.css" />
                   <JFXComboBox fx:id="patientRoomDropdown" focusColor="#748cdc" labelFloat="true" onAction="#validateButton" onKeyReleased="#validateButton" prefHeight="31.0" prefWidth="216.0" promptText="Select Patient Room" styleClass="label" stylesheets="@/Fonts/Roboto-Light.css" />
-                      <JFXComboBox fx:id="employeeDropdown" focusColor="#748cdc" labelFloat="true" onAction="#validateButton" onKeyReleased="#validateButton" prefHeight="31.0" prefWidth="232.0" promptText="Select Employee" styleClass="label" stylesheets="@/Fonts/Roboto-Light.css" />
+                  <JFXComboBox fx:id="employeeDropdown" focusColor="#748cdc" labelFloat="true" onAction="#validateButton" onKeyReleased="#validateButton" prefHeight="31.0" prefWidth="232.0" promptText="Select Employee" styleClass="label" stylesheets="@/Fonts/Roboto-Light.css" />
                   <JFXComboBox fx:id="addressBox" editable="true" focusColor="#748cdc" labelFloat="true" onAction="#validateButton" onKeyReleased="#validateButton" prefHeight="31.0" prefWidth="251.0" promptText="Select Destination" styleClass="label" stylesheets="@/Fonts/Roboto-Light.css" />
                   <JFXTimePicker fx:id="departureTIme" defaultColor="#748cdc" editable="true" onAction="#validateButton" onKeyReleased="#validateButton" prefHeight="25.0" prefWidth="218.0" promptText="Select Time of Departure" stylesheets="@/Fonts/Roboto-Light.css" />
-                      <JFXTextField fx:id="commentsBox" focusColor="#748cdc" labelFloat="true" onKeyReleased="#validateButton" prefHeight="40.0" prefWidth="203.0" promptText="Comments" style="-fx-font-size: 18px;" stylesheets="@/Fonts/Roboto-Light.css" unFocusColor="WHITE">
-                          <font>
-                              <Font name="Serif Bold" size="26.0" />
-                          </font>
-                      </JFXTextField>
+                  <JFXTextField fx:id="commentsBox" focusColor="#748cdc" labelFloat="true" onKeyReleased="#validateButton" prefHeight="40.0" prefWidth="203.0" promptText="Comments" style="-fx-font-size: 18px;" stylesheets="@/Fonts/Roboto-Light.css" unFocusColor="WHITE">
+                     <font>
+                        <Font name="Serif Bold" size="26.0" />
+                     </font>
+                  </JFXTextField>
                </children>
             </VBox>
-                <JFXButton fx:id="submit" alignment="CENTER" contentDisplay="CENTER" layoutX="523.0" layoutY="647.0" onAction="#Submit" prefHeight="34.0" prefWidth="72.0" ripplerFill="WHITE" style="-fx-background-color: #748cdc;" styleClass="label" stylesheets="@/Fonts/Roboto-Light.css" text="Submit" textFill="WHITE">
+            <Label layoutX="160.0" layoutY="516.0" text="*" />
+            <Label fx:id="bannerText" alignment="CENTER" layoutX="150.0" layoutY="127.0" prefHeight="47.0" prefWidth="464.0" style="-fx-background-color: #748cdc; -fx-background-radius: 6;" stylesheets="@/Fonts/Roboto-Light.css" text="External Patient Transfer" textAlignment="CENTER" textFill="WHITE">
                <font>
-                  <Font size="14.0" />
-               </font></JFXButton>
-                <Label fx:id="bannerText" alignment="CENTER" layoutX="149.0" layoutY="136.0" prefHeight="47.0" prefWidth="464.0" style="-fx-background-color: #748cdc; -fx-background-radius: 6;" stylesheets="@/Fonts/Roboto-Light.css" text="External Patient Transfer" textAlignment="CENTER" textFill="WHITE">
-                    <font>
-                        <Font name="Serif Regular" size="30.0" />
-                    </font>
-                </Label>
-                <StackPane fx:id="myStackPane2" layoutX="621.0" layoutY="473.0" prefHeight="166.0" prefWidth="328.0" />
+                  <Font name="Serif Regular" size="30.0" />
+               </font>
+            </Label>
             </children>
         </AnchorPane>
+      <StackPane fx:id="confirmationStackPane" prefHeight="148.0" prefWidth="566.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
     </children>
 </GridPane>

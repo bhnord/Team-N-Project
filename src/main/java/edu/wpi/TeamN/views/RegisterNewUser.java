@@ -6,7 +6,6 @@ import com.jfoenix.validation.RequiredFieldValidator;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.database.DatabaseService;
 import edu.wpi.TeamN.services.database.users.User;
-import edu.wpi.TeamN.services.database.users.UserType;
 import edu.wpi.TeamN.state.HomeState;
 import edu.wpi.TeamN.state.Login;
 import java.io.IOException;
@@ -32,14 +31,16 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class AudioVisualRequestController extends masterController implements Initializable {
+public class RegisterNewUser extends masterController implements Initializable {
 
   @Inject DatabaseService db;
   @Inject FXMLLoader loader;
   @Inject HomeState state;
   @FXML private Label text;
   @FXML private Label errorLabel;
-  private Label person1;
+  private Label Employee;
+  private Label Patient;
+  private Label Admin;
   @FXML private JFXTextField txtTimeOfRequest;
   @FXML private JFXTextField txtEquipment;
   @FXML private JFXTextField txtComments;
@@ -50,9 +51,7 @@ public class AudioVisualRequestController extends masterController implements In
   private Scene appPrimaryScene;
   private HashMap<String, User> users;
   private HashMap<String, Node> rooms;
-  @FXML private JFXComboBox<Label> txtEmployeeName = new JFXComboBox<>();
-  @FXML private JFXComboBox<Label> roomDropdown = new JFXComboBox<>();
-  CurrentRequestController currentRequest = new CurrentRequestController();
+  @FXML private JFXComboBox<String> txtEmployeeName = new JFXComboBox<>();
 
   @FXML private AnchorPane anchorPage;
 
@@ -75,6 +74,10 @@ public class AudioVisualRequestController extends masterController implements In
     log.debug(state.toString());
     // submit.setDisable(true);
 
+    txtEmployeeName.getItems().add("Patient");
+    txtEmployeeName.getItems().add("Employee");
+    txtEmployeeName.getItems().add("Admin");
+
     /** USERNAME input and password* */
     RequiredFieldValidator reqInputValid = new RequiredFieldValidator();
     reqInputValid.setMessage("Cannot be empty");
@@ -93,9 +96,6 @@ public class AudioVisualRequestController extends masterController implements In
             (o, oldVal, newVal) -> {
               if (!newVal) txtEquipment.validate();
             });
-
-    loadEmployeeDropdown();
-    loadRoomDropdown();
   }
 
   public void exit(ActionEvent actionEvent) throws IOException {
@@ -112,14 +112,12 @@ public class AudioVisualRequestController extends masterController implements In
 
     Login login = Login.getLogin();
 
-    if (login.getUsername().equals("patient") && login.getPassword().equals("patient")) {
+    if (login.getUsername().equals("p") && login.getPassword().equals("p")) {
       super.advanceHomePatient(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("staff") && login.getPassword().equals("staff")) {
+    } else if (login.getUsername().equals("e") && login.getPassword().equals("e")) {
       super.advanceHome(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("admin") && login.getPassword().equals("admin")) {
+    } else if (login.getUsername().equals("a") && login.getPassword().equals("a")) {
       super.advanceHomeAdmin(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("guest") && login.getPassword().equals("guest")) {
-      super.advanceHomeGuest(loader, appPrimaryScene);
     }
   }
 
@@ -128,25 +126,41 @@ public class AudioVisualRequestController extends masterController implements In
 
     Login login = Login.getLogin();
 
-    if (login.getUsername().equals("patient") && login.getPassword().equals("patient")) {
+    if (login.getUsername().equals("p") && login.getPassword().equals("p")) {
       super.advanceServiceRequestPatient(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("staff") && login.getPassword().equals("staff")) {
+    } else if (login.getUsername().equals("e") && login.getPassword().equals("e")) {
       super.advanceServiceRequestEmployee(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("admin") && login.getPassword().equals("admin")) {
+    } else if (login.getUsername().equals("a") && login.getPassword().equals("a")) {
       super.advanceServiceRequestAdmin(loader, appPrimaryScene);
     }
   }
 
   public void Submit(ActionEvent actionEvent) throws IOException, InterruptedException {
 
-    /*
-        txtEmployeeName.setValidators();
-        if (txtEmployeeName.getSelectionModel().isEmpty() || roomDropdown.getSelectionModel().isEmpty())
-          return;
-    */
+    if (!(txtEquipment.getText().equals(txtComments.getText()))) {
+      String title = "Invalid Entry";
+      JFXDialogLayout dialogContent = new JFXDialogLayout();
+      dialogContent.setHeading(new Text(title));
+      dialogContent.setBody((new Text("* Passwords do not match. Retype passwords. \n")));
+      JFXButton close = new JFXButton("close");
+      close.setButtonType(JFXButton.ButtonType.RAISED);
+      close.setStyle("-fx-background-color : #00bfff;");
+      dialogContent.setActions(close);
 
-    if (txtEmployeeName.getValue() == null
-        || roomDropdown.getValue() == null
+      JFXDialog dialog =
+          new JFXDialog(myStackPane, dialogContent, JFXDialog.DialogTransition.BOTTOM);
+      actionEvent.consume();
+      close.setOnAction(
+          new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+              dialog.close();
+              helpButton.setDisable(false);
+            }
+          });
+      helpButton.setDisable(true);
+      dialog.show();
+    } else if (txtEmployeeName.getValue() == null
         || txtTimeOfRequest.getText().isEmpty()
         || txtEquipment.getText().isEmpty()) {
       String title = "Missing Fields";
@@ -222,40 +236,20 @@ public class AudioVisualRequestController extends masterController implements In
                   new Label(
                       "Your request Has been submitted!                                                          ");
 
-              JFXButton continueButton = new JFXButton("Return To Home");
+              JFXButton continueButton = new JFXButton("Return To Login Screen");
               continueButton.setButtonType(JFXButton.ButtonType.RAISED);
               continueButton.setStyle("-fx-background-color : #00bfff;");
 
-              JFXButton cancelButton = new JFXButton("Complete Another Request");
-              cancelButton.setButtonType(JFXButton.ButtonType.RAISED);
-              cancelButton.setStyle("-fx-background-color : #00bfff;");
+              //         continueButton.setTranslateX(350);
+              //         continueButton.setTranslateY(25);
 
-              cancelButton.setTranslateX(0);
-              cancelButton.setTranslateY(65);
-
-              continueButton.setTranslateX(350);
-              continueButton.setTranslateY(25);
-
-              manuContainer.getChildren().addAll(lbl1, cancelButton, continueButton);
+              manuContainer.getChildren().addAll(lbl1, continueButton);
               manuContainer.setPadding(new Insets(30, 50, 50, 50));
               manuContainer.setSpacing(10);
               JFXPopup popup1 = new JFXPopup(manuContainer);
               actionEvent.consume();
               popup1.setAutoHide(false);
 
-              // return to request page
-              cancelButton.setOnAction(
-                  new EventHandler<ActionEvent>() {
-                    @SneakyThrows
-                    @Override
-                    public void handle(ActionEvent event) {
-                      popup1.hide();
-                      submit.setDisable(false);
-                      back();
-                    }
-                  });
-
-              // go back to home page
               continueButton.setOnAction(
                   new EventHandler<ActionEvent>() {
                     @SneakyThrows
@@ -264,7 +258,7 @@ public class AudioVisualRequestController extends masterController implements In
                       anchorPage.setEffect(null);
                       txtEmployeeName.setEffect(null);
                       popup1.hide();
-                      advanceHome();
+                      logOut();
                       submit.setDisable(false);
                     }
                   });
@@ -289,11 +283,10 @@ public class AudioVisualRequestController extends masterController implements In
     dialogContent.setHeading(new Text(title));
     dialogContent.setBody(
         (new Text(
-            "* Employee Name refers to the employee being requested to complete the job\n"
-                + "* Patient Room is the room that the employee will deliver the medicine to\n"
-                + "* Time of request refers to time the medicine should be delivered to the patient\n"
-                + "* Necessary Equipment refers to additional services/equipment the patient requires\n"
-                + "* Necessary Equipment refers to additional services/equipment the patient requires\n")));
+            "* 'Select Login Type' refers to the type of user '\n"
+                + "* 'Enter Username' refers to the username you will use everytime you login to the application\n"
+                + "* 'Enter Password' refers to your unique password that you will use everytime you login to the application\n"
+                + "* 'Retype Password' helps authenticate your password to ensure a secure account\n")));
     JFXButton close = new JFXButton("close");
     close.setButtonType(JFXButton.ButtonType.RAISED);
     close.setStyle("-fx-background-color : #00bfff;");
@@ -311,25 +304,5 @@ public class AudioVisualRequestController extends masterController implements In
         });
     helpButton.setDisable(true);
     dialog.show();
-  }
-
-  private void loadEmployeeDropdown() {
-    users = db.getUsersByType(UserType.EMPLOYEE);
-    for (User user : users.values()) {
-      Label lbl = new Label(user.getUsername());
-      lbl.setId(user.getId());
-      txtEmployeeName.getItems().add((lbl));
-    }
-    new AutoCompleteComboBoxListener(txtEmployeeName);
-  }
-
-  private void loadRoomDropdown() {
-    rooms = db.getAllNodesMap();
-    for (Node node : rooms.values()) {
-      Label lbl = new Label(node.get_longName());
-      lbl.setId(node.get_nodeID());
-      roomDropdown.getItems().add(lbl);
-    }
-    new AutoCompleteComboBoxListener(roomDropdown);
   }
 }

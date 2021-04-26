@@ -69,6 +69,12 @@ public class masterController implements Initializable {
   }
 
   @FXML
+  public void register(FXMLLoader childLoader, Scene ChildAppPrimaryScene) throws IOException {
+    Parent root = childLoader.load(getClass().getResourceAsStream("RegisterNewUser.fxml"));
+    ChildAppPrimaryScene.setRoot(root);
+  }
+
+  @FXML
   public void advanceHomeGuest(FXMLLoader childLoader, Scene ChildAppPrimaryScene)
       throws IOException {
     Parent root = childLoader.load(getClass().getResourceAsStream("HomeViewGuest.fxml"));

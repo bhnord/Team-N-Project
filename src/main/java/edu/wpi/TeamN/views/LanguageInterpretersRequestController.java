@@ -5,6 +5,8 @@ import com.jfoenix.controls.*;
 import com.jfoenix.validation.RequiredFieldValidator;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.database.DatabaseService;
+import edu.wpi.TeamN.services.database.requests.Request;
+import edu.wpi.TeamN.services.database.requests.RequestType;
 import edu.wpi.TeamN.services.database.users.User;
 import edu.wpi.TeamN.services.database.users.UserType;
 import edu.wpi.TeamN.state.HomeState;
@@ -41,18 +43,20 @@ public class LanguageInterpretersRequestController extends masterController
   @FXML private Label text;
   @FXML private Label errorLabel;
   private Label person1;
-  @FXML private JFXTextField txtTimeOfRequest;
-  @FXML private JFXTextField txtEquipment;
   @FXML private JFXTextField txtComments;
   @FXML private Button helpButton;
   @FXML private StackPane myStackPane;
-  @FXML private Button submit;
   @FXML private StackPane myStackPane2;
   private Scene appPrimaryScene;
   private HashMap<String, User> users;
   private HashMap<String, Node> rooms;
-  @FXML private JFXComboBox<Label> txtEmployeeName = new JFXComboBox<>();
-  @FXML private JFXComboBox<Label> roomDropdown = new JFXComboBox<>();
+
+  @FXML private JFXButton submitButton;
+  @FXML private JFXComboBox<Label> employeeDropdown = new JFXComboBox<>();
+  @FXML private JFXComboBox<Label> patientRoomDropdown = new JFXComboBox<>();
+  @FXML private JFXTimePicker timePicker;
+  @FXML private JFXComboBox<Label> languageDropdown = new JFXComboBox<>();
+
   // @FXML private AnchorPane anchorPage;
   static Stage stage;
 
@@ -70,35 +74,21 @@ public class LanguageInterpretersRequestController extends masterController
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     log.debug(state.toString());
-    submit.setDisable(true);
+    submitButton.setDisable(true);
 
     /** USERNAME input and password* */
     RequiredFieldValidator reqInputValid = new RequiredFieldValidator();
     reqInputValid.setMessage("Cannot be empty");
-    txtTimeOfRequest.getValidators().add(reqInputValid);
-    txtTimeOfRequest
-        .focusedProperty()
-        .addListener(
-            (o, oldVal, newVal) -> {
-              if (!newVal) txtTimeOfRequest.validate();
-            });
     reqInputValid.setMessage("Cannot be empty");
-    txtComments.getValidators().add(reqInputValid);
-    txtComments
+    employeeDropdown.getValidators().add(reqInputValid);
+    employeeDropdown
         .focusedProperty()
         .addListener(
             (o, oldVal, newVal) -> {
               if (!newVal) txtComments.validate();
             });
-    reqInputValid.setMessage("Cannot be empty");
-    txtEquipment.getValidators().add(reqInputValid);
-    txtEquipment
-        .focusedProperty()
-        .addListener(
-            (o, oldVal, newVal) -> {
-              if (!newVal) txtEquipment.validate();
-            });
 
+    loadLanguagesDropdown();
     loadEmployeeDropdown();
     loadRoomDropdown();
   }
@@ -117,12 +107,14 @@ public class LanguageInterpretersRequestController extends masterController
 
     Login login = Login.getLogin();
 
-    if (login.getUsername().equals("p") && login.getPassword().equals("p")) {
+    if (login.getUsername().equals("patient") && login.getPassword().equals("patient")) {
       super.advanceHomePatient(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("e") && login.getPassword().equals("e")) {
+    } else if (login.getUsername().equals("staff") && login.getPassword().equals("staff")) {
       super.advanceHome(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("a") && login.getPassword().equals("a")) {
+    } else if (login.getUsername().equals("admin") && login.getPassword().equals("admin")) {
       super.advanceHomeAdmin(loader, appPrimaryScene);
+    } else if (login.getUsername().equals("guest") && login.getPassword().equals("guest")) {
+      super.advanceHomeGuest(loader, appPrimaryScene);
     }
   }
 
@@ -131,31 +123,31 @@ public class LanguageInterpretersRequestController extends masterController
 
     Login login = Login.getLogin();
 
-    if (login.getUsername().equals("p") && login.getPassword().equals("p")) {
+    if (login.getUsername().equals("patient") && login.getPassword().equals("patient")) {
       super.advanceServiceRequestPatient(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("e") && login.getPassword().equals("e")) {
+    } else if (login.getUsername().equals("staff") && login.getPassword().equals("staff")) {
       super.advanceServiceRequestEmployee(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("a") && login.getPassword().equals("a")) {
+    } else if (login.getUsername().equals("admin") && login.getPassword().equals("admin")) {
       super.advanceServiceRequestAdmin(loader, appPrimaryScene);
     }
   }
 
-  public void Submit(ActionEvent actionEvent) throws IOException {
+  public void submit(ActionEvent actionEvent) throws IOException {
 
-    txtEmployeeName.setValidators();
-    if (txtEmployeeName.getSelectionModel().isEmpty() || roomDropdown.getSelectionModel().isEmpty())
-      return;
+    employeeDropdown.setValidators();
+    if (employeeDropdown.getSelectionModel().isEmpty()
+        || patientRoomDropdown.getSelectionModel().isEmpty()) return;
 
     VBox manuContainer = new VBox();
     Label lbl1 = new Label("Are you sure the information you have provided is correct?");
 
     JFXButton continueButton = new JFXButton("Continue");
     continueButton.setButtonType(JFXButton.ButtonType.RAISED);
-    continueButton.setStyle("-fx-background-color : #00bfff:");
+    continueButton.setStyle("-fx-background-color : #00bfff;");
 
     JFXButton cancelButton = new JFXButton("Cancel");
     cancelButton.setButtonType(JFXButton.ButtonType.RAISED);
-    cancelButton.setStyle("-fx-background-color : #00bfff:");
+    cancelButton.setStyle("-fx-background-color : #00bfff;");
 
     cancelButton.setTranslateX(100);
     cancelButton.setTranslateY(65);
@@ -173,7 +165,7 @@ public class LanguageInterpretersRequestController extends masterController
           @Override
           public void handle(ActionEvent event) {
             popup1.hide();
-            submit.setDisable(false);
+            submitButton.setDisable(false);
           }
         });
 
@@ -182,14 +174,15 @@ public class LanguageInterpretersRequestController extends masterController
           @SneakyThrows
           @Override
           public void handle(ActionEvent event) {
+            submitToDB();
             popup1.hide();
             Parent root =
                 loader.load(getClass().getResourceAsStream("ConfirmationPageLanguage.fxml"));
             appPrimaryScene.setRoot(root);
-            submit.setDisable(false);
+            submitButton.setDisable(false);
           }
         });
-    submit.setDisable(true);
+    submitButton.setDisable(true);
     popup1.show(myStackPane2, JFXPopup.PopupVPosition.BOTTOM, JFXPopup.PopupHPosition.LEFT);
   }
 
@@ -201,13 +194,12 @@ public class LanguageInterpretersRequestController extends masterController
     dialogContent.setBody(
         (new Text(
             "* Employee Name refers to the employee being requested to complete the job\n"
-                + "* Patient Room is the room that the employee will deliver the medicine to\n"
-                + "* Time of request refers to time the medicine should be delivered to the patient\n"
-                + "* Necessary Equipment refers to additional services/equipment the patient requires\n"
-                + "* Necessary Equipment refers to additional services/equipment the patient requires\n")));
+                + "* Patient Room is the room with the patient where the Translation is required\n"
+                + "* Time of request refers to time at which the translation is needed\n"
+                + "* Desired language refers to the language that needs to be translated\n")));
     JFXButton close = new JFXButton("close");
     close.setButtonType(JFXButton.ButtonType.RAISED);
-    close.setStyle("-fx-background-color : #00bfff:");
+    close.setStyle("-fx-background-color : #00bfff;");
     dialogContent.setActions(close);
 
     JFXDialog dialog = new JFXDialog(myStackPane, dialogContent, JFXDialog.DialogTransition.BOTTOM);
@@ -230,19 +222,20 @@ public class LanguageInterpretersRequestController extends masterController
     for (User user : users.values()) {
       Label lbl = new Label(user.getUsername());
       lbl.setId(user.getId());
-      txtEmployeeName.getItems().add((lbl));
+      employeeDropdown.getItems().add((lbl));
     }
-    new AutoCompleteComboBoxListener(txtEmployeeName);
+    new AutoCompleteComboBoxListener(employeeDropdown);
   }
 
   @FXML
   private void validateButton() {
-    if (!txtTimeOfRequest.getText().isEmpty()
-        && !txtEquipment.getText().isEmpty()
-        && !txtComments.getText().isEmpty()) {
-      submit.setDisable(false);
+    if (!employeeDropdown.getEditor().getText().isEmpty()
+        && !patientRoomDropdown.getEditor().getText().isEmpty()
+        && !languageDropdown.getEditor().getText().isEmpty()
+        && !timePicker.getEditor().getText().isEmpty()) {
+      submitButton.setDisable(false);
     } else {
-      submit.setDisable(true);
+      submitButton.setDisable(true);
     }
   }
 
@@ -251,8 +244,30 @@ public class LanguageInterpretersRequestController extends masterController
     for (Node node : rooms.values()) {
       Label lbl = new Label(node.get_longName());
       lbl.setId(node.get_nodeID());
-      roomDropdown.getItems().add(lbl);
+      patientRoomDropdown.getItems().add(lbl);
     }
-    new AutoCompleteComboBoxListener(roomDropdown);
+    new AutoCompleteComboBoxListener(patientRoomDropdown);
+  }
+
+  private void loadLanguagesDropdown() {
+    String arr[] = {"ASL", "Spanish", "French", "Mandarin"};
+    for (String s : arr) {
+      Label lbl = new Label(s);
+      lbl.setId(s);
+      languageDropdown.getItems().add(lbl);
+    }
+    new AutoCompleteComboBoxListener(languageDropdown);
+  }
+
+  private void submitToDB() {
+    RequestType type = RequestType.LANGUAGE_INTERPRETER;
+    int recieverID =
+        Integer.parseInt(employeeDropdown.getSelectionModel().getSelectedItem().getId());
+    String roomNodeId = patientRoomDropdown.getSelectionModel().getSelectedItem().getId();
+    String content =
+        "Requested Language: " + languageDropdown.getSelectionModel().getSelectedItem().getText();
+    String notes = txtComments.getText();
+    Request r = new Request(type, recieverID, roomNodeId, content, notes);
+    db.addRequest(r);
   }
 }
