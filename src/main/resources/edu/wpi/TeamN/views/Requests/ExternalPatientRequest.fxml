@@ -32,6 +32,7 @@
         <RowConstraints maxHeight="253.0" minHeight="0.0" prefHeight="196.0" vgrow="SOMETIMES" />
     </rowConstraints>
     <children>
+        <StackPane fx:id="confirmationStackPane" prefHeight="148.0" prefWidth="134.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
         <AnchorPane fx:id="anchorPage" prefHeight="749.0" prefWidth="996.0" GridPane.rowIndex="1">
             <children>
                 <ImageView fitHeight="766.0" fitWidth="1360.0" layoutX="-5.0" pickOnBounds="true" preserveRatio="true">
@@ -115,7 +116,7 @@
                     <effect>
                         <DropShadow color="#c6b8b8" offsetY="5.0" />
                     </effect></Rectangle>
-                <JFXButton fx:id="submit" layoutX="508.0" layoutY="637.0" onAction="#Submit" prefHeight="50.0" prefWidth="95.0" ripplerFill="WHITE" text="Submit" textFill="WHITE" />
+                <JFXButton fx:id="submit" layoutX="507.0" layoutY="636.0" onAction="#Submit" prefHeight="50.0" prefWidth="95.0" ripplerFill="WHITE" text="Submit" textFill="WHITE" />
                 <StackPane fx:id="myStackPane2" layoutX="346.0" layoutY="526.0" prefHeight="101.0" prefWidth="531.0" />
                 <Label layoutX="163.0" layoutY="246.0" text="*" />
                 <Label layoutX="160.0" layoutY="303.0" prefHeight="21.0" prefWidth="0.0" text="*" />
@@ -156,6 +157,5 @@
             </JFXButton>
             </children>
         </AnchorPane>
-        <StackPane fx:id="confirmationStackPane" prefHeight="148.0" prefWidth="134.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
     </children>
 </GridPane>
