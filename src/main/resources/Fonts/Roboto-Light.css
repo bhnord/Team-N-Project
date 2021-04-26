@@ -6,6 +6,16 @@
     -fx-font-family: 'Roboto Light';
 }
 
+
+.jfx-label {
+    -fx-font-family: 'Roboto Light';
+}
+
 .text-field {
     -fx-font-family: 'Roboto Light';
+}
+
+.jfx-button{
+    -fx-font-family: 'Roboto Light';
+
 }
