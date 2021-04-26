@@ -52,17 +52,24 @@ public class masterController implements Initializable {
 
   @FXML
   public void advanceHome(FXMLLoader childLoader, Scene ChildAppPrimaryScene) throws IOException {
-    //    Parent root = childLoader.load(getClass().getResourceAsStream("HomeView.fxml"));
-    //    ChildAppPrimaryScene.setRoot(root);
+    //        Parent root = childLoader.load(getClass().getResourceAsStream("HomeView.fxml"));
+    //        ChildAppPrimaryScene.setRoot(root);
     if (login.getUsername().equals("patient") && login.getPassword().equals("patient")) {
       advanceHomePatient(childLoader, ChildAppPrimaryScene);
     } else if (login.getUsername().equals("staff") && login.getPassword().equals("staff")) {
-      advanceHome(childLoader, ChildAppPrimaryScene);
+      advanceHomeStaff(childLoader, ChildAppPrimaryScene);
     } else if (login.getUsername().equals("admin") && login.getPassword().equals("admin")) {
       advanceHomeAdmin(childLoader, ChildAppPrimaryScene);
     } else if (login.getUsername().equals("guest") && login.getPassword().equals("guest")) {
       advanceHomeGuest(childLoader, ChildAppPrimaryScene);
     }
+  }
+
+  @FXML
+  public void advanceHomeStaff(FXMLLoader childLoader, Scene ChildAppPrimaryScene)
+      throws IOException {
+    Parent root = childLoader.load(getClass().getResourceAsStream("HomeView.fxml"));
+    ChildAppPrimaryScene.setRoot(root);
   }
 
   @FXML
@@ -80,15 +87,15 @@ public class masterController implements Initializable {
   }
 
   @FXML
-  public void register(FXMLLoader childLoader, Scene ChildAppPrimaryScene) throws IOException {
-    Parent root = childLoader.load(getClass().getResourceAsStream("RegisterNewUser.fxml"));
+  public void advanceHomeGuest(FXMLLoader childLoader, Scene ChildAppPrimaryScene)
+      throws IOException {
+    Parent root = childLoader.load(getClass().getResourceAsStream("HomeViewGuest.fxml"));
     ChildAppPrimaryScene.setRoot(root);
   }
 
   @FXML
-  public void advanceHomeGuest(FXMLLoader childLoader, Scene ChildAppPrimaryScene)
-      throws IOException {
-    Parent root = childLoader.load(getClass().getResourceAsStream("HomeViewGuest.fxml"));
+  public void register(FXMLLoader childLoader, Scene ChildAppPrimaryScene) throws IOException {
+    Parent root = childLoader.load(getClass().getResourceAsStream("RegisterNewUser.fxml"));
     ChildAppPrimaryScene.setRoot(root);
   }
 
