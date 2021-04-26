@@ -21,8 +21,8 @@
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.TeamN.views.ExternalPatientRequestController">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="1366.0" minWidth="0.0" prefWidth="0.0" />
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1366.0" minWidth="0.0" prefWidth="129.0" />
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1366.0" minWidth="0.0" prefWidth="695.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1366.0" minWidth="0.0" prefWidth="137.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1366.0" minWidth="0.0" prefWidth="687.0" />
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="1366.0" minWidth="10.0" prefWidth="542.0" />
     </columnConstraints>
     <rowConstraints>
@@ -110,18 +110,6 @@
                     </tooltip>
                 </JFXButton>
                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="47.0" layoutX="834.0" layoutY="661.0" stroke="TRANSPARENT" strokeType="INSIDE" width="130.0" />
-                <JFXButton fx:id="helpButton" layoutX="834.0" layoutY="661.0" onAction="#help" prefHeight="47.0" prefWidth="130.0" ripplerFill="WHITE" text="Help" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="22.0" />
-                    </font>
-                    <tooltip>
-                        <Tooltip fx:id="tthelpButton" text="Help Page">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </Tooltip>
-                    </tooltip>
-                </JFXButton>
                 <Rectangle arcHeight="50.0" arcWidth="50.0" fill="WHITE" height="517.0" layoutX="144.0" layoutY="186.0" stroke="TRANSPARENT" strokeType="INSIDE" width="476.0" />
                 <Rectangle arcHeight="8.0" arcWidth="8.0" fill="#748cdc" height="40.0" layoutX="518.0" layoutY="641.0" stroke="TRANSPARENT" strokeType="INSIDE" width="74.0">
                     <effect>
@@ -140,7 +128,7 @@
                         <JFXComboBox fx:id="patientRoomDropdown" focusColor="#748cdc" labelFloat="true" onAction="#validateButton" onKeyReleased="#validateButton" prefHeight="31.0" prefWidth="216.0" promptText="Select Patient Room" styleClass="label" stylesheets="@/Fonts/Roboto-Light.css" />
                         <JFXComboBox fx:id="employeeDropdown" focusColor="#748cdc" labelFloat="true" onAction="#validateButton" onKeyReleased="#validateButton" prefHeight="31.0" prefWidth="232.0" promptText="Select Employee" styleClass="label" stylesheets="@/Fonts/Roboto-Light.css" />
                         <JFXComboBox fx:id="addressBox" editable="true" focusColor="#748cdc" labelFloat="true" onAction="#validateButton" onKeyReleased="#validateButton" prefHeight="31.0" prefWidth="251.0" promptText="Select Destination" styleClass="label" stylesheets="@/Fonts/Roboto-Light.css" />
-                        <JFXTimePicker fx:id="departureTIme" defaultColor="#748cdc" editable="true" onAction="#validateButton" onKeyReleased="#validateButton" prefHeight="25.0" prefWidth="218.0" promptText="Select Time of Departure" stylesheets="@/Fonts/Roboto-Light.css" />
+                        <JFXTimePicker fx:id="departureTIme" defaultColor="#a6c3e3" editable="true" onAction="#validateButton" onKeyReleased="#validateButton" prefHeight="25.0" prefWidth="218.0" promptText="Select Time of Departure" stylesheets="@/Fonts/Roboto-Light.css" />
                         <JFXTextField fx:id="commentsBox" focusColor="#748cdc" labelFloat="true" onKeyReleased="#validateButton" prefHeight="40.0" prefWidth="203.0" promptText="Comments" style="-fx-font-size: 18px;" stylesheets="@/Fonts/Roboto-Light.css" unFocusColor="WHITE">
                             <font>
                                 <Font name="Serif Bold" size="26.0" />
@@ -154,8 +142,20 @@
                         <Font name="Serif Regular" size="30.0" />
                     </font>
                 </Label>
+            <JFXButton fx:id="helpButton" layoutX="834.0" layoutY="661.0" onAction="#help" prefHeight="47.0" prefWidth="130.0" ripplerFill="WHITE" text="Help" textFill="WHITE">
+               <font>
+                  <Font name="Serif Regular" size="22.0" />
+               </font>
+               <tooltip>
+                  <Tooltip fx:id="tthelpButton" text="Help Page">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Tooltip>
+               </tooltip>
+            </JFXButton>
             </children>
         </AnchorPane>
-        <StackPane fx:id="confirmationStackPane" prefHeight="148.0" prefWidth="566.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+        <StackPane fx:id="confirmationStackPane" prefHeight="148.0" prefWidth="134.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
     </children>
 </GridPane>
