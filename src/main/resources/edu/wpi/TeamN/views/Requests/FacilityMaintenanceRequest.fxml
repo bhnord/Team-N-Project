@@ -109,18 +109,6 @@
                     </tooltip>
                 </JFXButton>
                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="47.0" layoutX="834.0" layoutY="661.0" stroke="TRANSPARENT" strokeType="INSIDE" width="130.0" />
-                <JFXButton fx:id="helpButton" layoutX="834.0" layoutY="661.0" onAction="#help" prefHeight="47.0" prefWidth="130.0" ripplerFill="WHITE" text="Help" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="22.0" />
-                    </font>
-                    <tooltip>
-                        <Tooltip fx:id="tthelpButton" text="Help Page">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </Tooltip>
-                    </tooltip>
-                </JFXButton>
                 <Rectangle arcHeight="50.0" arcWidth="50.0" fill="WHITE" height="517.0" layoutX="144.0" layoutY="185.0" stroke="TRANSPARENT" strokeType="INSIDE" width="476.0" />
                 <JFXTextField fx:id="txtComments" focusColor="#5b63e1" labelFloat="true" layoutX="183.0" layoutY="500.0" prefHeight="40.0" prefWidth="203.0" promptText="Comments" scaleShape="false" unFocusColor="WHITE">
                     <font>
@@ -145,12 +133,24 @@
                         <Font name="Serif Regular" size="30.0" />
                     </font>
                 </Label>
-                <JFXTimePicker fx:id="timePicker" layoutX="186.0" layoutY="382.0" promptText="Select Time of Request" />
+                <JFXTimePicker fx:id="timePicker" defaultColor="#a6c3e3" layoutX="186.0" layoutY="382.0" promptText="Select Time of Request" />
                 <JFXTextField fx:id="maintenanceRequest" focusColor="#5b63e1" labelFloat="true" layoutX="183.0" layoutY="440.0" prefHeight="40.0" prefWidth="203.0" promptText="Type of Maintenance" scaleShape="false" unFocusColor="WHITE">
                     <font>
                         <Font size="16.0" />
                     </font>
                 </JFXTextField>
+            <JFXButton fx:id="helpButton" layoutX="834.0" layoutY="663.0" onAction="#help" prefHeight="47.0" prefWidth="130.0" ripplerFill="WHITE" text="Help" textFill="WHITE">
+               <font>
+                  <Font name="Serif Regular" size="22.0" />
+               </font>
+               <tooltip>
+                  <Tooltip fx:id="tthelpButton" text="Help Page">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Tooltip>
+               </tooltip>
+            </JFXButton>
             </children>
         </AnchorPane>
         <StackPane fx:id="confirmationStackPane" prefHeight="148.0" prefWidth="564.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />

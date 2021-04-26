@@ -148,7 +148,7 @@
                   <Font name="Serif Regular" size="30.0" />
                </font>
             </Label>
-            <JFXTimePicker fx:id="txtTimeOfRequest" defaultColor="#a6c3e3" layoutX="186.0" layoutY="382.0" prefHeight="31.0" prefWidth="213.0" promptText="Request Time" />
+            <JFXTimePicker fx:id="txtTimeOfRequest" defaultColor="#a6c3e3" layoutX="186.0" layoutY="382.0" prefHeight="31.0" prefWidth="213.0" promptText="Select Time of Request" />
             <StackPane fx:id="confirmationStackPane" layoutX="296.0" layoutY="403.0" prefHeight="148.0" prefWidth="564.0" />
             <JFXComboBox fx:id="txtEquipment" layoutX="187.0" layoutY="444.0" prefHeight="31.0" prefWidth="176.0" promptText="Medicine" />
             </children>
