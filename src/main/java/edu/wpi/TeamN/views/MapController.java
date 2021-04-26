@@ -8,10 +8,6 @@ import edu.wpi.TeamN.services.algo.Edge;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.database.DatabaseService;
 import edu.wpi.TeamN.state.HomeState;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -35,6 +31,11 @@ import javafx.stage.Stage;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+
 @Slf4j
 public class MapController extends masterController implements Initializable {
   @FXML private JFXColorPicker colorPicker;
@@ -50,8 +51,8 @@ public class MapController extends masterController implements Initializable {
   private Group current;
   private Node startNodePath;
 
-  public final double downScale = .168;
-  public final double upScale = 5.9523;
+  public final double downScale = 0.25;
+  public final double upScale = 4;
   private int nodeCount = 0;
 
   private ActionHandlingI actionHandling;
@@ -77,6 +78,7 @@ public class MapController extends masterController implements Initializable {
   @FXML private JFXTextField endNode;
 
   Boolean cancelOrSubmit = false;
+
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
    * JavaFX thread
@@ -97,7 +99,7 @@ public class MapController extends masterController implements Initializable {
     mapNodeEditor = new MapNodeEditor(this);
     mapEdgeEditor = new MapEdgeEditor(this);
     actionHandling = new NodeActionHandling(this, this.mapNodeEditor, this.mapEdgeEditor);
-    mapDrawing = new MapDrawing(this);
+    mapDrawing = new MapDrawing(this, loader);
     mapImageView.setCursor(Cursor.CROSSHAIR);
     this.Load(new ActionEvent());
   }
@@ -164,7 +166,7 @@ public class MapController extends masterController implements Initializable {
             x * getUpScale(),
             y * getUpScale(),
             id,
-            getFloor().getText(),
+            mapDrawing.getCurrentMap(),
             getBuilding().getText(),
             "",
             getLongName().getText(),
@@ -204,15 +206,11 @@ public class MapController extends masterController implements Initializable {
    */
   // Reloading the map scene
   public void clear(ActionEvent actionEvent) throws IOException {
-    Parent root = loader.load(getClass().getResourceAsStream("map.fxml"));
+    Parent root = loader.load(getClass().getResourceAsStream("mapAdmin.fxml"));
     Screen screen = Screen.getPrimary();
     Rectangle2D bounds = screen.getVisualBounds();
 
     Stage stage = (Stage) appPrimaryScene.getWindow();
-    // stage.setX(bounds.getMinX());
-    // stage.setY(bounds.getMinY());
-    // stage.setWidth(bounds.getWidth());
-    // stage.setHeight(bounds.getHeight());
     appPrimaryScene.setRoot(root);
   }
 
@@ -226,7 +224,7 @@ public class MapController extends masterController implements Initializable {
   }
 
   private void DeleteNodesFromMap() throws IOException {
-    int i = 1;
+    int i = 7;
     for (javafx.scene.Node root :
         mapAnchor.getChildren().subList(i, mapAnchor.getChildren().size())) {
       if (root.getId().equals(current.getId())) {
@@ -251,20 +249,29 @@ public class MapController extends masterController implements Initializable {
 
   // Loading from the database
   public void Load(ActionEvent actionEvent) {
+    mapAnchor.getChildren().remove(7, mapAnchor.getChildren().size());
     adminMap
         .getEdgeSet()
         .forEach(
             (key, value) -> {
-              placeLink(
-                  key,
-                  adminMap.getNodeSet().get(value.getStartNode()),
-                  adminMap.getNodeSet().get(value.getEndNode()));
+              if (adminMap
+                  .getNodeSet()
+                  .get(value.getStartNode())
+                  .get_floor()
+                  .equals(mapDrawing.getCurrentMap())) {
+                placeLink(
+                    key,
+                    adminMap.getNodeSet().get(value.getStartNode()),
+                    adminMap.getNodeSet().get(value.getEndNode()));
+              }
             });
     adminMap
         .getNodeSet()
         .forEach(
             (key, value) -> {
-              placeNode(key, value.get_x() * downScale, value.get_y() * downScale);
+              if (value.get_floor().equals(mapDrawing.getCurrentMap())) {
+                placeNode(key, value.get_x() * downScale, value.get_y() * downScale);
+              }
             });
   }
 
@@ -303,10 +310,6 @@ public class MapController extends masterController implements Initializable {
 
   public double getUpScale() {
     return upScale;
-  }
-
-  public MapDrawing getMapDrawing() {
-    return mapDrawing;
   }
 
   public AdminMap getAdminMap() {
@@ -415,5 +418,18 @@ public class MapController extends masterController implements Initializable {
 
   public void setEndNode(String s) {
     endNode.setText(s);
+  }
+
+  public ImageView getMapImageView() {
+    return mapImageView;
+  }
+
+  public void setMapImageView(ImageView mapImageView) {
+    this.mapImageView = mapImageView;
+  }
+
+  public void setMap(ActionEvent actionEvent) {
+    mapDrawing.setMap(((Button) actionEvent.getSource()).getId());
+    this.Load(actionEvent);
   }
 }

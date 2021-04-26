@@ -3,16 +3,24 @@ package edu.wpi.TeamN.MapEntity;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.views.MapController;
 import java.util.ArrayList;
+import java.util.Objects;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 
 public class MapDrawing {
-  private MapController mapController;
+  private final MapController mapController;
+  private final String[] maps = {"L1", "L2", "g", "F1", "F2", "F3"};
+  private String currentMap;
+  private final FXMLLoader loader;
 
-  public MapDrawing(MapController mapController) {
+  public MapDrawing(MapController mapController, FXMLLoader loader) {
     this.mapController = mapController;
+    this.loader = loader;
+    currentMap = maps[0];
   }
 
   public Group drawLine(String id, Node node1, Node node2) {
@@ -23,14 +31,14 @@ public class MapDrawing {
             node2.get_x() * mapController.getDownScale(),
             node2.get_y() * mapController.getDownScale());
     simpleNode.setTranslateZ(5);
-    simpleNode.setStrokeWidth(3);
+    simpleNode.setStrokeWidth(2.5);
     Group root = new Group(simpleNode);
     root.setId(id);
     return root;
   }
 
   public Group drawNode(String id, double x, double y) {
-    Circle simpleNode = new Circle(x, y, 4.5);
+    Circle simpleNode = new Circle(x, y, 3.5);
     simpleNode.setTranslateZ(10);
     simpleNode.setFill(Color.BLUE);
     Group root = new Group(simpleNode);
@@ -51,5 +59,19 @@ public class MapDrawing {
       Line simpleNode = c2._shape;
       simpleNode.setStroke(color);
     }
+  }
+
+  public String getCurrentMap() {
+    return currentMap;
+  }
+
+  public void setMap(String floor) {
+    mapController
+        .getMapImageView()
+        .setImage(
+            new Image(
+                Objects.requireNonNull(
+                    ClassLoader.getSystemResourceAsStream("images/" + floor + ".png"))));
+    currentMap = floor;
   }
 }

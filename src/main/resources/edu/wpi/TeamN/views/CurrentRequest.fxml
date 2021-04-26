@@ -104,12 +104,12 @@
       <Label layoutX="464.0" layoutY="549.0" text="Content:" />
       <Label layoutX="464.0" layoutY="601.0" text="Notes" />
       <Label layoutX="463.0" layoutY="498.0" text="Room:" />
-      <Label fx:id="requestId" layoutX="466.0" layoutY="293.0" prefHeight="25.0" prefWidth="186.0" />
-      <Label fx:id="requestType" layoutX="463.0" layoutY="351.0" prefHeight="25.0" prefWidth="186.0" />
-      <Label fx:id="senderName" layoutX="463.0" layoutY="406.0" prefHeight="25.0" prefWidth="186.0" />
-      <Label fx:id="receiverName" layoutX="463.0" layoutY="466.0" prefHeight="25.0" prefWidth="186.0" />
-      <Label fx:id="roomName" layoutX="463.0" layoutY="524.0" prefHeight="25.0" prefWidth="186.0" />
-      <Label fx:id="content" layoutX="463.0" layoutY="576.0" prefHeight="25.0" prefWidth="186.0" />
-      <Label fx:id="notes" layoutX="463.0" layoutY="627.0" prefHeight="25.0" prefWidth="186.0" />
+      <Label fx:id="requestId" layoutX="466.0" layoutY="293.0" prefHeight="25.0" prefWidth="370.0" />
+      <Label fx:id="requestType" layoutX="463.0" layoutY="351.0" prefHeight="25.0" prefWidth="370.0" />
+      <Label fx:id="senderName" layoutX="463.0" layoutY="406.0" prefHeight="25.0" prefWidth="370.0" />
+      <Label fx:id="receiverName" layoutX="463.0" layoutY="466.0" prefHeight="25.0" prefWidth="370.0" />
+      <Label fx:id="roomName" layoutX="463.0" layoutY="524.0" prefHeight="25.0" prefWidth="370.0" />
+      <Label fx:id="content" layoutX="463.0" layoutY="576.0" prefHeight="25.0" prefWidth="370.0" />
+      <Label fx:id="notes" layoutX="463.0" layoutY="627.0" prefHeight="25.0" prefWidth="370.0" />
    </children>
 </AnchorPane>

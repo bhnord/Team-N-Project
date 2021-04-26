@@ -17,8 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
@@ -39,10 +38,10 @@ public class HomeController extends masterController implements Initializable {
   @FXML private JFXButton logOutButton = new JFXButton();
   @FXML private Tooltip ttLogOutButton;
 
-  @FXML private ImageView SRbutton;
   @FXML private JFXButton ServiceRequests;
   @FXML private JFXButton CurrentRequest;
   @FXML private JFXButton map;
+  @FXML private JFXButton helpS, helpSB;
 
   @FXML private GridPane BigBoiPane;
 
@@ -65,6 +64,8 @@ public class HomeController extends masterController implements Initializable {
     CovidForm.setTooltip(ttCovidForm);
     logOutButton.setTooltip(ttLogOutButton);
     exit.setTooltip(ttExit);
+    // helpS.setDisable(true);
+    // helpSB.setDisable(true);
 
     BigBoiPane.setMinSize(1366, 768);
     // BigBoiPane.set
@@ -74,6 +75,8 @@ public class HomeController extends masterController implements Initializable {
         "-fx-background-image: url('/images/ButtonCR.png'); -fx-background-size: cover; -fx-background-radius: 25");
     map.setStyle(
         "-fx-background-image: url('/images/ButtonM.png'); -fx-background-size: cover; -fx-background-radius: 25");
+    helpS.setStyle(
+        "-fx-background-image: url('/images/ButtonH.png'); -fx-background-size: cover; -fx-background-radius: 25");
   }
 
   public void advance(ActionEvent actionEvent) throws IOException {
@@ -89,7 +92,7 @@ public class HomeController extends masterController implements Initializable {
   }
 
   public void map(ActionEvent actionEvent) throws IOException {
-    Parent root = loader.load(getClass().getResourceAsStream("map.fxml"));
+    Parent root = loader.load(getClass().getResourceAsStream("mapAdmin.fxml"));
     Screen screen = Screen.getPrimary();
     Rectangle2D bounds = screen.getVisualBounds();
 
