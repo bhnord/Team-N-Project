@@ -107,8 +107,8 @@ public class LoginPage extends masterController implements Initializable {
   }
 
   @FXML
-  public void register(ActionEvent actionEvent) throws IOException {
-    super.register(actionEvent);
+  public void register() throws IOException {
+    super.register(loader, appPrimaryScene);
   }
 
   @FXML

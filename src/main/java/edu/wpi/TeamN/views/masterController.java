@@ -69,10 +69,9 @@ public class masterController implements Initializable {
   }
 
   @FXML
-  public void register(ActionEvent actionEvent) throws IOException {
-    String file = ((Button) actionEvent.getSource()).getId() + ".fxml";
-    Parent root = loader.load(getClass().getResourceAsStream(file));
-    appPrimaryScene.setRoot(root);
+  public void register(FXMLLoader childLoader, Scene ChildAppPrimaryScene) throws IOException {
+    Parent root = childLoader.load(getClass().getResourceAsStream("RegisterNewUser.fxml"));
+    ChildAppPrimaryScene.setRoot(root);
   }
 
   @FXML
