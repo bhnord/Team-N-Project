@@ -37,7 +37,7 @@ public class HomeControllerAdmin extends masterController implements Initializab
   @FXML private JFXButton logOutButton;
   @FXML private Tooltip ttLogOutButton;
 
-  @FXML private JFXButton ServiceRequests;
+  @FXML private JFXButton ServiceRequestsAdmin;
   @FXML private JFXButton CurrentRequest;
   @FXML private JFXButton map;
   @FXML private JFXButton map1, EmployeeEditor;
@@ -66,7 +66,7 @@ public class HomeControllerAdmin extends masterController implements Initializab
 
     BigBoiPane.setMinSize(1366, 768);
     // BigBoiPane.set
-    ServiceRequests.setStyle(
+    ServiceRequestsAdmin.setStyle(
         "-fx-background-image: url('/images/ButtonSR.png'); -fx-background-size: cover; -fx-background-radius: 25");
     CurrentRequest.setStyle(
         "-fx-background-image: url('/images/ButtonCR.png'); -fx-background-size: cover; -fx-background-radius: 25");

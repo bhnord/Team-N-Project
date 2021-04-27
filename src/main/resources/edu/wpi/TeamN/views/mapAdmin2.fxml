@@ -146,7 +146,7 @@
                <children>
                   <AnchorPane fx:id="mapAnchor" prefHeight="200.0" prefWidth="200.0" GridPane.valignment="TOP">
                      <children>
-                            <ImageView fx:id="mapImageView" fitHeight="850.0" fitWidth="1250.0" onMouseClicked="#placeNodeClick" onMouseMoved="#xyPrint" preserveRatio="true">
+                            <ImageView fx:id="mapImageView" fitHeight="850.0" fitWidth="1250.0" onMousePressed="#startLink" onMouseDragReleased="#releaseMouse" onMouseClicked="#placeNodeClick" onMouseMoved="#xyPrint" preserveRatio="true">
                                 <image>
                                     <Image fx:id="mapimg" url="@/images/L1.png" />
                                 </image>
@@ -294,11 +294,11 @@
                                     <Label layoutX="35.0" layoutY="285.0" text="Selected Node" />
                                     <Label layoutX="37.0" layoutY="346.0" text="Node Size" />
                                     <Label layoutX="37.0" layoutY="405.0" text="Path Size" />
-                                    <JFXColorPicker fx:id="nodeColor" layoutX="35.0" layoutY="17.0" />
-                                    <JFXColorPicker fx:id="exitColor" layoutX="35.0" layoutY="72.0" />
-                                     <JFXColorPicker fx:id="elevatorColor" layoutX="36.0" layoutY="131.0" />
-                                     <JFXColorPicker fx:id="stairsColor" layoutX="35.0" layoutY="183.0" />
-                                     <JFXColorPicker fx:id="pathColor" layoutX="35.0" layoutY="238.0" />
+                                     <JFXColorPicker fx:id="nodeColor" onAction="#newColorNodeaf" layoutX="35.0" layoutY="17.0" />
+                                     <JFXColorPicker fx:id="EXIT" onAction="#newColorNode" layoutX="35.0" layoutY="72.0" />
+                                     <JFXColorPicker fx:id="ELEV" onAction="#newColorNode" layoutX="36.0" layoutY="131.0" />
+                                     <JFXColorPicker fx:id="STAI" onAction="#newColorNode" layoutX="35.0" layoutY="183.0" />
+                                     <JFXColorPicker fx:id="pathColor" onAction="#newColorPath" layoutX="35.0" layoutY="238.0" />
                                      <JFXColorPicker fx:id="selectedNodeColor" layoutX="36.0" layoutY="302.0" />
                                      <JFXTextField fx:id="nodeSize" layoutX="35.0" layoutY="363.0" />
                                      <JFXTextField fx:id="pathSize" layoutX="38.0" layoutY="422.0" />
