@@ -1,7 +1,5 @@
 package edu.wpi.TeamN.services.algo;
 
-import javafx.print.Collation;
-
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -43,16 +41,14 @@ public class PathFinder implements PathFinderI {
   }
 
   public ArrayList<String> getDescription(ArrayList<Node.Link> input) {
-    if (input.size() == 0){
+    if (input.size() == 0) {
       return (ArrayList<String>) Collections.singleton("No Path");
     }
     double previousDirection = 0;
     double currentDirection = 0;
     double minAngle = .45;
     ArrayList<String> ret = new ArrayList<>();
-        ret.add("walk to "
-        + input.get(input.size() - 1)._other.get_longName()
-        + '\n');
+    ret.add("walk to " + input.get(input.size() - 1)._other.get_longName() + '\n');
     previousDirection = getDirection(input.get(0));
 
     for (int i = input.size() - 2; i >= 0; i--) {
@@ -66,10 +62,10 @@ public class PathFinder implements PathFinderI {
           if (directionDiff > 0) {
             ret.add("turn left to " + l._other.get_longName());
           } else {
-            ret.add("turn right to "+ l._other.get_longName());
+            ret.add("turn right to " + l._other.get_longName());
           }
         } else {
-          ret.add("continue straight to "+ l._other.get_longName());
+          ret.add("continue straight to " + l._other.get_longName());
         }
       }
       previousDirection = currentDirection;
