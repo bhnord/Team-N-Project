@@ -59,7 +59,7 @@ public class PathFinderController extends masterController
   @FXML private JFXColorPicker selectedNodeColor;
   @FXML private JFXTextField nodeSize;
   @FXML private JFXTextField pathSize;
-  @FXML private JFXTextField texutualDescription;
+  @FXML private Label texutualDescription;
 
   public final double downScale = 0.25;
   public final double upScale = 4;
@@ -202,8 +202,7 @@ public class PathFinderController extends masterController
       PathFinder p = new PathFinder();
       ArrayList<String> s = p.getDescription(pathLink);
       for (String l : s) {
-        System.out.println(l);
-        texutualDescription.appendText(l + "\n");
+        texutualDescription.setText(texutualDescription.getText() + "\n" + l);
       }
     }
   }
