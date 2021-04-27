@@ -21,7 +21,12 @@
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.TeamN.views.ExternalPatientRequestController">
     <children>
-      <AnchorPane fx:id="anchorPage" prefHeight="709.0" prefWidth="1238.0">
+        <ImageView fitHeight="1766.0" fitWidth="1458.0" pickOnBounds="true" preserveRatio="true" scaleX="2.0" scaleY="2.0" StackPane.alignment="TOP_LEFT">
+            <image>
+                <Image url="@/images/CSVBackground.png" />
+            </image>
+        </ImageView>
+      <AnchorPane fx:id="anchorPage" prefHeight="749.0" prefWidth="996.0">
          <children>
             <Label fx:id="errorLabel" layoutX="297.0" layoutY="664.0" prefHeight="35.0" prefWidth="130.0">
                <font>
@@ -54,13 +59,13 @@
             <Label layoutX="169.0" layoutY="387.0" text="*" />
             <Label layoutX="166.0" layoutY="449.0" text="*" />
             <Label layoutX="176.0" layoutY="631.0" text="*Required Fields" />
-            <Label fx:id="text1" alignment="CENTER" layoutX="150.0" layoutY="124.0" prefHeight="47.0" prefWidth="464.0" style="-fx-background-color: #748cdc; -fx-background-radius: 6;" stylesheets="@/Fonts/Roboto-Light.css" text="Facility Maintenance Request" textAlignment="CENTER" textFill="WHITE">
+            <Label fx:id="text1" alignment="CENTER" layoutX="150.0" layoutY="124.0" prefHeight="47.0" prefWidth="464.0" style="-fx-background-color: #748cdc; -fx-background-radius: 6;" stylesheets="@/Fonts/Roboto-Light.css" text="Floral Delivery Request" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Serif Regular" size="30.0" />
                </font>
             </Label>
             <JFXTimePicker fx:id="timePicker" defaultColor="#a6c3e3" layoutX="186.0" layoutY="382.0" promptText="Select Time of Request" />
-            <JFXTextField fx:id="maintenanceRequest" focusColor="#5b63e1" labelFloat="true" layoutX="183.0" layoutY="440.0" prefHeight="40.0" prefWidth="203.0" promptText="Type of Maintenance" scaleShape="false" unFocusColor="WHITE">
+            <JFXTextField fx:id="bouquet" focusColor="#5b63e1" labelFloat="true" layoutX="183.0" layoutY="440.0" prefHeight="40.0" prefWidth="203.0" promptText="Type of Bouquet" scaleShape="false" unFocusColor="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
@@ -79,11 +84,6 @@
             </JFXButton>
          </children>
       </AnchorPane>
-        <ImageView fitHeight="1766.0" fitWidth="1458.0" pickOnBounds="true" preserveRatio="true" scaleX="2.0" scaleY="2.0" StackPane.alignment="TOP_LEFT">
-            <image>
-                <Image url="@/images/CSVBackground.png" />
-            </image>
-        </ImageView>
         <GridPane fx:id="BigBoiPane">
             <columnConstraints>
                 <ColumnConstraints hgrow="NEVER" maxWidth="451.0" minWidth="66.0" prefWidth="66.0" />
