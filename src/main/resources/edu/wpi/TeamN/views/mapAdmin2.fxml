@@ -295,7 +295,26 @@
                         </Tab>
                         <Tab text="Settings">
                            <content>
-                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <Label layoutX="7.0" text="Node Color" />
+                                    <Label layoutX="7.0" layoutY="55.0" text="Exit Color" />
+                                    <Label layoutX="3.0" layoutY="114.0" text="Elevator Color" />
+                                    <Label layoutX="5.0" layoutY="164.0" text="Stairs Color" />
+                                    <Label layoutX="1.0" layoutY="221.0" text="Path Color" />
+                                    <Label layoutX="5.0" layoutY="285.0" text="Selected Node" />
+                                    <Label layoutX="7.0" layoutY="346.0" text="Node Size" />
+                                    <Label layoutX="7.0" layoutY="405.0" text="Path Size" />
+                                    <JFXColorPicker fx:id="nodeColor" layoutX="8.0" layoutY="17.0"/>
+                                    <JFXColorPicker fx:id="exitColor" layoutX="5.0" layoutY="72.0" />
+                                     <JFXColorPicker fx:id="elevatorColor" layoutX="6.0" layoutY="131.0" />
+                                     <JFXColorPicker fx:id="stairsColor" layoutX="5.0" layoutY="183.0" />
+                                     <JFXColorPicker fx:id="pathColor" layoutX="5.0" layoutY="238.0" />
+                                     <JFXColorPicker fx:id="selectedNodeColor" layoutX="6.0" layoutY="302.0" />
+                                     <JFXTextField fx:id="nodeSize" layoutX="5.0" layoutY="363.0" />
+                                     <JFXTextField fx:id="pathSize" layoutX="8.0" layoutY="422.0" />
+
+                                 </children></AnchorPane>
                            </content>
                         </Tab>
                      </tabs>

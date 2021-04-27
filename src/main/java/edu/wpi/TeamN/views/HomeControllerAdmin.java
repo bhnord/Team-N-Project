@@ -89,7 +89,7 @@ public class HomeControllerAdmin extends masterController implements Initializab
   }
 
   public void map(ActionEvent actionEvent) throws IOException {
-    Parent root = loader.load(getClass().getResourceAsStream("mapAdmin.fxml"));
+    Parent root = loader.load(getClass().getResourceAsStream("mapAdmin2.fxml"));
     Screen screen = Screen.getPrimary();
     Rectangle2D bounds = screen.getVisualBounds();
 
