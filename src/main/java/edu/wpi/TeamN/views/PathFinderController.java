@@ -8,10 +8,6 @@ import edu.wpi.TeamN.MapEntity.PathFinderMap;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.database.DatabaseService;
 import edu.wpi.TeamN.state.HomeState;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -26,7 +22,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 public class PathFinderController extends masterController
     implements Initializable, mapControllerI {
@@ -83,24 +85,16 @@ public class PathFinderController extends masterController
         .getEdgeSet()
         .forEach(
             (key, value) -> {
-              if (pathFinderMap
-                  .getNodeSet()
-                  .get(value.getStartNode())
-                  .get_floor()
-                  .equals(mapDrawing.getCurrentMap())) {
-                placeLink(
-                    key,
-                    pathFinderMap.getNodeSet().get(value.getStartNode()),
-                    pathFinderMap.getNodeSet().get(value.getEndNode()));
-              }
+              placeLink(
+                  key,
+                  pathFinderMap.getNodeSet().get(value.getStartNode()),
+                  pathFinderMap.getNodeSet().get(value.getEndNode()));
             });
     pathFinderMap
         .getNodeSet()
         .forEach(
             (key, value) -> {
-              if (value.get_floor().equals(mapDrawing.getCurrentMap())) {
-                placeNode(key, value.get_x() * downScale, value.get_y() * downScale);
-              }
+              placeNode(key, value.get_x() * downScale, value.get_y() * downScale);
             });
   }
 
@@ -140,8 +134,12 @@ public class PathFinderController extends masterController
     mapDrawing.resetColors(pathFinderMap.getNodeSet());
     for (int i = 0; nodePath.size() - 1 > i; i++) {
       ArrayList<Node.Link> path = pathFinderMap.pathfind(nodePath.get(i), nodePath.get(i + 1));
-      System.out.println(path);
       mapDrawing.colorPath(colorPicker.getValue(), path);
+      for (Node.Link c2 : path) {
+        Line simpleNode = c2._shape;
+        simpleNode.setStroke(Color.BLUE);
+        simpleNode.getParent().setVisible(true);
+      }
     }
   }
 
@@ -153,15 +151,15 @@ public class PathFinderController extends masterController
   private void mapFloor() {
     for (int i = 1; mapAnchor.getChildren().size() > i; i++) {
       if (pathFinderMap.getNodeSet().containsKey(mapAnchor.getChildren().get(i).getId())) {
-        if (pathFinderMap
-            .getNodeSet()
-            .get(mapAnchor.getChildren().get(i).getId())
-            .get_floor()
-            .equals(mapDrawing.getCurrentMap())) {
-          mapAnchor.getChildren().get(i).setVisible(true);
-        } else {
-          mapAnchor.getChildren().get(i).setVisible(false);
-        }
+        mapAnchor
+            .getChildren()
+            .get(i)
+            .setVisible(
+                pathFinderMap
+                    .getNodeSet()
+                    .get(mapAnchor.getChildren().get(i).getId())
+                    .get_floor()
+                    .equals(mapDrawing.getCurrentMap()));
       }
     }
   }
