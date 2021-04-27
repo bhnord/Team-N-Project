@@ -260,11 +260,11 @@ public class FoodDeliveryRequestController extends masterController implements I
             RequestType.FOOD_DELIVERY,
             Integer.parseInt(txtEmployeeName.getSelectionModel().getSelectedItem().getId()),
             roomDropdown.getSelectionModel().getSelectedItem().getId(),
-            " MainDish:"
+            " MainDish: "
                 + mainDish.getValue().getText()
-                + ", Side Dish:"
+                + ", Side Dish: "
                 + sideDish.getValue().getText()
-                + ", Drink"
+                + ", Drink: "
                 + drinkDish.getValue().getText(),
             txtComments.getText());
     db.addRequest(r);
