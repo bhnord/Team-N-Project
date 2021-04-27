@@ -256,4 +256,6 @@ public class PathFinderController extends masterController
             .setFill(selectedNodeColor.getValue());
     }
   }
+
+  public void advanceHome(ActionEvent actionEvent) {}
 }
