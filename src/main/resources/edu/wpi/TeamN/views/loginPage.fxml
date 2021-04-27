@@ -135,7 +135,7 @@
                                         <URL value="@/Fonts/Roboto-Light.css" />
                                     </stylesheets>
                                 </JFXPasswordField>
-                                <JFXButton fx:id="goToHomePage" buttonType="RAISED" onAction="#continueToHomePage" prefHeight="44.0" prefWidth="123.0" style="-fx-background-color: #6985e0;" stylesheets="@/Fonts/Roboto-Black.css" text="SUBMIT" textFill="WHITE" GridPane.rowIndex="6">
+                                <JFXButton fx:id="goToHomePage" buttonType="RAISED" onAction="#continueToHomePage" prefHeight="50.0" prefWidth="174.0" style="-fx-background-color: #6985e0;" stylesheets="@/Fonts/Roboto-Black.css" text="SUBMIT" textFill="WHITE" GridPane.rowIndex="6">
                                     <font>
                                         <Font name="Javanese Text" size="14.0" />
                                     </font>
