@@ -68,82 +68,6 @@
                     </children>
                 </GridPane>
                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#363d54" height="1153.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" GridPane.valignment="BASELINE" />
-                <GridPane GridPane.hgrow="NEVER" GridPane.vgrow="NEVER">
-                    <columnConstraints>
-                        <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
-                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
-                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
-                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
-                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
-                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
-                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
-                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
-                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
-                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
-                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
-                    </rowConstraints>
-                    <children>
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="65.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" GridPane.rowIndex="1" />
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="65.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" GridPane.rowIndex="2" />
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="65.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" GridPane.rowIndex="3" />
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.0" rotate="-45.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.0" rotate="45.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                        <JFXButton fx:id="exit" onAction="#exit" prefHeight="64.0" prefWidth="66.0" textFill="WHITE" GridPane.rowIndex="1">
-                            <font>
-                                <Font name="System Bold" size="9.0" />
-                            </font>
-                            <tooltip>
-                                <Tooltip fx:id="ttExit" text="Exit App">
-                                    <font>
-                                        <Font size="18.0" />
-                                    </font>
-                                </Tooltip>
-                            </tooltip>
-                        </JFXButton>
-                        <ImageView fitHeight="50.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
-                            <image>
-                                <Image url="@/images/LogOut.png" />
-                            </image>
-                        </ImageView>
-                        <JFXButton fx:id="logOutButton" onAction="#logOut" prefHeight="64.0" prefWidth="66.0" textFill="WHITE" GridPane.rowIndex="2">
-                            <font>
-                                <Font name="System Bold" size="9.0" />
-                            </font>
-                            <tooltip>
-                                <Tooltip fx:id="ttLogOutButton" text="Log Out">
-                                    <font>
-                                        <Font size="18.0" />
-                                    </font>
-                                </Tooltip>
-                            </tooltip>
-                        </JFXButton>
-                        <ImageView fitHeight="50.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
-                            <image>
-                                <Image url="@/images/ButtonCovid.png" />
-                            </image>
-                        </ImageView>
-                        <JFXButton fx:id="CovidForm" onAction="#advanceViews" prefHeight="64.0" prefWidth="66.0" text="Button" textFill="WHITE" GridPane.rowIndex="3">
-                            <font>
-                                <Font name="System Bold" size="9.0" />
-                            </font>
-                            <tooltip>
-                                <Tooltip fx:id="ttCovidForm" text="Covid Form">
-                                    <font>
-                                        <Font size="18.0" />
-                                    </font>
-                                </Tooltip>
-                            </tooltip>
-                        </JFXButton>
-                        <ImageView fitHeight="61.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                            <image>
-                                <Image url="@/images/BWHLogo.png" />
-                            </image>
-                        </ImageView>
-                    </children>
-                </GridPane>
                 <AnchorPane fx:id="anchorPage" prefHeight="749.0" prefWidth="996.0">
                     <children>
                         <Label fx:id="errorLabel" layoutX="297.0" layoutY="664.0" prefHeight="35.0" prefWidth="130.0">
@@ -202,6 +126,95 @@
                         </JFXButton>
                     </children>
                 </AnchorPane>
+                <GridPane GridPane.hgrow="NEVER" GridPane.vgrow="NEVER">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
+                    </rowConstraints>
+                    <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="65.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" GridPane.rowIndex="1" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="65.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" GridPane.rowIndex="2" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="65.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" GridPane.rowIndex="3" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.0" rotate="-45.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.0" rotate="45.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                        <JFXButton fx:id="exit1" onAction="#exit" prefHeight="64.0" prefWidth="66.0" text="  " textFill="WHITE" GridPane.rowIndex="1">
+                            <font>
+                                <Font name="System Bold" size="9.0" />
+                            </font>
+                            <tooltip>
+                                <Tooltip fx:id="ttExit" text="Exit App">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                </Tooltip>
+                            </tooltip>
+                        </JFXButton>
+                        <ImageView fitHeight="50.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                            <image>
+                                <Image url="@/images/LogOut.png" />
+                            </image>
+                        </ImageView>
+                        <JFXButton fx:id="logOutButton1" onAction="#logOut" prefHeight="64.0" prefWidth="66.0" text="  " textFill="WHITE" GridPane.rowIndex="2">
+                            <font>
+                                <Font name="System Bold" size="9.0" />
+                            </font>
+                            <tooltip>
+                                <Tooltip fx:id="ttLogOutButton" text="Log Out">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                </Tooltip>
+                            </tooltip>
+                        </JFXButton>
+                        <ImageView fitHeight="61.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                            <image>
+                                <Image url="@/images/BWHLogo.png" />
+                            </image>
+                        </ImageView>
+                        <JFXButton fx:id="BackButton" onAction="#back" prefHeight="71.0" prefWidth="66.0" text="Back" textFill="WHITE" GridPane.rowIndex="3">
+                            <font>
+                                <Font name="System Bold" size="9.0" />
+                            </font>
+                            <tooltip>
+                                <Tooltip fx:id="ttBackButton" text="Back to Requests">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                </Tooltip>
+                            </tooltip>
+                        </JFXButton>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="69.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" GridPane.rowIndex="4" />
+                        <ImageView fitHeight="50.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="4">
+                            <image>
+                                <Image url="@/images/IconHome.png" />
+                            </image>
+                        </ImageView>
+                        <JFXButton fx:id="HomeView2" onAction="#advanceHome" prefHeight="71.0" prefWidth="66.0" text="  " textFill="WHITE" GridPane.rowIndex="4">
+                            <font>
+                                <Font name="System Bold" size="9.0" />
+                            </font>
+                            <tooltip>
+                                <Tooltip fx:id="ttHomeView" text="Home">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                </Tooltip>
+                            </tooltip>
+                        </JFXButton>
+                    </children>
+                </GridPane>
             </children>
         </GridPane>
     </children>
