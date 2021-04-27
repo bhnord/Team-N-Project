@@ -25,6 +25,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.Shape;
 
 import java.io.IOException;
 import java.net.URL;
@@ -47,9 +48,9 @@ public class PathFinderController extends masterController
   @FXML private Label XLabel;
   @FXML private ImageView mapImageView;
   @FXML private JFXColorPicker nodeColor;
-  @FXML private JFXColorPicker exitColor;
-  @FXML private JFXColorPicker elevatorColor;
-  @FXML private JFXColorPicker stairsColor;
+  @FXML private JFXColorPicker EXIT;
+  @FXML private JFXColorPicker ELEV;
+  @FXML private JFXColorPicker STAI;
   @FXML private JFXColorPicker pathColor;
   @FXML private JFXColorPicker selectedNodeColor;
   @FXML private JFXTextField nodeSize;
@@ -61,9 +62,9 @@ public class PathFinderController extends masterController
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     nodeColor.setValue(Color.BLUE);
-    exitColor.setValue(Color.RED);
-    elevatorColor.setValue(Color.PINK);
-    stairsColor.setValue(Color.ORANGE);
+    EXIT.setValue(Color.RED);
+    ELEV.setValue(Color.PINK);
+    STAI.setValue(Color.ORANGE);
     pathColor.setValue(Color.BLACK);
     selectedNodeColor.setValue(Color.GREEN);
     nodeSize.setText("3.5");
@@ -126,6 +127,7 @@ public class PathFinderController extends masterController
             else if (event.getButton() == MouseButton.SECONDARY && path.contains(id))
               path.remove(id);
             updatePath();
+            selectedNodeColor(new ActionEvent());
           }
         });
     mapAnchor.getChildren().add(root);
@@ -136,11 +138,11 @@ public class PathFinderController extends masterController
   private JFXColorPicker getType(String id) {
     Node node = pathFinderMap.getNodeSet().get(id);
     if (node.get_nodeType().contains("ELEV")) {
-      return elevatorColor;
+      return ELEV;
     } else if (node.get_nodeType().contains("STAI")) {
-      return stairsColor;
+      return STAI;
     } else if (node.get_nodeType().contains("EXIT")) {
-      return exitColor;
+      return EXIT;
     } else {
       return nodeColor;
     }
@@ -167,10 +169,25 @@ public class PathFinderController extends masterController
     }
   }
 
-  public void newColor(ActionEvent actionEvent) {
+  public void newColorPath(ActionEvent actionEvent) {
     for (int i = 0; path.size() - 1 > i; i++) {
       ArrayList<Node.Link> pathLink = pathFinderMap.pathfind(path.get(i), path.get(i + 1));
       mapDrawing.colorPath(pathColor.getValue(), pathLink);
+    }
+  }
+
+  public void newColorNode(ActionEvent actionEvent) {
+    JFXColorPicker a = ((JFXColorPicker) actionEvent.getSource());
+    for (int i = 1; mapAnchor.getChildren().size() - 1 > i; i++) {
+      if (pathFinderMap.getNodeSet().containsKey(mapAnchor.getChildren().get(i).getId())) {
+        if (pathFinderMap
+            .getNodeSet()
+            .get(mapAnchor.getChildren().get(i).getId())
+            .get_nodeType()
+            .equals(a.getId()))
+          ((Shape) ((Group) mapAnchor.getChildren().get(i)).getChildren().get(0))
+              .setFill(a.getValue());
+      }
     }
   }
 
@@ -205,5 +222,39 @@ public class PathFinderController extends masterController
   @Override
   public ImageView getMapImageView() {
     return mapImageView;
+  }
+
+  public void newColorNodeaf(ActionEvent actionEvent) {
+    JFXColorPicker a = ((JFXColorPicker) actionEvent.getSource());
+    for (int i = 1; mapAnchor.getChildren().size() - 1 > i; i++) {
+      if (pathFinderMap.getNodeSet().containsKey(mapAnchor.getChildren().get(i).getId())) {
+        if (!pathFinderMap
+                .getNodeSet()
+                .get(mapAnchor.getChildren().get(i).getId())
+                .get_nodeType()
+                .contains("ELEV")
+            && !pathFinderMap
+                .getNodeSet()
+                .get(mapAnchor.getChildren().get(i).getId())
+                .get_nodeType()
+                .contains("EXIT")
+            && !pathFinderMap
+                .getNodeSet()
+                .get(mapAnchor.getChildren().get(i).getId())
+                .get_nodeType()
+                .contains("STAI"))
+          ((Shape) ((Group) mapAnchor.getChildren().get(i)).getChildren().get(0))
+              .setFill(a.getValue());
+      }
+    }
+  }
+
+  public void selectedNodeColor(ActionEvent actionEvent) {
+    for (int i = 1; mapAnchor.getChildren().size() - 1 > i; i++) {
+      if (pathFinderMap.getNodeSet().containsKey(mapAnchor.getChildren().get(i).getId())
+          && path.contains(mapAnchor.getChildren().get(i).getId()))
+        ((Shape) ((Group) mapAnchor.getChildren().get(i)).getChildren().get(0))
+            .setFill(selectedNodeColor.getValue());
+    }
   }
 }
