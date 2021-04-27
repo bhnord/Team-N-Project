@@ -63,4 +63,10 @@ public class NodeActionHandling implements ActionHandlingI {
           }
         });
   }
+
+  @Override
+  public void addNodeToPath(Group node) {}
+
+  @Override
+  public void removeNodeToPath(Group node) {}
 }

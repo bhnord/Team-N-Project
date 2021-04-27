@@ -37,7 +37,7 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class MapController extends masterController implements Initializable {
+public class MapController extends masterController implements Initializable, mapControllerI {
   @FXML private JFXColorPicker colorPicker;
   @Inject FXMLLoader loader;
   @Inject HomeState state;
@@ -226,7 +226,7 @@ public class MapController extends masterController implements Initializable {
   }
 
   public void PathFind(ActionEvent actionEvent) {
-    mapDrawing.resetColors();
+    mapDrawing.resetColors(adminMap.getNodeSet());
     mapDrawing.colorPath(colorPicker.getValue(), adminMap.pathfind());
   }
 
