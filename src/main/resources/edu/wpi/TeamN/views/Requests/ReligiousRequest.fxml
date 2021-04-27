@@ -157,7 +157,7 @@
                     </effect></Rectangle>
                 <JFXButton fx:id="submit" layoutX="505.0" layoutY="636.0" onAction="#submit" prefHeight="50.0" prefWidth="95.0" ripplerFill="WHITE" text="Submit" textFill="WHITE" />
                 <JFXComboBox fx:id="txtEmployeeName" layoutX="187.0" layoutY="241.0" prefHeight="31.0" prefWidth="150.0" promptText="Select Service" />
-                <JFXComboBox fx:id="roomDropdown" layoutX="187.0" layoutY="313.0" prefHeight="31.0" prefWidth="176.0" promptText="Select location of Service" />
+                <JFXComboBox fx:id="roomDropdown" layoutX="187.0" layoutY="313.0" prefHeight="31.0" prefWidth="203.0" promptText="Select location of Service" />
                 <StackPane fx:id="myStackPane2" layoutX="346.0" layoutY="526.0" prefHeight="101.0" prefWidth="531.0" />
                 <Label layoutX="169.0" layoutY="246.0" text="*" />
                 <Label layoutX="166.0" layoutY="317.0" text="*" />
@@ -169,7 +169,7 @@
                         <Font name="Serif Regular" size="30.0" />
                     </font>
                 </Label>
-                <JFXTimePicker fx:id="timePicker" layoutX="186.0" layoutY="382.0" promptText="Select Time of Request" />
+                <JFXTimePicker fx:id="timePicker" defaultColor="#a6c3e3" layoutX="186.0" layoutY="382.0" promptText="Select Time of Request" />
                 <JFXTextField fx:id="maintenanceRequest" focusColor="#5b63e1" labelFloat="true" layoutX="183.0" layoutY="440.0" prefHeight="40.0" prefWidth="203.0" promptText="Type of Religious Request" scaleShape="false" unFocusColor="WHITE">
                     <font>
                         <Font size="16.0" />

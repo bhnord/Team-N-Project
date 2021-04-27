@@ -5,6 +5,8 @@ import com.jfoenix.controls.*;
 import com.jfoenix.validation.RequiredFieldValidator;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.database.DatabaseService;
+import edu.wpi.TeamN.services.database.requests.Request;
+import edu.wpi.TeamN.services.database.requests.RequestType;
 import edu.wpi.TeamN.services.database.users.User;
 import edu.wpi.TeamN.services.database.users.UserType;
 import edu.wpi.TeamN.state.HomeState;
@@ -56,7 +58,7 @@ public class InternalPatientRequestController extends masterController implement
   @FXML private JFXComboBox<Label> txtEmployeeName = new JFXComboBox<>();
   @FXML private JFXComboBox<Label> roomDropdown = new JFXComboBox<>();
   @FXML private JFXTimePicker timePicker;
-  @FXML private JFXTextField maintenanceRequest;
+  @FXML private JFXTextField request;
 
   // @FXML private AnchorPane anchorPage;
   static Stage stage;
@@ -115,7 +117,7 @@ public class InternalPatientRequestController extends masterController implement
   public void submit(ActionEvent actionEvent) throws IOException {
 
     if (timePicker.getEditor().getText().isEmpty()
-        || maintenanceRequest.getText().isEmpty()
+        || request.getText().isEmpty()
         || txtEmployeeName.getEditor().getText().isEmpty()
         || roomDropdown.getEditor().getText().isEmpty()) {
       String title = "Missing Fields";
@@ -183,6 +185,7 @@ public class InternalPatientRequestController extends masterController implement
             @Override
             public void handle(ActionEvent event) {
               popup1.hide();
+              submitToDB();
 
               BoxBlur blur = new BoxBlur(7, 7, 7);
 
@@ -299,5 +302,16 @@ public class InternalPatientRequestController extends masterController implement
       roomDropdown.getItems().add(lbl);
     }
     new AutoCompleteComboBoxListener(roomDropdown);
+  }
+
+  private void submitToDB() {
+    RequestType type = RequestType.INTERNAL_PATIENT_TRANSPORTATION;
+    int recieverID =
+        Integer.parseInt(txtEmployeeName.getSelectionModel().getSelectedItem().getId());
+    String roomNodeId = roomDropdown.getSelectionModel().getSelectedItem().getId();
+    String content = "Time of request: " + timePicker.getEditor().getText();
+    String notes = "request type: " + request.getText() + " comments: " + txtComments.getText();
+    Request r = new Request(type, recieverID, roomNodeId, content, notes);
+    db.addRequest(r);
   }
 }
