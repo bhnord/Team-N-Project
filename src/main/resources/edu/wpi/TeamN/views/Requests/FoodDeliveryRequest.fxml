@@ -42,7 +42,7 @@
         <RowConstraints maxHeight="253.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
 
     </rowConstraints>
-sa
+
     <children>
 
         <ImageView fitHeight="1500.0" fitWidth="3500.0" layoutX="-5.0" pickOnBounds="true" preserveRatio="true">

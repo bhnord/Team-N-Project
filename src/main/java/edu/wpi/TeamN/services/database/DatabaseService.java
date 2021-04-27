@@ -21,7 +21,7 @@ public class DatabaseService {
   /*
    Database service class. This class will be loaded as a Singleton by Guice.
   */
-  User currentUser;
+  private static User currentUser;
   /*
    Database service class. This class will be loaded as a Singleton by Guice.
   */
@@ -442,7 +442,7 @@ public class DatabaseService {
       stmt.execute(str);
       return true;
     } catch (SQLException e) {
-      e.printStackTrace();
+      //      e.printStackTrace();
       return false;
     }
   }
