@@ -7,109 +7,209 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="767.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.TeamN.views.CurrentRequestController">
    <children>
-      <ImageView fitHeight="766.0" fitWidth="1360.0" layoutX="-5.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="1766.0" fitWidth="1567.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@/images/CSVBackground.png" />
          </image>
       </ImageView>
-      <JFXListView fx:id="listView" layoutX="115.0" layoutY="163.0" prefHeight="535.0" prefWidth="261.0" stylesheets="@/StyleSheet/style.css" verticalGap="10.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="69.0" layoutX="-1.0" layoutY="75.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.0" layoutX="27.0" layoutY="87.0" rotate="45.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.0" layoutX="27.0" layoutY="87.0" rotate="-45.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" />
-      <JFXButton fx:id="exit" layoutY="74.0" onAction="#exit" prefHeight="71.0" prefWidth="66.0" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="9.0" />
-         </font>
-         <tooltip>
-            <Tooltip fx:id="ttExit" text="Exit App">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Tooltip>
-         </tooltip>
-      </JFXButton>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="69.0" layoutX="-1.0" layoutY="147.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
-      <ImageView fitHeight="50.0" fitWidth="59.0" layoutX="4.0" layoutY="156.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@/images/LogOut.png" />
-         </image>
-      </ImageView>
-      <JFXButton fx:id="logOutButton" layoutX="-1.0" layoutY="146.0" onAction="#logOut" prefHeight="71.0" prefWidth="66.0" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="9.0" />
-         </font>
-         <tooltip>
-            <Tooltip fx:id="ttLogOutButton" text="Log Out">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Tooltip>
-         </tooltip>
-      </JFXButton>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="69.0" layoutX="-1.0" layoutY="219.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
-      <ImageView fitHeight="50.0" fitWidth="59.0" layoutX="6.0" layoutY="229.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@/images/ButtonCovid.png" />
-         </image>
-      </ImageView>
-      <JFXButton fx:id="CovidForm" layoutX="-1.0" layoutY="218.0" onAction="#advanceViews" prefHeight="71.0" prefWidth="66.0" text="Button" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="9.0" />
-         </font>
-         <tooltip>
-            <Tooltip fx:id="ttCovidForm" text="Covid Form">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Tooltip>
-         </tooltip>
-      </JFXButton>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="69.0" layoutX="-1.0" layoutY="293.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
-      <ImageView fitHeight="58.0" fitWidth="59.0" layoutX="2.0" layoutY="298.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@/images/IconHome.png" />
-         </image>
-      </ImageView>
-      <JFXButton fx:id="HomeView2" layoutY="292.0" onAction="#advanceHome" prefHeight="71.0" prefWidth="66.0" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="9.0" />
-         </font>
-         <tooltip>
-            <Tooltip fx:id="ttLogOutButton1" text="Home">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Tooltip>
-         </tooltip>
-      </JFXButton>
-      <Label fx:id="text" layoutX="72.0" layoutY="16.0" prefHeight="124.0" prefWidth="523.0" text="CURRENT REQUESTS" textAlignment="CENTER">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="590.0" layoutX="110.0" layoutY="152.0" stroke="#bcbcbc" strokeType="INSIDE" width="736.0" />
+      <Label fx:id="text1" layoutX="110.0" layoutY="21.0" prefHeight="124.0" prefWidth="523.0" stylesheets="@/Fonts/Roboto-Black.css" text="CURRENT REQUESTS" textAlignment="CENTER">
          <font>
             <Font name="Arial Black" size="30.0" />
          </font>
       </Label>
-      <JFXButton fx:id="markCompleteButton" layoutX="410.0" layoutY="165.0" onAction="#markComplete" prefHeight="82.0" prefWidth="395.0" style="-fx-background-color: #748cdc; -fx-background-radius: 15;" text="MARK COMPLETE" textFill="WHITE">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="69.0" layoutX="-1.0" layoutY="77.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.0" layoutX="27.0" layoutY="89.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.0" layoutX="27.0" layoutY="89.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" />
+      <JFXButton fx:id="exit1" layoutY="76.0" onAction="#exit" prefHeight="71.0" prefWidth="66.0" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="9.0" />
+         </font>
+         <tooltip>
+            <Tooltip fx:id="ttExit1" text="Exit App">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Tooltip>
+         </tooltip>
+      </JFXButton>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="69.0" layoutX="-1.0" layoutY="149.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
+      <ImageView fitHeight="50.0" fitWidth="59.0" layoutX="4.0" layoutY="158.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@/images/LogOut.png" />
+         </image>
+      </ImageView>
+      <JFXButton fx:id="logOutButton1" layoutX="-1.0" layoutY="148.0" onAction="#logOut" prefHeight="71.0" prefWidth="66.0" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="9.0" />
+         </font>
+         <tooltip>
+            <Tooltip fx:id="ttLogOutButton2" text="Log Out">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Tooltip>
+         </tooltip>
+      </JFXButton>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="69.0" layoutX="-1.0" layoutY="221.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
+      <ImageView fitHeight="50.0" fitWidth="59.0" layoutX="6.0" layoutY="231.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@/images/ButtonCovid.png" />
+         </image>
+      </ImageView>
+      <JFXButton fx:id="CovidForm1" layoutX="-1.0" layoutY="220.0" onAction="#advanceViews" prefHeight="71.0" prefWidth="66.0" text="Button" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="9.0" />
+         </font>
+         <tooltip>
+            <Tooltip fx:id="ttCovidForm1" text="Covid Form">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Tooltip>
+         </tooltip>
+      </JFXButton>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="69.0" layoutX="-1.0" layoutY="295.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
+      <ImageView fitHeight="58.0" fitWidth="59.0" layoutX="2.0" layoutY="300.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@/images/IconHome.png" />
+         </image>
+      </ImageView>
+      <JFXButton fx:id="HomeView" layoutY="294.0" onAction="#advanceHome" prefHeight="71.0" prefWidth="66.0" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="9.0" />
+         </font>
+         <tooltip>
+            <Tooltip fx:id="ttLogOutButton11" text="Home">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Tooltip>
+         </tooltip>
+      </JFXButton>
+      <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#0c00ad00" height="181.0" layoutX="1037.0" layoutY="145.0" stroke="TRANSPARENT" strokeType="INSIDE" width="302.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#363d54" height="1153.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
+      <GridPane>
+         <columnConstraints>
+            <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="65.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
+         </rowConstraints>
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="65.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" GridPane.rowIndex="1" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="65.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" GridPane.rowIndex="2" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="65.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" GridPane.rowIndex="3" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.0" rotate="-45.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="65.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" GridPane.rowIndex="4" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.0" rotate="45.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+            <JFXButton fx:id="exit1" onAction="#exit" prefHeight="64.0" prefWidth="66.0" textFill="WHITE" GridPane.rowIndex="1">
+               <font>
+                  <Font name="System Bold" size="9.0" />
+               </font>
+               <tooltip>
+                  <Tooltip fx:id="ttExit1" text="Exit App">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Tooltip>
+               </tooltip>
+            </JFXButton>
+            <ImageView fitHeight="50.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+               <image>
+                  <Image url="@/images/LogOut.png" />
+               </image>
+            </ImageView>
+            <JFXButton fx:id="logOutButton1" onAction="#logOut" prefHeight="64.0" prefWidth="66.0" textFill="WHITE" GridPane.rowIndex="2">
+               <font>
+                  <Font name="System Bold" size="9.0" />
+               </font>
+               <tooltip>
+                  <Tooltip fx:id="ttLogOutButton2" text="Log Out">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Tooltip>
+               </tooltip>
+            </JFXButton>
+            <ImageView fitHeight="50.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+               <image>
+                  <Image url="@/images/ButtonCovid.png" />
+               </image>
+            </ImageView>
+            <JFXButton fx:id="CovidForm1" onAction="#advanceViews" prefHeight="64.0" prefWidth="66.0" text="Button" textFill="WHITE" GridPane.rowIndex="3">
+               <font>
+                  <Font name="System Bold" size="9.0" />
+               </font>
+               <tooltip>
+                  <Tooltip fx:id="ttCovidForm1" text="Covid Form">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Tooltip>
+               </tooltip>
+            </JFXButton>
+            <ImageView fitHeight="61.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+               <image>
+                  <Image url="@/images/BWHLogo.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="58.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+               <image>
+                  <Image url="@/images/IconHome.png" />
+               </image>
+            </ImageView>
+            <JFXButton fx:id="HomeView1" onAction="#advanceHome" prefHeight="71.0" prefWidth="66.0" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="9.0" />
+               </font>
+               <tooltip>
+                  <Tooltip fx:id="ttLogOutButton11" text="Home">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Tooltip>
+               </tooltip>
+            </JFXButton>
+         </children>
+      </GridPane>
+      <JFXListView fx:id="listView" layoutX="116.0" layoutY="162.0" prefHeight="535.0" prefWidth="261.0" stylesheets="@/StyleSheet/style.css" verticalGap="10.0" />
+      <JFXButton fx:id="markCompleteButton" layoutX="436.0" layoutY="615.0" onAction="#markComplete" prefHeight="82.0" prefWidth="395.0" style="-fx-background-color: #748cdc; -fx-background-radius: 15;" text="MARK COMPLETE" textFill="WHITE">
          <font>
             <Font name="Arial Black" size="14.0" />
          </font>
       </JFXButton>
-      <Label layoutX="466.0" layoutY="271.0" text="Request ID:" />
-      <Label layoutX="465.0" layoutY="326.0" text="Request Type:" />
-      <Label layoutX="465.0" layoutY="381.0" text="Sender:" />
-      <Label layoutX="464.0" layoutY="442.0" text="Receiver:" />
-      <Label layoutX="464.0" layoutY="549.0" text="Content:" />
-      <Label layoutX="464.0" layoutY="601.0" text="Notes" />
-      <Label layoutX="463.0" layoutY="498.0" text="Room:" />
-      <Label fx:id="requestId" layoutX="466.0" layoutY="293.0" prefHeight="25.0" prefWidth="370.0" />
-      <Label fx:id="requestType" layoutX="463.0" layoutY="351.0" prefHeight="25.0" prefWidth="370.0" />
-      <Label fx:id="senderName" layoutX="463.0" layoutY="406.0" prefHeight="25.0" prefWidth="370.0" />
-      <Label fx:id="receiverName" layoutX="463.0" layoutY="466.0" prefHeight="25.0" prefWidth="370.0" />
-      <Label fx:id="roomName" layoutX="463.0" layoutY="524.0" prefHeight="25.0" prefWidth="370.0" />
-      <Label fx:id="content" layoutX="463.0" layoutY="576.0" prefHeight="25.0" prefWidth="370.0" />
-      <Label fx:id="notes" layoutX="463.0" layoutY="627.0" prefHeight="25.0" prefWidth="370.0" />
+      <Label layoutX="450.0" layoutY="195.0" text="Request ID:" />
+      <Label layoutX="449.0" layoutY="250.0" text="Request Type:" />
+      <Label layoutX="449.0" layoutY="305.0" text="Sender:" />
+      <Label layoutX="448.0" layoutY="366.0" text="Receiver:" />
+      <Label layoutX="448.0" layoutY="473.0" text="Content:" />
+      <Label layoutX="448.0" layoutY="525.0" text="Notes" />
+      <Label layoutX="447.0" layoutY="422.0" text="Room:" />
+      <Label fx:id="requestId" layoutX="450.0" layoutY="217.0" prefHeight="25.0" prefWidth="370.0" />
+      <Label fx:id="requestType" layoutX="447.0" layoutY="275.0" prefHeight="25.0" prefWidth="370.0" />
+      <Label fx:id="senderName" layoutX="447.0" layoutY="330.0" prefHeight="25.0" prefWidth="370.0" />
+      <Label fx:id="receiverName" layoutX="447.0" layoutY="390.0" prefHeight="25.0" prefWidth="370.0" />
+      <Label fx:id="roomName" layoutX="447.0" layoutY="448.0" prefHeight="25.0" prefWidth="370.0" />
+      <Label fx:id="content" layoutX="447.0" layoutY="500.0" prefHeight="25.0" prefWidth="370.0" />
+      <Label fx:id="notes" layoutX="447.0" layoutY="551.0" prefHeight="25.0" prefWidth="370.0" />
    </children>
 </AnchorPane>
