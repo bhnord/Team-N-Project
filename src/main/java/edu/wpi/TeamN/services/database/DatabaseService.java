@@ -21,7 +21,7 @@ public class DatabaseService {
   /*
    Database service class. This class will be loaded as a Singleton by Guice.
   */
-  User currentUser;
+  private static User currentUser;
   /*
    Database service class. This class will be loaded as a Singleton by Guice.
   */
@@ -442,7 +442,7 @@ public class DatabaseService {
       stmt.execute(str);
       return true;
     } catch (SQLException e) {
-      e.printStackTrace();
+      //      e.printStackTrace();
       return false;
     }
   }
@@ -462,6 +462,7 @@ public class DatabaseService {
       Gson gson = new Gson();
       rs.next();
       UserPrefs userPrefs = gson.fromJson(rs.getString("PREFERENCES"), UserPrefs.class);
+      System.out.println(currentUser);
       switch (rs.getString("USERTYPE")) {
         case "Patient":
           currentUser = (new Patient(rs.getString("ID"), rs.getString("USERNAME"), userPrefs));
@@ -474,6 +475,7 @@ public class DatabaseService {
               (new Administrator(rs.getString("ID"), rs.getString("USERNAME"), userPrefs));
           break;
       }
+      System.out.println(currentUser);
       return true;
     } catch (SQLException e) {
       e.printStackTrace();
