@@ -1,4 +1,24 @@
 
+.jfx-tab-pane .headers-region {
+    -fx-background-color: #363d54;
+}
+.jfx-tab-pane .tab-header-background {
+    -fx-background-color: #363d54;
+}
+.jfx-tab-pane .tab-header-area .jfx-rippler
+{
+    -jfx-rippler-fill: WHITE;
+}
+.jfx-tab-pane .tab-selected-line {
+    -fx-background-color: WHITE;
+    -fx-pref-height: 3;
+}
+
+
+.jfx-tab-pane .tab-selected-line {
+    -fx-stroke: #0ad4d4;
+    -fx-stroke-width: 3pt;
+}
 
 .jfx-progress-bar >  .bar{
     -fx-background-color: #002bf3;
