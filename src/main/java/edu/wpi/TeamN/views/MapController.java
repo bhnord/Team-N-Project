@@ -27,6 +27,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Shape;
 import lombok.SneakyThrows;
@@ -541,5 +542,29 @@ public class MapController extends masterController implements Initializable, ma
   @Override
   public void correctFloor(Node.Link link) {
     ;
+  }
+
+  public void newSize(ActionEvent actionEvent) {
+    double nodeValue = Double.parseDouble(nodeSize.getText());
+    double edgeValue = Double.parseDouble(pathSize.getText());
+    if (((JFXTextField) actionEvent.getSource()).getId().equals("nodeSize")
+        && nodeValue <= 5
+        && nodeValue >= 3) {
+      for (int i = 1; mapAnchor.getChildren().size() - 1 > i; i++) {
+        if (adminMap.getNodeSet().containsKey(mapAnchor.getChildren().get(i).getId())) {
+          ((Circle) ((Group) mapAnchor.getChildren().get(i)).getChildren().get(0))
+              .setRadius(nodeValue);
+        }
+      }
+    } else if (((JFXTextField) actionEvent.getSource()).getId().equals("pathSize")
+        && nodeValue <= 5
+        && nodeValue >= 3) {
+      for (int i = 1; mapAnchor.getChildren().size() - 1 > i; i++) {
+        if (adminMap.getEdgeSet().containsKey(mapAnchor.getChildren().get(i).getId())) {
+          ((Line) ((Group) mapAnchor.getChildren().get(i)).getChildren().get(0))
+              .setStrokeWidth(edgeValue);
+        }
+      }
+    }
   }
 }
