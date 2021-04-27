@@ -23,7 +23,7 @@
       <Label layoutX="411.0" layoutY="172.0" text="Username" />
       <Label layoutX="411.0" layoutY="228.0" text="Password" />
       <Label layoutX="411.0" layoutY="280.0" text="User Type" />
-      <JFXButton fx:id="commitChangesButton" layoutX="609.0" layoutY="167.0" onAction="#commitChanges" prefHeight="82.0" prefWidth="395.0" style="-fx-background-radius: 15; -fx-background-color: linear-gradient(from 25% 25% to 100% 100%, BLUE, PURPLE);" text="UPDATE" textFill="WHITE">
+      <JFXButton fx:id="commitChangesButton" layoutX="609.0" layoutY="167.0" onAction="#commitChanges" prefHeight="82.0" prefWidth="395.0" style="-fx-background-radius: 15; -fx-background-color: #748cdc;" text="UPDATE" textFill="WHITE">
          <font>
             <Font name="Arial Black" size="14.0" />
          </font></JFXButton>
@@ -103,12 +103,12 @@
       </JFXButton>
       <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#0c00ad00" height="181.0" layoutX="1037.0" layoutY="145.0" stroke="TRANSPARENT" strokeType="INSIDE" width="302.0" />
       <JFXComboBox fx:id="userTypeDropdown" layoutX="411.0" layoutY="305.0" prefHeight="25.0" prefWidth="135.0" />
-      <JFXButton fx:id="addEmployeeButton" layoutX="609.0" layoutY="264.0" onAction="#addNew" prefHeight="82.0" prefWidth="395.0" style="-fx-background-radius: 15; -fx-background-color: linear-gradient(from 25% 25% to 100% 100%, BLUE, PURPLE);" text="ADD NEW" textFill="WHITE">
+      <JFXButton fx:id="addEmployeeButton" layoutX="609.0" layoutY="264.0" onAction="#addNew" prefHeight="82.0" prefWidth="395.0" style="-fx-background-radius: 15; -fx-background-color: #748cdc;" text="ADD NEW" textFill="WHITE">
          <font>
             <Font name="Arial Black" size="14.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="deleteUserButton" layoutX="609.0" layoutY="365.0" onAction="#deleteUser" prefHeight="82.0" prefWidth="395.0" style="-fx-background-radius: 15; -fx-background-color: linear-gradient(from 25% 25% to 100% 100%, BLUE, PURPLE);" text="DELETE USER" textFill="WHITE">
+      <JFXButton fx:id="deleteUserButton" layoutX="609.0" layoutY="365.0" onAction="#deleteUser" prefHeight="82.0" prefWidth="395.0" style="-fx-background-radius: 15; -fx-background-color: #748cdc;" text="DELETE USER" textFill="WHITE">
          <font>
             <Font name="Arial Black" size="14.0" />
          </font>
