@@ -8,15 +8,10 @@ import edu.wpi.TeamN.services.algo.Edge;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.database.DatabaseService;
 import edu.wpi.TeamN.state.HomeState;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.Parent;
@@ -30,17 +25,20 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Shape;
-import javafx.stage.Screen;
-import javafx.stage.Stage;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 @Slf4j
 public class MapController extends masterController implements Initializable, mapControllerI {
   @FXML private JFXColorPicker nodeColor;
-  @FXML private JFXColorPicker exitColor;
-  @FXML private JFXColorPicker elevatorColor;
-  @FXML private JFXColorPicker stairsColor;
+  @FXML private JFXColorPicker EXIT;
+  @FXML private JFXColorPicker ELEV;
+  @FXML private JFXColorPicker STAI;
   @FXML private JFXColorPicker pathColor;
   @FXML private JFXColorPicker selectedNodeColor;
   @FXML private JFXTextField nodeSize;
@@ -101,9 +99,9 @@ public class MapController extends masterController implements Initializable, ma
   public void initialize(URL location, ResourceBundle resources) {
     log.debug(state.toString());
     nodeColor.setValue(Color.BLUE);
-    exitColor.setValue(Color.RED);
-    elevatorColor.setValue(Color.GRAY);
-    stairsColor.setValue(Color.TEAL);
+    EXIT.setValue(Color.RED);
+    ELEV.setValue(Color.PINK);
+    STAI.setValue(Color.ORANGE);
     pathColor.setValue(Color.BLACK);
     selectedNodeColor.setValue(Color.GREEN);
     nodeSize.setText("3.5");
@@ -140,7 +138,7 @@ public class MapController extends masterController implements Initializable, ma
    */
   public void placeNodeClick(MouseEvent mouseEvent) throws IOException {
     if (mouseEvent.getButton() == MouseButton.PRIMARY) {
-      placeNode("node_" + Integer.toString(nodeCount), mouseEvent.getX(), mouseEvent.getY());
+      placeNode("node_" + this.nodeCount, mouseEvent.getX(), mouseEvent.getY());
     }
 
     setCancelOrSubmit(false);
@@ -166,7 +164,7 @@ public class MapController extends masterController implements Initializable, ma
   }
 
   private void placeNode(String id, double x, double y) {
-    Group root = mapDrawing.drawNode(id, x, y, pathColor.getValue());
+    Group root = mapDrawing.drawNode(id, x, y, nodeColor.getValue());
     actionHandling.setNodeInfo(root);
     actionHandling.setNodeStartLink(root);
     actionHandling.setNodeEndLink(root);
@@ -208,31 +206,6 @@ public class MapController extends masterController implements Initializable, ma
     }
   }
 
-  /**
-   * restarts the map class. Needs work.
-   *
-   * @param actionEvent
-   * @throws IOException
-   */
-  // Reloading the map scene
-  public void clear(ActionEvent actionEvent) throws IOException {
-    Parent root = loader.load(getClass().getResourceAsStream("mapAdmin.fxml"));
-    Screen screen = Screen.getPrimary();
-    Rectangle2D bounds = screen.getVisualBounds();
-
-    Stage stage = (Stage) appPrimaryScene.getWindow();
-    appPrimaryScene.setRoot(root);
-  }
-
-  public void newColor(ActionEvent actionEvent) {
-    mapDrawing.colorPath(Color.BLACK, path);
-  }
-
-  public void PathFind(ActionEvent actionEvent) {
-    mapDrawing.resetColors(adminMap.getNodeSet());
-    mapDrawing.colorPath(pathColor.getValue(), adminMap.pathfind());
-  }
-
   private void DeleteNodesFromMap() throws IOException {
     int i = 1;
     for (javafx.scene.Node root :
@@ -254,6 +227,35 @@ public class MapController extends masterController implements Initializable, ma
       adminMap.deleteEdge(id);
     } else {
       System.out.println("Object does not exist");
+    }
+  }
+
+  private void mapFloor() {
+    for (int i = 1; mapAnchor.getChildren().size() > i; i++) {
+      if (adminMap.getNodeSet().containsKey(mapAnchor.getChildren().get(i).getId())) {
+        mapAnchor
+            .getChildren()
+            .get(i)
+            .setVisible(
+                adminMap
+                    .getNodeSet()
+                    .get(mapAnchor.getChildren().get(i).getId())
+                    .get_floor()
+                    .equals(mapDrawing.getCurrentMap()));
+      }
+    }
+  }
+
+  private JFXColorPicker getType(String id) {
+    Node node = adminMap.getNodeSet().get(id);
+    if (node.get_nodeType().contains("ELEV")) {
+      return ELEV;
+    } else if (node.get_nodeType().contains("STAI")) {
+      return STAI;
+    } else if (node.get_nodeType().contains("EXIT")) {
+      return EXIT;
+    } else {
+      return nodeColor;
     }
   }
 
@@ -315,6 +317,55 @@ public class MapController extends masterController implements Initializable, ma
     String file = ((Button) actionEvent.getSource()).getId() + ".fxml";
     Parent root = loader.load(getClass().getResourceAsStream(file));
     appPrimaryScene.setRoot(root);
+  }
+
+  public void newColorNode(ActionEvent actionEvent) {
+    JFXColorPicker a = ((JFXColorPicker) actionEvent.getSource());
+    for (int i = 1; mapAnchor.getChildren().size() - 1 > i; i++) {
+      if (adminMap.getNodeSet().containsKey(mapAnchor.getChildren().get(i).getId())) {
+        if (adminMap
+            .getNodeSet()
+            .get(mapAnchor.getChildren().get(i).getId())
+            .get_nodeType()
+            .equals(a.getId()))
+          ((Shape) ((Group) mapAnchor.getChildren().get(i)).getChildren().get(0))
+              .setFill(a.getValue());
+      }
+    }
+  }
+
+  public void newColorNodeaf(ActionEvent actionEvent) {
+    JFXColorPicker a = ((JFXColorPicker) actionEvent.getSource());
+    for (int i = 1; mapAnchor.getChildren().size() - 1 > i; i++) {
+      if (adminMap.getNodeSet().containsKey(mapAnchor.getChildren().get(i).getId())) {
+        if (!adminMap
+                .getNodeSet()
+                .get(mapAnchor.getChildren().get(i).getId())
+                .get_nodeType()
+                .contains("ELEV")
+            && !adminMap
+                .getNodeSet()
+                .get(mapAnchor.getChildren().get(i).getId())
+                .get_nodeType()
+                .contains("EXIT")
+            && !adminMap
+                .getNodeSet()
+                .get(mapAnchor.getChildren().get(i).getId())
+                .get_nodeType()
+                .contains("STAI"))
+          ((Shape) ((Group) mapAnchor.getChildren().get(i)).getChildren().get(0))
+              .setFill(a.getValue());
+      }
+    }
+  }
+
+  public void newColorPath(ActionEvent actionEvent) {
+    for (int i = 1; mapAnchor.getChildren().size() - 1 > i; i++) {
+      if (adminMap.getEdgeSet().containsKey(mapAnchor.getChildren().get(i).getId())) {
+        ((Shape) ((Group) mapAnchor.getChildren().get(i)).getChildren().get(0))
+            .setFill(pathColor.getValue());
+      }
+    }
   }
 
   public double getDownScale() {
@@ -447,30 +498,6 @@ public class MapController extends masterController implements Initializable, ma
 
   public void setNodeColor(JFXColorPicker nodeColor) {
     this.nodeColor = nodeColor;
-  }
-
-  public JFXColorPicker getExitColor() {
-    return exitColor;
-  }
-
-  public void setExitColor(JFXColorPicker exitColor) {
-    this.exitColor = exitColor;
-  }
-
-  public JFXColorPicker getElevatorColor() {
-    return elevatorColor;
-  }
-
-  public void setElevatorColor(JFXColorPicker elevatorColor) {
-    this.elevatorColor = elevatorColor;
-  }
-
-  public JFXColorPicker getStairsColor() {
-    return stairsColor;
-  }
-
-  public void setStairsColor(JFXColorPicker stairsColor) {
-    this.stairsColor = stairsColor;
   }
 
   public JFXColorPicker getPathColor() {
