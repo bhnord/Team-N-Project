@@ -76,11 +76,7 @@ public class LoginPage extends masterController implements Initializable {
 
   @FXML
   private void continueToHomePage() throws IOException {
-
-    login = Login.getLogin();
-    login.setPassword(getPassword());
-    login.setUsername(getUsername());
-    if (!login.getUsername().equals("")) {
+    if (db.login(usernameField.getText(), passwordField.getText())) {
       super.advanceHome(loader, appPrimaryScene);
     } else {
       incorrectLogin.setText("INCORRECT USERNAME OR PASSWORD, TRY AGAIN");

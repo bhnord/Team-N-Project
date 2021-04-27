@@ -56,7 +56,6 @@ public class MapDrawing {
     for (Node.Link c2 : ret) {
       Line simpleNode = c2._shape;
       simpleNode.setStroke(color);
-      simpleNode.setVisible(true);
     }
   }
 
