@@ -232,7 +232,10 @@
                 <RowConstraints maxHeight="78.0" minHeight="78.0" prefHeight="78.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <JFXButton buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #748cdc; -fx-background-radius: 30;" />
+                  <JFXButton buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #748cdc; -fx-background-radius: 30;">
+                     <GridPane.margin>
+                        <Insets right="10.0" />
+                     </GridPane.margin></JFXButton>
                   <StackPane prefHeight="150.0" prefWidth="200.0" />
                   <GridPane GridPane.rowIndex="1">
                     <columnConstraints>
@@ -296,6 +299,9 @@
                            </content>
                         </Tab>
                      </tabs>
+                     <GridPane.margin>
+                        <Insets right="10.0" />
+                     </GridPane.margin>
                   </JFXTabPane>
                </children>
             </GridPane>
