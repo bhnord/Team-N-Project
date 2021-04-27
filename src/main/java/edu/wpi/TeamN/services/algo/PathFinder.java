@@ -26,11 +26,47 @@ public class PathFinder implements PathFinderI {
     return impl.pathfindFull(start, end, filter);
   }
 
+  private double getDirection(Node.Link input) {
+    double dx = (input._other.get_x() - input._this.get_x());
+    double dy = -(input._other.get_y() - input._this.get_y());
+    double ret = Math.atan(Math.abs(dy / dx));
+    if (dx * dy < 0) {
+      ret = Math.PI / 2 - ret;
+    }
+    ret += dx < 0 ? Math.PI / 2 : 0;
+    ret += dy < 0 ? Math.PI / 2 : 0;
+    ret += (dx > 0 && dy < 0) ? Math.PI : 0;
+    return ret;
+  }
+
   public String getDescription(ArrayList<Node.Link> input) {
+    double previousDirection = 0;
+    double currentDirection = 0;
+    double minAngle = .45;
     StringBuilder stringBuilder = new StringBuilder();
-    for (Node.Link l : input) {
-      stringBuilder.append(l._this.get_nodeID());
-      stringBuilder.append("\n");
+    stringBuilder
+        .append("walk to ")
+        .append(input.get(input.size() - 1)._other.get_longName())
+        .append('\n');
+    currentDirection = getDirection(input.get(0));
+    previousDirection = getDirection(input.get(0));
+
+    for (int i = input.size() - 2; i >= 0; i--) {
+      Node.Link l = input.get(i);
+      currentDirection = getDirection(l);
+      double directionDiff = (currentDirection - previousDirection);
+      if (directionDiff > minAngle || directionDiff < (-minAngle)) {
+        if (directionDiff > 0) {
+          stringBuilder.append("turn left to ");
+        } else {
+          stringBuilder.append("turn right to ");
+        }
+      } else {
+        stringBuilder.append("continue straight to ");
+      }
+      stringBuilder.append(l._other.get_longName());
+      stringBuilder.append('\n');
+      previousDirection = currentDirection;
     }
     return stringBuilder.toString();
   }
