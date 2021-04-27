@@ -537,4 +537,9 @@ public class MapController extends masterController implements Initializable, ma
   public double getPathSize() {
     return Double.parseDouble(pathSize.getText());
   }
+
+  @Override
+  public void correctFloor(Node.Link link) {
+    ;
+  }
 }

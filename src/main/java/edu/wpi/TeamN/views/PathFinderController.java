@@ -6,7 +6,9 @@ import com.jfoenix.controls.JFXTextField;
 import edu.wpi.TeamN.MapEntity.ActionHandlingI;
 import edu.wpi.TeamN.MapEntity.MapDrawing;
 import edu.wpi.TeamN.MapEntity.PathFinderMap;
+import edu.wpi.TeamN.services.algo.Edge;
 import edu.wpi.TeamN.services.algo.Node;
+import edu.wpi.TeamN.services.algo.PathFinder;
 import edu.wpi.TeamN.services.database.DatabaseService;
 import edu.wpi.TeamN.state.HomeState;
 import java.io.IOException;
@@ -43,6 +45,7 @@ public class PathFinderController extends masterController
   private MapDrawing mapDrawing;
   private ActionHandlingI actionHandling;
   ArrayList<String> path = new ArrayList<String>();
+  ArrayList<Node.Link> nodePath = new ArrayList<Node.Link>();
 
   @FXML private AnchorPane mapAnchor;
   @FXML private Label XLabel;
@@ -55,6 +58,7 @@ public class PathFinderController extends masterController
   @FXML private JFXColorPicker selectedNodeColor;
   @FXML private JFXTextField nodeSize;
   @FXML private JFXTextField pathSize;
+  @FXML private Label texutualDescription;
 
   public final double downScale = 0.25;
   public final double upScale = 4;
@@ -165,11 +169,11 @@ public class PathFinderController extends masterController
     mapDrawing.resetColors(pathFinderMap.getNodeSet());
     for (int i = 0; path.size() - 1 > i; i++) {
       ArrayList<Node.Link> pathLink = pathFinderMap.pathfind(path.get(i), path.get(i + 1));
-      mapDrawing.colorPath(pathColor.getValue(), pathLink);
+      // newColorPath(pathColor.getValue(), pathLink);
     }
   }
 
-  private void resetColor() {
+  private void reset() {
     for (int i = 1; mapAnchor.getChildren().size() - 1 > i; i++) {
       if (path.contains(mapAnchor.getChildren().get(i).getId())) {
         Circle c = (Circle) ((Group) mapAnchor.getChildren().get(i)).getChildren().get(0);
@@ -184,13 +188,21 @@ public class PathFinderController extends masterController
       newColorNode(ELEV);
       newColorNode(STAI);
       newColorNodeaf(new ActionEvent());
+      texutualDescription.setText("");
+      nodePath = new ArrayList<>();
     }
   }
 
   public void newColorPath(ActionEvent actionEvent) {
     for (int i = 0; path.size() - 1 > i; i++) {
       ArrayList<Node.Link> pathLink = pathFinderMap.pathfind(path.get(i), path.get(i + 1));
+      nodePath.addAll(pathLink);
       mapDrawing.colorPath(pathColor.getValue(), pathLink);
+      PathFinder p = new PathFinder();
+      ArrayList<String> s = p.getDescription(pathLink);
+      for (String l : s) {
+        texutualDescription.setText(texutualDescription.getText() + "\n" + l);
+      }
     }
   }
 
@@ -238,6 +250,26 @@ public class PathFinderController extends masterController
                 pathFinderMap
                     .getNodeSet()
                     .get(mapAnchor.getChildren().get(i).getId())
+                    .get_floor()
+                    .equals(mapDrawing.getCurrentMap()));
+      }
+    }
+    for (Node.Link link : nodePath) {
+      correctFloor(link);
+    }
+  }
+
+  public void correctFloor(Node.Link link) {
+    if (pathFinderMap.getEdgeSet().containsKey(link._shape.getParent().getId())) {
+      Edge a = pathFinderMap.getEdgeSet().get(link._shape.getParent().getId());
+      if (pathFinderMap.getNodeSet().containsKey(a.getStartNode())
+          || pathFinderMap.getNodeSet().containsKey(a.getEndNode())) {
+        link._shape
+            .getParent()
+            .setVisible(
+                pathFinderMap
+                    .getNodeSet()
+                    .get(a.getStartNode())
                     .get_floor()
                     .equals(mapDrawing.getCurrentMap()));
       }
@@ -310,7 +342,7 @@ public class PathFinderController extends masterController
   }
 
   public void clearSelection(ActionEvent actionEvent) {
-    resetColor();
+    reset();
     path = new ArrayList<String>();
   }
 }

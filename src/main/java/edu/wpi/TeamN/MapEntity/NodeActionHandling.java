@@ -30,6 +30,10 @@ public class NodeActionHandling implements ActionHandlingI {
         });
   }
 
+  public void nodeHover(Group root) {
+    //      root.on
+  }
+
   @Override
   public void setEdgeInfo(Group root) {
     root.setOnMouseClicked(
