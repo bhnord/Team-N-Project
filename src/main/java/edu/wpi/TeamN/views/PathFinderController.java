@@ -2,6 +2,7 @@ package edu.wpi.TeamN.views;
 
 import com.google.inject.Inject;
 import com.jfoenix.controls.JFXColorPicker;
+import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
 import edu.wpi.TeamN.MapEntity.ActionHandlingI;
 import edu.wpi.TeamN.MapEntity.MapDrawing;
@@ -58,7 +59,7 @@ public class PathFinderController extends masterController
   @FXML private JFXColorPicker selectedNodeColor;
   @FXML private JFXTextField nodeSize;
   @FXML private JFXTextField pathSize;
-  @FXML private Label texutualDescription;
+  @FXML private JFXListView<Label> texutualDescription;
 
   public final double downScale = 0.25;
   public final double upScale = 4;
@@ -128,8 +129,7 @@ public class PathFinderController extends masterController
           @Override
           public void handle(MouseEvent event) {
             if (event.getButton() == MouseButton.PRIMARY && !path.contains(id)) path.add(id);
-            else if (event.getButton() == MouseButton.SECONDARY && path.contains(id))
-              path.remove(id);
+            else if (event.getButton() == MouseButton.SECONDARY) path.remove(id);
             updatePath();
             selectedNodeColor(new ActionEvent());
           }
@@ -188,7 +188,7 @@ public class PathFinderController extends masterController
       newColorNode(ELEV);
       newColorNode(STAI);
       newColorNodeaf(new ActionEvent());
-      texutualDescription.setText("");
+      texutualDescription = new JFXListView<Label>();
       nodePath = new ArrayList<>();
     }
   }
@@ -201,7 +201,7 @@ public class PathFinderController extends masterController
       PathFinder p = new PathFinder();
       ArrayList<String> s = p.getDescription(pathLink);
       for (String l : s) {
-        texutualDescription.setText(texutualDescription.getText() + "\n" + l);
+        texutualDescription.getItems().add(new Label(l));
       }
     }
   }
@@ -344,5 +344,29 @@ public class PathFinderController extends masterController
   public void clearSelection(ActionEvent actionEvent) {
     reset();
     path = new ArrayList<String>();
+  }
+
+  public void newSize(ActionEvent actionEvent) {
+    double nodeValue = Double.parseDouble(nodeSize.getText());
+    double edgeValue = Double.parseDouble(pathSize.getText());
+    if (((JFXTextField) actionEvent.getSource()).getId().equals("nodeSize")
+        && nodeValue <= 5
+        && nodeValue >= 3) {
+      for (int i = 1; mapAnchor.getChildren().size() - 1 > i; i++) {
+        if (pathFinderMap.getNodeSet().containsKey(mapAnchor.getChildren().get(i).getId())) {
+          ((Circle) ((Group) mapAnchor.getChildren().get(i)).getChildren().get(0))
+              .setRadius(nodeValue);
+        }
+      }
+    } else if (((JFXTextField) actionEvent.getSource()).getId().equals("pathSize")
+        && nodeValue <= 5
+        && nodeValue >= 3) {
+      for (int i = 1; mapAnchor.getChildren().size() - 1 > i; i++) {
+        if (pathFinderMap.getEdgeSet().containsKey(mapAnchor.getChildren().get(i).getId())) {
+          ((Line) ((Group) mapAnchor.getChildren().get(i)).getChildren().get(0))
+              .setStrokeWidth(edgeValue);
+        }
+      }
+    }
   }
 }
