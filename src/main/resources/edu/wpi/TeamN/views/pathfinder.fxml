@@ -244,7 +244,7 @@
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <JFXButton fx:id="31" buttonType="RAISED" layoutX="36.0" layoutY="42.0" onAction="#PathFind" prefHeight="70.0" prefWidth="132.0" style="-fx-background-color: #363d54; -fx-background-radius: 0;" stylesheets="/Fonts/Roboto-Light.css" text="Get Directions" textFill="WHITE" />
+                                    <JFXButton fx:id="31" buttonType="RAISED" layoutX="36.0" layoutY="42.0" onAction="#newColorPath" prefHeight="70.0" prefWidth="132.0" style="-fx-background-color: #363d54; -fx-background-radius: 0;" stylesheets="/Fonts/Roboto-Light.css" text="Get Directions" textFill="WHITE" />
                                     <JFXButton buttonType="RAISED" layoutX="36.0" layoutY="122.0" onAction="#clearSelection" prefHeight="70.0" prefWidth="132.0" style="-fx-background-color: #363d54; -fx-background-radius: 0;" stylesheets="/Fonts/Roboto-Light.css" text="Clear Selection" textFill="WHITE" />
                                     <JFXTextField fx:id="texutualDescription" layoutX="35.0" layoutY="210.0" prefHeight="431.0" prefWidth="135.0" />
                                  </children>

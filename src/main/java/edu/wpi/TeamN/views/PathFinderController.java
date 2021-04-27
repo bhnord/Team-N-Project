@@ -169,9 +169,8 @@ public class PathFinderController extends masterController
   public void PathFind(ActionEvent actionEvent) {
     mapDrawing.resetColors(pathFinderMap.getNodeSet());
     for (int i = 0; path.size() - 1 > i; i++) {
-      PathFinder p = new PathFinder();
       ArrayList<Node.Link> pathLink = pathFinderMap.pathfind(path.get(i), path.get(i + 1));
-      mapDrawing.colorPath(pathColor.getValue(), pathLink);
+      // newColorPath(pathColor.getValue(), pathLink);
     }
   }
 
@@ -201,6 +200,11 @@ public class PathFinderController extends masterController
       nodePath.addAll(pathLink);
       mapDrawing.colorPath(pathColor.getValue(), pathLink);
       PathFinder p = new PathFinder();
+      ArrayList<String> s = p.getDescription(pathLink);
+      for (String l : s) {
+        System.out.println(l);
+        texutualDescription.appendText(l + "\n");
+      }
     }
   }
 
