@@ -45,7 +45,7 @@ public class App extends Application {
               }
             });
     DatabaseService db = injector.getInstance(DatabaseService.class);
-    // db.initTables();
+    db.initTables();
     loader = new FXMLLoader();
     loader.setControllerFactory(injector::getInstance);
 
@@ -55,6 +55,11 @@ public class App extends Application {
       db.addUser("staff", "staff", UserType.EMPLOYEE, new UserPrefs());
     if (db.getUserByUsername("guest") == null)
       db.addUser("guest", "guest", UserType.PATIENT, new UserPrefs());
+
+    db.loadCSVtoTable(
+        "C:\\Users\\anany\\Team-N-Project\\src\\main\\resources\\MapCSV\\bwNnodes.csv", "NODES");
+    db.loadCSVtoTable(
+        "C:\\Users\\anany\\Team-N-Project\\src\\main\\resources\\MapCSV\\bwNedges.csv", "EDGES");
   }
 
   @Override

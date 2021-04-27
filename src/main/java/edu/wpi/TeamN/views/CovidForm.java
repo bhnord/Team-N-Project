@@ -82,7 +82,7 @@ public class CovidForm extends masterController implements Initializable {
 
     if (login.getUsername().equals("patient") && login.getPassword().equals("patient")) {
       super.advanceHomePatient(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("employee") && login.getPassword().equals("employee")) {
+    } else if (login.getUsername().equals("staff") && login.getPassword().equals("staff")) {
       super.advanceHome(loader, appPrimaryScene);
     } else if (login.getUsername().equals("admin") && login.getPassword().equals("admin")) {
       super.advanceHomeAdmin(loader, appPrimaryScene);
