@@ -125,7 +125,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </JFXButton>
-                  <JFXButton fx:id="ServiceRequests" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#advanceViews" prefHeight="248.0" prefWidth="408.0" style="-fx-background-radius: 0; -fx-background-color: BLUE;" stylesheets="@/Fonts/Roboto-Black.css" text=" SERVICE REQUESTS" textFill="WHITE" textOverrun="CLIP" GridPane.rowIndex="1">
+                  <JFXButton fx:id="ServiceRequestsPatient" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#advanceViews" prefHeight="248.0" prefWidth="408.0" style="-fx-background-radius: 0; -fx-background-color: BLUE;" stylesheets="@/Fonts/Roboto-Black.css" text=" SERVICE REQUESTS" textFill="WHITE" textOverrun="CLIP" GridPane.rowIndex="1">
                      <font>
                         <Font name="Arial Black" size="18.0" />
                      </font>

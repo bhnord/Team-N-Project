@@ -37,7 +37,7 @@ public class HomeControllerPatient extends masterController implements Initializ
   @FXML private JFXButton logOutButton;
   @FXML private Tooltip ttLogOutButton;
 
-  @FXML private JFXButton ServiceRequests;
+  @FXML private JFXButton ServiceRequestsPatient;
   @FXML private JFXButton CurrentRequest;
   @FXML private JFXButton map;
   @FXML private JFXButton map1, helpSB;
@@ -66,7 +66,7 @@ public class HomeControllerPatient extends masterController implements Initializ
 
     BigBoiPane.setMinSize(1366, 768);
     // BigBoiPane.set
-    ServiceRequests.setStyle(
+    ServiceRequestsPatient.setStyle(
         "-fx-background-image: url('/images/ButtonSR.png'); -fx-background-size: cover; -fx-background-radius: 25");
     CurrentRequest.setStyle(
         "-fx-background-image: url('/images/ButtonCR.png'); -fx-background-size: cover; -fx-background-radius: 25");
