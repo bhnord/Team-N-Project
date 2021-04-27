@@ -399,17 +399,17 @@ public class DatabaseService {
               + "xcoord DOUBLE NOT NULL, "
               + "ycoord DOUBLE NOT NULL, "
               + "floor varchar(25), "
-              + "building varchar(25), "
-              + "nodeType varchar(25), "
-              + "longName varchar(45), "
-              + "shortName varchar(35), "
+              + "building varchar(60), "
+              + "nodeType varchar(60), "
+              + "longName varchar(60), "
+              + "shortName varchar(60), "
               + "PRIMARY KEY (id))";
       stmt.execute(str);
       str =
           "CREATE TABLE Edges( "
-              + "id varchar(25), "
-              + "startNodeID varchar(25) REFERENCES Nodes (id) ON DELETE CASCADE, "
-              + "endNodeID varchar(25) REFERENCES Nodes (id) ON DELETE CASCADE, "
+              + "id varchar(60), "
+              + "startNodeID varchar(60) REFERENCES Nodes (id) ON DELETE CASCADE, "
+              + "endNodeID varchar(60) REFERENCES Nodes (id) ON DELETE CASCADE, "
               + "PRIMARY KEY (id))";
 
       stmt.execute(str);
