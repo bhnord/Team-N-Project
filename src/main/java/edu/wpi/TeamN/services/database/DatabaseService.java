@@ -395,7 +395,7 @@ public class DatabaseService {
     try {
       String str =
           "CREATE TABLE Nodes( "
-              + "id varchar(25), "
+              + "id varchar(60), "
               + "xcoord DOUBLE NOT NULL, "
               + "ycoord DOUBLE NOT NULL, "
               + "floor varchar(25), "
@@ -431,7 +431,7 @@ public class DatabaseService {
               + "Type varchar(35), "
               + "SenderID INT NOT NULL REFERENCES Users (id), "
               + "ReceiverID INT REFERENCES Users (id), "
-              + "Room varchar(25) NOT NULL REFERENCES Nodes (id),"
+              + "Room varchar(60) NOT NULL REFERENCES Nodes (id),"
               + "Content varchar(700), "
               + "Notes varchar(200), "
               + "CONSTRAINT chk_Type CHECK (Type IN "
