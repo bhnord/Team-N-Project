@@ -8,7 +8,6 @@ import edu.wpi.TeamN.services.database.DatabaseService;
 import edu.wpi.TeamN.services.database.users.User;
 import edu.wpi.TeamN.services.database.users.UserType;
 import edu.wpi.TeamN.state.HomeState;
-import edu.wpi.TeamN.state.Login;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
@@ -34,6 +33,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class SecurityServicesRequestController extends masterController implements Initializable {
 
+  // @FXML private AnchorPane anchorPage;
+  static Stage stage;
   @Inject DatabaseService db;
   @Inject FXMLLoader loader;
   @Inject HomeState state;
@@ -48,19 +49,13 @@ public class SecurityServicesRequestController extends masterController implemen
   @FXML private Button submit;
   private HashMap<String, User> users;
   private HashMap<String, Node> rooms;
-
   @FXML private AnchorPane anchorPage;
-
   @FXML private StackPane confirmationStackPane;
-
   // @FXML private JFXButton submitButton;
   @FXML private JFXComboBox<Label> txtEmployeeName = new JFXComboBox<>();
   @FXML private JFXComboBox<Label> roomDropdown = new JFXComboBox<>();
   @FXML private JFXTimePicker timePicker;
   @FXML private JFXTextField maintenanceRequest;
-
-  // @FXML private AnchorPane anchorPage;
-  static Stage stage;
 
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
@@ -104,32 +99,12 @@ public class SecurityServicesRequestController extends masterController implemen
 
   @FXML
   public void advanceHome() throws IOException {
-
-    Login login = Login.getLogin();
-
-    if (login.getUsername().equals("patient") && login.getPassword().equals("patient")) {
-      super.advanceHomePatient(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("staff") && login.getPassword().equals("staff")) {
-      super.advanceHome(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("admin") && login.getPassword().equals("admin")) {
-      super.advanceHomeAdmin(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("guest") && login.getPassword().equals("guest")) {
-      super.advanceHomeGuest(loader, appPrimaryScene);
-    }
+    super.advanceHome(loader, appPrimaryScene);
   }
 
   @FXML
   public void back() throws IOException {
-
-    Login login = Login.getLogin();
-
-    if (login.getUsername().equals("patient") && login.getPassword().equals("patient")) {
-      super.advanceServiceRequestPatient(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("staff") && login.getPassword().equals("staff")) {
-      super.advanceServiceRequestEmployee(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("admin") && login.getPassword().equals("admin")) {
-      super.advanceServiceRequestAdmin(loader, appPrimaryScene);
-    }
+    super.advanceServiceRequest(loader, appPrimaryScene);
   }
 
   public void submit(ActionEvent actionEvent) throws IOException {

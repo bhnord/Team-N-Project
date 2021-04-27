@@ -10,7 +10,6 @@ import edu.wpi.TeamN.services.database.requests.RequestType;
 import edu.wpi.TeamN.services.database.users.User;
 import edu.wpi.TeamN.services.database.users.UserType;
 import edu.wpi.TeamN.state.HomeState;
-import edu.wpi.TeamN.state.Login;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
@@ -110,32 +109,12 @@ public class FoodDeliveryRequestController extends masterController implements I
 
   @FXML
   public void advanceHome() throws IOException {
-
-    Login login = Login.getLogin();
-
-    if (login.getUsername().equals("patient") && login.getPassword().equals("patient")) {
-      super.advanceHomePatient(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("staff") && login.getPassword().equals("staff")) {
-      super.advanceHome(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("admin") && login.getPassword().equals("admin")) {
-      super.advanceHomeAdmin(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("guest") && login.getPassword().equals("guest")) {
-      super.advanceHomeGuest(loader, appPrimaryScene);
-    }
+    super.advanceHome(loader, appPrimaryScene);
   }
 
   @FXML
   public void back() throws IOException {
-
-    Login login = Login.getLogin();
-
-    if (login.getUsername().equals("patient") && login.getPassword().equals("patient")) {
-      super.advanceServiceRequestPatient(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("staff") && login.getPassword().equals("staff")) {
-      super.advanceServiceRequestEmployee(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("admin") && login.getPassword().equals("admin")) {
-      super.advanceServiceRequestAdmin(loader, appPrimaryScene);
-    }
+    super.advanceServiceRequest(loader, appPrimaryScene);
   }
 
   public void Submit(ActionEvent actionEvent) throws IOException {
@@ -281,11 +260,11 @@ public class FoodDeliveryRequestController extends masterController implements I
             RequestType.FOOD_DELIVERY,
             Integer.parseInt(txtEmployeeName.getSelectionModel().getSelectedItem().getId()),
             roomDropdown.getSelectionModel().getSelectedItem().getId(),
-            " MainDish:"
+            " MainDish: "
                 + mainDish.getValue().getText()
-                + ", Side Dish:"
+                + ", Side Dish: "
                 + sideDish.getValue().getText()
-                + ", Drink"
+                + ", Drink: "
                 + drinkDish.getValue().getText(),
             txtComments.getText());
     db.addRequest(r);

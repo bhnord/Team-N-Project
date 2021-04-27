@@ -22,8 +22,8 @@
         <GridPane fx:id="BigBoiPane">
             <columnConstraints>
                 <ColumnConstraints hgrow="NEVER" maxWidth="451.0" minWidth="66.0" prefWidth="66.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="722.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="566.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="800.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="800.0" />
             </columnConstraints>
             <rowConstraints>
                 <RowConstraints minHeight="768.0" prefHeight="768.0" vgrow="SOMETIMES" />
@@ -110,7 +110,7 @@
                         <Image url="@/images/IconHome.png" />
                      </image>
                   </ImageView>
-                  <JFXButton fx:id="CovidForm1" onAction="#advanceViews" prefHeight="64.0" prefWidth="66.0" text="Button" textFill="WHITE" GridPane.rowIndex="4">
+                  <JFXButton fx:id="homeButton" onAction="#advanceHome" prefHeight="64.0" prefWidth="66.0" text="Button" textFill="WHITE" GridPane.rowIndex="4">
                      <font>
                         <Font name="System Bold" size="9.0" />
                      </font>

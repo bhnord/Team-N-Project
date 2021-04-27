@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tooltip?>
@@ -43,15 +44,15 @@
 
     <children>
 
-        <ImageView fitHeight="1500.0" fitWidth="3500.0" layoutX="-5.0" pickOnBounds="true" preserveRatio="true">
+              <ImageView fitHeight="1500.0" fitWidth="3500.0" layoutX="-5.0" pickOnBounds="true" preserveRatio="true">
 
-            <image>
+                  <image>
 
-                <Image url="@/images/CSVBackground.png" />
+                      <Image url="@/images/CSVBackground.png" />
 
-            </image>
+                  </image>
 
-        </ImageView>
+              </ImageView>
 
         <AnchorPane fx:id="anchorPage" prefHeight="749.0" prefWidth="996.0">
 
@@ -62,7 +63,7 @@
                         <Font size="24.0" />
                     </font>
                 </Label>
-                <StackPane fx:id="myStackPane" layoutX="693.0" layoutY="279.0" prefHeight="209.0" prefWidth="412.0" />
+                <StackPane fx:id="myStackPane" layoutX="700.0" layoutY="359.0" prefHeight="91.0" prefWidth="145.0" />
                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="69.0" layoutX="-1.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.0" layoutX="27.0" layoutY="12.0" rotate="45.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" />
                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.0" layoutX="27.0" layoutY="12.0" rotate="-45.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" />
@@ -107,16 +108,16 @@
                   <Font name="Serif Regular" size="30.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="retypePassword" focusColor="#5b63e1" labelFloat="true" layoutX="187.0" layoutY="364.0" prefHeight="40.0" prefWidth="203.0" promptText="Retype Password" scaleShape="false" unFocusColor="WHITE">
+            <JFXPasswordField fx:id="retypePassword" focusColor="#5b63e1" labelFloat="true" layoutX="187.0" layoutY="364.0" prefHeight="40.0" prefWidth="203.0" promptText="Retype Password" scaleShape="false" unFocusColor="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
-            </JFXTextField>
-            <JFXTextField fx:id="password" focusColor="#5b63e1" labelFloat="true" layoutX="187.0" layoutY="299.0" prefHeight="40.0" prefWidth="203.0" promptText="Enter Password" scaleShape="false" unFocusColor="WHITE">
+            </JFXPasswordField>
+            <JFXPasswordField fx:id="password" focusColor="#5b63e1" labelFloat="true" layoutX="187.0" layoutY="299.0" prefHeight="40.0" prefWidth="203.0" promptText="Enter Password" scaleShape="false" unFocusColor="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
-            </JFXTextField>
+            </JFXPasswordField>
             <JFXTextField fx:id="username" focusColor="#5b63e1" labelFloat="true" layoutX="187.0" layoutY="239.0" prefHeight="40.0" prefWidth="203.0" promptText="Enter Username" scaleShape="false" unFocusColor="WHITE">
                <font>
                   <Font size="16.0" />

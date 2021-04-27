@@ -9,7 +9,6 @@ import edu.wpi.TeamN.services.database.users.User;
 import edu.wpi.TeamN.services.database.users.UserPrefs;
 import edu.wpi.TeamN.services.database.users.UserType;
 import edu.wpi.TeamN.state.HomeState;
-import edu.wpi.TeamN.state.Login;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
@@ -44,8 +43,8 @@ public class RegisterNewUser extends masterController implements Initializable {
   private Label Patient;
   private Label Admin;
   @FXML private JFXTextField username;
-  @FXML private JFXTextField password;
-  @FXML private JFXTextField retypePassword;
+  @FXML private JFXPasswordField password;
+  @FXML private JFXPasswordField retypePassword;
   @FXML private Button helpButton;
   @FXML private StackPane myStackPane;
   @FXML private Button submit;
@@ -77,7 +76,7 @@ public class RegisterNewUser extends masterController implements Initializable {
 
     /** USERNAME input and password* */
     RequiredFieldValidator reqInputValid = new RequiredFieldValidator();
-    reqInputValid.setMessage("Cannot be empty");
+    /*reqInputValid.setMessage("Cannot be empty");
     username.getValidators().add(reqInputValid);
     username
         .focusedProperty()
@@ -101,7 +100,7 @@ public class RegisterNewUser extends masterController implements Initializable {
         .addListener(
             (o, oldVal, newVal) -> {
               if (!newVal) retypePassword.validate();
-            });
+            });*/
   }
 
   public void exit(ActionEvent actionEvent) throws IOException {
@@ -115,35 +114,46 @@ public class RegisterNewUser extends masterController implements Initializable {
 
   @FXML
   public void advanceHome() throws IOException {
-
-    Login login = Login.getLogin();
-
-    if (login.getUsername().equals("patient") && login.getPassword().equals("patient")) {
-      super.advanceHomePatient(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("employee") && login.getPassword().equals("employee")) {
-      super.advanceHome(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("admin") && login.getPassword().equals("admin")) {
-      super.advanceHomeAdmin(loader, appPrimaryScene);
-    }
+    advanceHome(loader, appPrimaryScene);
   }
 
   @FXML
   public void back() throws IOException {
-
-    Login login = Login.getLogin();
-
-    if (login.getUsername().equals("patient") && login.getPassword().equals("patient")) {
-      super.advanceHomePatient(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("employee") && login.getPassword().equals("employee")) {
-      super.advanceHome(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("admin") && login.getPassword().equals("admin")) {
-      super.advanceHomeAdmin(loader, appPrimaryScene);
-    }
+    super.logOut(loader, appPrimaryScene);
   }
 
   public void Submit(ActionEvent actionEvent) throws IOException, InterruptedException {
 
-    if (!(password.getText().equals(retypePassword.getText()))) {
+    if (username.getText().isEmpty()
+        || password.getText().isEmpty()
+        || retypePassword.getText().isEmpty()) {
+      String title = "Missing Fields";
+      JFXDialogLayout dialogContent = new JFXDialogLayout();
+      dialogContent.setHeading(new Text(title));
+      dialogContent.setBody(
+          (new Text("* You must fill out all required fields of the request to continue\n")));
+      JFXButton close = new JFXButton("close");
+      close.setButtonType(JFXButton.ButtonType.RAISED);
+      close.setStyle("-fx-background-color : #00bfff;");
+      dialogContent.setActions(close);
+
+      JFXDialog dialog =
+          new JFXDialog(myStackPane, dialogContent, JFXDialog.DialogTransition.BOTTOM);
+      actionEvent.consume();
+      close.setOnAction(
+          new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+              dialog.close();
+              helpButton.setDisable(false);
+              submit.setDisable(false);
+            }
+          });
+      helpButton.setDisable(true);
+      submit.setDisable(true);
+      dialog.show();
+
+    } else if (!(password.getText().equals(retypePassword.getText()))) {
       String title = "Invalid Entry";
       JFXDialogLayout dialogContent = new JFXDialogLayout();
       dialogContent.setHeading(new Text(title));
@@ -190,33 +200,6 @@ public class RegisterNewUser extends masterController implements Initializable {
           });
       helpButton.setDisable(true);
       dialog.show();
-    } else if (username.getText().isEmpty()
-        || password.getText().isEmpty()
-        || retypePassword.getText().isEmpty()) {
-      String title = "Missing Fields";
-      JFXDialogLayout dialogContent = new JFXDialogLayout();
-      dialogContent.setHeading(new Text(title));
-      dialogContent.setBody(
-          (new Text("* You must fill out all required fields of the request to continue\n")));
-      JFXButton close = new JFXButton("close");
-      close.setButtonType(JFXButton.ButtonType.RAISED);
-      close.setStyle("-fx-background-color : #00bfff;");
-      dialogContent.setActions(close);
-
-      JFXDialog dialog =
-          new JFXDialog(myStackPane, dialogContent, JFXDialog.DialogTransition.BOTTOM);
-      actionEvent.consume();
-      close.setOnAction(
-          new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-              dialog.close();
-              helpButton.setDisable(false);
-            }
-          });
-      helpButton.setDisable(true);
-      dialog.show();
-
     } else {
 
       VBox manuContainer = new VBox();

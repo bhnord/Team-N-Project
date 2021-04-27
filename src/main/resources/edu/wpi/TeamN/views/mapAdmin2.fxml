@@ -62,6 +62,7 @@
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="65.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" GridPane.rowIndex="2" />
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="65.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" GridPane.rowIndex="3" />
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.0" rotate="-45.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="65.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" GridPane.rowIndex="4" />
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.0" rotate="45.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                         <JFXButton fx:id="exit" onAction="#exit" prefHeight="64.0" prefWidth="66.0" textFill="WHITE" GridPane.rowIndex="1">
                             <font>
@@ -114,6 +115,26 @@
                                 <Image url="@/images/BWHLogo.png" />
                             </image>
                         </ImageView>
+                  <ImageView fitHeight="58.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                     <image>
+                        <Image url="@/images/IconHome.png" />
+                     </image>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </ImageView>
+                  <JFXButton fx:id="HomeView" onAction="#advanceHome" prefHeight="71.0" prefWidth="66.0" textFill="WHITE" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="System Bold" size="9.0" />
+                     </font>
+                     <tooltip>
+                        <Tooltip fx:id="ttLogOutButton1" text="Home">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Tooltip>
+                     </tooltip>
+                  </JFXButton>
                     </children>
                 </GridPane>
             <GridPane GridPane.columnIndex="1" GridPane.valignment="TOP">
@@ -140,6 +161,9 @@
                                 </cursor>
                             </ImageView>
                      </children>
+                     <GridPane.margin>
+                        <Insets left="25.0" />
+                     </GridPane.margin>
                   </AnchorPane>
                   <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
                      <children>
@@ -204,11 +228,16 @@
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints maxHeight="78.0" minHeight="78.0" prefHeight="78.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="737.0" minHeight="10.0" prefHeight="690.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="78.0" minHeight="78.0" prefHeight="78.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <GridPane>
+                  <JFXButton buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #748cdc; -fx-background-radius: 30;">
+                     <GridPane.margin>
+                        <Insets right="10.0" />
+                     </GridPane.margin></JFXButton>
+                  <StackPane prefHeight="150.0" prefWidth="200.0" />
+                  <GridPane GridPane.rowIndex="1">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -222,28 +251,28 @@
                         <Label fx:id="YLabel" prefHeight="47.0" prefWidth="120.0" text="y-Value" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
-                  <JFXTabPane GridPane.rowIndex="1">
+                  <JFXTabPane stylesheets="@/StyleSheet/style.css">
                      <tabs>
                         <Tab text="Node">
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <JFXTextField fx:id="nodeId" layoutY="23.0" />
-                                    <Label layoutY="6.0" text="Node ID" />
-                                    <JFXTextField fx:id="XCoord" layoutY="73.0" />
-                                    <Label layoutY="56.0" text="XCoord" />
-                                    <JFXTextField fx:id="YCoord" layoutY="132.0" />
-                                    <Label layoutY="115.0" text="YCoord" />
-                                    <JFXTextField fx:id="floor" layoutY="189.0" />
-                                    <Label layoutY="172.0" text="Floor" />
-                                    <JFXTextField fx:id="building" layoutY="242.0" />
-                                    <Label layoutY="225.0" text="Building" />
-                                    <JFXTextField fx:id="nodeType" layoutY="295.0" />
-                                    <Label layoutY="278.0" text="Node Type" />
-                                    <JFXTextField fx:id="longName" layoutY="353.0" />
-                                    <Label layoutY="336.0" text="Long Name" />
-                                    <JFXTextField fx:id="shortName" layoutY="405.0" />
-                                    <Label layoutY="388.0" text="Short Name" />
+                                    <JFXTextField fx:id="nodeId" layoutX="40.0" layoutY="23.0" />
+                                    <Label layoutX="40.0" layoutY="6.0" text="Node ID" />
+                                    <JFXTextField fx:id="XCoord" layoutX="40.0" layoutY="73.0" />
+                                    <Label layoutX="40.0" layoutY="56.0" text="XCoord" />
+                                    <JFXTextField fx:id="YCoord" layoutX="40.0" layoutY="132.0" />
+                                    <Label layoutX="40.0" layoutY="115.0" text="YCoord" />
+                                    <JFXTextField fx:id="floor" layoutX="40.0" layoutY="189.0" />
+                                    <Label layoutX="40.0" layoutY="172.0" text="Floor" />
+                                    <JFXTextField fx:id="building" layoutX="40.0" layoutY="242.0" />
+                                    <Label layoutX="40.0" layoutY="225.0" text="Building" />
+                                    <JFXTextField fx:id="nodeType" layoutX="40.0" layoutY="295.0" />
+                                    <Label layoutX="40.0" layoutY="278.0" text="Node Type" />
+                                    <JFXTextField fx:id="longName" layoutX="40.0" layoutY="353.0" />
+                                    <Label layoutX="40.0" layoutY="336.0" text="Long Name" />
+                                    <JFXTextField fx:id="shortName" layoutX="40.0" layoutY="405.0" />
+                                    <Label layoutX="40.0" layoutY="388.0" text="Short Name" />
                                     <Button fx:id="savebtnNode" layoutY="500" mnemonicParsing="false" onAction="#saveNode" text="Save Node" />
                                  </children>
                               </AnchorPane>
@@ -253,18 +282,26 @@
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <Label layoutY="6.0" text="Edge ID" />
-                                    <JFXTextField fx:id="edgeID" layoutY="23.0" />
-                                    <Label layoutY="64.0" text="Start Node" />
-                                    <JFXTextField fx:id="startNode" layoutY="81.0" />
-                                    <Label layoutY="121.0" text="End Node" />
-                                    <JFXTextField fx:id="endNode" layoutY="138.0" />
+                                    <Label layoutX="41.0" layoutY="6.0" text="Edge ID" />
+                                    <JFXTextField fx:id="edgeID" layoutX="41.0" layoutY="23.0" />
+                                    <Label layoutX="41.0" layoutY="64.0" text="Start Node" />
+                                    <JFXTextField fx:id="startNode" layoutX="41.0" layoutY="81.0" />
+                                    <Label layoutX="41.0" layoutY="121.0" text="End Node" />
+                                    <JFXTextField fx:id="endNode" layoutX="41.0" layoutY="138.0" />
                                     <Button fx:id="savebtnEdge" layoutY="500" mnemonicParsing="false" onAction="#saveEdge" text="Save Edge" />
                                  </children>
                               </AnchorPane>
                            </content>
                         </Tab>
+                        <Tab text="Settings">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                           </content>
+                        </Tab>
                      </tabs>
+                     <GridPane.margin>
+                        <Insets right="10.0" />
+                     </GridPane.margin>
                   </JFXTabPane>
                </children>
             </GridPane>

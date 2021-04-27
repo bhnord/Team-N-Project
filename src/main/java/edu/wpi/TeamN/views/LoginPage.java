@@ -76,38 +76,8 @@ public class LoginPage extends masterController implements Initializable {
 
   @FXML
   private void continueToHomePage() throws IOException {
-
-    /*    login = Login.getLogin();
-    login.setPassword(getPassword());
-    login.setUsername(getUsername());
-
-    if (login.getUsername().equals("patient") && login.getPassword().equals("patient")) {
-      super.advanceHomePatient(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("staff") && login.getPassword().equals("staff")) {
+    if (db.login(usernameField.getText(), passwordField.getText())) {
       super.advanceHome(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("admin") && login.getPassword().equals("admin")) {
-      super.advanceHomeAdmin(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("guest") && login.getPassword().equals("guest")) {
-      super.advanceHomeGuest(loader, appPrimaryScene);
-    } else {
-      incorrectLogin.setText("INCORRECT USERNAME OR PASSWORD, TRY AGAIN");
-      incorrectLogin.setAlignment(Pos.CENTER);
-    }*/
-    if (db.login(getUsername(), getPassword())) {
-      switch (db.getCurrentUser().getType()) {
-        case ADMINISTRATOR:
-          super.advanceHomeAdmin(loader, appPrimaryScene);
-          break;
-        case EMPLOYEE:
-          super.advanceHome(loader, appPrimaryScene);
-          break;
-        case PATIENT:
-          super.advanceHomePatient(loader, appPrimaryScene);
-          break;
-        case GUEST:
-          super.advanceHomeGuest(loader, appPrimaryScene);
-          break;
-      }
     } else {
       incorrectLogin.setText("INCORRECT USERNAME OR PASSWORD, TRY AGAIN");
       incorrectLogin.setAlignment(Pos.CENTER);
