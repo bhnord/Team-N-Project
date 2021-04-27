@@ -9,6 +9,10 @@ import edu.wpi.TeamN.MapEntity.PathFinderMap;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.database.DatabaseService;
 import edu.wpi.TeamN.state.HomeState;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -27,11 +31,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Shape;
-
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
 
 public class PathFinderController extends masterController
     implements Initializable, mapControllerI {
@@ -245,7 +244,9 @@ public class PathFinderController extends masterController
     }
   }
 
-  public void logOut(ActionEvent actionEvent) {}
+  public void logOut(ActionEvent actionEvent) throws IOException {
+    super.logOut(loader, appPrimaryScene);
+  }
 
   @Override
   public double getDownScale() {
