@@ -118,12 +118,12 @@ public class CovidForm extends masterController implements Initializable {
     /* Parent root = childLoader.load(getClass().getResourceAsStream("ConfirmationPageCovid.fxml"));
     ChildAppPrimaryScene.setRoot(root);*/
 
-    if (comboBox.getEditor().getText().isEmpty()
-        || comboBox2.getEditor().getText().isEmpty()
-        || comboBox3.getEditor().getText().isEmpty()
-        || comboBox4.getEditor().getText().isEmpty()
-        || comboBox5.getEditor().getText().isEmpty()
-        || comboBox6.getEditor().getText().isEmpty()) {
+    if ((comboBox.getValue() == null
+        || comboBox2.getValue() == null
+        || comboBox3.getValue() == null
+        || comboBox4.getValue() == null
+        || comboBox5.getValue() == null
+        || comboBox6.getValue() == null)) {
       String title = "Missing Fields";
       JFXDialogLayout dialogContent = new JFXDialogLayout();
       dialogContent.setHeading(new Text(title));
