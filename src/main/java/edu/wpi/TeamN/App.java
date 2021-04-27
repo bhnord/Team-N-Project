@@ -58,7 +58,6 @@ public class App extends Application {
       db.addUser("staff", "staff", UserType.EMPLOYEE, new UserPrefs());
     if (db.getUserByUsername("guest") == null)
       db.addUser("guest", "guest", UserType.PATIENT, new UserPrefs());
-
   }
 
   @Override
