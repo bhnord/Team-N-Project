@@ -75,7 +75,6 @@
                                 <Font size="24.0" />
                             </font>
                         </Label>
-                        <StackPane fx:id="myStackPane" layoutX="563.0" layoutY="384.0" prefHeight="113.0" prefWidth="140.0" />
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="47.0" layoutX="834.0" layoutY="661.0" stroke="TRANSPARENT" strokeType="INSIDE" width="130.0" />
                         <Rectangle arcHeight="50.0" arcWidth="50.0" fill="WHITE" height="517.0" layoutX="136.0" layoutY="202.0" stroke="TRANSPARENT" strokeType="INSIDE" width="476.0" />
                         <JFXTextField fx:id="txtComments" focusColor="#5b63e1" labelFloat="true" layoutX="183.0" layoutY="500.0" prefHeight="40.0" prefWidth="203.0" promptText="Comments" scaleShape="false" unFocusColor="WHITE">
@@ -124,6 +123,7 @@
                                 </Tooltip>
                             </tooltip>
                         </JFXButton>
+                        <StackPane fx:id="myStackPane" layoutX="752.0" layoutY="357.0" prefHeight="113.0" prefWidth="140.0" />
                     </children>
                 </AnchorPane>
                 <GridPane GridPane.hgrow="NEVER" GridPane.vgrow="NEVER">
