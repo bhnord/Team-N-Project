@@ -307,15 +307,11 @@ public class ReligiousRequestsController extends masterController implements Ini
   private void submitToDB() {
     RequestType type = RequestType.RELIGIOUS;
     int recieverID =
-            Integer.parseInt(txtEmployeeName.getSelectionModel().getSelectedItem().getId());
+        Integer.parseInt(txtEmployeeName.getSelectionModel().getSelectedItem().getId());
     String roomNodeId = roomDropdown.getSelectionModel().getSelectedItem().getId();
-    String content =
-            "religious request: " + maintenanceRequest.getText();
+    String content = "religious request: " + maintenanceRequest.getText();
     String notes = txtComments.getText();
     Request r = new Request(type, recieverID, roomNodeId, content, notes);
     db.addRequest(r);
   }
-
-
-
 }

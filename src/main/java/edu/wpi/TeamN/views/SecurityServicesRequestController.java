@@ -302,14 +302,11 @@ public class SecurityServicesRequestController extends masterController implemen
   private void submitToDB() {
     RequestType type = RequestType.SECURITY;
     int recieverID =
-            Integer.parseInt(txtEmployeeName.getSelectionModel().getSelectedItem().getId());
+        Integer.parseInt(txtEmployeeName.getSelectionModel().getSelectedItem().getId());
     String roomNodeId = roomDropdown.getSelectionModel().getSelectedItem().getId();
-    String content =
-            "sanitation details: " + maintenanceRequest.getText();
+    String content = "sanitation details: " + maintenanceRequest.getText();
     String notes = txtComments.getText();
     Request r = new Request(type, recieverID, roomNodeId, content, notes);
     db.addRequest(r);
   }
-
-
 }

@@ -305,13 +305,11 @@ public class LaundryRequestController extends masterController implements Initia
   private void submitToDB() {
     RequestType type = RequestType.LAUNDRY;
     int recieverID =
-            Integer.parseInt(txtEmployeeName.getSelectionModel().getSelectedItem().getId());
+        Integer.parseInt(txtEmployeeName.getSelectionModel().getSelectedItem().getId());
     String roomNodeId = roomDropdown.getSelectionModel().getSelectedItem().getId();
-    String content =
-            "n/a";
+    String content = "n/a";
     String notes = txtComments.getText();
     Request r = new Request(type, recieverID, roomNodeId, content, notes);
     db.addRequest(r);
   }
-
 }
