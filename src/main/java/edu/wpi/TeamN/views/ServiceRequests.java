@@ -56,7 +56,7 @@ public class ServiceRequests extends masterController implements Initializable {
 
   @FXML
   public void advanceHome() throws IOException {
-    advanceHome(loader, appPrimaryScene);
+    super.advanceHome(loader, appPrimaryScene);
   }
 
   @FXML

@@ -21,7 +21,7 @@ public class DatabaseService {
   /*
    Database service class. This class will be loaded as a Singleton by Guice.
   */
-  User currentUser;
+  static User currentUser;
   /*
    Database service class. This class will be loaded as a Singleton by Guice.
   */
