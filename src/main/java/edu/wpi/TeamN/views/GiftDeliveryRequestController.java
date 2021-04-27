@@ -93,12 +93,11 @@ public class GiftDeliveryRequestController extends masterController implements I
     reqInputValid.setMessage("Cannot be empty");
     giftType.getValidators().add(reqInputValid);
     giftType
-            .focusedProperty()
-            .addListener(
-                    (o, oldVal, newVal) -> {
-                      if (!newVal) giftType.validate();
-                    });
-
+        .focusedProperty()
+        .addListener(
+            (o, oldVal, newVal) -> {
+              if (!newVal) giftType.validate();
+            });
 
     loadEmployeeDropdown();
     loadRoomDropdown();
@@ -195,6 +194,7 @@ public class GiftDeliveryRequestController extends masterController implements I
             @Override
             public void handle(ActionEvent event) {
               popup1.hide();
+              submitToDB();
 
               BoxBlur blur = new BoxBlur(7, 7, 7);
 
@@ -314,9 +314,9 @@ public class GiftDeliveryRequestController extends masterController implements I
   }
 
   private void submitToDB() {
-    RequestType type = RequestType.FLORAL;
+    RequestType type = RequestType.GIFT_DELIVERY;
     int recieverID =
-            Integer.parseInt(txtEmployeeName.getSelectionModel().getSelectedItem().getId());
+        Integer.parseInt(txtEmployeeName.getSelectionModel().getSelectedItem().getId());
     String roomNodeId = roomDropdown.getSelectionModel().getSelectedItem().getId();
     String content = "Time of request: " + timePicker.getEditor().getText();
     String notes = "gift type: " + giftType.getText() + " comments: " + txtComments.getText();

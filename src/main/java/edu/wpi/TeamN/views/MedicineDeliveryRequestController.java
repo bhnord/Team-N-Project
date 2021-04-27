@@ -193,6 +193,7 @@ public class MedicineDeliveryRequestController extends masterController implemen
             @Override
             public void handle(ActionEvent event) {
               popup1.hide();
+              submitToDB();
 
               BoxBlur blur = new BoxBlur(7, 7, 7);
 
@@ -343,4 +344,18 @@ public class MedicineDeliveryRequestController extends masterController implemen
     }
     new AutoCompleteComboBoxListener(roomDropdown);
   }
+
+  private void submitToDB() {
+    RequestType type = RequestType.MEDICINE_DELIVERY;
+    int recieverID =
+            Integer.parseInt(txtEmployeeName.getSelectionModel().getSelectedItem().getId());
+    String roomNodeId = roomDropdown.getSelectionModel().getSelectedItem().getId();
+    String content =
+            "medicine: " + txtEquipment.getSelectionModel().getSelectedItem().getText();
+    String notes = txtComments.getText();
+    Request r = new Request(type, recieverID, roomNodeId, content, notes);
+    db.addRequest(r);
+  }
+
+
 }
