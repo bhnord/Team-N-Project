@@ -59,8 +59,6 @@ public class App extends Application {
     if (db.getUserByUsername("guest") == null)
       db.addUser("guest", "guest", UserType.PATIENT, new UserPrefs());
 
-    db.loadCSVtoTable("src/main/resources/MapCSV/bwNnodes.csv", "NODES");
-    db.loadCSVtoTable("src/main/resources/MapCSV/bwNedges.csv", "EDGES");
   }
 
   @Override
