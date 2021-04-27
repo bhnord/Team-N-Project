@@ -6,6 +6,7 @@ import edu.wpi.TeamN.services.algo.PathFinder;
 import edu.wpi.TeamN.services.database.DatabaseService;
 import java.util.ArrayList;
 import java.util.HashMap;
+import javafx.scene.shape.Line;
 
 public class PathFinderMap {
   private DatabaseService db;
@@ -34,7 +35,14 @@ public class PathFinderMap {
     PathFinder pathFinder = new PathFinder();
     Node node1 = getNodeSet().get(startNodePath);
     Node node2 = getNodeSet().get(endNodePath);
+    System.out.println(node1.get_nodeID() + " :: " + node2.get_nodeID());
 
-    return pathFinder.pathfindNoStairs(node1, node2);
+    return pathFinder.pathfind(node1, node2);
+  }
+
+  public void makeEdge(String id, Node node1, Node node2, Line simpleNode) {
+    double distance = node1.heuristic(node2);
+    node1.addNeighbor(id, node2, distance, simpleNode, false);
+    node2.addNeighbor(id, node1, distance, simpleNode, false);
   }
 }
