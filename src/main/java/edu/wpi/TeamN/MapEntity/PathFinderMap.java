@@ -35,8 +35,6 @@ public class PathFinderMap {
     PathFinder pathFinder = new PathFinder();
     Node node1 = getNodeSet().get(startNodePath);
     Node node2 = getNodeSet().get(endNodePath);
-    System.out.println(node1.get_nodeID() + " :: " + node2.get_nodeID());
-
     return pathFinder.pathfind(node1, node2);
   }
 
