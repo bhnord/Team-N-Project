@@ -5,6 +5,7 @@ public class Patient extends User {
     super(id, username, userPrefs);
   }
 
+  @Override
   public UserType getType() {
     return UserType.PATIENT;
   }

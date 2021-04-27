@@ -80,35 +80,15 @@ public class LoginPage extends masterController implements Initializable {
     login = Login.getLogin();
     login.setPassword(getPassword());
     login.setUsername(getUsername());
-
-    if (login.getUsername().equals("patient") && login.getPassword().equals("patient")) {
-      super.advanceHomePatient(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("staff") && login.getPassword().equals("staff")) {
+    if(!login.getUsername().equals("")) {
       super.advanceHome(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("admin") && login.getPassword().equals("admin")) {
-      super.advanceHomeAdmin(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("guest") && login.getPassword().equals("guest")) {
-      super.advanceHomeGuest(loader, appPrimaryScene);
     } else {
       incorrectLogin.setText("INCORRECT USERNAME OR PASSWORD, TRY AGAIN");
       incorrectLogin.setAlignment(Pos.CENTER);
     }
     /*
     if (db.login(getUsername(), getPassword())) {
-      switch (db.getCurrentUser().getType()) {
-        case ADMINISTRATOR:
-          super.advanceHomeAdmin(loader, appPrimaryScene);
-          break;
-        case EMPLOYEE:
-          super.advanceHome(loader, appPrimaryScene);
-          break;
-        case PATIENT:
-          super.advanceHomePatient(loader, appPrimaryScene);
-          break;
-        case GUEST:
-          super.advanceHomeGuest(loader, appPrimaryScene);
-          break;
-      }
+      super.advanceHome(loader, appPrimaryScene);
     } else {
       incorrectLogin.setText("INCORRECT USERNAME OR PASSWORD, TRY AGAIN");
       incorrectLogin.setAlignment(Pos.CENTER);

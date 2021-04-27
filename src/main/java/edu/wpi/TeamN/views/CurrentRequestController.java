@@ -12,9 +12,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
 
@@ -101,9 +99,7 @@ public class CurrentRequestController extends masterController implements Initia
   }
 
   public void advanceViews(ActionEvent actionEvent) throws IOException {
-    String file = ((Button) actionEvent.getSource()).getId() + ".fxml";
-    Parent root = loader.load(getClass().getResourceAsStream(file));
-    appPrimaryScene.setRoot(root);
+    super.advanceViews(actionEvent);
   }
 
   @FXML

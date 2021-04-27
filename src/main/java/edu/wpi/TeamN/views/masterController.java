@@ -50,21 +50,43 @@ public class masterController implements Initializable {
 
   @FXML
   public void advanceHome(FXMLLoader childLoader, Scene ChildAppPrimaryScene) throws IOException {
+    switch (db.getCurrentUser().getType()) {
+      case ADMINISTRATOR:
+        advanceHomeAdmin(childLoader, ChildAppPrimaryScene);
+        break;
+      case EMPLOYEE:
+        advanceHomeStaff(childLoader, ChildAppPrimaryScene);
+        break;
+      case PATIENT:
+        advanceHomePatient(childLoader, ChildAppPrimaryScene);
+        break;
+      case GUEST:
+        advanceHomeGuest(childLoader, ChildAppPrimaryScene);
+        break;
+    }
+  }
+
+  private void advanceHomeStaff(FXMLLoader childLoader, Scene ChildAppPrimaryScene)
+      throws IOException {
     Parent root = childLoader.load(getClass().getResourceAsStream("HomeView.fxml"));
     ChildAppPrimaryScene.setRoot(root);
   }
 
-  @FXML
-  public void advanceHomePatient(FXMLLoader childLoader, Scene ChildAppPrimaryScene)
+  private void advanceHomePatient(FXMLLoader childLoader, Scene ChildAppPrimaryScene)
       throws IOException {
     Parent root = childLoader.load(getClass().getResourceAsStream("HomeViewPatient.fxml"));
     ChildAppPrimaryScene.setRoot(root);
   }
 
-  @FXML
-  public void advanceHomeAdmin(FXMLLoader childLoader, Scene ChildAppPrimaryScene)
+  private void advanceHomeAdmin(FXMLLoader childLoader, Scene ChildAppPrimaryScene)
       throws IOException {
     Parent root = childLoader.load(getClass().getResourceAsStream("HomeViewAdmin.fxml"));
+    ChildAppPrimaryScene.setRoot(root);
+  }
+
+  private void advanceHomeGuest(FXMLLoader childLoader, Scene ChildAppPrimaryScene)
+      throws IOException {
+    Parent root = childLoader.load(getClass().getResourceAsStream("HomeViewGuest.fxml"));
     ChildAppPrimaryScene.setRoot(root);
   }
 
@@ -75,31 +97,24 @@ public class masterController implements Initializable {
   }
 
   @FXML
-  public void advanceHomeGuest(FXMLLoader childLoader, Scene ChildAppPrimaryScene)
-      throws IOException {
-    Parent root = childLoader.load(getClass().getResourceAsStream("HomeViewGuest.fxml"));
-    ChildAppPrimaryScene.setRoot(root);
-  }
-
-  @FXML
   public void advanceHome2(FXMLLoader childLoader, Scene ChildAppPrimaryScene) throws IOException {
     Parent root = childLoader.load(getClass().getResourceAsStream("HomeView2.fxml"));
     ChildAppPrimaryScene.setRoot(root);
   }
 
-  public void advanceServiceRequestPatient(FXMLLoader childLoader, Scene ChildAppPrimaryScene)
+  private void advanceServiceRequestPatient(FXMLLoader childLoader, Scene ChildAppPrimaryScene)
       throws IOException {
     Parent root = childLoader.load(getClass().getResourceAsStream("ServiceRequestsPatient.fxml"));
     ChildAppPrimaryScene.setRoot(root);
   }
 
-  public void advanceServiceRequestAdmin(FXMLLoader childLoader, Scene ChildAppPrimaryScene)
+  private void advanceServiceRequestAdmin(FXMLLoader childLoader, Scene ChildAppPrimaryScene)
       throws IOException {
     Parent root = childLoader.load(getClass().getResourceAsStream("ServiceRequestsAdmin.fxml"));
     ChildAppPrimaryScene.setRoot(root);
   }
 
-  public void advanceServiceRequestEmployee(FXMLLoader childLoader, Scene ChildAppPrimaryScene)
+  private void advanceServiceRequestEmployee(FXMLLoader childLoader, Scene ChildAppPrimaryScene)
       throws IOException {
     Parent root = childLoader.load(getClass().getResourceAsStream("ServiceRequests.fxml"));
     ChildAppPrimaryScene.setRoot(root);
@@ -107,8 +122,19 @@ public class masterController implements Initializable {
 
   public void advanceServiceRequest(FXMLLoader childLoader, Scene ChildAppPrimaryScene)
       throws IOException {
-    Parent root = childLoader.load(getClass().getResourceAsStream("ServiceRequests.fxml"));
-    ChildAppPrimaryScene.setRoot(root);
+    //    Parent root = childLoader.load(getClass().getResourceAsStream("ServiceRequests.fxml"));
+    //    ChildAppPrimaryScene.setRoot(root);
+    switch (db.getCurrentUser().getType()) {
+      case ADMINISTRATOR:
+        advanceServiceRequestAdmin(childLoader, ChildAppPrimaryScene);
+        break;
+      case EMPLOYEE:
+        advanceServiceRequestEmployee(childLoader, ChildAppPrimaryScene);
+        break;
+      case PATIENT:
+        advanceServiceRequestPatient(childLoader, ChildAppPrimaryScene);
+        break;
+    }
   }
 
   @FXML
