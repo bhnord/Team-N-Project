@@ -35,10 +35,10 @@ public class MapDrawing {
     return root;
   }
 
-  public Group drawNode(String id, double x, double y) {
+  public Group drawNode(String id, double x, double y, Color color) {
     Circle simpleNode = new Circle(x, y, 4);
     simpleNode.setTranslateZ(10);
-    simpleNode.setFill(Color.BLUE);
+    simpleNode.setFill(color);
     Group root = new Group(simpleNode);
     root.setId(id);
     return root;
@@ -48,6 +48,7 @@ public class MapDrawing {
     for (Node n : nodeSet.values()) {
       for (Node.Link l : n.get_neighbors()) {
         l._shape.setStroke(Color.BLACK);
+        l._shape.getParent().setVisible(false);
       }
     }
   }
@@ -56,6 +57,7 @@ public class MapDrawing {
     for (Node.Link c2 : ret) {
       Line simpleNode = c2._shape;
       simpleNode.setStroke(color);
+      simpleNode.getParent().setVisible(true);
     }
   }
 

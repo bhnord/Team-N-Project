@@ -40,7 +40,7 @@ public class HomeControllerAdmin extends masterController implements Initializab
   @FXML private JFXButton ServiceRequests;
   @FXML private JFXButton CurrentRequest;
   @FXML private JFXButton map;
-  @FXML private JFXButton map1, helpSB;
+  @FXML private JFXButton map1, EmployeeEditor;
 
   @FXML private GridPane BigBoiPane;
 
@@ -72,8 +72,10 @@ public class HomeControllerAdmin extends masterController implements Initializab
         "-fx-background-image: url('/images/ButtonCR.png'); -fx-background-size: cover; -fx-background-radius: 25");
     map.setStyle(
         "-fx-background-image: url('/images/ButtonM.png'); -fx-background-size: cover; -fx-background-radius: 25");
-    map1.setStyle(
+    EmployeeEditor.setStyle(
         "-fx-background-image: url('/images/ButtonH.png'); -fx-background-size: cover; -fx-background-radius: 25");
+    map1.setStyle(
+        "-fx-background-image: url('/images/ButtonM.png'); -fx-background-size: cover; -fx-background-radius: 25");
   }
 
   public void advance(ActionEvent actionEvent) throws IOException {
@@ -89,7 +91,7 @@ public class HomeControllerAdmin extends masterController implements Initializab
   }
 
   public void map(ActionEvent actionEvent) throws IOException {
-    Parent root = loader.load(getClass().getResourceAsStream("mapAdmin.fxml"));
+    Parent root = loader.load(getClass().getResourceAsStream("mapAdmin2.fxml"));
     Screen screen = Screen.getPrimary();
     Rectangle2D bounds = screen.getVisualBounds();
 
