@@ -26,13 +26,14 @@
                 <Image url="@/images/CSVBackground.png" />
             </image>
         </ImageView>
-      <AnchorPane fx:id="anchorPage" prefHeight="749.0" prefWidth="996.0">
+      <AnchorPane fx:id="anchorPage" prefHeight="597.0" prefWidth="764.0">
          <children>
             <Label fx:id="errorLabel" layoutX="297.0" layoutY="664.0" prefHeight="35.0" prefWidth="130.0">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
+            <StackPane fx:id="myStackPane" layoutX="678.0" layoutY="441.0" prefHeight="118.0" prefWidth="171.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="47.0" layoutX="834.0" layoutY="661.0" stroke="TRANSPARENT" strokeType="INSIDE" width="130.0" />
             <Rectangle arcHeight="50.0" arcWidth="50.0" fill="WHITE" height="517.0" layoutX="144.0" layoutY="185.0" stroke="TRANSPARENT" strokeType="INSIDE" width="476.0" />
             <JFXTextField fx:id="txtComments" focusColor="#5b63e1" labelFloat="true" layoutX="183.0" layoutY="500.0" prefHeight="40.0" prefWidth="203.0" promptText="Comments" scaleShape="false" unFocusColor="WHITE">
@@ -45,11 +46,7 @@
                   <DropShadow color="#c6b8b8" offsetY="5.0" />
                </effect>
             </Rectangle>
-            <JFXButton fx:id="submit" layoutX="505.0" layoutY="636.0" onAction="#submit" prefHeight="50.0" prefWidth="95.0" ripplerFill="WHITE" text="Submit" textFill="WHITE">
-               <font>
-                  <Font name="Serif Regular" size="15.0" />
-               </font>
-            </JFXButton>
+            <JFXButton fx:id="submit" layoutX="505.0" layoutY="636.0" onAction="#submit" prefHeight="50.0" prefWidth="95.0" ripplerFill="WHITE" text="Submit" textFill="WHITE" />
             <JFXComboBox fx:id="txtEmployeeName" layoutX="187.0" layoutY="241.0" prefHeight="31.0" prefWidth="150.0" promptText="Select Employee" />
             <JFXComboBox fx:id="roomDropdown" layoutX="187.0" layoutY="313.0" prefHeight="31.0" prefWidth="176.0" promptText="Select Patient Room" />
             <StackPane fx:id="myStackPane2" layoutX="346.0" layoutY="526.0" prefHeight="101.0" prefWidth="531.0" />
@@ -58,13 +55,13 @@
             <Label layoutX="169.0" layoutY="387.0" text="*" />
             <Label layoutX="166.0" layoutY="449.0" text="*" />
             <Label layoutX="176.0" layoutY="631.0" text="*Required Fields" />
-            <Label fx:id="text1" alignment="CENTER" layoutX="150.0" layoutY="124.0" prefHeight="47.0" prefWidth="464.0" style="-fx-background-color: #748cdc; -fx-background-radius: 6;" stylesheets="@/Fonts/Roboto-Light.css" text="Gift Delivery Request" textAlignment="CENTER" textFill="WHITE">
+            <Label fx:id="text1" alignment="CENTER" layoutX="150.0" layoutY="124.0" prefHeight="47.0" prefWidth="464.0" style="-fx-background-color: #748cdc; -fx-background-radius: 6;" stylesheets="@/Fonts/Roboto-Light.css" text="Internal Patient Transport Request" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Serif Regular" size="30.0" />
                </font>
             </Label>
             <JFXTimePicker fx:id="timePicker" defaultColor="#a6c3e3" layoutX="186.0" layoutY="382.0" promptText="Select Time of Request" />
-            <JFXTextField fx:id="giftType" focusColor="#5b63e1" labelFloat="true" layoutX="183.0" layoutY="440.0" prefHeight="40.0" prefWidth="203.0" promptText="Gift Type" scaleShape="false" unFocusColor="WHITE">
+            <JFXTextField fx:id="request" focusColor="#5b63e1" labelFloat="true" layoutX="183.0" layoutY="440.0" prefHeight="40.0" prefWidth="203.0" promptText="Type of Request" scaleShape="false" unFocusColor="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
@@ -81,7 +78,6 @@
                   </Tooltip>
                </tooltip>
             </JFXButton>
-            <StackPane fx:id="myStackPane" layoutX="678.0" layoutY="441.0" prefHeight="118.0" prefWidth="171.0" />
          </children>
       </AnchorPane>
         <GridPane fx:id="BigBoiPane">
