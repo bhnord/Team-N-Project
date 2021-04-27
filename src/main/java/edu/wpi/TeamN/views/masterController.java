@@ -54,12 +54,13 @@ public class masterController implements Initializable {
   public void advanceHome(FXMLLoader childLoader, Scene ChildAppPrimaryScene) throws IOException {
     //        Parent root = childLoader.load(getClass().getResourceAsStream("HomeView.fxml"));
     //        ChildAppPrimaryScene.setRoot(root);
+    System.out.println(db.getCurrentUser());
     switch (db.getCurrentUser().getType()) {
       case ADMINISTRATOR:
         advanceHomeAdmin(childLoader, ChildAppPrimaryScene);
         break;
       case EMPLOYEE:
-        advanceHome(childLoader, ChildAppPrimaryScene);
+        advanceHomeStaff(childLoader, ChildAppPrimaryScene);
         break;
       case PATIENT:
         advanceHomePatient(childLoader, ChildAppPrimaryScene);
