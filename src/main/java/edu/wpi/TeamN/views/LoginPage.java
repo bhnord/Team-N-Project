@@ -80,7 +80,7 @@ public class LoginPage extends masterController implements Initializable {
     login = Login.getLogin();
     login.setPassword(getPassword());
     login.setUsername(getUsername());
-    if(!login.getUsername().equals("")) {
+    if (!login.getUsername().equals("")) {
       super.advanceHome(loader, appPrimaryScene);
     } else {
       incorrectLogin.setText("INCORRECT USERNAME OR PASSWORD, TRY AGAIN");

@@ -43,8 +43,8 @@ public class RegisterNewUser extends masterController implements Initializable {
   private Label Patient;
   private Label Admin;
   @FXML private JFXTextField username;
-  @FXML private JFXTextField password;
-  @FXML private JFXTextField retypePassword;
+  @FXML private JFXPasswordField password;
+  @FXML private JFXPasswordField retypePassword;
   @FXML private Button helpButton;
   @FXML private StackPane myStackPane;
   @FXML private Button submit;

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import java.net.URL?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.effect.DropShadow?>
@@ -107,16 +109,16 @@
                   <Font name="Serif Regular" size="30.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="retypePassword" focusColor="#5b63e1" labelFloat="true" layoutX="187.0" layoutY="364.0" prefHeight="40.0" prefWidth="203.0" promptText="Retype Password" scaleShape="false" unFocusColor="WHITE">
+            <JFXPasswordField fx:id="retypePassword" focusColor="#5b63e1" labelFloat="true" layoutX="187.0" layoutY="364.0" prefHeight="40.0" prefWidth="203.0" promptText="Retype Password" scaleShape="false" unFocusColor="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
-            </JFXTextField>
-            <JFXTextField fx:id="password" focusColor="#5b63e1" labelFloat="true" layoutX="187.0" layoutY="299.0" prefHeight="40.0" prefWidth="203.0" promptText="Enter Password" scaleShape="false" unFocusColor="WHITE">
+            </JFXPasswordField>
+            <JFXPasswordField fx:id="password" focusColor="#5b63e1" labelFloat="true" layoutX="187.0" layoutY="299.0" prefHeight="40.0" prefWidth="203.0" promptText="Enter Password" scaleShape="false" unFocusColor="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
-            </JFXTextField>
+            </JFXPasswordField>
             <JFXTextField fx:id="username" focusColor="#5b63e1" labelFloat="true" layoutX="187.0" layoutY="239.0" prefHeight="40.0" prefWidth="203.0" promptText="Enter Username" scaleShape="false" unFocusColor="WHITE">
                <font>
                   <Font size="16.0" />
