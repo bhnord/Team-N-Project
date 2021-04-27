@@ -5,6 +5,8 @@ import com.jfoenix.controls.*;
 import com.jfoenix.validation.RequiredFieldValidator;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.database.DatabaseService;
+import edu.wpi.TeamN.services.database.requests.Request;
+import edu.wpi.TeamN.services.database.requests.RequestType;
 import edu.wpi.TeamN.services.database.users.User;
 import edu.wpi.TeamN.services.database.users.UserType;
 import edu.wpi.TeamN.state.HomeState;
@@ -183,6 +185,7 @@ public class ReligiousRequestsController extends masterController implements Ini
             @Override
             public void handle(ActionEvent event) {
               popup1.hide();
+              submitToDB();
 
               BoxBlur blur = new BoxBlur(7, 7, 7);
 
@@ -300,4 +303,19 @@ public class ReligiousRequestsController extends masterController implements Ini
     }
     new AutoCompleteComboBoxListener(roomDropdown);
   }
+
+  private void submitToDB() {
+    RequestType type = RequestType.RELIGIOUS;
+    int recieverID =
+            Integer.parseInt(txtEmployeeName.getSelectionModel().getSelectedItem().getId());
+    String roomNodeId = roomDropdown.getSelectionModel().getSelectedItem().getId();
+    String content =
+            "religious request: " + maintenanceRequest.getText();
+    String notes = txtComments.getText();
+    Request r = new Request(type, recieverID, roomNodeId, content, notes);
+    db.addRequest(r);
+  }
+
+
+
 }

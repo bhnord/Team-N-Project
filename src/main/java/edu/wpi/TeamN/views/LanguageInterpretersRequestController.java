@@ -187,6 +187,7 @@ public class LanguageInterpretersRequestController extends masterController
             @Override
             public void handle(ActionEvent event) {
               popup1.hide();
+              submitToDB();
 
               BoxBlur blur = new BoxBlur(7, 7, 7);
 

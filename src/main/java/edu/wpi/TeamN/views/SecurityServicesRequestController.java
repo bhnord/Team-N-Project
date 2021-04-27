@@ -5,6 +5,8 @@ import com.jfoenix.controls.*;
 import com.jfoenix.validation.RequiredFieldValidator;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.database.DatabaseService;
+import edu.wpi.TeamN.services.database.requests.Request;
+import edu.wpi.TeamN.services.database.requests.RequestType;
 import edu.wpi.TeamN.services.database.users.User;
 import edu.wpi.TeamN.services.database.users.UserType;
 import edu.wpi.TeamN.state.HomeState;
@@ -178,6 +180,7 @@ public class SecurityServicesRequestController extends masterController implemen
             @Override
             public void handle(ActionEvent event) {
               popup1.hide();
+              submitToDB();
 
               BoxBlur blur = new BoxBlur(7, 7, 7);
 
@@ -295,4 +298,18 @@ public class SecurityServicesRequestController extends masterController implemen
     }
     new AutoCompleteComboBoxListener(roomDropdown);
   }
+
+  private void submitToDB() {
+    RequestType type = RequestType.SECURITY;
+    int recieverID =
+            Integer.parseInt(txtEmployeeName.getSelectionModel().getSelectedItem().getId());
+    String roomNodeId = roomDropdown.getSelectionModel().getSelectedItem().getId();
+    String content =
+            "sanitation details: " + maintenanceRequest.getText();
+    String notes = txtComments.getText();
+    Request r = new Request(type, recieverID, roomNodeId, content, notes);
+    db.addRequest(r);
+  }
+
+
 }

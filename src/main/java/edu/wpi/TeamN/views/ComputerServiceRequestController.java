@@ -5,6 +5,8 @@ import com.jfoenix.controls.*;
 import com.jfoenix.validation.RequiredFieldValidator;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.database.DatabaseService;
+import edu.wpi.TeamN.services.database.requests.Request;
+import edu.wpi.TeamN.services.database.requests.RequestType;
 import edu.wpi.TeamN.services.database.users.User;
 import edu.wpi.TeamN.services.database.users.UserType;
 import edu.wpi.TeamN.state.HomeState;
@@ -177,6 +179,7 @@ public class ComputerServiceRequestController extends masterController implement
             @SneakyThrows
             @Override
             public void handle(ActionEvent event) {
+              submitToDB();
               popup1.hide();
 
               BoxBlur blur = new BoxBlur(7, 7, 7);
@@ -294,5 +297,16 @@ public class ComputerServiceRequestController extends masterController implement
       roomDropdown.getItems().add(lbl);
     }
     new AutoCompleteComboBoxListener(roomDropdown);
+  }
+
+  private void submitToDB() {
+    RequestType type = RequestType.COMPUTER_SERVICE;
+    int recieverID =
+        Integer.parseInt(txtEmployeeName.getSelectionModel().getSelectedItem().getId());
+    String roomNodeId = roomDropdown.getSelectionModel().getSelectedItem().getId();
+    String content = "Time of request: " + timePicker.getEditor().getText();
+    String notes = maintenanceRequest.getText() + " " + txtComments.getText();
+    Request r = new Request(type, recieverID, roomNodeId, content, notes);
+    db.addRequest(r);
   }
 }
