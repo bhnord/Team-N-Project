@@ -103,6 +103,19 @@ public class HomeControllerAdmin extends masterController implements Initializab
     appPrimaryScene.setRoot(root);
   }
 
+  public void pathFind(ActionEvent actionEvent) throws IOException {
+    Parent root = loader.load(getClass().getResourceAsStream("pathfinder.fxml"));
+    Screen screen = Screen.getPrimary();
+    Rectangle2D bounds = screen.getVisualBounds();
+
+    Stage stage = (Stage) appPrimaryScene.getWindow();
+    // stage.setX(bounds.getMinX());
+    // stage.setY(bounds.getMinY());
+    // stage.setWidth(bounds.getWidth());
+    // stage.setHeight(bounds.getHeight());
+    appPrimaryScene.setRoot(root);
+  }
+
   @FXML
   public void logOut() throws IOException {
     super.logOut(loader, appPrimaryScene);

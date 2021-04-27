@@ -110,7 +110,7 @@
                                 <Image url="@/images/IconHome.png" />
                             </image>
                         </ImageView>
-                        <JFXButton fx:id="HomeView" onAction="#advanceViews" prefHeight="64.0" prefWidth="66.0" text="Button" textFill="WHITE" GridPane.rowIndex="4">
+                        <JFXButton fx:id="HomeView" onAction="#advanceHome" prefHeight="64.0" prefWidth="66.0" text="Button" textFill="WHITE" GridPane.rowIndex="4">
                             <font>
                                 <Font name="System Bold" size="9.0" />
                             </font>
