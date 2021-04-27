@@ -1,5 +1,6 @@
 package edu.wpi.TeamN.services.database;
 
+import com.google.gson.Gson;
 import com.google.inject.Inject;
 import edu.wpi.TeamN.services.algo.Edge;
 import edu.wpi.TeamN.services.algo.Node;
@@ -16,14 +17,11 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class DatabaseService {
+  private final Connection connection;
   /*
    Database service class. This class will be loaded as a Singleton by Guice.
   */
   User currentUser;
-
-  private final Connection connection;
-  private Statement stmt;
-
   /*
    Database service class. This class will be loaded as a Singleton by Guice.
   */
@@ -31,6 +29,7 @@ public class DatabaseService {
   @Inject NodesTable nodesTable;
   @Inject EdgesTable edgesTable;
   @Inject RequestsTable requestsTable;
+  private Statement stmt;
 
   @Inject
   DatabaseService(Connection connection) {
@@ -301,8 +300,8 @@ public class DatabaseService {
    * @param type the type of the user to be added
    * @return whether or not the operation was carried out successfully
    */
-  public boolean addUser(String username, String password, UserType type) {
-    return usersTable.addUser(username, password, type);
+  public boolean addUser(String username, String password, UserType type, UserPrefs userPrefs) {
+    return usersTable.addUser(username, password, type, userPrefs);
   }
 
   /**
@@ -314,13 +313,19 @@ public class DatabaseService {
    * @param type
    * @return
    */
-  public boolean updateUser(int id, String username, String password, UserType type) {
-    return usersTable.updateUser(id, username, password, type);
+  public boolean updateUser(
+      int id, String username, String password, UserType type, UserPrefs userPrefs) {
+    return usersTable.updateUser(id, username, password, type, userPrefs);
+  }
+
+  public boolean updateUserPrefs(int id, UserPrefs userPrefs) {
+    return usersTable.updateUserPrefs(id, userPrefs);
   }
 
   public boolean updateUserUsernameType(int id, String username, UserType type) {
     return usersTable.updateUserUsernameType(id, username, type);
   }
+
   /**
    * retrieves a single user from the Database with matching ID
    *
@@ -386,34 +391,37 @@ public class DatabaseService {
   }
 
   /** initializes all tables in the database */
-  public void initTables() {
+  public boolean initTables() {
     try {
       String str =
           "CREATE TABLE Nodes( "
-              + "id varchar(25), "
+              + "id varchar(60), "
               + "xcoord DOUBLE NOT NULL, "
               + "ycoord DOUBLE NOT NULL, "
               + "floor varchar(25), "
-              + "building varchar(25), "
-              + "nodeType varchar(25), "
-              + "longName varchar(45), "
-              + "shortName varchar(35), "
+              + "building varchar(60), "
+              + "nodeType varchar(60), "
+              + "longName varchar(60), "
+              + "shortName varchar(60), "
               + "PRIMARY KEY (id))";
       stmt.execute(str);
       str =
           "CREATE TABLE Edges( "
-              + "id varchar(25), "
-              + "startNodeID varchar(25) REFERENCES Nodes (id) ON DELETE CASCADE, "
-              + "endNodeID varchar(25) REFERENCES Nodes (id) ON DELETE CASCADE, "
+              + "id varchar(60), "
+              + "startNodeID varchar(60) REFERENCES Nodes (id) ON DELETE CASCADE, "
+              + "endNodeID varchar(60) REFERENCES Nodes (id) ON DELETE CASCADE, "
               + "PRIMARY KEY (id))";
 
       stmt.execute(str);
       str =
           "CREATE TABLE Users("
               + "id INT NOT NULL GENERATED ALWAYS AS IDENTITY,"
+              + "firstName varchar(25),"
+              + "lastName varchar(30),"
               + "Username varchar(40) NOT NULL UNIQUE, "
               + "Password varchar(40) NOT NULL,"
               + "UserType varchar(15),"
+              + "Preferences varchar(300),"
               + "CONSTRAINT chk_UserType CHECK (UserType IN ('Patient', 'Employee', 'Administrator')),"
               + "PRIMARY KEY (id))";
       stmt.execute(str);
@@ -423,7 +431,7 @@ public class DatabaseService {
               + "Type varchar(35), "
               + "SenderID INT NOT NULL REFERENCES Users (id), "
               + "ReceiverID INT REFERENCES Users (id), "
-              + "Room varchar(25) NOT NULL REFERENCES Nodes (id),"
+              + "Room varchar(60) NOT NULL REFERENCES Nodes (id),"
               + "Content varchar(700), "
               + "Notes varchar(200), "
               + "CONSTRAINT chk_Type CHECK (Type IN "
@@ -432,8 +440,10 @@ public class DatabaseService {
               + "'SANITATION', 'SECURITY')),"
               + "PRIMARY KEY (id))";
       stmt.execute(str);
+      return true;
     } catch (SQLException e) {
       e.printStackTrace();
+      return false;
     }
   }
 
@@ -449,17 +459,19 @@ public class DatabaseService {
         "SELECT * FROM USERS WHERE username = '" + username + "' AND password = '" + password + "'";
     try {
       ResultSet rs = stmt.executeQuery(str);
-
+      Gson gson = new Gson();
       rs.next();
+      UserPrefs userPrefs = gson.fromJson(rs.getString("PREFERENCES"), UserPrefs.class);
       switch (rs.getString("USERTYPE")) {
         case "Patient":
-          currentUser = (new Patient(rs.getString("ID"), rs.getString("USERNAME")));
+          currentUser = (new Patient(rs.getString("ID"), rs.getString("USERNAME"), userPrefs));
           break;
         case "Employee":
-          currentUser = (new Employee(rs.getString("ID"), rs.getString("USERNAME")));
+          currentUser = (new Employee(rs.getString("ID"), rs.getString("USERNAME"), userPrefs));
           break;
         case "Administrator":
-          currentUser = (new Administrator(rs.getString("ID"), rs.getString("USERNAME")));
+          currentUser =
+              (new Administrator(rs.getString("ID"), rs.getString("USERNAME"), userPrefs));
           break;
       }
       return true;

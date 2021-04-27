@@ -6,7 +6,10 @@ import com.jfoenix.validation.RequiredFieldValidator;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.database.DatabaseService;
 import edu.wpi.TeamN.services.database.users.User;
+import edu.wpi.TeamN.services.database.users.UserPrefs;
+import edu.wpi.TeamN.services.database.users.UserType;
 import edu.wpi.TeamN.state.HomeState;
+import edu.wpi.TeamN.state.Login;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
@@ -40,9 +43,9 @@ public class RegisterNewUser extends masterController implements Initializable {
   private Label Employee;
   private Label Patient;
   private Label Admin;
-  @FXML private JFXTextField txtTimeOfRequest;
-  @FXML private JFXTextField txtEquipment;
-  @FXML private JFXTextField txtComments;
+  @FXML private JFXTextField username;
+  @FXML private JFXTextField password;
+  @FXML private JFXTextField retypePassword;
   @FXML private Button helpButton;
   @FXML private StackPane myStackPane;
   @FXML private Button submit;
@@ -50,7 +53,6 @@ public class RegisterNewUser extends masterController implements Initializable {
   private Scene appPrimaryScene;
   private HashMap<String, User> users;
   private HashMap<String, Node> rooms;
-  @FXML private JFXComboBox<String> txtEmployeeName = new JFXComboBox<>();
 
   @FXML private AnchorPane anchorPage;
 
@@ -73,27 +75,32 @@ public class RegisterNewUser extends masterController implements Initializable {
     log.debug(state.toString());
     // submit.setDisable(true);
 
-    txtEmployeeName.getItems().add("Patient");
-    txtEmployeeName.getItems().add("Employee");
-    txtEmployeeName.getItems().add("Admin");
-
     /** USERNAME input and password* */
     RequiredFieldValidator reqInputValid = new RequiredFieldValidator();
     reqInputValid.setMessage("Cannot be empty");
-    txtTimeOfRequest.getValidators().add(reqInputValid);
-    txtTimeOfRequest
+    username.getValidators().add(reqInputValid);
+    username
         .focusedProperty()
         .addListener(
             (o, oldVal, newVal) -> {
-              if (!newVal) txtTimeOfRequest.validate();
+              if (!newVal) username.validate();
             });
     reqInputValid.setMessage("Cannot be empty");
-    txtEquipment.getValidators().add(reqInputValid);
-    txtEquipment
+    password.getValidators().add(reqInputValid);
+    password
         .focusedProperty()
         .addListener(
             (o, oldVal, newVal) -> {
-              if (!newVal) txtEquipment.validate();
+              if (!newVal) password.validate();
+            });
+
+    reqInputValid.setMessage("Cannot be empty");
+    retypePassword.getValidators().add(reqInputValid);
+    retypePassword
+        .focusedProperty()
+        .addListener(
+            (o, oldVal, newVal) -> {
+              if (!newVal) retypePassword.validate();
             });
   }
 
@@ -108,17 +115,35 @@ public class RegisterNewUser extends masterController implements Initializable {
 
   @FXML
   public void advanceHome() throws IOException {
-    super.advanceHome(loader, appPrimaryScene);
+
+    Login login = Login.getLogin();
+
+    if (login.getUsername().equals("patient") && login.getPassword().equals("patient")) {
+      super.advanceHomePatient(loader, appPrimaryScene);
+    } else if (login.getUsername().equals("employee") && login.getPassword().equals("employee")) {
+      super.advanceHome(loader, appPrimaryScene);
+    } else if (login.getUsername().equals("admin") && login.getPassword().equals("admin")) {
+      super.advanceHomeAdmin(loader, appPrimaryScene);
+    }
   }
 
   @FXML
   public void back() throws IOException {
-    super.advanceServiceRequest(loader, appPrimaryScene);
+
+    Login login = Login.getLogin();
+
+    if (login.getUsername().equals("patient") && login.getPassword().equals("patient")) {
+      super.advanceHomePatient(loader, appPrimaryScene);
+    } else if (login.getUsername().equals("employee") && login.getPassword().equals("employee")) {
+      super.advanceHome(loader, appPrimaryScene);
+    } else if (login.getUsername().equals("admin") && login.getPassword().equals("admin")) {
+      super.advanceHomeAdmin(loader, appPrimaryScene);
+    }
   }
 
   public void Submit(ActionEvent actionEvent) throws IOException, InterruptedException {
 
-    if (!(txtEquipment.getText().equals(txtComments.getText()))) {
+    if (!(password.getText().equals(retypePassword.getText()))) {
       String title = "Invalid Entry";
       JFXDialogLayout dialogContent = new JFXDialogLayout();
       dialogContent.setHeading(new Text(title));
@@ -141,9 +166,33 @@ public class RegisterNewUser extends masterController implements Initializable {
           });
       helpButton.setDisable(true);
       dialog.show();
-    } else if (txtEmployeeName.getValue() == null
-        || txtTimeOfRequest.getText().isEmpty()
-        || txtEquipment.getText().isEmpty()) {
+    } else if (!(db.addUser(
+        username.getText(), password.getText(), UserType.PATIENT, new UserPrefs()))) {
+      String title = "Invalid User Login";
+      JFXDialogLayout dialogContent = new JFXDialogLayout();
+      dialogContent.setHeading(new Text(title));
+      dialogContent.setBody((new Text("* Username already exists. Choose different username.\n")));
+      JFXButton close = new JFXButton("close");
+      close.setButtonType(JFXButton.ButtonType.RAISED);
+      close.setStyle("-fx-background-color : #00bfff;");
+      dialogContent.setActions(close);
+
+      JFXDialog dialog =
+          new JFXDialog(myStackPane, dialogContent, JFXDialog.DialogTransition.BOTTOM);
+      actionEvent.consume();
+      close.setOnAction(
+          new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+              dialog.close();
+              helpButton.setDisable(false);
+            }
+          });
+      helpButton.setDisable(true);
+      dialog.show();
+    } else if (username.getText().isEmpty()
+        || password.getText().isEmpty()
+        || retypePassword.getText().isEmpty()) {
       String title = "Missing Fields";
       JFXDialogLayout dialogContent = new JFXDialogLayout();
       dialogContent.setHeading(new Text(title));
@@ -237,7 +286,7 @@ public class RegisterNewUser extends masterController implements Initializable {
                     @Override
                     public void handle(ActionEvent event) {
                       anchorPage.setEffect(null);
-                      txtEmployeeName.setEffect(null);
+                      // txtEmployeeName.setEffect(null);
                       popup1.hide();
                       logOut();
                       submit.setDisable(false);
@@ -245,11 +294,9 @@ public class RegisterNewUser extends masterController implements Initializable {
                   });
               submit.setDisable(true);
               anchorPage.setEffect(blur);
-              txtEmployeeName.setEffect(blur);
+              //   txtEmployeeName.setEffect(blur);
               popup1.show(
-                  confirmationStackPane,
-                  JFXPopup.PopupVPosition.BOTTOM,
-                  JFXPopup.PopupHPosition.LEFT);
+                  myStackPane, JFXPopup.PopupVPosition.BOTTOM, JFXPopup.PopupHPosition.LEFT);
               submit.setDisable(false);
             }
           });

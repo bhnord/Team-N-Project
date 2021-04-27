@@ -154,7 +154,7 @@
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     </rowConstraints>
                                     <children>
-                                        <JFXButton fx:id="RegisterNewUser" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#register" prefHeight="31.0" prefWidth="80.0" text="Register" GridPane.columnIndex="1" />
+                                        <JFXButton fx:id="RegisterNewUser" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#register" prefHeight="31.0" prefWidth="80.0" text="Register" textFill="WHITE" GridPane.columnIndex="1" />
                                     </children>
                                 </GridPane>
                                 <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.rowIndex="2" />

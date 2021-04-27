@@ -37,6 +37,7 @@ public class LoginPage extends masterController implements Initializable {
   public void initialize(URL url, ResourceBundle rb) {
     /** Locking submit button to start* */
     goToHomePage.setDisable(true);
+    goToHomePage.setDefaultButton(true);
 
     /** USERNAME input and password* */
     RequiredFieldValidator reqInputValid = new RequiredFieldValidator();
@@ -76,7 +77,7 @@ public class LoginPage extends masterController implements Initializable {
   @FXML
   private void continueToHomePage() throws IOException {
 
-    login = Login.getLogin();
+    /*    login = Login.getLogin();
     login.setPassword(getPassword());
     login.setUsername(getUsername());
     if(!login.getUsername().equals("")) {
@@ -84,8 +85,8 @@ public class LoginPage extends masterController implements Initializable {
     } else {
       incorrectLogin.setText("INCORRECT USERNAME OR PASSWORD, TRY AGAIN");
       incorrectLogin.setAlignment(Pos.CENTER);
-    }
-    /*    if (db.login(getUsername(), getPassword())) {
+    }*/
+    if (db.login(getUsername(), getPassword())) {
       switch (db.getCurrentUser().getType()) {
         case ADMINISTRATOR:
           super.advanceHomeAdmin(loader, appPrimaryScene);
@@ -103,7 +104,7 @@ public class LoginPage extends masterController implements Initializable {
     } else {
       incorrectLogin.setText("INCORRECT USERNAME OR PASSWORD, TRY AGAIN");
       incorrectLogin.setAlignment(Pos.CENTER);
-    }*/
+    }
   }
 
   @FXML

@@ -37,7 +37,7 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class MapController extends masterController implements Initializable {
+public class MapController extends masterController implements Initializable, mapControllerI {
   @FXML private JFXColorPicker colorPicker;
   @Inject FXMLLoader loader;
   @Inject HomeState state;
@@ -107,16 +107,17 @@ public class MapController extends masterController implements Initializable {
   @FXML
   public void advanceHome() throws IOException {
 
-    /*
-    super.advanceHome(loader, appPrimaryScene);
-    Stage stage = (Stage) appPrimaryScene.getWindow();
-      // stage.setHeight(800);
-      // stage.setWidth(1366);
-    stage.centerOnScreen();*/
-
     Login login = Login.getLogin();
 
-    super.advanceHome(loader, appPrimaryScene);
+    if (login.getUsername().equals("patient") && login.getPassword().equals("patient")) {
+      super.advanceHomePatient(loader, appPrimaryScene);
+    } else if (login.getUsername().equals("employee") && login.getPassword().equals("employee")) {
+      super.advanceHome(loader, appPrimaryScene);
+    } else if (login.getUsername().equals("admin") && login.getPassword().equals("admin")) {
+      super.advanceHomeAdmin(loader, appPrimaryScene);
+    } else if (login.getUsername().equals("guest") && login.getPassword().equals("guest")) {
+      super.advanceHomeGuest(loader, appPrimaryScene);
+    }
   }
 
   /**
@@ -225,7 +226,7 @@ public class MapController extends masterController implements Initializable {
   }
 
   public void PathFind(ActionEvent actionEvent) {
-    mapDrawing.resetColors();
+    mapDrawing.resetColors(adminMap.getNodeSet());
     mapDrawing.colorPath(colorPicker.getValue(), adminMap.pathfind());
   }
 

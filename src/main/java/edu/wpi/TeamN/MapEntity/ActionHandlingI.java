@@ -10,4 +10,8 @@ public interface ActionHandlingI {
   public void setNodeStartLink(Group node);
 
   public void setNodeEndLink(Group node);
+
+  public void addNodeToPath(Group node);
+
+  public void removeNodeToPath(Group node);
 }
