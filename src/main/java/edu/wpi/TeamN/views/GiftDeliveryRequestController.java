@@ -5,6 +5,8 @@ import com.jfoenix.controls.*;
 import com.jfoenix.validation.RequiredFieldValidator;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.database.DatabaseService;
+import edu.wpi.TeamN.services.database.requests.Request;
+import edu.wpi.TeamN.services.database.requests.RequestType;
 import edu.wpi.TeamN.services.database.users.User;
 import edu.wpi.TeamN.services.database.users.UserType;
 import edu.wpi.TeamN.state.HomeState;
@@ -56,7 +58,7 @@ public class GiftDeliveryRequestController extends masterController implements I
   @FXML private JFXComboBox<Label> txtEmployeeName = new JFXComboBox<>();
   @FXML private JFXComboBox<Label> roomDropdown = new JFXComboBox<>();
   @FXML private JFXTimePicker timePicker;
-  @FXML private JFXTextField maintenanceRequest;
+  @FXML private JFXTextField giftType;
 
   // @FXML private AnchorPane anchorPage;
   static Stage stage;
@@ -88,6 +90,16 @@ public class GiftDeliveryRequestController extends masterController implements I
               if (!newVal) txtEmployeeName.validate();
             });
 
+    reqInputValid.setMessage("Cannot be empty");
+    giftType.getValidators().add(reqInputValid);
+    giftType
+            .focusedProperty()
+            .addListener(
+                    (o, oldVal, newVal) -> {
+                      if (!newVal) giftType.validate();
+                    });
+
+
     loadEmployeeDropdown();
     loadRoomDropdown();
   }
@@ -115,7 +127,7 @@ public class GiftDeliveryRequestController extends masterController implements I
   public void submit(ActionEvent actionEvent) throws IOException {
 
     if (timePicker.getEditor().getText().isEmpty()
-        || maintenanceRequest.getText().isEmpty()
+        || giftType.getText().isEmpty()
         || txtEmployeeName.getEditor().getText().isEmpty()
         || roomDropdown.getEditor().getText().isEmpty()) {
       String title = "Missing Fields";
@@ -299,5 +311,16 @@ public class GiftDeliveryRequestController extends masterController implements I
       roomDropdown.getItems().add(lbl);
     }
     new AutoCompleteComboBoxListener(roomDropdown);
+  }
+
+  private void submitToDB() {
+    RequestType type = RequestType.FLORAL;
+    int recieverID =
+            Integer.parseInt(txtEmployeeName.getSelectionModel().getSelectedItem().getId());
+    String roomNodeId = roomDropdown.getSelectionModel().getSelectedItem().getId();
+    String content = "Time of request: " + timePicker.getEditor().getText();
+    String notes = "gift type: " + giftType.getText() + " comments: " + txtComments.getText();
+    Request r = new Request(type, recieverID, roomNodeId, content, notes);
+    db.addRequest(r);
   }
 }

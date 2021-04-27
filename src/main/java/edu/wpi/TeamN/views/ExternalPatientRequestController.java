@@ -182,6 +182,7 @@ public class ExternalPatientRequestController extends masterController implement
             @Override
             public void handle(ActionEvent event) {
               popup1.hide();
+              submitToDatabase();
 
               BoxBlur blur = new BoxBlur(7, 7, 7);
 
