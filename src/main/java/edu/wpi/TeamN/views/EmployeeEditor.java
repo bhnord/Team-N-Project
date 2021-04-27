@@ -6,6 +6,7 @@ import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
 import edu.wpi.TeamN.services.database.DatabaseService;
 import edu.wpi.TeamN.services.database.users.User;
+import edu.wpi.TeamN.services.database.users.UserPrefs;
 import edu.wpi.TeamN.services.database.users.UserType;
 import edu.wpi.TeamN.state.HomeState;
 import java.io.IOException;
@@ -16,7 +17,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -98,7 +98,7 @@ public class EmployeeEditor extends masterController implements Initializable {
 
   @FXML
   public void advanceHome() throws IOException {
-    super.advanceHomeAdmin(loader, appPrimaryScene);
+    super.advanceHome(loader, appPrimaryScene);
   }
 
   public void commitChanges(ActionEvent actionEvent) {
@@ -118,10 +118,11 @@ public class EmployeeEditor extends masterController implements Initializable {
         if (!db.updateUserUsernameType(Integer.parseInt(selectedUser.getId()), username, type)) {
           messageLabel.setText("Invalid inputs");
         }
-      } else if (!db.updateUser(Integer.parseInt(selectedUser.getId()), username, password, type)) {
+      } else if (!db.updateUser(
+          Integer.parseInt(selectedUser.getId()), username, password, type, new UserPrefs())) {
         messageLabel.setText("Invalid inputs");
       }
-    } else if (db.addUser(username, password, type)) {
+    } else if (db.addUser(username, password, type, new UserPrefs())) {
       updateSelectedLabel(db.getUserByUsername(username));
     } else {
       messageLabel.setText("Invalid inputs");
@@ -190,8 +191,6 @@ public class EmployeeEditor extends masterController implements Initializable {
   }
 
   public void advanceViews(ActionEvent actionEvent) throws IOException {
-    String file = ((Button) actionEvent.getSource()).getId() + ".fxml";
-    Parent root = loader.load(getClass().getResourceAsStream(file));
-    appPrimaryScene.setRoot(root);
+    super.advanceViews(actionEvent);
   }
 }

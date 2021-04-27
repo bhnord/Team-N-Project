@@ -3,6 +3,7 @@ package edu.wpi.TeamN;
 import com.google.inject.*;
 import edu.wpi.TeamN.services.database.DatabaseService;
 import edu.wpi.TeamN.services.database.DatabaseServiceProvider;
+import edu.wpi.TeamN.services.database.users.UserPrefs;
 import edu.wpi.TeamN.services.database.users.UserType;
 import edu.wpi.TeamN.state.HomeStateProvider;
 import edu.wpi.TeamN.views.FXMLLoaderProvider;
@@ -44,12 +45,21 @@ public class App extends Application {
               }
             });
     DatabaseService db = injector.getInstance(DatabaseService.class);
-    // db.initTables();
+    if (db.initTables()) {
+      db.loadCSVtoTable("src/main/resources/MapCSV/bwNnodes.csv", "NODES");
+      db.loadCSVtoTable("src/main/resources/MapCSV/bwNedges.csv", "EDGES");
+    }
     loader = new FXMLLoader();
     loader.setControllerFactory(injector::getInstance);
-    if (db.getUserByUsername("admin") == null) db.addUser("admin", "admin", UserType.ADMINISTRATOR);
-    if (db.getUserByUsername("staff") == null) db.addUser("staff", "staff", UserType.EMPLOYEE);
-    if (db.getUserByUsername("guest") == null) db.addUser("guest", "guest", UserType.PATIENT);
+
+    if (db.getUserByUsername("admin") == null)
+      db.addUser("admin", "admin", UserType.ADMINISTRATOR, new UserPrefs());
+    if (db.getUserByUsername("staff") == null)
+      db.addUser("staff", "staff", UserType.EMPLOYEE, new UserPrefs());
+    if (db.getUserByUsername("patient") == null)
+      db.addUser("patient", "patient", UserType.PATIENT, new UserPrefs());
+    if (db.getUserByUsername("guest") == null)
+      db.addUser("guest", "guest", UserType.PATIENT, new UserPrefs());
   }
 
   @Override

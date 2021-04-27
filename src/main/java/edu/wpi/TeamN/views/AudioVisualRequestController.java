@@ -5,10 +5,11 @@ import com.jfoenix.controls.*;
 import com.jfoenix.validation.RequiredFieldValidator;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.database.DatabaseService;
+import edu.wpi.TeamN.services.database.requests.Request;
+import edu.wpi.TeamN.services.database.requests.RequestType;
 import edu.wpi.TeamN.services.database.users.User;
 import edu.wpi.TeamN.services.database.users.UserType;
 import edu.wpi.TeamN.state.HomeState;
-import edu.wpi.TeamN.state.Login;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
@@ -104,32 +105,12 @@ public class AudioVisualRequestController extends masterController implements In
 
   @FXML
   public void advanceHome() throws IOException {
-
-    Login login = Login.getLogin();
-
-    if (login.getUsername().equals("patient") && login.getPassword().equals("patient")) {
-      super.advanceHomePatient(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("staff") && login.getPassword().equals("staff")) {
-      super.advanceHome(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("admin") && login.getPassword().equals("admin")) {
-      super.advanceHomeAdmin(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("guest") && login.getPassword().equals("guest")) {
-      super.advanceHomeGuest(loader, appPrimaryScene);
-    }
+    super.advanceHome(loader, appPrimaryScene);
   }
 
   @FXML
   public void back() throws IOException {
-
-    Login login = Login.getLogin();
-
-    if (login.getUsername().equals("patient") && login.getPassword().equals("patient")) {
-      super.advanceServiceRequestPatient(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("staff") && login.getPassword().equals("staff")) {
-      super.advanceServiceRequestEmployee(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("admin") && login.getPassword().equals("admin")) {
-      super.advanceServiceRequestAdmin(loader, appPrimaryScene);
-    }
+    super.advanceServiceRequest(loader, appPrimaryScene);
   }
 
   public void submit(ActionEvent actionEvent) throws IOException {
@@ -202,6 +183,7 @@ public class AudioVisualRequestController extends masterController implements In
             @SneakyThrows
             @Override
             public void handle(ActionEvent event) {
+              submitToDB();
               popup1.hide();
 
               BoxBlur blur = new BoxBlur(7, 7, 7);
@@ -319,5 +301,16 @@ public class AudioVisualRequestController extends masterController implements In
       roomDropdown.getItems().add(lbl);
     }
     new AutoCompleteComboBoxListener(roomDropdown);
+  }
+
+  private void submitToDB() {
+    RequestType type = RequestType.AUDIO_VISUAL;
+    int recieverID =
+        Integer.parseInt(txtEmployeeName.getSelectionModel().getSelectedItem().getId());
+    String roomNodeId = roomDropdown.getSelectionModel().getSelectedItem().getId();
+    String content = "Time of request: " + timePicker.getEditor().getText();
+    String notes = txtComments.getText();
+    Request r = new Request(type, recieverID, roomNodeId, content, notes);
+    db.addRequest(r);
   }
 }

@@ -5,10 +5,11 @@ import com.jfoenix.controls.*;
 import com.jfoenix.validation.RequiredFieldValidator;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.database.DatabaseService;
+import edu.wpi.TeamN.services.database.requests.Request;
+import edu.wpi.TeamN.services.database.requests.RequestType;
 import edu.wpi.TeamN.services.database.users.User;
 import edu.wpi.TeamN.services.database.users.UserType;
 import edu.wpi.TeamN.state.HomeState;
-import edu.wpi.TeamN.state.Login;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
@@ -34,6 +35,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ComputerServiceRequestController extends masterController implements Initializable {
 
+  // @FXML private AnchorPane anchorPage;
+  static Stage stage;
   @Inject DatabaseService db;
   @Inject FXMLLoader loader;
   @Inject HomeState state;
@@ -48,19 +51,13 @@ public class ComputerServiceRequestController extends masterController implement
   @FXML private Button submit;
   private HashMap<String, User> users;
   private HashMap<String, Node> rooms;
-
   @FXML private AnchorPane anchorPage;
-
   @FXML private StackPane confirmationStackPane;
-
   // @FXML private JFXButton submitButton;
   @FXML private JFXComboBox<Label> txtEmployeeName = new JFXComboBox<>();
   @FXML private JFXComboBox<Label> roomDropdown = new JFXComboBox<>();
   @FXML private JFXTimePicker timePicker;
   @FXML private JFXTextField maintenanceRequest;
-
-  // @FXML private AnchorPane anchorPage;
-  static Stage stage;
 
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
@@ -104,32 +101,12 @@ public class ComputerServiceRequestController extends masterController implement
 
   @FXML
   public void advanceHome() throws IOException {
-
-    Login login = Login.getLogin();
-
-    if (login.getUsername().equals("patient") && login.getPassword().equals("patient")) {
-      super.advanceHomePatient(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("staff") && login.getPassword().equals("staff")) {
-      super.advanceHome(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("admin") && login.getPassword().equals("admin")) {
-      super.advanceHomeAdmin(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("guest") && login.getPassword().equals("guest")) {
-      super.advanceHomeGuest(loader, appPrimaryScene);
-    }
+    super.advanceHome(loader, appPrimaryScene);
   }
 
   @FXML
   public void back() throws IOException {
-
-    Login login = Login.getLogin();
-
-    if (login.getUsername().equals("patient") && login.getPassword().equals("patient")) {
-      super.advanceServiceRequestPatient(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("staff") && login.getPassword().equals("staff")) {
-      super.advanceServiceRequestEmployee(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("admin") && login.getPassword().equals("admin")) {
-      super.advanceServiceRequestAdmin(loader, appPrimaryScene);
-    }
+    super.advanceServiceRequest(loader, appPrimaryScene);
   }
 
   public void submit(ActionEvent actionEvent) throws IOException {
@@ -202,6 +179,7 @@ public class ComputerServiceRequestController extends masterController implement
             @SneakyThrows
             @Override
             public void handle(ActionEvent event) {
+              submitToDB();
               popup1.hide();
 
               BoxBlur blur = new BoxBlur(7, 7, 7);
@@ -319,5 +297,16 @@ public class ComputerServiceRequestController extends masterController implement
       roomDropdown.getItems().add(lbl);
     }
     new AutoCompleteComboBoxListener(roomDropdown);
+  }
+
+  private void submitToDB() {
+    RequestType type = RequestType.COMPUTER_SERVICE;
+    int recieverID =
+        Integer.parseInt(txtEmployeeName.getSelectionModel().getSelectedItem().getId());
+    String roomNodeId = roomDropdown.getSelectionModel().getSelectedItem().getId();
+    String content = "Time of request: " + timePicker.getEditor().getText();
+    String notes = maintenanceRequest.getText() + " " + txtComments.getText();
+    Request r = new Request(type, recieverID, roomNodeId, content, notes);
+    db.addRequest(r);
   }
 }

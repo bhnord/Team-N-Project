@@ -1,8 +1,9 @@
 package edu.wpi.TeamN.MapEntity;
 
 import edu.wpi.TeamN.services.algo.Node;
-import edu.wpi.TeamN.views.MapController;
+import edu.wpi.TeamN.views.mapControllerI;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Objects;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
@@ -11,12 +12,12 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 
 public class MapDrawing {
-  private final MapController mapController;
+  private final mapControllerI mapController;
   private final String[] maps = {"L1", "L2", "g", "F1", "F2", "F3"};
   private String currentMap;
 
-  public MapDrawing(MapController mapController) {
-    this.mapController = mapController;
+  public MapDrawing(mapControllerI mapControllerI) {
+    this.mapController = mapControllerI;
     currentMap = maps[0];
   }
 
@@ -34,19 +35,20 @@ public class MapDrawing {
     return root;
   }
 
-  public Group drawNode(String id, double x, double y) {
+  public Group drawNode(String id, double x, double y, Color color) {
     Circle simpleNode = new Circle(x, y, 4);
     simpleNode.setTranslateZ(10);
-    simpleNode.setFill(Color.BLUE);
+    simpleNode.setFill(color);
     Group root = new Group(simpleNode);
     root.setId(id);
     return root;
   }
 
-  public void resetColors() {
-    for (Node n : mapController.getAdminMap().getNodeSet().values()) {
+  public void resetColors(HashMap<String, Node> nodeSet) {
+    for (Node n : nodeSet.values()) {
       for (Node.Link l : n.get_neighbors()) {
         l._shape.setStroke(Color.BLACK);
+        l._shape.getParent().setVisible(false);
       }
     }
   }
@@ -55,6 +57,7 @@ public class MapDrawing {
     for (Node.Link c2 : ret) {
       Line simpleNode = c2._shape;
       simpleNode.setStroke(color);
+      simpleNode.getParent().setVisible(true);
     }
   }
 

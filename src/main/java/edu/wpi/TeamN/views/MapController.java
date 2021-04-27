@@ -8,7 +8,6 @@ import edu.wpi.TeamN.services.algo.Edge;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.database.DatabaseService;
 import edu.wpi.TeamN.state.HomeState;
-import edu.wpi.TeamN.state.Login;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -37,8 +36,15 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class MapController extends masterController implements Initializable {
-  @FXML private JFXColorPicker colorPicker;
+public class MapController extends masterController implements Initializable, mapControllerI {
+  @FXML private JFXColorPicker nodeColor;
+  @FXML private JFXColorPicker exitColor;
+  @FXML private JFXColorPicker elevatorColor;
+  @FXML private JFXColorPicker stairsColor;
+  @FXML private JFXColorPicker pathColor;
+  @FXML private JFXColorPicker selectedNodeColor;
+  @FXML private JFXTextField nodeSize;
+  @FXML private JFXTextField pathSize;
   @Inject FXMLLoader loader;
   @Inject HomeState state;
   @Inject DatabaseService db;
@@ -94,7 +100,15 @@ public class MapController extends masterController implements Initializable {
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     log.debug(state.toString());
-    colorPicker.setValue(Color.BLUE);
+    nodeColor.setValue(Color.BLUE);
+    exitColor.setValue(Color.RED);
+    elevatorColor.setValue(Color.GRAY);
+    stairsColor.setValue(Color.TEAL);
+    pathColor.setValue(Color.BLACK);
+    selectedNodeColor.setValue(Color.GREEN);
+    nodeSize.setText("3.5");
+    pathSize.setText("2.5");
+
     adminMap = new AdminMap(db);
     mapNodeEditor = new MapNodeEditor(this);
     mapEdgeEditor = new MapEdgeEditor(this);
@@ -106,18 +120,7 @@ public class MapController extends masterController implements Initializable {
 
   @FXML
   public void advanceHome() throws IOException {
-
-    Login login = Login.getLogin();
-
-    if (login.getUsername().equals("patient") && login.getPassword().equals("patient")) {
-      super.advanceHomePatient(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("employee") && login.getPassword().equals("employee")) {
-      super.advanceHome(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("admin") && login.getPassword().equals("admin")) {
-      super.advanceHomeAdmin(loader, appPrimaryScene);
-    } else if (login.getUsername().equals("guest") && login.getPassword().equals("guest")) {
-      super.advanceHomeGuest(loader, appPrimaryScene);
-    }
+    super.advanceHome(loader, appPrimaryScene);
   }
 
   /**
@@ -163,7 +166,7 @@ public class MapController extends masterController implements Initializable {
   }
 
   private void placeNode(String id, double x, double y) {
-    Group root = mapDrawing.drawNode(id, x, y);
+    Group root = mapDrawing.drawNode(id, x, y, pathColor.getValue());
     actionHandling.setNodeInfo(root);
     actionHandling.setNodeStartLink(root);
     actionHandling.setNodeEndLink(root);
@@ -222,12 +225,12 @@ public class MapController extends masterController implements Initializable {
   }
 
   public void newColor(ActionEvent actionEvent) {
-    mapDrawing.colorPath(colorPicker.getValue(), path);
+    mapDrawing.colorPath(Color.BLACK, path);
   }
 
   public void PathFind(ActionEvent actionEvent) {
-    mapDrawing.resetColors();
-    mapDrawing.colorPath(colorPicker.getValue(), adminMap.pathfind());
+    mapDrawing.resetColors(adminMap.getNodeSet());
+    mapDrawing.colorPath(pathColor.getValue(), adminMap.pathfind());
   }
 
   private void DeleteNodesFromMap() throws IOException {
@@ -436,6 +439,70 @@ public class MapController extends masterController implements Initializable {
 
   public void setMapImageView(ImageView mapImageView) {
     this.mapImageView = mapImageView;
+  }
+
+  public JFXColorPicker getNodeColor() {
+    return nodeColor;
+  }
+
+  public void setNodeColor(JFXColorPicker nodeColor) {
+    this.nodeColor = nodeColor;
+  }
+
+  public JFXColorPicker getExitColor() {
+    return exitColor;
+  }
+
+  public void setExitColor(JFXColorPicker exitColor) {
+    this.exitColor = exitColor;
+  }
+
+  public JFXColorPicker getElevatorColor() {
+    return elevatorColor;
+  }
+
+  public void setElevatorColor(JFXColorPicker elevatorColor) {
+    this.elevatorColor = elevatorColor;
+  }
+
+  public JFXColorPicker getStairsColor() {
+    return stairsColor;
+  }
+
+  public void setStairsColor(JFXColorPicker stairsColor) {
+    this.stairsColor = stairsColor;
+  }
+
+  public JFXColorPicker getPathColor() {
+    return pathColor;
+  }
+
+  public void setPathColor(JFXColorPicker pathColor) {
+    this.pathColor = pathColor;
+  }
+
+  public JFXColorPicker getSelectedNodeColor() {
+    return selectedNodeColor;
+  }
+
+  public void setSelectedNodeColor(JFXColorPicker selectedNodeColor) {
+    this.selectedNodeColor = selectedNodeColor;
+  }
+
+  public JFXTextField getNodeSize() {
+    return nodeSize;
+  }
+
+  public void setNodeSize(JFXTextField nodeSize) {
+    this.nodeSize = nodeSize;
+  }
+
+  public JFXTextField getPathSize() {
+    return pathSize;
+  }
+
+  public void setPathSize(JFXTextField pathSize) {
+    this.pathSize = pathSize;
   }
 
   public void setMap(ActionEvent actionEvent) {
