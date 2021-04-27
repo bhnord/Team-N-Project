@@ -55,8 +55,8 @@ public class MapDrawing {
   public void colorPath(Color color, ArrayList<Node.Link> ret) {
     for (Node.Link c2 : ret) {
       Line simpleNode = c2._shape;
-      simpleNode.setVisible(true);
       simpleNode.setStroke(color);
+      simpleNode.setVisible(true);
     }
   }
 
