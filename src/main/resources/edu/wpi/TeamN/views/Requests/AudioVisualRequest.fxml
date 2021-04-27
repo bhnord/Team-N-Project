@@ -166,7 +166,7 @@
                                 <Image url="@/images/LogOut.png" />
                             </image>
                         </ImageView>
-                        <JFXButton fx:id="logOutButton1" onAction="#logOut" prefHeight="64.0" prefWidth="66.0" text="  " textFill="WHITE" GridPane.rowIndex="2">
+                        <JFXButton fx:id="logOutButton1" onAction="#logOut" prefHeight="64.0" prefWidth="66.0" text="   " textFill="WHITE" GridPane.rowIndex="2">
                             <font>
                                 <Font name="System Bold" size="9.0" />
                             </font>
@@ -183,7 +183,12 @@
                                 <Image url="@/images/BWHLogo.png" />
                             </image>
                         </ImageView>
-                        <JFXButton fx:id="BackButton" onAction="#back" prefHeight="71.0" prefWidth="66.0" text="Back" textFill="WHITE" GridPane.rowIndex="3">
+                        <ImageView fitHeight="61.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                            <image>
+                                <Image url="@/images/ButtonB.png" />
+                            </image>
+                        </ImageView>
+                        <JFXButton fx:id="BackButton" onAction="#back" prefHeight="71.0" prefWidth="66.0" text="   " textFill="WHITE" GridPane.rowIndex="3">
                             <font>
                                 <Font name="System Bold" size="9.0" />
                             </font>
@@ -196,12 +201,12 @@
                             </tooltip>
                         </JFXButton>
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="69.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" GridPane.rowIndex="4" />
-                        <ImageView fitHeight="50.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="4">
+                        <ImageView fitHeight="50.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="4">
                             <image>
                                 <Image url="@/images/IconHome.png" />
                             </image>
                         </ImageView>
-                        <JFXButton fx:id="HomeView2" onAction="#advanceHome" prefHeight="71.0" prefWidth="66.0" text="  " textFill="WHITE" GridPane.rowIndex="4">
+                        <JFXButton fx:id="HomeView2" onAction="#advanceHome" prefHeight="71.0" prefWidth="66.0" text="   " textFill="WHITE" GridPane.rowIndex="4">
                             <font>
                                 <Font name="System Bold" size="9.0" />
                             </font>
