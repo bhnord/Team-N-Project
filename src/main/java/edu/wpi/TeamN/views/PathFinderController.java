@@ -22,6 +22,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Line;
 
 import java.io.IOException;
 import java.net.URL;
@@ -111,7 +112,7 @@ public class PathFinderController extends masterController
           public void handle(MouseEvent event) {
             if (event.getButton() == MouseButton.PRIMARY && !nodePath.contains(id))
               nodePath.add(id);
-            else if (event.getButton() == MouseButton.SECONDARY && !nodePath.contains(id))
+            else if (event.getButton() == MouseButton.SECONDARY && nodePath.contains(id))
               nodePath.remove(id);
             updatePath();
           }
@@ -124,8 +125,8 @@ public class PathFinderController extends masterController
     Group root = mapDrawing.drawLine(id, node1, node2);
     root.setId(id);
     mapAnchor.getChildren().add(root);
+    pathFinderMap.makeEdge(id, node1, node2, (Line) root.getChildren().get(0));
     root.setCursor(Cursor.CROSSHAIR);
-    root.setVisible(false);
   }
 
   private double getUpScale() {
@@ -133,11 +134,9 @@ public class PathFinderController extends masterController
   }
 
   public void PathFind(ActionEvent actionEvent) {
+    mapDrawing.resetColors(pathFinderMap.getNodeSet());
     for (int i = 0; nodePath.size() - 1 > i; i++) {
-      mapDrawing.resetColors(pathFinderMap.getNodeSet());
-      System.out.println(nodePath.get(i) + ":    :" + nodePath.get(i + 1) + ":");
       ArrayList<Node.Link> path = pathFinderMap.pathfind(nodePath.get(i), nodePath.get(i + 1));
-      System.out.println(path);
       mapDrawing.colorPath(colorPicker.getValue(), path);
     }
   }
