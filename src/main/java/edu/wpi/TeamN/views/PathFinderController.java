@@ -6,13 +6,11 @@ import com.jfoenix.controls.JFXTextField;
 import edu.wpi.TeamN.MapEntity.ActionHandlingI;
 import edu.wpi.TeamN.MapEntity.MapDrawing;
 import edu.wpi.TeamN.MapEntity.PathFinderMap;
+import edu.wpi.TeamN.services.algo.Edge;
 import edu.wpi.TeamN.services.algo.Node;
+import edu.wpi.TeamN.services.algo.PathFinder;
 import edu.wpi.TeamN.services.database.DatabaseService;
 import edu.wpi.TeamN.state.HomeState;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -32,6 +30,11 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Shape;
 
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+
 public class PathFinderController extends masterController
     implements Initializable, mapControllerI {
   @Inject FXMLLoader loader;
@@ -43,6 +46,7 @@ public class PathFinderController extends masterController
   private MapDrawing mapDrawing;
   private ActionHandlingI actionHandling;
   ArrayList<String> path = new ArrayList<String>();
+  ArrayList<Node.Link> nodePath = new ArrayList<Node.Link>();
 
   @FXML private AnchorPane mapAnchor;
   @FXML private Label XLabel;
@@ -55,6 +59,7 @@ public class PathFinderController extends masterController
   @FXML private JFXColorPicker selectedNodeColor;
   @FXML private JFXTextField nodeSize;
   @FXML private JFXTextField pathSize;
+  @FXML private JFXTextField texutualDescription;
 
   public final double downScale = 0.25;
   public final double upScale = 4;
@@ -164,12 +169,13 @@ public class PathFinderController extends masterController
   public void PathFind(ActionEvent actionEvent) {
     mapDrawing.resetColors(pathFinderMap.getNodeSet());
     for (int i = 0; path.size() - 1 > i; i++) {
+      PathFinder p = new PathFinder();
       ArrayList<Node.Link> pathLink = pathFinderMap.pathfind(path.get(i), path.get(i + 1));
       mapDrawing.colorPath(pathColor.getValue(), pathLink);
     }
   }
 
-  private void resetColor() {
+  private void reset() {
     for (int i = 1; mapAnchor.getChildren().size() - 1 > i; i++) {
       if (path.contains(mapAnchor.getChildren().get(i).getId())) {
         Circle c = (Circle) ((Group) mapAnchor.getChildren().get(i)).getChildren().get(0);
@@ -184,13 +190,17 @@ public class PathFinderController extends masterController
       newColorNode(ELEV);
       newColorNode(STAI);
       newColorNodeaf(new ActionEvent());
+      texutualDescription.setText("");
+      nodePath = new ArrayList<>();
     }
   }
 
   public void newColorPath(ActionEvent actionEvent) {
     for (int i = 0; path.size() - 1 > i; i++) {
       ArrayList<Node.Link> pathLink = pathFinderMap.pathfind(path.get(i), path.get(i + 1));
+      nodePath.addAll(pathLink);
       mapDrawing.colorPath(pathColor.getValue(), pathLink);
+      PathFinder p = new PathFinder();
     }
   }
 
@@ -238,6 +248,26 @@ public class PathFinderController extends masterController
                 pathFinderMap
                     .getNodeSet()
                     .get(mapAnchor.getChildren().get(i).getId())
+                    .get_floor()
+                    .equals(mapDrawing.getCurrentMap()));
+      }
+    }
+    for (Node.Link link : nodePath) {
+      correctFloor(link);
+    }
+  }
+
+  public void correctFloor(Node.Link link) {
+    if (pathFinderMap.getEdgeSet().containsKey(link._shape.getParent().getId())) {
+      Edge a = pathFinderMap.getEdgeSet().get(link._shape.getParent().getId());
+      if (pathFinderMap.getNodeSet().containsKey(a.getStartNode())
+          || pathFinderMap.getNodeSet().containsKey(a.getEndNode())) {
+        link._shape
+            .getParent()
+            .setVisible(
+                pathFinderMap
+                    .getNodeSet()
+                    .get(a.getStartNode())
                     .get_floor()
                     .equals(mapDrawing.getCurrentMap()));
       }
@@ -310,7 +340,7 @@ public class PathFinderController extends masterController
   }
 
   public void clearSelection(ActionEvent actionEvent) {
-    resetColor();
+    reset();
     path = new ArrayList<String>();
   }
 }
