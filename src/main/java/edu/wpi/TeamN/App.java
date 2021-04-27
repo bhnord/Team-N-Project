@@ -45,7 +45,10 @@ public class App extends Application {
               }
             });
     DatabaseService db = injector.getInstance(DatabaseService.class);
-    db.initTables();
+    if(db.initTables()){
+      db.loadCSVtoTable("src/main/resources/MapCSV/bwNnodes.csv", "NODES");
+      db.loadCSVtoTable("src/main/resources/MapCSV/bwNedges.csv", "EDGES");
+    }
     loader = new FXMLLoader();
     loader.setControllerFactory(injector::getInstance);
 
@@ -56,10 +59,8 @@ public class App extends Application {
     if (db.getUserByUsername("guest") == null)
       db.addUser("guest", "guest", UserType.PATIENT, new UserPrefs());
 
-    db.loadCSVtoTable(
-        "C:\\Users\\anany\\Team-N-Project\\src\\main\\resources\\MapCSV\\bwNnodes.csv", "NODES");
-    db.loadCSVtoTable(
-        "C:\\Users\\anany\\Team-N-Project\\src\\main\\resources\\MapCSV\\bwNedges.csv", "EDGES");
+    db.loadCSVtoTable("src/main/resources/MapCSV/bwNnodes.csv", "NODES");
+    db.loadCSVtoTable("src/main/resources/MapCSV/bwNedges.csv", "EDGES");
   }
 
   @Override

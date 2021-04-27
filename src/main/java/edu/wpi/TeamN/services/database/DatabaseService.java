@@ -391,7 +391,7 @@ public class DatabaseService {
   }
 
   /** initializes all tables in the database */
-  public void initTables() {
+  public boolean initTables() {
     try {
       String str =
           "CREATE TABLE Nodes( "
@@ -440,8 +440,10 @@ public class DatabaseService {
               + "'SANITATION', 'SECURITY')),"
               + "PRIMARY KEY (id))";
       stmt.execute(str);
+      return true;
     } catch (SQLException e) {
       e.printStackTrace();
+      return false;
     }
   }
 
