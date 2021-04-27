@@ -6,4 +6,8 @@ public interface mapControllerI {
   double getDownScale();
 
   ImageView getMapImageView();
+
+  double getNodeSize();
+
+  double getPathSize();
 }
