@@ -2,14 +2,15 @@ package edu.wpi.TeamN.MapEntity;
 
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.views.mapControllerI;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Objects;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Objects;
 
 public class MapDrawing {
   private final mapControllerI mapController;
@@ -36,7 +37,7 @@ public class MapDrawing {
   }
 
   public Group drawNode(String id, double x, double y, Color color) {
-    Circle simpleNode = new Circle(x, y, 4);
+    Circle simpleNode = new Circle(x, y, mapController.getNodeSize());
     simpleNode.setTranslateZ(10);
     simpleNode.setFill(color);
     Group root = new Group(simpleNode);

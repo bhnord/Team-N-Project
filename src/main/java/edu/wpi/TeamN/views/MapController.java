@@ -515,16 +515,8 @@ public class MapController extends masterController implements Initializable, ma
     this.selectedNodeColor = selectedNodeColor;
   }
 
-  public JFXTextField getNodeSize() {
-    return nodeSize;
-  }
-
   public void setNodeSize(JFXTextField nodeSize) {
     this.nodeSize = nodeSize;
-  }
-
-  public JFXTextField getPathSize() {
-    return pathSize;
   }
 
   public void setPathSize(JFXTextField pathSize) {
@@ -534,5 +526,15 @@ public class MapController extends masterController implements Initializable, ma
   public void setMap(ActionEvent actionEvent) {
     mapDrawing.setMap(((Button) actionEvent.getSource()).getId());
     this.Load(actionEvent);
+  }
+
+  @Override
+  public double getNodeSize() {
+    return Double.parseDouble(nodeSize.getText());
+  }
+
+  @Override
+  public double getPathSize() {
+    return Double.parseDouble(pathSize.getText());
   }
 }
