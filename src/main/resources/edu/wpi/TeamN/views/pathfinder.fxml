@@ -244,7 +244,7 @@
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <JFXButton fx:id="31" buttonType="RAISED" layoutX="36.0" layoutY="42.0" onAction="#PathFind" prefHeight="70.0" prefWidth="132.0" style="-fx-background-color: #363d54; -fx-background-radius: 0;" stylesheets="/Fonts/Roboto-Black.css" text="Get Directions" textFill="WHITE" />
+                                    <JFXButton fx:id="31" buttonType="RAISED" layoutX="36.0" layoutY="42.0" onAction="#PathFind" prefHeight="70.0" prefWidth="132.0" style="-fx-background-color: #363d54; -fx-background-radius: 0;" stylesheets="/Fonts/Roboto-Light.css" text="Get Directions" textFill="WHITE" />
                                  </children>
                               </AnchorPane>
                            </content>
@@ -261,12 +261,12 @@
                                                 <Label layoutX="35.0" layoutY="285.0" text="Selected Node" />
                                                 <Label layoutX="37.0" layoutY="346.0" text="Node Size" />
                                                 <Label layoutX="37.0" layoutY="405.0" text="Path Size" />
-                                                <JFXColorPicker fx:id="nodeColor" onAction="#newColorNodeaf" layoutX="35.0" layoutY="17.0" />
-                                                <JFXColorPicker fx:id="EXIT" onAction="#newColorNode" layoutX="35.0" layoutY="72.0" />
-                                                <JFXColorPicker fx:id="ELEV" onAction="#newColorNode" layoutX="36.0" layoutY="131.0" />
-                                                <JFXColorPicker fx:id="STAI" onAction="#newColorNode" layoutX="35.0" layoutY="183.0" />
-                                                <JFXColorPicker fx:id="pathColor" onAction="#newColorPath" layoutX="35.0" layoutY="238.0" />
-                                                <JFXColorPicker fx:id="selectedNodeColor" onAction="#selectedNodeColor" layoutX="36.0" layoutY="302.0" />
+                                                <JFXColorPicker fx:id="nodeColor" layoutX="35.0" layoutY="17.0" onAction="#newColorNodeaf" />
+                                                <JFXColorPicker fx:id="EXIT" layoutX="35.0" layoutY="72.0" onAction="#newColorNode" />
+                                                <JFXColorPicker fx:id="ELEV" layoutX="36.0" layoutY="131.0" onAction="#newColorNode" />
+                                                <JFXColorPicker fx:id="STAI" layoutX="35.0" layoutY="183.0" onAction="#newColorNode" />
+                                                <JFXColorPicker fx:id="pathColor" layoutX="35.0" layoutY="238.0" onAction="#newColorPath" />
+                                                <JFXColorPicker fx:id="selectedNodeColor" layoutX="36.0" layoutY="302.0" onAction="#selectedNodeColor" />
                                                 <JFXTextField fx:id="nodeSize" layoutX="35.0" layoutY="363.0" />
                                                 <JFXTextField fx:id="pathSize" layoutX="38.0" layoutY="422.0" />
 

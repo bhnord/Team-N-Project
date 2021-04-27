@@ -257,5 +257,8 @@ public class PathFinderController extends masterController
     }
   }
 
-  public void advanceHome(ActionEvent actionEvent) {}
+  @FXML
+  public void advanceHome() throws IOException {
+    super.advanceHome(loader, appPrimaryScene);
+  }
 }

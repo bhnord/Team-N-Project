@@ -48,7 +48,7 @@
                         <Insets bottom="35.0" left="35.0" right="35.0" top="35.0" />
                      </GridPane.margin>
                   </JFXButton>
-                  <JFXButton fx:id="map1" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#map" prefHeight="217.0" prefWidth="325.0" style="-fx-background-radius: 0; -fx-background-color: BLUE;" stylesheets="@/Fonts/Roboto-Black.css" text="MAP" textFill="WHITE" GridPane.rowIndex="1">
+                  <JFXButton fx:id="map1" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#pathFind" prefHeight="217.0" prefWidth="325.0" style="-fx-background-radius: 0; -fx-background-color: BLUE;" stylesheets="@/Fonts/Roboto-Black.css" text="MAP PATHFINDER" textFill="WHITE" GridPane.rowIndex="1">
                      <font>
                         <Font name="Arial Black" size="18.0" />
                      </font>
