@@ -76,7 +76,6 @@ public class CovidForm extends masterController implements Initializable {
     comboBox6.getItems().add("no");
   }
 
-  @FXML
   public void advanceHome() throws IOException {
     Login login = Login.getLogin();
 

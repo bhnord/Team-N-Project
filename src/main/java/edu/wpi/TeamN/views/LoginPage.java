@@ -77,7 +77,7 @@ public class LoginPage extends masterController implements Initializable {
   @FXML
   private void continueToHomePage() throws IOException {
 
-    /*    login = Login.getLogin();
+    login = Login.getLogin();
     login.setPassword(getPassword());
     login.setUsername(getUsername());
 
@@ -92,7 +92,8 @@ public class LoginPage extends masterController implements Initializable {
     } else {
       incorrectLogin.setText("INCORRECT USERNAME OR PASSWORD, TRY AGAIN");
       incorrectLogin.setAlignment(Pos.CENTER);
-    }*/
+    }
+    /*
     if (db.login(getUsername(), getPassword())) {
       switch (db.getCurrentUser().getType()) {
         case ADMINISTRATOR:
@@ -111,7 +112,7 @@ public class LoginPage extends masterController implements Initializable {
     } else {
       incorrectLogin.setText("INCORRECT USERNAME OR PASSWORD, TRY AGAIN");
       incorrectLogin.setAlignment(Pos.CENTER);
-    }
+    }*/
   }
 
   @FXML
