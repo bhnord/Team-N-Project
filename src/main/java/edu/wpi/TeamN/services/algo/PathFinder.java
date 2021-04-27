@@ -55,17 +55,21 @@ public class PathFinder implements PathFinderI {
       Node.Link l = input.get(i);
       currentDirection = getDirection(l);
       double directionDiff = (currentDirection - previousDirection);
-      if (directionDiff > minAngle || directionDiff < (-minAngle)) {
-        if (directionDiff > 0) {
-          stringBuilder.append("turn left to ");
-        } else {
-          stringBuilder.append("turn right to ");
-        }
+      if (!l._this.get_floor().equals(l._other.get_floor())) {
+        stringBuilder.append("go to floor ").append(l._this.get_floor()).append('\n');
       } else {
-        stringBuilder.append("continue straight to ");
+        if (directionDiff > minAngle || directionDiff < (-minAngle)) {
+          if (directionDiff > 0) {
+            stringBuilder.append("turn left to ");
+          } else {
+            stringBuilder.append("turn right to ");
+          }
+        } else {
+          stringBuilder.append("continue straight to ");
+        }
+        stringBuilder.append(l._other.get_longName());
+        stringBuilder.append('\n');
       }
-      stringBuilder.append(l._other.get_longName());
-      stringBuilder.append('\n');
       previousDirection = currentDirection;
     }
     return stringBuilder.toString();
