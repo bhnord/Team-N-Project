@@ -87,20 +87,7 @@ public class LoginPage extends masterController implements Initializable {
       incorrectLogin.setAlignment(Pos.CENTER);
     }*/
     if (db.login(getUsername(), getPassword())) {
-      switch (db.getCurrentUser().getType()) {
-        case ADMINISTRATOR:
-          super.advanceHomeAdmin(loader, appPrimaryScene);
-          break;
-        case EMPLOYEE:
-          super.advanceHome(loader, appPrimaryScene);
-          break;
-        case PATIENT:
-          super.advanceHomePatient(loader, appPrimaryScene);
-          break;
-        case GUEST:
-          super.advanceHomeGuest(loader, appPrimaryScene);
-          break;
-      }
+      super.advanceHome(loader, appPrimaryScene);
     } else {
       incorrectLogin.setText("INCORRECT USERNAME OR PASSWORD, TRY AGAIN");
       incorrectLogin.setAlignment(Pos.CENTER);

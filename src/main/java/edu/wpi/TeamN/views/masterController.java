@@ -54,14 +54,19 @@ public class masterController implements Initializable {
   public void advanceHome(FXMLLoader childLoader, Scene ChildAppPrimaryScene) throws IOException {
     //        Parent root = childLoader.load(getClass().getResourceAsStream("HomeView.fxml"));
     //        ChildAppPrimaryScene.setRoot(root);
-    if (login.getUsername().equals("patient") && login.getPassword().equals("patient")) {
-      advanceHomePatient(childLoader, ChildAppPrimaryScene);
-    } else if (login.getUsername().equals("staff") && login.getPassword().equals("staff")) {
-      advanceHomeStaff(childLoader, ChildAppPrimaryScene);
-    } else if (login.getUsername().equals("admin") && login.getPassword().equals("admin")) {
-      advanceHomeAdmin(childLoader, ChildAppPrimaryScene);
-    } else if (login.getUsername().equals("guest") && login.getPassword().equals("guest")) {
-      advanceHomeGuest(childLoader, ChildAppPrimaryScene);
+    switch (db.getCurrentUser().getType()) {
+      case ADMINISTRATOR:
+        advanceHomeAdmin(childLoader, ChildAppPrimaryScene);
+        break;
+      case EMPLOYEE:
+        advanceHome(childLoader, ChildAppPrimaryScene);
+        break;
+      case PATIENT:
+        advanceHomePatient(childLoader, ChildAppPrimaryScene);
+        break;
+      case GUEST:
+        advanceHomeGuest(childLoader, ChildAppPrimaryScene);
+        break;
     }
   }
 
@@ -123,12 +128,16 @@ public class masterController implements Initializable {
       throws IOException {
     //    Parent root = childLoader.load(getClass().getResourceAsStream("ServiceRequests.fxml"));
     //    ChildAppPrimaryScene.setRoot(root);
-    if (login.getUsername().equals("patient") && login.getPassword().equals("patient")) {
-      advanceServiceRequestPatient(childLoader, ChildAppPrimaryScene);
-    } else if (login.getUsername().equals("staff") && login.getPassword().equals("staff")) {
-      advanceServiceRequestEmployee(childLoader, ChildAppPrimaryScene);
-    } else if (login.getUsername().equals("admin") && login.getPassword().equals("admin")) {
-      advanceServiceRequestAdmin(childLoader, ChildAppPrimaryScene);
+    switch (db.getCurrentUser().getType()) {
+      case ADMINISTRATOR:
+        advanceServiceRequestAdmin(childLoader, ChildAppPrimaryScene);
+        break;
+      case EMPLOYEE:
+        advanceServiceRequestEmployee(childLoader, ChildAppPrimaryScene);
+        break;
+      case PATIENT:
+        advanceServiceRequestPatient(childLoader, ChildAppPrimaryScene);
+        break;
     }
   }
 
