@@ -44,19 +44,23 @@ public class ComputerServiceRequestController extends masterController implement
   @FXML private Label errorLabel;
   private Label person1;
   @FXML private JFXTextField txtComments;
+
   @FXML private Button helpButton;
-  @FXML private StackPane myStackPane;
+
+  @FXML private StackPane myStackPane = new StackPane();
+
   @FXML private StackPane myStackPane2;
+
   private Scene appPrimaryScene;
-  @FXML private Button submit;
+  @FXML private JFXButton submit = new JFXButton();
   private HashMap<String, User> users;
   private HashMap<String, Node> rooms;
   @FXML private AnchorPane anchorPage;
-  @FXML private StackPane confirmationStackPane;
-  // @FXML private JFXButton submitButton;
+  // @FXML private StackPane confirmationStackPane;
+  @FXML private JFXButton submitButton;
   @FXML private JFXComboBox<Label> txtEmployeeName = new JFXComboBox<>();
   @FXML private JFXComboBox<Label> roomDropdown = new JFXComboBox<>();
-  @FXML private JFXTimePicker timePicker;
+  @FXML private JFXTimePicker timePicker = new JFXTimePicker();
   @FXML private JFXTextField maintenanceRequest;
 
   /**
@@ -122,7 +126,7 @@ public class ComputerServiceRequestController extends masterController implement
           (new Text("* You must fill out all required fields of the request to continue\n")));
       JFXButton close = new JFXButton("close");
       close.setButtonType(JFXButton.ButtonType.RAISED);
-      close.setStyle("-fx-background-color : #00bfff;");
+      close.setStyle("-fx-background-color :#748cdc;");
       dialogContent.setActions(close);
 
       JFXDialog dialog =
@@ -146,11 +150,11 @@ public class ComputerServiceRequestController extends masterController implement
 
       JFXButton continueButton = new JFXButton("Continue");
       continueButton.setButtonType(JFXButton.ButtonType.RAISED);
-      continueButton.setStyle("-fx-background-color : #00bfff");
+      continueButton.setStyle("-fx-background-color : #748cdc;");
 
       JFXButton cancelButton = new JFXButton("Cancel");
       cancelButton.setButtonType(JFXButton.ButtonType.RAISED);
-      cancelButton.setStyle("-fx-background-color : #00bfff");
+      cancelButton.setStyle("-fx-background-color : #748cdc;");
 
       cancelButton.setTranslateX(100);
       cancelButton.setTranslateY(65);
@@ -179,6 +183,7 @@ public class ComputerServiceRequestController extends masterController implement
             @SneakyThrows
             @Override
             public void handle(ActionEvent event) {
+              System.out.println("continue");
               submitToDB();
               popup1.hide();
 
@@ -191,11 +196,11 @@ public class ComputerServiceRequestController extends masterController implement
 
               JFXButton continueButton = new JFXButton("Return To Home");
               continueButton.setButtonType(JFXButton.ButtonType.RAISED);
-              continueButton.setStyle("-fx-background-color : #00bfff;");
+              continueButton.setStyle("-fx-background-color : #748cdc;");
 
               JFXButton cancelButton = new JFXButton("Complete Another Request");
               cancelButton.setButtonType(JFXButton.ButtonType.RAISED);
-              cancelButton.setStyle("-fx-background-color : #00bfff;");
+              cancelButton.setStyle("-fx-background-color : #748cdc;");
 
               cancelButton.setTranslateX(0);
               cancelButton.setTranslateY(65);
@@ -261,7 +266,7 @@ public class ComputerServiceRequestController extends masterController implement
                 + "* Desired language refers to the language that needs to be translated\n")));
     JFXButton close = new JFXButton("close");
     close.setButtonType(JFXButton.ButtonType.RAISED);
-    close.setStyle("-fx-background-color : #00bfff;");
+    close.setStyle("-fx-background-color : #748cdc;");
     dialogContent.setActions(close);
 
     JFXDialog dialog = new JFXDialog(myStackPane, dialogContent, JFXDialog.DialogTransition.BOTTOM);

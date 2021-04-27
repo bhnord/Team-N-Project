@@ -126,7 +126,7 @@ public class AudioVisualRequestController extends masterController implements In
           (new Text("* You must fill out all required fields of the request to continue\n")));
       JFXButton close = new JFXButton("close");
       close.setButtonType(JFXButton.ButtonType.RAISED);
-      close.setStyle("-fx-background-color : #00bfff;");
+      close.setStyle("-fx-background-color : #748cdc;");
       dialogContent.setActions(close);
 
       JFXDialog dialog =
@@ -150,11 +150,11 @@ public class AudioVisualRequestController extends masterController implements In
 
       JFXButton continueButton = new JFXButton("Continue");
       continueButton.setButtonType(JFXButton.ButtonType.RAISED);
-      continueButton.setStyle("-fx-background-color : #00bfff");
+      continueButton.setStyle("-fx-background-color : #748cdc;");
 
       JFXButton cancelButton = new JFXButton("Cancel");
       cancelButton.setButtonType(JFXButton.ButtonType.RAISED);
-      cancelButton.setStyle("-fx-background-color : #00bfff");
+      cancelButton.setStyle("-fx-background-color : #748cdc;");
 
       cancelButton.setTranslateX(100);
       cancelButton.setTranslateY(65);
@@ -195,11 +195,11 @@ public class AudioVisualRequestController extends masterController implements In
 
               JFXButton continueButton = new JFXButton("Return To Home");
               continueButton.setButtonType(JFXButton.ButtonType.RAISED);
-              continueButton.setStyle("-fx-background-color : #00bfff;");
+              continueButton.setStyle("-fx-background-color :#748cdc;");
 
               JFXButton cancelButton = new JFXButton("Complete Another Request");
               cancelButton.setButtonType(JFXButton.ButtonType.RAISED);
-              cancelButton.setStyle("-fx-background-color : #00bfff;");
+              cancelButton.setStyle("-fx-background-color : #748cdc;");
 
               cancelButton.setTranslateX(0);
               cancelButton.setTranslateY(65);
@@ -265,7 +265,7 @@ public class AudioVisualRequestController extends masterController implements In
                 + "* Desired language refers to the language that needs to be translated\n")));
     JFXButton close = new JFXButton("close");
     close.setButtonType(JFXButton.ButtonType.RAISED);
-    close.setStyle("-fx-background-color : #00bfff;");
+    close.setStyle("-fx-background-color :#748cdc;");
     dialogContent.setActions(close);
 
     JFXDialog dialog = new JFXDialog(myStackPane, dialogContent, JFXDialog.DialogTransition.BOTTOM);
