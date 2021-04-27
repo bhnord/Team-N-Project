@@ -462,7 +462,6 @@ public class DatabaseService {
       Gson gson = new Gson();
       rs.next();
       UserPrefs userPrefs = gson.fromJson(rs.getString("PREFERENCES"), UserPrefs.class);
-      System.out.println(currentUser);
       switch (rs.getString("USERTYPE")) {
         case "Patient":
           currentUser = (new Patient(rs.getString("ID"), rs.getString("USERNAME"), userPrefs));
@@ -475,7 +474,6 @@ public class DatabaseService {
               (new Administrator(rs.getString("ID"), rs.getString("USERNAME"), userPrefs));
           break;
       }
-      System.out.println(currentUser);
       return true;
     } catch (SQLException e) {
       e.printStackTrace();

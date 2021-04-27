@@ -56,6 +56,8 @@ public class App extends Application {
       db.addUser("admin", "admin", UserType.ADMINISTRATOR, new UserPrefs());
     if (db.getUserByUsername("staff") == null)
       db.addUser("staff", "staff", UserType.EMPLOYEE, new UserPrefs());
+    if (db.getUserByUsername("patient") == null)
+      db.addUser("patient", "patient", UserType.PATIENT, new UserPrefs());
     if (db.getUserByUsername("guest") == null)
       db.addUser("guest", "guest", UserType.PATIENT, new UserPrefs());
   }

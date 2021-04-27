@@ -3,7 +3,6 @@ package edu.wpi.TeamN.views;
 import com.google.inject.Inject;
 import edu.wpi.TeamN.services.database.DatabaseService;
 import edu.wpi.TeamN.state.HomeState;
-import edu.wpi.TeamN.state.Login;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -27,7 +26,6 @@ public class masterController implements Initializable {
   @FXML private Label text;
 
   protected Scene appPrimaryScene;
-  private Login login = Login.getLogin();
 
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
@@ -52,9 +50,6 @@ public class masterController implements Initializable {
 
   @FXML
   public void advanceHome(FXMLLoader childLoader, Scene ChildAppPrimaryScene) throws IOException {
-    //        Parent root = childLoader.load(getClass().getResourceAsStream("HomeView.fxml"));
-    //        ChildAppPrimaryScene.setRoot(root);
-    System.out.println(db.getCurrentUser());
     switch (db.getCurrentUser().getType()) {
       case ADMINISTRATOR:
         advanceHomeAdmin(childLoader, ChildAppPrimaryScene);
