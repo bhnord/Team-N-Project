@@ -1,6 +1,9 @@
 package edu.wpi.TeamN.services.algo;
 
+import javafx.print.Collation;
+
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class PathFinder implements PathFinderI {
   private PathFinderI impl;
@@ -39,16 +42,17 @@ public class PathFinder implements PathFinderI {
     return ret;
   }
 
-  public String getDescription(ArrayList<Node.Link> input) {
+  public ArrayList<String> getDescription(ArrayList<Node.Link> input) {
+    if (input.size() == 0){
+      return (ArrayList<String>) Collections.singleton("No Path");
+    }
     double previousDirection = 0;
     double currentDirection = 0;
     double minAngle = .45;
-    StringBuilder stringBuilder = new StringBuilder();
-    stringBuilder
-        .append("walk to ")
-        .append(input.get(input.size() - 1)._other.get_longName())
-        .append('\n');
-    currentDirection = getDirection(input.get(0));
+    ArrayList<String> ret = new ArrayList<>();
+        ret.add("walk to "
+        + input.get(input.size() - 1)._other.get_longName()
+        + '\n');
     previousDirection = getDirection(input.get(0));
 
     for (int i = input.size() - 2; i >= 0; i--) {
@@ -56,23 +60,21 @@ public class PathFinder implements PathFinderI {
       currentDirection = getDirection(l);
       double directionDiff = (currentDirection - previousDirection);
       if (!l._this.get_floor().equals(l._other.get_floor())) {
-        stringBuilder.append("go to floor ").append(l._this.get_floor()).append('\n');
+        ret.add("go to floor " + l._this.get_floor());
       } else {
         if (directionDiff > minAngle || directionDiff < (-minAngle)) {
           if (directionDiff > 0) {
-            stringBuilder.append("turn left to ");
+            ret.add("turn left to " + l._other.get_longName());
           } else {
-            stringBuilder.append("turn right to ");
+            ret.add("turn right to "+ l._other.get_longName());
           }
         } else {
-          stringBuilder.append("continue straight to ");
+          ret.add("continue straight to "+ l._other.get_longName());
         }
-        stringBuilder.append(l._other.get_longName());
-        stringBuilder.append('\n');
       }
       previousDirection = currentDirection;
     }
-    return stringBuilder.toString();
+    return ret;
   }
 
   /**
