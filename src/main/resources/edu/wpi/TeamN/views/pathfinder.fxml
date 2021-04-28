@@ -114,7 +114,7 @@
                                 <Image url="@/images/BWHLogo.png" />
                             </image>
                         </ImageView>
-                        <ImageView fitHeight="58.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                        <ImageView fitHeight="55.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                             <image>
                                 <Image url="@/images/IconHome.png" />
                             </image>
@@ -270,8 +270,8 @@
                                                 <JFXColorPicker fx:id="STAI" layoutX="35.0" layoutY="183.0" onAction="#newColorNode" />
                                                 <JFXColorPicker fx:id="pathColor" layoutX="35.0" layoutY="238.0" onAction="#newColorPath" />
                                                 <JFXColorPicker fx:id="selectedNodeColor" layoutX="36.0" layoutY="302.0" onAction="#selectedNodeColor" />
-                                                <JFXTextField fx:id="nodeSize" onAction="#newSize" layoutX="35.0" layoutY="363.0" />
-                                                <JFXTextField fx:id="pathSize" onAction="#newSize" layoutX="38.0" layoutY="422.0" />
+                                                <JFXTextField fx:id="nodeSize" layoutX="35.0" layoutY="363.0" onAction="#newSize" />
+                                                <JFXTextField fx:id="pathSize" layoutX="38.0" layoutY="422.0" onAction="#newSize" />
 
                                             </children></AnchorPane>
                                     </content>
