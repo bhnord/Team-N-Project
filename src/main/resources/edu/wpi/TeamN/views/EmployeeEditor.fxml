@@ -197,7 +197,7 @@
                   <Image url="@/images/BWHLogo.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="58.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+            <ImageView fitHeight="55.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                <image>
                   <Image url="@/images/IconHome.png" />
                </image>
