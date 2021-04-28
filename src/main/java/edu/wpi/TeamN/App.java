@@ -60,6 +60,13 @@ public class App extends Application {
       db.addUser("patient", "patient", UserType.PATIENT, new UserPrefs());
     if (db.getUserByUsername("guest") == null)
       db.addUser("guest", "guest", UserType.PATIENT, new UserPrefs());
+
+    if (db.getUserByUsername("Alex") == null)
+      db.addUser("Alex", "Alex", UserType.EMPLOYEE, new UserPrefs());
+    if (db.getUserByUsername("Ananya") == null)
+      db.addUser("Ananya", "Ananya", UserType.EMPLOYEE, new UserPrefs());
+    if (db.getUserByUsername("Finn") == null)
+      db.addUser("Finn", "Finn", UserType.EMPLOYEE, new UserPrefs());
   }
 
   @Override
