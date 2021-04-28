@@ -1,8 +1,8 @@
 DHALL00302,4725,995,2,15 Francis,HALL,Hallway 3 Floor 2,Hallway D0302
 Shap_lowerLeft,1084,2300,L1,"","","",""
-node_1,1796,2296,L1,"","","",""
 Hall_34,2772,988,L1,"","","",""
 HallToExit,3072,980,L1,Parking,"",LobbyEntrance,lobby
+ParkingLot_00002,2016,1524,L1,"",PARK,"",""
 nPARK001L1,140,1785,L1,Parking,PARK,parkingSpace1,parking1
 nPARK002L1,280,1785,L1,Parking,PARK,parkingSpace2,parking2
 nPARK003L1,380,1785,L1,Parking,PARK,parkingSpace3,parking3
