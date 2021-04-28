@@ -46,8 +46,8 @@ public class App extends Application {
             });
     DatabaseService db = injector.getInstance(DatabaseService.class);
     if (db.initTables()) {
-      db.loadCSVtoTable("src/main/resources/MapCSV/bwNnodes.csv", "NODES");
-      db.loadCSVtoTable("src/main/resources/MapCSV/bwNedges.csv", "EDGES");
+      db.loadCSVtoTable("src/main/resources/MapCSV/NODES.csv", "NODES");
+      db.loadCSVtoTable("src/main/resources/MapCSV/EDGES.csv", "EDGES");
     }
     loader = new FXMLLoader();
     loader.setControllerFactory(injector::getInstance);
