@@ -30,6 +30,12 @@ public class PathFinder implements PathFinderI {
   private double getDirection(Node.Link input) {
     double dx = (input._other.get_x() - input._this.get_x());
     double dy = -(input._other.get_y() - input._this.get_y());
+    if (dx == 0) {
+      return dy > 0 ? Math.PI / 2 : 3 * Math.PI / 2;
+    }
+    if (dy == 0) {
+      return dx < 0 ? Math.PI : 0;
+    }
     double ret = Math.atan(Math.abs(dy / dx));
     if (dx * dy < 0) {
       ret = Math.PI / 2 - ret;
@@ -37,6 +43,7 @@ public class PathFinder implements PathFinderI {
     ret += dx < 0 ? Math.PI / 2 : 0;
     ret += dy < 0 ? Math.PI / 2 : 0;
     ret += (dx > 0 && dy < 0) ? Math.PI : 0;
+    System.out.println(dx + ", " + dy + ", " + ret);
     return ret;
   }
 
@@ -48,15 +55,15 @@ public class PathFinder implements PathFinderI {
     double currentDirection = 0;
     double minAngle = .45;
     ArrayList<String> ret = new ArrayList<>();
-    ret.add("walk to " + input.get(input.size() - 1)._other.get_longName() + '\n');
-    previousDirection = getDirection(input.get(0));
+    // ret.add("walk to " + input.get(input.size() - 1)._other.get_longName() + '\n');
+    previousDirection = getDirection(input.get(input.size() - 1));
 
-    for (int i = input.size() - 2; i >= 0; i--) {
+    for (int i = input.size() - 1; i >= 0; i--) {
       Node.Link l = input.get(i);
       currentDirection = getDirection(l);
       double directionDiff = (currentDirection - previousDirection);
       if (!l._this.get_floor().equals(l._other.get_floor())) {
-        ret.add("go to floor " + l._this.get_floor());
+        ret.add("go to floor " + l._other.get_floor());
       } else {
         if (directionDiff > minAngle || directionDiff < (-minAngle)) {
           if (directionDiff > 0) {
@@ -65,6 +72,7 @@ public class PathFinder implements PathFinderI {
             ret.add("turn right to " + l._other.get_longName());
           }
         } else {
+          //          if (!l._other.get_nodeType().equals("HALL"))
           ret.add("continue straight to " + l._other.get_longName());
         }
       }
