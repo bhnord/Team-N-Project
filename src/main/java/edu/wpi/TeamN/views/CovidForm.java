@@ -94,8 +94,8 @@ public class CovidForm extends masterController implements Initializable {
     super.cancel(actionEvent);
   }
 
-  public void goToRequestPage(FXMLLoader childLoader, Scene ChildAppPrimaryScene)
-      throws IOException {
+  @FXML
+  public void submit() throws IOException {
     /* Parent root = childLoader.load(getClass().getResourceAsStream("ConfirmationPageCovid.fxml"));
     ChildAppPrimaryScene.setRoot(root);*/
 
@@ -235,11 +235,6 @@ public class CovidForm extends masterController implements Initializable {
       // submit.setDisable(true);
       popup1.show(myStackPane, JFXPopup.PopupVPosition.BOTTOM, JFXPopup.PopupHPosition.LEFT);
     }
-  }
-
-  @FXML
-  public void continuePage(ActionEvent actionEvent) throws IOException {
-    goToRequestPage(loader, appPrimaryScene);
   }
 
   @FXML
