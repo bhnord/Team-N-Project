@@ -201,22 +201,23 @@ public class PathFinderController extends masterController
       newColorNode(ELEV);
       newColorNode(STAI);
       newColorNodeaf(new ActionEvent());
-      texutualDescription = new JFXListView<Label>();
-      texutualDescription.setOnMouseClicked(
-          event -> {
-            Label selected = texutualDescription.getSelectionModel().getSelectedItem();
-            if (event.getButton() == MouseButton.PRIMARY && selected != null) {
-              ObservableList<Integer> seletedI =
-                  texutualDescription.getSelectionModel().getSelectedIndices();
-              mapDrawing.colorPath(pathColor.getValue(), nodePath);
-              Node.Link link = nodePath.get(nodePath.size() - seletedI.get(0) - 1);
-              mapDrawing.setMap(link._other.get_floor());
-              mapFloor();
-              link._shape.setStroke(Color.RED);
-            }
-          });
-      nodePath.clear();
+      //      texutualDescription = new JFXListView<Label>();
+      //      texutualDescription.setOnMouseClicked(
+      //          event -> {
+      //            Label selected = texutualDescription.getSelectionModel().getSelectedItem();
+      //            if (event.getButton() == MouseButton.PRIMARY && selected != null) {
+      //              ObservableList<Integer> seletedI =
+      //                  texutualDescription.getSelectionModel().getSelectedIndices();
+      //              mapDrawing.colorPath(pathColor.getValue(), nodePath);
+      //              Node.Link link = nodePath.get(nodePath.size() - seletedI.get(0) - 1);
+      //              mapDrawing.setMap(link._other.get_floor());
+      //              mapFloor();
+      //              link._shape.setStroke(Color.RED);
+      //            }
+      //          });
     }
+    nodePath.clear();
+    texutualDescription.getItems().clear();
   }
 
   public void newColorPath(ActionEvent actionEvent) {
