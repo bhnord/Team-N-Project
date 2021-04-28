@@ -230,7 +230,7 @@ public class MapController extends masterController implements Initializable, ma
     }
   }
 
-  private void mapFloor() {
+  public void mapFloor() {
     for (int i = 1; mapAnchor.getChildren().size() > i; i++) {
       if (adminMap.getNodeSet().containsKey(mapAnchor.getChildren().get(i).getId())) {
         mapAnchor

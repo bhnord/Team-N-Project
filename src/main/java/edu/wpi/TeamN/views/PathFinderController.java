@@ -12,10 +12,7 @@ import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.algo.PathFinder;
 import edu.wpi.TeamN.services.database.DatabaseService;
 import edu.wpi.TeamN.state.HomeState;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -34,6 +31,11 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Shape;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 public class PathFinderController extends masterController
     implements Initializable, mapControllerI {
@@ -78,6 +80,20 @@ public class PathFinderController extends masterController
     pathFinderMap = new PathFinderMap(this.db);
     mapDrawing = new MapDrawing(this);
 
+    //    texutualDescription = new JFXListView<>();
+    texutualDescription.setOnMouseClicked(
+        event -> {
+          Label selected = texutualDescription.getSelectionModel().getSelectedItem();
+          if (event.getButton() == MouseButton.PRIMARY && selected != null) {
+            ObservableList<Integer> seletedI =
+                texutualDescription.getSelectionModel().getSelectedIndices();
+            mapDrawing.colorPath(pathColor.getValue(), nodePath);
+            Node.Link link = nodePath.get(nodePath.size() - seletedI.get(0) - 1);
+            mapDrawing.setMap(link._other.get_floor());
+            mapFloor();
+            link._shape.setStroke(Color.RED);
+          }
+        });
     load();
     mapFloor();
   }
@@ -189,7 +205,20 @@ public class PathFinderController extends masterController
       newColorNode(STAI);
       newColorNodeaf(new ActionEvent());
       texutualDescription = new JFXListView<Label>();
-      nodePath = new ArrayList<>();
+      texutualDescription.setOnMouseClicked(
+          event -> {
+            Label selected = texutualDescription.getSelectionModel().getSelectedItem();
+            if (event.getButton() == MouseButton.PRIMARY && selected != null) {
+              ObservableList<Integer> seletedI =
+                  texutualDescription.getSelectionModel().getSelectedIndices();
+              mapDrawing.colorPath(pathColor.getValue(), nodePath);
+              Node.Link link = nodePath.get(nodePath.size() - seletedI.get(0) - 1);
+              mapDrawing.setMap(link._other.get_floor());
+              mapFloor();
+              link._shape.setStroke(Color.RED);
+            }
+          });
+      nodePath.clear();
     }
   }
 
