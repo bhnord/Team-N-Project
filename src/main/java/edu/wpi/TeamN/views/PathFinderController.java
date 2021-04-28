@@ -51,7 +51,6 @@ public class PathFinderController extends masterController
   ArrayList<Node.Link> nodePath = new ArrayList<Node.Link>();
 
   @FXML private AnchorPane mapAnchor;
-  @FXML private Label XLabel;
   @FXML private ImageView mapImageView;
   @FXML private JFXColorPicker nodeColor;
   @FXML private JFXColorPicker EXIT;
@@ -104,7 +103,6 @@ public class PathFinderController extends masterController
       if (str.toString().equals("")) str.append(node);
       else str.append(", ").append(node);
     }
-    XLabel.setText(str.toString());
   }
 
   @FXML
