@@ -10,8 +10,8 @@ public class Node implements Comparable<Node> {
 
   public static class Link {
     String _id;
-    Node _other;
-    Node _this;
+    public Node _other;
+    public Node _this;
     double _distance;
     public Line _shape;
     public boolean _isStair;

@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -78,6 +79,20 @@ public class PathFinderController extends masterController
     pathFinderMap = new PathFinderMap(this.db);
     mapDrawing = new MapDrawing(this);
 
+    //    texutualDescription = new JFXListView<>();
+    texutualDescription.setOnMouseClicked(
+        event -> {
+          Label selected = texutualDescription.getSelectionModel().getSelectedItem();
+          if (event.getButton() == MouseButton.PRIMARY && selected != null) {
+            ObservableList<Integer> seletedI =
+                texutualDescription.getSelectionModel().getSelectedIndices();
+            mapDrawing.colorPath(pathColor.getValue(), nodePath);
+            Node.Link link = nodePath.get(nodePath.size() - seletedI.get(0) - 1);
+            mapDrawing.setMap(link._other.get_floor());
+            mapFloor();
+            link._shape.setStroke(Color.RED);
+          }
+        });
     load();
     mapFloor();
   }
@@ -189,6 +204,19 @@ public class PathFinderController extends masterController
       newColorNode(STAI);
       newColorNodeaf(new ActionEvent());
       texutualDescription = new JFXListView<Label>();
+      texutualDescription.setOnMouseClicked(
+          event -> {
+            Label selected = texutualDescription.getSelectionModel().getSelectedItem();
+            if (event.getButton() == MouseButton.PRIMARY && selected != null) {
+              ObservableList<Integer> seletedI =
+                  texutualDescription.getSelectionModel().getSelectedIndices();
+              mapDrawing.colorPath(pathColor.getValue(), nodePath);
+              Node.Link link = nodePath.get(nodePath.size() - seletedI.get(0) - 1);
+              mapDrawing.setMap(link._other.get_floor());
+              mapFloor();
+              link._shape.setStroke(Color.RED);
+            }
+          });
       nodePath = new ArrayList<>();
     }
   }
