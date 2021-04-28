@@ -92,7 +92,7 @@ public class HomeController extends masterController implements Initializable {
   }
 
   public void map(ActionEvent actionEvent) throws IOException {
-    Parent root = loader.load(getClass().getResourceAsStream("mapAdmin2.fxml"));
+    Parent root = loader.load(getClass().getResourceAsStream("pathfinder.fxml"));
     Screen screen = Screen.getPrimary();
     Rectangle2D bounds = screen.getVisualBounds();
 
