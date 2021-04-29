@@ -1,4 +1,4 @@
-package edu.wpi.TeamN.mapEntity;
+package edu.wpi.TeamN.map;
 
 import javafx.scene.Group;
 

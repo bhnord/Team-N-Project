@@ -10,7 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.scene.control.Tooltip;
 
-public class SideBarController extends masterController implements Initializable {
+public class SideBarController extends MasterController implements Initializable {
 
   /** Buttons and tooltips */
   @FXML private JFXButton CovidForm;

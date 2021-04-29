@@ -19,7 +19,7 @@ import javafx.scene.control.Tooltip;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class ServiceRequests extends masterController implements Initializable {
+public class ServiceRequests extends MasterController implements Initializable {
 
   @Inject DatabaseService db;
   @Inject FXMLLoader loader;

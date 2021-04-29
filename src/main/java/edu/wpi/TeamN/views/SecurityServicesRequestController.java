@@ -34,7 +34,7 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class SecurityServicesRequestController extends masterController implements Initializable {
+public class SecurityServicesRequestController extends MasterController implements Initializable {
 
   // @FXML private AnchorPane anchorPage;
   static Stage stage;

@@ -34,7 +34,7 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class GiftDeliveryRequestController extends masterController implements Initializable {
+public class GiftDeliveryRequestController extends MasterController implements Initializable {
 
   @Inject DatabaseService db;
   @Inject FXMLLoader loader;
