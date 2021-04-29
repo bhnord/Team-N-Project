@@ -1,3 +1,24 @@
+.jfx-button{
+    -fx-font-family: 'Roboto Black';
+    -fx-font-size: 26;
+    -fx-background-size: cover;
+    -fx-background-radius: 25;
+} #ServiceRequestsAdmin{
+      -fx-background-image: url('/images/ButtonSR.png');
+  }  #CurrentRequest{
+           -fx-background-image: url('/images/ButtonCR.png');
+       }  #EmployeeEditor{
+                     -fx-background-image: url('/images/ButtonH.png');
+                 } #map{
+                       -fx-background-image: url('/images/ButtonM.png');
+                   } #pathfinder{
+                         -fx-background-image: url('/images/ButtonM.png');
+                     }
+
+
+
+
+
 .list-cell:filled:selected:focused, .list-cell:filled:selected {
     -fx-background-color: linear-gradient(#748cdc 0%, #748cdc 25%, #748cdc 75%, #748cdc 100%);
     -fx-text-fill: white;

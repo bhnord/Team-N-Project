@@ -38,7 +38,7 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class MedicineDeliveryRequestController extends masterController implements Initializable {
+public class MedicineDeliveryRequestController extends MasterController implements Initializable {
 
   @Inject DatabaseService db;
   @Inject FXMLLoader loader;

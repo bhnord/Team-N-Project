@@ -23,7 +23,7 @@ import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class HomeController extends masterController implements Initializable {
+public class HomeController extends MasterController implements Initializable {
 
   @Inject DatabaseService db;
   @Inject FXMLLoader loader;
@@ -67,8 +67,6 @@ public class HomeController extends masterController implements Initializable {
     // helpS.setDisable(true);
     // helpSB.setDisable(true);
 
-    BigBoiPane.setMinSize(1366, 768);
-    // BigBoiPane.set
     ServiceRequests.setStyle(
         "-fx-background-image: url('/images/ButtonSR.png'); -fx-background-size: cover; -fx-background-radius: 25");
     CurrentRequest.setStyle(

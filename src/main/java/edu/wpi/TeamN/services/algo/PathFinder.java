@@ -3,10 +3,10 @@ package edu.wpi.TeamN.services.algo;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class PathFinder implements PathFinderI {
-  private PathFinderI impl;
+public class PathFinder implements IPathFinder {
+  private IPathFinder impl;
 
-  public PathFinder(PathFinderI impl) {
+  public PathFinder(IPathFinder impl) {
     this.impl = impl;
   }
 

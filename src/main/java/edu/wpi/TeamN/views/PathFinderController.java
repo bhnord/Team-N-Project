@@ -3,10 +3,11 @@ package edu.wpi.TeamN.views;
 import com.google.inject.Inject;
 import com.jfoenix.controls.JFXColorPicker;
 import com.jfoenix.controls.JFXListView;
+import com.jfoenix.controls.JFXScrollPane;
 import com.jfoenix.controls.JFXTextField;
-import edu.wpi.TeamN.MapEntity.ActionHandlingI;
-import edu.wpi.TeamN.MapEntity.MapDrawing;
-import edu.wpi.TeamN.MapEntity.PathFinderMap;
+import edu.wpi.TeamN.map.IActionHandling;
+import edu.wpi.TeamN.map.MapDrawer;
+import edu.wpi.TeamN.map.PathFinderMap;
 import edu.wpi.TeamN.services.algo.Edge;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.algo.PathFinder;
@@ -30,26 +31,26 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Shape;
+import lombok.SneakyThrows;
 
-public class PathFinderController extends masterController
-    implements Initializable, mapControllerI {
+public class PathFinderController extends MasterController
+    implements Initializable, IMapController {
   @Inject FXMLLoader loader;
   @Inject HomeState state;
   @Inject DatabaseService db;
 
   private MapController mapController;
   private PathFinderMap pathFinderMap;
-  private MapDrawing mapDrawing;
-  private ActionHandlingI actionHandling;
+  private MapDrawer mapDrawer;
+  private IActionHandling actionHandling;
   ArrayList<String> path = new ArrayList<String>();
   ArrayList<Node.Link> nodePath = new ArrayList<Node.Link>();
 
-  @FXML private AnchorPane mapAnchor;
+  @FXML private JFXScrollPane mapAnchor;
   @FXML private ImageView mapImageView;
   @FXML private JFXColorPicker nodeColor;
   @FXML private JFXColorPicker EXIT;
@@ -64,6 +65,7 @@ public class PathFinderController extends masterController
   public final double downScale = 0.25;
   public final double upScale = 4;
 
+  @SneakyThrows
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     nodeColor.setValue(Color.BLUE);
@@ -76,7 +78,7 @@ public class PathFinderController extends masterController
     pathSize.setText("3");
     mapController = new MapController();
     pathFinderMap = new PathFinderMap(this.db);
-    mapDrawing = new MapDrawing(this);
+    mapDrawer = new MapDrawer(this);
 
     //    texutualDescription = new JFXListView<>();
     texutualDescription.setOnMouseClicked(
@@ -85,15 +87,16 @@ public class PathFinderController extends masterController
           if (event.getButton() == MouseButton.PRIMARY && selected != null) {
             ObservableList<Integer> seletedI =
                 texutualDescription.getSelectionModel().getSelectedIndices();
-            mapDrawing.colorPath(pathColor.getValue(), nodePath);
+            mapDrawer.colorPath(pathColor.getValue(), nodePath);
             Node.Link link = nodePath.get(nodePath.size() - seletedI.get(0) - 1);
-            mapDrawing.setMap(link._other.get_floor());
+            mapDrawer.setMap(link._other.get_floor());
             mapFloor();
             link._shape.setStroke(Color.RED);
           }
         });
     load();
     mapFloor();
+    mapDrawer.setUpZoom(mapImageView);
   }
 
   private void updatePath() {
@@ -135,7 +138,7 @@ public class PathFinderController extends masterController
 
   private void placeNode(String id, double x, double y) {
     JFXColorPicker type = getType(id);
-    Group root = mapDrawing.drawNode(id, x, y, type.getValue());
+    Group root = mapDrawer.drawNode(id, x, y, type.getValue());
     root.setId(id);
     root.setOnMouseClicked(
         new EventHandler<MouseEvent>() {
@@ -166,7 +169,7 @@ public class PathFinderController extends masterController
   }
 
   private void placeLink(String id, Node node1, Node node2) {
-    Group root = mapDrawing.drawLine(id, node1, node2);
+    Group root = mapDrawer.drawLine(id, node1, node2);
     root.setId(id);
     mapAnchor.getChildren().add(root);
     pathFinderMap.makeEdge(id, node1, node2, (Line) root.getChildren().get(0));
@@ -179,7 +182,7 @@ public class PathFinderController extends masterController
   }
 
   public void PathFind(ActionEvent actionEvent) {
-    mapDrawing.resetColors(pathFinderMap.getNodeSet());
+    mapDrawer.resetColors(pathFinderMap.getNodeSet());
     for (int i = 0; path.size() - 1 > i; i++) {
       ArrayList<Node.Link> pathLink = pathFinderMap.pathfind(path.get(i), path.get(i + 1));
       // newColorPath(pathColor.getValue(), pathLink);
@@ -224,7 +227,7 @@ public class PathFinderController extends masterController
     for (int i = 0; path.size() - 1 > i; i++) {
       ArrayList<Node.Link> pathLink = pathFinderMap.pathfind(path.get(i), path.get(i + 1));
       nodePath.addAll(pathLink);
-      mapDrawing.colorPath(pathColor.getValue(), pathLink);
+      mapDrawer.colorPath(pathColor.getValue(), pathLink);
       PathFinder p = new PathFinder();
       ArrayList<String> s = p.getDescription(pathLink);
       for (String l : s) {
@@ -263,7 +266,7 @@ public class PathFinderController extends masterController
   }
 
   public void setMap(ActionEvent actionEvent) {
-    mapDrawing.setMap(((Button) actionEvent.getSource()).getId());
+    mapDrawer.setMap(((Button) actionEvent.getSource()).getId());
     this.mapFloor();
   }
 
@@ -278,7 +281,7 @@ public class PathFinderController extends masterController
                     .getNodeSet()
                     .get(mapAnchor.getChildren().get(i).getId())
                     .get_floor()
-                    .equals(mapDrawing.getCurrentMap()));
+                    .equals(mapDrawer.getCurrentMap()));
       }
     }
     for (Node.Link link : nodePath) {
@@ -298,7 +301,7 @@ public class PathFinderController extends masterController
                     .getNodeSet()
                     .get(a.getStartNode())
                     .get_floor()
-                    .equals(mapDrawing.getCurrentMap()));
+                    .equals(mapDrawer.getCurrentMap()));
       }
     }
   }
