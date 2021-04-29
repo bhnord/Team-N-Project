@@ -3,7 +3,7 @@ package edu.wpi.TeamN.views;
 import com.google.inject.Inject;
 import com.jfoenix.controls.JFXColorPicker;
 import com.jfoenix.controls.JFXTextField;
-import edu.wpi.TeamN.MapEntity.*;
+import edu.wpi.TeamN.mapEntity.*;
 import edu.wpi.TeamN.services.algo.Edge;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.database.DatabaseService;
@@ -34,7 +34,7 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class MapController extends masterController implements Initializable, mapControllerI {
+public class MapController extends masterController implements Initializable, IMapController {
   @FXML private JFXColorPicker nodeColor;
   @FXML private JFXColorPicker EXIT;
   @FXML private JFXColorPicker ELEV;
@@ -59,7 +59,7 @@ public class MapController extends masterController implements Initializable, ma
   public final double upScale = 4;
   private int nodeCount = 0;
 
-  private ActionHandlingI actionHandling;
+  private IActionHandling actionHandling;
   private AdminMap adminMap;
   private MapDrawing mapDrawing;
   private MapNodeEditor mapNodeEditor;

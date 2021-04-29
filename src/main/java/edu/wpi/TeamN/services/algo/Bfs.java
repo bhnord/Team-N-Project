@@ -2,7 +2,7 @@ package edu.wpi.TeamN.services.algo;
 
 import java.util.*;
 
-public class Bfs implements PathFinderI {
+public class Bfs implements IPathFinder {
   @Override
   public ArrayList<Node.Link> pathfindFull(Node start, Node end, Reduce filter) {
     LinkedList<Node> open = new LinkedList<>();

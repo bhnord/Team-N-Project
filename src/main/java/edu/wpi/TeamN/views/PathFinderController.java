@@ -4,18 +4,14 @@ import com.google.inject.Inject;
 import com.jfoenix.controls.JFXColorPicker;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
-import edu.wpi.TeamN.MapEntity.ActionHandlingI;
-import edu.wpi.TeamN.MapEntity.MapDrawing;
-import edu.wpi.TeamN.MapEntity.PathFinderMap;
+import edu.wpi.TeamN.mapEntity.IActionHandling;
+import edu.wpi.TeamN.mapEntity.MapDrawing;
+import edu.wpi.TeamN.mapEntity.PathFinderMap;
 import edu.wpi.TeamN.services.algo.Edge;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.algo.PathFinder;
 import edu.wpi.TeamN.services.database.DatabaseService;
 import edu.wpi.TeamN.state.HomeState;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -36,8 +32,13 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Shape;
 
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+
 public class PathFinderController extends masterController
-    implements Initializable, mapControllerI {
+    implements Initializable, IMapController {
   @Inject FXMLLoader loader;
   @Inject HomeState state;
   @Inject DatabaseService db;
@@ -45,7 +46,7 @@ public class PathFinderController extends masterController
   private MapController mapController;
   private PathFinderMap pathFinderMap;
   private MapDrawing mapDrawing;
-  private ActionHandlingI actionHandling;
+  private IActionHandling actionHandling;
   ArrayList<String> path = new ArrayList<String>();
   ArrayList<Node.Link> nodePath = new ArrayList<Node.Link>();
 

@@ -1,8 +1,8 @@
-package edu.wpi.TeamN.MapEntity;
+package edu.wpi.TeamN.mapEntity;
 
 import javafx.scene.Group;
 
-public interface ActionHandlingI {
+public interface IActionHandling {
   public void setNodeInfo(Group node);
 
   public void setEdgeInfo(Group node);

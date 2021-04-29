@@ -2,7 +2,7 @@ package edu.wpi.TeamN.services.algo;
 
 import java.util.ArrayList;
 
-public interface PathFinderI {
+public interface IPathFinder {
   public interface Reduce {
     boolean isValid(Node.Link l);
   }
