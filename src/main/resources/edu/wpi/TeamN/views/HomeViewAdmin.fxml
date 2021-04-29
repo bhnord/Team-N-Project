@@ -48,7 +48,7 @@
                         <Insets bottom="35.0" left="35.0" right="35.0" top="35.0" />
                      </GridPane.margin>
                   </JFXButton>
-                  <JFXButton fx:id="pathfinder" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#pathFind" prefHeight="217.0" prefWidth="325.0" style="-fx-background-radius: 25; -fx-background-color: #748cdc;" stylesheets="@/StyleSheet/style.css" text="MAP PATHFINDER" textFill="WHITE" GridPane.rowIndex="1">
+                  <JFXButton fx:id="map1" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#pathFind" prefHeight="217.0" prefWidth="325.0" style="-fx-background-radius: 0; -fx-background-color: BLUE;" stylesheets="@/Fonts/Roboto-Black.css" text="MAP PATHFINDER" textFill="WHITE" GridPane.rowIndex="1">
                      <font>
                         <Font name="Arial Black" size="18.0" />
                      </font>
@@ -67,7 +67,7 @@
                         <Insets bottom="35.0" left="35.0" right="35.0" top="35.0" />
                      </GridPane.margin>
                   </JFXButton>
-                  <JFXButton fx:id="map" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#map" prefHeight="217.0" prefWidth="325.0" style="-fx-background-radius: 25; -fx-background-color: #748cdc;" stylesheets="@/StyleSheet/style.css" text="MAP EDITOR" textFill="WHITE">
+                  <JFXButton fx:id="map" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#map" prefHeight="217.0" prefWidth="325.0" style="-fx-background-radius: 0; -fx-background-color: BLUE;" stylesheets="@/Fonts/Roboto-Black.css" text="MAP EDITOR" textFill="WHITE">
                      <font>
                         <Font name="Arial Black" size="18.0" />
                      </font>
@@ -112,7 +112,7 @@
                         <Insets bottom="35.0" left="35.0" right="35.0" top="35.0" />
                      </GridPane.margin>
                   </JFXButton>
-                  <JFXButton fx:id="EmployeeEditor" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#advanceViews" prefHeight="114.0" prefWidth="502.0" style="-fx-background-color: #748cdc; -fx-background-radius: 25;" stylesheets="/StyleSheet/style.css" text="EMPLOYEE EDITOR" textFill="WHITE">
+                  <JFXButton fx:id="EmployeeEditor" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#advanceViews" prefHeight="114.0" prefWidth="502.0" style="-fx-background-color: BLUE; -fx-background-radius: 25;" stylesheets="@/Fonts/Roboto-Black.css" text="EMPLOYEE EDITOR" textFill="WHITE">
                      <GridPane.margin>
                         <Insets bottom="45.0" left="45.0" right="45.0" top="45.0" />
                      </GridPane.margin></JFXButton>
@@ -127,7 +127,7 @@
                         <Insets bottom="35.0" left="35.0" right="35.0" top="35.0" />
                      </GridPane.margin>
                   </JFXButton>
-                  <JFXButton fx:id="ServiceRequestsAdmin" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#advanceViews" prefHeight="248.0" prefWidth="408.0" style="-fx-background-radius: 25; -fx-background-color: #748cdc;" stylesheets="@/StyleSheet/style.css" text=" SERVICE REQUESTS" textFill="WHITE" textOverrun="CLIP" GridPane.rowIndex="2">
+                  <JFXButton fx:id="ServiceRequestsAdmin" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#advanceViews" prefHeight="248.0" prefWidth="408.0" style="-fx-background-radius: 0; -fx-background-color: BLUE;" stylesheets="@/Fonts/Roboto-Black.css" text=" SERVICE REQUESTS" textFill="WHITE" textOverrun="CLIP" GridPane.rowIndex="2">
                      <font>
                         <Font name="Arial Black" size="18.0" />
                      </font>
@@ -149,7 +149,7 @@
                         <Insets bottom="35.0" left="35.0" right="35.0" top="35.0" />
                      </GridPane.margin>
                   </JFXButton>
-                  <JFXButton fx:id="CurrentRequest" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#advanceViews" prefHeight="82.0" prefWidth="406.0" style="-fx-background-radius: 25; -fx-background-color: #748cdc;" stylesheets="/StyleSheet/style.css" text="CURRENT REQUESTS" textFill="WHITE" GridPane.rowIndex="1">
+                  <JFXButton fx:id="CurrentRequest" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#advanceViews" prefHeight="82.0" prefWidth="406.0" style="-fx-background-radius: 0; -fx-background-color: BLUE;" stylesheets="@/Fonts/Roboto-Black.css" text="CURRENT REQUESTS" textFill="WHITE" GridPane.rowIndex="1">
                      <font>
                         <Font name="Arial Black" size="18.0" />
                      </font>
@@ -165,8 +165,12 @@
                   </JFXButton>
                </children>
             </GridPane>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#363d54" height="1500.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" GridPane.valignment="BASELINE" />
-            <GridPane GridPane.hgrow="NEVER" GridPane.vgrow="NEVER">
+         </children>
+      </GridPane>
+      <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1500.0" prefWidth="66.0" StackPane.alignment="TOP_LEFT">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#363d54" height="1500.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
+            <GridPane>
                <columnConstraints>
                   <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
                </columnConstraints>
@@ -189,12 +193,12 @@
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="65.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" GridPane.rowIndex="3" />
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.0" rotate="-45.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.0" rotate="45.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                  <JFXButton fx:id="exit" onAction="#exit" prefHeight="64.0" prefWidth="66.0" textFill="WHITE" GridPane.rowIndex="1">
+                  <JFXButton fx:id="exit1" onAction="#exit" prefHeight="64.0" prefWidth="66.0" textFill="WHITE" GridPane.rowIndex="1">
                      <font>
                         <Font name="System Bold" size="9.0" />
                      </font>
                      <tooltip>
-                        <Tooltip fx:id="ttExit" text="Exit App">
+                        <Tooltip fx:id="ttExit1" text="Exit App">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -206,12 +210,12 @@
                         <Image url="@/images/LogOut.png" />
                      </image>
                   </ImageView>
-                  <JFXButton fx:id="logOutButton" onAction="#logOut" prefHeight="64.0" prefWidth="66.0" textFill="WHITE" GridPane.rowIndex="2">
+                  <JFXButton fx:id="logOutButton1" onAction="#logOut" prefHeight="64.0" prefWidth="66.0" textFill="WHITE" GridPane.rowIndex="2">
                      <font>
                         <Font name="System Bold" size="9.0" />
                      </font>
                      <tooltip>
-                        <Tooltip fx:id="ttLogOutButton" text="Log Out">
+                        <Tooltip fx:id="ttLogOutButton1" text="Log Out">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -223,12 +227,12 @@
                         <Image url="@/images/ButtonCovid.png" />
                      </image>
                   </ImageView>
-                  <JFXButton fx:id="CovidForm" onAction="#advanceViews" prefHeight="64.0" prefWidth="66.0" text="Button" textFill="WHITE" GridPane.rowIndex="3">
+                  <JFXButton fx:id="CovidForm1" onAction="#advanceViews" prefHeight="64.0" prefWidth="66.0" text="Button" textFill="WHITE" GridPane.rowIndex="3">
                      <font>
                         <Font name="System Bold" size="9.0" />
                      </font>
                      <tooltip>
-                        <Tooltip fx:id="ttCovidForm" text="Covid Form">
+                        <Tooltip fx:id="ttCovidForm1" text="Covid Form">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -243,6 +247,6 @@
                </children>
             </GridPane>
          </children>
-      </GridPane>
+      </StackPane>
    </children>
 </StackPane>

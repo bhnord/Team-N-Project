@@ -17,9 +17,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.stage.Window;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -37,12 +38,10 @@ public class HomeControllerAdmin extends masterController implements Initializab
   @FXML private JFXButton logOutButton;
   @FXML private Tooltip ttLogOutButton;
 
-  @FXML private JFXButton ServiceRequestsAdmin;
-  @FXML private JFXButton CurrentRequest;
-  @FXML private JFXButton map;
-  @FXML private JFXButton map1, EmployeeEditor;
+  /** For sidebar nested FXML implementation */
+  @FXML private Window sideBar;
 
-  @FXML private GridPane BigBoiPane;
+  @FXML private SideBarController sideBarController;
 
   private Scene appPrimaryScene;
 
@@ -57,24 +56,11 @@ public class HomeControllerAdmin extends masterController implements Initializab
     this.appPrimaryScene = appPrimaryScene;
   }
 
+  @SneakyThrows
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     log.debug(state.toString());
-    CovidForm.setTooltip(ttCovidForm);
-    logOutButton.setTooltip(ttLogOutButton);
-    exit.setTooltip(ttExit);
-    /*
-       ServiceRequestsAdmin.setStyle(
-           "-fx-background-image: url('/images/ButtonSR.png'); -fx-background-size: cover; -fx-background-radius: 25");
-       CurrentRequest.setStyle(
-           "-fx-background-image: url('/images/ButtonCR.png'); -fx-background-size: cover; -fx-background-radius: 25");
-       map.setStyle(
-           "-fx-background-image: url('/images/ButtonM.png'); -fx-background-size: cover; -fx-background-radius: 25");
-       EmployeeEditor.setStyle(
-           "-fx-background-image: url('/images/ButtonH.png'); -fx-background-size: cover; -fx-background-radius: 25");
-       map1.setStyle(
-           "-fx-background-image: url('/images/ButtonM.png'); -fx-background-size: cover; -fx-background-radius: 25");
-    */ }
+  }
 
   public void advance(ActionEvent actionEvent) throws IOException {
     String file = "Requests/" + ((Button) actionEvent.getSource()).getId() + ".fxml";
