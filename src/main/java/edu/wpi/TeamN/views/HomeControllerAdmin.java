@@ -62,7 +62,13 @@ public class HomeControllerAdmin extends MasterController implements Initializab
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     log.debug(state.toString());
-    AnchorPane pane = FXMLLoader.load(getClass().getResource("SideBar.fxml"));
+
+    FXMLLoader loader2 = new FXMLLoader(getClass().getResource("SideBar.fxml"));
+    Parent root = loader2.load();
+    AnchorPane pane = new AnchorPane(root);
+    sideBarController = loader2.getController();
+    sideBarController.setAppPrimaryScene(this.appPrimaryScene);
+    sideBarController.setLoader(loader);
     anchorPane.getChildren().setAll(pane);
   }
 
@@ -102,15 +108,5 @@ public class HomeControllerAdmin extends MasterController implements Initializab
     // stage.setWidth(bounds.getWidth());
     // stage.setHeight(bounds.getHeight());
     appPrimaryScene.setRoot(root);
-  }
-
-  @FXML
-  public void logOut() throws IOException {
-    super.logOut(loader, appPrimaryScene);
-  }
-
-  @FXML
-  private void exit(ActionEvent actionEvent) throws IOException {
-    super.cancel(actionEvent);
   }
 }

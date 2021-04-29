@@ -13,6 +13,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -23,6 +24,7 @@ public class MapDrawer {
   private final String[] maps = {"L1", "L2", "g", "F1", "F2", "F3"};
   private String currentMap;
   final DoubleProperty zoomProperty = new SimpleDoubleProperty(300);
+  double pressedX, pressedY;
 
   public MapDrawer(IMapController mapControllerI) {
     this.mapController = mapControllerI;
@@ -103,6 +105,24 @@ public class MapDrawer {
             } else if (event.getDeltaY() < 0) {
               zoomProperty.set(zoomProperty.get() / 1.1);
             }
+          }
+        });
+
+    imageView.setOnMousePressed(
+        new EventHandler<MouseEvent>() {
+          public void handle(MouseEvent event) {
+            pressedX = event.getX();
+            pressedY = event.getY();
+          }
+        });
+
+    imageView.setOnMouseDragged(
+        new EventHandler<MouseEvent>() {
+          public void handle(MouseEvent event) {
+            imageView.setTranslateX(imageView.getTranslateX() + event.getX() - pressedX);
+            imageView.setTranslateY(imageView.getTranslateY() + event.getY() - pressedY);
+
+            event.consume();
           }
         });
   }

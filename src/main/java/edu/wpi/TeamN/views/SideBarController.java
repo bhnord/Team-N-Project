@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
+import javafx.scene.Scene;
 import javafx.scene.control.Tooltip;
 
 public class SideBarController extends MasterController implements Initializable {
@@ -20,6 +21,8 @@ public class SideBarController extends MasterController implements Initializable
   @FXML private Tooltip ttExit;
   @FXML private JFXButton logOutButton;
   @FXML private Tooltip ttLogOutButton;
+
+  public static Scene appScene;
 
   /** Groups for implementation on different pages */
   @FXML private Group groupExit;
@@ -34,8 +37,13 @@ public class SideBarController extends MasterController implements Initializable
     logOutButton.setTooltip(ttLogOutButton);
     exit.setTooltip(ttExit);
 
-    groupLogOut.setVisible(false);
-    groupLogOut.setManaged(false);
+    //    groupLogOut.setVisible(false);
+    //    groupLogOut.setManaged(false);
+  }
+
+  @Override
+  public void setAppPrimaryScene(Scene appPrimaryScene) {
+    super.setAppPrimaryScene(appPrimaryScene);
   }
 
   @FXML
@@ -46,5 +54,10 @@ public class SideBarController extends MasterController implements Initializable
   @FXML
   private void exit(ActionEvent actionEvent) throws IOException {
     super.cancel(actionEvent);
+  }
+
+  @Override
+  public void advanceViews(ActionEvent actionEvent) throws IOException {
+    super.advanceViews(actionEvent);
   }
 }
