@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Group;
 import javafx.scene.control.Tooltip;
 
 public class SideBarController extends masterController implements Initializable {
@@ -20,12 +21,21 @@ public class SideBarController extends masterController implements Initializable
   @FXML private JFXButton logOutButton;
   @FXML private Tooltip ttLogOutButton;
 
+  /** Groups for implementation on different pages */
+  @FXML private Group groupExit;
+
+  @FXML private Group groupLogOut;
+  @FXML private Group groupCovid;
+
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     // log.debug(state.toString());
     CovidForm.setTooltip(ttCovidForm);
     logOutButton.setTooltip(ttLogOutButton);
     exit.setTooltip(ttExit);
+
+    groupLogOut.setVisible(false);
+    groupLogOut.setManaged(false);
   }
 
   @FXML
