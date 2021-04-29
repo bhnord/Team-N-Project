@@ -1,4 +1,4 @@
-package edu.wpi.TeamN.mapEntity;
+package edu.wpi.TeamN.map;
 
 import edu.wpi.TeamN.views.MapController;
 import javafx.event.EventHandler;
