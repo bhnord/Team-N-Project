@@ -3,7 +3,6 @@ package edu.wpi.TeamN.views;
 import com.google.inject.Inject;
 import com.jfoenix.controls.JFXColorPicker;
 import com.jfoenix.controls.JFXListView;
-import com.jfoenix.controls.JFXScrollPane;
 import com.jfoenix.controls.JFXTextField;
 import edu.wpi.TeamN.map.IActionHandling;
 import edu.wpi.TeamN.map.MapDrawer;
@@ -31,6 +30,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
@@ -50,7 +50,7 @@ public class PathFinderController extends MasterController
   ArrayList<String> path = new ArrayList<String>();
   ArrayList<Node.Link> nodePath = new ArrayList<Node.Link>();
 
-  @FXML private JFXScrollPane mapAnchor;
+  @FXML private AnchorPane mapAnchor;
   @FXML private ImageView mapImageView;
   @FXML private JFXColorPicker nodeColor;
   @FXML private JFXColorPicker EXIT;

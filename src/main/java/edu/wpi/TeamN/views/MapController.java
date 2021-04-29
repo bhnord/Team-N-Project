@@ -114,6 +114,7 @@ public class MapController extends MasterController implements Initializable, IM
     mapDrawer = new MapDrawer(this);
     mapImageView.setCursor(Cursor.CROSSHAIR);
     this.Load(new ActionEvent());
+    //    mapDrawer.setUpZoom(mapImageView, mapAnchor);
   }
 
   @FXML

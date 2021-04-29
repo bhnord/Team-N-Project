@@ -1,6 +1,5 @@
 package edu.wpi.TeamN.map;
 
-import com.jfoenix.controls.JFXScrollPane;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.views.IMapController;
 import java.util.ArrayList;
@@ -16,6 +15,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
@@ -31,7 +31,6 @@ public class MapDrawer {
   private final double minZoom = 1;
   private double maxImgWidth = 1000;
   private double maxImgHeight = 700;
-  double pressedX, pressedY;
 
   public MapDrawer(IMapController mapControllerI) {
     this.mapController = mapControllerI;
@@ -116,7 +115,7 @@ public class MapDrawer {
     return ((input - offsetY) / zoomProperty.get());
   }
 
-  private void correctImage(JFXScrollPane mapContainer) {
+  private void correctImage(AnchorPane mapContainer) {
     if (transformX(0) < 0) {
       mapContainer.setTranslateX(invOffsetX(0));
     }
@@ -129,12 +128,12 @@ public class MapDrawer {
     if (transformX(maxImgWidth) > maxImgWidth) {
       mapContainer.setTranslateX(invOffsetX(-maxImgWidth * (zoomProperty.get() - 1)));
     }
-    if (transformX(maxImgWidth) > maxImgWidth) {
+    if (transformY(maxImgHeight) > maxImgHeight) {
       mapContainer.setTranslateY(invOffsetY(-maxImgHeight * (zoomProperty.get() - 1)));
     }
   }
 
-  public void setUpZoom(ImageView imageView, JFXScrollPane mapContainer) {
+  public void setUpZoom(ImageView imageView, AnchorPane mapContainer) {
     maxImgWidth = imageView.getFitWidth();
     maxImgHeight = imageView.getFitHeight();
     zoomProperty.addListener(
@@ -198,16 +197,6 @@ public class MapDrawer {
           public void handle(MouseEvent event) {
             pressedX = event.getX();
             pressedY = event.getY();
-          }
-        });
-
-    imageView.setOnMouseDragged(
-        new EventHandler<MouseEvent>() {
-          public void handle(MouseEvent event) {
-            imageView.setTranslateX(imageView.getTranslateX() + event.getX() - pressedX);
-            imageView.setTranslateY(imageView.getTranslateY() + event.getY() - pressedY);
-
-            event.consume();
           }
         });
   }
