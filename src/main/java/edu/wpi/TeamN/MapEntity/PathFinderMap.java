@@ -35,7 +35,9 @@ public class PathFinderMap {
     PathFinder pathFinder = new PathFinder();
     Node node1 = getNodeSet().get(startNodePath);
     Node node2 = getNodeSet().get(endNodePath);
-    return pathFinder.pathfind(node1, node2);
+    ArrayList<Node.Link> ret = pathFinder.pathfind(node1, node2);
+
+    return ret;
   }
 
   public void makeEdge(String id, Node node1, Node node2, Line simpleNode) {

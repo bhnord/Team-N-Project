@@ -5,6 +5,8 @@ import com.jfoenix.controls.*;
 import com.jfoenix.validation.RequiredFieldValidator;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.database.DatabaseService;
+import edu.wpi.TeamN.services.database.requests.Request;
+import edu.wpi.TeamN.services.database.requests.RequestType;
 import edu.wpi.TeamN.services.database.users.User;
 import edu.wpi.TeamN.services.database.users.UserType;
 import edu.wpi.TeamN.state.HomeState;
@@ -27,6 +29,7 @@ import javafx.scene.effect.BoxBlur;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import lombok.SneakyThrows;
@@ -127,7 +130,8 @@ public class FacilityMaintenanceRequestController extends masterController
           (new Text("* You must fill out all required fields of the request to continue\n")));
       JFXButton close = new JFXButton("close");
       close.setButtonType(JFXButton.ButtonType.RAISED);
-      close.setStyle("-fx-background-color : #00bfff;");
+      close.setStyle("-fx-background-color : #748cdc;");
+      close.setTextFill(Paint.valueOf("#FFFFFF"));
       dialogContent.setActions(close);
 
       JFXDialog dialog =
@@ -151,17 +155,19 @@ public class FacilityMaintenanceRequestController extends masterController
 
       JFXButton continueButton = new JFXButton("Continue");
       continueButton.setButtonType(JFXButton.ButtonType.RAISED);
-      continueButton.setStyle("-fx-background-color : #00bfff");
+      continueButton.setStyle("-fx-background-color : #748cdc;");
+      continueButton.setTextFill(Paint.valueOf("#FFFFFF"));
 
       JFXButton cancelButton = new JFXButton("Cancel");
       cancelButton.setButtonType(JFXButton.ButtonType.RAISED);
-      cancelButton.setStyle("-fx-background-color : #00bfff");
+      cancelButton.setStyle("-fx-background-color : #748cdc;");
+      cancelButton.setTextFill(Paint.valueOf("#FFFFFF"));
 
       cancelButton.setTranslateX(100);
       cancelButton.setTranslateY(65);
 
       continueButton.setTranslateX(200);
-      continueButton.setTranslateY(25);
+      continueButton.setTranslateY(24);
 
       menuContainer.getChildren().addAll(lbl1, cancelButton, continueButton);
       menuContainer.setPadding(new Insets(30, 50, 50, 50));
@@ -184,6 +190,7 @@ public class FacilityMaintenanceRequestController extends masterController
             @SneakyThrows
             @Override
             public void handle(ActionEvent event) {
+              submitToDB();
               popup1.hide();
 
               BoxBlur blur = new BoxBlur(7, 7, 7);
@@ -195,11 +202,13 @@ public class FacilityMaintenanceRequestController extends masterController
 
               JFXButton continueButton = new JFXButton("Return To Home");
               continueButton.setButtonType(JFXButton.ButtonType.RAISED);
-              continueButton.setStyle("-fx-background-color : #00bfff;");
+              continueButton.setStyle("-fx-background-color : #748cdc;");
+              continueButton.setTextFill(Paint.valueOf("#FFFFFF"));
 
               JFXButton cancelButton = new JFXButton("Complete Another Request");
               cancelButton.setButtonType(JFXButton.ButtonType.RAISED);
-              cancelButton.setStyle("-fx-background-color : #00bfff;");
+              cancelButton.setStyle("-fx-background-color : #748cdc;");
+              cancelButton.setTextFill(Paint.valueOf("#FFFFFF"));
 
               cancelButton.setTranslateX(0);
               cancelButton.setTranslateY(65);
@@ -265,7 +274,8 @@ public class FacilityMaintenanceRequestController extends masterController
                 + "* Desired language refers to the language that needs to be translated\n")));
     JFXButton close = new JFXButton("close");
     close.setButtonType(JFXButton.ButtonType.RAISED);
-    close.setStyle("-fx-background-color : #00bfff;");
+    close.setStyle("-fx-background-color : #748cdc;");
+    close.setTextFill(Paint.valueOf("#FFFFFF"));
     dialogContent.setActions(close);
 
     JFXDialog dialog = new JFXDialog(myStackPane, dialogContent, JFXDialog.DialogTransition.BOTTOM);
@@ -301,5 +311,16 @@ public class FacilityMaintenanceRequestController extends masterController
       roomDropdown.getItems().add(lbl);
     }
     new AutoCompleteComboBoxListener(roomDropdown);
+  }
+
+  private void submitToDB() {
+    RequestType type = RequestType.MAINTENANCE;
+    int recieverID =
+        Integer.parseInt(txtEmployeeName.getSelectionModel().getSelectedItem().getId());
+    String roomNodeId = roomDropdown.getSelectionModel().getSelectedItem().getId();
+    String content = "Time of request: " + timePicker.getEditor().getText();
+    String notes = maintenanceRequest.getText() + " " + txtComments.getText();
+    Request r = new Request(type, recieverID, roomNodeId, content, notes);
+    db.addRequest(r);
   }
 }

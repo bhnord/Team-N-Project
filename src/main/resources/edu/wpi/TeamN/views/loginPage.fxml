@@ -32,7 +32,7 @@
                 <RowConstraints minHeight="768.0" prefHeight="768.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#363d54" height="1153.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" GridPane.valignment="BASELINE" />
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#363d54" height="1500.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" GridPane.valignment="BASELINE" />
                 <GridPane GridPane.hgrow="NEVER" GridPane.vgrow="NEVER">
                     <columnConstraints>
                         <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
@@ -135,7 +135,7 @@
                                         <URL value="@/Fonts/Roboto-Light.css" />
                                     </stylesheets>
                                 </JFXPasswordField>
-                                <JFXButton fx:id="goToHomePage" buttonType="RAISED" onAction="#continueToHomePage" prefHeight="44.0" prefWidth="123.0" style="-fx-background-color: #6985e0;" stylesheets="@/Fonts/Roboto-Black.css" text="SUBMIT" textFill="WHITE" GridPane.rowIndex="6">
+                                <JFXButton fx:id="goToHomePage" buttonType="RAISED" onAction="#continueToHomePage" prefHeight="50.0" prefWidth="174.0" style="-fx-background-color: #6985e0;" stylesheets="@/Fonts/Roboto-Black.css" text="SUBMIT" textFill="WHITE" GridPane.rowIndex="6">
                                     <font>
                                         <Font name="Javanese Text" size="14.0" />
                                     </font>
@@ -145,19 +145,8 @@
                                         <Font name="Javanese Text" size="12.0" />
                                     </font>
                                 </Label>
-                                <GridPane GridPane.rowIndex="5">
-                                    <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="402.0" minWidth="10.0" prefWidth="367.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="467.0" minWidth="10.0" prefWidth="446.0" />
-                                    </columnConstraints>
-                                    <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    </rowConstraints>
-                                    <children>
-                                        <JFXButton fx:id="RegisterNewUser" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#register" prefHeight="31.0" prefWidth="80.0" text="Register" textFill="WHITE" GridPane.columnIndex="1" />
-                                    </children>
-                                </GridPane>
                                 <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.rowIndex="2" />
+                                  <JFXButton fx:id="RegisterNewUser" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" mnemonicParsing="false" onAction="#register" prefHeight="31.0" prefWidth="80.0" style="-fx-background-color: #6985e0;" text="Register" textFill="WHITE" GridPane.rowIndex="5" />
                             </children>
                         </GridPane>
                     </children>

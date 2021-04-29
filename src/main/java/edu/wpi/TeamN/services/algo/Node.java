@@ -10,8 +10,8 @@ public class Node implements Comparable<Node> {
 
   public static class Link {
     String _id;
-    Node _other;
-    Node _this;
+    public Node _other;
+    public Node _this;
     double _distance;
     public Line _shape;
     public boolean _isStair;
@@ -156,7 +156,9 @@ public class Node implements Comparable<Node> {
 
   public double heuristic(Node other) {
     return Math.sqrt(
-        (other._x - this._x) * (other._x - this._x) + (other._y - this._y) * (other._y - this._y));
+            (other._x - this._x) * (other._x - this._x)
+                + (other._y - this._y) * (other._y - this._y))
+        + (!this._floor.equals(other.get_floor()) ? 500 : 0);
   }
 
   public Node(double x, double y, String nodeID) {
@@ -197,7 +199,7 @@ public class Node implements Comparable<Node> {
   }
 
   public void addNeighbor(String id, Node other, double distance, Line shape, boolean isStair) {
-    this._neighbors.add(new Link(id, this, other, distance, shape, isStair));
+    this._neighbors.add(new Link(id, this, other, distance, shape, this._nodeType.equals("STAI")));
   }
 
   @Override

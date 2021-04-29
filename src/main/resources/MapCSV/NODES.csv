@@ -1,3 +1,8 @@
+DHALL00302,4725,995,2,15 Francis,HALL,Hallway 3 Floor 2,Hallway D0302
+Shap_lowerLeft,1084,2300,L1,"","","",""
+Hall_34,2772,988,L1,"","","",""
+HallToExit,3072,980,L1,Parking,"",LobbyEntrance,lobby
+ParkingLot_00002,2016,1524,L1,"",PARK,"",""
 nPARK001L1,140,1785,L1,Parking,PARK,parkingSpace1,parking1
 nPARK002L1,280,1785,L1,Parking,PARK,parkingSpace2,parking2
 nPARK003L1,380,1785,L1,Parking,PARK,parkingSpace3,parking3
@@ -24,7 +29,6 @@ nPARK023L1,2875,1785,L1,Parking,PARK,parkingSpace23,parking23
 nPARK024L1,2600,2150,L1,Parking,PARK,parkingSpace24,parking24
 nPARK025L1,2725,2150,L1,Parking,PARK,parkingSpace25,parking25
 nEXIT026L1,3080,1209,L1,Parking,EXIT,LobbyEntrance,lobby
-nEXIT027L1,3424,1223,L1,Parking,EXIT,EmergencyRoomEntrance,emergencyRoom
 nPARK028L1,400,1984,L1,Parking,PARK,parkingSpace26,parking26
 nPARK029L1,1050,1984,L1,Parking,PARK,parkingSpace27,parking27
 nPARK030L1,1080,1700,L1,Parking,PARK,parkingSpace28,parking28
@@ -225,7 +229,6 @@ DSTAI00702,3855,565,2,15 Francis,STAI,Staircase7 Floor2,Staircase7
 DSTAI00802,3535,645,2,15 Francis,STAI,Staircase8 Floor2,Staircase8
 DHALL00102,4770,1140,2,15 Francis,HALL,Hallway 1 Floor 2,Hallway D0102
 DHALL00202,4750,1080,2,15 Francis,HALL,Hallway 2 Floor 2,Hallway D0202
-DHALL00302,4725,995,2,15 Francis,HALL,Hallway 3 Floor 2,Hallway D0302
 DHALL00402,4785,975,2,15 Francis,HALL,Hallway 4 Floor 2,Hallway D0402
 DHALL00502,4705,925,2,15 Francis,HALL,Hallway 5 Floor 2,Hallway D0502
 DHALL00602,4690,870,2,15 Francis,HALL,Hallway 6 Floor 2,Hallway D0602
@@ -469,7 +472,7 @@ GHALL01103,1628,2070,3,Shapiro,HALL,Hallway Node 11 Floor 3,Hall
 GHALL01303,1580,2006,3,Shapiro,HALL,Hallway Node 13 Floor 3,Hall
 GREST01203,1628,2052,3,Shapiro,REST,Restroom Node 12 Floor 3,Restroom Shapiro Floor 3
 GSERV01603,1580,1858,3,Shapiro,SERV,The Porch Node 16 Floor 3,The Porch
-GSTAI00903,1685,2052,3,Shapiro,STAI,Staircase Node 9 Floor 3,Floor 3 Stairs 
+GSTAI00903,1685,2052,3,Shapiro,STAI,Staircase Node 9 Floor 3,Floor 3 Stairs
 GELEV00QL1,1637,2116,L1,Shapiro,ELEV,Elevator Q MapNode 7 Floor L1,Elevator Q L1
 GEXIT001L1,1702,2260,L1,Shapiro,EXIT,Fenwood Road Exit MapNode 1 Floor L1,Fenwood Road EntranceExit L1
 GHALL002L1,1702,2167,L1,Shapiro,HALL,Hallway MapNode 2 Floor L1,Hall

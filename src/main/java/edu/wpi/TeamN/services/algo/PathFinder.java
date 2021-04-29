@@ -1,6 +1,7 @@
 package edu.wpi.TeamN.services.algo;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class PathFinder implements PathFinderI {
   private PathFinderI impl;
@@ -26,13 +27,58 @@ public class PathFinder implements PathFinderI {
     return impl.pathfindFull(start, end, filter);
   }
 
-  public String getDescription(ArrayList<Node.Link> input) {
-    StringBuilder stringBuilder = new StringBuilder();
-    for (Node.Link l : input) {
-      stringBuilder.append(l._this.get_nodeID());
-      stringBuilder.append("\n");
+  private double getDirection(Node.Link input) {
+    double dx = (input._other.get_x() - input._this.get_x());
+    double dy = -(input._other.get_y() - input._this.get_y());
+    if (dx == 0) {
+      return dy > 0 ? Math.PI / 2 : 3 * Math.PI / 2;
     }
-    return stringBuilder.toString();
+    if (dy == 0) {
+      return dx < 0 ? Math.PI : 0;
+    }
+    double ret = Math.atan(Math.abs(dy / dx));
+    if (dx * dy < 0) {
+      ret = Math.PI / 2 - ret;
+    }
+    ret += dx < 0 ? Math.PI / 2 : 0;
+    ret += dy < 0 ? Math.PI / 2 : 0;
+    ret += (dx > 0 && dy < 0) ? Math.PI : 0;
+    System.out.println(dx + ", " + dy + ", " + ret);
+    return ret;
+  }
+
+  public ArrayList<String> getDescription(ArrayList<Node.Link> input) {
+    if (input.size() == 0) {
+      return (ArrayList<String>) Collections.singleton("No Path");
+    }
+    double previousDirection = 0;
+    double currentDirection = 0;
+    double minAngle = .45;
+    ArrayList<String> ret = new ArrayList<>();
+    // ret.add("walk to " + input.get(input.size() - 1)._other.get_longName() + '\n');
+    previousDirection = getDirection(input.get(input.size() - 1));
+
+    for (int i = input.size() - 1; i >= 0; i--) {
+      Node.Link l = input.get(i);
+      currentDirection = getDirection(l);
+      double directionDiff = (currentDirection - previousDirection);
+      if (!l._this.get_floor().equals(l._other.get_floor())) {
+        ret.add("go to floor " + l._other.get_floor());
+      } else {
+        if (directionDiff > minAngle || directionDiff < (-minAngle)) {
+          if (directionDiff > 0) {
+            ret.add("turn left to " + l._other.get_longName());
+          } else {
+            ret.add("turn right to " + l._other.get_longName());
+          }
+        } else {
+          //          if (!l._other.get_nodeType().equals("HALL"))
+          ret.add("continue straight to " + l._other.get_longName());
+        }
+      }
+      previousDirection = currentDirection;
+    }
+    return ret;
   }
 
   /**

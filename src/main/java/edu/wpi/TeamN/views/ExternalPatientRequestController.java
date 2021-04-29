@@ -38,6 +38,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import lombok.SneakyThrows;
@@ -126,7 +127,8 @@ public class ExternalPatientRequestController extends masterController implement
           (new Text("* You must fill out all required fields of the request to continue\n")));
       JFXButton close = new JFXButton("close");
       close.setButtonType(JFXButton.ButtonType.RAISED);
-      close.setStyle("-fx-background-color : #00bfff;");
+      close.setStyle("-fx-background-color : #748cdc;");
+      close.setTextFill(Paint.valueOf("#FFFFFF"));
       dialogContent.setActions(close);
 
       JFXDialog dialog =
@@ -150,17 +152,19 @@ public class ExternalPatientRequestController extends masterController implement
 
       JFXButton continueButton = new JFXButton("Continue");
       continueButton.setButtonType(JFXButton.ButtonType.RAISED);
-      continueButton.setStyle("-fx-background-color : #00bfff");
+      continueButton.setStyle("-fx-background-color : #748cdc;");
+      continueButton.setTextFill(Paint.valueOf("#FFFFFF"));
 
       JFXButton cancelButton = new JFXButton("Cancel");
       cancelButton.setButtonType(JFXButton.ButtonType.RAISED);
-      cancelButton.setStyle("-fx-background-color : #00bfff");
+      cancelButton.setStyle("-fx-background-color : #748cdc;");
+      cancelButton.setTextFill(Paint.valueOf("#FFFFFF"));
 
       cancelButton.setTranslateX(100);
       cancelButton.setTranslateY(65);
 
       continueButton.setTranslateX(200);
-      continueButton.setTranslateY(25);
+      continueButton.setTranslateY(24);
 
       menuContainer.getChildren().addAll(lbl1, cancelButton, continueButton);
       menuContainer.setPadding(new Insets(30, 50, 50, 50));
@@ -184,6 +188,7 @@ public class ExternalPatientRequestController extends masterController implement
             @Override
             public void handle(ActionEvent event) {
               popup1.hide();
+              submitToDatabase();
 
               BoxBlur blur = new BoxBlur(7, 7, 7);
 
@@ -194,11 +199,13 @@ public class ExternalPatientRequestController extends masterController implement
 
               JFXButton continueButton = new JFXButton("Return To Home");
               continueButton.setButtonType(JFXButton.ButtonType.RAISED);
-              continueButton.setStyle("-fx-background-color : #00bfff;");
+              continueButton.setStyle("-fx-background-color : #748cdc;");
+              continueButton.setTextFill(Paint.valueOf("#FFFFFF"));
 
               JFXButton cancelButton = new JFXButton("Complete Another Request");
               cancelButton.setButtonType(JFXButton.ButtonType.RAISED);
-              cancelButton.setStyle("-fx-background-color : #00bfff;");
+              cancelButton.setStyle("-fx-background-color : #748cdc;");
+              cancelButton.setTextFill(Paint.valueOf("#FFFFFF"));
 
               cancelButton.setTranslateX(0);
               cancelButton.setTranslateY(65);
@@ -277,7 +284,8 @@ public class ExternalPatientRequestController extends masterController implement
                 + "* Necessary Equipment refers to additional services/equipment the patient requires\n")));
     JFXButton close = new JFXButton("close");
     close.setButtonType(JFXButton.ButtonType.RAISED);
-    close.setStyle("-fx-background-color : #00bfff");
+    close.setStyle("-fx-background-color : #748cdc");
+    close.setTextFill(Paint.valueOf("#FFFFFF"));
     dialogContent.setActions(close);
 
     JFXDialog dialog = new JFXDialog(myStackPane, dialogContent, JFXDialog.DialogTransition.BOTTOM);

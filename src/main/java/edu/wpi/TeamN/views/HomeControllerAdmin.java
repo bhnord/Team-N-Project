@@ -37,10 +37,10 @@ public class HomeControllerAdmin extends masterController implements Initializab
   @FXML private JFXButton logOutButton;
   @FXML private Tooltip ttLogOutButton;
 
-  @FXML private JFXButton ServiceRequests;
+  @FXML private JFXButton ServiceRequestsAdmin;
   @FXML private JFXButton CurrentRequest;
   @FXML private JFXButton map;
-  @FXML private JFXButton map1, helpSB;
+  @FXML private JFXButton map1, EmployeeEditor;
 
   @FXML private GridPane BigBoiPane;
 
@@ -66,14 +66,16 @@ public class HomeControllerAdmin extends masterController implements Initializab
 
     BigBoiPane.setMinSize(1366, 768);
     // BigBoiPane.set
-    ServiceRequests.setStyle(
+    ServiceRequestsAdmin.setStyle(
         "-fx-background-image: url('/images/ButtonSR.png'); -fx-background-size: cover; -fx-background-radius: 25");
     CurrentRequest.setStyle(
         "-fx-background-image: url('/images/ButtonCR.png'); -fx-background-size: cover; -fx-background-radius: 25");
     map.setStyle(
         "-fx-background-image: url('/images/ButtonM.png'); -fx-background-size: cover; -fx-background-radius: 25");
-    map1.setStyle(
+    EmployeeEditor.setStyle(
         "-fx-background-image: url('/images/ButtonH.png'); -fx-background-size: cover; -fx-background-radius: 25");
+    map1.setStyle(
+        "-fx-background-image: url('/images/ButtonM.png'); -fx-background-size: cover; -fx-background-radius: 25");
   }
 
   public void advance(ActionEvent actionEvent) throws IOException {
@@ -89,7 +91,20 @@ public class HomeControllerAdmin extends masterController implements Initializab
   }
 
   public void map(ActionEvent actionEvent) throws IOException {
-    Parent root = loader.load(getClass().getResourceAsStream("mapAdmin.fxml"));
+    Parent root = loader.load(getClass().getResourceAsStream("mapAdmin2.fxml"));
+    Screen screen = Screen.getPrimary();
+    Rectangle2D bounds = screen.getVisualBounds();
+
+    Stage stage = (Stage) appPrimaryScene.getWindow();
+    // stage.setX(bounds.getMinX());
+    // stage.setY(bounds.getMinY());
+    // stage.setWidth(bounds.getWidth());
+    // stage.setHeight(bounds.getHeight());
+    appPrimaryScene.setRoot(root);
+  }
+
+  public void pathFind(ActionEvent actionEvent) throws IOException {
+    Parent root = loader.load(getClass().getResourceAsStream("pathfinder.fxml"));
     Screen screen = Screen.getPrimary();
     Rectangle2D bounds = screen.getVisualBounds();
 
