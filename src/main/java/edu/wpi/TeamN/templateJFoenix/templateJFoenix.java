@@ -1,4 +1,4 @@
-package edu.wpi.TeamN.templateJFeonix;
+package edu.wpi.TeamN.templateJFoenix;
 
 import com.jfoenix.controls.*;
 import com.jfoenix.transitions.hamburger.HamburgerBasicCloseTransition;
@@ -13,7 +13,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class templateJFeonix implements Initializable {
+public class templateJFoenix implements Initializable {
   @FXML private JFXHamburger ham1;
 
   @FXML private JFXTextField txtUsername;
