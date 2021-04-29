@@ -17,6 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.Window;
@@ -42,6 +43,7 @@ public class HomeControllerAdmin extends masterController implements Initializab
   @FXML private Window sideBar;
 
   @FXML private SideBarController sideBarController;
+  @FXML private AnchorPane anchorPane;
 
   private Scene appPrimaryScene;
 
@@ -60,6 +62,8 @@ public class HomeControllerAdmin extends masterController implements Initializab
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     log.debug(state.toString());
+    AnchorPane pane = FXMLLoader.load(getClass().getResource("SideBar.fxml"));
+    anchorPane.getChildren().setAll(pane);
   }
 
   public void advance(ActionEvent actionEvent) throws IOException {
