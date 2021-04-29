@@ -14,7 +14,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -25,6 +27,8 @@ public class MasterController implements Initializable {
   @Inject HomeState state;
   @FXML private Label text;
 
+  @FXML private AnchorPane anchorPane;
+  @FXML private SideBarController sideBarController;
   protected Scene appPrimaryScene;
 
   /**
@@ -43,6 +47,15 @@ public class MasterController implements Initializable {
     this.loader = loader;
   }
 
+  public void setAnchorPane(AnchorPane anchorPane) {
+    this.anchorPane = anchorPane;
+  }
+
+  public void setSideBarController(SideBarController sideBarController) {
+    this.sideBarController = sideBarController;
+  }
+
+  @SneakyThrows
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     //    log.debug(state.toString());
@@ -179,5 +192,16 @@ public class MasterController implements Initializable {
     String file = ((Button) actionEvent.getSource()).getId() + ".fxml";
     Parent root = loader.load(getClass().getResourceAsStream(file));
     appPrimaryScene.setRoot(root);
+  }
+
+  public void sideBarSetup(AnchorPane anchorPane, Scene appPrimaryScene, FXMLLoader loader)
+      throws IOException {
+    FXMLLoader loader2 = new FXMLLoader(getClass().getResource("SideBar.fxml"));
+    Parent root = loader2.load();
+    AnchorPane pane = new AnchorPane(root);
+    sideBarController = loader2.getController();
+    sideBarController.setAppPrimaryScene(appPrimaryScene);
+    sideBarController.setLoader(loader);
+    anchorPane.getChildren().setAll(pane);
   }
 }

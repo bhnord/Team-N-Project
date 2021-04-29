@@ -54,6 +54,9 @@ public class AudioVisualRequestController extends MasterController implements In
 
   @FXML private AnchorPane anchorPage;
 
+  @FXML private SideBarController sideBarController;
+  @FXML private AnchorPane anchorPane;
+
   @FXML private StackPane confirmationStackPane;
 
   // @FXML private JFXButton submitButton;
@@ -76,10 +79,12 @@ public class AudioVisualRequestController extends MasterController implements In
     this.appPrimaryScene = appPrimaryScene;
   }
 
+  @SneakyThrows
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     log.debug(state.toString());
     //  submitButton.setDisable(true);
+    super.sideBarSetup(anchorPane, appPrimaryScene, loader);
 
     /** USERNAME input and password* */
     RequiredFieldValidator reqInputValid = new RequiredFieldValidator();

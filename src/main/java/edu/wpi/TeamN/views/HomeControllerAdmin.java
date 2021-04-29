@@ -62,14 +62,7 @@ public class HomeControllerAdmin extends MasterController implements Initializab
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     log.debug(state.toString());
-
-    FXMLLoader loader2 = new FXMLLoader(getClass().getResource("SideBar.fxml"));
-    Parent root = loader2.load();
-    AnchorPane pane = new AnchorPane(root);
-    sideBarController = loader2.getController();
-    sideBarController.setAppPrimaryScene(this.appPrimaryScene);
-    sideBarController.setLoader(loader);
-    anchorPane.getChildren().setAll(pane);
+    super.sideBarSetup(anchorPane, appPrimaryScene, loader);
   }
 
   public void advance(ActionEvent actionEvent) throws IOException {
