@@ -6,7 +6,7 @@ import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
 import edu.wpi.TeamN.mapEntity.IActionHandling;
 import edu.wpi.TeamN.mapEntity.MapDrawing;
-import edu.wpi.TeamN.mapEntity.;
+import edu.wpi.TeamN.mapEntity.PathFinderController;
 import edu.wpi.TeamN.services.algo.Edge;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.algo.PathFinder;
