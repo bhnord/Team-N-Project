@@ -5,16 +5,22 @@ import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
 public class DialogFactory {
-  private final StackPane stackPane;
-  private JFXDialogLayout content;
+  //  private final StackPane stackPane;
+  private final JFXDialogLayout content = new JFXDialogLayout();
   private JFXDialog dialog;
+  private Pane pane;
 
-  public DialogFactory(StackPane stackPane) {
-    this.stackPane = stackPane;
+  public DialogFactory(Pane pane) {
+    //    this.stackPane = stackPane;
+    this.pane = pane;
+    content
+        .getStylesheets()
+        .add(getClass().getResource("/Fonts/Roboto-Light.css").toExternalForm());
   }
 
   /**
@@ -25,20 +31,23 @@ public class DialogFactory {
    * @param body Body of the dialog
    */
   public void creatDialogOkay(String heading, String body) {
-    content = new JFXDialogLayout();
     content.setHeading(new Text(heading));
     content.setBody(new Text(body));
+    StackPane stackPane = new StackPane();
     dialog = new JFXDialog(stackPane, content, JFXDialog.DialogTransition.CENTER);
     JFXButton button = new JFXButton("Okay");
     button.setOnAction(action -> dialog.close());
     content.setActions(button);
+    stackPane.setLayoutX(pane.getWidth() / 2);
+    stackPane.setLayoutY(pane.getHeight() / 2);
+    pane.getChildren().add(stackPane);
     dialog.show();
   }
 
   /**
-   * Creates a JFX Dialog with Heading of heading and Body of body with a cancel button
-   * and a confirm button. The confirm button must be assigned an action for on click, though it
-   * will close the dialog on click no matter what.
+   * Creates a JFX Dialog with Heading of heading and Body of body with a cancel button and a
+   * confirm button. The confirm button must be assigned an action for on click, though it will
+   * close the dialog on click no matter what.
    *
    * @param heading Heading of the dialog
    * @param body Body of the dialog
@@ -46,10 +55,9 @@ public class DialogFactory {
    */
   public void creatDialogConfirmCancel(
       String heading, String body, EventHandler<? super MouseEvent> clickAction) {
-    content = new JFXDialogLayout();
     content.setHeading(new Text(heading));
     content.setBody(new Text(body));
-    dialog = new JFXDialog(stackPane, content, JFXDialog.DialogTransition.CENTER);
+    //    dialog = new JFXDialog(stackPane, content, JFXDialog.DialogTransition.CENTER);
     JFXButton cancelButton = new JFXButton("Cancel");
     cancelButton.setOnAction(action -> dialog.close());
     JFXButton confirmButton = new JFXButton("Confirm");

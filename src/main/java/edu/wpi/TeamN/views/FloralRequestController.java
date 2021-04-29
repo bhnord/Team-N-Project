@@ -115,14 +115,15 @@ public class FloralRequestController extends masterController implements Initial
 
   public void submit(ActionEvent actionEvent) throws IOException {
     //    loader.
-    DialogFactory dialogFactory = new DialogFactory(myStackPane);
-    //    dialogFactory.creatDialogOkay("Heading", "This is the content");
-    dialogFactory.creatDialogConfirmCancel(
-        "Confirm?",
-        "Click to confirm",
-        event -> {
-          System.out.println("Clicked: " + event.getButton().toString());
-        });
+    DialogFactory dialogFactory = new DialogFactory(anchorPage);
+    dialogFactory.creatDialogOkay("Heading", "This is the content");
+    //    dialogFactory.creatDialogConfirmCancel(
+    //        "Confirm?",
+    //        "Click to confirm I am adding size to this box maybe I should add some new lines
+    // \n\n\n Oh hey I added lines yay",
+    //        event -> {
+    //          System.out.println("Clicked: " + event.getButton().toString());
+    //        });
     //    if (timePicker.getEditor().getText().isEmpty()
     //        || bouquet.getText().isEmpty()
     //        || txtEmployeeName.getEditor().getText().isEmpty()
