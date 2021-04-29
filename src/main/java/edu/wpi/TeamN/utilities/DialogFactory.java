@@ -38,9 +38,9 @@ public class DialogFactory {
     JFXButton button = new JFXButton("Okay");
     button.setOnAction(action -> dialog.close());
     content.setActions(button);
-    stackPane.setLayoutX(pane.getWidth() / 2);
-    stackPane.setLayoutY(pane.getHeight() / 2);
-    pane.getChildren().add(stackPane);
+//    System.out.println(dialog.getWidth() / 2);
+    stackPane.setLayoutX(pane.getScene().getWindow().getWidth() / 2 - dialog.getWidth() / 2);
+    stackPane.setLayoutY(pane.getScene().getWindow().getHeight() / 2 - dialog.getHeight() / 2);
     dialog.show();
   }
 
@@ -57,13 +57,17 @@ public class DialogFactory {
       String heading, String body, EventHandler<? super MouseEvent> clickAction) {
     content.setHeading(new Text(heading));
     content.setBody(new Text(body));
-    //    dialog = new JFXDialog(stackPane, content, JFXDialog.DialogTransition.CENTER);
+    StackPane stackPane = new StackPane();
+    dialog = new JFXDialog(stackPane, content, JFXDialog.DialogTransition.CENTER);
     JFXButton cancelButton = new JFXButton("Cancel");
     cancelButton.setOnAction(action -> dialog.close());
     JFXButton confirmButton = new JFXButton("Confirm");
     confirmButton.setOnMousePressed(clickAction);
     confirmButton.setOnMouseReleased(action -> dialog.close());
     content.setActions(cancelButton, confirmButton);
+    stackPane.setLayoutX(pane.getWidth() / 2);
+    stackPane.setLayoutY(pane.getHeight() / 2);
+    pane.getChildren().add(stackPane);
     dialog.show();
   }
 }
