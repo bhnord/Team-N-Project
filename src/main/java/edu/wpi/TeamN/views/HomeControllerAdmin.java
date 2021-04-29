@@ -79,7 +79,7 @@ public class HomeControllerAdmin extends MasterController implements Initializab
   }
 
   public void map(ActionEvent actionEvent) throws IOException {
-    Parent root = loader.load(getClass().getResourceAsStream("mapAdmin2.fxml"));
+    Parent root = loader.load(getClass().getResourceAsStream("MapAdmin2.fxml"));
     Screen screen = Screen.getPrimary();
     Rectangle2D bounds = screen.getVisualBounds();
 
@@ -92,7 +92,7 @@ public class HomeControllerAdmin extends MasterController implements Initializab
   }
 
   public void pathFind(ActionEvent actionEvent) throws IOException {
-    Parent root = loader.load(getClass().getResourceAsStream("pathfinder.fxml"));
+    Parent root = loader.load(getClass().getResourceAsStream("Pathfinder.fxml"));
     Screen screen = Screen.getPrimary();
     Rectangle2D bounds = screen.getVisualBounds();
 
