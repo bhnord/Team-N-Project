@@ -34,13 +34,13 @@ public class DialogFactory {
     content.setHeading(new Text(heading));
     content.setBody(new Text(body));
     StackPane stackPane = new StackPane();
+    stackPane.setMouseTransparent(true);
     dialog = new JFXDialog(stackPane, content, JFXDialog.DialogTransition.CENTER);
     JFXButton button = new JFXButton("Okay");
     button.setOnAction(action -> dialog.close());
     content.setActions(button);
-//    System.out.println(dialog.getWidth() / 2);
-    stackPane.setLayoutX(pane.getScene().getWindow().getWidth() / 2 - dialog.getWidth() / 2);
-    stackPane.setLayoutY(pane.getScene().getWindow().getHeight() / 2 - dialog.getHeight() / 2);
+    stackPane.setPickOnBounds(false);
+    pane.getChildren().add(stackPane);
     dialog.show();
   }
 
@@ -58,6 +58,7 @@ public class DialogFactory {
     content.setHeading(new Text(heading));
     content.setBody(new Text(body));
     StackPane stackPane = new StackPane();
+    stackPane.setMouseTransparent(true);
     dialog = new JFXDialog(stackPane, content, JFXDialog.DialogTransition.CENTER);
     JFXButton cancelButton = new JFXButton("Cancel");
     cancelButton.setOnAction(action -> dialog.close());

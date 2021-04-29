@@ -45,6 +45,7 @@ public class FloralRequestController extends masterController implements Initial
   @FXML private Button helpButton;
   @FXML private StackPane myStackPane;
   @FXML private StackPane myStackPane2;
+  @FXML private StackPane rootStackPane;
   private Scene appPrimaryScene;
   @FXML private Button submit;
   private HashMap<String, User> users;
@@ -115,7 +116,7 @@ public class FloralRequestController extends masterController implements Initial
 
   public void submit(ActionEvent actionEvent) throws IOException {
     //    loader.
-    DialogFactory dialogFactory = new DialogFactory(anchorPage);
+    DialogFactory dialogFactory = new DialogFactory(rootStackPane);
     dialogFactory.creatDialogOkay("Heading", "This is the content");
     //    dialogFactory.creatDialogConfirmCancel(
     //        "Confirm?",
