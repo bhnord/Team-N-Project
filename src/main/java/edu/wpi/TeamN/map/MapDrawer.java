@@ -31,7 +31,6 @@ public class MapDrawer {
   private final double minZoom = 1;
   private double maxImgWidth = 1000;
   private double maxImgHeight = 700;
-  double pressedX, pressedY;
 
   public MapDrawer(IMapController mapControllerI) {
     this.mapController = mapControllerI;
