@@ -67,8 +67,6 @@ public class HomeController extends masterController implements Initializable {
     // helpS.setDisable(true);
     // helpSB.setDisable(true);
 
-    BigBoiPane.setMinSize(1366, 768);
-    // BigBoiPane.set
     ServiceRequests.setStyle(
         "-fx-background-image: url('/images/ButtonSR.png'); -fx-background-size: cover; -fx-background-radius: 25");
     CurrentRequest.setStyle(

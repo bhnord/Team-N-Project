@@ -62,8 +62,6 @@ public class HomeControllerGuest extends masterController implements Initializab
     logOutButton.setTooltip(ttLogOutButton);
     exit.setTooltip(ttExit);
 
-    BigBoiPane.setMinSize(1366, 768);
-    // BigBoiPane.set
     map.setStyle(
         "-fx-background-image: url('/images/ButtonM.png'); -fx-background-size: cover; -fx-background-radius: 25");
     map1.setStyle(

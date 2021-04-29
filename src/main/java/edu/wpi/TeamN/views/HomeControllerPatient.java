@@ -64,8 +64,6 @@ public class HomeControllerPatient extends masterController implements Initializ
     logOutButton.setTooltip(ttLogOutButton);
     exit.setTooltip(ttExit);
 
-    BigBoiPane.setMinSize(1366, 768);
-    // BigBoiPane.set
     ServiceRequestsPatient.setStyle(
         "-fx-background-image: url('/images/ButtonSR.png'); -fx-background-size: cover; -fx-background-radius: 25");
     CurrentRequest.setStyle(

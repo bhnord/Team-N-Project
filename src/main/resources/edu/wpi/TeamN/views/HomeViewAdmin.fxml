@@ -48,7 +48,7 @@
                         <Insets bottom="35.0" left="35.0" right="35.0" top="35.0" />
                      </GridPane.margin>
                   </JFXButton>
-                  <JFXButton fx:id="map1" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#pathFind" prefHeight="217.0" prefWidth="325.0" style="-fx-background-radius: 0; -fx-background-color: BLUE;" stylesheets="@/Fonts/Roboto-Black.css" text="MAP PATHFINDER" textFill="WHITE" GridPane.rowIndex="1">
+                  <JFXButton fx:id="pathfinder" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#pathFind" prefHeight="217.0" prefWidth="325.0" style="-fx-background-radius: 25; -fx-background-color: #748cdc;" stylesheets="@/StyleSheet/style.css" text="MAP PATHFINDER" textFill="WHITE" GridPane.rowIndex="1">
                      <font>
                         <Font name="Arial Black" size="18.0" />
                      </font>
@@ -67,7 +67,7 @@
                         <Insets bottom="35.0" left="35.0" right="35.0" top="35.0" />
                      </GridPane.margin>
                   </JFXButton>
-                  <JFXButton fx:id="map" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#map" prefHeight="217.0" prefWidth="325.0" style="-fx-background-radius: 0; -fx-background-color: BLUE;" stylesheets="@/Fonts/Roboto-Black.css" text="MAP EDITOR" textFill="WHITE">
+                  <JFXButton fx:id="map" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#map" prefHeight="217.0" prefWidth="325.0" style="-fx-background-radius: 25; -fx-background-color: #748cdc;" stylesheets="@/StyleSheet/style.css" text="MAP EDITOR" textFill="WHITE">
                      <font>
                         <Font name="Arial Black" size="18.0" />
                      </font>
@@ -112,7 +112,7 @@
                         <Insets bottom="35.0" left="35.0" right="35.0" top="35.0" />
                      </GridPane.margin>
                   </JFXButton>
-                  <JFXButton fx:id="EmployeeEditor" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#advanceViews" prefHeight="114.0" prefWidth="502.0" style="-fx-background-color: BLUE; -fx-background-radius: 25;" stylesheets="@/Fonts/Roboto-Black.css" text="EMPLOYEE EDITOR" textFill="WHITE">
+                  <JFXButton fx:id="EmployeeEditor" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#advanceViews" prefHeight="114.0" prefWidth="502.0" style="-fx-background-color: #748cdc; -fx-background-radius: 25;" stylesheets="/StyleSheet/style.css" text="EMPLOYEE EDITOR" textFill="WHITE">
                      <GridPane.margin>
                         <Insets bottom="45.0" left="45.0" right="45.0" top="45.0" />
                      </GridPane.margin></JFXButton>
@@ -127,7 +127,7 @@
                         <Insets bottom="35.0" left="35.0" right="35.0" top="35.0" />
                      </GridPane.margin>
                   </JFXButton>
-                  <JFXButton fx:id="ServiceRequestsAdmin" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#advanceViews" prefHeight="248.0" prefWidth="408.0" style="-fx-background-radius: 0; -fx-background-color: BLUE;" stylesheets="@/Fonts/Roboto-Black.css" text=" SERVICE REQUESTS" textFill="WHITE" textOverrun="CLIP" GridPane.rowIndex="2">
+                  <JFXButton fx:id="ServiceRequestsAdmin" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#advanceViews" prefHeight="248.0" prefWidth="408.0" style="-fx-background-radius: 25; -fx-background-color: #748cdc;" stylesheets="@/StyleSheet/style.css" text=" SERVICE REQUESTS" textFill="WHITE" textOverrun="CLIP" GridPane.rowIndex="2">
                      <font>
                         <Font name="Arial Black" size="18.0" />
                      </font>
@@ -149,7 +149,7 @@
                         <Insets bottom="35.0" left="35.0" right="35.0" top="35.0" />
                      </GridPane.margin>
                   </JFXButton>
-                  <JFXButton fx:id="CurrentRequest" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#advanceViews" prefHeight="82.0" prefWidth="406.0" style="-fx-background-radius: 0; -fx-background-color: BLUE;" stylesheets="@/Fonts/Roboto-Black.css" text="CURRENT REQUESTS" textFill="WHITE" GridPane.rowIndex="1">
+                  <JFXButton fx:id="CurrentRequest" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#advanceViews" prefHeight="82.0" prefWidth="406.0" style="-fx-background-radius: 25; -fx-background-color: #748cdc;" stylesheets="/StyleSheet/style.css" text="CURRENT REQUESTS" textFill="WHITE" GridPane.rowIndex="1">
                      <font>
                         <Font name="Arial Black" size="18.0" />
                      </font>

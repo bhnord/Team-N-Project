@@ -63,20 +63,18 @@ public class HomeControllerAdmin extends masterController implements Initializab
     CovidForm.setTooltip(ttCovidForm);
     logOutButton.setTooltip(ttLogOutButton);
     exit.setTooltip(ttExit);
-
-    BigBoiPane.setMinSize(1366, 768);
-    // BigBoiPane.set
-    ServiceRequestsAdmin.setStyle(
-        "-fx-background-image: url('/images/ButtonSR.png'); -fx-background-size: cover; -fx-background-radius: 25");
-    CurrentRequest.setStyle(
-        "-fx-background-image: url('/images/ButtonCR.png'); -fx-background-size: cover; -fx-background-radius: 25");
-    map.setStyle(
-        "-fx-background-image: url('/images/ButtonM.png'); -fx-background-size: cover; -fx-background-radius: 25");
-    EmployeeEditor.setStyle(
-        "-fx-background-image: url('/images/ButtonH.png'); -fx-background-size: cover; -fx-background-radius: 25");
-    map1.setStyle(
-        "-fx-background-image: url('/images/ButtonM.png'); -fx-background-size: cover; -fx-background-radius: 25");
-  }
+    /*
+       ServiceRequestsAdmin.setStyle(
+           "-fx-background-image: url('/images/ButtonSR.png'); -fx-background-size: cover; -fx-background-radius: 25");
+       CurrentRequest.setStyle(
+           "-fx-background-image: url('/images/ButtonCR.png'); -fx-background-size: cover; -fx-background-radius: 25");
+       map.setStyle(
+           "-fx-background-image: url('/images/ButtonM.png'); -fx-background-size: cover; -fx-background-radius: 25");
+       EmployeeEditor.setStyle(
+           "-fx-background-image: url('/images/ButtonH.png'); -fx-background-size: cover; -fx-background-radius: 25");
+       map1.setStyle(
+           "-fx-background-image: url('/images/ButtonM.png'); -fx-background-size: cover; -fx-background-radius: 25");
+    */ }
 
   public void advance(ActionEvent actionEvent) throws IOException {
     String file = "Requests/" + ((Button) actionEvent.getSource()).getId() + ".fxml";
