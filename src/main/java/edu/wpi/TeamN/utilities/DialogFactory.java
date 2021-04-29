@@ -9,11 +9,9 @@ import javafx.scene.text.Text;
 public class DialogFactory {
   private final JFXDialogLayout content = new JFXDialogLayout();
   private final StackPane stackPane;
-  //    private final Scene scene;
   private JFXDialog dialog;
 
   public DialogFactory(StackPane stackPane) {
-    //        this.scene = scene;
     this.stackPane = stackPane;
   }
 

@@ -78,7 +78,6 @@ public class FloralRequestController extends masterController implements Initial
   public void initialize(URL location, ResourceBundle resources) {
     log.debug(state.toString());
     //  submitButton.setDisable(true);
-
     /** USERNAME input and password* */
     RequiredFieldValidator reqInputValid = new RequiredFieldValidator();
     reqInputValid.setMessage("Cannot be empty");
@@ -115,7 +114,7 @@ public class FloralRequestController extends masterController implements Initial
   }
 
   public void submit(ActionEvent actionEvent) throws IOException {
-
+    //    loader.
     DialogFactory dialogFactory = new DialogFactory(myStackPane);
     dialogFactory.creatDialog("Heading", "This is the content");
     //    if (timePicker.getEditor().getText().isEmpty()
