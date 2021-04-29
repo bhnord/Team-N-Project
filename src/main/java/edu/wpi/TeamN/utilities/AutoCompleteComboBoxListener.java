@@ -1,4 +1,4 @@
-package edu.wpi.TeamN.views;
+package edu.wpi.TeamN.utilities;
 
 import com.jfoenix.controls.JFXComboBox;
 import edu.wpi.TeamN.services.algo.WordDistanceComputer;
