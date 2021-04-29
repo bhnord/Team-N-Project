@@ -1,4 +1,4 @@
-package edu.wpi.TeamN.mapEntity;
+package edu.wpi.TeamN.MapEntity;
 
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.views.MapController;

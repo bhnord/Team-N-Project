@@ -1,11 +1,11 @@
-package edu.wpi.TeamN.mapEntity;
+package edu.wpi.TeamN.MapEntity;
 
 import edu.wpi.TeamN.views.MapController;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.input.MouseEvent;
 
-public class NodeActionHandling implements IActionHandling {
+public class NodeActionHandling implements ActionHandlingI {
 
   private final MapController mapController;
   private final MapNodeEditor mapNodeEditor;

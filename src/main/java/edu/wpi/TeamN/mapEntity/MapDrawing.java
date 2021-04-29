@@ -5,8 +5,16 @@ import edu.wpi.TeamN.views.IMapController;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
+
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
+import javafx.beans.property.DoubleProperty;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
@@ -15,6 +23,7 @@ public class MapDrawing {
   private final IMapController mapController;
   private final String[] maps = {"L1", "L2", "g", "F1", "F2", "F3"};
   private String currentMap;
+  private DoubleProperty zoomProperty = new DoubleProperty();
 
   public MapDrawing(IMapController mapControllerI) {
     this.mapController = mapControllerI;
@@ -74,4 +83,48 @@ public class MapDrawing {
                     ClassLoader.getSystemResourceAsStream("images/" + floor + ".png"))));
     currentMap = floor;
   }
+
+
+  public void zoom(ImageView imageView) throws Exception {
+
+    zoomProperty.addListener(
+            new InvalidationListener() {
+              @Override
+              public void invalidated(Observable arg0) {
+                imageView.setFitWidth(zoomProperty.get() * 4);
+                imageView.setFitHeight(zoomProperty.get() * 3);
+              }
+            });
+
+    imageView.addEventFilter(
+            ScrollEvent.ANY,
+            new EventHandler<ScrollEvent>() {
+              @Override
+              public void handle(ScrollEvent event) {
+                if (event.getDeltaY() > 0 && zoomProperty.get() < 500) {
+                  zoomProperty.set(zoomProperty.get() * 1.1);
+                } else if (event.getDeltaY() < 0 && zoomProperty.get() > 350) {
+                  zoomProperty.set(zoomProperty.get() / 1.1);
+                }
+              }
+            });
+
+    imageView.setOnMousePressed(
+            new EventHandler<MouseEvent>() {
+              public void handle(MouseEvent event) {
+                pressedX = event.getX();
+                pressedY = event.getY();
+              }
+            });
+
+    imageView.setOnMouseDragged(
+            new EventHandler<MouseEvent>() {
+              public void handle(MouseEvent event) {
+
+                imageView.setTranslateX(imageView.getTranslateX() + event.getX() - pressedX);
+                imageView.setTranslateY(imageView.getTranslateY() + event.getY() - pressedY);
+
+                event.consume();
+              }
+            });
 }
