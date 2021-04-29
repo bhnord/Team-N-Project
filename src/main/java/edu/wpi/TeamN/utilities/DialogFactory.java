@@ -3,19 +3,29 @@ package edu.wpi.TeamN.utilities;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
+import javafx.event.EventHandler;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
 public class DialogFactory {
-  private final JFXDialogLayout content = new JFXDialogLayout();
   private final StackPane stackPane;
+  private JFXDialogLayout content;
   private JFXDialog dialog;
 
   public DialogFactory(StackPane stackPane) {
     this.stackPane = stackPane;
   }
 
-  public JFXDialog creatDialog(String heading, String body) {
+  /**
+   * Creates a JFX Dialog with heading of heading and body of body with a single button of "Okay"
+   * that closes the dialog.
+   *
+   * @param heading Heading of the dialog
+   * @param body Body of the dialog
+   */
+  public void creatDialogOkay(String heading, String body) {
+    content = new JFXDialogLayout();
     content.setHeading(new Text(heading));
     content.setBody(new Text(body));
     dialog = new JFXDialog(stackPane, content, JFXDialog.DialogTransition.CENTER);
@@ -23,7 +33,29 @@ public class DialogFactory {
     button.setOnAction(action -> dialog.close());
     content.setActions(button);
     dialog.show();
-    System.out.println("showing");
-    return dialog;
+  }
+
+  /**
+   * Creates a JFX Dialog with Heading of heading and Body of body with a cancel button
+   * and a confirm button. The confirm button must be assigned an action for on click, though it
+   * will close the dialog on click no matter what.
+   *
+   * @param heading Heading of the dialog
+   * @param body Body of the dialog
+   * @param clickAction Action to happen on click of the confirm button
+   */
+  public void creatDialogConfirmCancel(
+      String heading, String body, EventHandler<? super MouseEvent> clickAction) {
+    content = new JFXDialogLayout();
+    content.setHeading(new Text(heading));
+    content.setBody(new Text(body));
+    dialog = new JFXDialog(stackPane, content, JFXDialog.DialogTransition.CENTER);
+    JFXButton cancelButton = new JFXButton("Cancel");
+    cancelButton.setOnAction(action -> dialog.close());
+    JFXButton confirmButton = new JFXButton("Confirm");
+    confirmButton.setOnMousePressed(clickAction);
+    confirmButton.setOnMouseReleased(action -> dialog.close());
+    content.setActions(cancelButton, confirmButton);
+    dialog.show();
   }
 }

@@ -116,7 +116,13 @@ public class FloralRequestController extends masterController implements Initial
   public void submit(ActionEvent actionEvent) throws IOException {
     //    loader.
     DialogFactory dialogFactory = new DialogFactory(myStackPane);
-    dialogFactory.creatDialog("Heading", "This is the content");
+    //    dialogFactory.creatDialogOkay("Heading", "This is the content");
+    dialogFactory.creatDialogConfirmCancel(
+        "Confirm?",
+        "Click to confirm",
+        event -> {
+          System.out.println("Clicked: " + event.getButton().toString());
+        });
     //    if (timePicker.getEditor().getText().isEmpty()
     //        || bouquet.getText().isEmpty()
     //        || txtEmployeeName.getEditor().getText().isEmpty()
