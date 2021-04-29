@@ -34,7 +34,7 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class FoodDeliveryRequestController extends masterController implements Initializable {
+public class FoodDeliveryRequestController extends MasterController implements Initializable {
   @Inject DatabaseService db;
   @Inject FXMLLoader loader;
   @Inject HomeState state;

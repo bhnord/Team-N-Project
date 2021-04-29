@@ -1,7 +1,7 @@
-package edu.wpi.TeamN.MapEntity;
+package edu.wpi.TeamN.mapEntity;
 
 import edu.wpi.TeamN.services.algo.Node;
-import edu.wpi.TeamN.views.mapControllerI;
+import edu.wpi.TeamN.views.IMapController;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
@@ -11,13 +11,13 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 
-public class MapDrawing {
-  private final mapControllerI mapController;
+public class MapDrawer {
+  private final IMapController mapController;
   private final String[] maps = {"L1", "L2", "g", "F1", "F2", "F3"};
   private String currentMap;
 
-  public MapDrawing(mapControllerI mapControllerI) {
-    this.mapController = mapControllerI;
+  public MapDrawer(IMapController ImapController) {
+    this.mapController = ImapController;
     currentMap = maps[0];
   }
 

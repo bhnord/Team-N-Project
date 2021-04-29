@@ -34,7 +34,7 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class FacilityMaintenanceRequestController extends masterController
+public class FacilityMaintenanceRequestController extends MasterController
     implements Initializable {
 
   @Inject DatabaseService db;

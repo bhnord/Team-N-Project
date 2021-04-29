@@ -10,7 +10,7 @@ import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class NameNode extends masterController implements Initializable {
+public class NameNode extends MasterController implements Initializable {
   static Stage stage;
   static NameNode box;
   static MapController external;

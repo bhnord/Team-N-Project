@@ -3,7 +3,7 @@ package edu.wpi.TeamN.views;
 import edu.wpi.TeamN.services.algo.Node;
 import javafx.scene.image.ImageView;
 
-public interface mapControllerI {
+public interface IMapController {
   double getDownScale();
 
   ImageView getMapImageView();
