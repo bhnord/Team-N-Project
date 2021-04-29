@@ -137,6 +137,7 @@ public class MapController extends MasterController implements Initializable, IM
    * @param mouseEvent
    */
   public void placeNodeClick(MouseEvent mouseEvent) throws IOException {
+    System.out.println(mouseEvent.getX() + ", " + mouseEvent.getY());
     if (mouseEvent.getButton() == MouseButton.PRIMARY) {
       placeNode("node_" + this.nodeCount, mouseEvent.getX(), mouseEvent.getY());
     }
