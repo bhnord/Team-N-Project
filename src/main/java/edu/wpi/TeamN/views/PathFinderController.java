@@ -96,7 +96,7 @@ public class PathFinderController extends MasterController
         });
     load();
     mapFloor();
-    mapDrawer.zoom();
+    mapDrawer.setUpZoom(mapImageView);
   }
 
   private void updatePath() {

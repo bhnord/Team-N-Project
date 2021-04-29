@@ -5,8 +5,15 @@ import edu.wpi.TeamN.views.IMapController;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
@@ -15,6 +22,7 @@ public class MapDrawer {
   private final IMapController mapController;
   private final String[] maps = {"L1", "L2", "g", "F1", "F2", "F3"};
   private String currentMap;
+  final DoubleProperty zoomProperty = new SimpleDoubleProperty(300);
 
   public MapDrawer(IMapController mapControllerI) {
     this.mapController = mapControllerI;
@@ -75,5 +83,27 @@ public class MapDrawer {
     currentMap = floor;
   }
 
-  public void zoom() {}
+  public void setUpZoom(ImageView imageView) {
+    zoomProperty.addListener(
+        new InvalidationListener() {
+          @Override
+          public void invalidated(Observable arg0) {
+            imageView.setFitWidth(zoomProperty.get() * 4);
+            imageView.setFitHeight(zoomProperty.get() * 3);
+          }
+        });
+
+    imageView.addEventFilter(
+        ScrollEvent.ANY,
+        new EventHandler<ScrollEvent>() {
+          @Override
+          public void handle(ScrollEvent event) {
+            if (event.getDeltaY() > 0) {
+              zoomProperty.set(zoomProperty.get() * 1.1);
+            } else if (event.getDeltaY() < 0) {
+              zoomProperty.set(zoomProperty.get() / 1.1);
+            }
+          }
+        });
+  }
 }
