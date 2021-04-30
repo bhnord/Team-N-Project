@@ -7,7 +7,6 @@ import edu.wpi.TeamN.map.AdminMap;
 import edu.wpi.TeamN.map.MapDrawer;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.algo.PathFinder;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -28,13 +27,13 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Shape;
-import lombok.SneakyThrows;
 
 public class PathFinderController extends MapController implements Initializable {
   ArrayList<String> path = new ArrayList<String>();
   ArrayList<Node.Link> nodePath = new ArrayList<Node.Link>();
   @FXML private AnchorPane anchorPane;
   private Scene appPrimaryScene;
+
 
   //  @FXML private AnchorPane mapAnchor;
   //  @FXML private ImageView mapImageView;
@@ -51,14 +50,9 @@ public class PathFinderController extends MapController implements Initializable
   //  public final double downScale = 0.25;
   //  public final double upScale = 4;
 
-  @SneakyThrows
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    try {
-      super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Service Request");
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+    super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Service Request");
     nodeColor.setValue(Color.BLUE);
     EXIT.setValue(Color.RED);
     ELEV.setValue(Color.PINK);

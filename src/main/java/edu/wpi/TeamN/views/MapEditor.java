@@ -24,7 +24,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -94,7 +93,7 @@ public class MapEditor extends MapController implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-      super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Service Request");
+    super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Service Request");
     mapNodeEditor = new MapNodeEditor(this);
     mapEdgeEditor = new MapEdgeEditor(this);
 

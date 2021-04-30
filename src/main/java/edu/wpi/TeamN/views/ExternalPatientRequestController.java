@@ -27,6 +27,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import lombok.extern.slf4j.Slf4j;
 
@@ -46,6 +47,7 @@ public class ExternalPatientRequestController extends MasterController implement
   @FXML private StackPane rootStackPane;
   private DialogFactory dialogFactory;
   private Scene appPrimaryScene;
+  @FXML private AnchorPane anchorPane;
 
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
@@ -60,6 +62,7 @@ public class ExternalPatientRequestController extends MasterController implement
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+    super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Service Request");
     dialogFactory = new DialogFactory(rootStackPane);
     transportTypeDropdown.getItems().add("Ambulance");
     transportTypeDropdown.getItems().add("Helicopter");

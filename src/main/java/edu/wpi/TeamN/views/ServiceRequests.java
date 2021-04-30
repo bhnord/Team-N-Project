@@ -16,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
+import javafx.scene.layout.AnchorPane;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -55,6 +56,8 @@ public class ServiceRequests extends MasterController implements Initializable {
   @FXML private Tooltip ttAlex;
   @FXML private JFXButton ReligiousRequest;
   @FXML private Tooltip ttPayton;
+
+  @FXML private AnchorPane anchorPane;
   private Scene appPrimaryScene;
 
   /**
@@ -82,6 +85,7 @@ public class ServiceRequests extends MasterController implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+    super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Service Request");
     log.debug(state.toString());
     AudioVisualRequest.setTooltip(ttAnanya);
     GiftDeliveryRequest.setTooltip(ttAnanya2);

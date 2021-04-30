@@ -22,6 +22,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import lombok.extern.slf4j.Slf4j;
 
@@ -37,6 +38,7 @@ public class MedicineDeliveryRequestController extends MasterController implemen
   @FXML private JFXComboBox<Label> txtEmployeeName;
   @FXML private JFXComboBox<Label> roomDropdown;
   @FXML private JFXComboBox<Label> txtEquipment;
+  @FXML private AnchorPane anchorPane;
   @FXML private StackPane rootStackPane;
   private DialogFactory dialogFactory;
   private Scene appPrimaryScene;
@@ -54,6 +56,7 @@ public class MedicineDeliveryRequestController extends MasterController implemen
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+    super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Service Request");
     dialogFactory = new DialogFactory(rootStackPane);
     loadEmployeeDropdown(txtEmployeeName);
     loadRoomDropdown(roomDropdown);

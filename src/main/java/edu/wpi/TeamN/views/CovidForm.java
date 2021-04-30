@@ -56,11 +56,7 @@ public class CovidForm extends MasterController implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    try {
-      super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Covid Form");
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+    super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Covid Form");
 
     // submit.setDisable(true);
     comboBox.getItems().add("yes");

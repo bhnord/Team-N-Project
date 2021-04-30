@@ -18,6 +18,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import lombok.extern.slf4j.Slf4j;
 
@@ -32,6 +33,7 @@ public class LaundryRequestController extends MasterController implements Initia
   @FXML private JFXComboBox<Label> roomDropdown;
   @FXML private JFXTimePicker timePicker;
   @FXML private StackPane rootStackPane;
+  @FXML private AnchorPane anchorPane;
   private DialogFactory dialogFactory;
   private Scene appPrimaryScene;
 
@@ -48,6 +50,7 @@ public class LaundryRequestController extends MasterController implements Initia
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+    super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Service Request");
     dialogFactory = new DialogFactory(rootStackPane);
     loadEmployeeDropdown(txtEmployeeName);
     loadRoomDropdown(roomDropdown);

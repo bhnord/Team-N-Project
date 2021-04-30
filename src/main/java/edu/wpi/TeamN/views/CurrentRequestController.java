@@ -44,11 +44,7 @@ public class CurrentRequestController extends MasterController implements Initia
 
   @Override
   public void initialize(URL url, ResourceBundle rb) {
-    try {
-      super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Service Request");
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+    super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Service Request");
 
     listView.getItems().clear();
     HashSet<Request> set = db.getAllRequests();
