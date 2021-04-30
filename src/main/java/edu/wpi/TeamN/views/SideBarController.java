@@ -36,9 +36,6 @@ public class SideBarController extends MasterController implements Initializable
     CovidForm.setTooltip(ttCovidForm);
     logOutButton.setTooltip(ttLogOutButton);
     exit.setTooltip(ttExit);
-
-    //    groupLogOut.setVisible(false);
-    //    groupLogOut.setManaged(false);
   }
 
   @Override
@@ -59,5 +56,22 @@ public class SideBarController extends MasterController implements Initializable
   @Override
   public void advanceViews(ActionEvent actionEvent) throws IOException {
     super.advanceViews(actionEvent);
+  }
+
+  public void setType(String type) {
+    groupExit.setVisible(true);
+    groupExit.setManaged(true);
+    groupLogOut.setVisible(true);
+    groupLogOut.setManaged(true);
+    groupCovid.setVisible(true);
+    groupCovid.setManaged(true);
+
+    if (type.equals("Home")) {
+      groupLogOut.setVisible(false);
+      groupLogOut.setManaged(false);
+    } else if (type.equals("Service Request")) {
+      groupCovid.setVisible(false);
+      groupCovid.setManaged(false);
+    }
   }
 }
