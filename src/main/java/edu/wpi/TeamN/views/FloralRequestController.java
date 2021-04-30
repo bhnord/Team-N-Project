@@ -115,9 +115,8 @@ public class FloralRequestController extends masterController implements Initial
   }
 
   public void submit(ActionEvent actionEvent) throws IOException {
-    //    loader.
     DialogFactory dialogFactory = new DialogFactory(rootStackPane);
-    dialogFactory.creatDialogOkay("Heading", "This is the content");
+    dialogFactory.creatDialogConfirmCancel("Heading", "This is the content", action -> {});
     //    dialogFactory.creatDialogConfirmCancel(
     //        "Confirm?",
     //        "Click to confirm I am adding size to this box maybe I should add some new lines

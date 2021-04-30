@@ -18,9 +18,15 @@ public class DialogFactory {
   public DialogFactory(Pane pane) {
     //    this.stackPane = stackPane;
     this.pane = pane;
-    content
-        .getStylesheets()
-        .add(getClass().getResource("/Fonts/Roboto-Light.css").toExternalForm());
+    content.getStylesheets().add(getClass().getResource("/StyleSheet/Dialog.css").toExternalForm());
+
+    Text headingText = new Text("");
+    headingText.getStyleClass().add("heading-text");
+    content.setHeading(headingText);
+
+    Text bodyText = new Text("");
+    bodyText.getStyleClass().add("body-text");
+    content.setBody(bodyText);
   }
 
   /**
@@ -31,10 +37,14 @@ public class DialogFactory {
    * @param body Body of the dialog
    */
   public void creatDialogOkay(String heading, String body) {
-    content.setHeading(new Text(heading));
-    content.setBody(new Text(body));
+    Text headingText = (Text) content.getHeading().get(0);
+    headingText.setText(heading);
+    content.setHeading(headingText);
+    Text bodyText = (Text) content.getBody().get(0);
+    bodyText.setText(body);
+    content.setBody(bodyText);
     StackPane stackPane = new StackPane();
-    stackPane.setMouseTransparent(true);
+    //    stackPane.setMouseTransparent(true);
     dialog = new JFXDialog(stackPane, content, JFXDialog.DialogTransition.CENTER);
     JFXButton button = new JFXButton("Okay");
     button.setOnAction(action -> dialog.close());
@@ -55,10 +65,14 @@ public class DialogFactory {
    */
   public void creatDialogConfirmCancel(
       String heading, String body, EventHandler<? super MouseEvent> clickAction) {
-    content.setHeading(new Text(heading));
-    content.setBody(new Text(body));
+    Text headingText = (Text) content.getHeading().get(0);
+    headingText.setText(heading);
+    content.setHeading(headingText);
+    Text bodyText = (Text) content.getBody().get(0);
+    bodyText.setText(body);
+    content.setBody(bodyText);
     StackPane stackPane = new StackPane();
-    stackPane.setMouseTransparent(true);
+    //    stackPane.setMouseTransparent(true);
     dialog = new JFXDialog(stackPane, content, JFXDialog.DialogTransition.CENTER);
     JFXButton cancelButton = new JFXButton("Cancel");
     cancelButton.setOnAction(action -> dialog.close());
@@ -66,8 +80,7 @@ public class DialogFactory {
     confirmButton.setOnMousePressed(clickAction);
     confirmButton.setOnMouseReleased(action -> dialog.close());
     content.setActions(cancelButton, confirmButton);
-    stackPane.setLayoutX(pane.getWidth() / 2);
-    stackPane.setLayoutY(pane.getHeight() / 2);
+    stackPane.setPickOnBounds(false);
     pane.getChildren().add(stackPane);
     dialog.show();
   }
