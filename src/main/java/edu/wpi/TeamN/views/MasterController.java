@@ -1,11 +1,18 @@
 package edu.wpi.TeamN.views;
 
 import com.google.inject.Inject;
+import com.jfoenix.controls.JFXComboBox;
+import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.database.DatabaseService;
+import edu.wpi.TeamN.services.database.users.User;
 import edu.wpi.TeamN.state.HomeState;
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.ResourceBundle;
+
+import edu.wpi.TeamN.utilities.AutoCompleteComboBoxListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -194,9 +201,9 @@ public class MasterController implements Initializable {
     appPrimaryScene.setRoot(root);
   }
 
+  @SneakyThrows
   public void sideBarSetup(
-      AnchorPane anchorPane, Scene appPrimaryScene, FXMLLoader loader, String type)
-      throws IOException {
+      AnchorPane anchorPane, Scene appPrimaryScene, FXMLLoader loader, String type) {
     FXMLLoader loader2 = new FXMLLoader(getClass().getResource("SideBar.fxml"));
     Parent root = loader2.load();
     AnchorPane pane = new AnchorPane(root);
@@ -205,5 +212,25 @@ public class MasterController implements Initializable {
     sideBarController.setLoader(loader);
     sideBarController.setType(type);
     anchorPane.getChildren().setAll(pane);
+  }
+
+  public void loadEmployeeDropdown(JFXComboBox<Label> employeeComboBox) {
+    HashMap<String, User> users = db.getUsersByType(UserType.EMPLOYEE);
+    for (User user : users.values()) {
+      Label lbl = new Label(user.getUsername());
+      lbl.setId(user.getId());
+      employeeComboBox.getItems().add((lbl));
+    }
+    new AutoCompleteComboBoxListener(employeeComboBox);
+  }
+
+  public void loadRoomDropdown(JFXComboBox<Label> roomComboBox) {
+    HashSet<Node> rooms = db.getAllNodes();
+    for (Node node : rooms) {
+      Label lbl = new Label(node.get_longName());
+      lbl.setId(node.get_nodeID());
+      roomComboBox.getItems().add(lbl);
+    }
+    new AutoCompleteComboBoxListener(roomComboBox);
   }
 }
