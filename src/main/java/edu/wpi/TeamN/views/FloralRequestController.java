@@ -35,15 +35,15 @@ public class FloralRequestController extends MasterController implements Initial
   @FXML private Button helpButton;
   @FXML private StackPane myStackPane;
   @FXML private StackPane myStackPane2;
-  @FXML private StackPane rootStackPane;
   @FXML private Button submit;
   @FXML private AnchorPane anchorPage;
   @FXML private JFXComboBox<Label> txtEmployeeName = new JFXComboBox<>();
   @FXML private JFXComboBox<Label> roomDropdown = new JFXComboBox<>();
   @FXML private JFXTimePicker timePicker;
   @FXML private JFXTextField bouquet;
-  private Scene appPrimaryScene;
+  @FXML private StackPane rootStackPane;
   private DialogFactory dialogFactory;
+  private Scene appPrimaryScene;
 
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
@@ -101,12 +101,12 @@ public class FloralRequestController extends MasterController implements Initial
 
   private void submitToDB() {
     RequestType type = RequestType.FLORAL;
-    int recieverID =
+    int receiverID =
         Integer.parseInt(txtEmployeeName.getSelectionModel().getSelectedItem().getId());
     String roomNodeId = roomDropdown.getSelectionModel().getSelectedItem().getId();
     String content = "Time of request: " + timePicker.getEditor().getText();
     String notes = "flower type: " + bouquet.getText() + " comments: " + txtComments.getText();
-    Request r = new Request(type, recieverID, roomNodeId, content, notes);
+    Request r = new Request(type, receiverID, roomNodeId, content, notes);
     db.addRequest(r);
   }
 
