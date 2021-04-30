@@ -1,27 +1,30 @@
 package edu.wpi.TeamN.views;
 
+import com.google.inject.Inject;
 import com.jfoenix.controls.JFXButton;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Tooltip;
 
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+
 public class SideBarController extends MasterController implements Initializable {
 
   /** Buttons and tooltips */
-  @FXML private JFXButton CovidForm;
+  @Inject private FXMLLoader loader;
 
+  @FXML private JFXButton CovidForm;
   @FXML private Tooltip ttCovidForm;
   @FXML private JFXButton exit;
   @FXML private Tooltip ttExit;
   @FXML private JFXButton logOutButton;
   @FXML private Tooltip ttLogOutButton;
-
   public static Scene appScene;
 
   /** Groups for implementation on different pages */

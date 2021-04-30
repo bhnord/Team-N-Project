@@ -5,13 +5,8 @@ import com.jfoenix.controls.JFXComboBox;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.database.DatabaseService;
 import edu.wpi.TeamN.services.database.users.User;
+import edu.wpi.TeamN.services.database.users.UserType;
 import edu.wpi.TeamN.state.HomeState;
-import java.io.IOException;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.ResourceBundle;
-
 import edu.wpi.TeamN.utilities.AutoCompleteComboBoxListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -26,12 +21,18 @@ import javafx.stage.Stage;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
+import java.io.IOException;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.ResourceBundle;
+
 @Slf4j
 public class MasterController implements Initializable {
 
-  @Inject DatabaseService db;
-  @Inject FXMLLoader loader;
-  @Inject HomeState state;
+  @Inject private DatabaseService db;
+  @Inject private FXMLLoader loader;
+  @Inject private HomeState state;
   @FXML private Label text;
 
   @FXML private AnchorPane anchorPane;
