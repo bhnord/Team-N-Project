@@ -20,6 +20,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
@@ -69,6 +70,8 @@ public class MapEditor extends MapController implements Initializable {
   @FXML private JFXTextField nodeType;
   @FXML private JFXTextField XCoord;
   @FXML private JFXTextField YCoord;
+  @FXML protected AnchorPane mapAnchor;
+  @FXML protected AnchorPane anchorPane;
 
   @FXML private JFXTextField edgeID;
   //  @FXML private JFXTextField startNode;
@@ -92,6 +95,11 @@ public class MapEditor extends MapController implements Initializable {
   @SneakyThrows
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+    try {
+      super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Service Request");
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
     mapNodeEditor = new MapNodeEditor(this);
     mapEdgeEditor = new MapEdgeEditor(this);
 

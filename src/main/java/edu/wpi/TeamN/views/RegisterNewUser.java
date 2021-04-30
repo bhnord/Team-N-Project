@@ -54,6 +54,7 @@ public class RegisterNewUser extends MasterController implements Initializable {
   private HashMap<String, Node> rooms;
 
   @FXML private AnchorPane anchorPage;
+  @FXML private AnchorPane anchorPane;
 
   @FXML private StackPane confirmationStackPane;
   static Stage stage;
@@ -72,6 +73,11 @@ public class RegisterNewUser extends MasterController implements Initializable {
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     log.debug(state.toString());
+    try {
+      super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Service Request");
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
     // submit.setDisable(true);
 
     /** USERNAME input and password* */

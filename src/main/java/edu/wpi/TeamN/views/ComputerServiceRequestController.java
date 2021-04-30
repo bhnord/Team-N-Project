@@ -53,6 +53,9 @@ public class ComputerServiceRequestController extends MasterController implement
 
   @FXML private StackPane myStackPane2;
 
+  @FXML private SideBarController sideBarController;
+  @FXML private AnchorPane anchorPane;
+
   private Scene appPrimaryScene;
   @FXML private JFXButton submit = new JFXButton();
   private HashMap<String, User> users;
@@ -79,6 +82,11 @@ public class ComputerServiceRequestController extends MasterController implement
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     log.debug(state.toString());
+    try {
+      super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Service Request");
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
     //  submitButton.setDisable(true);
 
     /** USERNAME input and password* */

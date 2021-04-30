@@ -34,6 +34,7 @@ public class CovidForm extends MasterController implements Initializable {
   @FXML private JFXButton submit = new JFXButton();
   @FXML private AnchorPane anchorPage;
   @FXML private StackPane myStackPane;
+  @FXML private AnchorPane anchorPane;
 
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
@@ -55,6 +56,12 @@ public class CovidForm extends MasterController implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+    try {
+      super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Covid Form");
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+
     // submit.setDisable(true);
     comboBox.getItems().add("yes");
     comboBox.getItems().add("no");
