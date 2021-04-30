@@ -1,40 +1,29 @@
 package edu.wpi.TeamN.views;
 
 import com.google.inject.Inject;
-import com.jfoenix.controls.*;
-import com.jfoenix.validation.RequiredFieldValidator;
-import edu.wpi.TeamN.services.algo.Node;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.JFXTimePicker;
 import edu.wpi.TeamN.services.database.DatabaseService;
 import edu.wpi.TeamN.services.database.requests.Request;
 import edu.wpi.TeamN.services.database.requests.RequestType;
-import edu.wpi.TeamN.services.database.users.User;
-import edu.wpi.TeamN.services.database.users.UserType;
 import edu.wpi.TeamN.state.HomeState;
-import edu.wpi.TeamN.utilities.AutoCompleteComboBoxListener;
-import java.io.IOException;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.ResourceBundle;
-
 import edu.wpi.TeamN.utilities.DialogFactory;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.effect.BoxBlur;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Paint;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 @Slf4j
 public class ComputerServiceRequestController extends MasterController implements Initializable {
@@ -96,17 +85,17 @@ public class ComputerServiceRequestController extends MasterController implement
   public void submit(ActionEvent actionEvent) throws IOException {
     if (validateInputs()) {
       dialogFactory.creatDialogOkay(
-              "Missing Fields", "You must fill out all required fields of the request to continue\n");
+          "Missing Fields", "You must fill out all required fields of the request to continue\n");
     } else {
       dialogFactory.creatDialogConfirmCancel(
-              "Are you sure the information you have provided is correct?", "", mouse -> submitToDB());
+          "Are you sure the information you have provided is correct?", "", mouse -> submitToDB());
     }
   }
 
   public void help(ActionEvent actionEvent) throws IOException {
     dialogFactory.creatDialogOkay(
-            "Help",
-            "- Employee Name refers to the employee being requested to complete the job \n- Patient Room is the room with the patient where the Translation is required \n- Time of request refers to time at which the translation is needed \n- Desired language refers to the language that needs to be translated");
+        "Help",
+        "- Employee Name refers to the employee being requested to complete the job \n- Patient Room is the room with the patient where the Translation is required \n- Time of request refers to time at which the translation is needed \n- Desired language refers to the language that needs to be translated");
   }
 
   private void submitToDB() {
@@ -122,8 +111,8 @@ public class ComputerServiceRequestController extends MasterController implement
 
   private boolean validateInputs() {
     return (timePicker.getEditor().getText().isEmpty()
-            || maintenanceRequest.getText().isEmpty()
-            || txtEmployeeName.getEditor().getText().isEmpty()
-            || roomDropdown.getEditor().getText().isEmpty());
+        || maintenanceRequest.getText().isEmpty()
+        || txtEmployeeName.getEditor().getText().isEmpty()
+        || roomDropdown.getEditor().getText().isEmpty());
   }
 }
