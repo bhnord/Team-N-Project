@@ -33,6 +33,16 @@ public class MapDrawer {
   private double maxImgWidth;
   private double maxImgHeight;
 
+  public Circle getDragging() {
+    return dragging;
+  }
+
+  public void setDragging(Circle dragging) {
+    this.dragging = dragging;
+  }
+
+  private Circle dragging;
+
   private Group draggedLineGroup;
   private Line draggedLine;
 
@@ -86,6 +96,7 @@ public class MapDrawer {
     Circle simpleNode = new Circle(x, y, mapController.getNodeSize());
     simpleNode.setTranslateZ(10);
     simpleNode.setFill(color);
+    simpleNode.setId(id);
     Group root = new Group(simpleNode);
     root.setId(id);
     return root;

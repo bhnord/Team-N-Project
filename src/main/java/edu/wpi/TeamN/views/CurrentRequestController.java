@@ -17,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
+import javafx.scene.layout.AnchorPane;
 
 public class CurrentRequestController extends MasterController implements Initializable {
 
@@ -32,6 +33,7 @@ public class CurrentRequestController extends MasterController implements Initia
   @FXML private Label content;
   @FXML private Label notes;
   @FXML private Label roomName;
+  @FXML private AnchorPane anchorPane;
   private Label selectedLabel;
   private HashMap<Integer, Request> requestMap = new HashMap<>();
 
@@ -42,6 +44,12 @@ public class CurrentRequestController extends MasterController implements Initia
 
   @Override
   public void initialize(URL url, ResourceBundle rb) {
+    try {
+      super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Service Request");
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+
     listView.getItems().clear();
     HashSet<Request> set = db.getAllRequests();
     for (Request request : set) {

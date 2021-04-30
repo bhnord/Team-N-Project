@@ -53,6 +53,7 @@ public class AudioVisualRequestController extends MasterController implements In
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+    super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Service Request");
     dialogFactory = new DialogFactory(rootStackPane);
     sideBarSetup(anchorPane, appPrimaryScene, loader, "Service Request");
     loadEmployeeDropdown(txtEmployeeName);

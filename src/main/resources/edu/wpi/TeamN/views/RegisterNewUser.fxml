@@ -104,56 +104,6 @@
             </JFXTextField>
             </children>
         </AnchorPane>
-      <GridPane GridPane.halignment="CENTER">
-         <columnConstraints>
-            <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
-            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
-            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
-         </rowConstraints>
-         <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#363d54" height="1400.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" GridPane.rowSpan="2147483647" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="65.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" GridPane.rowIndex="1" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="65.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" GridPane.rowIndex="2" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.0" rotate="-45.0" stroke="TRANSPARENT" strokeType="INSIDE" translateX="28.0" width="10.0" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.0" rotate="45.0" stroke="TRANSPARENT" strokeType="INSIDE" translateX="28.0" width="10.0" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-            <JFXButton fx:id="exit11" onAction="#exit" prefHeight="64.0" prefWidth="66.0" text="  " textFill="WHITE" GridPane.rowIndex="1">
-               <font>
-                  <Font name="System Bold" size="9.0" />
-               </font>
-               <tooltip>
-                  <Tooltip fx:id="ttExit" text="Exit App">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Tooltip>
-               </tooltip>
-            </JFXButton>
-            <ImageView fitHeight="61.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" translateX="7.0" GridPane.valignment="CENTER">
-               <image>
-                  <Image url="@/images/BWHLogo.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="58.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
-               <image>
-                  <Image url="@/images/ButtonB.png" />
-               </image>
-            </ImageView>
-            <JFXButton fx:id="BackButton" onAction="#back" prefHeight="71.0" prefWidth="66.0" textFill="WHITE" GridPane.rowIndex="2">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-               <tooltip>
-                  <Tooltip fx:id="ttBackButton" text="Back to Requests">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Tooltip>
-               </tooltip>
-            </JFXButton>
-         </children>
-      </GridPane>
+      <AnchorPane fx:id="anchorPane" prefHeight="200.0" prefWidth="200.0" GridPane.valignment="BASELINE" />
     </children>
 </GridPane>

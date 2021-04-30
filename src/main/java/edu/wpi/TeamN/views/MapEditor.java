@@ -3,7 +3,6 @@ package edu.wpi.TeamN.views;
 import com.google.inject.Inject;
 import com.jfoenix.controls.JFXTextField;
 import edu.wpi.TeamN.map.*;
-import edu.wpi.TeamN.services.algo.Edge;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.state.HomeState;
 import java.io.IOException;
@@ -20,6 +19,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
@@ -69,6 +69,8 @@ public class MapEditor extends MapController implements Initializable {
   @FXML private JFXTextField nodeType;
   @FXML private JFXTextField XCoord;
   @FXML private JFXTextField YCoord;
+  @FXML protected AnchorPane mapAnchor;
+  @FXML protected AnchorPane anchorPane;
 
   @FXML private JFXTextField edgeID;
   //  @FXML private JFXTextField startNode;
@@ -89,9 +91,9 @@ public class MapEditor extends MapController implements Initializable {
   //    this.appPrimaryScene = appPrimaryScene;
   //  }
 
-  @SneakyThrows
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+      super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Service Request");
     mapNodeEditor = new MapNodeEditor(this);
     mapEdgeEditor = new MapEdgeEditor(this);
 
@@ -192,10 +194,10 @@ public class MapEditor extends MapController implements Initializable {
 
   public Group placeNode(Node n) {
     Group root = super.placeNode(n);
-    System.out.println("creating node");
     actionHandling.setNodeInfo(root);
     actionHandling.setNodeStartLink(root);
     actionHandling.setNodeEndLink(root);
+    actionHandling.setNodeDrag((Circle) n.get_shape());
     if (!adminMap.getNodeSet().containsKey(n.get_nodeID())) {
       adminMap.addNode(n);
       mapNodeEditor.showNodeProperties(root);
@@ -578,7 +580,6 @@ public class MapEditor extends MapController implements Initializable {
     Group root = super.placeLink(id, node1, node2);
     actionHandling.setEdgeInfo(root);
     if (!super.getAdminMap().getEdgeSet().containsKey(id)) {
-      super.getAdminMap().addEdge(new Edge(id, node1.get_nodeID(), node2.get_nodeID()));
       mapEdgeEditor.showEdgeProperties(root);
     }
     return root;
