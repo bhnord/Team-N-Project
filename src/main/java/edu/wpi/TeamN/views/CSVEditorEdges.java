@@ -26,7 +26,7 @@ import javafx.stage.FileChooser;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class CSVEditorEdges extends masterController implements Initializable {
+public class CSVEditorEdges extends MasterController implements Initializable {
 
   @Inject DatabaseService db;
   @Inject FXMLLoader loader;

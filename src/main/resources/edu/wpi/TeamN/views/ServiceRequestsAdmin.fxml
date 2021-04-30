@@ -138,15 +138,15 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
-                        <JFXButton fx:id="AudioVisualRequest" alignment="BASELINE_LEFT" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="    Audio/Visual Request&#10;    (Request for audio and visual equipments.)&#10;" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                        <JFXButton fx:id="AudioVisualRequest" alignment="BASELINE_LEFT" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="        Audio/Visual Request&#10;" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                             <font>
-                                <Font name="Arial Black" size="17.0" />
+                                <Font name="Arial Black" size="20.0" />
                             </font>
                             <GridPane.margin>
                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                             </GridPane.margin>
                             <tooltip>
-                                <Tooltip fx:id="ttAnanya" text="Done by: Ananya Gopalan" />
+                                <Tooltip fx:id="ttAnanya" text="Request for audio and visual equipments." />
                             </tooltip>
                             <graphic>
                                 <ImageView fitHeight="45.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
@@ -156,15 +156,15 @@
                                 </ImageView>
                             </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="GiftDeliveryRequest" alignment="BASELINE_LEFT" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="    Gift Delivery Service&#10;    (Deliver a gift to a specific location)" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                        <JFXButton fx:id="GiftDeliveryRequest" alignment="BASELINE_LEFT" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="        Gift Delivery Service" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                             <font>
-                                <Font name="Arial Black" size="17.0" />
+                                <Font name="Arial Black" size="20.0" />
                             </font>
                             <GridPane.margin>
                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                             </GridPane.margin>
                             <tooltip>
-                                <Tooltip fx:id="ttAnanya2" text="Done by: Ananya Gopalan" />
+                                <Tooltip fx:id="ttAnanya2" text="Deliver a gift to a specific location" />
                             </tooltip>
                             <graphic>
                                 <ImageView fitHeight="45.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
@@ -174,15 +174,15 @@
                                 </ImageView>
                             </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="SecurityServicesRequest" alignment="BASELINE_LEFT" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="    Security Services&#10;    (Request for protection and safety.)" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                        <JFXButton fx:id="SecurityServicesRequest" alignment="BASELINE_LEFT" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="        Security Services" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                             <font>
-                                <Font name="Arial Black" size="17.0" />
+                                <Font name="Arial Black" size="20.0" />
                             </font>
                             <GridPane.margin>
                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                             </GridPane.margin>
                             <tooltip>
-                                <Tooltip fx:id="ttRomish" text="Done by: Romish Khatri" />
+                                <Tooltip fx:id="ttRomish" text="Request for protection and safety." />
                             </tooltip>
                             <graphic>
                                 <ImageView fitHeight="45.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
@@ -192,15 +192,15 @@
                                 </ImageView>
                             </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="FacilityMaintenanceRequest" alignment="BASELINE_LEFT" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="200.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="    Facility Maintenance &#10;    (Report a facility issue here.)" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                        <JFXButton fx:id="FacilityMaintenanceRequest" alignment="BASELINE_LEFT" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="200.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="        Facility Maintenance " textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                             <font>
-                                <Font name="Arial Black" size="17.0" />
+                                <Font name="Arial Black" size="20.0" />
                             </font>
                             <GridPane.margin>
                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                             </GridPane.margin>
                             <tooltip>
-                                <Tooltip fx:id="ttJohn" text="Done by: John Prominski" />
+                                <Tooltip fx:id="ttJohn" text="Report a facility issue here." />
                             </tooltip>
                             <graphic>
                                 <ImageView fitHeight="45.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
@@ -210,15 +210,15 @@
                                 </ImageView>
                             </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="ComputerServiceRequest" alignment="BASELINE_LEFT" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="    Computer Service&#10;    (Report computer related issues.)" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+                        <JFXButton fx:id="ComputerServiceRequest" alignment="BASELINE_LEFT" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="        Computer Service" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                             <font>
-                                <Font name="Arial Black" size="17.0" />
+                                <Font name="Arial Black" size="20.0" />
                             </font>
                             <GridPane.margin>
                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                             </GridPane.margin>
                             <tooltip>
-                                <Tooltip fx:id="ttAnanya3" text="Done by: Ananya Gopalan" />
+                                <Tooltip fx:id="ttAnanya3" text="Report computer related issues." />
                             </tooltip>
                             <graphic>
                                 <ImageView fitHeight="45.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
@@ -228,15 +228,15 @@
                                 </ImageView>
                             </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="InternalPatientRequest" alignment="BASELINE_LEFT" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="    Internal Transportation&#10;    (Request for transportation within the hospital area.)" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                        <JFXButton fx:id="InternalPatientRequest" alignment="BASELINE_LEFT" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="        Internal Transportation" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                             <font>
-                                <Font name="Arial Black" size="16.0" />
+                                <Font name="Arial Black" size="20.0" />
                             </font>
                             <GridPane.margin>
                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                             </GridPane.margin>
                             <tooltip>
-                                <Tooltip fx:id="ttJacob" text="Done by: Jacob Feiss" />
+                                <Tooltip fx:id="ttJacob" text="Request for transportation within the hospital area." />
                             </tooltip>
                             <graphic>
                                 <ImageView fitHeight="45.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
@@ -246,15 +246,15 @@
                                 </ImageView>
                             </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="ExternalPatientRequest" alignment="BASELINE_LEFT" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="    External Transportation&#10;    (Request for transportation to outside of the hospital.)" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                        <JFXButton fx:id="ExternalPatientRequest" alignment="BASELINE_LEFT" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="        External Transportation" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                             <font>
-                                <Font name="Arial Black" size="16.0" />
+                                <Font name="Arial Black" size="20.0" />
                             </font>
                             <GridPane.margin>
                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                             </GridPane.margin>
                             <tooltip>
-                                <Tooltip fx:id="ttMichael" text="Michael Emerson" />
+                                <Tooltip fx:id="ttMichael" text="Request for transportation to outside of the hospital." />
                             </tooltip>
                             <graphic>
                                 <ImageView fitHeight="45.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
@@ -280,15 +280,15 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
-                        <JFXButton fx:id="MedicineDeliveryRequest" alignment="BASELINE_LEFT" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="    Medicine Delivery&#10;    (Deliver medicine to a specific location in the hospital.)" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                        <JFXButton fx:id="MedicineDeliveryRequest" alignment="BASELINE_LEFT" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="        Medicine Delivery" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                             <font>
-                                <Font name="Arial Black" size="17.0" />
+                                <Font name="Arial Black" size="20.0" />
                             </font>
                             <GridPane.margin>
                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                             </GridPane.margin>
                             <tooltip>
-                                <Tooltip fx:id="ttFinn" text="Done by: Finn Wander" />
+                                <Tooltip fx:id="ttFinn" text="Deliver medicine to a specific location in the hospital." />
                             </tooltip>
                             <graphic>
                                 <ImageView fitHeight="45.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
@@ -298,15 +298,15 @@
                                 </ImageView>
                             </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="FloralRequest" alignment="BASELINE_LEFT" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="    Floral Request&#10;    (Deliver floral goods to a specific location in the hospital.)" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                        <JFXButton fx:id="FloralRequest" alignment="BASELINE_LEFT" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="        Floral Request" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                             <font>
-                                <Font name="Arial Black" size="17.0" />
+                                <Font name="Arial Black" size="20.0" />
                             </font>
                             <GridPane.margin>
                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                             </GridPane.margin>
                             <tooltip>
-                                <Tooltip fx:id="ttAnanya4" text="Done by: Ananya Gopalan" />
+                                <Tooltip fx:id="ttAnanya4" text="Deliver floral goods to a specific location in the hospital." />
                             </tooltip>
                             <graphic>
                                 <ImageView fitHeight="45.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
@@ -316,15 +316,15 @@
                                 </ImageView>
                             </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="LaundryRequest" alignment="BASELINE_LEFT" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="    Laundry Services&#10;    (Request for laundry services.)" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                        <JFXButton fx:id="LaundryRequest" alignment="BASELINE_LEFT" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="        Laundry Services" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                             <font>
-                                <Font name="Arial Black" size="17.0" />
+                                <Font name="Arial Black" size="20.0" />
                             </font>
                             <GridPane.margin>
                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                             </GridPane.margin>
                             <tooltip>
-                                <Tooltip fx:id="ttAnanya5" text="Done by: Ananya Gopalan" />
+                                <Tooltip fx:id="ttAnanya5" text="Request for laundry services." />
                             </tooltip>
                             <graphic>
                                 <ImageView fitHeight="45.0" fitWidth="157.0" pickOnBounds="true" preserveRatio="true">
@@ -334,15 +334,15 @@
                                 </ImageView>
                             </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="SanitationServicesRequest" alignment="BASELINE_LEFT" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="    Sanitation Service&#10;    (Request for sanitary demands in the hospital.)" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                        <JFXButton fx:id="SanitationServicesRequest" alignment="BASELINE_LEFT" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="        Sanitation Service" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                             <font>
-                                <Font name="Arial Black" size="17.0" />
+                                <Font name="Arial Black" size="20.0" />
                             </font>
                             <GridPane.margin>
                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                             </GridPane.margin>
                             <tooltip>
-                                <Tooltip fx:id="ttYongxiang" text="Done by: Yongxiang Jin" />
+                                <Tooltip fx:id="ttYongxiang" text="Request for sanitary demands in the hospital." />
                             </tooltip>
                             <graphic>
                                 <ImageView fitHeight="45.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
@@ -352,15 +352,15 @@
                                 </ImageView>
                             </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="LanguageInterpretersRequest" alignment="BASELINE_LEFT" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="    Language Interpreters&#10;    (Language options)" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                        <JFXButton fx:id="LanguageInterpretersRequest" alignment="BASELINE_LEFT" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="        Language Interpreters" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                             <font>
-                                <Font name="Arial Black" size="17.0" />
+                                <Font name="Arial Black" size="20.0" />
                             </font>
                             <GridPane.margin>
                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                             </GridPane.margin>
                             <tooltip>
-                                <Tooltip fx:id="ttBen" text="Done by: Bernhard Nordemann" />
+                                <Tooltip fx:id="ttBen" text="Language options." />
                             </tooltip>
                             <graphic>
                                 <ImageView fitHeight="45.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
@@ -370,15 +370,15 @@
                                 </ImageView>
                             </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="FoodDeliveryRequest" alignment="BASELINE_LEFT" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="    Food Delivery Service&#10;    (Deliver food to a specific location in the hospital.)" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+                        <JFXButton fx:id="FoodDeliveryRequest" alignment="BASELINE_LEFT" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="        Food Delivery Service" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                             <font>
-                                <Font name="Arial Black" size="17.0" />
+                                <Font name="Arial Black" size="20.0" />
                             </font>
                             <GridPane.margin>
                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                             </GridPane.margin>
                             <tooltip>
-                                <Tooltip fx:id="ttAlex" text="Done by: Alex Mitchell" />
+                                <Tooltip fx:id="ttAlex" text="Deliver food to a specific location in the hospital." />
                             </tooltip>
                             <graphic>
                                 <ImageView fitHeight="45.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
@@ -388,15 +388,15 @@
                                 </ImageView>
                             </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="ReligiousRequest" alignment="BASELINE_LEFT" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="    Religious Request&#10;    (Request for specific religious needs.)" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                        <JFXButton fx:id="ReligiousRequest" alignment="BASELINE_LEFT" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="        Religious Request" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                             <font>
-                                <Font name="Arial Black" size="17.0" />
+                                <Font name="Arial Black" size="20.0" />
                             </font>
                             <GridPane.margin>
                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                             </GridPane.margin>
                             <tooltip>
-                                <Tooltip fx:id="ttPayton" text="Done by: Payton Dean" />
+                                <Tooltip fx:id="ttPayton" text="Request for specific religious needs." />
                             </tooltip>
                             <graphic>
                                 <ImageView fitHeight="45.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">

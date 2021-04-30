@@ -3,7 +3,7 @@ package edu.wpi.TeamN.views;
 import com.google.inject.Inject;
 import com.jfoenix.controls.JFXColorPicker;
 import com.jfoenix.controls.JFXTextField;
-import edu.wpi.TeamN.MapEntity.*;
+import edu.wpi.TeamN.map.*;
 import edu.wpi.TeamN.services.algo.Edge;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.database.DatabaseService;
@@ -34,7 +34,7 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class MapController extends masterController implements Initializable, mapControllerI {
+public class MapController extends MasterController implements Initializable, IMapController {
   @FXML private JFXColorPicker nodeColor;
   @FXML private JFXColorPicker EXIT;
   @FXML private JFXColorPicker ELEV;
@@ -59,9 +59,9 @@ public class MapController extends masterController implements Initializable, ma
   public final double upScale = 4;
   private int nodeCount = 0;
 
-  private ActionHandlingI actionHandling;
+  private IActionHandling actionHandling;
   private AdminMap adminMap;
-  private MapDrawing mapDrawing;
+  private MapDrawer mapDrawer;
   private MapNodeEditor mapNodeEditor;
   private MapEdgeEditor mapEdgeEditor;
 
@@ -111,9 +111,10 @@ public class MapController extends masterController implements Initializable, ma
     mapNodeEditor = new MapNodeEditor(this);
     mapEdgeEditor = new MapEdgeEditor(this);
     actionHandling = new NodeActionHandling(this, this.mapNodeEditor, this.mapEdgeEditor);
-    mapDrawing = new MapDrawing(this);
+    mapDrawer = new MapDrawer(this);
     mapImageView.setCursor(Cursor.CROSSHAIR);
     this.Load(new ActionEvent());
+    //    mapDrawer.setUpZoom(mapImageView, mapAnchor);
   }
 
   @FXML
@@ -137,6 +138,7 @@ public class MapController extends masterController implements Initializable, ma
    * @param mouseEvent
    */
   public void placeNodeClick(MouseEvent mouseEvent) throws IOException {
+    System.out.println(mouseEvent.getX() + ", " + mouseEvent.getY());
     if (mouseEvent.getButton() == MouseButton.PRIMARY) {
       placeNode("node_" + this.nodeCount, mouseEvent.getX(), mouseEvent.getY());
     }
@@ -164,7 +166,7 @@ public class MapController extends masterController implements Initializable, ma
   }
 
   private void placeNode(String id, double x, double y) {
-    Group root = mapDrawing.drawNode(id, x, y, nodeColor.getValue());
+    Group root = mapDrawer.drawNode(id, x, y, nodeColor.getValue());
     actionHandling.setNodeInfo(root);
     actionHandling.setNodeStartLink(root);
     actionHandling.setNodeEndLink(root);
@@ -174,7 +176,7 @@ public class MapController extends masterController implements Initializable, ma
             x * getUpScale(),
             y * getUpScale(),
             id,
-            mapDrawing.getCurrentMap(),
+            mapDrawer.getCurrentMap(),
             getBuilding().getText(),
             "",
             getLongName().getText(),
@@ -195,7 +197,7 @@ public class MapController extends masterController implements Initializable, ma
    * @param node2 node id of the second node
    */
   private void placeLink(String id, Node node1, Node node2) {
-    Group root = mapDrawing.drawLine(id, node1, node2);
+    Group root = mapDrawer.drawLine(id, node1, node2);
     adminMap.makeEdge(id, node1, node2, (Line) root.getChildren().get(0));
     actionHandling.setEdgeInfo(root);
     mapAnchor.getChildren().add(root);
@@ -241,7 +243,7 @@ public class MapController extends masterController implements Initializable, ma
                     .getNodeSet()
                     .get(mapAnchor.getChildren().get(i).getId())
                     .get_floor()
-                    .equals(mapDrawing.getCurrentMap()));
+                    .equals(mapDrawer.getCurrentMap()));
       }
     }
   }
@@ -273,7 +275,7 @@ public class MapController extends masterController implements Initializable, ma
                   .getNodeSet()
                   .get(value.getStartNode())
                   .get_floor()
-                  .equals(mapDrawing.getCurrentMap())) {
+                  .equals(mapDrawer.getCurrentMap())) {
                 placeLink(
                     key,
                     adminMap.getNodeSet().get(value.getStartNode()),
@@ -284,7 +286,7 @@ public class MapController extends masterController implements Initializable, ma
         .getNodeSet()
         .forEach(
             (key, value) -> {
-              if (value.get_floor().equals(mapDrawing.getCurrentMap())) {
+              if (value.get_floor().equals(mapDrawer.getCurrentMap())) {
                 placeNode(key, value.get_x() * downScale, value.get_y() * downScale);
               }
             });
@@ -525,7 +527,7 @@ public class MapController extends masterController implements Initializable, ma
   }
 
   public void setMap(ActionEvent actionEvent) {
-    mapDrawing.setMap(((Button) actionEvent.getSource()).getId());
+    mapDrawer.setMap(((Button) actionEvent.getSource()).getId());
     this.Load(actionEvent);
   }
 

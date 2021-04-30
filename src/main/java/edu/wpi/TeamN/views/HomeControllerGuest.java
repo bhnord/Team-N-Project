@@ -23,7 +23,7 @@ import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class HomeControllerGuest extends masterController implements Initializable {
+public class HomeControllerGuest extends MasterController implements Initializable {
 
   @Inject DatabaseService db;
   @Inject FXMLLoader loader;
@@ -62,8 +62,6 @@ public class HomeControllerGuest extends masterController implements Initializab
     logOutButton.setTooltip(ttLogOutButton);
     exit.setTooltip(ttExit);
 
-    BigBoiPane.setMinSize(1366, 768);
-    // BigBoiPane.set
     map.setStyle(
         "-fx-background-image: url('/images/ButtonM.png'); -fx-background-size: cover; -fx-background-radius: 25");
     map1.setStyle(
@@ -83,7 +81,7 @@ public class HomeControllerGuest extends masterController implements Initializab
   }
 
   public void map(ActionEvent actionEvent) throws IOException {
-    Parent root = loader.load(getClass().getResourceAsStream("mapAdmin.fxml"));
+    Parent root = loader.load(getClass().getResourceAsStream("MapAdmin.fxml"));
     Screen screen = Screen.getPrimary();
     Rectangle2D bounds = screen.getVisualBounds();
 

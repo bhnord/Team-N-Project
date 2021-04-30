@@ -19,7 +19,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 
-public class LoginPage extends masterController implements Initializable {
+public class LoginPage extends MasterController implements Initializable {
 
   @Inject FXMLLoader loader;
   private Scene appPrimaryScene;

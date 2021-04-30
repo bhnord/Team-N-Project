@@ -35,7 +35,7 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class AudioVisualRequestController extends masterController implements Initializable {
+public class AudioVisualRequestController extends MasterController implements Initializable {
 
   @Inject DatabaseService db;
   @Inject FXMLLoader loader;
@@ -53,6 +53,9 @@ public class AudioVisualRequestController extends masterController implements In
   private HashMap<String, Node> rooms;
 
   @FXML private AnchorPane anchorPage;
+
+  @FXML private SideBarController sideBarController;
+  @FXML private AnchorPane anchorPane;
 
   @FXML private StackPane confirmationStackPane;
 
@@ -76,10 +79,12 @@ public class AudioVisualRequestController extends masterController implements In
     this.appPrimaryScene = appPrimaryScene;
   }
 
+  @SneakyThrows
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     log.debug(state.toString());
     //  submitButton.setDisable(true);
+    super.sideBarSetup(anchorPane, appPrimaryScene, loader);
 
     /** USERNAME input and password* */
     RequiredFieldValidator reqInputValid = new RequiredFieldValidator();

@@ -16,7 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
 
-public class CurrentRequestController extends masterController implements Initializable {
+public class CurrentRequestController extends MasterController implements Initializable {
 
   private Scene appPrimaryScene;
   @FXML private JFXListView<Label> listView;
