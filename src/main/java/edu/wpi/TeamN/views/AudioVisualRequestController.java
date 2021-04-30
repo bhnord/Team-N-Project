@@ -92,7 +92,7 @@ public class AudioVisualRequestController extends MasterController implements In
   public void help(ActionEvent actionEvent) throws IOException {
     dialogFactory.creatDialogOkay(
         "Help",
-        "- Employee Name refers to the employee being requested to complete the job \n- Patient Room is the room with the patient where the Translation is required \n- Time of request refers to time at which the translation is needed \n- Desired language refers to the language that needs to be translated");
+        "- Employee Name refers to the employee being requested to complete the job \n- Patient Room is the room with the patient where the audio visual request is required \n- Time of request refers to time at which the request is needed \n- Necessary equipment refers to the equipment that is needed for the request \n- Comments refers to any additional information needed");
   }
 
   private void submitToDB() {

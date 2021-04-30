@@ -63,11 +63,8 @@ public class EmployeeEditor extends MasterController implements Initializable {
 
   @Override
   public void initialize(URL url, ResourceBundle rb) {
-    try {
-      super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Service Request");
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+
+    super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Service Request");
 
     listView.setOnMouseClicked(
         event -> {

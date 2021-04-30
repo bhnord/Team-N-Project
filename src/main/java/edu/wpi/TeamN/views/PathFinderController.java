@@ -7,7 +7,6 @@ import edu.wpi.TeamN.map.AdminMap;
 import edu.wpi.TeamN.map.MapDrawer;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.algo.PathFinder;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -54,11 +53,9 @@ public class PathFinderController extends MapController implements Initializable
   @SneakyThrows
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    try {
-      super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Service Request");
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+
+    super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Service Request");
+
     nodeColor.setValue(Color.BLUE);
     EXIT.setValue(Color.RED);
     ELEV.setValue(Color.PINK);
