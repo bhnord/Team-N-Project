@@ -1,10 +1,9 @@
 package edu.wpi.TeamN.map;
 
+import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 
 public class UserPreferences {
-  private Paint nodeColor;
-  private Paint EXIT;
 
   public Paint getNodeColor() {
     return nodeColor;
@@ -70,10 +69,23 @@ public class UserPreferences {
     this.pathSize = pathSize;
   }
 
+  private Paint nodeColor;
+  private Paint EXIT;
   private Paint ELEV;
   private Paint STAI;
   private Paint pathColor;
   private Paint selectedNodeColor;
   private double nodeSize;
   private double pathSize;
+
+  public UserPreferences() {
+    nodeColor = Color.BLUE;
+    EXIT = Color.RED;
+    ELEV = Color.PINK;
+    STAI = Color.ORANGE;
+    pathColor = Color.BLACK;
+    selectedNodeColor = Color.GREEN;
+    nodeSize = 3.5;
+    pathSize = 2.5;
+  }
 }

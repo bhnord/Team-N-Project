@@ -53,7 +53,7 @@ public class PathFinderController extends MapController implements Initializable
     EXIT.setValue(Color.RED);
     ELEV.setValue(Color.PINK);
     STAI.setValue(Color.ORANGE);
-    pathColor.setValue(Color.BLACK);
+    pathColor.setValue(Color.BLUE);
     selectedNodeColor.setValue(Color.GREEN);
     nodeSize.setText("3.5");
     pathSize.setText("2.5");
@@ -78,6 +78,7 @@ public class PathFinderController extends MapController implements Initializable
             link._shape.setStroke(Color.RED);
           }
         });
+    super.init();
     //    load();
     //    mapFloor();
     //    mapDrawer.setUpZoom(super.getMapImageView(), mapAnchor);

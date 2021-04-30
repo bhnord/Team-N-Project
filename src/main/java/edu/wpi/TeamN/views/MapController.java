@@ -23,6 +23,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Shape;
 
@@ -146,6 +147,13 @@ public abstract class MapController extends MasterController {
   @FXML private JFXTextField edgeID;
   @FXML private JFXTextField startNode;
   @FXML private JFXTextField endNode;
+
+  @FXML private Circle nodeColor_L;
+  @FXML private Circle EXIT_L;
+  @FXML private Circle ELEV_L;
+  @FXML private Circle STAI_L;
+  @FXML private Circle pathColor_L;
+  @FXML private Circle selectedNodeColor_L;
 
   //  Boolean cancelOrSubmit = false;
 
