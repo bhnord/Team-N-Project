@@ -35,7 +35,8 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class InternalPatientRequestController extends MasterController implements Initializable {
+public class InternalPatientRequestController extends MasterControllerRequest
+    implements Initializable {
 
   @Inject DatabaseService db;
   @Inject FXMLLoader loader;
@@ -112,7 +113,6 @@ public class InternalPatientRequestController extends MasterController implement
 
   @FXML
   public void back() throws IOException {
-
     super.advanceServiceRequest(loader, appPrimaryScene);
   }
 
@@ -122,30 +122,8 @@ public class InternalPatientRequestController extends MasterController implement
         || request.getText().isEmpty()
         || txtEmployeeName.getEditor().getText().isEmpty()
         || roomDropdown.getEditor().getText().isEmpty()) {
-      String title = "Missing Fields";
-      JFXDialogLayout dialogContent = new JFXDialogLayout();
-      dialogContent.setHeading(new Text(title));
-      dialogContent.setBody(
-          (new Text("* You must fill out all required fields of the request to continue\n")));
-      JFXButton close = new JFXButton("close");
-      close.setButtonType(JFXButton.ButtonType.RAISED);
-      close.setStyle("-fx-background-color : #748cdc;");
-      close.setTextFill(Paint.valueOf("#FFFFFF"));
-      dialogContent.setActions(close);
 
-      JFXDialog dialog =
-          new JFXDialog(myStackPane, dialogContent, JFXDialog.DialogTransition.BOTTOM);
-      actionEvent.consume();
-      close.setOnAction(
-          new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-              dialog.close();
-              helpButton.setDisable(false);
-            }
-          });
-      helpButton.setDisable(true);
-      dialog.show();
+      MissingFieldsDialog(actionEvent, helpButton, myStackPane);
 
     } else {
 
