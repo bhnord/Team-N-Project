@@ -73,11 +73,8 @@ public class RegisterNewUser extends MasterController implements Initializable {
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     log.debug(state.toString());
-    try {
-      super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Service Request");
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+    super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Service Request");
+
     // submit.setDisable(true);
 
     /** USERNAME input and password* */
