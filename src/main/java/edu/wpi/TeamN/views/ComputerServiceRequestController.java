@@ -1,7 +1,6 @@
 package edu.wpi.TeamN.views;
 
 import com.google.inject.Inject;
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTimePicker;
@@ -15,9 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import lombok.extern.slf4j.Slf4j;
 
@@ -32,11 +29,6 @@ public class ComputerServiceRequestController extends MasterController implement
   @Inject FXMLLoader loader;
   @Inject HomeState state;
   @FXML private JFXTextField txtComments;
-  @FXML private Button helpButton;
-  @FXML private StackPane myStackPane = new StackPane();
-  @FXML private StackPane myStackPane2;
-  @FXML private JFXButton submit = new JFXButton();
-  @FXML private AnchorPane anchorPage;
   @FXML private JFXComboBox<Label> txtEmployeeName = new JFXComboBox<>();
   @FXML private JFXComboBox<Label> roomDropdown = new JFXComboBox<>();
   @FXML private JFXTimePicker timePicker = new JFXTimePicker();

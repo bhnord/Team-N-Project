@@ -20,7 +20,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
@@ -42,10 +41,6 @@ public class ExternalPatientRequestController extends MasterController implement
   @Inject HomeState state;
   @FXML private Label errorLabel;
   @FXML private JFXTextField commentsBox;
-  @FXML private Button helpButton;
-  @FXML private StackPane myStackPane;
-  @FXML private Button submit;
-  @FXML private StackPane myStackPane2;
   @FXML private JFXComboBox addressBox;
   @FXML private JFXComboBox transportTypeDropdown;
   @FXML private JFXComboBox<Label> employeeDropdown;

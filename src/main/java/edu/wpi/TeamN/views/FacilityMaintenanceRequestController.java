@@ -14,9 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import lombok.extern.slf4j.Slf4j;
 
@@ -33,11 +31,6 @@ public class FacilityMaintenanceRequestController extends MasterController
   @Inject HomeState state;
   @FXML private Label errorLabel;
   @FXML private JFXTextField txtComments;
-  @FXML private Button helpButton;
-  @FXML private StackPane myStackPane;
-  @FXML private StackPane myStackPane2;
-  @FXML private Button submit;
-  @FXML private AnchorPane anchorPage;
   @FXML private JFXComboBox<Label> txtEmployeeName = new JFXComboBox<>();
   @FXML private JFXComboBox<Label> roomDropdown = new JFXComboBox<>();
   @FXML private JFXTimePicker timePicker;

@@ -15,9 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import lombok.extern.slf4j.Slf4j;
 
@@ -35,13 +33,8 @@ public class FoodDeliveryRequestController extends MasterController implements I
   @FXML private JFXComboBox<Label> mainDish = new JFXComboBox<>();
   @FXML private JFXComboBox<Label> sideDish = new JFXComboBox<>();
   @FXML private JFXComboBox<Label> drinkDish = new JFXComboBox<>();
-  @FXML private Button helpButton;
-  @FXML private StackPane myStackPane;
-  @FXML private Button submit;
-  @FXML private StackPane myStackPane2;
   @FXML private JFXComboBox<Label> txtEmployeeName = new JFXComboBox<>();
   @FXML private JFXComboBox<Label> roomDropdown = new JFXComboBox<>();
-  @FXML private AnchorPane anchorPage;
   @FXML private StackPane rootStackPane;
   private DialogFactory dialogFactory;
   private Scene appPrimaryScene;
