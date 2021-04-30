@@ -47,6 +47,11 @@ public class MasterController implements Initializable {
     this.loader = loader;
   }
 
+  @Inject
+  public void setDB(DatabaseService db) {
+    this.db = db;
+  }
+
   public void setAnchorPane(AnchorPane anchorPane) {
     this.anchorPane = anchorPane;
   }
@@ -203,6 +208,7 @@ public class MasterController implements Initializable {
     sideBarController = loader2.getController();
     sideBarController.setAppPrimaryScene(appPrimaryScene);
     sideBarController.setLoader(loader);
+    sideBarController.setDB(db);
     sideBarController.setType(type);
     anchorPane.getChildren().setAll(pane);
   }
