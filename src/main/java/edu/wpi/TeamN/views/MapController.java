@@ -102,12 +102,6 @@ public abstract class MapController extends MasterController {
   //    if (getNodeSet().containsKey(enp)) endNodePath = enp;
   //  }
 
-  public void makeEdge(String id, Node node1, Node node2, Line simpleNode) {
-    double distance = node1.heuristic(node2);
-    node1.addNeighbor(id, node2, distance, simpleNode, false);
-    node2.addNeighbor(id, node1, distance, simpleNode, false);
-  }
-
   @Inject FXMLLoader loader;
   @Inject HomeState state;
 
@@ -180,20 +174,21 @@ public abstract class MapController extends MasterController {
         mapAnchor.getChildren().subList(1, mapAnchor.getChildren().size())) {
       root.setVisible(false);
     }
+    for (Node n : getNodeSet().values()) {
+      n.set_neighbors(new ArrayList<>());
+    }
     adminMap
         .getEdgeSet()
         .forEach(
             (key, value) -> {
-              if (adminMap
-                  .getNodeSet()
-                  .get(value.getStartNode())
-                  .get_floor()
-                  .equals(mapDrawer.getCurrentMap())) {
-                placeLink(
-                    key,
-                    adminMap.getNodeSet().get(value.getStartNode()),
-                    adminMap.getNodeSet().get(value.getEndNode()));
-              }
+              placeLink(
+                      key,
+                      getNodeSet().get(value.getStartNode()),
+                      getNodeSet().get(value.getEndNode()))
+                  .setVisible(
+                      mapDrawer
+                          .getCurrentMap()
+                          .equals(getNodeSet().get(value.getStartNode()).get_floor()));
             });
     adminMap
         .getNodeSet()
@@ -236,9 +231,10 @@ public abstract class MapController extends MasterController {
    */
   protected Group placeLink(String id, Node node1, Node node2) {
     Group root = mapDrawer.drawLine(id, node1, node2);
-    adminMap.makeEdge(id, node1, node2, (Line) root.getChildren().get(0));
+    //    adminMap.makeEdge(id, node1, node2, (Line) root.getChildren().get(0));
     mapAnchor.getChildren().add(root);
     root.setCursor(Cursor.CROSSHAIR);
+    getAdminMap().makeEdge(id, node1, node2, (Line) root.getChildren().get(0));
     return root;
   }
 
@@ -472,5 +468,9 @@ public abstract class MapController extends MasterController {
 
   public double getPathSize() {
     return Double.parseDouble(pathSize.getText());
+  }
+
+  public MapDrawer getMapDrawer() {
+    return mapDrawer;
   }
 }

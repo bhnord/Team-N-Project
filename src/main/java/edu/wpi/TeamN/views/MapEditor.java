@@ -3,7 +3,6 @@ package edu.wpi.TeamN.views;
 import com.google.inject.Inject;
 import com.jfoenix.controls.JFXTextField;
 import edu.wpi.TeamN.map.*;
-import edu.wpi.TeamN.services.algo.Edge;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.state.HomeState;
 import java.io.IOException;
@@ -192,10 +191,10 @@ public class MapEditor extends MapController implements Initializable {
 
   public Group placeNode(Node n) {
     Group root = super.placeNode(n);
-    System.out.println("creating node");
     actionHandling.setNodeInfo(root);
     actionHandling.setNodeStartLink(root);
     actionHandling.setNodeEndLink(root);
+    actionHandling.setNodeDrag((Circle) n.get_shape());
     if (!adminMap.getNodeSet().containsKey(n.get_nodeID())) {
       adminMap.addNode(n);
       mapNodeEditor.showNodeProperties(root);
@@ -578,7 +577,6 @@ public class MapEditor extends MapController implements Initializable {
     Group root = super.placeLink(id, node1, node2);
     actionHandling.setEdgeInfo(root);
     if (!super.getAdminMap().getEdgeSet().containsKey(id)) {
-      super.getAdminMap().addEdge(new Edge(id, node1.get_nodeID(), node2.get_nodeID()));
       mapEdgeEditor.showEdgeProperties(root);
     }
     return root;
