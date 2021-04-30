@@ -76,7 +76,7 @@ public class CovidForm extends MasterController implements Initializable {
   }
 
   public void advanceHome() throws IOException {
-    advanceHome(loader, appPrimaryScene);
+    super.advanceHome(loader, appPrimaryScene);
   }
 
   @FXML
@@ -86,7 +86,7 @@ public class CovidForm extends MasterController implements Initializable {
 
   @FXML
   public void back() throws IOException {
-    advanceHome(loader, appPrimaryScene);
+    super.advanceHome(loader, appPrimaryScene);
   }
 
   @FXML
@@ -127,6 +127,37 @@ public class CovidForm extends MasterController implements Initializable {
             }
           });
       // helpButton.setDisable(true);
+      dialog.show();
+
+    } else if ((comboBox.getValue() == "yes"
+        || comboBox2.getValue() == "yes"
+        || comboBox3.getValue() == "yes"
+        || comboBox4.getValue() == "yes"
+        || comboBox5.getValue() == "yes"
+        || comboBox6.getValue() == "yes")) {
+
+      String title = "You answered yes to one of the questions in the survey";
+      JFXDialogLayout dialogContent = new JFXDialogLayout();
+      dialogContent.setHeading(new Text(title));
+      dialogContent.setBody((new Text("Please enter through emergency exit\n")));
+      JFXButton close = new JFXButton("close");
+      close.setButtonType(JFXButton.ButtonType.RAISED);
+      close.setStyle("-fx-background-color : #748cdc;");
+      dialogContent.setActions(close);
+
+      JFXDialog dialog =
+          new JFXDialog(myStackPane, dialogContent, JFXDialog.DialogTransition.BOTTOM);
+      // actionEvent.consume();
+      close.setOnAction(
+          new EventHandler<ActionEvent>() {
+            @SneakyThrows
+            @Override
+            public void handle(ActionEvent event) {
+              dialog.close();
+              //  helpButton.setDisable(false);
+              advanceHome();
+            }
+          });
       dialog.show();
 
     } else {
