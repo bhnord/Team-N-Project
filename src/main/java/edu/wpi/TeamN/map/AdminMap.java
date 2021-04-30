@@ -54,16 +54,18 @@ public class AdminMap {
     edgeSet.remove(id);
   }
 
-  public Node get(double x, double y) {
+  public Node get(double x, double y, String floor) {
     x *= upScale;
     y *= upScale;
     double min = Double.MAX_VALUE;
     Node closest = null;
     for (Node c : getNodeSet().values()) {
-      double distance = (c.get_x() - x) * (c.get_x() - x) + (c.get_y() - y) * (c.get_y() - y);
-      if (distance < min) {
-        closest = c;
-        min = distance;
+      if (c.get_floor().equals(floor)) {
+        double distance = (c.get_x() - x) * (c.get_x() - x) + (c.get_y() - y) * (c.get_y() - y);
+        if (distance < min) {
+          closest = c;
+          min = distance;
+        }
       }
     }
     return closest;

@@ -1,7 +1,7 @@
 package edu.wpi.TeamN.map;
 
 import edu.wpi.TeamN.services.algo.Node;
-import edu.wpi.TeamN.views.IMapController;
+import edu.wpi.TeamN.views.MapController;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
@@ -13,6 +13,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
@@ -21,7 +22,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 
 public class MapDrawer {
-  private final IMapController mapController;
+  private final MapController mapController;
   private final String[] maps = {"L1", "L2", "g", "F1", "F2", "F3"};
   private String currentMap;
   final DoubleProperty zoomProperty = new SimpleDoubleProperty(1);
@@ -29,10 +30,10 @@ public class MapDrawer {
   private double offsetX, offsetY;
   private final double maxZoom = 5.6;
   private final double minZoom = 1;
-  private double maxImgWidth = 1000;
-  private double maxImgHeight = 700;
+  private double maxImgWidth;
+  private double maxImgHeight;
 
-  public MapDrawer(IMapController mapControllerI) {
+  public MapDrawer(MapController mapControllerI) {
     this.mapController = mapControllerI;
     currentMap = maps[0];
   }
@@ -71,9 +72,34 @@ public class MapDrawer {
 
   public void colorPath(Color color, ArrayList<Node.Link> ret) {
     for (Node.Link c2 : ret) {
+      System.out.println(ret);
       Line simpleNode = c2._shape;
       simpleNode.setStroke(color);
       mapController.correctFloor(c2);
+    }
+  }
+
+  public void captureClick(MouseEvent e) {
+    if (e.getButton() == MouseButton.MIDDLE) {
+      pressedX = e.getX();
+      pressedY = e.getY();
+    }
+  }
+
+  public void captureMouseDrag(MouseEvent event) {
+    event.consume();
+    if (event.getButton() == MouseButton.MIDDLE) {
+      mapController
+          .getMapAnchor()
+          .setTranslateX(mapController.getMapAnchor().getTranslateX() + event.getX() - pressedX);
+      mapController
+          .getMapAnchor()
+          .setTranslateY(mapController.getMapAnchor().getTranslateY() + event.getY() - pressedY);
+      offsetX = mapController.getMapAnchor().getTranslateX();
+      offsetX -= (maxImgWidth * (zoomProperty.get() - 1)) / 2;
+      offsetY = mapController.getMapAnchor().getTranslateY();
+      offsetY -= (maxImgHeight * (zoomProperty.get() - 1)) / 2;
+      correctImage(mapController.getMapAnchor());
     }
   }
 
@@ -116,15 +142,13 @@ public class MapDrawer {
   }
 
   private void correctImage(AnchorPane mapContainer) {
+    System.out.println(transformY(maxImgHeight));
     if (transformX(0) < 0) {
       mapContainer.setTranslateX(invOffsetX(0));
     }
     if (transformY(0) < 0) {
       mapContainer.setTranslateY(invOffsetY(0));
     }
-    //    System.out.println(transformX(maxImgWidth) - transformX(0));
-    System.out.println(transformX(maxImgWidth));
-
     if (transformX(maxImgWidth) > maxImgWidth) {
       mapContainer.setTranslateX(invOffsetX(-maxImgWidth * (zoomProperty.get() - 1)));
     }
@@ -152,51 +176,12 @@ public class MapDrawer {
         new EventHandler<ScrollEvent>() {
           @Override
           public void handle(ScrollEvent event) {
-            double oldCenterX = offsetX + imageView.getFitWidth() * zoomProperty.get();
-            double oldCenterY = offsetY + imageView.getFitHeight() * zoomProperty.get();
             if (event.getDeltaY() > 0 && zoomProperty.get() <= maxZoom) {
-              zoomProperty.set(zoomProperty.get() * 1.1);
+              zoomProperty.set(zoomProperty.get() * 1.08);
             } else if (event.getDeltaY() < 0 && zoomProperty.get() >= minZoom) {
-              zoomProperty.set(zoomProperty.get() / 1.1);
+              zoomProperty.set(zoomProperty.get() / 1.08);
             }
-            double newCenterX = offsetX + imageView.getFitWidth() * zoomProperty.get();
-            double newCenterY = offsetY + imageView.getFitHeight() * zoomProperty.get();
             correctImage(mapContainer);
-            //            mapContainer.setTranslateX(
-            //                mapContainer.getTranslateX() + .5 * (newCenterX - oldCenterX));
-            //            mapContainer.setTranslateY(
-            //                mapContainer.getTranslateY() + .5 * (newCenterY - oldCenterY));
-            //            System.out.println(newCenterX - oldCenterX);
-          }
-        });
-    imageView.setOnMousePressed(
-        new EventHandler<MouseEvent>() {
-          public void handle(MouseEvent event) {
-            pressedX = event.getX();
-            pressedY = event.getY();
-          }
-        });
-
-    imageView.setOnMouseDragged(
-        new EventHandler<MouseEvent>() {
-          public void handle(MouseEvent event) {
-            event.consume();
-            mapContainer.setTranslateX(mapContainer.getTranslateX() + event.getX() - pressedX);
-            mapContainer.setTranslateY(mapContainer.getTranslateY() + event.getY() - pressedY);
-            offsetX = mapContainer.getTranslateX();
-            offsetX -= (maxImgWidth * (zoomProperty.get() - 1)) / 2;
-            offsetY = mapContainer.getTranslateY();
-            offsetY -= (maxImgHeight * (zoomProperty.get() - 1)) / 2;
-
-            correctImage(mapContainer);
-          }
-        });
-
-    imageView.setOnMousePressed(
-        new EventHandler<MouseEvent>() {
-          public void handle(MouseEvent event) {
-            pressedX = event.getX();
-            pressedY = event.getY();
           }
         });
   }

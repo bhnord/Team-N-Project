@@ -1,19 +1,19 @@
 package edu.wpi.TeamN.map;
 
-import edu.wpi.TeamN.views.MapController;
+import edu.wpi.TeamN.views.MapEditor;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.input.MouseEvent;
 
 public class NodeActionHandling implements IActionHandling {
 
-  private final MapController mapController;
+  private final MapEditor mapEditor;
   private final MapNodeEditor mapNodeEditor;
   private final MapEdgeEditor mapEdgeEditor;
 
   public NodeActionHandling(
-      MapController mapController, MapNodeEditor mapNodeEditor, MapEdgeEditor mapEdgeEditor) {
-    this.mapController = mapController;
+      MapEditor mapEditor, MapNodeEditor mapNodeEditor, MapEdgeEditor mapEdgeEditor) {
+    this.mapEditor = mapEditor;
     this.mapNodeEditor = mapNodeEditor;
     this.mapEdgeEditor = mapEdgeEditor;
   }
@@ -24,8 +24,9 @@ public class NodeActionHandling implements IActionHandling {
         new EventHandler<MouseEvent>() {
           @Override
           public void handle(MouseEvent event) {
+            System.out.println("asdfasdf");
             mapNodeEditor.showNodeProperties(root);
-            mapController.setCurrent(root);
+            mapEditor.setCurrent(root);
           }
         });
   }
@@ -41,7 +42,7 @@ public class NodeActionHandling implements IActionHandling {
           @Override
           public void handle(MouseEvent event) {
             mapEdgeEditor.showEdgeProperties(root);
-            mapController.setCurrent(root);
+            mapEditor.setCurrent(root);
           }
         });
   }
@@ -52,7 +53,7 @@ public class NodeActionHandling implements IActionHandling {
         new EventHandler<MouseEvent>() {
           @Override
           public void handle(MouseEvent event) {
-            mapController.startLink(event);
+            mapEditor.mouseClick(event);
           }
         });
   }
@@ -63,7 +64,7 @@ public class NodeActionHandling implements IActionHandling {
         new EventHandler<MouseEvent>() {
           @Override
           public void handle(MouseEvent event) {
-            mapController.releaseMouse(event);
+            mapEditor.releaseMouse(event);
           }
         });
   }
