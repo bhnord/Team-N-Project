@@ -75,6 +75,7 @@ public class MapEditor extends MapController implements Initializable {
   //  @FXML private JFXTextField endNode;
 
   Boolean cancelOrSubmit = false;
+  UserPreferences currentPrefs;
 
   //  /**
   //   * This method allows the tests to inject the scene at a later time, since it must be done on
@@ -109,6 +110,7 @@ public class MapEditor extends MapController implements Initializable {
     mapImageView.setCursor(Cursor.CROSSHAIR);
     this.Load();
     mapDrawer.setUpZoom(mapImageView, mapAnchor);
+    super.init();
   }
   //
   //  @FXML
@@ -147,8 +149,9 @@ public class MapEditor extends MapController implements Initializable {
   public void mouseClick(MouseEvent mouseEvent) {
     super.mouseClick(mouseEvent);
     if (mouseEvent.getButton() == MouseButton.SECONDARY) {
-      System.out.println("start: " + mouseEvent.getX() + ", " + mouseEvent.getY());
+      //      System.out.println("start: " + mouseEvent.getX() + ", " + mouseEvent.getY());
       startNodePath = adminMap.get(mouseEvent.getX(), mouseEvent.getY(), mapDrawer.getCurrentMap());
+      mapDrawer.startLine(startNodePath);
     }
   }
 
@@ -161,7 +164,9 @@ public class MapEditor extends MapController implements Initializable {
       System.out.println("end: " + mouseEvent.getX() + ", " + mouseEvent.getY());
       Node other = adminMap.get(mouseEvent.getX(), mouseEvent.getY(), mapDrawer.getCurrentMap());
       if (other != startNodePath) {
-        placeLink(startNodePath.get_nodeID() + "_" + other.get_nodeID(), startNodePath, other);
+        //        placeLink(startNodePath.get_nodeID() + "_" + other.get_nodeID(), startNodePath,
+        // other);
+        mapDrawer.endLine(other);
       }
     }
   }

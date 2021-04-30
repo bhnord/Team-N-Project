@@ -33,6 +33,9 @@ public class MapDrawer {
   private double maxImgWidth;
   private double maxImgHeight;
 
+  private Group draggedLineGroup;
+  private Line draggedLine;
+
   public MapDrawer(MapController mapControllerI) {
     this.mapController = mapControllerI;
     currentMap = maps[0];
@@ -50,6 +53,33 @@ public class MapDrawer {
     Group root = new Group(simpleNode);
     root.setId(id);
     return root;
+  }
+
+  public Group startLine(Node node1) {
+    Line simpleNode =
+        new Line(
+            node1.get_x() * mapController.getDownScale(),
+            node1.get_y() * mapController.getDownScale(),
+            node1.get_x() * mapController.getDownScale(),
+            node1.get_y() * mapController.getDownScale());
+    simpleNode.setTranslateZ(5);
+    simpleNode.setStrokeWidth(3.5);
+    Group root = new Group(simpleNode);
+    root.setId(node1.get_nodeID() + "_");
+    this.draggedLineGroup = root;
+    this.draggedLine = simpleNode;
+    mapController.getMapAnchor().getChildren().add(root);
+    return root;
+  }
+
+  public Group endLine(Node node2) {
+    draggedLineGroup.setId(draggedLine.getId() + node2.get_nodeID());
+    Group temp = draggedLineGroup;
+    this.draggedLine.setEndX(node2.get_x() * mapController.getDownScale());
+    this.draggedLine.setEndY(node2.get_y() * mapController.getDownScale());
+    this.draggedLine = null;
+    this.draggedLineGroup = null;
+    return temp;
   }
 
   public Group drawNode(String id, double x, double y, Color color) {
@@ -72,7 +102,6 @@ public class MapDrawer {
 
   public void colorPath(Color color, ArrayList<Node.Link> ret) {
     for (Node.Link c2 : ret) {
-      System.out.println(ret);
       Line simpleNode = c2._shape;
       simpleNode.setStroke(color);
       mapController.correctFloor(c2);
@@ -88,6 +117,12 @@ public class MapDrawer {
 
   public void captureMouseDrag(MouseEvent event) {
     event.consume();
+    if (event.getButton() == MouseButton.SECONDARY) {
+      if (draggedLine != null) {
+        draggedLine.setEndX(event.getX());
+        draggedLine.setEndY(event.getY());
+      }
+    }
     if (event.getButton() == MouseButton.MIDDLE) {
       mapController
           .getMapAnchor()
@@ -142,7 +177,6 @@ public class MapDrawer {
   }
 
   private void correctImage(AnchorPane mapContainer) {
-    System.out.println(transformY(maxImgHeight));
     if (transformX(0) < 0) {
       mapContainer.setTranslateX(invOffsetX(0));
     }
@@ -164,10 +198,8 @@ public class MapDrawer {
         new InvalidationListener() {
           @Override
           public void invalidated(Observable arg0) {
-            //            mapContainer.setFitWidth(zoomProperty.get() * 4);
             mapContainer.setScaleX(zoomProperty.get());
             mapContainer.setScaleY(zoomProperty.get());
-            //            mapContainer.setFitHeight(zoomProperty.get() * 3);
           }
         });
 
