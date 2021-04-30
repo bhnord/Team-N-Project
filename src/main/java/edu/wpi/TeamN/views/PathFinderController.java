@@ -34,7 +34,6 @@ public class PathFinderController extends MapController implements Initializable
   @FXML private AnchorPane anchorPane;
   private Scene appPrimaryScene;
 
-
   //  @FXML private AnchorPane mapAnchor;
   //  @FXML private ImageView mapImageView;
   //  @FXML private JFXColorPicker nodeColor;

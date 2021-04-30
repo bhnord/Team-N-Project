@@ -125,7 +125,7 @@
                   <StackPane fx:id="myStackPane" layoutX="663.0" layoutY="349.0" prefHeight="118.0" prefWidth="171.0" />
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="anchorPane" prefHeight="200.0" prefWidth="200.0" />
+            <AnchorPane fx:id="anchorPane" prefHeight="200.0" prefWidth="200.0" GridPane.valignment="BASELINE" />
          </children>
       </GridPane>
    </children>
