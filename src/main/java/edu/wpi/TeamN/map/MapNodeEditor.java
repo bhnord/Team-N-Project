@@ -1,48 +1,47 @@
 package edu.wpi.TeamN.map;
 
 import edu.wpi.TeamN.services.algo.Node;
-import edu.wpi.TeamN.views.MapController;
+import edu.wpi.TeamN.views.MapEditor;
 import javafx.scene.Group;
 
 public class MapNodeEditor {
-  private final MapController mapController;
+  private final MapEditor mapEditor;
 
-  public MapNodeEditor(MapController mapController) {
-    this.mapController = mapController;
+  public MapNodeEditor(MapEditor mapEditor) {
+    this.mapEditor = mapEditor;
   }
 
   public void showNodeProperties(Group root) {
-    Node node = mapController.getAdminMap().getNodeSet().get(root.getId());
-    mapController.setNodeId(node.get_nodeID());
-    mapController.setBuilding(node.get_building());
-    mapController.setNodeType(node.get_nodeType());
-    mapController.setFloor(node.get_floor());
-    mapController.setXCoord(Double.toString(node.get_x()));
-    mapController.setYCoord(Double.toString(node.get_y()));
-    mapController.setLongName(node.get_longName());
-    mapController.setShortName(node.get_shortName());
+    Node node = mapEditor.getAdminMap().getNodeSet().get(root.getId());
+    mapEditor.setNodeId(node.get_nodeID());
+    mapEditor.setBuilding(node.get_building());
+    mapEditor.setNodeType(node.get_nodeType());
+    mapEditor.setFloor(node.get_floor());
+    mapEditor.setXCoord(Double.toString(node.get_x()));
+    mapEditor.setYCoord(Double.toString(node.get_y()));
+    mapEditor.setLongName(node.get_longName());
+    mapEditor.setShortName(node.get_shortName());
   }
 
   public void commitChanges(Group root) {
-    Node selectedNode =
-        mapController.getAdminMap().getNodeSet().get(mapController.getNodeId().getText());
-    String id = mapController.getNodeId().getText();
+    Node selectedNode = mapEditor.getAdminMap().getNodeSet().get(mapEditor.getNodeId().getText());
+    String id = mapEditor.getNodeId().getText();
     double x, y;
-    String f = mapController.getFloor().getText();
-    String b = mapController.getBuilding().getText();
-    String nt = mapController.getNodeType().getText();
-    String ln = mapController.getLongName().getText();
-    String sn = mapController.getShortName().getText();
+    String f = mapEditor.getFloor().getText();
+    String b = mapEditor.getBuilding().getText();
+    String nt = mapEditor.getNodeType().getText();
+    String ln = mapEditor.getLongName().getText();
+    String sn = mapEditor.getShortName().getText();
 
     try {
-      x = Double.parseDouble(mapController.getXCoord().getText());
-      y = Double.parseDouble(mapController.getYCoord().getText());
+      x = Double.parseDouble(mapEditor.getXCoord().getText());
+      y = Double.parseDouble(mapEditor.getYCoord().getText());
 
       String currentID = root.getId();
-      if (mapController.getAdminMap().getNodeSet().containsKey(currentID)) {
+      if (mapEditor.getAdminMap().getNodeSet().containsKey(currentID)) {
         root.setId(id);
-        mapController.getAdminMap().deleteNode(currentID);
-        mapController.getAdminMap().addNode(new Node(x, y, id, f, b, nt, ln, sn));
+        mapEditor.getAdminMap().deleteNode(currentID);
+        mapEditor.getAdminMap().addNode(new Node(x, y, id, f, b, nt, ln, sn));
       } else {
         System.out.println("Node already Exists");
       }

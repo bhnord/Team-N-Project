@@ -19,7 +19,7 @@
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#363d54" height="1500.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
       <GridPane fx:id="sideBarGrid">
          <columnConstraints>
-            <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="66.0" prefWidth="66.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" minWidth="66.0" prefWidth="66.0" />
          </columnConstraints>
          <rowConstraints>
             <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="770.0" vgrow="NEVER" />
@@ -39,8 +39,8 @@
                   <Group fx:id="groupExit">
                      <children>
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="65.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.0" layoutY="9.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" />
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.0" layoutY="9.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.0" layoutY="9.0" rotate="45.0" stroke="TRANSPARENT" strokeType="INSIDE" translateX="27.0" width="10.0" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.0" layoutY="9.0" rotate="-45.0" stroke="TRANSPARENT" strokeType="INSIDE" translateX="27.5" width="10.0" />
                         <JFXButton fx:id="exit" onAction="#exit" prefHeight="64.0" prefWidth="66.0" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="9.0" />
@@ -58,7 +58,7 @@
                   <Group fx:id="groupLogOut">
                      <children>
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="65.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
-                        <ImageView fitHeight="50.0" fitWidth="59.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="50.0" fitWidth="59.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" translateX="5.0">
                            <image>
                               <Image url="@/images/LogOut.png" />
                            </image>
@@ -80,12 +80,12 @@
                   <Group fx:id="groupCovid">
                      <children>
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="65.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
-                        <ImageView fitHeight="50.0" fitWidth="59.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="50.0" fitWidth="59.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" translateX="7.5">
                            <image>
                               <Image url="@/images/ButtonCovid.png" />
                            </image>
                         </ImageView>
-                        <JFXButton fx:id="CovidForm" onAction="#advanceViews" prefHeight="64.0" prefWidth="66.0" text="Button" textFill="WHITE">
+                        <JFXButton fx:id="CovidForm" onAction="#advanceViews" prefHeight="64.0" prefWidth="66.0" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="9.0" />
                            </font>
