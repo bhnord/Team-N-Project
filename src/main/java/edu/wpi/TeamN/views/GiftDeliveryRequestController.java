@@ -87,18 +87,17 @@ public class GiftDeliveryRequestController extends MasterController implements I
   public void submit(ActionEvent actionEvent) throws IOException {
     if (validateInputs()) {
       dialogFactory.creatDialogOkay(
-              "Missing Fields", "You must fill out all required fields of the request to continue\n");
+          "Missing Fields", "You must fill out all required fields of the request to continue\n");
     } else {
       dialogFactory.creatDialogConfirmCancel(
-              "Are you sure the information you have provided is correct?", "", mouse -> submitToDB());
+          "Are you sure the information you have provided is correct?", "", mouse -> submitToDB());
     }
   }
 
   public void help(ActionEvent actionEvent) throws IOException {
     dialogFactory.creatDialogOkay(
-            "Help",
-            "- Employee Name refers to the employee being requested to complete the job \n- Patient Room is the room with the patient where the Translation is required \n- Time of request refers to time at which the translation is needed \n- Desired language refers to the language that needs to be translated");
-
+        "Help",
+        "- Employee Name refers to the employee being requested to complete the job \n- Patient Room is the room with the patient where the Translation is required \n- Time of request refers to time at which the translation is needed \n- Desired language refers to the language that needs to be translated");
   }
 
   private void submitToDB() {
@@ -114,8 +113,8 @@ public class GiftDeliveryRequestController extends MasterController implements I
 
   private boolean validateInputs() {
     return (timePicker.getEditor().getText().isEmpty()
-            || giftType.getText().isEmpty()
-            || txtEmployeeName.getEditor().getText().isEmpty()
-            || roomDropdown.getEditor().getText().isEmpty());
+        || giftType.getText().isEmpty()
+        || txtEmployeeName.getEditor().getText().isEmpty()
+        || roomDropdown.getEditor().getText().isEmpty());
   }
 }
