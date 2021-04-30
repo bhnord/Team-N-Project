@@ -7,6 +7,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -44,6 +45,11 @@ public class SideBarController extends MasterController implements Initializable
   @Override
   public void setAppPrimaryScene(Scene appPrimaryScene) {
     super.setAppPrimaryScene(appPrimaryScene);
+  }
+
+  @Override
+  public void setLoader(FXMLLoader loader) {
+    super.setLoader(loader);
   }
 
   @Override
