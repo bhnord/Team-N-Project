@@ -16,7 +16,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
@@ -25,16 +24,13 @@ import java.util.ResourceBundle;
 
 @Slf4j
 public class FloralRequestController extends MasterController implements Initializable {
-
-  // @FXML private AnchorPane anchorPage;
-  static Stage stage;
-  @Inject DatabaseService db;
-  @Inject FXMLLoader loader;
-  @Inject HomeState state;
+  @Inject private DatabaseService db;
+  @Inject private FXMLLoader loader;
+  @Inject private HomeState state;
   @FXML private Label errorLabel;
   @FXML private JFXTextField txtComments;
-  @FXML private JFXComboBox<Label> txtEmployeeName = new JFXComboBox<>();
-  @FXML private JFXComboBox<Label> roomDropdown = new JFXComboBox<>();
+  @FXML private JFXComboBox<Label> txtEmployeeName;
+  @FXML private JFXComboBox<Label> roomDropdown;
   @FXML private JFXTimePicker timePicker;
   @FXML private JFXTextField bouquet;
   @FXML private StackPane rootStackPane;

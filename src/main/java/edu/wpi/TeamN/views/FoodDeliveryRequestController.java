@@ -25,16 +25,16 @@ import java.util.ResourceBundle;
 
 @Slf4j
 public class FoodDeliveryRequestController extends MasterController implements Initializable {
-  @Inject DatabaseService db;
-  @Inject FXMLLoader loader;
-  @Inject HomeState state;
+  @Inject private DatabaseService db;
+  @Inject private FXMLLoader loader;
+  @Inject private HomeState state;
   @FXML private JFXTimePicker txtTimeOfRequest;
   @FXML private JFXTextField txtComments;
-  @FXML private JFXComboBox<Label> mainDish = new JFXComboBox<>();
-  @FXML private JFXComboBox<Label> sideDish = new JFXComboBox<>();
-  @FXML private JFXComboBox<Label> drinkDish = new JFXComboBox<>();
-  @FXML private JFXComboBox<Label> txtEmployeeName = new JFXComboBox<>();
-  @FXML private JFXComboBox<Label> roomDropdown = new JFXComboBox<>();
+  @FXML private JFXComboBox<Label> mainDish;
+  @FXML private JFXComboBox<Label> sideDish;
+  @FXML private JFXComboBox<Label> drinkDish;
+  @FXML private JFXComboBox<Label> txtEmployeeName;
+  @FXML private JFXComboBox<Label> roomDropdown;
   @FXML private StackPane rootStackPane;
   private DialogFactory dialogFactory;
   private Scene appPrimaryScene;

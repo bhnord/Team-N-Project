@@ -22,7 +22,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import lombok.extern.slf4j.Slf4j;
 
@@ -35,18 +34,16 @@ import java.util.ResourceBundle;
 @Slf4j
 public class ExternalPatientRequestController extends MasterController implements Initializable {
 
-  // @FXML private AnchorPane anchorPage;
-  @Inject DatabaseService db;
-  @Inject FXMLLoader loader;
-  @Inject HomeState state;
+  @Inject private DatabaseService db;
+  @Inject private FXMLLoader loader;
+  @Inject private HomeState state;
   @FXML private Label errorLabel;
   @FXML private JFXTextField commentsBox;
-  @FXML private JFXComboBox addressBox;
-  @FXML private JFXComboBox transportTypeDropdown;
+  @FXML private JFXComboBox<String> addressBox;
+  @FXML private JFXComboBox<String> transportTypeDropdown;
   @FXML private JFXComboBox<Label> employeeDropdown;
   @FXML private JFXComboBox<Label> patientRoomDropdown;
   @FXML private JFXTimePicker departureTIme;
-  @FXML private AnchorPane anchorPage;
   @FXML private StackPane rootStackPane;
   private DialogFactory dialogFactory;
   private Scene appPrimaryScene;

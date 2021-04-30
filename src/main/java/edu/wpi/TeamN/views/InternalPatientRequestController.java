@@ -25,14 +25,14 @@ import java.util.ResourceBundle;
 @Slf4j
 public class InternalPatientRequestController extends MasterController implements Initializable {
 
-  @Inject DatabaseService db;
-  @Inject FXMLLoader loader;
-  @Inject HomeState state;
+  @Inject private DatabaseService db;
+  @Inject private FXMLLoader loader;
+  @Inject private HomeState state;
   @FXML private Label errorLabel;
   @FXML private JFXTextField txtComments;
   private Scene appPrimaryScene;
-  @FXML private JFXComboBox<Label> txtEmployeeName = new JFXComboBox<>();
-  @FXML private JFXComboBox<Label> roomDropdown = new JFXComboBox<>();
+  @FXML private JFXComboBox<Label> txtEmployeeName;
+  @FXML private JFXComboBox<Label> roomDropdown;
   @FXML private JFXTimePicker timePicker;
   @FXML private JFXTextField request;
   @FXML private StackPane rootStackPane;

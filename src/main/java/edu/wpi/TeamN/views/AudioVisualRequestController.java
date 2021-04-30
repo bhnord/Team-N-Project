@@ -26,15 +26,15 @@ import java.util.ResourceBundle;
 @Slf4j
 public class AudioVisualRequestController extends MasterController implements Initializable {
 
-  @Inject DatabaseService db;
-  @Inject FXMLLoader loader;
-  @Inject HomeState state;
+  @Inject private DatabaseService db;
+  @Inject private FXMLLoader loader;
+  @Inject private HomeState state;
   @FXML private Label errorLabel;
   @FXML private JFXTextField txtComments;
   @FXML private SideBarController sideBarController;
   @FXML private AnchorPane anchorPane;
-  @FXML private JFXComboBox<Label> txtEmployeeName = new JFXComboBox<>();
-  @FXML private JFXComboBox<Label> roomDropdown = new JFXComboBox<>();
+  @FXML private JFXComboBox<Label> txtEmployeeName;
+  @FXML private JFXComboBox<Label> roomDropdown;
   @FXML private JFXTimePicker timePicker;
   @FXML private JFXTextField maintenanceRequest;
   @FXML private StackPane rootStackPane;
