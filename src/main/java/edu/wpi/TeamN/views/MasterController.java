@@ -201,8 +201,8 @@ public class MasterController implements Initializable {
     appPrimaryScene.setRoot(root);
   }
 
-  public void sideBarSetup(AnchorPane anchorPane, Scene appPrimaryScene, FXMLLoader loader)
-      throws IOException {
+  @SneakyThrows
+  public void sideBarSetup(AnchorPane anchorPane, Scene appPrimaryScene, FXMLLoader loader) {
     FXMLLoader loader2 = new FXMLLoader(getClass().getResource("SideBar.fxml"));
     Parent root = loader2.load();
     AnchorPane pane = new AnchorPane(root);
