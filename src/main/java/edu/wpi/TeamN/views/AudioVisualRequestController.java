@@ -84,7 +84,7 @@ public class AudioVisualRequestController extends MasterController implements In
   public void initialize(URL location, ResourceBundle resources) {
     log.debug(state.toString());
     //  submitButton.setDisable(true);
-    super.sideBarSetup(anchorPane, appPrimaryScene, loader);
+    super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Service Request");
 
     /** USERNAME input and password* */
     RequiredFieldValidator reqInputValid = new RequiredFieldValidator();
