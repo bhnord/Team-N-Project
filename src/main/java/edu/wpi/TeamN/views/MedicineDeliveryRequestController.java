@@ -10,6 +10,12 @@ import edu.wpi.TeamN.services.database.requests.RequestType;
 import edu.wpi.TeamN.state.HomeState;
 import edu.wpi.TeamN.utilities.AutoCompleteComboBoxListener;
 import edu.wpi.TeamN.utilities.DialogFactory;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+import java.util.Scanner;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,13 +24,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import lombok.extern.slf4j.Slf4j;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-import java.util.Scanner;
 
 @Slf4j
 public class MedicineDeliveryRequestController extends MasterController implements Initializable {

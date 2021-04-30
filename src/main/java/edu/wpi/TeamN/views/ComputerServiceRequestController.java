@@ -9,18 +9,18 @@ import edu.wpi.TeamN.services.database.requests.Request;
 import edu.wpi.TeamN.services.database.requests.RequestType;
 import edu.wpi.TeamN.state.HomeState;
 import edu.wpi.TeamN.utilities.DialogFactory;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import lombok.extern.slf4j.Slf4j;
-
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 @Slf4j
 public class ComputerServiceRequestController extends MasterController implements Initializable {
@@ -36,6 +36,7 @@ public class ComputerServiceRequestController extends MasterController implement
   @FXML private StackPane rootStackPane;
   private DialogFactory dialogFactory;
   private Scene appPrimaryScene;
+  @FXML private AnchorPane anchorPane;
 
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
@@ -50,6 +51,7 @@ public class ComputerServiceRequestController extends MasterController implement
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+    super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Service Request");
     dialogFactory = new DialogFactory(rootStackPane);
     loadEmployeeDropdown(txtEmployeeName);
     loadRoomDropdown(roomDropdown);
