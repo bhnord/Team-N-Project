@@ -194,7 +194,8 @@ public class MasterController implements Initializable {
     appPrimaryScene.setRoot(root);
   }
 
-  public void sideBarSetup(AnchorPane anchorPane, Scene appPrimaryScene, FXMLLoader loader)
+  public void sideBarSetup(
+      AnchorPane anchorPane, Scene appPrimaryScene, FXMLLoader loader, String type)
       throws IOException {
     FXMLLoader loader2 = new FXMLLoader(getClass().getResource("SideBar.fxml"));
     Parent root = loader2.load();
@@ -202,6 +203,7 @@ public class MasterController implements Initializable {
     sideBarController = loader2.getController();
     sideBarController.setAppPrimaryScene(appPrimaryScene);
     sideBarController.setLoader(loader);
+    sideBarController.setType(type);
     anchorPane.getChildren().setAll(pane);
   }
 }
