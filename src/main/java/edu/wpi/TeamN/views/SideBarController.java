@@ -1,11 +1,13 @@
 package edu.wpi.TeamN.views;
 
 import com.jfoenix.controls.JFXButton;
+import edu.wpi.TeamN.services.database.DatabaseService;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -29,6 +31,8 @@ public class SideBarController extends MasterController implements Initializable
 
   @FXML private Group groupLogOut;
   @FXML private Group groupCovid;
+  @FXML private Group groupBack;
+  @FXML private Group groupHome;
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
@@ -41,6 +45,16 @@ public class SideBarController extends MasterController implements Initializable
   @Override
   public void setAppPrimaryScene(Scene appPrimaryScene) {
     super.setAppPrimaryScene(appPrimaryScene);
+  }
+
+  @Override
+  public void setLoader(FXMLLoader loader) {
+    super.setLoader(loader);
+  }
+
+  @Override
+  public void setDB(DatabaseService db) {
+    super.setDB(db);
   }
 
   @FXML
@@ -58,6 +72,16 @@ public class SideBarController extends MasterController implements Initializable
     super.advanceViews(actionEvent);
   }
 
+  @FXML
+  public void advanceServiceRequest() throws IOException {
+    super.advanceServiceRequest(loader, appPrimaryScene);
+  }
+
+  @FXML
+  public void advanceHome() throws IOException {
+    super.advanceHome(loader, appPrimaryScene);
+  }
+
   public void setType(String type) {
     groupExit.setVisible(true);
     groupExit.setManaged(true);
@@ -65,10 +89,14 @@ public class SideBarController extends MasterController implements Initializable
     groupLogOut.setManaged(true);
     groupCovid.setVisible(true);
     groupCovid.setManaged(true);
+    groupBack.setVisible(true);
+    groupBack.setManaged(true);
+    groupHome.setVisible(true);
+    groupHome.setManaged(true);
 
     if (type.equals("Home")) {
-      groupLogOut.setVisible(false);
-      groupLogOut.setManaged(false);
+      groupBack.setVisible(false);
+      groupBack.setManaged(false);
     } else if (type.equals("Service Request")) {
       groupCovid.setVisible(false);
       groupCovid.setManaged(false);
