@@ -8,6 +8,7 @@ import edu.wpi.TeamN.services.algo.Edge;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.algo.PathFinder;
 import edu.wpi.TeamN.services.database.DatabaseService;
+import edu.wpi.TeamN.services.database.users.UserPrefs;
 import edu.wpi.TeamN.state.HomeState;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Shape;
@@ -113,6 +115,7 @@ public abstract class MapController extends MasterController {
   @FXML protected JFXColorPicker STAI;
   @FXML protected JFXColorPicker pathColor;
   @FXML protected JFXColorPicker selectedNodeColor;
+  UserPrefs userPrefs;
   @FXML protected JFXTextField nodeSize;
   @FXML protected JFXTextField pathSize;
   @FXML protected AnchorPane anchorPane;
@@ -159,6 +162,16 @@ public abstract class MapController extends MasterController {
 
   public void init() {
     super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Map");
+    userPrefs = db.getCurrentUser().getUserPrefs();
+
+    nodeColor.setValue(Color.valueOf(userPrefs.getBasicNodeColor()));
+    EXIT.setValue(Color.valueOf(userPrefs.getExitColor()));
+    ELEV.setValue(Color.valueOf(userPrefs.getElevatorColor()));
+    STAI.setValue(Color.valueOf(userPrefs.getStairColor()));
+    pathColor.setValue(Color.valueOf(userPrefs.getPathfindingColor()));
+    selectedNodeColor.setValue(Color.valueOf(userPrefs.getHighlightColor()));
+    nodeSize.setText(String.valueOf(userPrefs.getNodeSize()));
+    pathSize.setText(String.valueOf(userPrefs.getEdgeWidth()));
     //    log.debug(state.toString());
   }
 
@@ -311,34 +324,47 @@ public abstract class MapController extends MasterController {
 
   public void newColorNode(ActionEvent actionEvent) {
     JFXColorPicker a = ((JFXColorPicker) actionEvent.getSource());
+    setUserPref(a.getId(), a.getValue().toString());
+    db.updateUserPrefs(Integer.parseInt(db.getCurrentUser().getId()), userPrefs);
     for (int i = 1; mapAnchor.getChildren().size() - 1 > i; i++) {
       if (adminMap.getNodeSet().containsKey(mapAnchor.getChildren().get(i).getId())) {
         if (adminMap
             .getNodeSet()
             .get(mapAnchor.getChildren().get(i).getId())
             .get_nodeType()
-            .equals(a.getId()))
+            .equals(a.getId())) {
           ((Shape) ((Group) mapAnchor.getChildren().get(i)).getChildren().get(0))
               .setFill(a.getValue());
+        }
       }
     }
   }
 
-  private JFXColorPicker getType(String id) {
-    Node node = adminMap.getNodeSet().get(id);
-    if (node.get_nodeType().contains("ELEV")) {
-      return ELEV;
-    } else if (node.get_nodeType().contains("STAI")) {
-      return STAI;
-    } else if (node.get_nodeType().contains("EXIT")) {
-      return EXIT;
-    } else {
-      return nodeColor;
+  public void newColorNode(JFXColorPicker a) {
+    setUserPref(a.getId(), a.getValue().toString());
+    db.updateUserPrefs(Integer.parseInt(db.getCurrentUser().getId()), userPrefs);
+    for (Node n : getNodeSet().values()) {
+      if (n.get_nodeType().equals(a.getId())) n.get_shape().setFill(a.getValue());
+    }
+  }
+
+  private void setUserPref(String id, String value) {
+    System.out.println(value);
+    if (id.contains("ELEV")) {
+      userPrefs.setElevatorColor(value);
+    } else if (id.contains("STAI")) {
+      userPrefs.setStairColor(value);
+    } else if (id.contains("EXIT")) {
+      userPrefs.setExitColor(value);
+    } else if (id.contains("selectedNodeColor")) {
+      userPrefs.setHighlightColor(value);
     }
   }
 
   public void newColorNodeaf(ActionEvent actionEvent) {
     JFXColorPicker a = ((JFXColorPicker) actionEvent.getSource());
+    userPrefs.setBasicNodeColor(a.getValue().toString());
+    db.updateUserPrefs(Integer.parseInt(db.getCurrentUser().getId()), userPrefs);
     for (int i = 1; mapAnchor.getChildren().size() - 1 > i; i++) {
       if (adminMap.getNodeSet().containsKey(mapAnchor.getChildren().get(i).getId())) {
         if (!adminMap
@@ -355,20 +381,55 @@ public abstract class MapController extends MasterController {
                 .getNodeSet()
                 .get(mapAnchor.getChildren().get(i).getId())
                 .get_nodeType()
-                .contains("STAI"))
+                .contains("STAI")) {
           ((Shape) ((Group) mapAnchor.getChildren().get(i)).getChildren().get(0))
               .setFill(a.getValue());
+        }
       }
     }
   }
 
+  public UserPrefs getUserPrefs() {
+    return userPrefs;
+  }
+
   public void newColorPath(ActionEvent actionEvent) {
+    JFXColorPicker a = ((JFXColorPicker) actionEvent.getSource());
+    userPrefs.setPathfindingColor(a.getValue().toString());
+    db.updateUserPrefs(Integer.parseInt(db.getCurrentUser().getId()), userPrefs);
     for (int i = 1; mapAnchor.getChildren().size() - 1 > i; i++) {
       if (adminMap.getEdgeSet().containsKey(mapAnchor.getChildren().get(i).getId())) {
         ((Shape) ((Group) mapAnchor.getChildren().get(i)).getChildren().get(0))
             .setFill(pathColor.getValue());
       }
     }
+  }
+
+  public void newSize(ActionEvent actionEvent) {
+    double nodeValue = Double.parseDouble(nodeSize.getText());
+    double edgeValue = Double.parseDouble(pathSize.getText());
+    if (((JFXTextField) actionEvent.getSource()).getId().equals("nodeSize")
+        && nodeValue <= 5
+        && nodeValue >= 3) {
+      userPrefs.setNodeSize(nodeValue);
+      for (int i = 1; mapAnchor.getChildren().size() - 1 > i; i++) {
+        if (this.getNodeSet().containsKey(mapAnchor.getChildren().get(i).getId())) {
+          ((Circle) ((Group) mapAnchor.getChildren().get(i)).getChildren().get(0))
+              .setRadius(nodeValue);
+        }
+      }
+    } else if (((JFXTextField) actionEvent.getSource()).getId().equals("pathSize")
+        && nodeValue <= 5
+        && nodeValue >= 3) {
+      userPrefs.setEdgeWidth(edgeValue);
+      for (int i = 1; mapAnchor.getChildren().size() - 1 > i; i++) {
+        if (this.getEdgeSet().containsKey(mapAnchor.getChildren().get(i).getId())) {
+          ((Line) ((Group) mapAnchor.getChildren().get(i)).getChildren().get(0))
+              .setStrokeWidth(edgeValue);
+        }
+      }
+    }
+    db.updateUserPrefs(Integer.parseInt(db.getCurrentUser().getId()), userPrefs);
   }
 
   public double getDownScale() {

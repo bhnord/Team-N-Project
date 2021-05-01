@@ -9,7 +9,14 @@ public class UserPrefs {
       highlightColor;
   private double nodeSize = 1, edgeWidth = 1;
 
-  public UserPrefs() {}
+  public UserPrefs() {
+    this.basicNodeColor = "#0000ff";
+    this.exitColor = "#ff0000";
+    this.elevatorColor = "#ff1493";
+    this.stairColor = "#ff4500";
+    this.pathfindingColor = "#000000";
+    this.highlightColor = "#008000";
+  }
 
   public UserPrefs(
       String basicNodeColor,

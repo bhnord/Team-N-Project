@@ -199,7 +199,7 @@
                                      <JFXColorPicker fx:id="ELEV" layoutX="36.0" layoutY="131.0" onAction="#newColorNode" />
                                      <JFXColorPicker fx:id="STAI" layoutX="35.0" layoutY="183.0" onAction="#newColorNode" />
                                      <JFXColorPicker fx:id="pathColor" layoutX="35.0" layoutY="238.0" onAction="#newColorPath" />
-                                     <JFXColorPicker fx:id="selectedNodeColor" layoutX="36.0" layoutY="302.0" />
+                                     <JFXColorPicker fx:id="selectedNodeColor" layoutX="36.0" layoutY="302.0" onAction="#newColorNode" />
                                      <JFXTextField fx:id="nodeSize" layoutX="35.0" layoutY="363.0" onAction="#newSize" />
                                      <JFXTextField fx:id="pathSize" layoutX="38.0" layoutY="422.0" onAction="#newSize" />
 
