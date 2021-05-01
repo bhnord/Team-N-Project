@@ -7,9 +7,6 @@ import edu.wpi.TeamN.map.AdminMap;
 import edu.wpi.TeamN.map.MapDrawer;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.algo.PathFinder;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -27,7 +24,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Shape;
-import lombok.SneakyThrows;
+
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 public class PathFinderController extends MapController implements Initializable {
   ArrayList<String> path = new ArrayList<String>();
@@ -50,7 +50,6 @@ public class PathFinderController extends MapController implements Initializable
   //  public final double downScale = 0.25;
   //  public final double upScale = 4;
 
-  @SneakyThrows
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Map");
