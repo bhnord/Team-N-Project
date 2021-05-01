@@ -18,6 +18,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import lombok.extern.slf4j.Slf4j;
 
@@ -34,6 +35,7 @@ public class SanitationServicesRequestController extends MasterController implem
   @FXML private JFXTimePicker timePicker;
   @FXML private JFXTextField maintenanceRequest;
   @FXML private StackPane rootStackPane;
+  @FXML private AnchorPane anchorPane;
   private DialogFactory dialogFactory;
   private Scene appPrimaryScene;
 
@@ -50,6 +52,7 @@ public class SanitationServicesRequestController extends MasterController implem
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+    super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Service Request");
     dialogFactory = new DialogFactory(rootStackPane);
     loadEmployeeDropdown(txtEmployeeName);
     loadRoomDropdown(roomDropdown);

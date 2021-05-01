@@ -18,6 +18,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 
 public class LoginPage extends MasterController implements Initializable {
 
@@ -30,11 +31,13 @@ public class LoginPage extends MasterController implements Initializable {
   @FXML private JFXPasswordField passwordField;
   @FXML private JFXButton goToHomePage;
   @FXML private Label incorrectLogin;
+  @FXML private AnchorPane anchorPane;
   private Login login;
   public String accountUsername = "";
   public String accountPassword = "";
 
   public void initialize(URL url, ResourceBundle rb) {
+    super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Service Request");
     /** Locking submit button to start* */
     goToHomePage.setDisable(true);
     goToHomePage.setDefaultButton(true);

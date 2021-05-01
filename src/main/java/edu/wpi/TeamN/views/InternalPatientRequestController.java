@@ -18,6 +18,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import lombok.extern.slf4j.Slf4j;
 
@@ -35,6 +36,7 @@ public class InternalPatientRequestController extends MasterController implement
   @FXML private JFXTimePicker timePicker;
   @FXML private JFXTextField request;
   @FXML private StackPane rootStackPane;
+  @FXML private AnchorPane anchorPane;
   private DialogFactory dialogFactory;
 
   /**
@@ -50,6 +52,7 @@ public class InternalPatientRequestController extends MasterController implement
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+    super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Service Request");
     dialogFactory = new DialogFactory(rootStackPane);
     loadEmployeeDropdown(txtEmployeeName);
     loadRoomDropdown(roomDropdown);
