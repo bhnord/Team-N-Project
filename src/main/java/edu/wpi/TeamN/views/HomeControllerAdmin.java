@@ -16,11 +16,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Tooltip;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
@@ -32,17 +30,13 @@ public class HomeControllerAdmin extends MasterController implements Initializab
   @Inject HomeState state;
   @FXML private Label text;
 
-  @FXML private JFXButton CovidForm;
-  @FXML private Tooltip ttCovidForm;
-  @FXML private JFXButton exit;
-  @FXML private Tooltip ttExit;
-  @FXML private JFXButton logOutButton;
-  @FXML private Tooltip ttLogOutButton;
+  @FXML private JFXButton mapPathfinder;
+  @FXML private JFXButton mapEditor;
+  @FXML private JFXButton ServiceRequestsAdmin;
+  @FXML private JFXButton EmployeeEditor;
+  @FXML private JFXButton CurrentRequest;
 
   /** For sidebar nested FXML implementation */
-  @FXML private Window sideBar;
-
-  @FXML private SideBarController sideBarController;
   @FXML private AnchorPane anchorPane;
 
   private Scene appPrimaryScene;
@@ -63,6 +57,16 @@ public class HomeControllerAdmin extends MasterController implements Initializab
   public void initialize(URL location, ResourceBundle resources) {
     log.debug(state.toString());
     super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Home");
+    switch (db.getCurrentUser().getType()) {
+        // different login cases
+      case ADMINISTRATOR:
+        EmployeeEditor.setVisible(false);
+        EmployeeEditor.setManaged(false);
+        break;
+      case EMPLOYEE:
+      case PATIENT:
+      case GUEST:
+    }
   }
 
   public void advance(ActionEvent actionEvent) throws IOException {

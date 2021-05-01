@@ -33,8 +33,8 @@ public class LoginPage extends MasterController implements Initializable {
   @FXML private Label incorrectLogin;
   @FXML private AnchorPane anchorPane;
   private Login login;
-  public String accountUsername = "";
-  public String accountPassword = "";
+  private String accountUsername = "";
+  private String accountPassword = "";
 
   public void initialize(URL url, ResourceBundle rb) {
     super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Login");
@@ -80,7 +80,7 @@ public class LoginPage extends MasterController implements Initializable {
   @FXML
   private void continueToHomePage() throws IOException {
     if (db.login(usernameField.getText(), passwordField.getText())) {
-      super.advanceHome(loader, appPrimaryScene);
+      super.advanceHomeAdmin(loader, appPrimaryScene);
     } else {
       incorrectLogin.setText("INCORRECT USERNAME OR PASSWORD, TRY AGAIN");
       incorrectLogin.setAlignment(Pos.CENTER);
