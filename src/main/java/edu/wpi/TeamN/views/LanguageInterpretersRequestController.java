@@ -19,6 +19,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import lombok.extern.slf4j.Slf4j;
 
@@ -35,6 +36,7 @@ public class LanguageInterpretersRequestController extends MasterController
   @FXML private JFXComboBox<Label> languageDropdown;
   @FXML private JFXTimePicker timePicker;
   @FXML private StackPane rootStackPane;
+  @FXML private AnchorPane anchorPane;
   private DialogFactory dialogFactory;
   private Scene appPrimaryScene;
 
@@ -51,19 +53,11 @@ public class LanguageInterpretersRequestController extends MasterController
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+    super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Service Request");
     dialogFactory = new DialogFactory(rootStackPane);
     loadEmployeeDropdown(txtEmployeeName);
     loadRoomDropdown(roomDropdown);
     loadLanguagesDropdown();
-  }
-
-  public void exit(ActionEvent actionEvent) throws IOException {
-    super.cancel(actionEvent);
-  }
-
-  @FXML
-  public void logOut() throws IOException {
-    super.logOut(loader, appPrimaryScene);
   }
 
   @FXML

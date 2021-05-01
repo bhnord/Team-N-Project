@@ -84,19 +84,10 @@ public class CovidForm extends MasterController implements Initializable {
   }
 
   @FXML
-  public void logOut() throws IOException {
-    super.logOut(loader, appPrimaryScene);
-  }
-
-  @FXML
   public void back() throws IOException {
     super.advanceHome(loader, appPrimaryScene);
   }
 
-  @FXML
-  private void exit(ActionEvent actionEvent) throws IOException {
-    super.cancel(actionEvent);
-  }
 
   @FXML
   public void submit() throws IOException {

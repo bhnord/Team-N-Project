@@ -92,7 +92,7 @@ public class MapEditor extends MapController implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Service Request");
+    super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Map");
     mapNodeEditor = new MapNodeEditor(this);
     mapEdgeEditor = new MapEdgeEditor(this);
 

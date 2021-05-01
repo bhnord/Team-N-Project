@@ -53,8 +53,7 @@ public class PathFinderController extends MapController implements Initializable
   @SneakyThrows
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-
-    super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Service Request");
+    super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Map");
 
     nodeColor.setValue(Color.BLUE);
     EXIT.setValue(Color.RED);

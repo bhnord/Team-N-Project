@@ -57,25 +57,6 @@ public class ComputerServiceRequestController extends MasterController implement
     loadRoomDropdown(roomDropdown);
   }
 
-  public void exit(ActionEvent actionEvent) throws IOException {
-    super.cancel(actionEvent);
-  }
-
-  @FXML
-  public void logOut() throws IOException {
-    super.logOut(loader, appPrimaryScene);
-  }
-
-  @FXML
-  public void advanceHome() throws IOException {
-    super.advanceHome(loader, appPrimaryScene);
-  }
-
-  @FXML
-  public void back() throws IOException {
-    super.advanceServiceRequest(loader, appPrimaryScene);
-  }
-
   public void submit(ActionEvent actionEvent) throws IOException {
     if (validateInputs()) {
       dialogFactory.creatDialogOkay(

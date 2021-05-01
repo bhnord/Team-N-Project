@@ -85,7 +85,7 @@ public class ServiceRequests extends MasterController implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Service Request");
+    super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Database");
     log.debug(state.toString());
     AudioVisualRequest.setTooltip(ttAnanya);
     GiftDeliveryRequest.setTooltip(ttAnanya2);
