@@ -369,6 +369,7 @@ public class DatabaseService {
 
   /**
    * retrieves all CovidForms from the database
+   *
    * @return all covid forms in the database as a HashMap
    */
   public HashSet<CovidForm> getAllCovidForms() {
@@ -377,6 +378,7 @@ public class DatabaseService {
 
   /**
    * retrieves single CovidForm from database
+   *
    * @param formId the ID of the form that you want to retrieve
    * @return a covid from of type CovidForm from the database
    */
@@ -386,6 +388,7 @@ public class DatabaseService {
 
   /**
    * adds a covid form to the database
+   *
    * @param form a covid form of type CovidForm to add to the database
    * @return whether the operation was carried out successfully
    */
@@ -395,6 +398,7 @@ public class DatabaseService {
 
   /**
    * retrieves a single CovidForm with the specified UserId
+   *
    * @param userId the ID of a valid user with a covid form
    * @return the covid form with matching userId, or null if invalid ID
    */
@@ -404,6 +408,7 @@ public class DatabaseService {
 
   /**
    * deletes a single form from the database
+   *
    * @param formId the ID of the form you want to delete
    * @return whether the operation was carried out successfully
    */
@@ -413,14 +418,13 @@ public class DatabaseService {
 
   /**
    * deletes form with matching UserId from the database
+   *
    * @param userId the ID of the user whose form you want to delete
    * @return whether the operation was completed successfully
    */
   public boolean deleteCovidFormByUserId(int userId) {
     return covidTable.deleteCovidFormByUserId(userId);
   }
-
-
 
   /**
    * loads CSV files into database.
@@ -445,8 +449,6 @@ public class DatabaseService {
       return false;
     }
   }
-
-
 
   /** initializes all tables in the database */
   public boolean initTables() {
