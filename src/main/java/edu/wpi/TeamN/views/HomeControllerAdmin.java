@@ -62,7 +62,7 @@ public class HomeControllerAdmin extends MasterController implements Initializab
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     log.debug(state.toString());
-    super.sideBarSetup(anchorPane, appPrimaryScene, loader);
+    super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Home");
   }
 
   public void advance(ActionEvent actionEvent) throws IOException {

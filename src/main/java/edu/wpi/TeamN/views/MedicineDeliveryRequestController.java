@@ -1,68 +1,47 @@
 package edu.wpi.TeamN.views;
 
 import com.google.inject.Inject;
-import com.jfoenix.controls.*;
-import com.jfoenix.validation.RequiredFieldValidator;
-import edu.wpi.TeamN.services.algo.Node;
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.JFXTimePicker;
 import edu.wpi.TeamN.services.database.DatabaseService;
 import edu.wpi.TeamN.services.database.requests.Request;
 import edu.wpi.TeamN.services.database.requests.RequestType;
-import edu.wpi.TeamN.services.database.users.User;
-import edu.wpi.TeamN.services.database.users.UserType;
 import edu.wpi.TeamN.state.HomeState;
 import edu.wpi.TeamN.utilities.AutoCompleteComboBoxListener;
+import edu.wpi.TeamN.utilities.DialogFactory;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
-import java.util.HashMap;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.effect.BoxBlur;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Paint;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class MedicineDeliveryRequestController extends MasterController implements Initializable {
 
-  @Inject DatabaseService db;
-  @Inject FXMLLoader loader;
-  @Inject HomeState state;
-  @FXML private Label text;
+  @Inject private DatabaseService db;
+  @Inject private FXMLLoader loader;
+  @Inject private HomeState state;
   @FXML private Label errorLabel;
-  private Label person1;
   @FXML private JFXTimePicker txtTimeOfRequest;
   @FXML private JFXTextField txtComments;
-  @FXML private Button helpButton;
-  @FXML private StackPane myStackPane;
-  @FXML private Button submit;
-  @FXML private StackPane myStackPane2;
+  @FXML private JFXComboBox<Label> txtEmployeeName;
+  @FXML private JFXComboBox<Label> roomDropdown;
+  @FXML private JFXComboBox<Label> txtEquipment;
+  @FXML private AnchorPane anchorPane;
+  @FXML private StackPane rootStackPane;
+  private DialogFactory dialogFactory;
   private Scene appPrimaryScene;
-  private HashMap<String, User> users;
-  private HashMap<String, Node> rooms;
-  @FXML private JFXComboBox<Label> txtEmployeeName = new JFXComboBox<>();
-  @FXML private JFXComboBox<Label> roomDropdown = new JFXComboBox<>();
-  @FXML private JFXComboBox<Label> txtEquipment = new JFXComboBox<>();
-
-  @FXML private AnchorPane anchorPage;
-
-  @FXML private StackPane confirmationStackPane;
-  static Stage stage;
 
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
@@ -77,40 +56,11 @@ public class MedicineDeliveryRequestController extends MasterController implemen
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    log.debug(state.toString());
-    // submit.setDisable(true);
-
-    /** USERNAME input and password* */
-    RequiredFieldValidator reqInputValid = new RequiredFieldValidator();
-    reqInputValid.setMessage("Cannot be empty");
-    txtTimeOfRequest.getValidators().add(reqInputValid);
-    txtTimeOfRequest
-        .focusedProperty()
-        .addListener(
-            (o, oldVal, newVal) -> {
-              if (!newVal) txtTimeOfRequest.validate();
-            });
-    reqInputValid.setMessage("Cannot be empty");
-    txtEquipment.getValidators().add(reqInputValid);
-    txtEquipment
-        .focusedProperty()
-        .addListener(
-            (o, oldVal, newVal) -> {
-              if (!newVal) txtEquipment.validate();
-            });
-
-    loadEmployeeDropdown();
-    loadRoomDropdown();
+    super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Service Request");
+    dialogFactory = new DialogFactory(rootStackPane);
+    loadEmployeeDropdown(txtEmployeeName);
+    loadRoomDropdown(roomDropdown);
     loadMedicine();
-  }
-
-  public void exit(ActionEvent actionEvent) throws IOException {
-    super.cancel(actionEvent);
-  }
-
-  @FXML
-  public void logOut() throws IOException {
-    super.logOut(loader, appPrimaryScene);
   }
 
   @FXML
@@ -125,205 +75,19 @@ public class MedicineDeliveryRequestController extends MasterController implemen
   }
 
   public void Submit(ActionEvent actionEvent) throws IOException {
-
-    if (txtEmployeeName.getValue() == null
-        || roomDropdown.getValue() == null
-        || txtTimeOfRequest.getEditor().getText().isEmpty()
-        || txtEquipment.getSelectionModel().getSelectedItem().getText().isEmpty()) {
-      String title = "Missing Fields";
-      JFXDialogLayout dialogContent = new JFXDialogLayout();
-      dialogContent.setHeading(new Text(title));
-      dialogContent.setBody(
-          (new Text("* You must fill out all required fields of the request to continue\n")));
-      JFXButton close = new JFXButton("close");
-      close.setButtonType(JFXButton.ButtonType.RAISED);
-      close.setStyle("-fx-background-color : #748cdc;");
-      close.setTextFill(Paint.valueOf("#FFFFFF"));
-      dialogContent.setActions(close);
-
-      JFXDialog dialog =
-          new JFXDialog(myStackPane, dialogContent, JFXDialog.DialogTransition.BOTTOM);
-      actionEvent.consume();
-      close.setOnAction(
-          new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-              dialog.close();
-              helpButton.setDisable(false);
-            }
-          });
-      helpButton.setDisable(true);
-      dialog.show();
-
+    if (validateInputs()) {
+      dialogFactory.creatDialogOkay(
+          "Missing Fields", "You must fill out all required fields of the request to continue\n");
     } else {
-
-      VBox manuContainer = new VBox();
-      Label lbl1 = new Label("Are you sure the information you have provided is correct?");
-
-      JFXButton continueButton = new JFXButton("Continue");
-      continueButton.setButtonType(JFXButton.ButtonType.RAISED);
-      continueButton.setStyle("-fx-background-color : #748cdc;");
-      continueButton.setTextFill(Paint.valueOf("#FFFFFF"));
-
-      JFXButton cancelButton = new JFXButton("Cancel");
-      cancelButton.setButtonType(JFXButton.ButtonType.RAISED);
-      cancelButton.setStyle("-fx-background-color : #748cdc;");
-      cancelButton.setTextFill(Paint.valueOf("#FFFFFF"));
-
-      cancelButton.setTranslateX(100);
-      cancelButton.setTranslateY(65);
-
-      continueButton.setTranslateX(200);
-      continueButton.setTranslateY(24);
-
-      manuContainer.getChildren().addAll(lbl1, cancelButton, continueButton);
-      manuContainer.setPadding(new Insets(30, 50, 50, 50));
-      manuContainer.setSpacing(10);
-      JFXPopup popup1 = new JFXPopup(manuContainer);
-      actionEvent.consume();
-      popup1.setAutoHide(false);
-
-      cancelButton.setOnAction(
-          new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-              popup1.hide();
-              submit.setDisable(false);
-            }
-          });
-
-      continueButton.setOnAction(
-          new EventHandler<ActionEvent>() {
-            @SneakyThrows
-            @Override
-            public void handle(ActionEvent event) {
-              popup1.hide();
-              submitToDB();
-
-              BoxBlur blur = new BoxBlur(7, 7, 7);
-
-              VBox manuContainer = new VBox();
-              Label lbl1 =
-                  new Label(
-                      "Your request Has been submitted!                                                          ");
-
-              JFXButton continueButton = new JFXButton("Return To Home");
-              continueButton.setButtonType(JFXButton.ButtonType.RAISED);
-              continueButton.setStyle("-fx-background-color : #748cdc;");
-              continueButton.setTextFill(Paint.valueOf("#FFFFFF"));
-
-              JFXButton cancelButton = new JFXButton("Complete Another Request");
-              cancelButton.setButtonType(JFXButton.ButtonType.RAISED);
-              cancelButton.setStyle("-fx-background-color : #748cdc;");
-              cancelButton.setTextFill(Paint.valueOf("#FFFFFF"));
-
-              cancelButton.setTranslateX(0);
-              cancelButton.setTranslateY(65);
-
-              continueButton.setTranslateX(350);
-              continueButton.setTranslateY(24);
-
-              manuContainer.getChildren().addAll(lbl1, cancelButton, continueButton);
-              manuContainer.setPadding(new Insets(30, 50, 50, 50));
-              manuContainer.setSpacing(10);
-              JFXPopup popup1 = new JFXPopup(manuContainer);
-              actionEvent.consume();
-              popup1.setAutoHide(false);
-
-              // return to request page
-              cancelButton.setOnAction(
-                  new EventHandler<ActionEvent>() {
-                    @SneakyThrows
-                    @Override
-                    public void handle(ActionEvent event) {
-                      popup1.hide();
-                      submit.setDisable(false);
-                      back();
-                    }
-                  });
-
-              // go back to home page
-              continueButton.setOnAction(
-                  new EventHandler<ActionEvent>() {
-                    @SneakyThrows
-                    @Override
-                    public void handle(ActionEvent event) {
-                      anchorPage.setEffect(null);
-                      txtEmployeeName.setEffect(null);
-                      popup1.hide();
-                      advanceHome();
-                      submit.setDisable(false);
-                    }
-                  });
-              submit.setDisable(true);
-              anchorPage.setEffect(blur);
-              txtEmployeeName.setEffect(blur);
-              popup1.show(
-                  myStackPane, JFXPopup.PopupVPosition.BOTTOM, JFXPopup.PopupHPosition.LEFT);
-              submit.setDisable(false);
-            }
-          });
-      submit.setDisable(true);
-      popup1.show(myStackPane2, JFXPopup.PopupVPosition.BOTTOM, JFXPopup.PopupHPosition.LEFT);
-    }
-
-    Request r =
-        new Request(
-            RequestType.MEDICINE_DELIVERY,
-            Integer.parseInt(txtEmployeeName.getSelectionModel().getSelectedItem().getId()),
-            roomDropdown.getSelectionModel().getSelectedItem().getId(),
-            txtEquipment.getSelectionModel().getSelectedItem().getText(),
-            txtComments.getText());
-    if (!db.addRequest(r)) {
-      System.out.println("HERE");
-      errorLabel.setText("Invalid Input(s)");
-    }
-    for (Request re : db.getAllRequests()) {
-      System.out.println(re.getContent());
+      dialogFactory.creatDialogConfirmCancel(
+          "Are you sure the information you have provided is correct?", "", mouse -> submitToDB());
     }
   }
 
   public void help(ActionEvent actionEvent) throws IOException {
-    String title = "Help Page";
-    BoxBlur blur = new BoxBlur(3, 3, 3);
-    JFXDialogLayout dialogContent = new JFXDialogLayout();
-    dialogContent.setHeading(new Text(title));
-    dialogContent.setBody(
-        (new Text(
-            "* Employee Name refers to the employee being requested to complete the job\n"
-                + "* Patient Room is the room that the employee will deliver the medicine to\n"
-                + "* Time of request refers to time the medicine should be delivered to the patient\n"
-                + "* Necessary Equipment refers to additional services/equipment the patient requires\n"
-                + "* Necessary Equipment refers to additional services/equipment the patient requires\n")));
-    JFXButton close = new JFXButton("close");
-    close.setButtonType(JFXButton.ButtonType.RAISED);
-    close.setStyle("-fx-background-color : #748cdc;");
-    close.setTextFill(Paint.valueOf("#FFFFFF"));
-    dialogContent.setActions(close);
-
-    JFXDialog dialog = new JFXDialog(myStackPane, dialogContent, JFXDialog.DialogTransition.BOTTOM);
-    close.setOnAction(
-        new EventHandler<ActionEvent>() {
-          @Override
-          public void handle(ActionEvent event) {
-            // anchorPage.setEffect(null);
-            dialog.close();
-            helpButton.setDisable(false);
-          }
-        });
-    helpButton.setDisable(true);
-    dialog.show();
-    // anchorPage.setEffect(blur);
-  }
-
-  private void loadEmployeeDropdown() {
-    users = db.getUsersByType(UserType.EMPLOYEE);
-    for (User user : users.values()) {
-      Label lbl = new Label(user.getUsername());
-      lbl.setId(user.getId());
-      txtEmployeeName.getItems().add((lbl));
-    }
-    new AutoCompleteComboBoxListener(txtEmployeeName);
+    dialogFactory.creatDialogOkay(
+        "Help",
+        "- Employee Name refers to the employee being requested to complete the job \n- Patient Room is the room with the patient where the medicine is required \n- Time of request refers to time at which the medicine is needed \n- Medicine refers to the type of medicine patient needs \n- Comments refers to any additional information needed");
   }
 
   private void loadMedicine() {
@@ -343,24 +107,21 @@ public class MedicineDeliveryRequestController extends MasterController implemen
     new AutoCompleteComboBoxListener(txtEquipment);
   }
 
-  private void loadRoomDropdown() {
-    rooms = db.getAllNodesMap();
-    for (Node node : rooms.values()) {
-      Label lbl = new Label(node.get_longName());
-      lbl.setId(node.get_nodeID());
-      roomDropdown.getItems().add(lbl);
-    }
-    new AutoCompleteComboBoxListener(roomDropdown);
-  }
-
   private void submitToDB() {
     RequestType type = RequestType.MEDICINE_DELIVERY;
-    int recieverID =
+    int receiverID =
         Integer.parseInt(txtEmployeeName.getSelectionModel().getSelectedItem().getId());
     String roomNodeId = roomDropdown.getSelectionModel().getSelectedItem().getId();
     String content = "medicine: " + txtEquipment.getSelectionModel().getSelectedItem().getText();
     String notes = txtComments.getText();
-    Request r = new Request(type, recieverID, roomNodeId, content, notes);
+    Request r = new Request(type, receiverID, roomNodeId, content, notes);
     db.addRequest(r);
+  }
+
+  private boolean validateInputs() {
+    return (txtEmployeeName.getValue() == null
+        || roomDropdown.getValue() == null
+        || txtTimeOfRequest.getEditor().getText().isEmpty()
+        || txtEquipment.getSelectionModel().getSelectedItem().getText().isEmpty());
   }
 }

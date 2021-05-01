@@ -1,10 +1,17 @@
 package edu.wpi.TeamN.views;
 
 import com.google.inject.Inject;
+import com.jfoenix.controls.JFXComboBox;
+import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.database.DatabaseService;
+import edu.wpi.TeamN.services.database.users.User;
+import edu.wpi.TeamN.services.database.users.UserType;
 import edu.wpi.TeamN.state.HomeState;
+import edu.wpi.TeamN.utilities.AutoCompleteComboBoxListener;
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,7 +31,7 @@ public class MasterController implements Initializable {
 
   @Inject DatabaseService db;
   @Inject FXMLLoader loader;
-  @Inject HomeState state;
+  @Inject private HomeState state;
   @FXML private Label text;
 
   @FXML private AnchorPane anchorPane;
@@ -45,6 +52,11 @@ public class MasterController implements Initializable {
   @Inject
   public void setLoader(FXMLLoader loader) {
     this.loader = loader;
+  }
+
+  @Inject
+  public void setDB(DatabaseService db) {
+    this.db = db;
   }
 
   public void setAnchorPane(AnchorPane anchorPane) {
@@ -194,14 +206,37 @@ public class MasterController implements Initializable {
     appPrimaryScene.setRoot(root);
   }
 
-  public void sideBarSetup(AnchorPane anchorPane, Scene appPrimaryScene, FXMLLoader loader)
-      throws IOException {
+  @SneakyThrows
+  public void sideBarSetup(
+      AnchorPane anchorPane, Scene appPrimaryScene, FXMLLoader loader, String type) {
     FXMLLoader loader2 = new FXMLLoader(getClass().getResource("SideBar.fxml"));
     Parent root = loader2.load();
     AnchorPane pane = new AnchorPane(root);
     sideBarController = loader2.getController();
     sideBarController.setAppPrimaryScene(appPrimaryScene);
     sideBarController.setLoader(loader);
+    sideBarController.setDB(db);
+    sideBarController.setType(type);
     anchorPane.getChildren().setAll(pane);
+  }
+
+  public void loadEmployeeDropdown(JFXComboBox<Label> employeeComboBox) {
+    HashMap<String, User> users = db.getUsersByType(UserType.EMPLOYEE);
+    for (User user : users.values()) {
+      Label lbl = new Label(user.getUsername());
+      lbl.setId(user.getId());
+      employeeComboBox.getItems().add((lbl));
+    }
+    new AutoCompleteComboBoxListener(employeeComboBox);
+  }
+
+  public void loadRoomDropdown(JFXComboBox<Label> roomComboBox) {
+    HashSet<Node> rooms = db.getAllNodes();
+    for (Node node : rooms) {
+      Label lbl = new Label(node.get_longName());
+      lbl.setId(node.get_nodeID());
+      roomComboBox.getItems().add(lbl);
+    }
+    new AutoCompleteComboBoxListener(roomComboBox);
   }
 }

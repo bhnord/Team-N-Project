@@ -5,12 +5,13 @@
 <?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.TeamN.views.ServiceRequests">
     <children>
@@ -29,101 +30,6 @@
                 <RowConstraints minHeight="768.0" prefHeight="768.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#363d54" height="1500.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" GridPane.valignment="BASELINE" />
-                <GridPane GridPane.hgrow="NEVER" GridPane.vgrow="NEVER">
-                    <columnConstraints>
-                        <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
-                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
-                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
-                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
-                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
-                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
-                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
-                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
-                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
-                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
-                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
-                    </rowConstraints>
-                    <children>
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="65.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" GridPane.rowIndex="1" />
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="65.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" GridPane.rowIndex="2" />
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="65.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" GridPane.rowIndex="3" />
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.0" rotate="-45.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.0" rotate="45.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                        <JFXButton fx:id="exit" onAction="#exit" prefHeight="64.0" prefWidth="66.0" textFill="WHITE" GridPane.rowIndex="1">
-                            <font>
-                                <Font name="System Bold" size="9.0" />
-                            </font>
-                            <tooltip>
-                                <Tooltip fx:id="ttExit" text="Exit App">
-                                    <font>
-                                        <Font size="18.0" />
-                                    </font>
-                                </Tooltip>
-                            </tooltip>
-                        </JFXButton>
-                        <ImageView fitHeight="50.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
-                            <image>
-                                <Image url="@/images/LogOut.png" />
-                            </image>
-                        </ImageView>
-                        <JFXButton fx:id="logOutButton" onAction="#logOut" prefHeight="64.0" prefWidth="66.0" textFill="WHITE" GridPane.rowIndex="2">
-                            <font>
-                                <Font name="System Bold" size="9.0" />
-                            </font>
-                            <tooltip>
-                                <Tooltip fx:id="ttLogOutButton" text="Log Out">
-                                    <font>
-                                        <Font size="18.0" />
-                                    </font>
-                                </Tooltip>
-                            </tooltip>
-                        </JFXButton>
-                        <ImageView fitHeight="50.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
-                            <image>
-                                <Image url="@/images/ButtonCovid.png" />
-                            </image>
-                        </ImageView>
-                        <JFXButton fx:id="CovidForm" onAction="#advanceViews" prefHeight="64.0" prefWidth="66.0" text="Button" textFill="WHITE" GridPane.rowIndex="3">
-                            <font>
-                                <Font name="System Bold" size="9.0" />
-                            </font>
-                            <tooltip>
-                                <Tooltip fx:id="ttCovidForm" text="Covid Form">
-                                    <font>
-                                        <Font size="18.0" />
-                                    </font>
-                                </Tooltip>
-                            </tooltip>
-                        </JFXButton>
-                        <ImageView fitHeight="61.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                            <image>
-                                <Image url="@/images/BWHLogo.png" />
-                            </image>
-                        </ImageView>
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="65.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" GridPane.rowIndex="4" />
-                        <ImageView fitHeight="55.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
-                            <image>
-                                <Image url="@/images/IconHome.png" />
-                            </image>
-                        </ImageView>
-                        <JFXButton fx:id="HomeView" onAction="#advanceHome" prefHeight="64.0" prefWidth="66.0" textFill="WHITE" GridPane.rowIndex="4">
-                            <font>
-                                <Font name="System Bold" size="9.0" />
-                            </font>
-                            <tooltip>
-                                <Tooltip fx:id="ttCovidForm1" text="Home">
-                                    <font>
-                                        <Font size="18.0" />
-                                    </font>
-                                </Tooltip>
-                            </tooltip>
-                        </JFXButton>
-                    </children>
-                </GridPane>
                 <GridPane prefWidth="240.0" GridPane.columnIndex="1">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -149,11 +55,7 @@
                                 <Tooltip fx:id="ttAnanya" text="Request for audio and visual equipments." />
                             </tooltip>
                      <graphic>
-                        <ImageView fitHeight="45.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@/images/Icons/IconServiceAudioVisual.png" />
-                           </image>
-                        </ImageView>
+                         <FontIcon iconLiteral="gmi-accessibility" iconSize="64" iconColor="white"/>
                      </graphic>
                         </JFXButton>
                         <JFXButton fx:id="GiftDeliveryRequest" alignment="BASELINE_LEFT" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="        Gift Delivery Service" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
@@ -167,11 +69,7 @@
                                 <Tooltip fx:id="ttAnanya2" text="Deliver a gift to a specific location" />
                             </tooltip>
                      <graphic>
-                        <ImageView fitHeight="45.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@/images/Icons/IconServiceGiftDelivery.png" />
-                           </image>
-                        </ImageView>
+                         <FontIcon iconLiteral="gmi-redeem" iconSize="64" iconColor="white"/>
                      </graphic>
                         </JFXButton>
                         <JFXButton fx:id="SecurityServicesRequest" alignment="BASELINE_LEFT" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="        Security Services" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
@@ -185,11 +83,7 @@
                                 <Tooltip fx:id="ttRomish" text="Request for protection and safety." />
                             </tooltip>
                      <graphic>
-                        <ImageView fitHeight="45.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@/images/Icons/IconServiceSecurity.png" />
-                           </image>
-                        </ImageView>
+                         <FontIcon iconLiteral="gmi-security" iconSize="64" iconColor="white"/>
                      </graphic>
                         </JFXButton>
                         <JFXButton fx:id="FacilityMaintenanceRequest" alignment="BASELINE_LEFT" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="200.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="        Facility Maintenance" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
@@ -203,11 +97,7 @@
                                 <Tooltip fx:id="ttJohn" text="Report a facility issue here." />
                             </tooltip>
                      <graphic>
-                        <ImageView fitHeight="45.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@/images/Icons/IconServiceFacilityMaintenance.png" />
-                           </image>
-                        </ImageView>
+                         <FontIcon iconLiteral="gmi-build" iconSize="64" iconColor="white"/>
                      </graphic>
                         </JFXButton>
                         <JFXButton fx:id="ComputerServiceRequest" alignment="BASELINE_LEFT" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="        Computer Service" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
@@ -221,11 +111,7 @@
                                 <Tooltip fx:id="ttAnanya3" text="Report computer related issues." />
                             </tooltip>
                      <graphic>
-                        <ImageView fitHeight="45.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@/images/Icons/IconServiceComputer.png" />
-                           </image>
-                        </ImageView>
+                         <FontIcon iconLiteral="gmi-desktop-windows" iconSize="64" iconColor="white"/>
                      </graphic>
                         </JFXButton>
                         <JFXButton fx:id="InternalPatientRequest" alignment="BASELINE_LEFT" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="        Internal Transportation" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
@@ -239,11 +125,7 @@
                                 <Tooltip fx:id="ttJacob" text="Request for transportation within the hospital area." />
                             </tooltip>
                      <graphic>
-                        <ImageView fitHeight="45.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@/images/Icons/IconServiceInternalTransport.png" />
-                           </image>
-                        </ImageView>
+                         <FontIcon iconLiteral="gmi-accessible" iconSize="64" iconColor="white"/>
                      </graphic>
                         </JFXButton>
                         <JFXButton fx:id="ExternalPatientRequest" alignment="BASELINE_LEFT" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="        External Transportation&#10;" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
@@ -257,11 +139,7 @@
                                 <Tooltip fx:id="ttMichael" text="Request for transportation to outside of the hospital." />
                             </tooltip>
                      <graphic>
-                        <ImageView fitHeight="45.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@/images/Icons/IconServiceExternalTransport.png" />
-                           </image>
-                        </ImageView>
+                         <FontIcon iconLiteral="gmi-airport-shuttle" iconSize="64" iconColor="white"/>
                      </graphic>
                         </JFXButton>
                     </children>
@@ -291,11 +169,7 @@
                                 <Tooltip fx:id="ttFinn" text="Deliver medicine to a specific location in the hospital." />
                             </tooltip>
                      <graphic>
-                        <ImageView fitHeight="45.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@/images/Icons/IconServiceMedicineDelivery.png" />
-                           </image>
-                        </ImageView>
+                         <FontIcon iconLiteral="gmi-help" iconSize="64" iconColor="white"/>
                      </graphic>
                         </JFXButton>
                         <JFXButton fx:id="FloralRequest" alignment="BASELINE_LEFT" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="        Floral Request" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
@@ -309,11 +183,7 @@
                                 <Tooltip fx:id="ttAnanya4" text="Deliver floral goods to a specific location in the hospital." />
                             </tooltip>
                      <graphic>
-                        <ImageView fitHeight="45.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@/images/Icons/IconServiceFloralDelivery.png" />
-                           </image>
-                        </ImageView>
+                         <FontIcon iconLiteral="gmi-local-florist" iconSize="64" iconColor="white"/>
                      </graphic>
                         </JFXButton>
                         <JFXButton fx:id="LaundryRequest" alignment="BASELINE_LEFT" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="        Laundry Services" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
@@ -327,11 +197,7 @@
                                 <Tooltip fx:id="ttAnanya5" text="Request for laundry services." />
                             </tooltip>
                      <graphic>
-                        <ImageView fitHeight="45.0" fitWidth="157.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@/images/Icons/IconServiceLaundry.png" />
-                           </image>
-                        </ImageView>
+                         <FontIcon iconLiteral="gmi-help" iconSize="64" iconColor="white"/>
                      </graphic>
                         </JFXButton>
                         <JFXButton fx:id="SanitationServicesRequest" alignment="BASELINE_LEFT" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="        Sanitation Service" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
@@ -345,11 +211,7 @@
                                 <Tooltip fx:id="ttYongxiang" text="Request for sanitary demands in the hospital." />
                             </tooltip>
                      <graphic>
-                        <ImageView fitHeight="45.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@/images/Icons/IconServiceSanitization.png" />
-                           </image>
-                        </ImageView>
+                         <FontIcon iconLiteral="gmi-help" iconSize="64" iconColor="white"/>
                      </graphic>
                         </JFXButton>
                         <JFXButton fx:id="LanguageInterpretersRequest" alignment="BASELINE_LEFT" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="        Language Interpreters" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
@@ -363,11 +225,7 @@
                                 <Tooltip fx:id="ttBen" text="Language options." />
                             </tooltip>
                      <graphic>
-                        <ImageView fitHeight="45.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@/images/Icons/IconServiceLanguageInterpreter.png" />
-                           </image>
-                        </ImageView>
+                         <FontIcon iconLiteral="gmi-language" iconSize="64" iconColor="white"/>
                      </graphic>
                         </JFXButton>
                         <JFXButton fx:id="FoodDeliveryRequest" alignment="BASELINE_LEFT" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="        Food Delivery Service" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
@@ -381,11 +239,7 @@
                                 <Tooltip fx:id="ttAlex" text="Deliver food to a specific location in the hospital." />
                             </tooltip>
                      <graphic>
-                        <ImageView fitHeight="45.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@/images/Icons/IconServiceFoodDelivery.png" />
-                           </image>
-                        </ImageView>
+                         <FontIcon iconLiteral="gmi-restaurant" iconSize="64" iconColor="white"/>
                      </graphic>
                         </JFXButton>
                         <JFXButton fx:id="ReligiousRequest" alignment="BASELINE_LEFT" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="        Religious Request" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
@@ -399,15 +253,12 @@
                                 <Tooltip fx:id="ttPayton" text="Request for specific religious needs." />
                             </tooltip>
                      <graphic>
-                        <ImageView fitHeight="45.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@/images/Icons/IconServiceReligiousRequest.png" />
-                           </image>
-                        </ImageView>
+                         <FontIcon iconLiteral="gmi-help" iconSize="64" iconColor="white"/>
                      </graphic>
                         </JFXButton>
                     </children>
                 </GridPane>
+            <AnchorPane fx:id="anchorPane" prefHeight="200.0" prefWidth="200.0" GridPane.valignment="BASELINE" />
             </children>
         </GridPane>
     </children>

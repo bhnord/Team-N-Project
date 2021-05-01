@@ -22,6 +22,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import lombok.extern.slf4j.Slf4j;
 
@@ -38,6 +39,7 @@ public class EmployeeEditor extends MasterController implements Initializable {
   @FXML private Label loadSuccess;
   @FXML private Button HomeView;
   @FXML private JFXListView<Label> listView;
+  @FXML private AnchorPane anchorPane;
 
   @FXML private JFXTextField txtUsername;
   @FXML private JFXTextField txtPassword;
@@ -61,6 +63,9 @@ public class EmployeeEditor extends MasterController implements Initializable {
 
   @Override
   public void initialize(URL url, ResourceBundle rb) {
+
+    super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Database");
+
     listView.setOnMouseClicked(
         event -> {
           Label selected = listView.getSelectionModel().getSelectedItem();
