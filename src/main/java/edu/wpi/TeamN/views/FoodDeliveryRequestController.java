@@ -92,7 +92,7 @@ public class FoodDeliveryRequestController extends MasterController implements I
   public void help(ActionEvent actionEvent) throws IOException {
     dialogFactory.creatDialogOkay(
         "Help",
-        "- Employee Name refers to the employee being requested to complete the job\n - Room is the room that the employee will deliver the food to\n - Time of request refers to time the food should be delivered to the requester\n - Necessary Equipment refers to additional services/equipment the requester requires\n");
+        "- Employee Name refers to the employee being requested to complete the job \n- Patient Room is the room that the employee will deliver the food to \n- Main Dish is the type of food that patient wants as the main course \n- Side Dish is the type of food the patient wants as a side meal \n- Drink is the kind of beverage the patient wants \n- Time of request refers to time the food should be delivered to the requester \n- Comments refers to any additional information needed");
   }
 
   private void loadDishes() {

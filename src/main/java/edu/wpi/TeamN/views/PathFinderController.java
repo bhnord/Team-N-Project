@@ -27,6 +27,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Shape;
+import lombok.SneakyThrows;
 
 public class PathFinderController extends MapController implements Initializable {
   ArrayList<String> path = new ArrayList<String>();
@@ -49,9 +50,12 @@ public class PathFinderController extends MapController implements Initializable
   //  public final double downScale = 0.25;
   //  public final double upScale = 4;
 
+  @SneakyThrows
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+
     super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Service Request");
+
     nodeColor.setValue(Color.BLUE);
     EXIT.setValue(Color.RED);
     ELEV.setValue(Color.PINK);

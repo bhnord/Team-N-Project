@@ -95,8 +95,8 @@ public class SideBarController extends MasterController implements Initializable
     groupHome.setManaged(true);
 
     if (type.equals("Home")) {
-      groupBack.setVisible(false);
-      groupBack.setManaged(false);
+      // groupBack.setVisible(false);
+      // groupBack.setManaged(false);
     } else if (type.equals("Service Request")) {
       groupCovid.setVisible(false);
       groupCovid.setManaged(false);

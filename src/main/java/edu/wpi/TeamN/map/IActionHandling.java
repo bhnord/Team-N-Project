@@ -1,17 +1,20 @@
 package edu.wpi.TeamN.map;
 
 import javafx.scene.Group;
+import javafx.scene.shape.Circle;
 
 public interface IActionHandling {
-  public void setNodeInfo(Group node);
+  void setNodeInfo(Group node);
 
-  public void setEdgeInfo(Group node);
+  void setEdgeInfo(Group node);
 
-  public void setNodeStartLink(Group node);
+  void setNodeStartLink(Group node);
 
-  public void setNodeEndLink(Group node);
+  void setNodeEndLink(Group node);
 
-  public void addNodeToPath(Group node);
+  void setNodeDrag(Circle node);
 
-  public void removeNodeToPath(Group node);
+  void addNodeToPath(Group node);
+
+  void removeNodeToPath(Group node);
 }

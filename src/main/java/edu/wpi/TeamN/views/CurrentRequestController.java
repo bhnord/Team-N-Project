@@ -44,6 +44,7 @@ public class CurrentRequestController extends MasterController implements Initia
 
   @Override
   public void initialize(URL url, ResourceBundle rb) {
+
     super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Service Request");
 
     listView.getItems().clear();

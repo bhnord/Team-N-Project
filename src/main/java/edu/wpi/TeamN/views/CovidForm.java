@@ -56,6 +56,7 @@ public class CovidForm extends MasterController implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+
     super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Covid Form");
 
     // submit.setDisable(true);
