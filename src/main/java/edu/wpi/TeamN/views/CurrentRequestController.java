@@ -45,8 +45,6 @@ public class CurrentRequestController extends MasterController implements Initia
   @Override
   public void initialize(URL url, ResourceBundle rb) {
 
-    super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Database");
-
     listView.getItems().clear();
     HashSet<Request> set = db.getAllRequests();
     for (Request request : set) {
@@ -73,6 +71,8 @@ public class CurrentRequestController extends MasterController implements Initia
             }
           }
         });
+
+    super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Database");
   }
 
   private void setEmptyFields() {
