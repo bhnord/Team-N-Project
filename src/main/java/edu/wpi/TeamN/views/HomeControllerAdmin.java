@@ -17,6 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import lombok.SneakyThrows;
@@ -32,9 +33,12 @@ public class HomeControllerAdmin extends MasterController implements Initializab
 
   @FXML private JFXButton mapPathfinder;
   @FXML private JFXButton mapEditor;
-  @FXML private JFXButton ServiceRequestsAdmin;
+  @FXML private JFXButton ServiceRequests;
   @FXML private JFXButton EmployeeEditor;
   @FXML private JFXButton CurrentRequest;
+
+  @FXML private VBox vBox1;
+  @FXML private VBox vBox2;
 
   /** For sidebar nested FXML implementation */
   @FXML private AnchorPane anchorPane;
@@ -60,12 +64,24 @@ public class HomeControllerAdmin extends MasterController implements Initializab
     switch (db.getCurrentUser().getType()) {
         // different login cases
       case ADMINISTRATOR:
-        EmployeeEditor.setVisible(false);
-        EmployeeEditor.setManaged(false);
+        mapPathfinder.setPrefHeight(vBox1.getHeight() * 10);
+        // mapEditor.setPrefHeight(vBox1.getMaxHeight() / 2);
         break;
       case EMPLOYEE:
+        EmployeeEditor.setVisible(false);
+        EmployeeEditor.setManaged(false);
+        mapEditor.setManaged(false);
+        mapEditor.setVisible(false);
+        break;
       case PATIENT:
       case GUEST:
+        EmployeeEditor.setVisible(false);
+        EmployeeEditor.setManaged(false);
+        CurrentRequest.setVisible(false);
+        CurrentRequest.setManaged(false);
+        mapEditor.setManaged(false);
+        mapEditor.setVisible(false);
+        break;
     }
   }
 

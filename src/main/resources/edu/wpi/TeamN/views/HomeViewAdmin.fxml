@@ -31,38 +31,53 @@
          </rowConstraints>
          <children>
             <AnchorPane fx:id="anchorPane" prefHeight="200.0" prefWidth="200.0" GridPane.valignment="BASELINE" />
-            <VBox alignment="CENTER" centerShape="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+            <VBox fx:id="vBox1" alignment="TOP_CENTER" centerShape="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
                <children>
-                  <JFXButton fx:id="mapPathfinder" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#pathFind" prefHeight="174.0" prefWidth="728.0" style="-fx-background-radius: 0; -fx-background-color: BLUE;" stylesheets="@/Fonts/Roboto-Black.css" text="MAP PATHFINDER" textFill="WHITE">
+                  <JFXButton fx:id="mapPathfinder" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#pathFind" prefHeight="174.0" prefWidth="728.0" style="-fx-background-color: BLUE;" stylesheets="@/StyleSheet/style.css" text="MAP PATHFINDER" textFill="WHITE">
                      <font>
                         <Font name="Arial Black" size="18.0" />
                      </font>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
                   </JFXButton>
-                  <JFXButton fx:id="mapEditor" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#map" prefHeight="195.0" prefWidth="728.0" style="-fx-background-radius: 0; -fx-background-color: BLUE;" stylesheets="@/Fonts/Roboto-Black.css" text="MAP EDITOR" textFill="WHITE">
+                  <JFXButton fx:id="mapEditor" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#map" prefHeight="195.0" prefWidth="728.0" style="-fx-background-color: BLUE;" stylesheets="@/StyleSheet/style.css" text="MAP EDITOR" textFill="WHITE">
                      <font>
                         <Font name="Arial Black" size="18.0" />
                      </font>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
                   </JFXButton>
                </children>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
             </VBox>
-            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2">
+            <VBox fx:id="vBox2" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2">
                <children>
-                  <JFXButton fx:id="ServiceRequestsAdmin" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#advanceViews" prefHeight="248.0" prefWidth="408.0" style="-fx-background-radius: 0; -fx-background-color: BLUE;" stylesheets="@/Fonts/Roboto-Black.css" text=" SERVICE REQUESTS" textFill="WHITE" textOverrun="CLIP">
+                  <JFXButton fx:id="ServiceRequests" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#advanceViews" prefHeight="248.0" prefWidth="408.0" style="-fx-background-color: BLUE;" stylesheets="@/StyleSheet/style.css" text=" SERVICE REQUESTS" textFill="WHITE" textOverrun="CLIP">
                      <font>
                         <Font name="Arial Black" size="18.0" />
                      </font>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
                   </JFXButton>
-                  <JFXButton fx:id="EmployeeEditor" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#advanceViews" prefHeight="114.0" prefWidth="502.0" style="-fx-background-color: BLUE; -fx-background-radius: 25;" stylesheets="@/Fonts/Roboto-Black.css" text="EMPLOYEE EDITOR" textFill="WHITE" />
-                  <JFXButton fx:id="CurrentRequest" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#advanceViews" prefHeight="82.0" prefWidth="406.0" style="-fx-background-radius: 0; -fx-background-color: BLUE;" stylesheets="@/Fonts/Roboto-Black.css" text="CURRENT REQUESTS" textFill="WHITE">
+                  <JFXButton fx:id="EmployeeEditor" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#advanceViews" prefHeight="114.0" prefWidth="502.0" style="-fx-background-color: BLUE;" stylesheets="@/StyleSheet/style.css" text="EMPLOYEE EDITOR" textFill="WHITE">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin></JFXButton>
+                  <JFXButton fx:id="CurrentRequest" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#advanceViews" prefHeight="82.0" prefWidth="406.0" style="-fx-background-color: BLUE;" stylesheets="@/StyleSheet/style.css" text="CURRENT REQUESTS" textFill="WHITE">
                      <font>
                         <Font name="Arial Black" size="18.0" />
                      </font>
@@ -72,8 +87,14 @@
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
                   </JFXButton>
                </children>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
             </VBox>
          </children>
       </GridPane>
