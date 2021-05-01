@@ -102,7 +102,7 @@ public class SideBarController extends MasterController implements Initializable
     } else if (type.equals("Covid Form")) {
       groupCovid.setVisible(false);
       groupCovid.setManaged(false);
-    } else if (type.equals("LogIn")) {
+    } else if (type.equals("Login")) {
       groupLogOut.setVisible(false);
       groupLogOut.setManaged(false);
       groupCovid.setVisible(false);
