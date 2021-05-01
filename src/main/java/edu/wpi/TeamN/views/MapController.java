@@ -115,6 +115,7 @@ public abstract class MapController extends MasterController {
   @FXML protected JFXColorPicker selectedNodeColor;
   @FXML protected JFXTextField nodeSize;
   @FXML protected JFXTextField pathSize;
+  @FXML protected AnchorPane anchorPane;
 
   //  @FXML private Label XLabel;
   //  @FXML private Label YLabel;
@@ -157,6 +158,7 @@ public abstract class MapController extends MasterController {
   }
 
   public void init() {
+    super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Map");
     //    log.debug(state.toString());
   }
 
