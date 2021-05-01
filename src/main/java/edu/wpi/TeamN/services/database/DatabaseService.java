@@ -353,7 +353,7 @@ public class DatabaseService {
    * @param userType a UserType of which you want to get users from
    * @return a HashMap of users with matching type
    */
-  public HashMap<String, User> getUsersByType(UserType userType) {
+  public HashSet<User> getUsersByType(UserType userType) {
     return usersTable.getUsersByType(userType);
   }
 
@@ -538,14 +538,13 @@ public class DatabaseService {
       UserPrefs userPrefs = gson.fromJson(rs.getString("PREFERENCES"), UserPrefs.class);
       switch (rs.getString("USERTYPE")) {
         case "Patient":
-          currentUser = (new Patient(rs.getString("ID"), rs.getString("USERNAME"), userPrefs));
+          currentUser = (new Patient(rs.getInt("ID"), rs.getString("USERNAME"), userPrefs));
           break;
         case "Employee":
-          currentUser = (new Employee(rs.getString("ID"), rs.getString("USERNAME"), userPrefs));
+          currentUser = (new Employee(rs.getInt("ID"), rs.getString("USERNAME"), userPrefs));
           break;
         case "Administrator":
-          currentUser =
-              (new Administrator(rs.getString("ID"), rs.getString("USERNAME"), userPrefs));
+          currentUser = (new Administrator(rs.getInt("ID"), rs.getString("USERNAME"), userPrefs));
           break;
       }
       return true;

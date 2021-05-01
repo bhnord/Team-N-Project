@@ -4,6 +4,9 @@ import com.google.inject.Inject;
 import com.jfoenix.controls.JFXButton;
 import edu.wpi.TeamN.services.database.DatabaseService;
 import edu.wpi.TeamN.state.HomeState;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,10 +22,6 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import lombok.extern.slf4j.Slf4j;
-
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 @Slf4j
 public class HomeControllerAdmin extends MasterController implements Initializable {

@@ -1,7 +1,7 @@
 package edu.wpi.TeamN.services.database.users;
 
 public class Employee extends User {
-  public Employee(String id, String username, UserPrefs userPrefs) {
+  public Employee(int id, String username, UserPrefs userPrefs) {
     super(id, username, userPrefs);
   }
 
