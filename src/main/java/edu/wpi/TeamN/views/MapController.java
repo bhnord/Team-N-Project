@@ -325,7 +325,7 @@ public abstract class MapController extends MasterController {
   public void newColorNode(ActionEvent actionEvent) {
     JFXColorPicker a = ((JFXColorPicker) actionEvent.getSource());
     setUserPref(a.getId(), a.getValue().toString());
-    db.updateUserPrefs(Integer.parseInt(db.getCurrentUser().getId()), userPrefs);
+    db.updateUserPrefs(db.getCurrentUser().getId(), userPrefs);
     for (int i = 1; mapAnchor.getChildren().size() - 1 > i; i++) {
       if (adminMap.getNodeSet().containsKey(mapAnchor.getChildren().get(i).getId())) {
         if (adminMap
@@ -342,7 +342,7 @@ public abstract class MapController extends MasterController {
 
   public void newColorNode(JFXColorPicker a) {
     setUserPref(a.getId(), a.getValue().toString());
-    db.updateUserPrefs(Integer.parseInt(db.getCurrentUser().getId()), userPrefs);
+    db.updateUserPrefs(db.getCurrentUser().getId(), userPrefs);
     for (Node n : getNodeSet().values()) {
       if (n.get_nodeType().equals(a.getId())) n.get_shape().setFill(a.getValue());
     }
@@ -364,7 +364,7 @@ public abstract class MapController extends MasterController {
   public void newColorNodeaf(ActionEvent actionEvent) {
     JFXColorPicker a = ((JFXColorPicker) actionEvent.getSource());
     userPrefs.setBasicNodeColor(a.getValue().toString());
-    db.updateUserPrefs(Integer.parseInt(db.getCurrentUser().getId()), userPrefs);
+    db.updateUserPrefs(db.getCurrentUser().getId(), userPrefs);
     for (int i = 1; mapAnchor.getChildren().size() - 1 > i; i++) {
       if (adminMap.getNodeSet().containsKey(mapAnchor.getChildren().get(i).getId())) {
         if (!adminMap
@@ -396,7 +396,7 @@ public abstract class MapController extends MasterController {
   public void newColorPath(ActionEvent actionEvent) {
     JFXColorPicker a = ((JFXColorPicker) actionEvent.getSource());
     userPrefs.setPathfindingColor(a.getValue().toString());
-    db.updateUserPrefs(Integer.parseInt(db.getCurrentUser().getId()), userPrefs);
+    db.updateUserPrefs(db.getCurrentUser().getId(), userPrefs);
     for (int i = 1; mapAnchor.getChildren().size() - 1 > i; i++) {
       if (adminMap.getEdgeSet().containsKey(mapAnchor.getChildren().get(i).getId())) {
         ((Shape) ((Group) mapAnchor.getChildren().get(i)).getChildren().get(0))
@@ -429,7 +429,7 @@ public abstract class MapController extends MasterController {
         }
       }
     }
-    db.updateUserPrefs(Integer.parseInt(db.getCurrentUser().getId()), userPrefs);
+    db.updateUserPrefs(db.getCurrentUser().getId(), userPrefs);
   }
 
   public double getDownScale() {
