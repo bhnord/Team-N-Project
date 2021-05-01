@@ -313,7 +313,7 @@
                         </JFXButton>
                     </children>
                 </GridPane>
-            <AnchorPane fx:id="anchorPane" prefHeight="200.0" prefWidth="200.0" />
+            <AnchorPane fx:id="anchorPane" prefHeight="200.0" prefWidth="200.0" GridPane.valignment="BASELINE" />
             </children>
         </GridPane>
     </children>

@@ -93,7 +93,6 @@ public class SideBarController extends MasterController implements Initializable
     groupBack.setManaged(true);
     groupHome.setVisible(true);
     groupHome.setManaged(true);
-
     if (type.equals("Home") || type.equals("Map") || type.equals("Database")) {
       groupBack.setVisible(false);
       groupBack.setManaged(false);
