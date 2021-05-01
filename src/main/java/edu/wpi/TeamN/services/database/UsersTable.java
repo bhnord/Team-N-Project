@@ -7,7 +7,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.HashMap;
 import java.util.HashSet;
 
 public class UsersTable {
@@ -114,22 +113,16 @@ public class UsersTable {
   }
 
   // TODO CHANGE
-  public HashMap<String, User> getUsersByType(UserType userType) {
+  public HashSet<User> getUsersByType(UserType userType) {
     String userTypeString =
         userType.toString().charAt(0) + userType.toString().substring(1).toLowerCase();
     String str = "SELECT * FROM USERS WHERE USERTYPE = '" + userTypeString + "'";
-    HashMap<String, User> userMap = new HashMap<>();
     try {
       ResultSet rs = stmt.executeQuery(str);
-      HashSet<User> usersSet = resultSetToUsers(rs);
-      assert usersSet != null;
-      for (User user : usersSet) {
-        userMap.put(user.getId(), user);
-      }
-      return userMap;
+      return resultSetToUsers(rs);
     } catch (SQLException e) {
       e.printStackTrace();
-      return userMap;
+      return null;
     }
   }
 
@@ -163,13 +156,13 @@ public class UsersTable {
         UserPrefs userPrefs = gson.fromJson(rs.getString("PREFERENCES"), UserPrefs.class);
         switch (rs.getString("USERTYPE")) {
           case "Patient":
-            users.add(new Patient(rs.getString("ID"), rs.getString("USERNAME"), userPrefs));
+            users.add(new Patient(rs.getInt("ID"), rs.getString("USERNAME"), userPrefs));
             break;
           case "Employee":
-            users.add(new Employee(rs.getString("ID"), rs.getString("USERNAME"), userPrefs));
+            users.add(new Employee(rs.getInt("ID"), rs.getString("USERNAME"), userPrefs));
             break;
           case "Administrator":
-            users.add(new Administrator(rs.getString("ID"), rs.getString("USERNAME"), userPrefs));
+            users.add(new Administrator(rs.getInt("ID"), rs.getString("USERNAME"), userPrefs));
             break;
         }
       }

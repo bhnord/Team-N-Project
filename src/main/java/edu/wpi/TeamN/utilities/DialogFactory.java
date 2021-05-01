@@ -37,6 +37,20 @@ public class DialogFactory {
    * @param body Body of the dialog
    */
   public void creatDialogOkay(String heading, String body) {
+    creatDialogOkayWithAction(heading, body, event -> {});
+  }
+
+  /**
+   * Creates a JFX Dialog with heading of heading and body of body with a single button of "Okay"
+   * which must be assigned an action for on click, though it will close the dialog on click no
+   * matter what
+   *
+   * @param heading
+   * @param body
+   * @param clickAction
+   */
+  public void creatDialogOkayWithAction(
+      String heading, String body, EventHandler<? super MouseEvent> clickAction) {
     Text headingText = (Text) content.getHeading().get(0);
     headingText.setText(heading);
     content.setHeading(headingText);
@@ -47,7 +61,8 @@ public class DialogFactory {
     //    stackPane.setMouseTransparent(true);
     dialog = new JFXDialog(stackPane, content, JFXDialog.DialogTransition.CENTER);
     JFXButton button = new JFXButton("Okay");
-    button.setOnAction(action -> dialog.close());
+    button.setOnMouseClicked(clickAction);
+    button.setOnMouseReleased(action -> dialog.close());
     content.setActions(button);
     stackPane.setPickOnBounds(false);
     pane.getChildren().add(stackPane);
@@ -77,7 +92,7 @@ public class DialogFactory {
     JFXButton cancelButton = new JFXButton("Cancel");
     cancelButton.setOnAction(action -> dialog.close());
     JFXButton confirmButton = new JFXButton("Confirm");
-    confirmButton.setOnMousePressed(clickAction);
+    confirmButton.setOnMouseClicked(clickAction);
     confirmButton.setOnMouseReleased(action -> dialog.close());
     content.setActions(cancelButton, confirmButton);
     stackPane.setPickOnBounds(false);

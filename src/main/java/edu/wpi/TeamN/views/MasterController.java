@@ -10,7 +10,6 @@ import edu.wpi.TeamN.state.HomeState;
 import edu.wpi.TeamN.utilities.AutoCompleteComboBoxListener;
 import java.io.IOException;
 import java.net.URL;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -222,11 +221,12 @@ public class MasterController implements Initializable {
     anchorPane.getChildren().setAll(pane);
   }
 
+  // TODO REFACTOR AFTER SPLITTING USERS AND EMPLOYEES
   public void loadEmployeeDropdown(JFXComboBox<Label> employeeComboBox) {
-    HashMap<String, User> users = db.getUsersByType(UserType.EMPLOYEE);
-    for (User user : users.values()) {
+    HashSet<User> users = db.getUsersByType(UserType.EMPLOYEE);
+    for (User user : users) {
       Label lbl = new Label(user.getUsername());
-      lbl.setId(user.getId());
+      lbl.setId("" + user.getId());
       employeeComboBox.getItems().add((lbl));
     }
     new AutoCompleteComboBoxListener(employeeComboBox);

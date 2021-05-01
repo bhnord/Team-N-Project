@@ -121,11 +121,10 @@ public class EmployeeEditor extends MasterController implements Initializable {
 
     if (!(selectedUser == null)) {
       if (password.equals("********")) {
-        if (!db.updateUserUsernameType(Integer.parseInt(selectedUser.getId()), username, type)) {
+        if (!db.updateUserUsernameType(selectedUser.getId(), username, type)) {
           messageLabel.setText("Invalid inputs");
         }
-      } else if (!db.updateUser(
-          Integer.parseInt(selectedUser.getId()), username, password, type, new UserPrefs())) {
+      } else if (!db.updateUser(selectedUser.getId(), username, password, type, new UserPrefs())) {
         messageLabel.setText("Invalid inputs");
       }
     } else if (db.addUser(username, password, type, new UserPrefs())) {

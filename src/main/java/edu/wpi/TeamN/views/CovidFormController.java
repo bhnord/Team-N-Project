@@ -3,6 +3,7 @@ package edu.wpi.TeamN.views;
 import com.google.inject.Inject;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
+import edu.wpi.TeamN.services.database.CovidForm;
 import edu.wpi.TeamN.services.database.DatabaseService;
 import edu.wpi.TeamN.state.HomeState;
 import edu.wpi.TeamN.utilities.DialogFactory;
@@ -19,7 +20,7 @@ import javafx.scene.layout.StackPane;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class CovidForm extends MasterController implements Initializable {
+public class CovidFormController extends MasterController implements Initializable {
 
   @Inject DatabaseService db;
   @Inject FXMLLoader loader;
@@ -97,17 +98,48 @@ public class CovidForm extends MasterController implements Initializable {
         || comboBox6.getValue() == null) {
       dialogFactory.creatDialogOkay(
           "Missing Fields", "* You must fill out all required fields of the request to continue\n");
-    } else if (comboBox.getValue() == "yes"
-        || comboBox2.getValue() == "yes"
-        || comboBox3.getValue() == "yes"
-        || comboBox4.getValue() == "yes"
-        || comboBox5.getValue() == "yes"
-        || comboBox6.getValue() == "yes") {
-      dialogFactory.creatDialogOkay("Attention", "Please enter through emergency exit\n");
     } else {
-      dialogFactory.creatDialogConfirmCancel(
-          "Are you sure the information you have provided is correct?", "", System.out::println);
+      boolean ans[] = new boolean[6];
+      ans[0] = comboBox.getValue() == "yes";
+      ans[1] = comboBox2.getValue() == "yes";
+      ans[2] = comboBox3.getValue() == "yes";
+      ans[3] = comboBox4.getValue() == "yes";
+      ans[5] = comboBox5.getValue() == "yes";
+
+      CovidForm form = new CovidForm(db.getCurrentUser().getId(), ans, "");
+      if (comboBox.getValue() == "yes"
+          || comboBox2.getValue() == "yes"
+          || comboBox3.getValue() == "yes"
+          || comboBox4.getValue() == "yes"
+          || comboBox5.getValue() == "yes"
+          || comboBox6.getValue() == "yes") {
+        dialogFactory.creatDialogOkayWithAction(
+            "Attention", "Please enter through emergency exit\n", event -> advanceHomePopup());
+        db.addCovidForm(form);
+      } else {
+        dialogFactory.creatDialogConfirmCancel(
+            "",
+            "Are you sure the information you have provided is correct?",
+            event -> {
+              db.addCovidForm(form);
+              advanceHomePopup();
+            });
+      }
     }
+  }
+
+  private void advanceHomePopup() {
+
+    dialogFactory.creatDialogConfirmCancel(
+        "",
+        "Return to homepage?",
+        event -> {
+          try {
+            advanceHome();
+          } catch (IOException e) {
+            e.printStackTrace();
+          }
+        });
   }
 
   @FXML
