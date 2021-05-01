@@ -94,12 +94,24 @@ public class SideBarController extends MasterController implements Initializable
     groupHome.setVisible(true);
     groupHome.setManaged(true);
 
-    if (type.equals("Home")) {
-      // groupBack.setVisible(false);
-      // groupBack.setManaged(false);
+    if (type.equals("Home") || type.equals("Map") || type.equals("Database")) {
+      groupBack.setVisible(false);
+      groupBack.setManaged(false);
     } else if (type.equals("Service Request")) {
+      // groupCovid.setVisible(false);
+      // groupCovid.setManaged(false);
+    } else if (type.equals("Covid Form")) {
       groupCovid.setVisible(false);
       groupCovid.setManaged(false);
+    } else if (type.equals("LogIn")) {
+      groupLogOut.setVisible(false);
+      groupLogOut.setManaged(false);
+      groupCovid.setVisible(false);
+      groupCovid.setManaged(false);
+      groupBack.setVisible(false);
+      groupBack.setManaged(false);
+      groupHome.setVisible(false);
+      groupHome.setManaged(false);
     }
   }
 }
