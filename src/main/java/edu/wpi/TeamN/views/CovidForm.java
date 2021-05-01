@@ -88,7 +88,6 @@ public class CovidForm extends MasterController implements Initializable {
     super.advanceHome(loader, appPrimaryScene);
   }
 
-
   @FXML
   public void submit() throws IOException {
     /* Parent root = childLoader.load(getClass().getResourceAsStream("ConfirmationPageCovid.fxml"));
