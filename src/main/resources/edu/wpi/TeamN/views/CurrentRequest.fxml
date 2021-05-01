@@ -50,8 +50,7 @@
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
                                     <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="581.0" stroke="#bcbcbc" strokeType="INSIDE" width="886.0" />
-                                    <JFXListView fx:id="listView" layoutX="14.0" layoutY="20.0" prefHeight="535.0" prefWidth="261.0" stylesheets="@/StyleSheet/style.css" verticalGap="10.0" />
-                                    <Rectangle arcHeight="5.0" arcWidth="5.0" disable="true" fill="#748cdc" height="535.0" layoutX="14.0" layoutY="20.0" mouseTransparent="true" opacity="0.12" stroke="BLACK" strokeType="INSIDE" width="261.0" />
+                                    <JFXListView fx:id="listView" layoutX="14.0" layoutY="20.0" prefHeight="535.0" prefWidth="261.0" style="-fx-border-color: #748cdc; -fx-border-width: 2; -fx-border-style: dashed;" stylesheets="@/StyleSheet/style.css" verticalGap="10.0" />
                                     <Label layoutX="325.0" layoutY="47.0" text="Request ID:" />
                                     <Label layoutX="325.0" layoutY="98.0" text="Request Type:" />
                                     <Label layoutX="325.0" layoutY="147.0" text="Sender:" />
@@ -80,8 +79,7 @@
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
                                     <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="581.0" stroke="#bcbcbc" strokeType="INSIDE" width="886.0" />
-                                    <JFXListView fx:id="listViewCovid" layoutX="14.0" layoutY="20.0" prefHeight="535.0" prefWidth="261.0" stylesheets="@/StyleSheet/style.css" verticalGap="10.0" />
-                                    <Rectangle arcHeight="5.0" arcWidth="5.0" disable="true" fill="#748cdc" height="535.0" layoutX="14.0" layoutY="20.0" mouseTransparent="true" opacity="0.12" stroke="BLACK" strokeType="INSIDE" width="261.0" />
+                                    <JFXListView fx:id="listViewCovid" layoutX="14.0" layoutY="20.0" prefHeight="535.0" prefWidth="261.0" style="-fx-border-color: #748cdc; -fx-border-width: 2; -fx-border-style: dashed;" stylesheets="@/StyleSheet/style.css" verticalGap="10.0" />
                                  </children>
                               </AnchorPane>
                            </content>
