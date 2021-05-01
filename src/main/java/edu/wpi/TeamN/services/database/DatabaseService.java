@@ -19,11 +19,11 @@ import lombok.extern.slf4j.Slf4j;
 public class DatabaseService {
   private final Connection connection;
   /*
-   Database service class. This class will be loaded as a Singleton by Guice.
+   database service class. This class will be loaded as a Singleton by Guice.
   */
   private static User currentUser;
   /*
-   Database service class. This class will be loaded as a Singleton by Guice.
+   database service class. This class will be loaded as a Singleton by Guice.
   */
   @Inject UsersTable usersTable;
   @Inject NodesTable nodesTable;
@@ -45,7 +45,7 @@ public class DatabaseService {
   /// NODES
 
   /**
-   * retrieves all nodes from the Database
+   * retrieves all nodes from the database
    *
    * @return all nodes in the database as a HashSet
    */
@@ -54,7 +54,7 @@ public class DatabaseService {
   }
 
   /**
-   * retrieves all nodes from the Database
+   * retrieves all nodes from the database
    *
    * @return all nodes in the database as a HashMap
    */
@@ -63,7 +63,7 @@ public class DatabaseService {
   }
 
   /**
-   * retrieves single node from Database
+   * retrieves single node from database
    *
    * @param nodeID the ID of the node that you want to retrieve
    * @return a Node of type Node from the database
@@ -73,9 +73,9 @@ public class DatabaseService {
   }
 
   /**
-   * adds node to the Database
+   * adds node to the database
    *
-   * @param node a Node of type Node to add to the Database
+   * @param node a Node of type Node to add to the database
    * @return whether the operation was carried out successfully
    */
   public boolean addNode(Node node) {
@@ -83,7 +83,7 @@ public class DatabaseService {
   }
 
   /**
-   * updates node in Database based on given ID (you cannot change the ID of a node once set)
+   * updates node in database based on given ID (you cannot change the ID of a node once set)
    *
    * @param id the ID of the desired node to be changed
    * @param x
@@ -125,7 +125,7 @@ public class DatabaseService {
   /// EDGES
 
   /**
-   * retrieves all edges from the Database
+   * retrieves all edges from the database
    *
    * @return all edges in the database as a HashSet
    */
@@ -134,7 +134,7 @@ public class DatabaseService {
   }
 
   /**
-   * retrieves all edges from the Database
+   * retrieves all edges from the database
    *
    * @return all edges in the database as a HashMap
    */
@@ -143,9 +143,9 @@ public class DatabaseService {
   }
 
   /**
-   * adds an edge to the Database
+   * adds an edge to the database
    *
-   * @param edge an Edge of type Edge to add to the Database
+   * @param edge an Edge of type Edge to add to the database
    * @return whether the operation was carried out successfully
    */
   public boolean addEdge(Edge edge) {
@@ -156,14 +156,14 @@ public class DatabaseService {
    * retrieves a single edge from the database
    *
    * @param edgeID the ID of the desired edge
-   * @return an Edge of type Edge from the Database
+   * @return an Edge of type Edge from the database
    */
   public Edge getEdge(String edgeID) {
     return edgesTable.getEdge(edgeID);
   }
 
   /**
-   * updates an existing edge in the Database (cannot change the ID of an existing edge)
+   * updates an existing edge in the database (cannot change the ID of an existing edge)
    *
    * @param edgeID the ID of the edge you want to change
    * @param startNodeID the valid ID of a node
@@ -175,7 +175,7 @@ public class DatabaseService {
   }
 
   /**
-   * deletes specified edge from the Database
+   * deletes specified edge from the database
    *
    * @param edgeID the ID of the edge you want to delete
    * @return whether the operation was carried out successfully
@@ -210,9 +210,9 @@ public class DatabaseService {
   }
 
   /**
-   * adds a request to the Database
+   * adds a request to the database
    *
-   * @param request a Request of type Request to add to the Database
+   * @param request a Request of type Request to add to the database
    * @return whether the operation was carried out successfully
    */
   public boolean addRequest(Request request) {
@@ -220,7 +220,7 @@ public class DatabaseService {
   }
 
   /**
-   * deletes specified request from Database
+   * deletes specified request from database
    *
    * @param requestID the ID of the request you want to delete
    * @return whether the operation was carried out successfully
@@ -230,7 +230,7 @@ public class DatabaseService {
   }
 
   /**
-   * retrieves all requests from the Database
+   * retrieves all requests from the database
    *
    * @return all requests in the database as a HashSet
    */
@@ -242,7 +242,7 @@ public class DatabaseService {
    * retrieves a single request from the database
    *
    * @param requestID the ID of the desired request
-   * @return a Request of type Request from the Database
+   * @return a Request of type Request from the database
    */
   public Request getRequest(int requestID) {
     return requestsTable.getRequest(requestID);
@@ -269,7 +269,7 @@ public class DatabaseService {
   }
 
   /**
-   * updates an existing request in the Database (cannot change the ID of an existing request)
+   * updates an existing request in the database (cannot change the ID of an existing request)
    *
    * @param requestID
    * @param type
@@ -287,9 +287,9 @@ public class DatabaseService {
   //////////////////////////
 
   /**
-   * retrieves all users from the Database
+   * retrieves all users from the database
    *
-   * @return all users in the Database as a HashSet
+   * @return all users in the database as a HashSet
    */
   public HashSet<User> getAllUsers() {
     return usersTable.getAllUsers();
@@ -306,7 +306,7 @@ public class DatabaseService {
   }
 
   /**
-   * updates an existing user in the Database
+   * updates an existing user in the database
    *
    * @param id
    * @param username
@@ -328,27 +328,27 @@ public class DatabaseService {
   }
 
   /**
-   * retrieves a single user from the Database with matching ID
+   * retrieves a single user from the database with matching ID
    *
    * @param id the ID of desired user
-   * @return a User of type User from the Database with matching ID
+   * @return a User of type User from the database with matching ID
    */
   public User getUserById(String id) {
     return usersTable.getUserById(id);
   }
 
   /**
-   * retrieves a single user from the Database with matching username
+   * retrieves a single user from the database with matching username
    *
    * @param username the username of desired user
-   * @return a User of type User from the Database with matching username
+   * @return a User of type User from the database with matching username
    */
   public User getUserByUsername(String username) {
     return usersTable.getUserByUsername(username);
   }
 
   /**
-   * retrieves all users with matching type from Database
+   * retrieves all users with matching type from database
    *
    * @param userType a UserType of which you want to get users from
    * @return a HashMap of users with matching type
@@ -358,7 +358,7 @@ public class DatabaseService {
   }
 
   /**
-   * deletes a single user from the Database
+   * deletes a single user from the database
    *
    * @param username the username of the desired user to be deleted
    * @return whether the operation was carried out successfully
@@ -368,7 +368,62 @@ public class DatabaseService {
   }
 
   /**
-   * loads CSV files into Database.
+   * retrieves all CovidForms from the database
+   * @return all covid forms in the database as a HashMap
+   */
+  public HashSet<CovidForm> getAllCovidForms() {
+    return covidTable.getAllCovidForms();
+  }
+
+  /**
+   * retrieves single CovidForm from database
+   * @param formId the ID of the form that you want to retrieve
+   * @return a covid from of type CovidForm from the database
+   */
+  public CovidForm getCovidForm(int formId) {
+    return covidTable.getCovidForm(formId);
+  }
+
+  /**
+   * adds a covid form to the database
+   * @param form a covid form of type CovidForm to add to the database
+   * @return whether the operation was carried out successfully
+   */
+  public boolean addCovidForm(CovidForm form) {
+    return covidTable.addCovidForm(form);
+  }
+
+  /**
+   * retrieves a single CovidForm with the specified UserId
+   * @param userId the ID of a valid user with a covid form
+   * @return the covid form with matching userId, or null if invalid ID
+   */
+  public CovidForm getCovidFormByUserId(String userId) {
+    return covidTable.getCovidFormByUserId(userId);
+  }
+
+  /**
+   * deletes a single form from the database
+   * @param formId the ID of the form you want to delete
+   * @return whether the operation was carried out successfully
+   */
+  public boolean deleteCovidForm(int formId) {
+    return covidTable.deleteCovidForm(formId);
+  }
+
+  /**
+   * deletes form with matching UserId from the database
+   * @param userId the ID of the user whose form you want to delete
+   * @return whether the operation was completed successfully
+   */
+  public boolean deleteCovidFormByUserId(int userId) {
+    return covidTable.deleteCovidFormByUserId(userId);
+  }
+
+
+
+  /**
+   * loads CSV files into database.
    *
    * @param csvPath full path to CSV File. (needs .csv)
    * @param tableName table name in which to import CSV data --Note: table name needs to be in all
@@ -391,29 +446,7 @@ public class DatabaseService {
     }
   }
 
-  public HashSet<CovidForm> getAllCovidForms() {
-    return covidTable.getAllCovidForms();
-  }
 
-  public boolean addCovidForm(CovidForm form) {
-    return covidTable.addCovidForm(form);
-  }
-
-  public CovidForm getCovidForm(int formId) {
-    return covidTable.getCovidForm(formId);
-  }
-
-  public CovidForm getCovidFormByUserId(String username) {
-    return covidTable.getCovidFormByUserId(username);
-  }
-
-  public boolean deleteCovidForm(int formId) {
-    return covidTable.deleteCovidForm(formId);
-  }
-
-  public boolean deleteCovidFormByUserId(int userId) {
-    return covidTable.deleteCovidFormByUserId(userId);
-  }
 
   /** initializes all tables in the database */
   public boolean initTables() {
@@ -487,7 +520,7 @@ public class DatabaseService {
   }
 
   /**
-   * logs in to the Database (used to keep track of sending of service requests)
+   * logs in to the database (used to keep track of sending of service requests)
    *
    * @param username the username of a valid user
    * @param password the password of a the same valid user
