@@ -135,6 +135,8 @@
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="581.0" stroke="#bcbcbc" strokeType="INSIDE" width="886.0" />
+                        <JFXListView fx:id="listViewCovid" layoutX="14.0" layoutY="20.0" prefHeight="535.0" prefWidth="261.0" stylesheets="@/StyleSheet/style.css" verticalGap="10.0" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" disable="true" fill="#748cdc" height="535.0" layoutX="26.0" layoutY="14.0" mouseTransparent="true" opacity="0.12" stroke="BLACK" strokeType="INSIDE" width="261.0" />
                      </children>
                   </AnchorPane>
                </content>
