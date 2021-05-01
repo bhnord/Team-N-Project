@@ -28,6 +28,7 @@ public class DatabaseService {
   @Inject UsersTable usersTable;
   @Inject NodesTable nodesTable;
   @Inject EdgesTable edgesTable;
+  @Inject CovidFormsTable covidTable;
   @Inject RequestsTable requestsTable;
   private Statement stmt;
 
@@ -390,6 +391,30 @@ public class DatabaseService {
     }
   }
 
+  public HashSet<CovidForm> getAllCovidForms() {
+    return covidTable.getAllCovidForms();
+  }
+
+  public boolean addCovidForm(CovidForm form) {
+    return covidTable.addCovidForm(form);
+  }
+
+  public CovidForm getCovidForm(int formId) {
+    return covidTable.getCovidForm(formId);
+  }
+
+  public CovidForm getCovidFormByUserId(String username) {
+    return covidTable.getCovidFormByUserId(username);
+  }
+
+  public boolean deleteCovidForm(int formId) {
+    return covidTable.deleteCovidForm(formId);
+  }
+
+  public boolean deleteCovidFormByUserId(int userId) {
+    return covidTable.deleteCovidFormByUserId(userId);
+  }
+
   /** initializes all tables in the database */
   public boolean initTables() {
     try {
@@ -440,9 +465,23 @@ public class DatabaseService {
               + "'SANITATION', 'SECURITY')),"
               + "PRIMARY KEY (id))";
       stmt.execute(str);
+      str =
+          "CREATE TABLE CovidForms("
+              + "id INT NOT NULL GENERATED ALWAYS AS IDENTITY, "
+              + "UserId INT REFERENCES Users (id) ON DELETE CASCADE, "
+              + "AssignedEmployee INT REFERENCES Users (id) ON DELETE CASCADE, "
+              + "Q1 BOOLEAN NOT NULL, "
+              + "Q2 BOOLEAN NOT NULL, "
+              + "Q3 BOOLEAN NOT NULL, "
+              + "Q4 BOOLEAN NOT NULL, "
+              + "Q5 BOOLEAN NOT NULL, "
+              + "Q6 BOOLEAN NOT NULL, "
+              + "ExtraInfo varchar(250), "
+              + "PRIMARY KEY (id))";
+      stmt.execute(str);
       return true;
     } catch (SQLException e) {
-      //      e.printStackTrace();
+      e.printStackTrace();
       return false;
     }
   }
