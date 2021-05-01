@@ -7,7 +7,7 @@ public class UserPrefs {
       stairColor,
       pathfindingColor,
       highlightColor;
-  private double nodeSize = 1, edgeWidth = 1;
+  private double nodeSize = 3, edgeWidth = 3;
 
   public UserPrefs() {
     this.basicNodeColor = "#0000ff";
