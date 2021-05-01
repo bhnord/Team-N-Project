@@ -23,7 +23,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -67,7 +66,6 @@ public class MasterController implements Initializable {
     this.sideBarController = sideBarController;
   }
 
-  @SneakyThrows
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     //    log.debug(state.toString());
@@ -206,11 +204,15 @@ public class MasterController implements Initializable {
     appPrimaryScene.setRoot(root);
   }
 
-  @SneakyThrows
   public void sideBarSetup(
       AnchorPane anchorPane, Scene appPrimaryScene, FXMLLoader loader, String type) {
     FXMLLoader loader2 = new FXMLLoader(getClass().getResource("SideBar.fxml"));
-    Parent root = loader2.load();
+    Parent root = null;
+    try {
+      root = loader2.load();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
     AnchorPane pane = new AnchorPane(root);
     sideBarController = loader2.getController();
     sideBarController.setAppPrimaryScene(appPrimaryScene);
