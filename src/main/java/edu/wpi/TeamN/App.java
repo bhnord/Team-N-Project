@@ -7,7 +7,6 @@ import edu.wpi.TeamN.services.database.users.UserPrefs;
 import edu.wpi.TeamN.services.database.users.UserType;
 import edu.wpi.TeamN.state.HomeStateProvider;
 import edu.wpi.TeamN.views.FXMLLoaderProvider;
-import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -17,6 +16,8 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
+
+import java.io.IOException;
 
 @Slf4j
 public class App extends Application {
@@ -71,9 +72,10 @@ public class App extends Application {
 
   @Override
   public void start(Stage primaryStage) throws IOException {
-    Parent root = loader.load(getClass().getResourceAsStream("views/LoginPage.fxml"));
+    //    Parent root = loader.load(getClass().getResourceAsStream("views/LoginPage.fxml"));
     // TODO: uncomment above line and comment below line to switch between template and app
     // Parent root = loader.load(getClass().getResourceAsStream("views/templateJFeonix.fxml"));
+    Parent root = loader.load(getClass().getResourceAsStream("views/MapTest/MapTest.fxml"));
     primaryStage
         .getIcons()
         .add(new Image(ClassLoader.getSystemResourceAsStream("images/hospital-256.png")));
@@ -81,13 +83,13 @@ public class App extends Application {
     primaryStage.setTitle("Team N Application");
     primaryScene.setRoot(root);
     primaryStage.setScene(primaryScene);
-    primaryStage.setMinHeight(800);
-    primaryStage.setMinWidth(1366);
+    //    primaryStage.setMinHeight(800);
+    //    primaryStage.setMinWidth(1366);
 
     // primaryStage.setResizable(false);
     //    primaryStage.setAlwaysOnTop(true);
 
-    primaryStage.setMaximized(true);
+    //    primaryStage.setMaximized(true);
     primaryStage.show();
   }
 
