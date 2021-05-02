@@ -14,8 +14,7 @@ import javafx.scene.control.Tooltip;
 
 public class SideBarController extends MasterController implements Initializable {
 
-
-  //Tooltip for logout/back button that changes in Register Page
+  // Tooltip for logout/back button that changes in Register Page
   @FXML private Tooltip ttLogOutButton;
 
   // Groups for buttons
@@ -26,48 +25,70 @@ public class SideBarController extends MasterController implements Initializable
   @FXML private Group LogOutBack;
   @FXML private Group RegisterBack;
 
-
-
   @Override
   public void initialize(URL location, ResourceBundle resources) {}
 
-
-  /**------------------------------- Setters for super MasterController -------------------------------*/
+  /**
+   * ------------------------------- Setters for super MasterController
+   * -------------------------------
+   */
+  @Override
+  public void setAppPrimaryScene(Scene appPrimaryScene) {
+    super.setAppPrimaryScene(appPrimaryScene);
+  }
 
   @Override
-  public void setAppPrimaryScene(Scene appPrimaryScene) { super.setAppPrimaryScene(appPrimaryScene); }
+  public void setLoader(FXMLLoader loader) {
+    super.setLoader(loader);
+  }
 
   @Override
-  public void setLoader(FXMLLoader loader) { super.setLoader(loader); }
+  public void setDB(DatabaseService db) {
+    super.setDB(db);
+  }
 
+  /**
+   * --------------------------------------------------------------------------------------------------
+   */
+
+  /** ------------------------------- Button Functionality ------------------------------- */
+
+  // advance function for specific instances
   @Override
-  public void setDB(DatabaseService db) { super.setDB(db); }
+  public void advanceViews(ActionEvent actionEvent) throws IOException {
+    super.advanceViews(actionEvent);
+  }
 
-  /**--------------------------------------------------------------------------------------------------*/
+  // advances to the service request page (for back buutton group)
+  @FXML
+  public void advanceServiceRequest() throws IOException {
+    super.advanceServiceRequest(loader, appPrimaryScene);
+  }
 
+  // advances to the current users home page
+  @FXML
+  public void advanceHome() throws IOException {
+    super.advanceHome(loader, appPrimaryScene);
+  }
 
-  /**------------------------------- Button Functionality -------------------------------*/
+  // logs out the current user
+  @FXML
+  public void logOut() throws IOException {
+    super.logOut(loader, appPrimaryScene);
+  }
 
-  //advance function for specific instances
-  @Override
-  public void advanceViews(ActionEvent actionEvent) throws IOException { super.advanceViews(actionEvent); }
+  // closes the application
+  @FXML
+  private void exit(ActionEvent actionEvent) throws IOException {
+    super.cancel(actionEvent);
+  }
 
-  //advances to the service request page (for back buutton group)
-  @FXML public void advanceServiceRequest() throws IOException { super.advanceServiceRequest(loader, appPrimaryScene); }
+  /** ------------------------------------------------------------------------------------ */
 
-  //advances to the current users home page
-  @FXML public void advanceHome() throws IOException { super.advanceHome(loader, appPrimaryScene); }
-
-  //logs out the current user
-  @FXML public void logOut() throws IOException { super.logOut(loader, appPrimaryScene); }
-
-  //closes the application
-  @FXML private void exit(ActionEvent actionEvent) throws IOException { super.cancel(actionEvent); }
-
-  /**------------------------------------------------------------------------------------*/
-
-
-  /**------------------------------- SideBar initialization on FXML load -------------------------------*/
+  /**
+   * ------------------------------- SideBar initialization on FXML load
+   * -------------------------------
+   */
 
   /**
    * setType
@@ -109,5 +130,7 @@ public class SideBarController extends MasterController implements Initializable
     group.setManaged(false);
   }
 
-  /**---------------------------------------------------------------------------------------------------*/
+  /**
+   * ---------------------------------------------------------------------------------------------------
+   */
 }

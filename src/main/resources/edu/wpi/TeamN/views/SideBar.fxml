@@ -25,7 +25,7 @@
             <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="770.0" vgrow="NEVER" />
          </rowConstraints>
          <children>
-            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="2.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="4.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <children>
                   <Group>
                      <children>
@@ -120,7 +120,7 @@
                               <Rectangle arcHeight="10.0" arcWidth="10.0" fill="WHITE" height="11.0" layoutY="6.0" rotate="-40.0" stroke="TRANSPARENT" strokeType="INSIDE" width="30.0" />
                            </children>
                         </Group>
-                        <JFXButton fx:id="BackButton" onAction="#advanceServiceRequest" prefHeight="66.0" prefWidth="66.0" text="    " textFill="WHITE">
+                        <JFXButton fx:id="BackButton" onAction="#advanceServiceRequest" prefHeight="65.0" prefWidth="66.0" text="    " textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="9.0" />
                            </font>
@@ -158,7 +158,7 @@
                   </Group>
                </children>
                <GridPane.margin>
-                  <Insets top="5.0" />
+                  <Insets top="10.0" />
                </GridPane.margin>
             </VBox>
          </children>
