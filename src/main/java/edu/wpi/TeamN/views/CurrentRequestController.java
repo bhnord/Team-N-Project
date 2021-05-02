@@ -138,18 +138,18 @@ public class CurrentRequestController extends MasterController implements Initia
 
   private void updateTextFieldsCovid(CovidForm covidForm) {
 
-    String answers = "Answered 'yes' to: ";
+    String answers = "Answered 'yes'";
     boolean ans[] = covidForm.getAnswers();
     for (int i = 0; i < ans.length; i++) {
       answers += (ans[i]) ? "" : "Q" + (i + 1) + " ";
     }
 
     symptoms.setText(answers);
-    tested.setText(answers);
+    /* tested.setText(answers);
     treatment.setText(answers);
     outsideTravel.setText(answers);
     cruiseShip.setText(answers);
-    emergency.setText(answers);
+    emergency.setText(answers);*/
   }
 
   @FXML
