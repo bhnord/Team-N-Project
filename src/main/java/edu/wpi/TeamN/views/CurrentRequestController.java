@@ -52,7 +52,6 @@ public class CurrentRequestController extends MasterController implements Initia
     this.appPrimaryScene = appPrimaryScene;
   }
 
-
   @Override
   public void initialize(URL url, ResourceBundle rb) {
 
@@ -61,48 +60,51 @@ public class CurrentRequestController extends MasterController implements Initia
     HashSet<CovidForm> formSet = new HashSet<>();
     HashSet<Request> set = db.getAllRequests();
     for (CovidForm covidForm : formSet) {
-      Label lbl =
-          new Label(
-                  "Patient: "
-                  + db.getUserById(covidForm.getUserId()).getLastname());
+      Label lbl = new Label("Patient: " + db.getUserById(covidForm.getUserId()).getLastname());
       lbl.setId(Integer.toString(covidForm.getId()));
       listView.getItems().add(lbl);
     }
 
     for (Request request : set) {
       Label lbl =
-              new Label(
-                      request.getType().getName()
-                              + " request for "
-                              + db.getUserById(request.getReceiverID()).getUsername());
+          new Label(
+              request.getType().getName()
+                  + " request for "
+                  + db.getUserById(request.getReceiverID()).getUsername());
       lbl.setId(Integer.toString(request.getId()));
       requestMap.put(request.getId(), request);
       listView.getItems().add(lbl);
     }
 
     listView.setOnMouseClicked(
-            event -> {
-              Label selected = listView.getSelectionModel().getSelectedItem();
-              if (event.getButton() == MouseButton.PRIMARY && selected != null) {
-                String id = selected.getId();
-                Request clickedRequest = requestMap.get(Integer.valueOf(id));
-                selectedLabel = selected;
-                if (!(clickedRequest == null)) {
-                  updateTextFields(clickedRequest);
-                } else {
-                  setEmptyFields();
-                }
-              }
-            });
+        event -> {
+          Label selected = listView.getSelectionModel().getSelectedItem();
+          if (event.getButton() == MouseButton.PRIMARY && selected != null) {
+            String id = selected.getId();
+            Request clickedRequest = requestMap.get(Integer.valueOf(id));
+            selectedLabel = selected;
+            if (!(clickedRequest == null)) {
+              updateTextFields(clickedRequest);
+            } else {
+              setEmptyFields();
+            }
+          }
+        });
 
     listViewCovid.setOnMouseClicked(
-            event -> {
-              Label selected = listViewCovid.getSelectionModel().getSelectedItem();
-              if (event.getButton() == MouseButton.PRIMARY && selected != null) {
-                String id = selected.getId();
-                selectedLabel = selected;
-              }
-            });
+        event -> {
+          Label selected = listViewCovid.getSelectionModel().getSelectedItem();
+          if (event.getButton() == MouseButton.PRIMARY && selected != null) {
+            Integer id = Integer.parseInt(selected.getId());
+            CovidForm covidForm = db.getCovidForm(id);
+            selectedLabel = selected;
+            if (!(covidForm == null)) {
+              updateTextFieldsCovid(covidForm);
+            } else {
+              setEmptyFields();
+            }
+          }
+        });
 
     super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Database");
   }
@@ -122,8 +124,6 @@ public class CurrentRequestController extends MasterController implements Initia
     outsideTravel.setText("");
     cruiseShip.setText("");
     emergency.setText("");
-
-
   }
 
   private void updateTextFields(Request clickedRequest) {
@@ -137,12 +137,19 @@ public class CurrentRequestController extends MasterController implements Initia
   }
 
   private void updateTextFieldsCovid(CovidForm covidForm) {
-    symptoms.setText(covidForm.getAnswers());
-    tested.setText(covidForm.getAnswers());
-    treatment.setText(covidForm.getAnswers());
-    outsideTravel.setText(covidForm.getAnswers());
-    cruiseShip.setText(covidForm.getAnswers());
-    emergency.setText(covidForm.getAnswers());
+
+    String answers = "Answered 'yes' to: ";
+    boolean ans[] = covidForm.getAnswers();
+    for (int i = 0; i < ans.length; i++) {
+      answers += (ans[i]) ? "" : "Q" + (i + 1) + " ";
+    }
+
+    symptoms.setText(answers);
+    tested.setText(answers);
+    treatment.setText(answers);
+    outsideTravel.setText(answers);
+    cruiseShip.setText(answers);
+    emergency.setText(answers);
   }
 
   @FXML
@@ -175,6 +182,13 @@ public class CurrentRequestController extends MasterController implements Initia
     if (index != 0) index--;
     if (!(listViewCovid.getItems().size() == 0)) {
       selectedLabel = listViewCovid.getItems().get(index);
+      Integer id = Integer.parseInt(selectedLabel.getId());
+      CovidForm covidForm = db.getCovidForm(id);
+      if (!(covidForm == null)) {
+        updateTextFieldsCovid(covidForm);
+      } else {
+        setEmptyFields();
+      }
     } else {
       selectedLabel = null;
       setEmptyFields();
@@ -200,5 +214,4 @@ public class CurrentRequestController extends MasterController implements Initia
       setEmptyFields();
     }
   }
-
 }
