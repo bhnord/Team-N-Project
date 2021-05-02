@@ -56,12 +56,10 @@ public class HomeControllerAdmin extends MasterController implements Initializab
     this.appPrimaryScene = appPrimaryScene;
   }
 
-  @SneakyThrows
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     log.debug(state.toString());
     super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Home");
-
     switch (db.getCurrentUser().getType()) {
         // different login cases
       case ADMINISTRATOR:
@@ -90,15 +88,8 @@ public class HomeControllerAdmin extends MasterController implements Initializab
         mapEditor.setVisible(false);
         BackMapEditor.setManaged(false);
         BackMapEditor.setVisible(false);
-
         break;
     }
-  }
-
-  public void advance(ActionEvent actionEvent) throws IOException {
-    String file = "Requests/" + ((Button) actionEvent.getSource()).getId() + ".fxml";
-    Parent root = loader.load(getClass().getResourceAsStream(file));
-    appPrimaryScene.setRoot(root);
   }
 
   public void advanceViews(ActionEvent actionEvent) throws IOException {
@@ -109,27 +100,11 @@ public class HomeControllerAdmin extends MasterController implements Initializab
 
   public void map(ActionEvent actionEvent) throws IOException {
     Parent root = loader.load(getClass().getResourceAsStream("MapAdmin2.fxml"));
-    Screen screen = Screen.getPrimary();
-    Rectangle2D bounds = screen.getVisualBounds();
-
-    Stage stage = (Stage) appPrimaryScene.getWindow();
-    // stage.setX(bounds.getMinX());
-    // stage.setY(bounds.getMinY());
-    // stage.setWidth(bounds.getWidth());
-    // stage.setHeight(bounds.getHeight());
     appPrimaryScene.setRoot(root);
   }
 
   public void pathFind(ActionEvent actionEvent) throws IOException {
     Parent root = loader.load(getClass().getResourceAsStream("Pathfinder.fxml"));
-    Screen screen = Screen.getPrimary();
-    Rectangle2D bounds = screen.getVisualBounds();
-
-    Stage stage = (Stage) appPrimaryScene.getWindow();
-    // stage.setX(bounds.getMinX());
-    // stage.setY(bounds.getMinY());
-    // stage.setWidth(bounds.getWidth());
-    // stage.setHeight(bounds.getHeight());
     appPrimaryScene.setRoot(root);
   }
 }
