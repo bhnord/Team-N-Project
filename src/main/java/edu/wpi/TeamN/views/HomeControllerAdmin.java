@@ -11,16 +11,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.stage.Screen;
-import javafx.stage.Stage;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -36,9 +31,6 @@ public class HomeControllerAdmin extends MasterController implements Initializab
   @FXML private JFXButton ServiceRequests, BackServiceRequests;
   @FXML private JFXButton EmployeeEditor, BackEmployeeEditor;
   @FXML private JFXButton CurrentRequest, BackCurrentRequest;
-
-  @FXML private GridPane gridL;
-  @FXML private GridPane gridR;
 
   /** For sidebar nested FXML implementation */
   @FXML private AnchorPane anchorPane;

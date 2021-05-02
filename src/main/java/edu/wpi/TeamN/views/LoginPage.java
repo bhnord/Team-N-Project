@@ -80,7 +80,7 @@ public class LoginPage extends MasterController implements Initializable {
   @FXML
   private void continueToHomePage() throws IOException {
     if (db.login(usernameField.getText(), passwordField.getText())) {
-      super.advanceHomeAdmin(loader, appPrimaryScene);
+      super.advanceHome(loader, appPrimaryScene);
     } else {
       incorrectLogin.setText("INCORRECT USERNAME OR PASSWORD, TRY AGAIN");
       incorrectLogin.setAlignment(Pos.CENTER);

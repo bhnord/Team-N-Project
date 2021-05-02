@@ -71,57 +71,14 @@ public class MasterController implements Initializable {
     //    log.debug(state.toString());
   }
 
-  @FXML
   public void advanceHome(FXMLLoader childLoader, Scene ChildAppPrimaryScene) throws IOException {
-    switch (db.getCurrentUser().getType()) {
-      case ADMINISTRATOR:
-        advanceHomeAdmin(childLoader, ChildAppPrimaryScene);
-        break;
-      case EMPLOYEE:
-        advanceHomeStaff(childLoader, ChildAppPrimaryScene);
-        break;
-      case PATIENT:
-        advanceHomePatient(childLoader, ChildAppPrimaryScene);
-        break;
-      case GUEST:
-        advanceHomeGuest(childLoader, ChildAppPrimaryScene);
-        break;
-    }
-  }
-
-  private void advanceHomeStaff(FXMLLoader childLoader, Scene ChildAppPrimaryScene)
-      throws IOException {
-    Parent root = childLoader.load(getClass().getResourceAsStream("HomeView.fxml"));
-    ChildAppPrimaryScene.setRoot(root);
-  }
-
-  private void advanceHomePatient(FXMLLoader childLoader, Scene ChildAppPrimaryScene)
-      throws IOException {
-    Parent root = childLoader.load(getClass().getResourceAsStream("HomeViewPatient.fxml"));
-    ChildAppPrimaryScene.setRoot(root);
-  }
-
-  public void advanceHomeAdmin(FXMLLoader childLoader, Scene ChildAppPrimaryScene)
-      throws IOException {
     Parent root = childLoader.load(getClass().getResourceAsStream("HomeViewAdmin.fxml"));
-    ChildAppPrimaryScene.setRoot(root);
-  }
-
-  private void advanceHomeGuest(FXMLLoader childLoader, Scene ChildAppPrimaryScene)
-      throws IOException {
-    Parent root = childLoader.load(getClass().getResourceAsStream("HomeViewGuest.fxml"));
     ChildAppPrimaryScene.setRoot(root);
   }
 
   @FXML
   public void register(FXMLLoader childLoader, Scene ChildAppPrimaryScene) throws IOException {
     Parent root = childLoader.load(getClass().getResourceAsStream("RegisterNewUser.fxml"));
-    ChildAppPrimaryScene.setRoot(root);
-  }
-
-  @FXML
-  public void advanceHome2(FXMLLoader childLoader, Scene ChildAppPrimaryScene) throws IOException {
-    Parent root = childLoader.load(getClass().getResourceAsStream("HomeView2.fxml"));
     ChildAppPrimaryScene.setRoot(root);
   }
 

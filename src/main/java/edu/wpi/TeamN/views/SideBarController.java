@@ -79,7 +79,7 @@ public class SideBarController extends MasterController implements Initializable
 
   @FXML
   public void advanceHome() throws IOException {
-    super.advanceHomeAdmin(loader, appPrimaryScene);
+    super.advanceHome(loader, appPrimaryScene);
   }
 
   public void setType(String type) {
