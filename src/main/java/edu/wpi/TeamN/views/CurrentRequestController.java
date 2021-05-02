@@ -52,22 +52,6 @@ public class CurrentRequestController extends MasterController implements Initia
     this.appPrimaryScene = appPrimaryScene;
   }
 
-  public void initializeList(JFXListView<Label> listView) {
-    listView.setOnMouseClicked(
-            event -> {
-              Label selected = listView.getSelectionModel().getSelectedItem();
-              if (event.getButton() == MouseButton.PRIMARY && selected != null) {
-                String id = selected.getId();
-                Request clickedRequest = requestMap.get(Integer.valueOf(id));
-                selectedLabel = selected;
-                if (!(clickedRequest == null)) {
-                  updateTextFields(clickedRequest);
-                } else {
-                  setEmptyFields();
-                }
-              }
-            });
-  }
 
   @Override
   public void initialize(URL url, ResourceBundle rb) {
@@ -96,8 +80,29 @@ public class CurrentRequestController extends MasterController implements Initia
       listView.getItems().add(lbl);
     }
 
-    initializeList(listView);
-    initializeList(listViewCovid);
+    listView.setOnMouseClicked(
+            event -> {
+              Label selected = listView.getSelectionModel().getSelectedItem();
+              if (event.getButton() == MouseButton.PRIMARY && selected != null) {
+                String id = selected.getId();
+                Request clickedRequest = requestMap.get(Integer.valueOf(id));
+                selectedLabel = selected;
+                if (!(clickedRequest == null)) {
+                  updateTextFields(clickedRequest);
+                } else {
+                  setEmptyFields();
+                }
+              }
+            });
+
+    listViewCovid.setOnMouseClicked(
+            event -> {
+              Label selected = listViewCovid.getSelectionModel().getSelectedItem();
+              if (event.getButton() == MouseButton.PRIMARY && selected != null) {
+                String id = selected.getId();
+                selectedLabel = selected;
+              }
+            });
 
     super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Database");
   }
