@@ -201,7 +201,7 @@ public class MapDrawer {
   }
 
   private void correctImage(AnchorPane mapContainer) {
-    if (transformY(0) > -1 && transformY(0) < 1) {
+    /* if (transformY(0) > -1 && transformY(0) < 1) {
       System.out.println(mapContainer.getTranslateY() / (zoomProperty.get() - 1));
     }
     if (transformX(0) < 0) {
@@ -215,7 +215,7 @@ public class MapDrawer {
     }
     if (transformY(maxImgHeight) > maxImgHeight) {
       mapContainer.setTranslateY(invOffsetY(-maxImgHeight * (zoomProperty.get() - 1)));
-    }
+    }*/
   }
 
   public void setUpZoom(ImageView imageView, AnchorPane mapContainer) {
