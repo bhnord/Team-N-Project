@@ -1,45 +1,62 @@
 package edu.wpi.TeamN.map.googleMap;
 
-import com.dlsc.gmapsfx.GoogleMapView;
-import com.dlsc.gmapsfx.MapComponentInitializedListener;
-import com.dlsc.gmapsfx.javascript.object.GoogleMap;
-import com.dlsc.gmapsfx.javascript.object.LatLong;
-import com.dlsc.gmapsfx.javascript.object.MapOptions;
-import com.dlsc.gmapsfx.javascript.object.MapTypeIdEnum;
-import com.dlsc.gmapsfx.service.geocoding.GeocodingService;
+import com.google.maps.DirectionsApi;
+import com.google.maps.GeoApiContext;
+import com.google.maps.model.DirectionsResult;
+import com.google.maps.model.DirectionsStep;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class MapTest implements Initializable, MapComponentInitializedListener {
+public class MapTest implements Initializable {
 
-  @FXML private GoogleMapView mapView;
-  private GoogleMap map;
-  private GeocodingService geocodingService;
+  @FXML private WebView webView;
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    mapView.addMapInitializedListener(this);
-  }
-
-  @Override
-  public void mapInitialized() {
-    geocodingService = new GeocodingService();
-    MapOptions mapOptions = new MapOptions();
-
-    mapOptions
-        .center(new LatLong(41.8919300, 12.5113300))
-        .mapType(MapTypeIdEnum.ROADMAP)
-        .overviewMapControl(false)
-        .panControl(false)
-        .rotateControl(false)
-        .scaleControl(false)
-        .streetViewControl(false)
-        .zoomControl(false)
-        .zoom(12);
-
-    map = mapView.createMap(mapOptions);
+    WebEngine webEngine = webView.getEngine();
+    //    webEngine.load(
+    //        getClass().getResource("/edu/wpi/TeamN/views/MapTest/WebView.html").toExternalForm());
+    StringBuilder directions =
+        new StringBuilder(
+            "<!DOCTYPE html>\n"
+                + "<html lang=\"en\">\n"
+                + "<head>\n"
+                + "    <meta charset=\"UTF-8\">\n"
+                + "    <title>Title</title>\n"
+                + "    <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\">\n"
+                + "    <link href=\"https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap\" rel=\"stylesheet\">\n"
+                + "</head>\n"
+                + "<body style=\"font-family: 'Roboto', sans-serif;\">");
+    GeoApiContext context =
+        new GeoApiContext.Builder().apiKey("AIzaSyBBszEPZvetVvgsIbt3pLtXLbPap6dT-KY" + "").build();
+    try {
+      DirectionsResult result =
+          DirectionsApi.getDirections(
+                  context, "WPI", "75 Francis Street, Carrie Hall 103, Boston, MA 02115")
+              .await();
+      for (DirectionsStep step : result.routes[0].legs[0].steps) {
+        System.out.println(step.htmlInstructions);
+        directions.append(step.htmlInstructions + "<br/>");
+      }
+      directions.append("</body>\n" + "</html>");
+      webEngine.loadContent(directions.toString());
+      //      System.out.println(result.routes[0].legs[0].steps[0].htmlInstructions);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    //        System.out.println();
+    //    WebEngine webEngine = webView.getEngine();
+    //    webEngine.setUserAgent(
+    //        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like
+    // Gecko) Chrome/90.0.4430.93 Safari/537.36");
+    //    webEngine.load(
+    //
+    // "https://www.google.com/maps/place/Brigham+and+Women's+Hospital/@42.33557,-71.1084739,17z/data=!3m1!4b1!4m5!3m4!1s0x89e3798e64f59d2d:0x2762dfa4fc548043!8m2!3d42.3355661!4d-71.1062852");
+    //    webEngine.getDocument().createElement()
   }
 }
