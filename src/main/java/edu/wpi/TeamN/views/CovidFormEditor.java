@@ -3,11 +3,9 @@ package edu.wpi.TeamN.views;
 import com.google.inject.Inject;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXListView;
-import com.jfoenix.controls.JFXTextField;
+import edu.wpi.TeamN.services.database.CovidForm;
 import edu.wpi.TeamN.services.database.DatabaseService;
 import edu.wpi.TeamN.services.database.users.User;
-import edu.wpi.TeamN.services.database.users.UserPrefs;
-import edu.wpi.TeamN.services.database.users.UserType;
 import edu.wpi.TeamN.state.HomeState;
 import edu.wpi.TeamN.utilities.AutoCompleteComboBoxListener;
 import java.io.IOException;
@@ -24,10 +22,8 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
-public class EmployeeEditor extends MasterController implements Initializable {
+public class CovidFormEditor extends MasterController implements Initializable {
 
   @Inject DatabaseService db;
   @Inject FXMLLoader loader;
@@ -41,9 +37,10 @@ public class EmployeeEditor extends MasterController implements Initializable {
   @FXML private JFXListView<Label> listView;
   @FXML private AnchorPane anchorPane;
 
-  @FXML private JFXTextField txtUsername;
-  @FXML private JFXTextField txtPassword;
-  @FXML private JFXComboBox<Label> userTypeDropdown = new JFXComboBox<>();
+  @FXML private Label txtFirstName;
+  @FXML private Label txtLastName;
+  @FXML private Label txtAnsweredYes;
+  @FXML public JFXComboBox<Label> comboSelectOk = new JFXComboBox<>();
   // TODO REMOVE NODE ID FIELD TO JUST LABEL AND NOT AN EDITOR.
   private Label selectedLabel;
   private Scene appPrimaryScene;
@@ -63,7 +60,6 @@ public class EmployeeEditor extends MasterController implements Initializable {
 
   @Override
   public void initialize(URL url, ResourceBundle rb) {
-
     super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Database");
 
     listView.setOnMouseClicked(
@@ -71,11 +67,11 @@ public class EmployeeEditor extends MasterController implements Initializable {
           Label selected = listView.getSelectionModel().getSelectedItem();
           if (event.getButton() == MouseButton.PRIMARY && selected != null) {
             Integer id = Integer.parseInt(selected.getId());
-            User clickedUser = db.getUserById(id);
+            CovidForm clickedForm = db.getCovidForm(id);
             messageLabel.setText("");
             selectedLabel = selected;
-            if (!(clickedUser == null)) {
-              updateTextFields(clickedUser);
+            if (!(clickedForm == null)) {
+              updateTextFields(clickedForm);
             } else {
               setEmptyFields();
             }
@@ -85,13 +81,23 @@ public class EmployeeEditor extends MasterController implements Initializable {
     //      selectedFilePath = file.getPath();
     //      loadNodes(file);
     loadFromDB();
-    loadTypesDropdown();
+    loadOkDropdown();
   }
 
-  private void updateTextFields(User clickedUser) {
-    txtUsername.setText(clickedUser.getUsername());
-    userTypeDropdown.getEditor().setText(clickedUser.getType().toString());
-    txtPassword.setText("********");
+  private void updateTextFields(CovidForm clickedForm) {
+    txtLastName.setText(db.getUserById(clickedForm.getUserId()).getLastname());
+    txtFirstName.setText(db.getUserById(clickedForm.getUserId()).getFirstname());
+    String answers = "Answered 'yes' to: ";
+    boolean ans[] = clickedForm.getAnswers();
+    for (int i = 0; i < ans.length; i++) {
+      answers += (ans[i]) ? "" : "Q" + (i + 1) + " ";
+    }
+    txtAnsweredYes.setText(answers);
+    if (clickedForm.isOk()) {
+      comboSelectOk.getSelectionModel().select(1);
+    } else {
+      comboSelectOk.getSelectionModel().select(0);
+    }
   }
 
   @FXML
@@ -111,26 +117,19 @@ public class EmployeeEditor extends MasterController implements Initializable {
     if (selectedLabel == null) {
       return;
     }
-    String username = txtUsername.getText();
-    String password = txtPassword.getText();
+    boolean isOk = false;
+    if (comboSelectOk.getSelectionModel().getSelectedItem().getId() == "1") {
+      isOk = true;
+    }
 
-    UserType type =
-        UserType.valueOf(
-            userTypeDropdown.getSelectionModel().getSelectedItem().getText().toUpperCase());
-    User selectedUser = db.getUserByUsername(selectedLabel.getText());
+    CovidForm selectedForm = db.getCovidForm(Integer.parseInt(selectedLabel.getId()));
 
-    if (!(selectedUser == null)) {
-      if (password.equals("********")) {
-        if (!db.updateUserUsernameType(selectedUser.getId(), username, type)) {
-          messageLabel.setText("Invalid inputs");
-        }
-      } else if (!db.updateUser(selectedUser.getId(), username, password, type, new UserPrefs())) {
+    if (!(selectedForm == null)) {
+      if (!db.updateCovidForm(
+          selectedForm.getId(),
+          Boolean.parseBoolean(comboSelectOk.getSelectionModel().getSelectedItem().getId()))) {
         messageLabel.setText("Invalid inputs");
       }
-    } else if (db.addUser(username, password, type, new UserPrefs())) {
-      updateSelectedLabel(db.getUserByUsername(username));
-    } else {
-      messageLabel.setText("Invalid inputs");
     }
   }
 
@@ -139,50 +138,30 @@ public class EmployeeEditor extends MasterController implements Initializable {
     selectedLabel.setText(u.getUsername());
   }
 
-  public void deleteUser(ActionEvent actionEvent) {
-    if (listView.getItems().isEmpty() || selectedLabel == null) return;
-    int index = listView.getItems().indexOf(selectedLabel);
-    db.deleteUser(selectedLabel.getText());
-    listView.getItems().remove(selectedLabel);
-    if (index != 0) index--;
-    if (!(listView.getItems().size() == 0)) {
-      selectedLabel = listView.getItems().get(index);
-      User clickedUser = db.getUserById(Integer.parseInt(selectedLabel.getId()));
-      if (clickedUser != null) {
-        updateTextFields(clickedUser);
-      } else {
-        setEmptyFields();
-      }
-    } else {
-      selectedLabel = null;
-      setEmptyFields();
-    }
-  }
-
   private void loadFromDB() {
     listView.getItems().clear();
-    HashSet<User> set = db.getAllUsers();
-    for (User u : set) {
-      Label lbl = new Label(u.getUsername());
-      lbl.setId("" + u.getId());
+    HashSet<CovidForm> set = db.getAllCovidForms();
+    for (CovidForm f : set) {
+      Label lbl = new Label(db.getUserById(f.getUserId()).getUsername());
+      lbl.setId("" + f.getId());
       listView.getItems().add(lbl);
     }
   }
 
   private void setEmptyFields() {
-    txtUsername.setText("");
-    txtPassword.setText("");
-    userTypeDropdown.getEditor().setText("");
+    txtAnsweredYes.setText("");
+    txtFirstName.setText("");
+    txtLastName.setText("");
   }
 
-  private void loadTypesDropdown() {
-    for (UserType type : UserType.values()) {
-      String s = type.toString();
-      Label lbl = new Label(s);
-      lbl.setId(s);
-      userTypeDropdown.getItems().add(lbl);
-    }
-    new AutoCompleteComboBoxListener(userTypeDropdown);
+  private void loadOkDropdown() {
+    Label notOk = new Label("Enter through back");
+    notOk.setId("false");
+    comboSelectOk.getItems().add(notOk);
+    Label ok = new Label("Enter through front");
+    ok.setId("true");
+    comboSelectOk.getItems().add(ok);
+    new AutoCompleteComboBoxListener(comboSelectOk);
   }
 
   @FXML

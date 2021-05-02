@@ -11,17 +11,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Tooltip;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Screen;
-import javafx.stage.Stage;
-import javafx.stage.Window;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -30,19 +23,15 @@ public class HomeControllerAdmin extends MasterController implements Initializab
   @Inject DatabaseService db;
   @Inject FXMLLoader loader;
   @Inject HomeState state;
-  @FXML private Label text;
 
-  @FXML private JFXButton CovidForm;
-  @FXML private Tooltip ttCovidForm;
-  @FXML private JFXButton exit;
-  @FXML private Tooltip ttExit;
-  @FXML private JFXButton logOutButton;
-  @FXML private Tooltip ttLogOutButton;
+  // all buttons for FXML page that can be hidden, hide in pairs
+  @FXML private JFXButton mapPathfinder, BackMapPathfinder;
+  @FXML private JFXButton mapEditor, BackMapEditor;
+  @FXML private JFXButton ServiceRequests, BackServiceRequests;
+  @FXML private JFXButton EmployeeEditor, BackEmployeeEditor;
+  @FXML private JFXButton CurrentRequest, BackCurrentRequest;
 
-  /** For sidebar nested FXML implementation */
-  @FXML private Window sideBar;
-
-  @FXML private SideBarController sideBarController;
+  // For sidebar nested FXML implementation
   @FXML private AnchorPane anchorPane;
 
   private Scene appPrimaryScene;
@@ -58,48 +47,83 @@ public class HomeControllerAdmin extends MasterController implements Initializab
     this.appPrimaryScene = appPrimaryScene;
   }
 
-  @SneakyThrows
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     log.debug(state.toString());
     super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Home");
+    switch (db.getCurrentUser().getType()) {
+        // different login cases
+      case ADMINISTRATOR:
+        break;
+      case EMPLOYEE:
+        makeInvisible(EmployeeEditor);
+        makeInvisible(BackEmployeeEditor);
+        makeInvisible(mapEditor);
+        makeInvisible(BackMapEditor);
+        break;
+      case PATIENT:
+      case GUEST:
+        makeInvisible(EmployeeEditor);
+        makeInvisible(BackEmployeeEditor);
+        makeInvisible(CurrentRequest);
+        makeInvisible(BackCurrentRequest);
+        makeInvisible(mapEditor);
+        makeInvisible(BackMapEditor);
+        break;
+    }
+  }
+  /**
+   * makeInvisible
+   *
+   * @param button: a group to be taken out and managed in the sidebar
+   */
+  public void makeInvisible(JFXButton button) {
+    button.setVisible(false);
+    button.setManaged(false);
   }
 
-  public void advance(ActionEvent actionEvent) throws IOException {
-    String file = "Requests/" + ((Button) actionEvent.getSource()).getId() + ".fxml";
-    Parent root = loader.load(getClass().getResourceAsStream(file));
-    appPrimaryScene.setRoot(root);
-  }
-
+  /**
+   * advanceViews Loads a new page *not for service requests*
+   *
+   * @param actionEvent Button press
+   * @throws IOException
+   */
   public void advanceViews(ActionEvent actionEvent) throws IOException {
     String file = ((Button) actionEvent.getSource()).getId() + ".fxml";
     Parent root = loader.load(getClass().getResourceAsStream(file));
     appPrimaryScene.setRoot(root);
   }
 
+  /**
+   * map advances to map FXML
+   *
+   * @param actionEvent Button Press
+   * @throws IOException
+   */
   public void map(ActionEvent actionEvent) throws IOException {
     Parent root = loader.load(getClass().getResourceAsStream("MapAdmin2.fxml"));
-    Screen screen = Screen.getPrimary();
-    Rectangle2D bounds = screen.getVisualBounds();
-
-    Stage stage = (Stage) appPrimaryScene.getWindow();
-    // stage.setX(bounds.getMinX());
-    // stage.setY(bounds.getMinY());
-    // stage.setWidth(bounds.getWidth());
-    // stage.setHeight(bounds.getHeight());
     appPrimaryScene.setRoot(root);
   }
 
+  /**
+   * pathFind advances to pathFinder FXML
+   *
+   * @param actionEvent Button Press
+   * @throws IOException
+   */
   public void pathFind(ActionEvent actionEvent) throws IOException {
     Parent root = loader.load(getClass().getResourceAsStream("Pathfinder.fxml"));
-    Screen screen = Screen.getPrimary();
-    Rectangle2D bounds = screen.getVisualBounds();
+    appPrimaryScene.setRoot(root);
+  }
 
-    Stage stage = (Stage) appPrimaryScene.getWindow();
-    // stage.setX(bounds.getMinX());
-    // stage.setY(bounds.getMinY());
-    // stage.setWidth(bounds.getWidth());
-    // stage.setHeight(bounds.getHeight());
+  /**
+   * findUs advances to findUs FXML
+   *
+   * @param actionEvent Button Press
+   * @throws IOException
+   */
+  public void findUs(ActionEvent actionEvent) throws IOException {
+    Parent root = loader.load(getClass().getResourceAsStream("FindUs.fxml"));
     appPrimaryScene.setRoot(root);
   }
 }

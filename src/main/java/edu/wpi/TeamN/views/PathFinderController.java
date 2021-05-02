@@ -23,11 +23,12 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Shape;
-import lombok.SneakyThrows;
+import org.kordamp.ikonli.javafx.FontIcon;
 
 public class PathFinderController extends MapController implements Initializable {
   ArrayList<String> path = new ArrayList<String>();
@@ -45,24 +46,15 @@ public class PathFinderController extends MapController implements Initializable
   //  @FXML private JFXColorPicker selectedNodeColor;
   //  @FXML private JFXTextField nodeSize;
   //  @FXML private JFXTextField pathSize;
-  @FXML private JFXListView<Label> texutualDescription;
+  @FXML private JFXListView<HBox> texutualDescription;
 
   //  public final double downScale = 0.25;
   //  public final double upScale = 4;
 
-  @SneakyThrows
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Map");
-
-    nodeColor.setValue(Color.BLUE);
-    EXIT.setValue(Color.RED);
-    ELEV.setValue(Color.PINK);
-    STAI.setValue(Color.ORANGE);
-    pathColor.setValue(Color.BLUE);
-    selectedNodeColor.setValue(Color.GREEN);
-    nodeSize.setText("3.5");
-    pathSize.setText("2.5");
+    super.init();
 
     adminMap = new AdminMap(db);
     mapDrawer = new MapDrawer(this);
@@ -73,7 +65,7 @@ public class PathFinderController extends MapController implements Initializable
     //    texutualDescription = new JFXListView<>();
     texutualDescription.setOnMouseClicked(
         event -> {
-          Label selected = texutualDescription.getSelectionModel().getSelectedItem();
+          HBox selected = texutualDescription.getSelectionModel().getSelectedItem();
           if (event.getButton() == MouseButton.PRIMARY && selected != null) {
             ObservableList<Integer> seletedI =
                 texutualDescription.getSelectionModel().getSelectedIndices();
@@ -84,7 +76,6 @@ public class PathFinderController extends MapController implements Initializable
             link._shape.setStroke(Color.RED);
           }
         });
-    super.init();
     //    load();
     //    mapFloor();
     //    mapDrawer.setUpZoom(super.getMapImageView(), mapAnchor);
@@ -138,7 +129,7 @@ public class PathFinderController extends MapController implements Initializable
               path.add(n.get_nodeID());
             else if (event.getButton() == MouseButton.SECONDARY) path.remove(n.get_nodeID());
             updatePath();
-            selectedNodeColor(new ActionEvent());
+            newColorNode(selectedNodeColor);
           }
         });
     return root;
@@ -208,23 +199,38 @@ public class PathFinderController extends MapController implements Initializable
       PathFinder p = new PathFinder();
       ArrayList<String> s = p.getDescription(pathLink);
       for (String l : s) {
-        texutualDescription.getItems().add(new Label(l));
+        texutualDescription.getItems().add(new HBox(getDirectionIcon(l), new Label(l)));
       }
     }
   }
 
-  public void newColorNode(ActionEvent actionEvent) {
-    JFXColorPicker a = ((JFXColorPicker) actionEvent.getSource());
-    for (Node n : getNodeSet().values()) {
-      if (n.get_nodeType().equals(a.getId())) n.get_shape().setFill(a.getValue());
+  private FontIcon getDirectionIcon(String l) {
+    FontIcon fontIcon = new FontIcon();
+    fontIcon.setIconSize(25);
+    if (l.toLowerCase().contains("left")) {
+      fontIcon.setIconLiteral("gmi-arrow-back");
+    } else if (l.toLowerCase().contains("right")) {
+      fontIcon.setIconLiteral("gmi-arrow-forward");
+    } else if (l.toLowerCase().contains("straight")) {
+      fontIcon.setIconLiteral("gmi-arrow-upward");
+    } else if (l.toLowerCase().contains("floor")) {
+      fontIcon.setIconLiteral("gmi-contacts");
     }
+    return fontIcon;
   }
 
-  public void newColorNode(JFXColorPicker a) {
-    for (Node n : getNodeSet().values()) {
-      if (n.get_nodeType().equals(a.getId())) n.get_shape().setFill(a.getValue());
-    }
-  }
+  //  public void newColorNode(ActionEvent actionEvent) {
+  //    JFXColorPicker a = ((JFXColorPicker) actionEvent.getSource());
+  //    for (Node n : getNodeSet().values()) {
+  //      if (n.get_nodeType().equals(a.getId())) n.get_shape().setFill(a.getValue());
+  //    }
+  //  }
+  //
+  //  public void newColorNode(JFXColorPicker a) {
+  //    for (Node n : getNodeSet().values()) {
+  //      if (n.get_nodeType().equals(a.getId())) n.get_shape().setFill(a.getValue());
+  //    }
+  //  }
 
   public void setMap(ActionEvent actionEvent) {
     mapDrawer.setMap(((Button) actionEvent.getSource()).getId());
@@ -240,6 +246,7 @@ public class PathFinderController extends MapController implements Initializable
 
   public void newColorNodeaf(ActionEvent actionEvent) {
     JFXColorPicker a = nodeColor;
+    updateUserColors(a.getId(), a.getValue().toString());
     for (int i = 1; mapAnchor.getChildren().size() - 1 > i; i++) {
       if (getNodeSet().containsKey(mapAnchor.getChildren().get(i).getId())) {
         if (!this.getNodeSet()
@@ -260,16 +267,16 @@ public class PathFinderController extends MapController implements Initializable
     }
   }
 
-  public void selectedNodeColor(ActionEvent actionEvent) {
-    for (int i = 1; mapAnchor.getChildren().size() - 1 > i; i++) {
-      if (this.getNodeSet().containsKey(mapAnchor.getChildren().get(i).getId())
-          && path.contains(mapAnchor.getChildren().get(i).getId())) {
-        Circle l = ((Circle) ((Group) mapAnchor.getChildren().get(i)).getChildren().get(0));
-        l.setFill(selectedNodeColor.getValue());
-        l.setRadius(Double.parseDouble(nodeSize.getText()) + 1);
-      }
-    }
-  }
+  //    public void selectedNodeColor(ActionEvent actionEvent) {
+  //      for (int i = 1; mapAnchor.getChildren().size() - 1 > i; i++) {
+  //        if (this.getNodeSet().containsKey(mapAnchor.getChildren().get(i).getId())
+  //            && path.contains(mapAnchor.getChildren().get(i).getId())) {
+  //          Circle l = ((Circle) ((Group) mapAnchor.getChildren().get(i)).getChildren().get(0));
+  //          l.setFill(selectedNodeColor.getValue());
+  //          l.setRadius(Double.parseDouble(nodeSize.getText()) + 1);
+  //        }
+  //      }
+  //    }
 
   public void clearSelection(ActionEvent actionEvent) {
     reset();
@@ -282,6 +289,7 @@ public class PathFinderController extends MapController implements Initializable
     if (((JFXTextField) actionEvent.getSource()).getId().equals("nodeSize")
         && nodeValue <= 5
         && nodeValue >= 3) {
+      userPrefs.setNodeSize(nodeValue);
       for (int i = 1; mapAnchor.getChildren().size() - 1 > i; i++) {
         if (this.getNodeSet().containsKey(mapAnchor.getChildren().get(i).getId())) {
           ((Circle) ((Group) mapAnchor.getChildren().get(i)).getChildren().get(0))
@@ -291,6 +299,7 @@ public class PathFinderController extends MapController implements Initializable
     } else if (((JFXTextField) actionEvent.getSource()).getId().equals("pathSize")
         && nodeValue <= 5
         && nodeValue >= 3) {
+      userPrefs.setNodeSize(edgeValue);
       for (int i = 1; mapAnchor.getChildren().size() - 1 > i; i++) {
         if (this.getEdgeSet().containsKey(mapAnchor.getChildren().get(i).getId())) {
           ((Line) ((Group) mapAnchor.getChildren().get(i)).getChildren().get(0))
@@ -298,6 +307,7 @@ public class PathFinderController extends MapController implements Initializable
         }
       }
     }
+    db.updateUserPrefs(Integer.parseInt(String.valueOf(db.getCurrentUser().getId())), userPrefs);
   }
 
   public void mousePress(MouseEvent mouseEvent) {

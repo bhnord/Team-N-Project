@@ -10,7 +10,6 @@ import edu.wpi.TeamN.state.HomeState;
 import edu.wpi.TeamN.utilities.AutoCompleteComboBoxListener;
 import java.io.IOException;
 import java.net.URL;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -23,7 +22,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -67,63 +65,24 @@ public class MasterController implements Initializable {
     this.sideBarController = sideBarController;
   }
 
-  @SneakyThrows
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     //    log.debug(state.toString());
   }
 
-  @FXML
   public void advanceHome(FXMLLoader childLoader, Scene ChildAppPrimaryScene) throws IOException {
-    switch (db.getCurrentUser().getType()) {
-      case ADMINISTRATOR:
-        advanceHomeAdmin(childLoader, ChildAppPrimaryScene);
-        break;
-      case EMPLOYEE:
-        advanceHomeStaff(childLoader, ChildAppPrimaryScene);
-        break;
-      case PATIENT:
-        advanceHomePatient(childLoader, ChildAppPrimaryScene);
-        break;
-      case GUEST:
-        advanceHomeGuest(childLoader, ChildAppPrimaryScene);
-        break;
-    }
-  }
-
-  private void advanceHomeStaff(FXMLLoader childLoader, Scene ChildAppPrimaryScene)
-      throws IOException {
-    Parent root = childLoader.load(getClass().getResourceAsStream("HomeView.fxml"));
-    ChildAppPrimaryScene.setRoot(root);
-  }
-
-  private void advanceHomePatient(FXMLLoader childLoader, Scene ChildAppPrimaryScene)
-      throws IOException {
-    Parent root = childLoader.load(getClass().getResourceAsStream("HomeViewPatient.fxml"));
-    ChildAppPrimaryScene.setRoot(root);
-  }
-
-  private void advanceHomeAdmin(FXMLLoader childLoader, Scene ChildAppPrimaryScene)
-      throws IOException {
     Parent root = childLoader.load(getClass().getResourceAsStream("HomeViewAdmin.fxml"));
     ChildAppPrimaryScene.setRoot(root);
   }
 
-  private void advanceHomeGuest(FXMLLoader childLoader, Scene ChildAppPrimaryScene)
-      throws IOException {
-    Parent root = childLoader.load(getClass().getResourceAsStream("HomeViewGuest.fxml"));
+  public void advanceMap(FXMLLoader childLoader, Scene ChildAppPrimaryScene) throws IOException {
+    Parent root = childLoader.load(getClass().getResourceAsStream("Pathfinder.fxml"));
     ChildAppPrimaryScene.setRoot(root);
   }
 
   @FXML
   public void register(FXMLLoader childLoader, Scene ChildAppPrimaryScene) throws IOException {
     Parent root = childLoader.load(getClass().getResourceAsStream("RegisterNewUser.fxml"));
-    ChildAppPrimaryScene.setRoot(root);
-  }
-
-  @FXML
-  public void advanceHome2(FXMLLoader childLoader, Scene ChildAppPrimaryScene) throws IOException {
-    Parent root = childLoader.load(getClass().getResourceAsStream("HomeView2.fxml"));
     ChildAppPrimaryScene.setRoot(root);
   }
 
@@ -206,11 +165,15 @@ public class MasterController implements Initializable {
     appPrimaryScene.setRoot(root);
   }
 
-  @SneakyThrows
   public void sideBarSetup(
       AnchorPane anchorPane, Scene appPrimaryScene, FXMLLoader loader, String type) {
     FXMLLoader loader2 = new FXMLLoader(getClass().getResource("SideBar.fxml"));
-    Parent root = loader2.load();
+    Parent root = null;
+    try {
+      root = loader2.load();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
     AnchorPane pane = new AnchorPane(root);
     sideBarController = loader2.getController();
     sideBarController.setAppPrimaryScene(appPrimaryScene);
@@ -220,11 +183,12 @@ public class MasterController implements Initializable {
     anchorPane.getChildren().setAll(pane);
   }
 
+  // TODO REFACTOR AFTER SPLITTING USERS AND EMPLOYEES
   public void loadEmployeeDropdown(JFXComboBox<Label> employeeComboBox) {
-    HashMap<String, User> users = db.getUsersByType(UserType.EMPLOYEE);
-    for (User user : users.values()) {
+    HashSet<User> users = db.getUsersByType(UserType.EMPLOYEE);
+    for (User user : users) {
       Label lbl = new Label(user.getUsername());
-      lbl.setId(user.getId());
+      lbl.setId("" + user.getId());
       employeeComboBox.getItems().add((lbl));
     }
     new AutoCompleteComboBoxListener(employeeComboBox);

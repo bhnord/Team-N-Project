@@ -10,6 +10,7 @@ import javafx.beans.Observable;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.event.EventHandler;
+import javafx.geometry.Bounds;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -20,6 +21,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.Rectangle;
 
 public class MapDrawer {
   private final MapController mapController;
@@ -59,9 +61,16 @@ public class MapDrawer {
             node2.get_x() * mapController.getDownScale(),
             node2.get_y() * mapController.getDownScale());
     simpleNode.setTranslateZ(5);
-    simpleNode.setStrokeWidth(3.5);
+    simpleNode.setStrokeWidth(mapController.getUserPrefs().getEdgeWidth());
     Group root = new Group(simpleNode);
     root.setId(id);
+    return root;
+  }
+
+  public Group drawBoundingBox() {
+    Rectangle rectangle = new Rectangle(pressedX, pressedX, 100, 100);
+    Group root = new Group(rectangle);
+    mapController.getMapAnchor().getChildren().add(3, root);
     return root;
   }
 
@@ -73,12 +82,12 @@ public class MapDrawer {
             node1.get_x() * mapController.getDownScale(),
             node1.get_y() * mapController.getDownScale());
     simpleNode.setTranslateZ(5);
-    simpleNode.setStrokeWidth(3.5);
+    simpleNode.setStrokeWidth(mapController.getUserPrefs().getEdgeWidth());
     Group root = new Group(simpleNode);
     root.setId(node1.get_nodeID() + "_");
     this.draggedLineGroup = root;
     this.draggedLine = simpleNode;
-    mapController.getMapAnchor().getChildren().add(root);
+    mapController.getMapAnchor().getChildren().add(3, root);
     return root;
   }
 
@@ -93,7 +102,7 @@ public class MapDrawer {
   }
 
   public Group drawNode(String id, double x, double y, Color color) {
-    Circle simpleNode = new Circle(x, y, mapController.getNodeSize());
+    Circle simpleNode = new Circle(x, y, mapController.getUserPrefs().getNodeSize());
     simpleNode.setTranslateZ(10);
     simpleNode.setFill(color);
     simpleNode.setId(id);
@@ -145,6 +154,10 @@ public class MapDrawer {
       offsetX -= (maxImgWidth * (zoomProperty.get() - 1)) / 2;
       offsetY = mapController.getMapAnchor().getTranslateY();
       offsetY -= (maxImgHeight * (zoomProperty.get() - 1)) / 2;
+      Bounds bounds =
+          mapController.getMapAnchor().localToScene(mapController.getMapAnchor().getLayoutBounds());
+      //      System.out.println(offsetY / bounds.getMinY());
+      offsetY = bounds.getMinY();
       correctImage(mapController.getMapAnchor());
     }
   }
@@ -176,7 +189,7 @@ public class MapDrawer {
   }
 
   private double invOffsetY(double input) {
-    return input + maxImgHeight * (zoomProperty.get() - 1) / 2;
+    return input + (zoomProperty.get() - 1) * 700;
   }
 
   public double transformX(double input) {
@@ -188,6 +201,9 @@ public class MapDrawer {
   }
 
   private void correctImage(AnchorPane mapContainer) {
+    /* if (transformY(0) > -1 && transformY(0) < 1) {
+      System.out.println(mapContainer.getTranslateY() / (zoomProperty.get() - 1));
+    }
     if (transformX(0) < 0) {
       mapContainer.setTranslateX(invOffsetX(0));
     }
@@ -199,7 +215,7 @@ public class MapDrawer {
     }
     if (transformY(maxImgHeight) > maxImgHeight) {
       mapContainer.setTranslateY(invOffsetY(-maxImgHeight * (zoomProperty.get() - 1)));
-    }
+    }*/
   }
 
   public void setUpZoom(ImageView imageView, AnchorPane mapContainer) {

@@ -33,8 +33,8 @@ public class LoginPage extends MasterController implements Initializable {
   @FXML private Label incorrectLogin;
   @FXML private AnchorPane anchorPane;
   private Login login;
-  public String accountUsername = "";
-  public String accountPassword = "";
+  private String accountUsername = "";
+  private String accountPassword = "";
 
   public void initialize(URL url, ResourceBundle rb) {
     super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Login");

@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import edu.wpi.TeamN.services.database.DatabaseService;
 import edu.wpi.TeamN.services.database.requests.Request;
+import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
@@ -45,8 +46,6 @@ public class CurrentRequestController extends MasterController implements Initia
   @Override
   public void initialize(URL url, ResourceBundle rb) {
 
-    super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Database");
-
     listView.getItems().clear();
     HashSet<Request> set = db.getAllRequests();
     for (Request request : set) {
@@ -54,7 +53,7 @@ public class CurrentRequestController extends MasterController implements Initia
           new Label(
               request.getType().getName()
                   + " request for "
-                  + db.getUserById(Integer.toString(request.getReceiverID())).getUsername());
+                  + db.getUserById(request.getReceiverID()).getUsername());
       lbl.setId(Integer.toString(request.getId()));
       requestMap.put(request.getId(), request);
       listView.getItems().add(lbl);
@@ -73,6 +72,8 @@ public class CurrentRequestController extends MasterController implements Initia
             }
           }
         });
+
+    super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Database");
   }
 
   private void setEmptyFields() {
@@ -88,10 +89,8 @@ public class CurrentRequestController extends MasterController implements Initia
   private void updateTextFields(Request clickedRequest) {
     requestId.setText(Integer.toString(clickedRequest.getId()));
     requestType.setText(clickedRequest.getType().getName());
-    senderName.setText(
-        db.getUserById(Integer.toString(clickedRequest.getSenderID())).getUsername());
-    receiverName.setText(
-        db.getUserById(Integer.toString(clickedRequest.getReceiverID())).getUsername());
+    senderName.setText(db.getUserById(clickedRequest.getSenderID()).getUsername());
+    receiverName.setText(db.getUserById(clickedRequest.getReceiverID()).getUsername());
     roomName.setText(db.getNode(clickedRequest.getRoomNodeId()).get_longName());
     content.setText(clickedRequest.getContent());
     notes.setText(clickedRequest.getNotes());
@@ -101,6 +100,9 @@ public class CurrentRequestController extends MasterController implements Initia
   public void logOut() throws IOException {
     super.logOut(loader, appPrimaryScene);
   }
+
+  @FXML
+  public void inProgress() throws IOException {}
 
   @FXML
   private void exit(ActionEvent actionEvent) throws IOException {

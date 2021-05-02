@@ -7,14 +7,13 @@ import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.database.requests.Request;
 import edu.wpi.TeamN.services.database.requests.RequestType;
 import edu.wpi.TeamN.services.database.users.*;
-import lombok.extern.slf4j.Slf4j;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
 import java.util.HashSet;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class DatabaseService {
@@ -334,7 +333,7 @@ public class DatabaseService {
    * @param id the ID of desired user
    * @return a User of type User from the database with matching ID
    */
-  public User getUserById(String id) {
+  public User getUserById(int id) {
     return usersTable.getUserById(id);
   }
 
@@ -354,7 +353,7 @@ public class DatabaseService {
    * @param userType a UserType of which you want to get users from
    * @return a HashMap of users with matching type
    */
-  public HashMap<String, User> getUsersByType(UserType userType) {
+  public HashSet<User> getUsersByType(UserType userType) {
     return usersTable.getUsersByType(userType);
   }
 
@@ -388,7 +387,8 @@ public class DatabaseService {
   }
 
   /**
-   * adds a covid form to the database
+   * adds a covid form to the database. if a form already exists for that user, deletes it, then
+   * adds inputted form.
    *
    * @param form a covid form of type CovidForm to add to the database
    * @return whether the operation was carried out successfully
@@ -398,12 +398,23 @@ public class DatabaseService {
   }
 
   /**
+   * updates covid form isOk section
+   *
+   * @param id the Id of the form you want to update
+   * @param isOk what you want to set isOk to
+   * @return whether the operation was carried out successfully
+   */
+  public boolean updateCovidForm(int id, boolean isOk) {
+    return covidTable.updateCovidForm(id, isOk);
+  }
+
+  /**
    * retrieves a single CovidForm with the specified UserId
    *
    * @param userId the ID of a valid user with a covid form
    * @return the covid form with matching userId, or null if invalid ID
    */
-  public CovidForm getCovidFormByUserId(String userId) {
+  public CovidForm getCovidFormByUserId(int userId) {
     return covidTable.getCovidFormByUserId(userId);
   }
 
@@ -482,8 +493,13 @@ public class DatabaseService {
               + "Username varchar(40) NOT NULL UNIQUE, "
               + "Password varchar(40) NOT NULL,"
               + "UserType varchar(15),"
+              + "Occupation varchar (35), "
               + "Preferences varchar(300),"
               + "CONSTRAINT chk_UserType CHECK (UserType IN ('Patient', 'Employee', 'Administrator')),"
+              + "CONSTRAINT chk_Occupation CHECK (Occupation IN "
+              + "('AUDIO_VISUAL', 'COMPUTER_SERVICE', 'EXTERNAL_PATIENT_TRANSPORTATION', 'FLORAL', 'FOOD_DELIVERY', 'GIFT_DELIVERY', 'INTERNAL_PATIENT_TRANSPORTATION', 'LANGUAGE_INTERPRETER', "
+              + "'LAUNDRY', 'MAINTENANCE', 'MEDICINE_DELIVERY', 'RELIGIOUS', "
+              + "'SANITATION', 'SECURITY')),"
               + "PRIMARY KEY (id))";
       stmt.execute(str);
       str =
@@ -504,7 +520,7 @@ public class DatabaseService {
       str =
           "CREATE TABLE CovidForms("
               + "id INT NOT NULL GENERATED ALWAYS AS IDENTITY, "
-              + "UserId INT REFERENCES Users (id) ON DELETE CASCADE, "
+              + "UserId INT UNIQUE REFERENCES Users (id) ON DELETE CASCADE, "
               + "AssignedEmployee INT REFERENCES Users (id) ON DELETE CASCADE, "
               + "Q1 BOOLEAN NOT NULL, "
               + "Q2 BOOLEAN NOT NULL, "
@@ -513,11 +529,12 @@ public class DatabaseService {
               + "Q5 BOOLEAN NOT NULL, "
               + "Q6 BOOLEAN NOT NULL, "
               + "ExtraInfo varchar(250), "
+              + "IsOk BOOLEAN, "
               + "PRIMARY KEY (id))";
       stmt.execute(str);
       return true;
     } catch (SQLException e) {
-      //      e.printStackTrace();
+      e.printStackTrace();
       return false;
     }
   }
@@ -539,14 +556,13 @@ public class DatabaseService {
       UserPrefs userPrefs = gson.fromJson(rs.getString("PREFERENCES"), UserPrefs.class);
       switch (rs.getString("USERTYPE")) {
         case "Patient":
-          currentUser = (new Patient(rs.getString("ID"), rs.getString("USERNAME"), userPrefs));
+          currentUser = (new Patient(rs.getInt("ID"), rs.getString("USERNAME"), userPrefs));
           break;
         case "Employee":
-          currentUser = (new Employee(rs.getString("ID"), rs.getString("USERNAME"), userPrefs));
+          currentUser = (new Employee(rs.getInt("ID"), rs.getString("USERNAME"), userPrefs));
           break;
         case "Administrator":
-          currentUser =
-              (new Administrator(rs.getString("ID"), rs.getString("USERNAME"), userPrefs));
+          currentUser = (new Administrator(rs.getInt("ID"), rs.getString("USERNAME"), userPrefs));
           break;
       }
       return true;

@@ -20,7 +20,6 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import lombok.extern.slf4j.Slf4j;
@@ -93,25 +92,17 @@ public class MapEditor extends MapController implements Initializable {
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Map");
+    super.init();
     mapNodeEditor = new MapNodeEditor(this);
     mapEdgeEditor = new MapEdgeEditor(this);
 
     actionHandling = new NodeActionHandling(this, this.mapNodeEditor, this.mapEdgeEditor);
-    nodeColor.setValue(Color.BLUE);
-    EXIT.setValue(Color.RED);
-    ELEV.setValue(Color.PINK);
-    STAI.setValue(Color.ORANGE);
-    pathColor.setValue(Color.BLACK);
-    selectedNodeColor.setValue(Color.GREEN);
-    nodeSize.setText("3.5");
-    pathSize.setText("2.5");
 
     adminMap = new AdminMap(db);
     mapDrawer = new MapDrawer(this);
     mapImageView.setCursor(Cursor.CROSSHAIR);
     this.Load();
     mapDrawer.setUpZoom(mapImageView, mapAnchor);
-    super.init();
   }
   //
   //  @FXML
@@ -149,6 +140,9 @@ public class MapEditor extends MapController implements Initializable {
 
   public void mouseClick(MouseEvent mouseEvent) {
     super.mouseClick(mouseEvent);
+    if (mouseEvent.isControlDown()) {
+      mapDrawer.drawBoundingBox();
+    }
     if (mouseEvent.getButton() == MouseButton.SECONDARY) {
       //      System.out.println("start: " + mouseEvent.getX() + ", " + mouseEvent.getY());
       startNodePath = adminMap.get(mouseEvent.getX(), mouseEvent.getY(), mapDrawer.getCurrentMap());
@@ -167,7 +161,13 @@ public class MapEditor extends MapController implements Initializable {
       if (other != startNodePath) {
         //        placeLink(startNodePath.get_nodeID() + "_" + other.get_nodeID(), startNodePath,
         // other);
-        mapDrawer.endLine(other);
+        Group root = mapDrawer.endLine(other);
+        getAdminMap()
+            .makeEdge(
+                startNodePath.get_nodeID() + "_" + other.get_nodeID(),
+                startNodePath,
+                other,
+                (Line) root.getChildren().get(0));
       }
     }
   }
@@ -221,29 +221,29 @@ public class MapEditor extends MapController implements Initializable {
   //      mapEdgeEditor.showEdgeProperties(root);
   //    }
   //  }
-  public void newSize(ActionEvent actionEvent) {
-    double nodeValue = Double.parseDouble(nodeSize.getText());
-    double edgeValue = Double.parseDouble(pathSize.getText());
-    if (((JFXTextField) actionEvent.getSource()).getId().equals("nodeSize")
-        && nodeValue <= 5
-        && nodeValue >= 3) {
-      for (int i = 1; mapAnchor.getChildren().size() - 1 > i; i++) {
-        if (this.getNodeSet().containsKey(mapAnchor.getChildren().get(i).getId())) {
-          ((Circle) ((Group) mapAnchor.getChildren().get(i)).getChildren().get(0))
-              .setRadius(nodeValue);
-        }
-      }
-    } else if (((JFXTextField) actionEvent.getSource()).getId().equals("pathSize")
-        && nodeValue <= 5
-        && nodeValue >= 3) {
-      for (int i = 1; mapAnchor.getChildren().size() - 1 > i; i++) {
-        if (this.getEdgeSet().containsKey(mapAnchor.getChildren().get(i).getId())) {
-          ((Line) ((Group) mapAnchor.getChildren().get(i)).getChildren().get(0))
-              .setStrokeWidth(edgeValue);
-        }
-      }
-    }
-  }
+  //  public void newSize(ActionEvent actionEvent) {
+  //    double nodeValue = Double.parseDouble(nodeSize.getText());
+  //    double edgeValue = Double.parseDouble(pathSize.getText());
+  //    if (((JFXTextField) actionEvent.getSource()).getId().equals("nodeSize")
+  //        && nodeValue <= 5
+  //        && nodeValue >= 3) {
+  //      for (int i = 1; mapAnchor.getChildren().size() - 1 > i; i++) {
+  //        if (this.getNodeSet().containsKey(mapAnchor.getChildren().get(i).getId())) {
+  //          ((Circle) ((Group) mapAnchor.getChildren().get(i)).getChildren().get(0))
+  //              .setRadius(nodeValue);
+  //        }
+  //      }
+  //    } else if (((JFXTextField) actionEvent.getSource()).getId().equals("pathSize")
+  //        && nodeValue <= 5
+  //        && nodeValue >= 3) {
+  //      for (int i = 1; mapAnchor.getChildren().size() - 1 > i; i++) {
+  //        if (this.getEdgeSet().containsKey(mapAnchor.getChildren().get(i).getId())) {
+  //          ((Line) ((Group) mapAnchor.getChildren().get(i)).getChildren().get(0))
+  //              .setStrokeWidth(edgeValue);
+  //        }
+  //      }
+  //    }
+  //  }
 
   private void DeleteNodesFromMap() throws IOException {
     int i = 1;

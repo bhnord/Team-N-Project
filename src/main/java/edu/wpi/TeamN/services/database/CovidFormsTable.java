@@ -49,8 +49,12 @@ public class CovidFormsTable {
     }
   }
 
-  public CovidForm getCovidFormByUserId(String username) {
-    String str = "SELECT * FROM COVIDFORMS WHERE User = '" + username + "'";
+  /**
+   * @param userId
+   * @return
+   */
+  public CovidForm getCovidFormByUserId(int userId) {
+    String str = "SELECT * FROM COVIDFORMS WHERE User = '" + userId + "'";
     try {
       ResultSet rs = stmt.executeQuery(str);
       HashSet<CovidForm> set = resultSetToCovidForms(rs);
@@ -66,6 +70,7 @@ public class CovidFormsTable {
   }
 
   // TODO DECIDE HOW TO ASSIGN EMPLOYEE ID
+
   public boolean addCovidForm(CovidForm form) {
     boolean ans[] = form.getAnswers();
     String ansString = Arrays.toString(ans);
@@ -80,6 +85,20 @@ public class CovidFormsTable {
             + ", '"
             + form.getExtraInfo()
             + "')";
+    if (getCovidFormByUserId(form.getUserId()) != null) {
+      deleteCovidFormByUserId(form.getUserId());
+    }
+    try {
+      stmt.execute(str);
+      return true;
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return false;
+    }
+  }
+
+  public boolean updateCovidForm(int id, boolean isOk) {
+    String str = "UPDATE COVIDFORMS SET IsOk = " + isOk + " WHERE id = " + id;
     try {
       stmt.execute(str);
       return true;
@@ -123,7 +142,8 @@ public class CovidFormsTable {
           ans[i] = rs.getBoolean("Q" + (i + 1));
         }
         String extraInfo = rs.getString("extraInfo");
-        CovidForm form = new CovidForm(id, user, assignedEmployee, ans, extraInfo);
+        boolean isOk = rs.getBoolean("IsOk");
+        CovidForm form = new CovidForm(id, user, assignedEmployee, ans, extraInfo, isOk);
         formSet.add(form);
       }
       return formSet;
