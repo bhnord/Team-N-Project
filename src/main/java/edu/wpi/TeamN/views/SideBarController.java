@@ -12,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Tooltip;
+import javafx.scene.image.ImageView;
 
 public class SideBarController extends MasterController implements Initializable {
 
@@ -33,6 +34,8 @@ public class SideBarController extends MasterController implements Initializable
   @FXML private Group groupCovid;
   @FXML private Group groupBack;
   @FXML private Group groupHome;
+  @FXML private ImageView LogOutBack;
+  @FXML private Group RegisterBack;
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
@@ -102,8 +105,7 @@ public class SideBarController extends MasterController implements Initializable
       groupBack.setVisible(false);
       groupBack.setManaged(false);
     } else if (type.equals("Service Request")) {
-      // groupCovid.setVisible(false);
-      // groupCovid.setManaged(false);
+      // all buttons
     } else if (type.equals("Covid Form")) {
       groupCovid.setVisible(false);
       groupCovid.setManaged(false);
@@ -117,8 +119,8 @@ public class SideBarController extends MasterController implements Initializable
       groupHome.setVisible(false);
       groupHome.setManaged(false);
     } else if (type.equals("Register")) {
-      groupLogOut.setVisible(false);
-      groupLogOut.setManaged(false);
+      LogOutBack.setVisible(false);
+      RegisterBack.setVisible(true);
       groupCovid.setVisible(false);
       groupCovid.setManaged(false);
       groupBack.setVisible(false);

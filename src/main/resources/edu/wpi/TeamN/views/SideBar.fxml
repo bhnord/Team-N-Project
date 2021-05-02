@@ -58,11 +58,18 @@
                   <Group fx:id="groupLogOut">
                      <children>
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="65.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
-                        <ImageView fitHeight="50.0" fitWidth="59.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" translateX="5.0">
+                        <ImageView fx:id="LogOutBack" fitHeight="50.0" fitWidth="59.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" translateX="5.0">
                            <image>
                               <Image url="@/images/LogOut.png" />
                            </image>
                         </ImageView>
+                        <Group fx:id="RegisterBack" layoutX="9.0" layoutY="13.0" visible="false">
+                           <children>
+                              <Rectangle arcHeight="10.0" arcWidth="10.0" fill="WHITE" height="12.0" layoutX="9.981954574584961" layoutY="13.311014175415039" stroke="TRANSPARENT" strokeType="INSIDE" width="35.0" />
+                              <Rectangle arcHeight="10.0" arcWidth="10.0" fill="WHITE" height="11.0" layoutX="-0.9733800888061523" layoutY="19.955955505371094" rotate="40.0" stroke="TRANSPARENT" strokeType="INSIDE" width="30.0" />
+                              <Rectangle arcHeight="10.0" arcWidth="10.0" fill="WHITE" height="11.0" layoutY="6.0" rotate="-40.0" stroke="TRANSPARENT" strokeType="INSIDE" width="30.0" />
+                           </children>
+                        </Group>
                         <JFXButton fx:id="logOutButton" onAction="#logOut" prefHeight="64.0" prefWidth="66.0" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="9.0" />
@@ -102,9 +109,13 @@
                   <Group fx:id="groupBack">
                      <children>
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="65.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
-                        <Rectangle arcHeight="10.0" arcWidth="10.0" fill="WHITE" height="12.0" layoutX="20.0" layoutY="28.0" stroke="TRANSPARENT" strokeType="INSIDE" width="35.0" />
-                        <Rectangle arcHeight="10.0" arcWidth="10.0" fill="WHITE" height="11.0" layoutX="7.0" layoutY="35.0" rotate="40.0" stroke="TRANSPARENT" strokeType="INSIDE" width="30.0" />
-                        <Rectangle arcHeight="10.0" arcWidth="10.0" fill="WHITE" height="11.0" layoutX="7.0" layoutY="21.0" rotate="-40.0" stroke="TRANSPARENT" strokeType="INSIDE" width="30.0" />
+                        <Group layoutX="9.018045425415039" layoutY="14.688985824584961">
+                           <children>
+                              <Rectangle arcHeight="10.0" arcWidth="10.0" fill="WHITE" height="12.0" layoutX="9.981954574584961" layoutY="13.311014175415039" stroke="TRANSPARENT" strokeType="INSIDE" width="35.0" />
+                              <Rectangle arcHeight="10.0" arcWidth="10.0" fill="WHITE" height="11.0" layoutX="-0.9733800888061523" layoutY="19.955955505371094" rotate="40.0" stroke="TRANSPARENT" strokeType="INSIDE" width="30.0" />
+                              <Rectangle arcHeight="10.0" arcWidth="10.0" fill="WHITE" height="11.0" layoutY="6.0" rotate="-40.0" stroke="TRANSPARENT" strokeType="INSIDE" width="30.0" />
+                           </children>
+                        </Group>
                         <JFXButton fx:id="BackButton" onAction="#advanceServiceRequest" prefHeight="66.0" prefWidth="66.0" text="    " textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="9.0" />
