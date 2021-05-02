@@ -20,8 +20,8 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.Rectangle;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -126,10 +126,11 @@ public class MapEditor extends MapController implements Initializable {
    * @param mouseEvent
    */
   public void placeNodeClick(MouseEvent mouseEvent) throws IOException {
-    if (mouseEvent.getButton() == MouseButton.PRIMARY) {
-      placeNode(
-          "node_" + adminMap.getNodeSet().values().size(), mouseEvent.getX(), mouseEvent.getY());
-    }
+    //    if (mouseEvent.getButton() == MouseButton.PRIMARY) {
+    //      placeNode(
+    //          "node_" + adminMap.getNodeSet().values().size(), mouseEvent.getX(),
+    // mouseEvent.getY());
+    //    }
 
     setCancelOrSubmit(false);
   }
@@ -141,7 +142,7 @@ public class MapEditor extends MapController implements Initializable {
   public void mouseClick(MouseEvent mouseEvent) {
     super.mouseClick(mouseEvent);
     if (mouseEvent.isControlDown()) {
-      mapDrawer.drawBoundingBox();
+      mapDrawer.drawBoundingBox(mouseEvent.getX(), mouseEvent.getY());
     }
     if (mouseEvent.getButton() == MouseButton.SECONDARY) {
       //      System.out.println("start: " + mouseEvent.getX() + ", " + mouseEvent.getY());
@@ -155,6 +156,25 @@ public class MapEditor extends MapController implements Initializable {
   //  }
 
   public void releaseMouse(MouseEvent mouseEvent) {
+    if (mouseEvent.getButton() == MouseButton.PRIMARY) {
+      mapNodeEditor.clearSelection();
+      Rectangle r = mapDrawer.endBoundingBox(mouseEvent.getX(), mouseEvent.getY());
+      if (r != null) {
+        for (Node n : this.getNodeSet().values()) {
+          if (n.get_x() * getDownScale() > r.getX()
+              && n.get_x() * getDownScale() < r.getX() + r.getWidth()
+              && n.get_y() * getDownScale() > r.getY()
+              && n.get_y() * getDownScale() < r.getY() + r.getHeight()) {
+            mapNodeEditor.addNode(n);
+          }
+        }
+        mapNodeEditor.straightenSelection();
+        mapNodeEditor.finalize();
+      } else {
+        placeNode(
+            "node_" + adminMap.getNodeSet().values().size(), mouseEvent.getX(), mouseEvent.getY());
+      }
+    }
     if (mouseEvent.getButton() == MouseButton.SECONDARY) {
       System.out.println("end: " + mouseEvent.getX() + ", " + mouseEvent.getY());
       Node other = adminMap.get(mouseEvent.getX(), mouseEvent.getY(), mapDrawer.getCurrentMap());
@@ -168,6 +188,8 @@ public class MapEditor extends MapController implements Initializable {
                 startNodePath,
                 other,
                 (Line) root.getChildren().get(0));
+      } else {
+        mapDrawer.cancelLine();
       }
     }
   }
@@ -196,7 +218,10 @@ public class MapEditor extends MapController implements Initializable {
     actionHandling.setNodeInfo(root);
     actionHandling.setNodeStartLink(root);
     actionHandling.setNodeEndLink(root);
-    actionHandling.setNodeDrag((Circle) n.get_shape());
+    //    actionHandling.setNodeDrag((Circle) n.get_shape());
+    root.setOnMouseDragged(
+        event -> mapNodeEditor.handleDrag(event, getNodeSet().get(root.getId())));
+    root.setOnMouseReleased(event -> mapNodeEditor.finalize());
     if (!adminMap.getNodeSet().containsKey(n.get_nodeID())) {
       adminMap.addNode(n);
       mapNodeEditor.showNodeProperties(root);
