@@ -44,7 +44,7 @@
                 <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="739.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                      <AnchorPane fx:id="mapAnchor" prefHeight="200.0" prefWidth="200.0" GridPane.valignment="CENTER">
+                      <AnchorPane fx:id="mapAnchor" prefHeight="850" prefWidth="1250.0" GridPane.valignment="CENTER">
                       <children>
                             <ImageView fx:id="mapImageView" fitHeight="850.0" fitWidth="1250.0" onMouseClicked="#placeNodeClick" onMouseDragged="#dragMouse" onMouseMoved="#xyPrint" onMousePressed="#mouseClick" onMouseReleased="#releaseMouse" preserveRatio="true">
                                 <image>

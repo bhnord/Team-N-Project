@@ -21,6 +21,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -139,6 +140,9 @@ public class MapEditor extends MapController implements Initializable {
 
   public void mouseClick(MouseEvent mouseEvent) {
     super.mouseClick(mouseEvent);
+    if (mouseEvent.isControlDown()) {
+      mapDrawer.drawBoundingBox();
+    }
     if (mouseEvent.getButton() == MouseButton.SECONDARY) {
       //      System.out.println("start: " + mouseEvent.getX() + ", " + mouseEvent.getY());
       startNodePath = adminMap.get(mouseEvent.getX(), mouseEvent.getY(), mapDrawer.getCurrentMap());
@@ -157,7 +161,13 @@ public class MapEditor extends MapController implements Initializable {
       if (other != startNodePath) {
         //        placeLink(startNodePath.get_nodeID() + "_" + other.get_nodeID(), startNodePath,
         // other);
-        mapDrawer.endLine(other);
+        Group root = mapDrawer.endLine(other);
+        getAdminMap()
+            .makeEdge(
+                startNodePath.get_nodeID() + "_" + other.get_nodeID(),
+                startNodePath,
+                other,
+                (Line) root.getChildren().get(0));
       }
     }
   }
