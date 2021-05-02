@@ -52,7 +52,7 @@ public class CurrentRequestController extends MasterController implements Initia
           new Label(
               request.getType().getName()
                   + " request for "
-                  + db.getUserById(Integer.toString(request.getReceiverID())).getUsername());
+                  + db.getUserById(request.getReceiverID()).getUsername());
       lbl.setId(Integer.toString(request.getId()));
       requestMap.put(request.getId(), request);
       listView.getItems().add(lbl);
@@ -88,10 +88,8 @@ public class CurrentRequestController extends MasterController implements Initia
   private void updateTextFields(Request clickedRequest) {
     requestId.setText(Integer.toString(clickedRequest.getId()));
     requestType.setText(clickedRequest.getType().getName());
-    senderName.setText(
-        db.getUserById(Integer.toString(clickedRequest.getSenderID())).getUsername());
-    receiverName.setText(
-        db.getUserById(Integer.toString(clickedRequest.getReceiverID())).getUsername());
+    senderName.setText(db.getUserById(clickedRequest.getSenderID()).getUsername());
+    receiverName.setText(db.getUserById(clickedRequest.getReceiverID()).getUsername());
     roomName.setText(db.getNode(clickedRequest.getRoomNodeId()).get_longName());
     content.setText(clickedRequest.getContent());
     notes.setText(clickedRequest.getNotes());

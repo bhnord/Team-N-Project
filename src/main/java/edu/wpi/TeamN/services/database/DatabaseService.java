@@ -333,7 +333,7 @@ public class DatabaseService {
    * @param id the ID of desired user
    * @return a User of type User from the database with matching ID
    */
-  public User getUserById(String id) {
+  public User getUserById(int id) {
     return usersTable.getUserById(id);
   }
 
@@ -387,7 +387,8 @@ public class DatabaseService {
   }
 
   /**
-   * adds a covid form to the database
+   * adds a covid form to the database. if a form already exists for that user, deletes it, then
+   * adds inputted form.
    *
    * @param form a covid form of type CovidForm to add to the database
    * @return whether the operation was carried out successfully
@@ -397,12 +398,23 @@ public class DatabaseService {
   }
 
   /**
+   * updates covid form isOk section
+   *
+   * @param id the Id of the form you want to update
+   * @param isOk what you want to set isOk to
+   * @return whether the operation was carried out successfully
+   */
+  public boolean updateCovidForm(int id, boolean isOk) {
+    return covidTable.updateCovidForm(id, isOk);
+  }
+
+  /**
    * retrieves a single CovidForm with the specified UserId
    *
    * @param userId the ID of a valid user with a covid form
    * @return the covid form with matching userId, or null if invalid ID
    */
-  public CovidForm getCovidFormByUserId(String userId) {
+  public CovidForm getCovidFormByUserId(int userId) {
     return covidTable.getCovidFormByUserId(userId);
   }
 
@@ -503,7 +515,7 @@ public class DatabaseService {
       str =
           "CREATE TABLE CovidForms("
               + "id INT NOT NULL GENERATED ALWAYS AS IDENTITY, "
-              + "UserId INT REFERENCES Users (id) ON DELETE CASCADE, "
+              + "UserId INT UNIQUE REFERENCES Users (id) ON DELETE CASCADE, "
               + "AssignedEmployee INT REFERENCES Users (id) ON DELETE CASCADE, "
               + "Q1 BOOLEAN NOT NULL, "
               + "Q2 BOOLEAN NOT NULL, "
@@ -512,6 +524,7 @@ public class DatabaseService {
               + "Q5 BOOLEAN NOT NULL, "
               + "Q6 BOOLEAN NOT NULL, "
               + "ExtraInfo varchar(250), "
+              + "IsOk BOOLEAN, "
               + "PRIMARY KEY (id))";
       stmt.execute(str);
       return true;

@@ -79,7 +79,7 @@ public class UsersTable {
     }
   }
 
-  public User getUserById(String id) {
+  public User getUserById(int id) {
     String str = "SELECT * FROM USERS WHERE ID = " + id;
     try {
       ResultSet rs = stmt.executeQuery(str);
