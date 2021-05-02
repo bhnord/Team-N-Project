@@ -3,15 +3,15 @@
     -fx-font-size: 26;
     -fx-background-size: cover;
     -fx-background-radius: 25;
-} #ServiceRequestsAdmin{
+} #ServiceRequests{
       -fx-background-image: url('/images/ButtonSR.png');
   }  #CurrentRequest{
            -fx-background-image: url('/images/ButtonCR.png');
        }  #EmployeeEditor{
                      -fx-background-image: url('/images/ButtonH.png');
-                 } #map{
+                 } #mapEditor{
                        -fx-background-image: url('/images/ButtonM.png');
-                   } #pathfinder{
+                   } #mapPathfinder{
                          -fx-background-image: url('/images/ButtonM.png');
                      }
 

@@ -119,6 +119,7 @@ public abstract class MapController extends MasterController {
   @FXML protected JFXTextField nodeSize;
   @FXML protected JFXTextField pathSize;
   @FXML protected AnchorPane anchorPane;
+  @FXML private AnchorPane nodePane;
 
   //  @FXML private Label XLabel;
   //  @FXML private Label YLabel;

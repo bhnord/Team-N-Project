@@ -1,6 +1,5 @@
 package edu.wpi.TeamN.views;
 
-import com.jfoenix.controls.JFXButton;
 import edu.wpi.TeamN.services.database.DatabaseService;
 import java.io.IOException;
 import java.net.URL;
@@ -15,33 +14,24 @@ import javafx.scene.control.Tooltip;
 
 public class SideBarController extends MasterController implements Initializable {
 
-  /** Buttons and tooltips */
-  @FXML private JFXButton CovidForm;
-
-  @FXML private Tooltip ttCovidForm;
-  @FXML private JFXButton exit;
-  @FXML private Tooltip ttExit;
-  @FXML private JFXButton logOutButton;
+  // Tooltip for logout/back button that changes in Register Page
   @FXML private Tooltip ttLogOutButton;
 
-  public static Scene appScene;
-
-  /** Groups for implementation on different pages */
-  @FXML private Group groupExit;
-
+  // Groups for buttons
   @FXML private Group groupLogOut;
   @FXML private Group groupCovid;
   @FXML private Group groupBack;
   @FXML private Group groupHome;
+  @FXML private Group LogOutBack;
+  @FXML private Group RegisterBack;
 
   @Override
-  public void initialize(URL location, ResourceBundle resources) {
-    // log.debug(state.toString());
-    CovidForm.setTooltip(ttCovidForm);
-    logOutButton.setTooltip(ttLogOutButton);
-    exit.setTooltip(ttExit);
-  }
+  public void initialize(URL location, ResourceBundle resources) {}
 
+  /**
+   * ------------------------------- Setters for super MasterController
+   * -------------------------------
+   */
   @Override
   public void setAppPrimaryScene(Scene appPrimaryScene) {
     super.setAppPrimaryScene(appPrimaryScene);
@@ -57,74 +47,90 @@ public class SideBarController extends MasterController implements Initializable
     super.setDB(db);
   }
 
-  @FXML
-  public void logOut() throws IOException {
-    super.logOut(loader, appPrimaryScene);
-  }
+  /**
+   * --------------------------------------------------------------------------------------------------
+   */
 
-  @FXML
-  private void exit(ActionEvent actionEvent) throws IOException {
-    super.cancel(actionEvent);
-  }
+  /** ------------------------------- Button Functionality ------------------------------- */
 
+  // advance function for specific instances
   @Override
   public void advanceViews(ActionEvent actionEvent) throws IOException {
     super.advanceViews(actionEvent);
   }
 
+  // advances to the service request page (for back buutton group)
   @FXML
   public void advanceServiceRequest() throws IOException {
     super.advanceServiceRequest(loader, appPrimaryScene);
   }
 
+  // advances to the current users home page
   @FXML
   public void advanceHome() throws IOException {
     super.advanceHome(loader, appPrimaryScene);
   }
 
+  // logs out the current user
+  @FXML
+  public void logOut() throws IOException {
+    super.logOut(loader, appPrimaryScene);
+  }
+
+  // closes the application
+  @FXML
+  private void exit(ActionEvent actionEvent) throws IOException {
+    super.cancel(actionEvent);
+  }
+
+  /** ------------------------------------------------------------------------------------ */
+
+  /**
+   * ------------------------------- SideBar initialization on FXML load
+   * -------------------------------
+   */
+
+  /**
+   * setType
+   *
+   * @param type: a String to give what the type of page the sidebar needs to load on
+   */
   public void setType(String type) {
-    groupExit.setVisible(true);
-    groupExit.setManaged(true);
-    groupLogOut.setVisible(true);
-    groupLogOut.setManaged(true);
-    groupCovid.setVisible(true);
-    groupCovid.setManaged(true);
-    groupBack.setVisible(true);
-    groupBack.setManaged(true);
-    groupHome.setVisible(true);
-    groupHome.setManaged(true);
     if (type.equals("Home")) {
-      groupBack.setVisible(false);
-      groupBack.setManaged(false);
-      groupHome.setVisible(false);
-      groupHome.setManaged(false);
+      makeInvisible(groupBack);
+      makeInvisible(groupHome);
     } else if (type.equals("Map") || type.equals("Database")) {
-      groupBack.setVisible(false);
-      groupBack.setManaged(false);
+      makeInvisible(groupBack);
     } else if (type.equals("Service Request")) {
-      // groupCovid.setVisible(false);
-      // groupCovid.setManaged(false);
+      // all buttons
     } else if (type.equals("Covid Form")) {
-      groupCovid.setVisible(false);
-      groupCovid.setManaged(false);
+      makeInvisible(groupCovid);
     } else if (type.equals("Login")) {
-      groupLogOut.setVisible(false);
-      groupLogOut.setManaged(false);
-      groupCovid.setVisible(false);
-      groupCovid.setManaged(false);
-      groupBack.setVisible(false);
-      groupBack.setManaged(false);
-      groupHome.setVisible(false);
-      groupHome.setManaged(false);
+      makeInvisible(groupLogOut);
+      makeInvisible(groupCovid);
+      makeInvisible(groupBack);
+      makeInvisible(groupHome);
     } else if (type.equals("Register")) {
-      groupLogOut.setVisible(false);
-      groupLogOut.setManaged(false);
-      groupCovid.setVisible(false);
-      groupCovid.setManaged(false);
-      groupBack.setVisible(false);
-      groupBack.setManaged(false);
-      groupHome.setVisible(false);
-      groupHome.setManaged(false);
+      LogOutBack.setVisible(false);
+      RegisterBack.setVisible(true);
+      ttLogOutButton.setText("Back");
+      makeInvisible(groupCovid);
+      makeInvisible(groupBack);
+      makeInvisible(groupHome);
     }
   }
+
+  /**
+   * makeInvisible
+   *
+   * @param group: a group to be taken out and managed in the sidebar
+   */
+  public void makeInvisible(Group group) {
+    group.setVisible(false);
+    group.setManaged(false);
+  }
+
+  /**
+   * ---------------------------------------------------------------------------------------------------
+   */
 }
