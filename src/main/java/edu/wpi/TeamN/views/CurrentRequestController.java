@@ -162,7 +162,21 @@ public class CurrentRequestController extends MasterController implements Initia
     super.advanceHome(loader, appPrimaryScene);
   }
 
-  public void deleteItems(JFXListView<Label> listView) {
+  public void checkIn(ActionEvent actionEvent) {
+    if (listViewCovid.getItems().isEmpty() || selectedLabel == null) return;
+    int index = listViewCovid.getItems().indexOf(selectedLabel);
+    db.deleteRequest(Integer.valueOf(selectedLabel.getId()));
+    listViewCovid.getItems().remove(selectedLabel);
+    if (index != 0) index--;
+    if (!(listViewCovid.getItems().size() == 0)) {
+      selectedLabel = listViewCovid.getItems().get(index);
+    } else {
+      selectedLabel = null;
+      setEmptyFields();
+    }
+  }
+
+  public void markComplete(ActionEvent actionEvent) {
     if (listView.getItems().isEmpty() || selectedLabel == null) return;
     int index = listView.getItems().indexOf(selectedLabel);
     db.deleteRequest(Integer.valueOf(selectedLabel.getId()));
@@ -180,14 +194,6 @@ public class CurrentRequestController extends MasterController implements Initia
       selectedLabel = null;
       setEmptyFields();
     }
-  }
-
-  public void checkIn(ActionEvent actionEvent) {
-    deleteItems(listViewCovid);
-  }
-
-  public void markComplete(ActionEvent actionEvent) {
-    deleteItems(listView);
   }
 
 }
