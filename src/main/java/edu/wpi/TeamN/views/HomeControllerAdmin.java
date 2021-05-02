@@ -17,7 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import lombok.SneakyThrows;
@@ -31,14 +31,14 @@ public class HomeControllerAdmin extends MasterController implements Initializab
   @Inject HomeState state;
   @FXML private Label text;
 
-  @FXML private JFXButton mapPathfinder;
-  @FXML private JFXButton mapEditor;
-  @FXML private JFXButton ServiceRequests;
-  @FXML private JFXButton EmployeeEditor;
-  @FXML private JFXButton CurrentRequest;
+  @FXML private JFXButton mapPathfinder, BackMapPathfinder;
+  @FXML private JFXButton mapEditor, BackMapEditor;
+  @FXML private JFXButton ServiceRequests, BackServiceRequests;
+  @FXML private JFXButton EmployeeEditor, BackEmployeeEditor;
+  @FXML private JFXButton CurrentRequest, BackCurrentRequest;
 
-  @FXML private VBox vBox1;
-  @FXML private VBox vBox2;
+  @FXML private GridPane gridL;
+  @FXML private GridPane gridR;
 
   /** For sidebar nested FXML implementation */
   @FXML private AnchorPane anchorPane;
@@ -61,26 +61,36 @@ public class HomeControllerAdmin extends MasterController implements Initializab
   public void initialize(URL location, ResourceBundle resources) {
     log.debug(state.toString());
     super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Home");
+
     switch (db.getCurrentUser().getType()) {
         // different login cases
       case ADMINISTRATOR:
-        mapPathfinder.setPrefHeight(vBox1.getHeight() * 10);
-        // mapEditor.setPrefHeight(vBox1.getMaxHeight() / 2);
         break;
       case EMPLOYEE:
         EmployeeEditor.setVisible(false);
         EmployeeEditor.setManaged(false);
+        BackEmployeeEditor.setVisible(false);
+        BackEmployeeEditor.setManaged(false);
         mapEditor.setManaged(false);
         mapEditor.setVisible(false);
+        BackMapEditor.setManaged(false);
+        BackMapEditor.setVisible(false);
         break;
       case PATIENT:
       case GUEST:
         EmployeeEditor.setVisible(false);
         EmployeeEditor.setManaged(false);
+        BackEmployeeEditor.setVisible(false);
+        BackEmployeeEditor.setManaged(false);
         CurrentRequest.setVisible(false);
         CurrentRequest.setManaged(false);
+        BackCurrentRequest.setVisible(false);
+        BackCurrentRequest.setManaged(false);
         mapEditor.setManaged(false);
         mapEditor.setVisible(false);
+        BackMapEditor.setManaged(false);
+        BackMapEditor.setVisible(false);
+
         break;
     }
   }
