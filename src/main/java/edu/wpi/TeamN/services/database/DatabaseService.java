@@ -493,8 +493,13 @@ public class DatabaseService {
               + "Username varchar(40) NOT NULL UNIQUE, "
               + "Password varchar(40) NOT NULL,"
               + "UserType varchar(15),"
+              + "Occupation varchar (35), "
               + "Preferences varchar(300),"
               + "CONSTRAINT chk_UserType CHECK (UserType IN ('Patient', 'Employee', 'Administrator')),"
+              + "CONSTRAINT chk_Occupation CHECK (Occupation IN "
+              + "('AUDIO_VISUAL', 'COMPUTER_SERVICE', 'EXTERNAL_PATIENT_TRANSPORTATION', 'FLORAL', 'FOOD_DELIVERY', 'GIFT_DELIVERY', 'INTERNAL_PATIENT_TRANSPORTATION', 'LANGUAGE_INTERPRETER', "
+              + "'LAUNDRY', 'MAINTENANCE', 'MEDICINE_DELIVERY', 'RELIGIOUS', "
+              + "'SANITATION', 'SECURITY')),"
               + "PRIMARY KEY (id))";
       stmt.execute(str);
       str =
