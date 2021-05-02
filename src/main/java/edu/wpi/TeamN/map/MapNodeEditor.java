@@ -91,12 +91,12 @@ public class MapNodeEditor {
     }
     double[] d = applyReg();
     if (Math.abs(d[0]) > 1)
-      straightenSelectionVirt();
+      straightenSelectionVert();
     else
       straightenSelectionHoriz();
   }
 
-  public void straightenSelectionVirt(){
+  public void straightenSelectionVert(){
     double averageX = 0;
     for (Node n : selection){
       averageX += n.get_x();
