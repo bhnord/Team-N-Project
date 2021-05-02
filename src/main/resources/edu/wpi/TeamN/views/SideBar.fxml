@@ -58,11 +58,15 @@
                   <Group fx:id="groupLogOut">
                      <children>
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="65.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
-                        <ImageView fx:id="LogOutBack" fitHeight="50.0" fitWidth="59.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" translateX="5.0">
-                           <image>
-                              <Image url="@/images/LogOut.png" />
-                           </image>
-                        </ImageView>
+                        <Group fx:id="LogOutBack" layoutX="5.0" layoutY="7.0">
+                           <children>
+                              <ImageView fitHeight="50.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true" translateX="5.0">
+                                 <image>
+                                    <Image url="@/images/LogOut.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Group>
                         <Group fx:id="RegisterBack" layoutX="9.0" layoutY="13.0" visible="false">
                            <children>
                               <Rectangle arcHeight="10.0" arcWidth="10.0" fill="WHITE" height="12.0" layoutX="9.981954574584961" layoutY="13.311014175415039" stroke="TRANSPARENT" strokeType="INSIDE" width="35.0" />
