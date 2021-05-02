@@ -190,12 +190,14 @@ public class PathFinderController extends MapController implements Initializable
   }
 
   public void newColorPath(ActionEvent actionEvent) {
+    JFXColorPicker a = (JFXColorPicker) actionEvent.getSource();
+    updateUserColors(a.getId(), a.getValue().toString());
     for (int i = 0; path.size() - 1 > i; i++) {
       System.out.println(getNodeSet());
       ArrayList<Node.Link> pathLink =
           this.pathfind(getNodeSet().get(path.get(i)), getNodeSet().get(path.get(i + 1)));
       nodePath.addAll(pathLink);
-      mapDrawer.colorPath(pathColor.getValue(), pathLink);
+      mapDrawer.colorPath(a.getValue(), pathLink);
       PathFinder p = new PathFinder();
       ArrayList<String> s = p.getDescription(pathLink);
       for (String l : s) {
@@ -245,7 +247,7 @@ public class PathFinderController extends MapController implements Initializable
   }
 
   public void newColorNodeaf(ActionEvent actionEvent) {
-    JFXColorPicker a = nodeColor;
+    JFXColorPicker a = (JFXColorPicker) actionEvent.getSource();
     updateUserColors(a.getId(), a.getValue().toString());
     for (int i = 1; mapAnchor.getChildren().size() - 1 > i; i++) {
       if (getNodeSet().containsKey(mapAnchor.getChildren().get(i).getId())) {
@@ -299,7 +301,7 @@ public class PathFinderController extends MapController implements Initializable
     } else if (((JFXTextField) actionEvent.getSource()).getId().equals("pathSize")
         && nodeValue <= 5
         && nodeValue >= 3) {
-      userPrefs.setNodeSize(edgeValue);
+      userPrefs.setEdgeWidth(edgeValue);
       for (int i = 1; mapAnchor.getChildren().size() - 1 > i; i++) {
         if (this.getEdgeSet().containsKey(mapAnchor.getChildren().get(i).getId())) {
           ((Line) ((Group) mapAnchor.getChildren().get(i)).getChildren().get(0))
