@@ -1,6 +1,21 @@
-.mylistview .scroll-bar:vertical,
-.mylistview .scroll-bar:horizontal{
-    -fx-border-color: derive(#748cdc,30%);
+.jfx-list-view .scroll-bar:vertical .thumb,
+.jfx-list-view .scroll-bar:horizontal .thumb{
+    -fx-background-color: derive(#363d54,30%);
 }
 
+.jfx-list-view .scroll-bar:vertical .track,
+.jfx-list-view .scroll-bar:horizontal .track{
+    -fx-background-color: derive(#748cdc,80%);
+}
+
+.jfx-list-view .increment-button ,.jfx-list-view .decrement-button {
+    -fx-background-color: derive(#748cdc, 70%);
+}
+
+.jfx-list-view .scroll-bar:horizontal:hover .thumb ,
+.jfx-list-view .scroll-bar:horizontal:pressed .thumb ,
+.jfx-list-view .scroll-bar:vertical:hover .thumb,
+.jfx-list-view .scroll-bar:vertical:pressed .thumb {
+    -fx-background-color: derive(#363d54, 10%);
+}
 
