@@ -1,0 +1,6 @@
+.mylistview .scroll-bar:vertical,
+.mylistview .scroll-bar:horizontal{
+    -fx-border-color: derive(#748cdc,30%);
+}
+
+
