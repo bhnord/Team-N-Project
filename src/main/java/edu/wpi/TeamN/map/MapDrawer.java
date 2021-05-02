@@ -189,7 +189,7 @@ public class MapDrawer {
   }
 
   private double invOffsetY(double input) {
-    return input + (zoomProperty.get() - 1) * 700;
+    return input + maxImgHeight * (zoomProperty.get() - 1) / 2;
   }
 
   public double transformX(double input) {
@@ -221,6 +221,8 @@ public class MapDrawer {
   public void setUpZoom(ImageView imageView, AnchorPane mapContainer) {
     maxImgWidth = imageView.getFitWidth();
     maxImgHeight = imageView.getFitHeight();
+    //    Rectangle2D viewportRect2 = new Rectangle2D(0, 0, maxImgWidth, maxImgHeight);
+    //    imageView.setViewport(viewportRect2);
     zoomProperty.addListener(
         new InvalidationListener() {
           @Override
