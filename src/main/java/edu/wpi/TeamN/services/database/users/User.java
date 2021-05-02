@@ -1,16 +1,17 @@
 package edu.wpi.TeamN.services.database.users;
 
 public abstract class User {
-  private String id, username, firstname, lastname;
+  int id;
+  private String username, firstname, lastname;
   private UserPrefs userPrefs;
 
-  public User(String id, String username, UserPrefs userPrefs) {
+  public User(int id, String username, UserPrefs userPrefs) {
     this.id = id;
     this.username = username;
     this.userPrefs = userPrefs;
   }
 
-  public String getId() {
+  public int getId() {
     return id;
   }
 

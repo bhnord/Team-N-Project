@@ -59,7 +59,7 @@ public class MapDrawer {
             node2.get_x() * mapController.getDownScale(),
             node2.get_y() * mapController.getDownScale());
     simpleNode.setTranslateZ(5);
-    simpleNode.setStrokeWidth(3.5);
+    simpleNode.setStrokeWidth(mapController.getUserPrefs().getEdgeWidth());
     Group root = new Group(simpleNode);
     root.setId(id);
     return root;
@@ -73,7 +73,7 @@ public class MapDrawer {
             node1.get_x() * mapController.getDownScale(),
             node1.get_y() * mapController.getDownScale());
     simpleNode.setTranslateZ(5);
-    simpleNode.setStrokeWidth(3.5);
+    simpleNode.setStrokeWidth(mapController.getUserPrefs().getEdgeWidth());
     Group root = new Group(simpleNode);
     root.setId(node1.get_nodeID() + "_");
     this.draggedLineGroup = root;
@@ -93,7 +93,7 @@ public class MapDrawer {
   }
 
   public Group drawNode(String id, double x, double y, Color color) {
-    Circle simpleNode = new Circle(x, y, mapController.getNodeSize());
+    Circle simpleNode = new Circle(x, y, mapController.getUserPrefs().getNodeSize());
     simpleNode.setTranslateZ(10);
     simpleNode.setFill(color);
     simpleNode.setId(id);
