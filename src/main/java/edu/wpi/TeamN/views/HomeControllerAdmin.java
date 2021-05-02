@@ -14,7 +14,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import lombok.extern.slf4j.Slf4j;
 
@@ -24,15 +23,15 @@ public class HomeControllerAdmin extends MasterController implements Initializab
   @Inject DatabaseService db;
   @Inject FXMLLoader loader;
   @Inject HomeState state;
-  @FXML private Label text;
 
+  // all buttons for FXML page that can be hidden, hide in pairs
   @FXML private JFXButton mapPathfinder, BackMapPathfinder;
   @FXML private JFXButton mapEditor, BackMapEditor;
   @FXML private JFXButton ServiceRequests, BackServiceRequests;
   @FXML private JFXButton EmployeeEditor, BackEmployeeEditor;
   @FXML private JFXButton CurrentRequest, BackCurrentRequest;
 
-  /** For sidebar nested FXML implementation */
+  // For sidebar nested FXML implementation
   @FXML private AnchorPane anchorPane;
 
   private Scene appPrimaryScene;
@@ -57,46 +56,74 @@ public class HomeControllerAdmin extends MasterController implements Initializab
       case ADMINISTRATOR:
         break;
       case EMPLOYEE:
-        EmployeeEditor.setVisible(false);
-        EmployeeEditor.setManaged(false);
-        BackEmployeeEditor.setVisible(false);
-        BackEmployeeEditor.setManaged(false);
-        mapEditor.setManaged(false);
-        mapEditor.setVisible(false);
-        BackMapEditor.setManaged(false);
-        BackMapEditor.setVisible(false);
+        makeInvisible(EmployeeEditor);
+        makeInvisible(BackEmployeeEditor);
+        makeInvisible(mapEditor);
+        makeInvisible(BackMapEditor);
         break;
       case PATIENT:
       case GUEST:
-        EmployeeEditor.setVisible(false);
-        EmployeeEditor.setManaged(false);
-        BackEmployeeEditor.setVisible(false);
-        BackEmployeeEditor.setManaged(false);
-        CurrentRequest.setVisible(false);
-        CurrentRequest.setManaged(false);
-        BackCurrentRequest.setVisible(false);
-        BackCurrentRequest.setManaged(false);
-        mapEditor.setManaged(false);
-        mapEditor.setVisible(false);
-        BackMapEditor.setManaged(false);
-        BackMapEditor.setVisible(false);
+        makeInvisible(EmployeeEditor);
+        makeInvisible(BackEmployeeEditor);
+        makeInvisible(CurrentRequest);
+        makeInvisible(BackCurrentRequest);
+        makeInvisible(mapEditor);
+        makeInvisible(BackMapEditor);
         break;
     }
   }
+  /**
+   * makeInvisible
+   *
+   * @param button: a group to be taken out and managed in the sidebar
+   */
+  public void makeInvisible(JFXButton button) {
+    button.setVisible(false);
+    button.setManaged(false);
+  }
 
+  /**
+   * advanceViews Loads a new page *not for service requests*
+   *
+   * @param actionEvent Button press
+   * @throws IOException
+   */
   public void advanceViews(ActionEvent actionEvent) throws IOException {
     String file = ((Button) actionEvent.getSource()).getId() + ".fxml";
     Parent root = loader.load(getClass().getResourceAsStream(file));
     appPrimaryScene.setRoot(root);
   }
 
+  /**
+   * map advances to map FXML
+   *
+   * @param actionEvent Button Press
+   * @throws IOException
+   */
   public void map(ActionEvent actionEvent) throws IOException {
     Parent root = loader.load(getClass().getResourceAsStream("MapAdmin2.fxml"));
     appPrimaryScene.setRoot(root);
   }
 
+  /**
+   * pathFind advances to pathFinder FXML
+   *
+   * @param actionEvent Button Press
+   * @throws IOException
+   */
   public void pathFind(ActionEvent actionEvent) throws IOException {
     Parent root = loader.load(getClass().getResourceAsStream("Pathfinder.fxml"));
+    appPrimaryScene.setRoot(root);
+  }
+
+  /**
+   * findUs advances to findUs FXML
+   *
+   * @param actionEvent Button Press
+   * @throws IOException
+   */
+  public void findUs(ActionEvent actionEvent) throws IOException {
+    Parent root = loader.load(getClass().getResourceAsStream("FindUs.fxml"));
     appPrimaryScene.setRoot(root);
   }
 }
