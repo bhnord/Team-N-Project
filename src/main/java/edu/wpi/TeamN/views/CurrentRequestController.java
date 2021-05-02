@@ -3,6 +3,7 @@ package edu.wpi.TeamN.views;
 import com.google.inject.Inject;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
+import edu.wpi.TeamN.services.database.CovidForm;
 import edu.wpi.TeamN.services.database.DatabaseService;
 import edu.wpi.TeamN.services.database.requests.Request;
 import java.awt.*;
@@ -36,6 +37,14 @@ public class CurrentRequestController extends MasterController implements Initia
   @FXML private Label roomName;
   @FXML private AnchorPane anchorPane;
   private Label selectedLabel;
+  @FXML private JFXListView<Label> listViewCovid;
+  @FXML private Label symptoms;
+  @FXML private Label tested;
+  @FXML private Label treatment;
+  @FXML private Label outsideTravel;
+  @FXML private Label cruiseShip;
+  @FXML private Label emergency;
+  @FXML private JFXButton checkIn;
   private HashMap<Integer, Request> requestMap = new HashMap<>();
 
   @Inject
@@ -43,35 +52,52 @@ public class CurrentRequestController extends MasterController implements Initia
     this.appPrimaryScene = appPrimaryScene;
   }
 
+  public void initializeList(JFXListView<Label> listView) {
+    listView.setOnMouseClicked(
+            event -> {
+              Label selected = listView.getSelectionModel().getSelectedItem();
+              if (event.getButton() == MouseButton.PRIMARY && selected != null) {
+                String id = selected.getId();
+                Request clickedRequest = requestMap.get(Integer.valueOf(id));
+                selectedLabel = selected;
+                if (!(clickedRequest == null)) {
+                  updateTextFields(clickedRequest);
+                } else {
+                  setEmptyFields();
+                }
+              }
+            });
+  }
+
   @Override
   public void initialize(URL url, ResourceBundle rb) {
 
     listView.getItems().clear();
+    listViewCovid.getItems().clear();
+    HashSet<CovidForm> formSet = new HashSet<>();
     HashSet<Request> set = db.getAllRequests();
-    for (Request request : set) {
+    for (CovidForm covidForm : formSet) {
       Label lbl =
           new Label(
-              request.getType().getName()
-                  + " request for "
-                  + db.getUserById(request.getReceiverID()).getUsername());
+                  "Patient: "
+                  + db.getUserById(covidForm.getUserId()).getLastname());
+      lbl.setId(Integer.toString(covidForm.getId()));
+      listView.getItems().add(lbl);
+    }
+
+    for (Request request : set) {
+      Label lbl =
+              new Label(
+                      request.getType().getName()
+                              + " request for "
+                              + db.getUserById(request.getReceiverID()).getUsername());
       lbl.setId(Integer.toString(request.getId()));
       requestMap.put(request.getId(), request);
       listView.getItems().add(lbl);
     }
-    listView.setOnMouseClicked(
-        event -> {
-          Label selected = listView.getSelectionModel().getSelectedItem();
-          if (event.getButton() == MouseButton.PRIMARY && selected != null) {
-            String id = selected.getId();
-            Request clickedRequest = requestMap.get(Integer.valueOf(id));
-            selectedLabel = selected;
-            if (!(clickedRequest == null)) {
-              updateTextFields(clickedRequest);
-            } else {
-              setEmptyFields();
-            }
-          }
-        });
+
+    initializeList(listView);
+    initializeList(listViewCovid);
 
     super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Database");
   }
@@ -84,6 +110,15 @@ public class CurrentRequestController extends MasterController implements Initia
     content.setText("");
     notes.setText("");
     roomName.setText("");
+
+    symptoms.setText("");
+    tested.setText("");
+    treatment.setText("");
+    outsideTravel.setText("");
+    cruiseShip.setText("");
+    emergency.setText("");
+
+
   }
 
   private void updateTextFields(Request clickedRequest) {
@@ -94,6 +129,15 @@ public class CurrentRequestController extends MasterController implements Initia
     roomName.setText(db.getNode(clickedRequest.getRoomNodeId()).get_longName());
     content.setText(clickedRequest.getContent());
     notes.setText(clickedRequest.getNotes());
+  }
+
+  private void updateTextFieldsCovid(CovidForm covidForm) {
+    symptoms.setText(covidForm.getAnswers());
+    tested.setText(covidForm.getAnswers());
+    treatment.setText(covidForm.getAnswers());
+    outsideTravel.setText(covidForm.getAnswers());
+    cruiseShip.setText(covidForm.getAnswers());
+    emergency.setText(covidForm.getAnswers());
   }
 
   @FXML
@@ -118,7 +162,7 @@ public class CurrentRequestController extends MasterController implements Initia
     super.advanceHome(loader, appPrimaryScene);
   }
 
-  public void markComplete(ActionEvent actionEvent) {
+  public void deleteItems(JFXListView<Label> listView) {
     if (listView.getItems().isEmpty() || selectedLabel == null) return;
     int index = listView.getItems().indexOf(selectedLabel);
     db.deleteRequest(Integer.valueOf(selectedLabel.getId()));
@@ -137,4 +181,13 @@ public class CurrentRequestController extends MasterController implements Initia
       setEmptyFields();
     }
   }
+
+  public void checkIn(ActionEvent actionEvent) {
+    deleteItems(listViewCovid);
+  }
+
+  public void markComplete(ActionEvent actionEvent) {
+    deleteItems(listView);
+  }
+
 }
