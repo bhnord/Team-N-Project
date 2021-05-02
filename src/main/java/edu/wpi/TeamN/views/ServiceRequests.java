@@ -1,8 +1,6 @@
 package edu.wpi.TeamN.views;
 
 import com.google.inject.Inject;
-import com.jfoenix.controls.JFXButton;
-import edu.wpi.TeamN.services.database.DatabaseService;
 import edu.wpi.TeamN.state.HomeState;
 import java.io.IOException;
 import java.net.URL;
@@ -14,49 +12,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Tooltip;
 import javafx.scene.layout.AnchorPane;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class ServiceRequests extends MasterController implements Initializable {
 
-  @Inject DatabaseService db;
   @Inject FXMLLoader loader;
   @Inject HomeState state;
-  @FXML private Label text;
-
-  // ToolTips for Iteration 2 names on service request buttons.
-  @FXML private JFXButton AudioVisualRequest;
-  @FXML private Tooltip ttAnanya;
-  @FXML private JFXButton GiftDeliveryRequest;
-  @FXML private Tooltip ttAnanya2;
-  @FXML private JFXButton SecurityServicesRequest;
-  @FXML private Tooltip ttRomish;
-  @FXML private JFXButton FacilityMaintenanceRequest;
-  @FXML private Tooltip ttJohn;
-  @FXML private JFXButton ComputerServiceRequest;
-  @FXML private Tooltip ttAnanya3;
-  @FXML private JFXButton InternalPatientRequest;
-  @FXML private Tooltip ttJacob;
-  @FXML private JFXButton ExternalPatientRequest;
-  @FXML private Tooltip ttMichael;
-  @FXML private JFXButton MedicineDeliveryRequest;
-  @FXML private Tooltip ttFinn;
-  @FXML private JFXButton FloralRequest;
-  @FXML private Tooltip ttAnanya4;
-  @FXML private JFXButton LaundryRequest;
-  @FXML private Tooltip ttAnanya5;
-  @FXML private JFXButton SanitationServicesRequest;
-  @FXML private Tooltip ttYongxiang;
-  @FXML private JFXButton LanguageInterpretersRequest;
-  @FXML private Tooltip ttBen;
-  @FXML private JFXButton FoodDeliveryRequest;
-  @FXML private Tooltip ttAlex;
-  @FXML private JFXButton ReligiousRequest;
-  @FXML private Tooltip ttPayton;
-
   @FXML private AnchorPane anchorPane;
   private Scene appPrimaryScene;
 
@@ -71,50 +34,29 @@ public class ServiceRequests extends MasterController implements Initializable {
     this.appPrimaryScene = appPrimaryScene;
   }
 
-  public void advance(ActionEvent actionEvent) throws IOException {
-    String file = "Requests/" + ((Button) actionEvent.getSource()).getId() + ".fxml";
-    Parent root = loader.load(getClass().getResourceAsStream(file));
-    appPrimaryScene.setRoot(root);
-  }
-
-  public void advanceViews(ActionEvent actionEvent) throws IOException {
-    String file = ((Button) actionEvent.getSource()).getId() + ".fxml";
-    Parent root = loader.load(getClass().getResourceAsStream(file));
-    appPrimaryScene.setRoot(root);
-  }
-
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Database");
     log.debug(state.toString());
-    AudioVisualRequest.setTooltip(ttAnanya);
-    GiftDeliveryRequest.setTooltip(ttAnanya2);
-    SecurityServicesRequest.setTooltip(ttRomish);
-    FacilityMaintenanceRequest.setTooltip(ttJohn);
-    ExternalPatientRequest.setTooltip(ttMichael);
-    ComputerServiceRequest.setTooltip(ttAnanya3);
-    InternalPatientRequest.setTooltip(ttJacob);
-    MedicineDeliveryRequest.setTooltip(ttFinn);
-    FloralRequest.setTooltip(ttAnanya4);
-    LaundryRequest.setTooltip(ttAnanya5);
-    SanitationServicesRequest.setTooltip(ttYongxiang);
-    LanguageInterpretersRequest.setTooltip(ttBen);
-    FoodDeliveryRequest.setTooltip(ttAlex);
-    ReligiousRequest.setTooltip(ttPayton);
+    switch (db.getCurrentUser().getType()) {
+        // different login cases to be implemented later
+      case ADMINISTRATOR:
+      case EMPLOYEE:
+      case PATIENT:
+      case GUEST:
+        break;
+    }
   }
 
-  @FXML
-  public void advanceHome() throws IOException {
-    super.advanceHome(loader, appPrimaryScene);
-  }
-
-  @FXML
-  public void logOut() throws IOException {
-    super.logOut(loader, appPrimaryScene);
-  }
-
-  @FXML
-  private void exit(ActionEvent actionEvent) throws IOException {
-    super.cancel(actionEvent);
+  /**
+   * advance Takes from Service Request Page to separate service requests
+   *
+   * @param actionEvent Button click
+   * @throws IOException
+   */
+  public void advance(ActionEvent actionEvent) throws IOException {
+    String file = "Requests/" + ((Button) actionEvent.getSource()).getId() + ".fxml";
+    Parent root = loader.load(getClass().getResourceAsStream(file));
+    appPrimaryScene.setRoot(root);
   }
 }
