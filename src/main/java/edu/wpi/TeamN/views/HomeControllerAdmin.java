@@ -31,7 +31,7 @@ public class HomeControllerAdmin extends MasterController implements Initializab
   @FXML private JFXButton EmployeeEditor, BackEmployeeEditor;
   @FXML private JFXButton CurrentRequest, BackCurrentRequest;
 
-  //For sidebar nested FXML implementation
+  // For sidebar nested FXML implementation
   @FXML private AnchorPane anchorPane;
 
   private Scene appPrimaryScene;
@@ -82,10 +82,8 @@ public class HomeControllerAdmin extends MasterController implements Initializab
     button.setManaged(false);
   }
 
-
   /**
-   * advanceViews
-   * Loads a new page *not for service requests*
+   * advanceViews Loads a new page *not for service requests*
    *
    * @param actionEvent Button press
    * @throws IOException
@@ -97,8 +95,7 @@ public class HomeControllerAdmin extends MasterController implements Initializab
   }
 
   /**
-   * map
-   * advances to map FXML
+   * map advances to map FXML
    *
    * @param actionEvent Button Press
    * @throws IOException
@@ -109,14 +106,24 @@ public class HomeControllerAdmin extends MasterController implements Initializab
   }
 
   /**
-   * pathFind
-   * advances to pathFinder FXML
+   * pathFind advances to pathFinder FXML
    *
    * @param actionEvent Button Press
    * @throws IOException
    */
   public void pathFind(ActionEvent actionEvent) throws IOException {
     Parent root = loader.load(getClass().getResourceAsStream("Pathfinder.fxml"));
+    appPrimaryScene.setRoot(root);
+  }
+
+  /**
+   * findUs advances to findUs FXML
+   *
+   * @param actionEvent Button Press
+   * @throws IOException
+   */
+  public void findUs(ActionEvent actionEvent) throws IOException {
+    Parent root = loader.load(getClass().getResourceAsStream("FindUs.fxml"));
     appPrimaryScene.setRoot(root);
   }
 }
