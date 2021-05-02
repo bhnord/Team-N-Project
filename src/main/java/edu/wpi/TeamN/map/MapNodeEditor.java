@@ -53,12 +53,10 @@ public class MapNodeEditor {
     }
   }
 
-  public void straightenSelection() {
+  private boolean straightenPrelim(){
     if (selection.size() <= 1) {
-      return;
+      return false;
     }
-    ArrayList<Double> xs = new ArrayList<>();
-    ArrayList<Double> ys = new ArrayList<>();
 
     double lastx = selection.get(0).get_x();
     double lasty = selection.get(0).get_y();
@@ -75,21 +73,57 @@ public class MapNodeEditor {
     }
 
     if (xf || yf) {
+      return false;
+    }
+    return true;
+  }
+
+  private double[] applyReg(){
+    ArrayList<Double> xs = new ArrayList<>();
+    ArrayList<Double> ys = new ArrayList<>();
+    selection.forEach(n -> {xs.add(n.get_x());ys.add(n.get_y());});
+    return regression(xs, ys);
+  }
+
+  public void straightenSelectionSnap(){
+    if (!straightenPrelim()){
       return;
     }
+    double[] d = applyReg();
+    if (Math.abs(d[0]) > 1)
+      straightenSelectionVirt();
+    else
+      straightenSelectionHoriz();
+  }
 
-    for (Node n : selection) {
-      xs.add(n.get_x());
-      ys.add(n.get_y());
+  public void straightenSelectionVirt(){
+    double averageX = 0;
+    for (Node n : selection){
+      averageX += n.get_x();
     }
+    averageX /= selection.size();
+    for (Node n : selection) {
+      n.get_shape().setCenterX(averageX);
+    }
+  }
 
-    double[] d = regression(xs, ys);
-    System.out.println(d[0] + ", " + d[1]);
-
+  public void straightenSelectionHoriz(){
+    double averageY = 0;
+    for (Node n : selection){
+      averageY += n.get_y();
+    }
+    averageY /= selection.size();
+    for (Node n : selection) {
+      n.get_shape().setCenterY(averageY);
+    }
+  }
+  public void straightenSelection() {
+    if (!straightenPrelim()){
+      return;
+    }
+    double[] d = applyReg();
     for (Node n : selection) {
       double[] p = closesPoint(d[0], d[1], n.get_x(), n.get_y());
-      System.out.println(p[0] + ", " + p[1]);
-
       n.get_shape().setCenterX(p[0] * mapEditor.getDownScale());
       n.get_shape().setCenterY(p[1] * mapEditor.getDownScale());
     }
