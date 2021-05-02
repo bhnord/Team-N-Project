@@ -29,14 +29,10 @@
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="1366.0" minWidth="10.0" prefWidth="887.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints maxHeight="652.0" minHeight="0.0" prefHeight="56.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="768.0" minHeight="0.0" prefHeight="512.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="768.0" minHeight="10.0" prefHeight="140.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="768.0" minHeight="10.0" prefHeight="72.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="768.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <AnchorPane prefHeight="744.0" prefWidth="973.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <AnchorPane prefHeight="744.0" prefWidth="973.0" GridPane.columnIndex="1">
                <children>
                   <Label fx:id="text1" layoutX="110.0" layoutY="21.0" prefHeight="124.0" prefWidth="523.0" stylesheets="@/Fonts/Roboto-Black.css" text="CURRENT REQUESTS" textAlignment="CENTER">
                      <font>
@@ -88,7 +84,7 @@
                   </JFXTabPane>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="anchorPane" prefHeight="818.0" prefWidth="77.0" GridPane.rowIndex="2" />
+            <AnchorPane fx:id="anchorPane" prefHeight="818.0" prefWidth="77.0" GridPane.valignment="BASELINE" />
          </children>
       </GridPane>
    </children>
