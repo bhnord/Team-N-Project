@@ -75,6 +75,11 @@ public class MasterController implements Initializable {
     ChildAppPrimaryScene.setRoot(root);
   }
 
+  public void advanceMap(FXMLLoader childLoader, Scene ChildAppPrimaryScene) throws IOException {
+    Parent root = childLoader.load(getClass().getResourceAsStream("Pathfinder.fxml"));
+    ChildAppPrimaryScene.setRoot(root);
+  }
+
   @FXML
   public void register(FXMLLoader childLoader, Scene ChildAppPrimaryScene) throws IOException {
     Parent root = childLoader.load(getClass().getResourceAsStream("RegisterNewUser.fxml"));

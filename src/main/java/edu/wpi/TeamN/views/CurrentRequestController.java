@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import edu.wpi.TeamN.services.database.DatabaseService;
 import edu.wpi.TeamN.services.database.requests.Request;
+import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
@@ -99,6 +100,9 @@ public class CurrentRequestController extends MasterController implements Initia
   public void logOut() throws IOException {
     super.logOut(loader, appPrimaryScene);
   }
+
+  @FXML
+  public void inProgress() throws IOException {}
 
   @FXML
   private void exit(ActionEvent actionEvent) throws IOException {

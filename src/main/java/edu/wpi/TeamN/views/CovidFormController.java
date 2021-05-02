@@ -81,6 +81,10 @@ public class CovidFormController extends MasterController implements Initializab
     super.advanceHome(loader, appPrimaryScene);
   }
 
+  public void advanceMap() throws IOException {
+    super.advanceMap(loader, appPrimaryScene);
+  }
+
   @FXML
   public void back() throws IOException {
     super.advanceHome(loader, appPrimaryScene);
@@ -88,8 +92,6 @@ public class CovidFormController extends MasterController implements Initializab
 
   @FXML
   public void submit() throws IOException {
-    /* Parent root = childLoader.load(getClass().getResourceAsStream("ConfirmationPageCovid.fxml"));
-    ChildAppPrimaryScene.setRoot(root);*/
     if (comboBox.getValue() == null
         || comboBox2.getValue() == null
         || comboBox3.getValue() == null
@@ -108,13 +110,18 @@ public class CovidFormController extends MasterController implements Initializab
 
       CovidForm form = new CovidForm(db.getCurrentUser().getId(), ans, "");
       if (comboBox.getValue() == "yes"
-          || comboBox2.getValue() == "yes"
           || comboBox3.getValue() == "yes"
           || comboBox4.getValue() == "yes"
           || comboBox5.getValue() == "yes"
           || comboBox6.getValue() == "yes") {
         dialogFactory.creatDialogOkayWithAction(
-            "Attention", "Please enter through emergency exit\n", event -> advanceHomePopup());
+            "Attention", "Please enter through emergency exit\n", event -> {
+                  try {
+                    advanceMap();
+                  } catch (IOException e) {
+                    e.printStackTrace();
+                  }
+                });
         db.addCovidForm(form);
       } else {
         dialogFactory.creatDialogConfirmCancel(
@@ -140,19 +147,5 @@ public class CovidFormController extends MasterController implements Initializab
             e.printStackTrace();
           }
         });
-  }
-
-  @FXML
-  private void validateButton() {
-    /* if (comboBox.getValue() == null
-        || comboBox2.getValue() == null
-        || comboBox3.getValue() == null
-        || comboBox4.getValue() == null
-        || comboBox5.getValue() == null
-        || comboBox6.getValue() == null) {
-      submit.setDisable(true);
-    } else {
-      submit.setDisable(false);
-    }*/
   }
 }
