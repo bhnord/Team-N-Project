@@ -234,7 +234,7 @@ public abstract class MapController extends MasterController {
             n.get_y() * getDownScale(),
             nodeColor.getValue());
     mapAnchor.getChildren().add(root);
-    n.set_shape((Shape) root.getChildren().get(0));
+    n.set_shape((Circle) root.getChildren().get(0));
     root.setCursor(Cursor.CROSSHAIR);
     return root;
   }

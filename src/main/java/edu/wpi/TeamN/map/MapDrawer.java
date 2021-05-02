@@ -48,6 +48,9 @@ public class MapDrawer {
   private Group draggedLineGroup;
   private Line draggedLine;
 
+  private Group boundingBoxGroup;
+  private Rectangle boudningBox;
+
   public MapDrawer(MapController mapControllerI) {
     this.mapController = mapControllerI;
     currentMap = maps[0];
@@ -67,11 +70,24 @@ public class MapDrawer {
     return root;
   }
 
-  public Group drawBoundingBox() {
-    Rectangle rectangle = new Rectangle(pressedX, pressedX, 100, 100);
+  public Group drawBoundingBox(double x, double y) {
+    Rectangle rectangle = new Rectangle(x, y, 0, 0);
     Group root = new Group(rectangle);
+    root.setId("b_" + x + ":" + y);
     mapController.getMapAnchor().getChildren().add(3, root);
+    this.boundingBoxGroup = root;
+    this.boudningBox = rectangle;
     return root;
+  }
+
+  public Rectangle endBoundingBox(double x, double y) {
+    Rectangle temp = boudningBox;
+    if (boudningBox != null) {
+      mapController.getMapAnchor().getChildren().remove(boundingBoxGroup);
+      boudningBox = null;
+      boundingBoxGroup = null;
+    }
+    return temp;
   }
 
   public Group startLine(Node node1) {
@@ -99,6 +115,12 @@ public class MapDrawer {
     this.draggedLine = null;
     this.draggedLineGroup = null;
     return temp;
+  }
+
+  public void cancelLine() {
+    mapController.getMapAnchor().getChildren().remove(draggedLineGroup);
+    this.draggedLine = null;
+    this.draggedLineGroup = null;
   }
 
   public Group drawNode(String id, double x, double y, Color color) {
@@ -129,14 +151,21 @@ public class MapDrawer {
   }
 
   public void captureClick(MouseEvent e) {
-    if (e.getButton() == MouseButton.MIDDLE) {
-      pressedX = e.getX();
-      pressedY = e.getY();
-    }
+    pressedX = e.getX();
+    pressedY = e.getY();
   }
 
   public void captureMouseDrag(MouseEvent event) {
     event.consume();
+    if (event.getButton() == MouseButton.PRIMARY) {
+      if (boudningBox != null) {
+        boudningBox.setX(Math.min(pressedX, event.getX()));
+        boudningBox.setY(Math.min(pressedY, event.getY()));
+
+        boudningBox.setWidth(Math.abs(event.getX() - pressedX));
+        boudningBox.setHeight(Math.abs(event.getY() - pressedY));
+      }
+    }
     if (event.getButton() == MouseButton.SECONDARY) {
       if (draggedLine != null) {
         draggedLine.setEndX(event.getX());

@@ -2,8 +2,8 @@ package edu.wpi.TeamN.services.algo;
 
 import java.util.ArrayList;
 import java.util.List;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
-import javafx.scene.shape.Shape;
 import lombok.NonNull;
 
 public class Node implements Comparable<Node> {
@@ -82,15 +82,15 @@ public class Node implements Comparable<Node> {
     this._y = _y;
   }
 
-  public Shape get_shape() {
+  public Circle get_shape() {
     return _shape;
   }
 
-  public void set_shape(Shape _shape) {
+  public void set_shape(Circle _shape) {
     this._shape = _shape;
   }
 
-  private Shape _shape;
+  private Circle _shape;
   private double _x, _y;
 
   public String get_nodeID() {
