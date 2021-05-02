@@ -324,8 +324,7 @@ public abstract class MapController extends MasterController {
 
   public void newColorNode(ActionEvent actionEvent) {
     JFXColorPicker a = ((JFXColorPicker) actionEvent.getSource());
-    setUserPref(a.getId(), a.getValue().toString());
-    db.updateUserPrefs(db.getCurrentUser().getId(), userPrefs);
+    updateUserColors(a.getId(), a.getValue().toString());
     for (int i = 1; mapAnchor.getChildren().size() - 1 > i; i++) {
       if (adminMap.getNodeSet().containsKey(mapAnchor.getChildren().get(i).getId())) {
         if (adminMap
@@ -340,9 +339,13 @@ public abstract class MapController extends MasterController {
     }
   }
 
-  public void newColorNode(JFXColorPicker a) {
-    setUserPref(a.getId(), a.getValue().toString());
+  void updateUserColors(String id, String value) {
+    setUserPref(id, value);
     db.updateUserPrefs(db.getCurrentUser().getId(), userPrefs);
+  }
+
+  public void newColorNode(JFXColorPicker a) {
+    updateUserColors(a.getId(), a.getValue().toString());
     for (Node n : getNodeSet().values()) {
       if (n.get_nodeType().equals(a.getId())) n.get_shape().setFill(a.getValue());
     }
