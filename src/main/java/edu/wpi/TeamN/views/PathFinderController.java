@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -27,7 +28,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
-import javafx.scene.shape.Shape;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 public class PathFinderController extends MapController implements Initializable {
@@ -129,7 +129,7 @@ public class PathFinderController extends MapController implements Initializable
               path.add(n.get_nodeID());
             else if (event.getButton() == MouseButton.SECONDARY) path.remove(n.get_nodeID());
             updatePath();
-            newColorNode(selectedNodeColor);
+            nodeSelected(selectedNodeColor);
           }
         });
     return root;
@@ -184,12 +184,13 @@ public class PathFinderController extends MapController implements Initializable
     newColorNode(EXIT);
     newColorNode(ELEV);
     newColorNode(STAI);
-    newColorNodeaf(new ActionEvent());
+    Event.fireEvent(nodeColor, new ActionEvent());
     nodePath.clear();
     texutualDescription.getItems().clear();
   }
 
   public void newColorPath(ActionEvent actionEvent) {
+    updateUserColors(pathColor.getId(), pathColor.getValue().toString());
     for (int i = 0; path.size() - 1 > i; i++) {
       System.out.println(getNodeSet());
       ArrayList<Node.Link> pathLink =
@@ -244,28 +245,36 @@ public class PathFinderController extends MapController implements Initializable
     }
   }
 
-  public void newColorNodeaf(ActionEvent actionEvent) {
-    JFXColorPicker a = nodeColor;
-    updateUserColors(a.getId(), a.getValue().toString());
-    for (int i = 1; mapAnchor.getChildren().size() - 1 > i; i++) {
-      if (getNodeSet().containsKey(mapAnchor.getChildren().get(i).getId())) {
-        if (!this.getNodeSet()
-                .get(mapAnchor.getChildren().get(i).getId())
-                .get_nodeType()
-                .contains("ELEV")
-            && !this.getNodeSet()
-                .get(mapAnchor.getChildren().get(i).getId())
-                .get_nodeType()
-                .contains("EXIT")
-            && !this.getNodeSet()
-                .get(mapAnchor.getChildren().get(i).getId())
-                .get_nodeType()
-                .contains("STAI"))
-          ((Shape) ((Group) mapAnchor.getChildren().get(i)).getChildren().get(0))
-              .setFill(a.getValue());
+  public void nodeSelected(JFXColorPicker a) {
+    for (Node n : getNodeSet().values()) {
+      if (path.contains(n.get_nodeID())) {
+        n.get_shape().setFill(a.getValue());
       }
     }
   }
+
+  //  public void newColorNodeaf(ActionEvent actionEvent) {
+  //    JFXColorPicker a = (JFXColorPicker) actionEvent.getSource();
+  //    updateUserColors(a.getId(), a.getValue().toString());
+  //    for (int i = 1; mapAnchor.getChildren().size() - 1 > i; i++) {
+  //      if (getNodeSet().containsKey(mapAnchor.getChildren().get(i).getId())) {
+  //        if (!this.getNodeSet()
+  //                .get(mapAnchor.getChildren().get(i).getId())
+  //                .get_nodeType()
+  //                .contains("ELEV")
+  //            && !this.getNodeSet()
+  //                .get(mapAnchor.getChildren().get(i).getId())
+  //                .get_nodeType()
+  //                .contains("EXIT")
+  //            && !this.getNodeSet()
+  //                .get(mapAnchor.getChildren().get(i).getId())
+  //                .get_nodeType()
+  //                .contains("STAI"))
+  //          ((Shape) ((Group) mapAnchor.getChildren().get(i)).getChildren().get(0))
+  //              .setFill(a.getValue());
+  //      }
+  //    }
+  //  }
 
   //    public void selectedNodeColor(ActionEvent actionEvent) {
   //      for (int i = 1; mapAnchor.getChildren().size() - 1 > i; i++) {
@@ -299,7 +308,7 @@ public class PathFinderController extends MapController implements Initializable
     } else if (((JFXTextField) actionEvent.getSource()).getId().equals("pathSize")
         && nodeValue <= 5
         && nodeValue >= 3) {
-      userPrefs.setNodeSize(edgeValue);
+      userPrefs.setEdgeWidth(edgeValue);
       for (int i = 1; mapAnchor.getChildren().size() - 1 > i; i++) {
         if (this.getEdgeSet().containsKey(mapAnchor.getChildren().get(i).getId())) {
           ((Line) ((Group) mapAnchor.getChildren().get(i)).getChildren().get(0))

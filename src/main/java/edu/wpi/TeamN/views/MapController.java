@@ -234,7 +234,7 @@ public abstract class MapController extends MasterController {
             n.get_y() * getDownScale(),
             nodeColor.getValue());
     mapAnchor.getChildren().add(root);
-    n.set_shape((Shape) root.getChildren().get(0));
+    n.set_shape((Circle) root.getChildren().get(0));
     root.setCursor(Cursor.CROSSHAIR);
     return root;
   }
@@ -353,7 +353,6 @@ public abstract class MapController extends MasterController {
   }
 
   private void setUserPref(String id, String value) {
-    System.out.println(value);
     if (id.contains("ELEV")) {
       userPrefs.setElevatorColor(value);
     } else if (id.contains("STAI")) {
@@ -362,6 +361,10 @@ public abstract class MapController extends MasterController {
       userPrefs.setExitColor(value);
     } else if (id.contains("selectedNodeColor")) {
       userPrefs.setHighlightColor(value);
+    } else if (id.contains("pathColor")) {
+      userPrefs.setPathfindingColor(value);
+    } else {
+      userPrefs.setBasicNodeColor(value);
     }
   }
 
