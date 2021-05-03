@@ -137,8 +137,8 @@ public class NodesTable {
             + longName
             + ", shortName = "
             + shortName
-            + ", WHERE id ="
-            + id;
+            + " WHERE id = '"
+            + id + "'";
     try {
       stmt.execute(str);
       return true;
