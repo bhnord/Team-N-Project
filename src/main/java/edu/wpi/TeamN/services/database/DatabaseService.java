@@ -7,14 +7,13 @@ import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.database.requests.Request;
 import edu.wpi.TeamN.services.database.requests.RequestType;
 import edu.wpi.TeamN.services.database.users.*;
-import lombok.extern.slf4j.Slf4j;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
 import java.util.HashSet;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class DatabaseService {
@@ -278,7 +277,6 @@ public class DatabaseService {
    * @param receiverID ID of the one assigned to the request
    * @param content Content of the request
    * @param notes Extra notes about the request
-   *
    * @return whether the operation was carried out successfully
    */
   public boolean updateRequest(

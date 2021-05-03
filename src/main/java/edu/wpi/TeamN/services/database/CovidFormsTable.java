@@ -1,7 +1,6 @@
 package edu.wpi.TeamN.services.database;
 
 import com.google.inject.Inject;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
