@@ -41,8 +41,10 @@
     -fx-stroke-width: 3pt;
 }
 
-
-
+.list-cell:selected {
+    -fx-background-color: #4b5960;
+    -fx-border-color:#ff4d4d;
+}
 
 .list-cell:filled:selected:focused, .list-cell:filled:selected {
     -fx-background-color: linear-gradient(#748cdc 0%, #748cdc 25%, #748cdc 75%, #748cdc 100%);
