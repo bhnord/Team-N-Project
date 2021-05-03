@@ -10,6 +10,7 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -17,7 +18,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.shape.Rectangle?>
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #d6d8d5;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.TeamN.views.PathFinderController">
     <children>
@@ -75,66 +76,8 @@
                                 <Insets right="10.0" />
                             </GridPane.margin></JFXButton>
                         <StackPane prefHeight="150.0" prefWidth="200.0" />
-                        <GridPane GridPane.rowIndex="1">
-                            <columnConstraints>
-                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="81.0" minWidth="81.0" prefWidth="81.0" />
-                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.0" minWidth="10.0" prefWidth="133.0" />
-                            </columnConstraints>
-                            <rowConstraints>
-                                <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            </rowConstraints>
-                            <children>
-                                <Label prefHeight="17.0" prefWidth="79.0" stylesheets="@/Fonts/Roboto-Black.css" text="X-Coordinate:" />
-                                <Label stylesheets="@/Fonts/Roboto-Black.css" text="Y-Coordinate:" GridPane.rowIndex="1" />
-                            </children>
-                        </GridPane>
                         <JFXTabPane stylesheets="@/StyleSheet/style.css">
                             <tabs>
-                                <Tab text="Floors">
-                                    <content>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                            <children>
-                                                <JFXButton fx:id="3" buttonType="RAISED" layoutY="24.0" onAction="#setMap" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #363d54; -fx-background-radius: 0;" stylesheets="/Fonts/Roboto-Black.css" text="F3" textFill="WHITE" />
-                                                <JFXButton fx:id="2" buttonType="RAISED" layoutY="97.0" onAction="#setMap" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #363d54; -fx-background-radius: 0;" stylesheets="@/Fonts/Roboto-Black.css" text="F2" textFill="WHITE" />
-                                                <JFXButton fx:id="1" buttonType="RAISED" layoutY="170.0" onAction="#setMap" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #363d54; -fx-background-radius: 0;" stylesheets="@/Fonts/Roboto-Black.css" text="F1" textFill="WHITE" />
-                                                <JFXButton fx:id="G" buttonType="RAISED" layoutY="243.0" onAction="#setMap" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #363d54; -fx-background-radius: 0;" stylesheets="@/Fonts/Roboto-Black.css" text="G" textFill="WHITE" />
-                                                <JFXButton fx:id="L1" buttonType="RAISED" layoutY="316.0" onAction="#setMap" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #363d54; -fx-background-radius: 0;" stylesheets="@/Fonts/Roboto-Black.css" text="L1" textFill="WHITE" />
-                                                <JFXButton fx:id="L2" buttonType="RAISED" layoutY="389.0" onAction="#setMap" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #363d54; -fx-background-radius: 0;" stylesheets="@/Fonts/Roboto-Black.css" text="L2" textFill="WHITE" />
-                                                <Label layoutX="102.0" layoutY="47.0" prefHeight="30.0" prefWidth="74.0" stylesheets="@/Fonts/Roboto-Light.css" text="Floor 3" textFill="WHITE">
-                                                    <font>
-                                                        <Font size="19.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label layoutX="102.0" layoutY="117.0" prefHeight="30.0" prefWidth="74.0" stylesheets="@/Fonts/Roboto-Light.css" text="Floor 2" textFill="WHITE">
-                                                    <font>
-                                                        <Font size="19.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label layoutX="102.0" layoutY="191.0" prefHeight="30.0" prefWidth="74.0" stylesheets="@/Fonts/Roboto-Light.css" text="Floor 1" textFill="WHITE">
-                                                    <font>
-                                                        <Font size="19.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label layoutX="102.0" layoutY="263.0" prefHeight="30.0" prefWidth="74.0" stylesheets="@/Fonts/Roboto-Light.css" text="Ground" textFill="WHITE">
-                                                    <font>
-                                                        <Font size="19.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label layoutX="102.0" layoutY="337.0" prefHeight="30.0" prefWidth="74.0" stylesheets="@/Fonts/Roboto-Light.css" text="Lower 1" textFill="WHITE">
-                                                    <font>
-                                                        <Font size="19.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label layoutX="102.0" layoutY="407.0" prefHeight="30.0" prefWidth="74.0" stylesheets="@/Fonts/Roboto-Light.css" text="Lower 2" textFill="WHITE">
-                                                    <font>
-                                                        <Font size="19.0" />
-                                                    </font>
-                                                </Label>
-                                            </children>
-                                        </AnchorPane>
-                                    </content>
-                                </Tab>
                         <Tab text="Pathfinding">
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
@@ -146,28 +89,6 @@
                               </AnchorPane>
                            </content>
                         </Tab>
-                                <Tab text="Settings">
-                                    <content>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                            <children>
-                                                <Label layoutX="37.0" layoutY="55.0" text="Exit Color" />
-                                                <Label layoutX="33.0" layoutY="114.0" text="Elevator Color" />
-                                                <Label layoutX="35.0" layoutY="164.0" text="Stairs Color" />
-                                                <Label layoutX="31.0" layoutY="221.0" text="Path Color" />
-                                                <Label layoutX="35.0" layoutY="285.0" text="Selected Node" />
-                                                <Label layoutX="37.0" layoutY="346.0" text="Node Size" />
-                                                <Label layoutX="37.0" layoutY="405.0" text="Path Size" />
-                                                <JFXColorPicker fx:id="nodeColor" layoutX="35.0" layoutY="17.0" onAction="#newColorNodeaf" />
-                                                <JFXColorPicker fx:id="EXIT" layoutX="35.0" layoutY="72.0" onAction="#newColorNode" />
-                                                <JFXColorPicker fx:id="ELEV" layoutX="36.0" layoutY="131.0" onAction="#newColorNode" />
-                                                <JFXColorPicker fx:id="STAI" layoutX="35.0" layoutY="183.0" onAction="#newColorNode" />
-                                                <JFXColorPicker fx:id="pathColor" layoutX="35.0" layoutY="238.0" onAction="#newColorPath" />
-                                                <JFXColorPicker fx:id="selectedNodeColor" layoutX="36.0" layoutY="302.0" onAction="#newColorNode" />
-                                                <JFXTextField fx:id="nodeSize" layoutX="35.0" layoutY="363.0" onAction="#newSize" />
-                                                <JFXTextField fx:id="pathSize" layoutX="38.0" layoutY="422.0" onAction="#newSize" />
-                                            </children></AnchorPane>
-                                    </content>
-                                </Tab>
                             </tabs>
                             <GridPane.margin>
                                 <Insets right="10.0" />
@@ -178,5 +99,157 @@
             <AnchorPane fx:id="anchorPane" prefHeight="200.0" prefWidth="200.0" GridPane.valignment="BASELINE" />
             </children>
         </GridPane>
+      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="WHITE" height="106.0" opacity="0.95" stroke="#363d5400" strokeType="INSIDE" strokeWidth="0.0" width="470.0" StackPane.alignment="BOTTOM_CENTER">
+         <effect>
+            <DropShadow color="#00000042" height="203.35" radius="98.58" width="192.97" />
+         </effect>
+         <StackPane.margin>
+            <Insets bottom="-30.0" />
+         </StackPane.margin>
+      </Rectangle>
+      <JFXButton fx:id="3" buttonType="RAISED" onAction="#setMap" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #363d54; -fx-background-radius: 15;" stylesheets="@/StyleSheet/MapButtons.css" text="F3" textFill="WHITE" StackPane.alignment="BOTTOM_CENTER">
+         <StackPane.margin>
+            <Insets bottom="7.5" left="375.0" />
+         </StackPane.margin>
+      </JFXButton>
+      <JFXButton fx:id="2" buttonType="RAISED" onAction="#setMap" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #363d54; -fx-background-radius: 15;" stylesheets="@/StyleSheet/MapButtons.css" text="F2" textFill="WHITE" StackPane.alignment="BOTTOM_CENTER">
+         <StackPane.margin>
+            <Insets bottom="7.5" left="225.0" />
+         </StackPane.margin>
+      </JFXButton>
+      <JFXButton fx:id="1" buttonType="RAISED" onAction="#setMap" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #363d54; -fx-background-radius: 15;" stylesheets="@/StyleSheet/MapButtons.css" text="F1" textFill="WHITE" StackPane.alignment="BOTTOM_CENTER">
+         <StackPane.margin>
+            <Insets bottom="7.5" left="75.0" />
+         </StackPane.margin>
+      </JFXButton>
+      <JFXButton fx:id="G" buttonType="RAISED" onAction="#setMap" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #363d54; -fx-background-radius: 15;" stylesheets="@/StyleSheet/MapButtons.css" text="G" textFill="WHITE" StackPane.alignment="BOTTOM_CENTER">
+         <StackPane.margin>
+            <Insets bottom="7.5" right="75.0" />
+         </StackPane.margin>
+      </JFXButton>
+      <JFXButton fx:id="L2" buttonType="RAISED" onAction="#setMap" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #363d54; -fx-background-radius: 15;" stylesheets="@/StyleSheet/MapButtons.css" text="L2" textFill="WHITE" StackPane.alignment="BOTTOM_CENTER">
+         <StackPane.margin>
+            <Insets bottom="7.5" right="225.0" />
+         </StackPane.margin>
+      </JFXButton>
+      <JFXButton fx:id="L1" buttonType="RAISED" onAction="#setMap" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #363d54; -fx-background-radius: 15;" stylesheets="@/StyleSheet/MapButtons.css" text="L1" textFill="WHITE" StackPane.alignment="BOTTOM_CENTER">
+         <StackPane.margin>
+            <Insets bottom="7.5" right="375.0" />
+         </StackPane.margin>
+      </JFXButton>
+      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="WHITE" height="103.0" opacity="0.95" stroke="#363d5400" strokeType="INSIDE" strokeWidth="0.0" width="470.0" StackPane.alignment="TOP_CENTER">
+         <effect>
+            <DropShadow color="#00000042" height="203.35" radius="98.58" width="192.97" />
+         </effect>
+         <StackPane.margin>
+            <Insets top="-30.0" />
+         </StackPane.margin>
+      </Rectangle>
+      <Label stylesheets="@/Fonts/Roboto-Light.css" text="Selected" StackPane.alignment="TOP_CENTER">
+         <StackPane.margin>
+            <Insets left="375.0" top="10.0" />
+         </StackPane.margin>
+      </Label>
+      <JFXColorPicker fx:id="selectedNodeColor" onAction="#newColorNode" prefHeight="25.0" prefWidth="66.0" style="-fx-color-label-visible: false;" StackPane.alignment="TOP_CENTER">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <StackPane.margin>
+            <Insets left="375.0" top="30.0" />
+         </StackPane.margin>
+      </JFXColorPicker>
+      <Label stylesheets="@/Fonts/Roboto-Light.css" text="Path" StackPane.alignment="TOP_CENTER">
+         <StackPane.margin>
+            <Insets left="225.0" top="10.0" />
+         </StackPane.margin>
+      </Label>
+      <JFXColorPicker fx:id="pathColor" onAction="#newColorPath" prefHeight="25.0" prefWidth="66.0" style="-fx-color-label-visible: false;" StackPane.alignment="TOP_CENTER">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <StackPane.margin>
+            <Insets left="225.0" top="30.0" />
+         </StackPane.margin>
+      </JFXColorPicker>
+      <Label stylesheets="@/Fonts/Roboto-Light.css" text="Stairs" StackPane.alignment="TOP_CENTER">
+         <StackPane.margin>
+            <Insets left="75.0" top="10.0" />
+         </StackPane.margin>
+      </Label>
+      <JFXColorPicker fx:id="STAI" onAction="#newColorNode" prefHeight="25.0" prefWidth="66.0" style="-fx-color-label-visible: false;" StackPane.alignment="TOP_CENTER">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <StackPane.margin>
+            <Insets left="75.0" top="30.0" />
+         </StackPane.margin>
+      </JFXColorPicker>
+      <Label stylesheets="@/Fonts/Roboto-Light.css" text="Elevators" StackPane.alignment="TOP_CENTER">
+         <StackPane.margin>
+            <Insets right="75.0" top="10.0" />
+         </StackPane.margin>
+      </Label>
+      <JFXColorPicker fx:id="ELEV" onAction="#newColorNode" prefHeight="25.0" prefWidth="66.0" style="-fx-color-label-visible: false;" StackPane.alignment="TOP_CENTER">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <StackPane.margin>
+            <Insets right="75.0" top="30.0" />
+         </StackPane.margin>
+      </JFXColorPicker>
+      <Label stylesheets="@/Fonts/Roboto-Light.css" text="Exits" StackPane.alignment="TOP_CENTER">
+         <StackPane.margin>
+            <Insets right="225.0" top="10.0" />
+         </StackPane.margin>
+      </Label>
+      <JFXColorPicker fx:id="EXIT" onAction="#newColorNode" prefHeight="25.0" prefWidth="66.0" style="-fx-color-label-visible: false;" StackPane.alignment="TOP_CENTER">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <StackPane.margin>
+            <Insets right="225.0" top="30.0" />
+         </StackPane.margin>
+      </JFXColorPicker>
+      <Label stylesheets="@/Fonts/Roboto-Light.css" text="Nodes" StackPane.alignment="TOP_CENTER">
+         <StackPane.margin>
+            <Insets right="375.0" top="10.0" />
+         </StackPane.margin>
+      </Label>
+      <JFXColorPicker fx:id="nodeColor" onAction="#newColorNodeaf" prefHeight="25.0" prefWidth="66.0" style="-fx-color-label-visible: false;" stylesheets="@/StyleSheet/style.css" StackPane.alignment="TOP_CENTER">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <StackPane.margin>
+            <Insets right="375.0" top="30.0" />
+         </StackPane.margin>
+      </JFXColorPicker>
+      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="WHITE" height="106.0" opacity="0.95" stroke="#363d5400" strokeType="INSIDE" strokeWidth="0.0" width="264.0" StackPane.alignment="BOTTOM_RIGHT">
+         <effect>
+            <DropShadow color="#00000042" height="203.35" radius="98.58" width="192.97" />
+         </effect>
+         <StackPane.margin>
+            <Insets bottom="-30.0" right="-30.0" />
+         </StackPane.margin>
+      </Rectangle>
+      <Label text="Node Size" StackPane.alignment="BOTTOM_RIGHT">
+         <StackPane.margin>
+            <Insets bottom="50.0" right="160.0" />
+         </StackPane.margin>
+      </Label>
+      <Label text="Path Size" StackPane.alignment="BOTTOM_RIGHT">
+         <StackPane.margin>
+            <Insets bottom="15.0" right="159.0" />
+         </StackPane.margin>
+      </Label>
+      <JFXTextField fx:id="nodeSize" focusColor="#748cdc" maxWidth="-Infinity" minWidth="-Infinity" onAction="#newSize" prefWidth="100.0" StackPane.alignment="BOTTOM_RIGHT">
+         <StackPane.margin>
+            <Insets bottom="15.0" right="50.0" />
+         </StackPane.margin>
+      </JFXTextField>
+      <JFXTextField fx:id="pathSize" focusColor="#748cdc" maxWidth="-Infinity" minWidth="-Infinity" onAction="#newSize" prefWidth="100.0" StackPane.alignment="BOTTOM_RIGHT">
+         <StackPane.margin>
+            <Insets bottom="50.0" right="50.0" />
+         </StackPane.margin>
+      </JFXTextField>
     </children>
 </StackPane>
