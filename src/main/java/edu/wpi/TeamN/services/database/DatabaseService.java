@@ -7,13 +7,14 @@ import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.database.requests.Request;
 import edu.wpi.TeamN.services.database.requests.RequestType;
 import edu.wpi.TeamN.services.database.users.*;
+import lombok.extern.slf4j.Slf4j;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
 import java.util.HashSet;
-import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class DatabaseService {
@@ -529,8 +530,8 @@ public class DatabaseService {
               + "Q5 BOOLEAN NOT NULL, "
               + "Q6 BOOLEAN NOT NULL, "
               + "ExtraInfo varchar(250), "
-              + "IsOk BOOLEAN, " +
-                  "IsProcessed BOOLEAN, "
+              + "IsOk BOOLEAN, "
+              + "IsProcessed BOOLEAN, "
               + "PRIMARY KEY (id))";
       stmt.execute(str);
       return true;

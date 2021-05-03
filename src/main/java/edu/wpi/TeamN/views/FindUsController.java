@@ -13,9 +13,6 @@ import com.jfoenix.controls.JFXComboBox;
 import edu.wpi.TeamN.services.database.DatabaseService;
 import edu.wpi.TeamN.state.HomeState;
 import edu.wpi.TeamN.utilities.AddressAutoComplete;
-import java.io.ByteArrayInputStream;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -28,6 +25,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import lombok.extern.slf4j.Slf4j;
+
+import java.io.ByteArrayInputStream;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 @Slf4j
 public class FindUsController extends MasterController implements Initializable {
@@ -105,8 +106,17 @@ public class FindUsController extends MasterController implements Initializable 
       mapsRequest.path(result.routes[0].overviewPolyline);
       ByteArrayInputStream image = new ByteArrayInputStream(mapsRequest.await().imageData);
       mapImage.setImage(new Image(image));
+      String instructions = "";
       for (DirectionsStep step : result.routes[0].legs[0].steps) {
-        directions.append(step.htmlInstructions).append("<br/>");
+        System.out.println(step);
+        instructions = step.htmlInstructions.replace("<div style=\"font-size:0.9em\">", " (");
+        instructions = instructions.replace("</div>", ")");
+        directions.append(instructions);
+        directions
+            .append(" <p style=\"text-align: right\">(")
+            .append(step.distance)
+            .append(")</p>");
+        directions.append("<br/>");
       }
       directions.append("</body>\n" + "</html>");
       webEngine.loadContent(directions.toString());
