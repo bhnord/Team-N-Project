@@ -31,7 +31,7 @@
                 <RowConstraints minHeight="768.0" prefHeight="768.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-            <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="700.0" prefWidth="1270.0" style="-fx-background-color: WHITE; -fx-background-radius: 40;" GridPane.columnIndex="1">
+            <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1270.0" style="-fx-background-color: WHITE; -fx-background-radius: 40;" GridPane.columnIndex="1">
                <GridPane.margin>
                   <Insets top="40.0" />
                </GridPane.margin>
@@ -49,7 +49,7 @@
                 <RowConstraints maxHeight="71.0" minHeight="10.0" prefHeight="38.0" vgrow="NEVER" />
                 <RowConstraints maxHeight="512.0" minHeight="10.0" prefHeight="504.0" vgrow="NEVER" />
                   <RowConstraints maxHeight="67.0" minHeight="10.0" prefHeight="54.0" vgrow="NEVER" />
-                <RowConstraints maxHeight="251.0" minHeight="0.0" prefHeight="66.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="1.7976931348623157E308" minHeight="0.0" prefHeight="66.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <GridPane GridPane.rowIndex="2">
