@@ -11,8 +11,10 @@ import edu.wpi.TeamN.services.database.DatabaseService;
 import edu.wpi.TeamN.services.database.users.UserPrefs;
 import edu.wpi.TeamN.state.HomeState;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -132,8 +134,6 @@ public abstract class MapController extends MasterController {
   //  private MapNodeEditor mapNodeEditor;
   //  private MapEdgeEditor mapEdgeEditor;
 
-  private Scene appPrimaryScene;
-
   @FXML private JFXTextField nodeId;
   //  @FXML private JFXTextField building;
   //  @FXML private JFXTextField floor;
@@ -154,14 +154,10 @@ public abstract class MapController extends MasterController {
   @FXML private Circle pathColor_L;
   @FXML private Circle selectedNodeColor_L;
 
-  //  Boolean cancelOrSubmit = false;
+  @Override
+  public void initialize(URL location, ResourceBundle resources) {}
 
-  @Inject
-  public void setAppPrimaryScene(Scene appPrimaryScene) {
-    this.appPrimaryScene = appPrimaryScene;
-  }
-
-  public void init() {
+  public void init(Scene appPrimaryScene) {
     super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Map");
     userPrefs = db.getCurrentUser().getUserPrefs();
 
@@ -214,9 +210,7 @@ public abstract class MapController extends MasterController {
             });
   }
 
-  public void releaseMouse(MouseEvent mouseEvent) {
-
-  }
+  public void releaseMouse(MouseEvent mouseEvent) {}
 
   protected Group placeNode(Node n) {
     Group root =
@@ -245,7 +239,6 @@ public abstract class MapController extends MasterController {
     getAdminMap().makeEdge(id, node1, node2, (Line) root.getChildren().get(0));
     return root;
   }
-
 
   public void mapFloor() {
     for (Node n : getNodeSet().values()) {

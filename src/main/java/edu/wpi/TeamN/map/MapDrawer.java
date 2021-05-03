@@ -267,7 +267,8 @@ public class MapDrawer {
             double new_centerx = transformX(maxImgWidth / 2);
             double new_centery = transformY(maxImgHeight / 2);
 
-//            mapContainer.setTranslateX(invOffsetX(offsetX * (1 + (zoomProperty.get() - 1) / 10)));
+            //            mapContainer.setTranslateX(invOffsetX(offsetX * (1 + (zoomProperty.get() -
+            // 1) / 10)));
             //            mapContainer.setTranslateY(invOffsetY(offsetY - (new_centery - centery) *
             // .5));
             //            System.out.println(new_centerx - centerx);

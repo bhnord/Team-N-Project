@@ -1,5 +1,6 @@
 package edu.wpi.TeamN.views;
 
+import com.google.inject.Inject;
 import com.jfoenix.controls.JFXColorPicker;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
@@ -14,6 +15,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.Group;
@@ -34,13 +36,21 @@ public class PathFinderController extends MapController implements Initializable
   @FXML private AnchorPane anchorPane;
   private Scene appPrimaryScene;
 
-
   @FXML private JFXListView<HBox> texutualDescription;
+
+  @Inject
+  public void setAppPrimaryScene(Scene appPrimaryScene) {
+    this.appPrimaryScene = appPrimaryScene;
+  }
+
+  @Inject
+  public void setLoader(FXMLLoader loader) {
+    this.loader = loader;
+  }
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Map");
-    super.init();
+    super.init(appPrimaryScene);
 
     adminMap = new AdminMap(db);
     mapDrawer = new MapDrawer(this);
@@ -125,7 +135,6 @@ public class PathFinderController extends MapController implements Initializable
     return fontIcon;
   }
 
-
   public void mapFloor() {
     super.mapFloor();
     for (Node.Link link : nodePath) {
@@ -140,8 +149,6 @@ public class PathFinderController extends MapController implements Initializable
       }
     }
   }
-
-
 
   public void clearSelection(ActionEvent actionEvent) {
     //    reset();
