@@ -1,16 +1,32 @@
 package edu.wpi.TeamN.views;
 
 import com.google.inject.Inject;
+import com.google.maps.DirectionsApi;
+import com.google.maps.GeoApiContext;
+import com.google.maps.StaticMapsApi;
+import com.google.maps.StaticMapsRequest;
+import com.google.maps.model.DirectionsResult;
+import com.google.maps.model.DirectionsStep;
+import com.google.maps.model.Size;
+import com.jfoenix.controls.JFXComboBox;
 import edu.wpi.TeamN.services.database.DatabaseService;
 import edu.wpi.TeamN.state.HomeState;
-import java.net.URL;
-import java.util.ResourceBundle;
+import edu.wpi.TeamN.utilities.AddressAutoComplete;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import lombok.extern.slf4j.Slf4j;
+
+import java.io.ByteArrayInputStream;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 @Slf4j
 public class FindUsController extends MasterController implements Initializable {
@@ -18,11 +34,16 @@ public class FindUsController extends MasterController implements Initializable 
   @Inject DatabaseService db;
   @Inject FXMLLoader loader;
   @Inject HomeState state;
-
+  @FXML WebView webView;
+  @FXML private ImageView mapImage;
+  @FXML private JFXComboBox addressBox;
+  @FXML private Label directionsLabel;
   // For sidebar nested FXML implementation
   @FXML private AnchorPane anchorPane;
 
+  private GeoApiContext context;
   private Scene appPrimaryScene;
+  private WebEngine webEngine;
 
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
@@ -37,7 +58,64 @@ public class FindUsController extends MasterController implements Initializable 
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    log.debug(state.toString());
     super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Map");
+    webEngine = webView.getEngine();
+    context =
+        new GeoApiContext.Builder().apiKey("AIzaSyBBszEPZvetVvgsIbt3pLtXLbPap6dT-KY" + "").build();
+    new AddressAutoComplete(addressBox);
+    StaticMapsRequest mapsRequest = StaticMapsApi.newRequest(context, new Size(900, 500));
+    StaticMapsRequest.Markers markers = new StaticMapsRequest.Markers();
+    markers.addLocation("80 Francis St, Boston, MA 02115");
+    markers.addLocation("15-51 New Whitney St, Boston, MA 02115");
+    mapsRequest.center("75 Francis Street, Carrie Hall 103, Boston, MA 02115");
+    markers.size(StaticMapsRequest.Markers.MarkersSize.small);
+    mapsRequest.markers(markers);
+    mapsRequest.zoom(14);
+    try {
+      ByteArrayInputStream image = new ByteArrayInputStream(mapsRequest.await().imageData);
+      mapImage.setImage(new Image(image));
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  @FXML
+  private void submitAddress() {
+    String address = addressBox.getEditor().getText();
+    StringBuilder directions =
+        new StringBuilder(
+            "<!DOCTYPE html>\n"
+                + "<html lang=\"en\">\n"
+                + "<head>\n"
+                + "    <meta charset=\"UTF-8\">\n"
+                + "    <title>Title</title>\n"
+                + "    <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\">\n"
+                + "    <link href=\"https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap\" rel=\"stylesheet\">\n"
+                + "</head>\n"
+                + "<body style=\"font-family: 'Roboto', sans-serif;\">");
+    try {
+      DirectionsResult result =
+          DirectionsApi.getDirections(
+                  context, address, "75 Francis Street, Carrie Hall 103, Boston, MA 02115")
+              .await();
+      StaticMapsRequest mapsRequest = StaticMapsApi.newRequest(context, new Size(900, 500));
+      mapsRequest.center("75 Francis Street, Carrie Hall 103, Boston, MA 02115");
+      mapsRequest.path(result.routes[0].overviewPolyline);
+      ByteArrayInputStream image = new ByteArrayInputStream(mapsRequest.await().imageData);
+      mapImage.setImage(new Image(image));
+      for (DirectionsStep step : result.routes[0].legs[0].steps) {
+        directions.append(step.htmlInstructions).append("<br/>");
+      }
+      directions.append("</body>\n" + "</html>");
+      webEngine.loadContent(directions.toString());
+
+      directionsLabel.setText(
+          "The fastest route to the hospital takes "
+              + result.routes[0].legs[0].duration
+              + " via "
+              + result.routes[0].summary);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 }

@@ -25,9 +25,9 @@ public class MapTest implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    WebEngine webEngine = webView.getEngine();
     //    webEngine.load(
     //        getClass().getResource("/edu/wpi/TeamN/views/MapTest/WebView.html").toExternalForm());
+    WebEngine webEngine = webView.getEngine();
     StringBuilder directions =
         new StringBuilder(
             "<!DOCTYPE html>\n"
@@ -58,7 +58,6 @@ public class MapTest implements Initializable {
       }
       directions.append("</body>\n" + "</html>");
       webEngine.loadContent(directions.toString());
-      //      System.out.println(result.routes[0].legs[0].steps[0].htmlInstructions);
     } catch (Exception e) {
       e.printStackTrace();
     }

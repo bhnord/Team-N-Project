@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.StackPane?>
-
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.web.WebView?>
 <StackPane fx:id="stackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.TeamN.views.FindUsController">
     <children>
         <ImageView fitHeight="1766.0" fitWidth="1458.0" pickOnBounds="true" preserveRatio="true" scaleX="2.0" scaleY="2.0" StackPane.alignment="TOP_LEFT">
@@ -25,6 +24,35 @@
             </rowConstraints>
             <children>
                 <AnchorPane fx:id="anchorPane" prefHeight="200.0" prefWidth="200.0" GridPane.valignment="BASELINE" />
+            <GridPane GridPane.columnIndex="1">
+              <columnConstraints>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="905.9295043945312" minWidth="10.0" prefWidth="897.7266235351562" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="643.4376831054688" minWidth="10.0" prefWidth="402.27337646484375" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="249.43771362304688" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="512.0" minHeight="10.0" prefHeight="512.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <ImageView fx:id="mapImage" fitHeight="516.0" fitWidth="895.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1" />
+                  <WebView fx:id="webView" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <GridPane>
+                    <columnConstraints>
+                      <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <JFXComboBox fx:id="addressBox" editable="true" labelFloat="true" promptText="Enter Your Address" stylesheets="@/Fonts/Roboto-Light.css" />
+                        <JFXButton buttonType="RAISED" onAction="#submitAddress" stylesheets="@/Fonts/Roboto-Light.css" text="Submit" GridPane.columnIndex="1" />
+                     </children>
+                  </GridPane>
+                  <Label fx:id="directionsLabel" alignment="CENTER" prefHeight="87.0" prefWidth="489.0" stylesheets="@/Fonts/Roboto-Light.css" text="Here is the text" textAlignment="CENTER" GridPane.rowIndex="2" />
+               </children>
+            </GridPane>
             </children>
         </GridPane>
     </children>
