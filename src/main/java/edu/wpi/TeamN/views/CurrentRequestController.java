@@ -9,6 +9,7 @@ import edu.wpi.TeamN.services.database.requests.Request;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.ResourceBundle;
@@ -46,6 +47,7 @@ public class CurrentRequestController extends MasterController implements Initia
   @FXML private Label emergency;
   @FXML private JFXButton checkIn;
   private HashMap<Integer, Request> requestMap = new HashMap<>();
+  private int userId;
 
   @Inject
   public void setAppPrimaryScene(Scene appPrimaryScene) {
@@ -57,10 +59,11 @@ public class CurrentRequestController extends MasterController implements Initia
 
     listView.getItems().clear();
     listViewCovid.getItems().clear();
-    HashSet<CovidForm> formSet = new HashSet<>();
+    HashSet<CovidForm> formSet = db.getAllCovidForms();
     HashSet<Request> set = db.getAllRequests();
     for (CovidForm covidForm : formSet) {
-      Label lbl = new Label("Patient: " + db.getUserById(covidForm.getUserId()).getLastname());
+      userId = covidForm.getUserId();
+      Label lbl = new Label("Survey completed by: " + db.getCurrentUser().getUsername());
       lbl.setId(Integer.toString(covidForm.getId()));
       listViewCovid.getItems().add(lbl);
     }
@@ -138,18 +141,23 @@ public class CurrentRequestController extends MasterController implements Initia
 
   private void updateTextFieldsCovid(CovidForm covidForm) {
 
-    String answers = "Answered 'yes'";
-    boolean ans[] = covidForm.getAnswers();
+    boolean[] ans = covidForm.getAnswers();
+    ArrayList<String> a = new ArrayList<String>(ans.length);
     for (int i = 0; i < ans.length; i++) {
-      answers += (ans[i]) ? "" : "Q" + (i + 1) + " ";
+
+      if (String.valueOf(ans[i]) == "false") {
+        a.add("no");
+      } else if (String.valueOf(ans[i]) == "true") {
+        a.add("yes");
+      }
     }
 
-    symptoms.setText(answers);
-    /* tested.setText(answers);
-    treatment.setText(answers);
-    outsideTravel.setText(answers);
-    cruiseShip.setText(answers);
-    emergency.setText(answers);*/
+    symptoms.setText(a.get(0));
+    tested.setText(a.get(1));
+    treatment.setText(a.get(2));
+    outsideTravel.setText(a.get(3));
+    cruiseShip.setText(a.get(4));
+    emergency.setText(a.get(5));
   }
 
   @FXML
