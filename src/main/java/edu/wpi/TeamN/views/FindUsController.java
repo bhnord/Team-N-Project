@@ -8,6 +8,7 @@ import com.google.maps.StaticMapsRequest;
 import com.google.maps.model.DirectionsResult;
 import com.google.maps.model.DirectionsStep;
 import com.google.maps.model.Size;
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import edu.wpi.TeamN.services.database.DatabaseService;
 import edu.wpi.TeamN.state.HomeState;
@@ -15,6 +16,7 @@ import edu.wpi.TeamN.utilities.AddressAutoComplete;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.print.PrinterJob;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -38,6 +40,7 @@ public class FindUsController extends MasterController implements Initializable 
   @FXML private ImageView mapImage;
   @FXML private JFXComboBox addressBox;
   @FXML private Label directionsLabel;
+  @FXML private JFXButton printButton;
   // For sidebar nested FXML implementation
   @FXML private AnchorPane anchorPane;
 
@@ -108,6 +111,7 @@ public class FindUsController extends MasterController implements Initializable 
       }
       directions.append("</body>\n" + "</html>");
       webEngine.loadContent(directions.toString());
+      printButton.setDisable(false);
 
       directionsLabel.setText(
           "The fastest route to the hospital takes "
@@ -116,6 +120,15 @@ public class FindUsController extends MasterController implements Initializable 
               + result.routes[0].summary);
     } catch (Exception e) {
       e.printStackTrace();
+    }
+  }
+
+  @FXML
+  private void printDirections() {
+    PrinterJob printerJob = PrinterJob.createPrinterJob();
+    if (printerJob != null && printerJob.showPrintDialog(webView.getScene().getWindow())) {
+      webEngine.print(printerJob);
+      printerJob.endJob();
     }
   }
 }

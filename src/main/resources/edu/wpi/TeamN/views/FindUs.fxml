@@ -27,7 +27,7 @@
             <GridPane GridPane.columnIndex="1">
               <columnConstraints>
                 <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="905.9295043945312" minWidth="10.0" prefWidth="897.7266235351562" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="643.4376831054688" minWidth="10.0" prefWidth="402.27337646484375" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="643.4376831054688" minWidth="10.0" prefWidth="402.27337646484375" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints maxHeight="249.43771362304688" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
@@ -51,6 +51,7 @@
                      </children>
                   </GridPane>
                   <Label fx:id="directionsLabel" alignment="CENTER" prefHeight="87.0" prefWidth="489.0" stylesheets="@/Fonts/Roboto-Light.css" text="Here is the text" textAlignment="CENTER" GridPane.rowIndex="2" />
+                  <JFXButton fx:id="printButton" disable="true" onAction="#printDirections" stylesheets="@/Fonts/Roboto-Light.css" text="Print" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                </children>
             </GridPane>
             </children>

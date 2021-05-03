@@ -82,13 +82,13 @@ public class App extends Application {
     primaryStage.setTitle("Team N Application");
     primaryScene.setRoot(root);
     primaryStage.setScene(primaryScene);
-    //    primaryStage.setMinHeight(800);
-    //    primaryStage.setMinWidth(1366);
+    primaryStage.setMinHeight(800);
+    primaryStage.setMinWidth(1366);
 
     // primaryStage.setResizable(false);
     //    primaryStage.setAlwaysOnTop(true);
 
-    //    primaryStage.setMaximized(true);
+    primaryStage.setMaximized(true);
     primaryStage.show();
   }
 
