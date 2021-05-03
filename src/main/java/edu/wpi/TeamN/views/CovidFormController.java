@@ -141,7 +141,7 @@ public class CovidFormController extends MasterController implements Initializab
 
     dialogFactory.creatDialogConfirmCancel(
         "",
-        "Return to homepage?",
+        "Your covid form has been processed! You can enter the hospital.",
         event -> {
           try {
             advanceHome();

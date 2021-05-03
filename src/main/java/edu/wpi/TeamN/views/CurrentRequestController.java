@@ -19,6 +19,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 
@@ -201,6 +202,34 @@ public class CurrentRequestController extends MasterController implements Initia
       selectedLabel = null;
       setEmptyFields();
     }
+  }
+
+  public void inProgress(ActionEvent actionEvent) {
+    listView.setCellFactory(
+        list -> {
+          ListCell<Label> cell =
+              new ListCell<Label>() {
+                protected void updateItem(Label item, boolean empty) {
+                  super.updateItem(item, empty);
+                  if (empty || item == null) {
+                    // There is no item to display in this cell, so leave it empty
+                    setGraphic(null);
+
+                    // Clear the style from the cell
+                    setStyle(null);
+                  } else {
+                    // If the item is equal to the first item in the list, set the style
+                    if (item == (list.getItems())) {
+                      // Set the background color to blue
+                      setStyle("-fx-background-color: blue; -fx-text-fill: white");
+                    }
+                    // Finally, show the item text in the cell
+                    setText(item.toString());
+                  }
+                }
+              };
+          return cell;
+        });
   }
 
   public void markComplete(ActionEvent actionEvent) {
