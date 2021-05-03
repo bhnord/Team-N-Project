@@ -62,7 +62,7 @@ public class CurrentRequestController extends MasterController implements Initia
     for (CovidForm covidForm : formSet) {
       Label lbl = new Label("Patient: " + db.getUserById(covidForm.getUserId()).getLastname());
       lbl.setId(Integer.toString(covidForm.getId()));
-      listView.getItems().add(lbl);
+      listViewCovid.getItems().add(lbl);
     }
 
     for (Request request : set) {
