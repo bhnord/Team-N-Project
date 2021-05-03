@@ -101,8 +101,8 @@
                       <Label layoutX="169.0" layoutY="322.0" text="*" />
                       <Label layoutX="169.0" layoutY="394.0" text="*" />
                       <Label layoutX="169.0" layoutY="466.0" text="*" />
-                      <Label layoutX="187.0" layoutY="641.0" stylesheets="/Fonts/Roboto-Light.css" text="*Required Fields" />
-                      <Label fx:id="text1" alignment="CENTER" layoutX="150.0" layoutY="126.0" prefHeight="50.0" prefWidth="450.0" style="-fx-background-color: #748cdc; -fx-background-radius: 6;" stylesheets="@/Fonts/Roboto-Light.css" text="Security Service Request" textAlignment="CENTER" textFill="WHITE">
+                      <Label layoutX="187.0" layoutY="661.0" stylesheets="/Fonts/Roboto-Light.css" text="*Required Fields" />
+                      <Label fx:id="text1" alignment="CENTER" layoutX="136.0" layoutY="126.0" prefHeight="50.0" prefWidth="476.0" style="-fx-background-color: #748cdc; -fx-background-radius: 6;" stylesheets="@/Fonts/Roboto-Light.css" text="Security Service Request" textAlignment="CENTER" textFill="WHITE">
                           <font>
                               <Font name="Serif Regular" size="30.0" />
                           </font>
