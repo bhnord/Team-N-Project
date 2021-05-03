@@ -529,7 +529,8 @@ public class DatabaseService {
               + "Q5 BOOLEAN NOT NULL, "
               + "Q6 BOOLEAN NOT NULL, "
               + "ExtraInfo varchar(250), "
-              + "IsOk BOOLEAN, "
+              + "IsOk BOOLEAN, " +
+                  "IsProcessed BOOLEAN, "
               + "PRIMARY KEY (id))";
       stmt.execute(str);
       return true;
