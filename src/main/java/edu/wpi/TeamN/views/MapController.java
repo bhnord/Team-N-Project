@@ -215,15 +215,7 @@ public abstract class MapController extends MasterController {
   }
 
   public void releaseMouse(MouseEvent mouseEvent) {
-    //    if (mouseEvent.getButton() == MouseButton.SECONDARY) {
-    //      System.out.println("end: " + mouseEvent.getX() + ", " + mouseEvent.getY());
-    //      Node other = adminMap.get(mouseEvent.getX(), mouseEvent.getY(),
-    // mapDrawer.getCurrentMap());
-    //      if (other != startNodeDrag) {
-    //        placeLink(startNodeDrag.get_nodeID() + "_" + other.get_nodeID(), startNodeDrag,
-    // other);
-    //      }
-    //    }
+
   }
 
   protected Group placeNode(Node n) {
@@ -254,29 +246,6 @@ public abstract class MapController extends MasterController {
     return root;
   }
 
-  //  private void DeleteNodesFromMap() throws IOException {
-  //    int i = 1;
-  //    for (javafx.scene.Node root :
-  //            mapAnchor.getChildren().subList(i, mapAnchor.getChildren().size())) {
-  //      if (root.getId().equals(current.getId())) {
-  //        mapAnchor.getChildren().remove(i);
-  //        return;
-  //      } else {
-  //        i++;
-  //      }
-  //    }
-  //  }
-
-  //  public void DeleteObjectDataBase() throws IOException {
-  //    String id = current.getId();
-  //    if (adminMap.getNodeSet().containsKey(id)) {
-  //      adminMap.deleteNode(id);
-  //    } else if (adminMap.getEdgeSet().containsKey(id)) {
-  //      adminMap.deleteEdge(id);
-  //    } else {
-  //      System.out.println("Object does not exist");
-  //    }
-  //  }
 
   public void mapFloor() {
     for (Node n : getNodeSet().values()) {
