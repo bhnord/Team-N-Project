@@ -31,6 +31,7 @@
                 <RowConstraints maxHeight="1401.0" minHeight="667.0" prefHeight="734.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
+            <AnchorPane fx:id="anchorPane" prefHeight="200.0" prefWidth="200.0" GridPane.valignment="BASELINE" />
             <GridPane GridPane.columnIndex="1" GridPane.valignment="TOP">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="1018.0" minWidth="10.0" prefWidth="997.0" />
@@ -60,13 +61,12 @@
                       </AnchorPane>
                </children>
             </GridPane>
-            <GridPane GridPane.columnIndex="2">
+            <GridPane prefWidth="214.0" GridPane.columnIndex="2">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints maxHeight="737.0" minHeight="10.0" prefHeight="646.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="137.0" minHeight="78.0" prefHeight="122.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="600.0" minHeight="10.0" prefHeight="600.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <JFXButton buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: WHITE; -fx-background-radius: 30;">
@@ -125,7 +125,6 @@
                   </JFXTabPane>
                </children>
             </GridPane>
-            <AnchorPane fx:id="anchorPane" prefHeight="200.0" prefWidth="200.0" GridPane.valignment="BASELINE" />
             </children>
         </GridPane>
       <Rectangle arcHeight="25.0" arcWidth="25.0" fill="WHITE" height="103.0" opacity="0.95" stroke="#363d5400" strokeType="INSIDE" strokeWidth="0.0" width="470.0" StackPane.alignment="TOP_CENTER">
