@@ -157,10 +157,10 @@ public class CovidFormsTable {
 
   public boolean setCovidFormIsProcessed(int id, boolean isProcessed) {
     String str = "UPDATE COVIDFORMS SET isProcessed = " + isProcessed + " WHERE id = " + id;
-    try{
+    try {
       stmt.execute(str);
       return true;
-    } catch (SQLException e){
+    } catch (SQLException e) {
       e.printStackTrace();
       return false;
     }

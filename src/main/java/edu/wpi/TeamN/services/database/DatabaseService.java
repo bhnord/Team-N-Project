@@ -440,15 +440,14 @@ public class DatabaseService {
 
   /**
    * sets IsProcessed for the Covid Form with matching Id
+   *
    * @param id the id of the covid form you want to modify
    * @param isProcessed what you want to set IsProcessed to
    * @return whether the operation was completed successfully
    */
-  public boolean setCovidFormIsProcessed(int id, boolean isProcessed){
+  public boolean setCovidFormIsProcessed(int id, boolean isProcessed) {
     return covidTable.setCovidFormIsProcessed(id, isProcessed);
   }
-
-
 
   /**
    * loads CSV files into database.

@@ -46,7 +46,7 @@
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
                                     <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="581.0" stroke="#bcbcbc" strokeType="INSIDE" width="886.0" />
-                                    <JFXListView fx:id="listView" layoutX="14.0" layoutY="20.0" prefHeight="535.0" prefWidth="261.0" style="-fx-border-color: #748cdc; -fx-border-width: 2; -fx-border-style: dashed;" stylesheets="@/StyleSheet/style.css" verticalGap="10.0" />
+                                    <JFXListView fx:id="listView" layoutX="14.0" layoutY="20.0" prefHeight="535.0" prefWidth="261.0" stylesheets="@/StyleSheet/style.css" verticalGap="10.0" />
                                     <Label layoutX="325.0" layoutY="47.0" text="Request ID:" />
                                     <Label layoutX="325.0" layoutY="98.0" text="Request Type:" />
                                     <Label layoutX="325.0" layoutY="147.0" text="Sender:" />
@@ -80,7 +80,7 @@
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
                                     <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="581.0" stroke="#bcbcbc" strokeType="INSIDE" width="886.0" />
-                                    <JFXListView fx:id="listViewCovid" layoutX="14.0" layoutY="20.0" prefHeight="535.0" prefWidth="261.0" style="-fx-border-color: #748cdc; -fx-border-width: 2; -fx-border-style: dashed;" stylesheets="@/StyleSheet/style.css" verticalGap="10.0" />
+                                    <JFXListView fx:id="listViewCovid" layoutX="14.0" layoutY="20.0" prefHeight="535.0" prefWidth="261.0" stylesheets="@/StyleSheet/style.css" verticalGap="10.0" />
                                     <Label layoutX="350.0" layoutY="60.0" text="Symptoms: " />
                                     <Label layoutX="350.0" layoutY="104.0" text="Tested:" />
                                     <Label layoutX="350.0" layoutY="149.0" text="Recieved treatment:" />
