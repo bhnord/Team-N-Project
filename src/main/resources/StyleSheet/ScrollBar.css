@@ -1,3 +1,5 @@
+/*documentary for the scroll-bar: https://blog.ngopal.com.np/2012/07/11/customize-scrollbar-via-css/    */
+
 .jfx-list-view .scroll-bar:vertical .thumb,
 .jfx-list-view .scroll-bar:horizontal .thumb{
     -fx-background-color: derive(#363d54,30%);

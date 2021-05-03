@@ -53,7 +53,7 @@ public class MapNodeEditor {
     }
   }
 
-  private boolean straightenPrelim(){
+  private boolean straightenPrelim() {
     if (selection.size() <= 1) {
       return false;
     }
@@ -78,27 +78,29 @@ public class MapNodeEditor {
     return true;
   }
 
-  private double[] applyReg(){
+  private double[] applyReg() {
     ArrayList<Double> xs = new ArrayList<>();
     ArrayList<Double> ys = new ArrayList<>();
-    selection.forEach(n -> {xs.add(n.get_x());ys.add(n.get_y());});
+    selection.forEach(
+        n -> {
+          xs.add(n.get_x());
+          ys.add(n.get_y());
+        });
     return regression(xs, ys);
   }
 
-  public void straightenSelectionSnap(){
-    if (!straightenPrelim()){
+  public void straightenSelectionSnap() {
+    if (!straightenPrelim()) {
       return;
     }
     double[] d = applyReg();
-    if (Math.abs(d[0]) > 1)
-      straightenSelectionVert();
-    else
-      straightenSelectionHoriz();
+    if (Math.abs(d[0]) > 1) straightenSelectionVert();
+    else straightenSelectionHoriz();
   }
 
-  public void straightenSelectionVert(){
+  public void straightenSelectionVert() {
     double averageX = 0;
-    for (Node n : selection){
+    for (Node n : selection) {
       averageX += n.get_x();
     }
     averageX /= selection.size();
@@ -107,9 +109,9 @@ public class MapNodeEditor {
     }
   }
 
-  public void straightenSelectionHoriz(){
+  public void straightenSelectionHoriz() {
     double averageY = 0;
-    for (Node n : selection){
+    for (Node n : selection) {
       averageY += n.get_y();
     }
     averageY /= selection.size();
@@ -117,8 +119,9 @@ public class MapNodeEditor {
       n.get_shape().setCenterY(averageY);
     }
   }
+
   public void straightenSelection() {
-    if (!straightenPrelim()){
+    if (!straightenPrelim()) {
       return;
     }
     double[] d = applyReg();
