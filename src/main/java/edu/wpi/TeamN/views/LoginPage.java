@@ -85,6 +85,8 @@ public class LoginPage extends MasterController implements Initializable {
       incorrectLogin.setText("INCORRECT USERNAME OR PASSWORD, TRY AGAIN");
       incorrectLogin.setAlignment(Pos.CENTER);
     }
+
+
   }
 
   @FXML
