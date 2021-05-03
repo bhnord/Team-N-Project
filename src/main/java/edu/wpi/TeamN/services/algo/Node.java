@@ -202,6 +202,15 @@ public class Node implements Comparable<Node> {
     this._neighbors.add(new Link(id, this, other, distance, shape, this._nodeType.equals("STAI")));
   }
 
+  public void removeNeightbor(Node other) {
+    for (Link l : _neighbors) {
+      if (l._other == other) {
+        _neighbors.remove(l);
+        break;
+      }
+    }
+  }
+
   @Override
   public int compareTo(@NonNull Node Other) {
     return (this._localGoal + this._globalGoal) > (Other._localGoal + Other._globalGoal) ? 1 : -1;

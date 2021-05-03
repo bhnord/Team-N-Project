@@ -233,9 +233,10 @@ public abstract class MapController extends MasterController {
    */
   public Group placeLink(String id, Node node1, Node node2) {
     Group root = mapDrawer.drawLine(id, node1, node2);
-    //    adminMap.makeEdge(id, node1, node2, (Line) root.getChildren().get(0));
     mapAnchor.getChildren().add(1, root);
     root.setCursor(Cursor.CROSSHAIR);
+    root.setOnMouseDragged(event -> mapDrawer.captureMouseDrag(event));
+    root.setOnScroll(event -> mapDrawer.captureMouseScroll(event));
     getAdminMap().makeEdge(id, node1, node2, (Line) root.getChildren().get(0));
     return root;
   }

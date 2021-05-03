@@ -9,7 +9,6 @@ import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
-import javafx.event.EventHandler;
 import javafx.geometry.Bounds;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
@@ -192,6 +191,30 @@ public class MapDrawer {
     currentMap = floor;
   }
 
+  public void captureMouseScroll(ScrollEvent event) {
+    double centerx = transformX(maxImgWidth / 2);
+    double centery = transformY(maxImgHeight / 2);
+    if (event.getDeltaY() > 0 && zoomProperty.get() <= maxZoom) {
+      zoomProperty.set(zoomProperty.get() * 1.08);
+    } else if (event.getDeltaY() < 0 && zoomProperty.get() >= minZoom) {
+      zoomProperty.set(zoomProperty.get() / 1.08);
+    }
+    updateOffset();
+    double new_centerx = transformX(maxImgWidth / 2);
+    double new_centery = transformY(maxImgHeight / 2);
+
+    //            mapContainer.setTranslateX(invOffsetX(offsetX * (1 + (zoomProperty.get() -
+    // 1) / 10)));
+    //            mapContainer.setTranslateY(invOffsetY(offsetY - (new_centery - centery) *
+    // .5));
+    //            System.out.println(new_centerx - centerx);
+    updateOffset();
+
+    correctImage(mapController.getMapAnchor());
+    mapController.getMapAnchor().setScaleX(zoomProperty.get());
+    mapController.getMapAnchor().setScaleY(zoomProperty.get());
+  }
+
   public double invTransformX(double input) {
     return input * zoomProperty.get() + offsetX;
   }
@@ -250,33 +273,6 @@ public class MapDrawer {
     offsetX -= (maxImgWidth * (zoomProperty.get() - 1)) / 2;
     offsetY = mapController.getMapAnchor().getTranslateY();
     offsetY -= (maxImgHeight * (zoomProperty.get() - 1)) / 2;
-
-    imageView.addEventFilter(
-        ScrollEvent.ANY,
-        new EventHandler<ScrollEvent>() {
-          @Override
-          public void handle(ScrollEvent event) {
-            double centerx = transformX(maxImgWidth / 2);
-            double centery = transformY(maxImgHeight / 2);
-            if (event.getDeltaY() > 0 && zoomProperty.get() <= maxZoom) {
-              zoomProperty.set(zoomProperty.get() * 1.08);
-            } else if (event.getDeltaY() < 0 && zoomProperty.get() >= minZoom) {
-              zoomProperty.set(zoomProperty.get() / 1.08);
-            }
-            updateOffset();
-            double new_centerx = transformX(maxImgWidth / 2);
-            double new_centery = transformY(maxImgHeight / 2);
-
-            //            mapContainer.setTranslateX(invOffsetX(offsetX * (1 + (zoomProperty.get() -
-            // 1) / 10)));
-            //            mapContainer.setTranslateY(invOffsetY(offsetY - (new_centery - centery) *
-            // .5));
-            //            System.out.println(new_centerx - centerx);
-            updateOffset();
-
-            correctImage(mapContainer);
-          }
-        });
   }
 
   private void updateOffset() {
