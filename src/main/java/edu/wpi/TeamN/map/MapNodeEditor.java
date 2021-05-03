@@ -3,6 +3,7 @@ package edu.wpi.TeamN.map;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.views.MapEditor;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import javafx.scene.Group;
 import javafx.scene.input.MouseEvent;
@@ -10,6 +11,7 @@ import javafx.scene.input.MouseEvent;
 public class MapNodeEditor {
   private final MapEditor mapEditor;
   private ArrayList<Node> selection;
+  private Node dragger;
 
   public void clearSelection() {
     this.selection.clear();
@@ -19,6 +21,29 @@ public class MapNodeEditor {
     this.selection.add(n);
   }
 
+  public void moveSelection(ArrayList<Node> selection, double[] dx, double[] dy) {
+    for (int i = 0; i < selection.size(); i++) {
+      Node s = selection.get(i);
+      s.set_x(s.get_x() + dx[i]);
+      s.set_y(s.get_y() + dy[i]);
+      s.get_shape().setCenterX(s.get_x() * mapEditor.getDownScale());
+      s.get_shape().setCenterY(s.get_y() * mapEditor.getDownScale());
+      updateLinks(s);
+    }
+    finalize_change();
+  }
+
+  public void moveSelection(ArrayList<Node> selection, double dx, double dy) {
+    for (Node s : selection) {
+      s.set_x(s.get_x() + dx);
+      s.set_y(s.get_y() + dy);
+      s.get_shape().setCenterX(s.get_x() * mapEditor.getDownScale());
+      s.get_shape().setCenterY(s.get_y() * mapEditor.getDownScale());
+      updateLinks(s);
+    }
+    finalize_change();
+  }
+
   public void handleDrag(MouseEvent e, Node n) {
     if (selection.size() == 0) {
       selection.add(n);
@@ -26,6 +51,7 @@ public class MapNodeEditor {
       selection.clear();
       selection.add(n);
     }
+    this.dragger = n;
     double diffX = e.getX() - n.get_x() * mapEditor.getDownScale();
     double diffY = e.getY() - n.get_y() * mapEditor.getDownScale();
     for (Node s : selection) {
@@ -45,7 +71,25 @@ public class MapNodeEditor {
     }
   }
 
-  public void finalize() {
+  public void finalize_change(DiffHandler diffHandler) {
+    double[] dx = new double[selection.size()];
+    double[] dy = new double[selection.size()];
+    for (int i = 0; i < selection.size(); i++) {
+      Node s = selection.get(i);
+      dx[i] = s.get_x();
+      dy[i] = s.get_y();
+      s.set_x(s.get_shape().getCenterX() * mapEditor.getUpScale());
+      s.set_y(s.get_shape().getCenterY() * mapEditor.getUpScale());
+      dx[i] -= s.get_x();
+      dy[i] -= s.get_y();
+      dx[i] = -dx[i];
+      dy[i] = -dy[i];
+      updateLinks(s);
+    }
+    diffHandler.align(new ArrayList<>(selection), dx, dy);
+  }
+
+  public void finalize_change() {
     for (Node s : selection) {
       s.set_x(s.get_shape().getCenterX() * mapEditor.getUpScale());
       s.set_y(s.get_shape().getCenterY() * mapEditor.getUpScale());
@@ -99,6 +143,9 @@ public class MapNodeEditor {
   }
 
   public void straightenSelectionVert() {
+    if (!straightenPrelim()) {
+      return;
+    }
     double averageX = 0;
     for (Node n : selection) {
       averageX += n.get_x();
@@ -110,6 +157,9 @@ public class MapNodeEditor {
   }
 
   public void straightenSelectionHoriz() {
+    if (!straightenPrelim()) {
+      return;
+    }
     double averageY = 0;
     for (Node n : selection) {
       averageY += n.get_y();
@@ -202,6 +252,26 @@ public class MapNodeEditor {
       }
     } catch (Exception e) {
       System.out.println(e.toString());
+    }
+  }
+
+  public void createNodes(ArrayList<Node> nodes) {
+    HashSet<String> placed = new HashSet<>();
+    for (Node n : nodes) {
+      mapEditor.placeNode(n);
+      for (Node.Link l : n.get_neighbors()) {
+        if (!placed.contains(l._id)) {
+          mapEditor.placeLink(l._id, l._this, l._other);
+          placed.add(l._id);
+        }
+      }
+    }
+  }
+
+  public void deleteNodes(ArrayList<Node> nodes) {
+    HashSet<String> placed = new HashSet<>();
+    for (Node n : nodes) {
+      mapEditor.removeNode(n);
     }
   }
 }

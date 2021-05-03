@@ -107,16 +107,6 @@ public class MapDrawer {
     return root;
   }
 
-  public Group endLine(Node node2) {
-    draggedLineGroup.setId(draggedLine.getId() + node2.get_nodeID());
-    Group temp = draggedLineGroup;
-    this.draggedLine.setEndX(node2.get_x() * mapController.getDownScale());
-    this.draggedLine.setEndY(node2.get_y() * mapController.getDownScale());
-    this.draggedLine = null;
-    this.draggedLineGroup = null;
-    return temp;
-  }
-
   public void cancelLine() {
     mapController.getMapAnchor().getChildren().remove(draggedLineGroup);
     this.draggedLine = null;

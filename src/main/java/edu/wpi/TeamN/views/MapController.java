@@ -245,7 +245,7 @@ public abstract class MapController extends MasterController {
    * @param node1 node id of first node
    * @param node2 node id of the second node
    */
-  protected Group placeLink(String id, Node node1, Node node2) {
+  public Group placeLink(String id, Node node1, Node node2) {
     Group root = mapDrawer.drawLine(id, node1, node2);
     //    adminMap.makeEdge(id, node1, node2, (Line) root.getChildren().get(0));
     mapAnchor.getChildren().add(root);

@@ -8,6 +8,7 @@ import edu.wpi.TeamN.state.HomeState;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,8 +18,7 @@ import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.input.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
@@ -76,18 +76,18 @@ public class MapEditor extends MapController implements Initializable {
 
   Boolean cancelOrSubmit = false;
   UserPreferences currentPrefs;
+  DiffHandler diffHandler;
 
-  //  /**
-  //   * This method allows the tests to inject the scene at a later time, since it must be done on
-  // the
-  //   * JavaFX thread
-  //   *
-  //   * @param appPrimaryScene Primary scene of the app whose root will be changed
-  //   */
-  //  @Inject
-  //  public void setAppPrimaryScene(Scene appPrimaryScene) {
-  //    this.appPrimaryScene = appPrimaryScene;
-  //  }
+  /**
+   * This method allows the tests to inject the scene at a later time, since it must be done on the
+   * JavaFX thread
+   *
+   * @param appPrimaryScene Primary scene of the app whose root will be changed
+   */
+  @Inject
+  public void setAppPrimaryScene(Scene appPrimaryScene) {
+    this.appPrimaryScene = appPrimaryScene;
+  }
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
@@ -95,6 +95,7 @@ public class MapEditor extends MapController implements Initializable {
     super.init();
     mapNodeEditor = new MapNodeEditor(this);
     mapEdgeEditor = new MapEdgeEditor(this);
+    diffHandler = new DiffHandler(mapNodeEditor, this);
 
     actionHandling = new NodeActionHandling(this, this.mapNodeEditor, this.mapEdgeEditor);
 
@@ -103,12 +104,18 @@ public class MapEditor extends MapController implements Initializable {
     mapImageView.setCursor(Cursor.CROSSHAIR);
     this.Load();
     mapDrawer.setUpZoom(mapImageView, mapAnchor);
+    KeyCombination kc = new KeyCodeCombination(KeyCode.A.Z, KeyCombination.CONTROL_DOWN);
+    Runnable undo = () -> diffHandler.undo();
+    appPrimaryScene.getAccelerators().put(kc, undo);
+    KeyCombination ky = new KeyCodeCombination(KeyCode.A.Y, KeyCombination.CONTROL_DOWN);
+    Runnable redo = () -> diffHandler.redo();
+    appPrimaryScene.getAccelerators().put(ky, redo);
   }
-  //
-  //  @FXML
-  //  public void advanceHome() throws IOException {
-  //    super.advanceHome(loader, appPrimaryScene);
-  //  }
+
+  @FXML
+  public void advanceHome() throws IOException {
+    super.advanceHome(loader, appPrimaryScene);
+  }
 
   /**
    * Prints the x and y values of the cursor on the bottom left of the screen
@@ -161,7 +168,8 @@ public class MapEditor extends MapController implements Initializable {
       Rectangle r = mapDrawer.endBoundingBox(mouseEvent.getX(), mouseEvent.getY());
       if (r != null) {
         for (Node n : this.getNodeSet().values()) {
-          if (n.get_x() * getDownScale() > r.getX()
+          if (n.get_floor().equals(mapDrawer.getCurrentMap())
+              && n.get_x() * getDownScale() > r.getX()
               && n.get_x() * getDownScale() < r.getX() + r.getWidth()
               && n.get_y() * getDownScale() > r.getY()
               && n.get_y() * getDownScale() < r.getY() + r.getHeight()) {
@@ -169,25 +177,23 @@ public class MapEditor extends MapController implements Initializable {
           }
         }
         mapNodeEditor.straightenSelection();
-        mapNodeEditor.finalize();
+        mapNodeEditor.finalize_change(diffHandler);
       } else {
         placeNode(
             "node_" + adminMap.getNodeSet().values().size(), mouseEvent.getX(), mouseEvent.getY());
       }
     }
     if (mouseEvent.getButton() == MouseButton.SECONDARY) {
-      System.out.println("end: " + mouseEvent.getX() + ", " + mouseEvent.getY());
+      mapNodeEditor.clearSelection();
       Node other = adminMap.get(mouseEvent.getX(), mouseEvent.getY(), mapDrawer.getCurrentMap());
       if (other != startNodePath) {
-        //        placeLink(startNodePath.get_nodeID() + "_" + other.get_nodeID(), startNodePath,
-        // other);
-        Group root = mapDrawer.endLine(other);
-        getAdminMap()
-            .makeEdge(
-                startNodePath.get_nodeID() + "_" + other.get_nodeID(),
-                startNodePath,
-                other,
-                (Line) root.getChildren().get(0));
+        mapDrawer.cancelLine();
+        String id = startNodePath.get_nodeID() + "_" + other.get_nodeID();
+        Group root = mapDrawer.drawLine(id, startNodePath, other);
+        getAdminMap().makeEdge(id, startNodePath, other, (Line) root.getChildren().get(0));
+        getMapAnchor().getChildren().add(3, root);
+        diffHandler.makeEdge(id, startNodePath, other);
+        System.out.println(id);
       } else {
         mapDrawer.cancelLine();
       }
@@ -211,6 +217,25 @@ public class MapEditor extends MapController implements Initializable {
             getLongName().getText(),
             getShortName().getText());
     placeNode(n);
+    diffHandler.create(new ArrayList<>(Collections.singleton(n)));
+  }
+
+  public void removeNode(Node n) {
+    for (int i = 0; i < mapAnchor.getChildren().size(); i++) {
+      for (Node.Link l : n.get_neighbors()) {
+        if (mapAnchor.getChildren().get(i).getId().equals(l._id)) {
+          mapAnchor.getChildren().remove(i);
+        }
+      }
+      if ((mapAnchor.getChildren().get(i)).getId().equals(n.get_nodeID())) {
+        mapAnchor.getChildren().remove(i);
+        break;
+      }
+    }
+    adminMap.deleteNode(n.get_nodeID());
+    for (Node.Link l : n.get_neighbors()) {
+      adminMap.deleteEdge(l._id);
+    }
   }
 
   public Group placeNode(Node n) {
@@ -221,7 +246,7 @@ public class MapEditor extends MapController implements Initializable {
     //    actionHandling.setNodeDrag((Circle) n.get_shape());
     root.setOnMouseDragged(
         event -> mapNodeEditor.handleDrag(event, getNodeSet().get(root.getId())));
-    root.setOnMouseReleased(event -> mapNodeEditor.finalize());
+    root.setOnMouseReleased(event -> mapNodeEditor.finalize_change(diffHandler));
     if (!adminMap.getNodeSet().containsKey(n.get_nodeID())) {
       adminMap.addNode(n);
       mapNodeEditor.showNodeProperties(root);
@@ -600,12 +625,42 @@ public class MapEditor extends MapController implements Initializable {
     ;
   }
 
-  protected Group placeLink(String id, Node node1, Node node2) {
+  public Group placeLink(String id, Node node1, Node node2) {
     Group root = super.placeLink(id, node1, node2);
     actionHandling.setEdgeInfo(root);
     if (!super.getAdminMap().getEdgeSet().containsKey(id)) {
       mapEdgeEditor.showEdgeProperties(root);
     }
     return root;
+  }
+
+  public void deleteLink(String id, Node node1, Node node2) {
+    Node.Link link = null;
+    for (Node.Link l : node1.get_neighbors()) {
+      if (l._id.equals(id)) {
+        link = l;
+      }
+    }
+    if (link != null) node1.get_neighbors().remove(link);
+
+    link = null;
+    for (Node.Link l : node2.get_neighbors()) {
+      if (l._id.equals(id)) {
+        link = l;
+      }
+    }
+    if (link != null) {
+      node2.get_neighbors().remove(link);
+      mapAnchor.getChildren().remove(link._shape);
+    }
+    //    link._shape.setVisible(false);
+    System.out.println(id);
+    for (int i = 0; i < mapAnchor.getChildren().size(); i++) {
+      System.out.println(mapAnchor.getChildren().get(i).getId());
+      if (mapAnchor.getChildren().get(i).getId().equals(id)) {
+        mapAnchor.getChildren().remove(i);
+        break;
+      }
+    }
   }
 }
