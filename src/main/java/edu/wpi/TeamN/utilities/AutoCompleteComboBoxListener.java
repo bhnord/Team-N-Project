@@ -28,7 +28,7 @@ public class AutoCompleteComboBoxListener implements EventHandler<KeyEvent> {
     }
   }
 
-  private JFXComboBox comboBox;
+  private final JFXComboBox comboBox;
   private StringBuilder sb;
   private ObservableList<Label> data;
   private boolean moveCaretToPos = false;
