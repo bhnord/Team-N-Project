@@ -131,17 +131,22 @@ public class CovidFormController extends MasterController implements Initializab
             "Are you sure the information you have provided is correct?",
             event -> {
               db.addCovidForm(form);
-              advanceHomePopup();
+              processingPopup();
             });
       }
     }
+  }
+
+  private void processingPopup() {
+    dialogFactory.creatDialogConfirmCancel(
+        "", "Your survey is being processed. Please wait to enter the hospital");
   }
 
   private void advanceHomePopup() {
 
     dialogFactory.creatDialogConfirmCancel(
         "",
-        "Return to homepage?",
+        "Your covid form has been processed! You can enter the hospital.",
         event -> {
           try {
             advanceHome();

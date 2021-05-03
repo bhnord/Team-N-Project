@@ -99,4 +99,18 @@ public class DialogFactory {
     pane.getChildren().add(stackPane);
     dialog.show();
   }
+
+  public void creatDialogConfirmCancel(String heading, String body) {
+    Text headingText = (Text) content.getHeading().get(0);
+    headingText.setText(heading);
+    content.setHeading(headingText);
+    Text bodyText = (Text) content.getBody().get(0);
+    bodyText.setText(body);
+    content.setBody(bodyText);
+    StackPane stackPane = new StackPane();
+    dialog = new JFXDialog(stackPane, content, JFXDialog.DialogTransition.CENTER);
+    stackPane.setPickOnBounds(false);
+    pane.getChildren().add(stackPane);
+    dialog.show();
+  }
 }
