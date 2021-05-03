@@ -1,5 +1,6 @@
 package edu.wpi.TeamN.views;
 
+import com.google.inject.Inject;
 import com.jfoenix.controls.JFXColorPicker;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
@@ -7,13 +8,11 @@ import edu.wpi.TeamN.map.AdminMap;
 import edu.wpi.TeamN.map.MapDrawer;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.algo.PathFinder;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.Group;
@@ -28,19 +27,31 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import org.kordamp.ikonli.javafx.FontIcon;
 
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+
 public class PathFinderController extends MapController implements Initializable {
   ArrayList<String> path = new ArrayList<String>();
   ArrayList<Node.Link> nodePath = new ArrayList<Node.Link>();
   @FXML private AnchorPane anchorPane;
   private Scene appPrimaryScene;
 
-
   @FXML private JFXListView<HBox> texutualDescription;
+
+  @Inject
+  public void setAppPrimaryScene(Scene appPrimaryScene) {
+    this.appPrimaryScene = appPrimaryScene;
+  }
+
+  @Inject
+  public void setLoader(FXMLLoader loader) {
+    this.loader = loader;
+  }
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Map");
-    super.init();
+    super.init(appPrimaryScene);
 
     adminMap = new AdminMap(db);
     mapDrawer = new MapDrawer(this);
@@ -125,7 +136,6 @@ public class PathFinderController extends MapController implements Initializable
     return fontIcon;
   }
 
-
   public void mapFloor() {
     super.mapFloor();
     for (Node.Link link : nodePath) {
@@ -140,8 +150,6 @@ public class PathFinderController extends MapController implements Initializable
       }
     }
   }
-
-
 
   public void clearSelection(ActionEvent actionEvent) {
     //    reset();

@@ -6,11 +6,6 @@ import edu.wpi.TeamN.map.*;
 import edu.wpi.TeamN.services.algo.Edge;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.state.HomeState;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,6 +19,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import lombok.extern.slf4j.Slf4j;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.ResourceBundle;
 
 @Slf4j
 public class MapEditor extends MapController implements Initializable {
@@ -66,18 +67,19 @@ public class MapEditor extends MapController implements Initializable {
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
    * JavaFX thread
-   *
-   * @param appPrimaryScene Primary scene of the app whose root will be changed
    */
   @Inject
   public void setAppPrimaryScene(Scene appPrimaryScene) {
     this.appPrimaryScene = appPrimaryScene;
   }
 
+  @Inject
+  public void setLoader(FXMLLoader loader) {
+    this.loader = loader;
+  }
+
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Map");
-    super.init();
     mapNodeEditor = new MapNodeEditor(this);
     mapEdgeEditor = new MapEdgeEditor(this);
     diffHandler = new DiffHandler(mapNodeEditor, this);
@@ -87,19 +89,17 @@ public class MapEditor extends MapController implements Initializable {
     adminMap = new AdminMap(db);
     mapDrawer = new MapDrawer(this);
     mapImageView.setCursor(Cursor.CROSSHAIR);
-    this.Load();
     mapDrawer.setUpZoom(mapImageView, mapAnchor);
-    KeyCombination kc = new KeyCodeCombination(KeyCode.A.Z, KeyCombination.CONTROL_DOWN);
+
+    KeyCombination kc = new KeyCodeCombination(KeyCode.Z, KeyCombination.CONTROL_DOWN);
     Runnable undo = () -> diffHandler.undo();
     appPrimaryScene.getAccelerators().put(kc, undo);
-    KeyCombination ky = new KeyCodeCombination(KeyCode.A.Y, KeyCombination.CONTROL_DOWN);
+    KeyCombination ky = new KeyCodeCombination(KeyCode.Y, KeyCombination.CONTROL_DOWN);
     Runnable redo = () -> diffHandler.redo();
     appPrimaryScene.getAccelerators().put(ky, redo);
-  }
 
-  @FXML
-  public void advanceHome() throws IOException {
-    super.advanceHome(loader, appPrimaryScene);
+    super.init(appPrimaryScene);
+    this.Load();
   }
 
   /**
@@ -253,7 +253,6 @@ public class MapEditor extends MapController implements Initializable {
     }
   }
 
-
   public void deleteCurrent(ActionEvent actionEvent) throws IOException, InterruptedException {
     DeleteNodesFromMap();
     DeleteObjectDataBase();
@@ -326,7 +325,6 @@ public class MapEditor extends MapController implements Initializable {
   public void saveNode(ActionEvent actionEvent) {
     mapNodeEditor.commitChanges(current);
   }
-
 
   @Override
   public void correctFloor(Node.Link link) {

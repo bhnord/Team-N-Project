@@ -2,9 +2,6 @@ package edu.wpi.TeamN.map;
 
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.views.MapController;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Objects;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.beans.property.DoubleProperty;
@@ -22,6 +19,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Objects;
 
 public class MapDrawer {
   private final MapController mapController;
@@ -267,7 +268,8 @@ public class MapDrawer {
             double new_centerx = transformX(maxImgWidth / 2);
             double new_centery = transformY(maxImgHeight / 2);
 
-//            mapContainer.setTranslateX(invOffsetX(offsetX * (1 + (zoomProperty.get() - 1) / 10)));
+            //            mapContainer.setTranslateX(invOffsetX(offsetX * (1 + (zoomProperty.get() -
+            // 1) / 10)));
             //            mapContainer.setTranslateY(invOffsetY(offsetY - (new_centery - centery) *
             // .5));
             //            System.out.println(new_centerx - centerx);
