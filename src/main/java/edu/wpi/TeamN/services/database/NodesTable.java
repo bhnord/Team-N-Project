@@ -137,7 +137,7 @@ public class NodesTable {
             + longName
             + ", shortName = "
             + shortName
-            + " WHERE id ="
+            + ", WHERE id ="
             + id;
     try {
       stmt.execute(str);
