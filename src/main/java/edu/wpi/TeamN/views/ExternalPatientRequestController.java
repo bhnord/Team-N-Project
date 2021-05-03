@@ -88,7 +88,15 @@ public class ExternalPatientRequestController extends MasterController implement
           "Missing Fields", "You must fill out all required fields of the request to continue\n");
     } else {
       dialogFactory.creatDialogConfirmCancel(
-          "Are you sure the information you have provided is correct?", "", mouse -> submitToDB());
+          "Are you sure the information you have provided is correct?",
+          "",
+          mouse -> {
+            try {
+              submitToDB();
+            } catch (IOException e) {
+              e.printStackTrace();
+            }
+          });
     }
   }
 
@@ -98,7 +106,8 @@ public class ExternalPatientRequestController extends MasterController implement
         "- Transportation type refers to the kind of transportation a patient requests \n- Patient Room is the room with the patient where the transportation is required \n- Employee is the kind of employee needed \n- Destination is the location of where a patient needs to be taken \n- Time of departure refers to time at which the transportation is departing \n- Comments refers to any additional information needed");
   }
 
-  private void submitToDB() {
+  private void submitToDB() throws IOException {
+    advanceHome();
     Request request =
         new Request(
             RequestType.EXTERNAL_PATIENT_TRANSPORTATION,
