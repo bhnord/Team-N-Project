@@ -120,9 +120,9 @@ public class FindUsController extends MasterController implements Initializable 
         instructions = instructions.replace("</div>", ")");
         directions.append(instructions);
         directions
-            .append(" <p style=\"text-align: right\">(")
+            .append(" <p style=\"text-align: right;  padding-right: 8px\">(")
             .append(step.distance)
-            .append(")  </p>");
+            .append(")</p>");
         directions.append("<br/>");
       }
       directions.append("</body>\n" + "</html>");
