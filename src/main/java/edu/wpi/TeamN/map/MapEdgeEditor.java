@@ -1,12 +1,11 @@
 package edu.wpi.TeamN.map;
 
 import edu.wpi.TeamN.services.algo.Edge;
-import edu.wpi.TeamN.views.MapController;
 import edu.wpi.TeamN.views.MapEditor;
 import javafx.scene.Group;
 
 public class MapEdgeEditor {
-  private final MapController mapEditor;
+  private final MapEditor mapEditor;
 
   public MapEdgeEditor(MapEditor mapEditor) {
     this.mapEditor = mapEditor;
@@ -20,7 +19,7 @@ public class MapEdgeEditor {
   }
 
   public void saveEdge(Group root) {
-    Edge edge = mapEditor.getAdminMap().getEdgeSet().get(mapEditor.getEdgeID().getText());
+    //    Edge edge = mapEditor.getAdminMap().getEdgeSet().get(mapEditor.getEdgeID().getText());
     String id = mapEditor.getEdgeID().getText();
     String sn = mapEditor.getStartNode().getText();
     String en = mapEditor.getEndNode().getText();

@@ -86,13 +86,13 @@ public class DatabaseService {
    * updates node in database based on given ID (you cannot change the ID of a node once set)
    *
    * @param id the ID of the desired node to be changed
-   * @param x
-   * @param y
-   * @param floor
-   * @param building
-   * @param nodeType
-   * @param longName
-   * @param shortName
+   * @param x X position of the node
+   * @param y Y position of the node
+   * @param floor Floor the node is on
+   * @param building The building where is in
+   * @param nodeType Type of the node
+   * @param longName Long name of the node
+   * @param shortName Short name of the node
    * @return whether the operation was carried out successfully
    */
   public boolean updateNode(
@@ -271,12 +271,12 @@ public class DatabaseService {
   /**
    * updates an existing request in the database (cannot change the ID of an existing request)
    *
-   * @param requestID
-   * @param type
-   * @param senderID
-   * @param receiverID
-   * @param content
-   * @param notes
+   * @param requestID ID of the request from the db
+   * @param type Type of request
+   * @param senderID ID of the request sender
+   * @param receiverID ID of the one assigned to the request
+   * @param content Content of the request
+   * @param notes Extra notes about the request
    * @return whether the operation was carried out successfully
    */
   public boolean updateRequest(
@@ -308,11 +308,11 @@ public class DatabaseService {
   /**
    * updates an existing user in the database
    *
-   * @param id
-   * @param username
-   * @param password
-   * @param type
-   * @return
+   * @param id ID of the user to update (Can not update ID)
+   * @param username New username for the user
+   * @param password New password for the user
+   * @param type New type for the user
+   * @return whether or not the operation was carried out successfully
    */
   public boolean updateUser(
       int id, String username, String password, UserType type, UserPrefs userPrefs) {
@@ -530,11 +530,12 @@ public class DatabaseService {
               + "Q6 BOOLEAN NOT NULL, "
               + "ExtraInfo varchar(250), "
               + "IsOk BOOLEAN, "
+              + "IsProcessed BOOLEAN, "
               + "PRIMARY KEY (id))";
       stmt.execute(str);
       return true;
     } catch (SQLException e) {
-      e.printStackTrace();
+      //      e.printStackTrace();
       return false;
     }
   }

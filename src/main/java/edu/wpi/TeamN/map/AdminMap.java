@@ -34,6 +34,11 @@ public class AdminMap {
     return edgeSet;
   }
 
+  public void updateNode(Node node) {
+    db.deleteNode(node.get_nodeID());
+    db.addNode(node);
+  }
+
   public void addNode(Node node) {
     nodeSet.put(node.get_nodeID(), node);
     db.addNode(node);

@@ -2,18 +2,33 @@
     -fx-font-family: 'Roboto Black';
     -fx-font-size: 26;
     -fx-background-size: cover;
-    -fx-background-radius: 25;
 } #ServiceRequests{
       -fx-background-image: url('/images/ButtonSR.png');
+      -fx-font-size: 26;
+      -fx-background-radius: 25;
+
   }  #CurrentRequest{
            -fx-background-image: url('/images/ButtonCR.png');
+           -fx-font-size: 26;
+           -fx-background-radius: 25;
+
        }  #EmployeeEditor{
                      -fx-background-image: url('/images/ButtonH.png');
+                     -fx-font-size: 26;
+                     -fx-background-radius: 25;
                  } #mapEditor{
                        -fx-background-image: url('/images/ButtonM.png');
+                       -fx-font-size: 26;
+                       -fx-background-radius: 25;
                    } #mapPathfinder{
                          -fx-background-image: url('/images/ButtonM.png');
-                     }
+                         -fx-font-size: 26;
+                         -fx-background-radius: 25;
+                     }#FindUs{
+                          -fx-background-image: url('/images/ButtonM.png');
+                          -fx-font-size: 26;
+                          -fx-background-radius: 25;
+                      }
 
 .jfx-tab-pane .headers-region {
     -fx-background-color: #1b75bc;
@@ -56,7 +71,7 @@
     -jfx-rippler-fill: WHITE;
 }
 .jfx-tab-pane .tab-selected-line {
-    -fx-background-color: WHITE;
+    -fx-background-color: #7e98ef;
     -fx-pref-height: 3;
 }
 

@@ -11,8 +11,10 @@ import edu.wpi.TeamN.services.database.DatabaseService;
 import edu.wpi.TeamN.services.database.users.UserPrefs;
 import edu.wpi.TeamN.state.HomeState;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -132,8 +134,6 @@ public abstract class MapController extends MasterController {
   //  private MapNodeEditor mapNodeEditor;
   //  private MapEdgeEditor mapEdgeEditor;
 
-  private Scene appPrimaryScene;
-
   @FXML private JFXTextField nodeId;
   //  @FXML private JFXTextField building;
   //  @FXML private JFXTextField floor;
@@ -154,14 +154,10 @@ public abstract class MapController extends MasterController {
   @FXML private Circle pathColor_L;
   @FXML private Circle selectedNodeColor_L;
 
-  //  Boolean cancelOrSubmit = false;
+  @Override
+  public void initialize(URL location, ResourceBundle resources) {}
 
-  @Inject
-  public void setAppPrimaryScene(Scene appPrimaryScene) {
-    this.appPrimaryScene = appPrimaryScene;
-  }
-
-  public void init() {
+  public void init(Scene appPrimaryScene) {
     super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Map");
     userPrefs = db.getCurrentUser().getUserPrefs();
 
@@ -214,17 +210,7 @@ public abstract class MapController extends MasterController {
             });
   }
 
-  public void releaseMouse(MouseEvent mouseEvent) {
-    //    if (mouseEvent.getButton() == MouseButton.SECONDARY) {
-    //      System.out.println("end: " + mouseEvent.getX() + ", " + mouseEvent.getY());
-    //      Node other = adminMap.get(mouseEvent.getX(), mouseEvent.getY(),
-    // mapDrawer.getCurrentMap());
-    //      if (other != startNodeDrag) {
-    //        placeLink(startNodeDrag.get_nodeID() + "_" + other.get_nodeID(), startNodeDrag,
-    // other);
-    //      }
-    //    }
-  }
+  public void releaseMouse(MouseEvent mouseEvent) {}
 
   protected Group placeNode(Node n) {
     Group root =
@@ -245,38 +231,14 @@ public abstract class MapController extends MasterController {
    * @param node1 node id of first node
    * @param node2 node id of the second node
    */
-  protected Group placeLink(String id, Node node1, Node node2) {
+  public Group placeLink(String id, Node node1, Node node2) {
     Group root = mapDrawer.drawLine(id, node1, node2);
     //    adminMap.makeEdge(id, node1, node2, (Line) root.getChildren().get(0));
-    mapAnchor.getChildren().add(root);
+    mapAnchor.getChildren().add(1, root);
     root.setCursor(Cursor.CROSSHAIR);
     getAdminMap().makeEdge(id, node1, node2, (Line) root.getChildren().get(0));
     return root;
   }
-
-  //  private void DeleteNodesFromMap() throws IOException {
-  //    int i = 1;
-  //    for (javafx.scene.Node root :
-  //            mapAnchor.getChildren().subList(i, mapAnchor.getChildren().size())) {
-  //      if (root.getId().equals(current.getId())) {
-  //        mapAnchor.getChildren().remove(i);
-  //        return;
-  //      } else {
-  //        i++;
-  //      }
-  //    }
-  //  }
-
-  //  public void DeleteObjectDataBase() throws IOException {
-  //    String id = current.getId();
-  //    if (adminMap.getNodeSet().containsKey(id)) {
-  //      adminMap.deleteNode(id);
-  //    } else if (adminMap.getEdgeSet().containsKey(id)) {
-  //      adminMap.deleteEdge(id);
-  //    } else {
-  //      System.out.println("Object does not exist");
-  //    }
-  //  }
 
   public void mapFloor() {
     for (Node n : getNodeSet().values()) {
