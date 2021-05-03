@@ -1,6 +1,5 @@
 package edu.wpi.TeamN.map;
 
-import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.views.MapEditor;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -35,18 +34,19 @@ public class NodeActionHandling implements IActionHandling {
   public void setNodeDrag(Circle root) {
     root.setOnMouseDragged(
         event -> {
-          root.setCenterX(event.getX());
-          root.setCenterY(event.getY());
-          Node n = mapEditor.getNodeSet().get(root.getId());
-          n.set_x(event.getX() * mapEditor.getUpScale());
-          n.set_y(event.getY() * mapEditor.getUpScale());
-          for (Node.Link l : n.get_neighbors()) {
-            l._shape.setStartX(l._this.get_x() * mapEditor.getDownScale());
-            l._shape.setStartY(l._this.get_y() * mapEditor.getDownScale());
-
-            l._shape.setEndX(l._other.get_x() * mapEditor.getDownScale());
-            l._shape.setEndY(l._other.get_y() * mapEditor.getDownScale());
-          }
+          //          root.setCenterX(event.getX());
+          //          root.setCenterY(event.getY());
+          //          Node n = mapEditor.getNodeSet().get(root.getId());
+          //          n.set_x(event.getX() * mapEditor.getUpScale());
+          //          n.set_y(event.getY() * mapEditor.getUpScale());
+          //          for (Node.Link l : n.get_neighbors()) {
+          //            l._shape.setStartX(l._this.get_x() * mapEditor.getDownScale());
+          //            l._shape.setStartY(l._this.get_y() * mapEditor.getDownScale());
+          //
+          //            l._shape.setEndX(l._other.get_x() * mapEditor.getDownScale());
+          //            l._shape.setEndY(l._other.get_y() * mapEditor.getDownScale());
+          //          }
+          //            mapEditor.ma
         });
   }
 

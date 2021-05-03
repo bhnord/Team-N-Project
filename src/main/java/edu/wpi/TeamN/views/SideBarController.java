@@ -105,6 +105,7 @@ public class SideBarController extends MasterController implements Initializable
       // all buttons
     } else if (type.equals("Covid Form")) {
       makeInvisible(groupCovid);
+      makeInvisible(groupBack);
     } else if (type.equals("Login")) {
       makeInvisible(groupLogOut);
       makeInvisible(groupCovid);
