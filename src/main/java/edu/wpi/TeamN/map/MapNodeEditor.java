@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import javafx.scene.Group;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 
 public class MapNodeEditor {
   private final MapEditor mapEditor;
@@ -14,10 +15,14 @@ public class MapNodeEditor {
   private Node dragger;
 
   public void clearSelection() {
+    for (Node n : selection) {
+      n.get_shape().setFill(Color.web(mapEditor.getUserPrefs().getBasicNodeColor()));
+    }
     this.selection.clear();
   }
 
   public void addNode(Node n) {
+    n.get_shape().setFill(Color.web(mapEditor.getUserPrefs().getHighlightColor()));
     this.selection.add(n);
   }
 
@@ -33,22 +38,11 @@ public class MapNodeEditor {
     finalize_change();
   }
 
-  public void moveSelection(ArrayList<Node> selection, double dx, double dy) {
-    for (Node s : selection) {
-      s.set_x(s.get_x() + dx);
-      s.set_y(s.get_y() + dy);
-      s.get_shape().setCenterX(s.get_x() * mapEditor.getDownScale());
-      s.get_shape().setCenterY(s.get_y() * mapEditor.getDownScale());
-      updateLinks(s);
-    }
-    finalize_change();
-  }
-
   public void handleDrag(MouseEvent e, Node n) {
     if (selection.size() == 0) {
       selection.add(n);
     } else if (!selection.contains(n)) {
-      selection.clear();
+      clearSelection();
       selection.add(n);
     }
     this.dragger = n;
@@ -85,6 +79,7 @@ public class MapNodeEditor {
       dx[i] = -dx[i];
       dy[i] = -dy[i];
       updateLinks(s);
+      mapEditor.getAdminMap().updateNode(s);
     }
     diffHandler.align(new ArrayList<>(selection), dx, dy);
   }
@@ -94,6 +89,7 @@ public class MapNodeEditor {
       s.set_x(s.get_shape().getCenterX() * mapEditor.getUpScale());
       s.set_y(s.get_shape().getCenterY() * mapEditor.getUpScale());
       updateLinks(s);
+      mapEditor.getAdminMap().updateNode(s);
     }
   }
 

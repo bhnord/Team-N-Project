@@ -12,14 +12,12 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -174,20 +172,20 @@ public class PathFinderController extends MapController implements Initializable
   //    }
   //  }
 
-  private void reset() {
-    for (Node n : getNodeSet().values()) {
-      Circle c = (Circle) n.get_shape();
-      c.setRadius(super.getNodeSize());
-      n.get_shape().setVisible(mapDrawer.getCurrentMap().equals(n.get_floor()));
-      n.get_shape().setStroke(Color.BLACK);
-    }
-    newColorNode(EXIT);
-    newColorNode(ELEV);
-    newColorNode(STAI);
-    Event.fireEvent(nodeColor, new ActionEvent());
-    nodePath.clear();
-    texutualDescription.getItems().clear();
-  }
+  //  private void reset() {
+  //    for (Node n : getNodeSet().values()) {
+  //      Circle c = (Circle) n.get_shape();
+  //      c.setRadius(super.getNodeSize());
+  //      n.get_shape().setVisible(mapDrawer.getCurrentMap().equals(n.get_floor()));
+  //      n.get_shape().setStroke(Color.BLACK);
+  //    }
+  //    newColorNode(EXIT);
+  //    newColorNode(ELEV);
+  //    newColorNode(STAI);
+  //    Event.fireEvent(nodeColor, new ActionEvent());
+  //    nodePath.clear();
+  //    texutualDescription.getItems().clear();
+  //  }
 
   public void newColorPath(ActionEvent actionEvent) {
     updateUserColors(pathColor.getId(), pathColor.getValue().toString());
@@ -233,10 +231,10 @@ public class PathFinderController extends MapController implements Initializable
   //    }
   //  }
 
-  public void setMap(ActionEvent actionEvent) {
-    mapDrawer.setMap(((Button) actionEvent.getSource()).getId());
-    this.mapFloor();
-  }
+  //  public void setMap(ActionEvent actionEvent) {
+  //    mapDrawer.setMap(((Button) actionEvent.getSource()).getId());
+  //    this.mapFloor();
+  //  }
 
   public void mapFloor() {
     super.mapFloor();
@@ -288,7 +286,7 @@ public class PathFinderController extends MapController implements Initializable
   //    }
 
   public void clearSelection(ActionEvent actionEvent) {
-    reset();
+    //    reset();
     path = new ArrayList<String>();
   }
 
