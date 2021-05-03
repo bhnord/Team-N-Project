@@ -2,11 +2,19 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.web.WebView?>
+
 <StackPane fx:id="stackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.TeamN.views.FindUsController">
     <children>
         <ImageView fitHeight="1766.0" fitWidth="1458.0" pickOnBounds="true" preserveRatio="true" scaleX="2.0" scaleY="2.0" StackPane.alignment="TOP_LEFT">
@@ -17,43 +25,74 @@
         <GridPane>
             <columnConstraints>
                 <ColumnConstraints hgrow="NEVER" maxWidth="451.0" minWidth="66.0" prefWidth="66.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="566.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="566.0" />
             </columnConstraints>
             <rowConstraints>
                 <RowConstraints minHeight="768.0" prefHeight="768.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <AnchorPane fx:id="anchorPane" prefHeight="200.0" prefWidth="200.0" GridPane.valignment="BASELINE" />
+            <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1270.0" style="-fx-background-color: WHITE; -fx-background-radius: 40;" GridPane.columnIndex="1">
+               <GridPane.margin>
+                  <Insets top="40.0" />
+               </GridPane.margin>
+               <effect>
+                  <DropShadow color="#0000008e" height="166.29" radius="88.57499999999999" spread="0.12" width="190.01" />
+               </effect>
+            </Label>
             <GridPane GridPane.columnIndex="1">
               <columnConstraints>
-                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="905.9295043945312" minWidth="10.0" prefWidth="897.7266235351562" />
-                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="643.4376831054688" minWidth="10.0" prefWidth="402.27337646484375" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints maxHeight="249.43771362304688" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="512.0" minHeight="10.0" prefHeight="512.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="87.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="71.0" minHeight="10.0" prefHeight="38.0" vgrow="NEVER" />
+                <RowConstraints maxHeight="512.0" minHeight="10.0" prefHeight="504.0" vgrow="NEVER" />
+                  <RowConstraints maxHeight="67.0" minHeight="10.0" prefHeight="54.0" vgrow="NEVER" />
+                <RowConstraints maxHeight="1.7976931348623157E308" minHeight="0.0" prefHeight="66.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <ImageView fx:id="mapImage" fitHeight="516.0" fitWidth="895.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1" />
-                  <WebView fx:id="webView" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <GridPane>
+                  <GridPane GridPane.rowIndex="2">
                     <columnConstraints>
-                      <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="650.0" />
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="650.0" />
                     </columnConstraints>
                     <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="1.7976931348623157E308" prefHeight="477.0" vgrow="ALWAYS" />
                     </rowConstraints>
                      <children>
-                        <JFXComboBox fx:id="addressBox" editable="true" labelFloat="true" promptText="Enter Your Address" stylesheets="@/Fonts/Roboto-Light.css" />
-                        <JFXButton buttonType="RAISED" onAction="#submitAddress" stylesheets="@/Fonts/Roboto-Light.css" text="Submit" GridPane.columnIndex="1" />
+                        <ImageView fx:id="mapImage" fitHeight="477.0" fitWidth="645.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="RIGHT">
+                           <GridPane.margin>
+                              <Insets left="30.0" right="5.0" />
+                           </GridPane.margin>
+                           <effect>
+                              <DropShadow color="#0000003b" height="25.33" radius="13.245" spread="0.53" width="29.65" />
+                           </effect>
+                        </ImageView>
+                        <WebView fx:id="webView" maxHeight="477.0" maxWidth="610.0" minHeight="477.0" minWidth="-1.0" prefHeight="477.0" prefWidth="600.0" stylesheets="/StyleSheet/ScrollBar.css" GridPane.columnIndex="1" GridPane.halignment="LEFT">
+                           <GridPane.margin>
+                              <Insets bottom="20.0" left="5.0" right="30.0" top="20.0" />
+                           </GridPane.margin>
+                           <effect>
+                              <DropShadow color="#0000003b" height="25.33" radius="13.245" spread="0.53" width="29.65" />
+                           </effect>
+                        </WebView>
                      </children>
                   </GridPane>
-                  <Label fx:id="directionsLabel" alignment="CENTER" prefHeight="87.0" prefWidth="489.0" stylesheets="@/Fonts/Roboto-Light.css" text="Here is the text" textAlignment="CENTER" GridPane.rowIndex="2" />
-                  <JFXButton fx:id="printButton" disable="true" onAction="#printDirections" stylesheets="@/Fonts/Roboto-Light.css" text="Print" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <JFXButton buttonType="RAISED" onAction="#submitAddress" style="-fx-background-color: #748cdc;" stylesheets="@/Fonts/Roboto-Light.css" text="Submit" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                  <JFXComboBox fx:id="addressBox" editable="true" focusColor="#748cdc" labelFloat="true" promptText="Enter Your Address" stylesheets="@/Fonts/Roboto-Light.css" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
+                  <JFXButton fx:id="printButton" disable="true" onAction="#printDirections" style="-fx-background-color: #748cdc;" stylesheets="@/Fonts/Roboto-Light.css" text="Print" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                     <GridPane.margin>
+                        <Insets top="10.0" />
+                     </GridPane.margin>
+                  </JFXButton>
+                  <Label fx:id="directionsLabel" alignment="CENTER" prefHeight="87.0" prefWidth="658.0" stylesheets="@/Fonts/Roboto-Light.css" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
                </children>
             </GridPane>
+                <AnchorPane fx:id="anchorPane" prefHeight="200.0" prefWidth="200.0" GridPane.valignment="BASELINE" />
             </children>
         </GridPane>
     </children>

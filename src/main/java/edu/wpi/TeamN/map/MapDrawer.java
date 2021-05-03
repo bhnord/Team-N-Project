@@ -107,16 +107,6 @@ public class MapDrawer {
     return root;
   }
 
-  public Group endLine(Node node2) {
-    draggedLineGroup.setId(draggedLine.getId() + node2.get_nodeID());
-    Group temp = draggedLineGroup;
-    this.draggedLine.setEndX(node2.get_x() * mapController.getDownScale());
-    this.draggedLine.setEndY(node2.get_y() * mapController.getDownScale());
-    this.draggedLine = null;
-    this.draggedLineGroup = null;
-    return temp;
-  }
-
   public void cancelLine() {
     mapController.getMapAnchor().getChildren().remove(draggedLineGroup);
     this.draggedLine = null;
@@ -179,10 +169,7 @@ public class MapDrawer {
       mapController
           .getMapAnchor()
           .setTranslateY(mapController.getMapAnchor().getTranslateY() + event.getY() - pressedY);
-      offsetX = mapController.getMapAnchor().getTranslateX();
-      offsetX -= (maxImgWidth * (zoomProperty.get() - 1)) / 2;
-      offsetY = mapController.getMapAnchor().getTranslateY();
-      offsetY -= (maxImgHeight * (zoomProperty.get() - 1)) / 2;
+      updateOffset();
       Bounds bounds =
           mapController.getMapAnchor().localToScene(mapController.getMapAnchor().getLayoutBounds());
       //      System.out.println(offsetY / bounds.getMinY());
@@ -230,26 +217,27 @@ public class MapDrawer {
   }
 
   private void correctImage(AnchorPane mapContainer) {
-    /* if (transformY(0) > -1 && transformY(0) < 1) {
-      System.out.println(mapContainer.getTranslateY() / (zoomProperty.get() - 1));
-    }
-    if (transformX(0) < 0) {
-      mapContainer.setTranslateX(invOffsetX(0));
-    }
-    if (transformY(0) < 0) {
-      mapContainer.setTranslateY(invOffsetY(0));
-    }
-    if (transformX(maxImgWidth) > maxImgWidth) {
-      mapContainer.setTranslateX(invOffsetX(-maxImgWidth * (zoomProperty.get() - 1)));
-    }
-    if (transformY(maxImgHeight) > maxImgHeight) {
-      mapContainer.setTranslateY(invOffsetY(-maxImgHeight * (zoomProperty.get() - 1)));
-    }*/
+    //    if (transformY(0) > -1 && transformY(0) < 1) {
+    //      System.out.println(mapContainer.getTranslateY() / (zoomProperty.get() - 1));
+    //    }
+    //    if (transformX(0) < 0) {
+    //      mapContainer.setTranslateX(invOffsetX(0));
+    //    }
+    //    if (transformY(0) < 0) {
+    //      mapContainer.setTranslateY(invOffsetY(0));
+    //    }
+    //    if (transformX(maxImgWidth) > maxImgWidth) {
+    //      mapContainer.setTranslateX(invOffsetX(-maxImgWidth * (zoomProperty.get() - 1)));
+    //    }
+    //    if (transformY(maxImgHeight) > maxImgHeight) {
+    //      mapContainer.setTranslateY(invOffsetY(-maxImgHeight * (zoomProperty.get() - 1)));
+    //    }
   }
 
   public void setUpZoom(ImageView imageView, AnchorPane mapContainer) {
     maxImgWidth = imageView.getFitWidth();
     maxImgHeight = imageView.getFitHeight();
+    mapContainer.setManaged(false);
     zoomProperty.addListener(
         new InvalidationListener() {
           @Override
@@ -258,19 +246,42 @@ public class MapDrawer {
             mapContainer.setScaleY(zoomProperty.get());
           }
         });
+    offsetX = mapController.getMapAnchor().getTranslateX();
+    offsetX -= (maxImgWidth * (zoomProperty.get() - 1)) / 2;
+    offsetY = mapController.getMapAnchor().getTranslateY();
+    offsetY -= (maxImgHeight * (zoomProperty.get() - 1)) / 2;
 
     imageView.addEventFilter(
         ScrollEvent.ANY,
         new EventHandler<ScrollEvent>() {
           @Override
           public void handle(ScrollEvent event) {
+            double centerx = transformX(maxImgWidth / 2);
+            double centery = transformY(maxImgHeight / 2);
             if (event.getDeltaY() > 0 && zoomProperty.get() <= maxZoom) {
               zoomProperty.set(zoomProperty.get() * 1.08);
             } else if (event.getDeltaY() < 0 && zoomProperty.get() >= minZoom) {
               zoomProperty.set(zoomProperty.get() / 1.08);
             }
+            updateOffset();
+            double new_centerx = transformX(maxImgWidth / 2);
+            double new_centery = transformY(maxImgHeight / 2);
+
+//            mapContainer.setTranslateX(invOffsetX(offsetX * (1 + (zoomProperty.get() - 1) / 10)));
+            //            mapContainer.setTranslateY(invOffsetY(offsetY - (new_centery - centery) *
+            // .5));
+            //            System.out.println(new_centerx - centerx);
+            updateOffset();
+
             correctImage(mapContainer);
           }
         });
+  }
+
+  private void updateOffset() {
+    offsetX = mapController.getMapAnchor().getTranslateX();
+    offsetX -= (maxImgWidth * (zoomProperty.get() - 1)) / 2;
+    offsetY = mapController.getMapAnchor().getTranslateY();
+    offsetY -= (maxImgHeight * (zoomProperty.get() - 1)) / 2;
   }
 }

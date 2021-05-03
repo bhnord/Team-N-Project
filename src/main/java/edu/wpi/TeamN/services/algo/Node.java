@@ -9,7 +9,7 @@ import lombok.NonNull;
 public class Node implements Comparable<Node> {
 
   public static class Link {
-    String _id;
+    public String _id;
     public Node _other;
     public Node _this;
     double _distance;

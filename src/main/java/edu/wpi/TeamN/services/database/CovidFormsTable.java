@@ -144,7 +144,8 @@ public class CovidFormsTable {
         String extraInfo = rs.getString("extraInfo");
         boolean isOk = rs.getBoolean("IsOk");
         boolean isProcessed = rs.getBoolean("IsProcessed");
-        CovidForm form = new CovidForm(id, user, assignedEmployee, ans, extraInfo, isOk, isProcessed);
+        CovidForm form =
+            new CovidForm(id, user, assignedEmployee, ans, extraInfo, isOk, isProcessed);
         formSet.add(form);
       }
       return formSet;

@@ -5,7 +5,6 @@ public class CovidForm {
   private boolean answers[], isOk, isProcessed;
   private String extraInfo;
 
-
   public CovidForm(int userId, boolean answers[], String extraInfo) {
     this.userId = userId;
     this.answers = answers;
@@ -19,7 +18,7 @@ public class CovidForm {
       boolean answers[],
       String extraInfo,
       boolean isOk,
-  boolean isProcessed) {
+      boolean isProcessed) {
     this.id = id;
     this.userId = userId;
     this.assignedEmployeeId = assignedEmployeeId;
