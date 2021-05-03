@@ -7,16 +7,15 @@ import com.google.maps.StaticMapsRequest;
 import com.google.maps.model.DirectionsResult;
 import com.google.maps.model.DirectionsStep;
 import com.google.maps.model.Size;
+import java.io.ByteArrayInputStream;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
-
-import java.io.ByteArrayInputStream;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class MapTest implements Initializable {
 

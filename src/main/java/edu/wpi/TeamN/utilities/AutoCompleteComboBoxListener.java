@@ -2,6 +2,8 @@ package edu.wpi.TeamN.utilities;
 
 import com.jfoenix.controls.JFXComboBox;
 import edu.wpi.TeamN.services.algo.WordDistanceComputer;
+import java.util.Objects;
+import java.util.PriorityQueue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -9,9 +11,6 @@ import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.util.StringConverter;
-
-import java.util.Objects;
-import java.util.PriorityQueue;
 
 public class AutoCompleteComboBoxListener implements EventHandler<KeyEvent> {
   private static class WordIntPair implements Comparable<WordIntPair> {
