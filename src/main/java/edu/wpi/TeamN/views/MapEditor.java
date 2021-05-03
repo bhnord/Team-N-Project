@@ -27,12 +27,6 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class MapEditor extends MapController implements Initializable {
-  //  @FXML private JFXColorPicker nodeColor;
-  //  @FXML private JFXColorPicker EXIT;
-  //  @FXML private JFXColorPicker ELEV;
-  //  @FXML private JFXColorPicker STAI;
-  //  @FXML private JFXColorPicker pathColor;
-  //  @FXML private JFXColorPicker selectedNodeColor;
   @FXML private JFXTextField nodeSize;
   @FXML private JFXTextField pathSize;
   @Inject FXMLLoader loader;
@@ -40,19 +34,9 @@ public class MapEditor extends MapController implements Initializable {
 
   @FXML private Label XLabel;
   @FXML private Label YLabel;
-  //  @FXML private ImageView mapImageView;
-  //  @FXML private AnchorPane mapAnchor;
-
   private Group current;
   private Node startNodePath;
 
-  //  public final double downScale = 0.25;
-  //  public final double upScale = 4;
-  //  private int nodeCount = 0;
-
-  //  private AdminMap adminMap;
-  //  private MapDrawer mapDrawer;
-  // needed
   private MapNodeEditor mapNodeEditor;
   private MapEdgeEditor mapEdgeEditor;
   private IActionHandling actionHandling;
@@ -134,12 +118,6 @@ public class MapEditor extends MapController implements Initializable {
    * @param mouseEvent
    */
   public void placeNodeClick(MouseEvent mouseEvent) throws IOException {
-    //    if (mouseEvent.getButton() == MouseButton.PRIMARY) {
-    //      placeNode(
-    //          "node_" + adminMap.getNodeSet().values().size(), mouseEvent.getX(),
-    // mouseEvent.getY());
-    //    }
-
     setCancelOrSubmit(false);
   }
 
@@ -158,10 +136,6 @@ public class MapEditor extends MapController implements Initializable {
       mapDrawer.startLine(startNodePath);
     }
   }
-
-  //  public AnchorPane getMapAnchor() {
-  //    return mapAnchor;
-  //  }
 
   public void releaseMouse(MouseEvent mouseEvent) {
     if (mouseEvent.getButton() == MouseButton.PRIMARY) {
@@ -255,47 +229,6 @@ public class MapEditor extends MapController implements Initializable {
     return root;
   }
 
-  //  /**
-  //   * Places a line between two nodes
-  //   *
-  //   * @param node1 node id of first node
-  //   * @param node2 node id of the second node
-  //   */
-  //  private void placeLink(String id, Node node1, Node node2) {
-  //    Group root = mapDrawer.drawLine(id, node1, node2);
-  //    adminMap.makeEdge(id, node1, node2, (Line) root.getChildren().get(0));
-  //    actionHandling.setEdgeInfo(root);
-  //    mapAnchor.getChildren().add(root);
-  //    root.setCursor(Cursor.CROSSHAIR);
-  //    if (!adminMap.getEdgeSet().containsKey(id)) {
-  //      adminMap.addEdge(new Edge(id, node1.get_nodeID(), node2.get_nodeID()));
-  //      mapEdgeEditor.showEdgeProperties(root);
-  //    }
-  //  }
-  //  public void newSize(ActionEvent actionEvent) {
-  //    double nodeValue = Double.parseDouble(nodeSize.getText());
-  //    double edgeValue = Double.parseDouble(pathSize.getText());
-  //    if (((JFXTextField) actionEvent.getSource()).getId().equals("nodeSize")
-  //        && nodeValue <= 5
-  //        && nodeValue >= 3) {
-  //      for (int i = 1; mapAnchor.getChildren().size() - 1 > i; i++) {
-  //        if (this.getNodeSet().containsKey(mapAnchor.getChildren().get(i).getId())) {
-  //          ((Circle) ((Group) mapAnchor.getChildren().get(i)).getChildren().get(0))
-  //              .setRadius(nodeValue);
-  //        }
-  //      }
-  //    } else if (((JFXTextField) actionEvent.getSource()).getId().equals("pathSize")
-  //        && nodeValue <= 5
-  //        && nodeValue >= 3) {
-  //      for (int i = 1; mapAnchor.getChildren().size() - 1 > i; i++) {
-  //        if (this.getEdgeSet().containsKey(mapAnchor.getChildren().get(i).getId())) {
-  //          ((Line) ((Group) mapAnchor.getChildren().get(i)).getChildren().get(0))
-  //              .setStrokeWidth(edgeValue);
-  //        }
-  //      }
-  //    }
-  //  }
-
   private void DeleteNodesFromMap() throws IOException {
     int i = 1;
     for (javafx.scene.Node root :
@@ -320,147 +253,11 @@ public class MapEditor extends MapController implements Initializable {
     }
   }
 
-  //  public void mapFloor() {
-  //    for (int i = 1; mapAnchor.getChildren().size() > i; i++) {
-  //      if (adminMap.getNodeSet().containsKey(mapAnchor.getChildren().get(i).getId())) {
-  //        mapAnchor
-  //            .getChildren()
-  //            .get(i)
-  //            .setVisible(
-  //                adminMap
-  //                    .getNodeSet()
-  //                    .get(mapAnchor.getChildren().get(i).getId())
-  //                    .get_floor()
-  //                    .equals(mapDrawer.getCurrentMap()));
-  //      }
-  //    }
-  //  }
-
-  //  private JFXColorPicker getType(String id) {
-  //    Node node = adminMap.getNodeSet().get(id);
-  //    if (node.get_nodeType().contains("ELEV")) {
-  //      return ELEV;
-  //    } else if (node.get_nodeType().contains("STAI")) {
-  //      return STAI;
-  //    } else if (node.get_nodeType().contains("EXIT")) {
-  //      return EXIT;
-  //    } else {
-  //      return nodeColor;
-  //    }
-  //  }
-
-  // Loading from the database
-  //  public void Load(ActionEvent actionEvent) {
-  //    for (javafx.scene.Node root :
-  //        mapAnchor.getChildren().subList(1, mapAnchor.getChildren().size())) {
-  //      root.setVisible(false);
-  //    }
-  //    adminMap
-  //        .getEdgeSet()
-  //        .forEach(
-  //            (key, value) -> {
-  //              if (adminMap
-  //                  .getNodeSet()
-  //                  .get(value.getStartNode())
-  //                  .get_floor()
-  //                  .equals(mapDrawer.getCurrentMap())) {
-  //                placeLink(
-  //                    key,
-  //                    adminMap.getNodeSet().get(value.getStartNode()),
-  //                    adminMap.getNodeSet().get(value.getEndNode()));
-  //              }
-  //            });
-  //    adminMap
-  //        .getNodeSet()
-  //        .forEach(
-  //            (key, value) -> {
-  //              if (value.get_floor().equals(mapDrawer.getCurrentMap())) {
-  //                placeNode(key, value.get_x() * downScale, value.get_y() * downScale);
-  //              }
-  //            });
-  //  }
 
   public void deleteCurrent(ActionEvent actionEvent) throws IOException, InterruptedException {
     DeleteNodesFromMap();
     DeleteObjectDataBase();
   }
-
-  //  public void SetStartNode(ActionEvent actionEvent) {
-  //    adminMap.SetStartNode(nodeId.getText());
-  //  }
-  //
-  //  public void SetEndNode(ActionEvent actionEvent) {
-  //    adminMap.SetEndNode(nodeId.getText());
-  //  }
-  //
-  //  @FXML
-  //  public void logOut() throws IOException {
-  //    super.logOut(loader, appPrimaryScene);
-  //  }
-  //
-  //  @FXML
-  //  private void exit(ActionEvent actionEvent) throws IOException {
-  //    super.cancel(actionEvent);
-  //  }
-  //
-  //  public void advanceViews(ActionEvent actionEvent) throws IOException {
-  //    String file = ((Button) actionEvent.getSource()).getId() + ".fxml";
-  //    Parent root = loader.load(getClass().getResourceAsStream(file));
-  //    appPrimaryScene.setRoot(root);
-  //  }
-  //
-  //  public void newColorNode(ActionEvent actionEvent) {
-  //    JFXColorPicker a = ((JFXColorPicker) actionEvent.getSource());
-  //    for (int i = 1; mapAnchor.getChildren().size() - 1 > i; i++) {
-  //      if (adminMap.getNodeSet().containsKey(mapAnchor.getChildren().get(i).getId())) {
-  //        if (adminMap
-  //            .getNodeSet()
-  //            .get(mapAnchor.getChildren().get(i).getId())
-  //            .get_nodeType()
-  //            .equals(a.getId()))
-  //          ((Shape) ((Group) mapAnchor.getChildren().get(i)).getChildren().get(0))
-  //              .setFill(a.getValue());
-  //      }
-  //    }
-  //  }
-
-  //  public void newColorNodeaf(ActionEvent actionEvent) {
-  //    JFXColorPicker a = ((JFXColorPicker) actionEvent.getSource());
-  //    for (int i = 1; mapAnchor.getChildren().size() - 1 > i; i++) {
-  //      if (adminMap.getNodeSet().containsKey(mapAnchor.getChildren().get(i).getId())) {
-  //        if (!adminMap
-  //                .getNodeSet()
-  //                .get(mapAnchor.getChildren().get(i).getId())
-  //                .get_nodeType()
-  //                .contains("ELEV")
-  //            && !adminMap
-  //                .getNodeSet()
-  //                .get(mapAnchor.getChildren().get(i).getId())
-  //                .get_nodeType()
-  //                .contains("EXIT")
-  //            && !adminMap
-  //                .getNodeSet()
-  //                .get(mapAnchor.getChildren().get(i).getId())
-  //                .get_nodeType()
-  //                .contains("STAI"))
-  //          ((Shape) ((Group) mapAnchor.getChildren().get(i)).getChildren().get(0))
-  //              .setFill(a.getValue());
-  //      }
-  //    }
-  //  }
-  //
-  //  public void newColorPath(ActionEvent actionEvent) {
-  //    for (int i = 1; mapAnchor.getChildren().size() - 1 > i; i++) {
-  //      if (adminMap.getEdgeSet().containsKey(mapAnchor.getChildren().get(i).getId())) {
-  //        ((Shape) ((Group) mapAnchor.getChildren().get(i)).getChildren().get(0))
-  //            .setFill(pathColor.getValue());
-  //      }
-  //    }
-  // }
-
-  //  public AdminMap getAdminMap() {
-  //    return adminMap;
-  //  }
 
   public void setNodeId(String nodeId) {
     this.nodeId.setText(nodeId);
@@ -530,96 +327,6 @@ public class MapEditor extends MapController implements Initializable {
     mapNodeEditor.commitChanges(current);
   }
 
-  //  public void setCurrent(Group current) {
-  //    this.current = current;
-  //  }
-  //
-  //  public Group getCurrent() {
-  //    return current;
-  //  }
-  //
-  //  public void saveEdge(ActionEvent actionEvent) {
-  //    mapEdgeEditor.saveEdge(current);
-  //  }
-  //
-  //  public JFXTextField getEdgeID() {
-  //    return edgeID;
-  //  }
-  //
-  //  public JFXTextField getStartNode() {
-  //    return startNode;
-  //  }
-  //
-  //  public JFXTextField getEndNode() {
-  //    return endNode;
-  //  }
-  //
-  //  public void setEdgeID(String s) {
-  //    edgeID.setText(s);
-  //  }
-  //
-  //  public void setStartNode(String s) {
-  //    startNode.setText(s);
-  //  }
-  //
-  //  public void setEndNode(String s) {
-  //    endNode.setText(s);
-  //  }
-
-  //  public ImageView getMapImageView() {
-  //    return mapImageView;
-  //  }
-  //
-  //  public void setMapImageView(ImageView mapImageView) {
-  //    this.mapImageView = mapImageView;
-  //  }
-  //
-  //  public JFXColorPicker getNodeColor() {
-  //    return nodeColor;
-  //  }
-  //
-  //  public void setNodeColor(JFXColorPicker nodeColor) {
-  //    this.nodeColor = nodeColor;
-  //  }
-  //
-  //  public JFXColorPicker getPathColor() {
-  //    return pathColor;
-  //  }
-  //
-  //  public void setPathColor(JFXColorPicker pathColor) {
-  //    this.pathColor = pathColor;
-  //  }
-  //
-  //  public JFXColorPicker getSelectedNodeColor() {
-  //    return selectedNodeColor;
-  //  }
-  //
-  //  public void setSelectedNodeColor(JFXColorPicker selectedNodeColor) {
-  //    this.selectedNodeColor = selectedNodeColor;
-  //  }
-  //
-  //  public void setNodeSize(JFXTextField nodeSize) {
-  //    this.nodeSize = nodeSize;
-  //  }
-  //
-  //  public void setPathSize(JFXTextField pathSize) {
-  //    this.pathSize = pathSize;
-  //  }
-  //
-  //  public void setMap(ActionEvent actionEvent) {
-  //    mapDrawer.setMap(((Button) actionEvent.getSource()).getId());
-  //    this.Load();
-  //  }
-  //
-  //  @Override
-  //  public double getNodeSize() {
-  //    return Double.parseDouble(nodeSize.getText());
-  //  }
-  //
-  //  @Override
-  //  public double getPathSize() {
-  //    return Double.parseDouble(pathSize.getText());
-  //  }
 
   @Override
   public void correctFloor(Node.Link link) {

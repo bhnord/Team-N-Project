@@ -34,20 +34,8 @@ public class PathFinderController extends MapController implements Initializable
   @FXML private AnchorPane anchorPane;
   private Scene appPrimaryScene;
 
-  //  @FXML private AnchorPane mapAnchor;
-  //  @FXML private ImageView mapImageView;
-  //  @FXML private JFXColorPicker nodeColor;
-  //  @FXML private JFXColorPicker EXIT;
-  //  @FXML private JFXColorPicker ELEV;
-  //  @FXML private JFXColorPicker STAI;
-  //  @FXML private JFXColorPicker pathColor;
-  //  @FXML private JFXColorPicker selectedNodeColor;
-  //  @FXML private JFXTextField nodeSize;
-  //  @FXML private JFXTextField pathSize;
-  @FXML private JFXListView<HBox> texutualDescription;
 
-  //  public final double downScale = 0.25;
-  //  public final double upScale = 4;
+  @FXML private JFXListView<HBox> texutualDescription;
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
@@ -74,9 +62,6 @@ public class PathFinderController extends MapController implements Initializable
             link._shape.setStroke(Color.RED);
           }
         });
-    //    load();
-    //    mapFloor();
-    //    mapDrawer.setUpZoom(super.getMapImageView(), mapAnchor);
   }
 
   private void updatePath() {
@@ -87,35 +72,6 @@ public class PathFinderController extends MapController implements Initializable
     }
   }
 
-  //  @FXML
-  //  private void exit(ActionEvent actionEvent) throws IOException {
-  //    super.cancel(actionEvent);
-  //  }
-  //
-  //  public void advanceViews(ActionEvent actionEvent) throws IOException {
-  //    String file = ((Button) actionEvent.getSource()).getId() + ".fxml";
-  //    Parent root = loader.load(getClass().getResourceAsStream(file));
-  //    appPrimaryScene.setRoot(root);
-  //  }
-  //
-  //  private void load() {
-  //    pathFinderMap
-  //        .getEdgeSet()
-  //        .forEach(
-  //            (key, value) -> {
-  //              placeLink(
-  //                  key,
-  //                  pathFinderMap.getNodeSet().get(value.getStartNode()),
-  //                  pathFinderMap.getNodeSet().get(value.getEndNode()));
-  //            });
-  //    pathFinderMap
-  //        .getNodeSet()
-  //        .forEach(
-  //            (key, value) -> {
-  //              placeNode(key, value.get_x() * downScale, value.get_y() * downScale);
-  //            });
-  //  }
-  //
   public Group placeNode(Node n) {
     Group root = super.placeNode(n);
     root.setOnMouseClicked(
@@ -137,55 +93,6 @@ public class PathFinderController extends MapController implements Initializable
   private void dragMouse(MouseEvent mouseEvent) {
     this.mapDrawer.captureMouseDrag(mouseEvent);
   }
-  //
-  //  private JFXColorPicker getType(String id) {
-  //    Node node = pathFinderMap.getNodeSet().get(id);
-  //    if (node.get_nodeType().contains("ELEV")) {
-  //      return ELEV;
-  //    } else if (node.get_nodeType().contains("STAI")) {
-  //      return STAI;
-  //    } else if (node.get_nodeType().contains("EXIT")) {
-  //      return EXIT;
-  //    } else {
-  //      return nodeColor;
-  //    }
-  //  }
-  //
-  //  private void placeLink(String id, Node node1, Node node2) {
-  //    Group root = mapDrawer.drawLine(id, node1, node2);
-  //    root.setId(id);
-  //    mapAnchor.getChildren().add(root);
-  //    pathFinderMap.makeEdge(id, node1, node2, (Line) root.getChildren().get(0));
-  //    root.setCursor(Cursor.CROSSHAIR);
-  //    root.setVisible(false);
-  //  }
-  //
-  //  private double getUpScale() {
-  //    return upScale;
-  //  }
-  //
-  //  public void PathFind(ActionEvent actionEvent) {
-  //    mapDrawer.resetColors(pathFinderMap.getNodeSet());
-  //    for (int i = 0; path.size() - 1 > i; i++) {
-  //      ArrayList<Node.Link> pathLink = pathFinderMap.pathfind(path.get(i), path.get(i + 1));
-  //      // newColorPath(pathColor.getValue(), pathLink);
-  //    }
-  //  }
-
-  //  private void reset() {
-  //    for (Node n : getNodeSet().values()) {
-  //      Circle c = (Circle) n.get_shape();
-  //      c.setRadius(super.getNodeSize());
-  //      n.get_shape().setVisible(mapDrawer.getCurrentMap().equals(n.get_floor()));
-  //      n.get_shape().setStroke(Color.BLACK);
-  //    }
-  //    newColorNode(EXIT);
-  //    newColorNode(ELEV);
-  //    newColorNode(STAI);
-  //    Event.fireEvent(nodeColor, new ActionEvent());
-  //    nodePath.clear();
-  //    texutualDescription.getItems().clear();
-  //  }
 
   public void newColorPath(ActionEvent actionEvent) {
     updateUserColors(pathColor.getId(), pathColor.getValue().toString());
@@ -218,23 +125,6 @@ public class PathFinderController extends MapController implements Initializable
     return fontIcon;
   }
 
-  //  public void newColorNode(ActionEvent actionEvent) {
-  //    JFXColorPicker a = ((JFXColorPicker) actionEvent.getSource());
-  //    for (Node n : getNodeSet().values()) {
-  //      if (n.get_nodeType().equals(a.getId())) n.get_shape().setFill(a.getValue());
-  //    }
-  //  }
-  //
-  //  public void newColorNode(JFXColorPicker a) {
-  //    for (Node n : getNodeSet().values()) {
-  //      if (n.get_nodeType().equals(a.getId())) n.get_shape().setFill(a.getValue());
-  //    }
-  //  }
-
-  //  public void setMap(ActionEvent actionEvent) {
-  //    mapDrawer.setMap(((Button) actionEvent.getSource()).getId());
-  //    this.mapFloor();
-  //  }
 
   public void mapFloor() {
     super.mapFloor();
@@ -251,39 +141,7 @@ public class PathFinderController extends MapController implements Initializable
     }
   }
 
-  //  public void newColorNodeaf(ActionEvent actionEvent) {
-  //    JFXColorPicker a = (JFXColorPicker) actionEvent.getSource();
-  //    updateUserColors(a.getId(), a.getValue().toString());
-  //    for (int i = 1; mapAnchor.getChildren().size() - 1 > i; i++) {
-  //      if (getNodeSet().containsKey(mapAnchor.getChildren().get(i).getId())) {
-  //        if (!this.getNodeSet()
-  //                .get(mapAnchor.getChildren().get(i).getId())
-  //                .get_nodeType()
-  //                .contains("ELEV")
-  //            && !this.getNodeSet()
-  //                .get(mapAnchor.getChildren().get(i).getId())
-  //                .get_nodeType()
-  //                .contains("EXIT")
-  //            && !this.getNodeSet()
-  //                .get(mapAnchor.getChildren().get(i).getId())
-  //                .get_nodeType()
-  //                .contains("STAI"))
-  //          ((Shape) ((Group) mapAnchor.getChildren().get(i)).getChildren().get(0))
-  //              .setFill(a.getValue());
-  //      }
-  //    }
-  //  }
 
-  //    public void selectedNodeColor(ActionEvent actionEvent) {
-  //      for (int i = 1; mapAnchor.getChildren().size() - 1 > i; i++) {
-  //        if (this.getNodeSet().containsKey(mapAnchor.getChildren().get(i).getId())
-  //            && path.contains(mapAnchor.getChildren().get(i).getId())) {
-  //          Circle l = ((Circle) ((Group) mapAnchor.getChildren().get(i)).getChildren().get(0));
-  //          l.setFill(selectedNodeColor.getValue());
-  //          l.setRadius(Double.parseDouble(nodeSize.getText()) + 1);
-  //        }
-  //      }
-  //    }
 
   public void clearSelection(ActionEvent actionEvent) {
     //    reset();
