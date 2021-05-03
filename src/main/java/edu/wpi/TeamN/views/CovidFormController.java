@@ -138,13 +138,16 @@ public class CovidFormController extends MasterController implements Initializab
   }
 
   private void processingPopup() {
-    dialogFactory.creatDialogConfirmCancel(
-        "", "Your survey is being processed. Please wait to enter the hospital");
+    dialogFactory.createDialog(
+        "", "Your survey is being processed. Please wait to enter the hospital.");
+
+    int id = db.getCurrentUser().getId();
+    if (db.getCovidForm(id).isProcessed() == true) advanceHomePopup();
   }
 
   private void advanceHomePopup() {
 
-    dialogFactory.creatDialogConfirmCancel(
+    dialogFactory.creatDialogOkayWithAction(
         "",
         "Your covid form has been processed! You can enter the hospital.",
         event -> {

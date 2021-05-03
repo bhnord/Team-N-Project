@@ -58,6 +58,9 @@ public class CurrentRequestController extends MasterController implements Initia
   @Override
   public void initialize(URL url, ResourceBundle rb) {
 
+    int idCovid = db.getCurrentUser().getId();
+    db.setCovidFormIsProcessed(idCovid, false);
+
     listView.getItems().clear();
     listViewCovid.getItems().clear();
     HashSet<CovidForm> formSet = db.getAllCovidForms();
@@ -202,6 +205,9 @@ public class CurrentRequestController extends MasterController implements Initia
       selectedLabel = null;
       setEmptyFields();
     }
+
+    int idCovid = db.getCurrentUser().getId();
+    db.setCovidFormIsProcessed(idCovid, true);
   }
 
   public void inProgress(ActionEvent actionEvent) {
