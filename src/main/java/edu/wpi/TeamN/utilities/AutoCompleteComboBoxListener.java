@@ -2,8 +2,6 @@ package edu.wpi.TeamN.utilities;
 
 import com.jfoenix.controls.JFXComboBox;
 import edu.wpi.TeamN.services.algo.WordDistanceComputer;
-import java.util.Objects;
-import java.util.PriorityQueue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -11,6 +9,9 @@ import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.util.StringConverter;
+
+import java.util.Objects;
+import java.util.PriorityQueue;
 
 public class AutoCompleteComboBoxListener implements EventHandler<KeyEvent> {
   private static class WordIntPair implements Comparable<WordIntPair> {
@@ -28,12 +29,13 @@ public class AutoCompleteComboBoxListener implements EventHandler<KeyEvent> {
     }
   }
 
-  private final JFXComboBox comboBox;
+  private final JFXComboBox<Label> comboBox;
   private StringBuilder sb;
-  private ObservableList<Label> data;
+  private final ObservableList<Label> data;
   private boolean moveCaretToPos = false;
   private int caretPos;
-  private String promptText;
+  private final String promptText;
+  private final ObservableList<Label> sortedData;
 
   public AutoCompleteComboBoxListener(final JFXComboBox<Label> comboBox) {
     this.comboBox = comboBox;
@@ -69,6 +71,10 @@ public class AutoCompleteComboBoxListener implements EventHandler<KeyEvent> {
                 this.comboBox.hide();
               }
             });
+    this.comboBox
+        .getItems()
+        .sort((label1, label2) -> label1.getText().compareToIgnoreCase(label2.getText()));
+    sortedData = this.comboBox.getItems();
     this.comboBox.setOnKeyReleased(AutoCompleteComboBoxListener.this);
   }
 
@@ -112,18 +118,23 @@ public class AutoCompleteComboBoxListener implements EventHandler<KeyEvent> {
     WordDistanceComputer wordDistanceComputer = new WordDistanceComputer();
     PriorityQueue<WordIntPair> words = new PriorityQueue<>();
     String word = AutoCompleteComboBoxListener.this.comboBox.getEditor().getText().toLowerCase();
-    for (Label l : data) {
-      words.add(
-          new WordIntPair(
-              wordDistanceComputer.getDistance(
-                  l.getText()
-                      .toLowerCase()
-                      .substring(0, Math.min(word.length(), l.getText().length())),
-                  word),
-              l));
-    }
-    for (int i = 0; i < Math.min(15, words.size()); i++) {
-      list.add(Objects.requireNonNull(words.poll())._word);
+    if (word.equals("")) {
+      list.setAll(sortedData);
+
+    } else {
+      for (Label l : data) {
+        words.add(
+            new WordIntPair(
+                wordDistanceComputer.getDistance(
+                    l.getText()
+                        .toLowerCase()
+                        .substring(0, Math.min(word.length(), l.getText().length())),
+                    word),
+                l));
+      }
+      for (int i = 0; i < Math.min(15, words.size()); i++) {
+        list.add(Objects.requireNonNull(words.poll())._word);
+      }
     }
 
     //    if (data.get(i)
