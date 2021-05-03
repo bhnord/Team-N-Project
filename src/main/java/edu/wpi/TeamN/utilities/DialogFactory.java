@@ -12,7 +12,6 @@ import javafx.scene.text.Text;
 public class DialogFactory {
   //  private final StackPane stackPane;
   private final JFXDialogLayout content = new JFXDialogLayout();
-  private final JFXDialogLayout content2 = new JFXDialogLayout();
   private JFXDialog dialog;
   private Pane pane;
 
@@ -101,17 +100,27 @@ public class DialogFactory {
     dialog.show();
   }
 
-  public void createDialog(String heading, String body) {
-    Text headingText = (Text) content2.getHeading().get(0);
+  public void createDialog(
+      String heading, String body, EventHandler<? super MouseEvent> clickAction) {
+    Text headingText = (Text) content.getHeading().get(0);
     headingText.setText(heading);
-    content2.setHeading(headingText);
-    Text bodyText = (Text) content2.getBody().get(0);
+    content.setHeading(headingText);
+    Text bodyText = (Text) content.getBody().get(0);
     bodyText.setText(body);
-    content2.setBody(bodyText);
+    content.setBody(bodyText);
     StackPane stackPane = new StackPane();
-    dialog = new JFXDialog(stackPane, content2, JFXDialog.DialogTransition.CENTER);
+    //    stackPane.setMouseTransparent(true);
+    dialog = new JFXDialog(stackPane, content, JFXDialog.DialogTransition.CENTER);
+    JFXButton button = new JFXButton("  ");
+    button.setOnMouseClicked(clickAction);
+    button.setOnMouseReleased(action -> dialog.close());
+    content.setActions(button);
     stackPane.setPickOnBounds(false);
     pane.getChildren().add(stackPane);
     dialog.show();
+  }
+
+  public void close() {
+    dialog.close();
   }
 }
