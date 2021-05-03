@@ -35,7 +35,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label fx:id="directionsLabel" alignment="CENTER" prefHeight="87.0" prefWidth="489.0" stylesheets="@/Fonts/Roboto-Light.css" textAlignment="CENTER" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+                  <Label fx:id="directionsLabel" alignment="CENTER" prefHeight="87.0" prefWidth="658.0" stylesheets="@/Fonts/Roboto-Light.css" textAlignment="CENTER" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
                   <JFXButton fx:id="printButton" disable="true" onAction="#printDirections" stylesheets="@/Fonts/Roboto-Light.css" text="Print" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
                   <ImageView fx:id="mapImage" fitHeight="516.0" fitWidth="895.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                      <GridPane.margin>

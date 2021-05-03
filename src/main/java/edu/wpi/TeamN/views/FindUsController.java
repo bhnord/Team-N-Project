@@ -85,6 +85,7 @@ public class FindUsController extends MasterController implements Initializable 
   @FXML
   private void submitAddress() {
     String address = addressBox.getEditor().getText();
+    if (address.equals("")) return;
     StringBuilder directions =
         new StringBuilder(
             "<!DOCTYPE html>\n"
@@ -97,10 +98,16 @@ public class FindUsController extends MasterController implements Initializable 
                 + "</head>\n"
                 + "<body style=\"font-family: 'Roboto', sans-serif;\">");
     try {
-      DirectionsResult result =
-          DirectionsApi.getDirections(
-                  context, address, "75 Francis Street, Carrie Hall 103, Boston, MA 02115")
+      DirectionsResult leftLot =
+          DirectionsApi.getDirections(context, address, "70 Francis St, Boston, MA 02115").await();
+      DirectionsResult rightLot =
+          DirectionsApi.getDirections(context, address, "15-51 New Whitney St, Boston, MA 02115")
               .await();
+      DirectionsResult result =
+          leftLot.routes[0].legs[0].duration.inSeconds
+                  > rightLot.routes[0].legs[0].duration.inSeconds
+              ? rightLot
+              : leftLot;
       StaticMapsRequest mapsRequest = StaticMapsApi.newRequest(context, new Size(900, 500));
       mapsRequest.center("75 Francis Street, Carrie Hall 103, Boston, MA 02115");
       mapsRequest.path(result.routes[0].overviewPolyline);
@@ -108,7 +115,6 @@ public class FindUsController extends MasterController implements Initializable 
       mapImage.setImage(new Image(image));
       String instructions = "";
       for (DirectionsStep step : result.routes[0].legs[0].steps) {
-        System.out.println(step);
         instructions = step.htmlInstructions.replace("<div style=\"font-size:0.9em\">", " (");
         instructions = instructions.replace("</div>", ")");
         directions.append(instructions);
@@ -126,7 +132,8 @@ public class FindUsController extends MasterController implements Initializable 
           "The fastest route to the hospital takes "
               + result.routes[0].legs[0].duration
               + " via "
-              + result.routes[0].summary);
+              + result.routes[0].summary
+              + ".");
     } catch (Exception e) {
       e.printStackTrace();
     }
