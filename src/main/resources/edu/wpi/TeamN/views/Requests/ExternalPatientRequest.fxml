@@ -95,13 +95,16 @@
                               <DropShadow color="#c6b8b8" offsetY="5.0" />
                           </effect>
                       </Rectangle>
-                      <JFXButton fx:id="submit" layoutX="507.0" layoutY="636.0" onAction="#Submit" prefHeight="50.0" prefWidth="95.0" ripplerFill="WHITE" text="Submit" textFill="WHITE" />
+                      <JFXButton fx:id="submit" layoutX="507.0" layoutY="636.0" onAction="#Submit" prefHeight="50.0" prefWidth="95.0" ripplerFill="WHITE" stylesheets="/Fonts/Roboto-Light.css" text="Submit" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font></JFXButton>
                       <StackPane fx:id="myStackPane2" layoutX="346.0" layoutY="526.0" prefHeight="101.0" prefWidth="531.0" />
                       <Label layoutX="165.0" layoutY="247.0" text="*" />
                       <Label layoutX="165.0" layoutY="312.0" prefHeight="21.0" prefWidth="0.0" text="*" />
                       <Label layoutX="165.0" layoutY="381.0" text="*" />
                       <Label layoutX="165.0" layoutY="449.0" text="*" />
-                      <Label layoutX="179.0" layoutY="641.0" text="*Required Fields" />
+                      <Label layoutX="179.0" layoutY="641.0" stylesheets="/Fonts/Roboto-Light.css" text="*Required Fields" />
                       <VBox alignment="CENTER_LEFT" layoutX="179.0" layoutY="222.0" prefHeight="400.0" prefWidth="203.0" spacing="37.0">
                           <children>
                               <JFXComboBox fx:id="transportTypeDropdown" focusColor="#748cdc" labelFloat="true" prefHeight="31.0" prefWidth="203.0" promptText="Transportation Type" styleClass="text-field" stylesheets="@/Fonts/Roboto-Light.css" />
@@ -122,7 +125,7 @@
                               <Font name="Serif Regular" size="30.0" />
                           </font>
                       </Label>
-                      <JFXButton fx:id="helpButton" layoutX="834.0" layoutY="663.0" onAction="#help" prefHeight="47.0" prefWidth="130.0" ripplerFill="WHITE" text="Help" textFill="WHITE">
+                      <JFXButton fx:id="helpButton" layoutX="834.0" layoutY="663.0" onAction="#help" prefHeight="47.0" prefWidth="130.0" ripplerFill="WHITE" stylesheets="/Fonts/Roboto-Light.css" text="Help" textFill="WHITE">
                           <font>
                               <Font name="Serif Regular" size="22.0" />
                           </font>
