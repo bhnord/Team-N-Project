@@ -221,10 +221,10 @@ public class CurrentRequestController extends MasterController implements Initia
                     // If the item is equal to the first item in the list, set the style
                     if (item == (list.getItems())) {
                       // Set the background color to blue
-                      setStyle("-fx-background-color: blue; -fx-text-fill: white");
+                      // setStyle("-fx-background-color: black; -fx-text-fill: white");
                     }
                     // Finally, show the item text in the cell
-                    setText(item.toString());
+                    // setText(item.toString());
                   }
                 }
               };
