@@ -2,8 +2,9 @@ package edu.wpi.TeamN.services.database;
 
 public class CovidForm {
   private int id, userId, assignedEmployeeId;
-  private boolean answers[], isOk;
+  private boolean answers[], isOk, isProcessed;
   private String extraInfo;
+
 
   public CovidForm(int userId, boolean answers[], String extraInfo) {
     this.userId = userId;
@@ -17,13 +18,15 @@ public class CovidForm {
       int assignedEmployeeId,
       boolean answers[],
       String extraInfo,
-      boolean isOk) {
+      boolean isOk,
+  boolean isProcessed) {
     this.id = id;
     this.userId = userId;
     this.assignedEmployeeId = assignedEmployeeId;
     this.answers = answers;
     this.extraInfo = extraInfo;
     this.isOk = isOk;
+    this.isProcessed = isProcessed;
   }
 
   public int getId() {
@@ -48,5 +51,9 @@ public class CovidForm {
 
   public boolean isOk() {
     return isOk;
+  }
+
+  public boolean isProcessed() {
+    return isProcessed;
   }
 }
