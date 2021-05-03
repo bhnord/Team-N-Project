@@ -268,12 +268,12 @@
             <Insets bottom="12.0" right="260.0" />
          </StackPane.margin>
       </Label>
-       <JFXTextField fx:id="nodeSize" maxWidth="-Infinity" minWidth="-Infinity" onAction="#newSize" prefWidth="100.0" StackPane.alignment="BOTTOM_RIGHT">
+       <JFXTextField fx:id="nodeSize" focusColor="#748cdc" maxWidth="-Infinity" minWidth="-Infinity" onAction="#newSize" prefWidth="100.0" StackPane.alignment="BOTTOM_RIGHT">
          <StackPane.margin>
             <Insets bottom="50.0" right="150.0" />
          </StackPane.margin>
       </JFXTextField>
-       <JFXTextField fx:id="pathSize" maxWidth="-Infinity" minWidth="-Infinity" onAction="#newSize" prefWidth="100.0" StackPane.alignment="BOTTOM_RIGHT">
+       <JFXTextField fx:id="pathSize" focusColor="#748cdc" maxWidth="-Infinity" minWidth="-Infinity" onAction="#newSize" prefWidth="100.0" StackPane.alignment="BOTTOM_RIGHT">
          <StackPane.margin>
             <Insets bottom="15.0" right="150.0" />
          </StackPane.margin>
