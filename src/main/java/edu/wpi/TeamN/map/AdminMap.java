@@ -35,8 +35,15 @@ public class AdminMap {
   }
 
   public void updateNode(Node node) {
-    db.deleteNode(node.get_nodeID());
-    db.addNode(node);
+    db.updateNode(
+        node.get_nodeID(),
+        node.get_x(),
+        node.get_y(),
+        node.get_floor(),
+        node.get_building(),
+        node.get_nodeType(),
+        node.get_longName(),
+        node.get_shortName());
   }
 
   public void addNode(Node node) {

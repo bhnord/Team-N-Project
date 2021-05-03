@@ -25,8 +25,10 @@ public class NodeActionHandling implements IActionHandling {
         new EventHandler<MouseEvent>() {
           @Override
           public void handle(MouseEvent event) {
+            mapEditor.getMapDrawer().captureClick(event);
             mapNodeEditor.showNodeProperties(root);
-            mapEditor.setCurrent(root);
+            mapNodeEditor.clearSelection();
+            mapNodeEditor.addNode(mapEditor.getNodeSet().get(root.getId()));
           }
         });
   }
@@ -58,6 +60,7 @@ public class NodeActionHandling implements IActionHandling {
         new EventHandler<MouseEvent>() {
           @Override
           public void handle(MouseEvent event) {
+            mapEditor.getMapDrawer().captureClick(event);
             mapEdgeEditor.showEdgeProperties(root);
             mapEditor.setCurrent(root);
           }
