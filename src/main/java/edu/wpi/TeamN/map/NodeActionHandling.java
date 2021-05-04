@@ -21,6 +21,16 @@ public class NodeActionHandling implements IActionHandling {
 
   @Override
   public void setNodeInfo(Group root) {
+    root.setOnMouseExited(
+        event -> {
+          Circle c = mapEditor.getNodeSet().get(root.getId()).get_shape();
+          c.setRadius(c.getRadius() / 1.3);
+        });
+    root.setOnMouseEntered(
+        event -> {
+          Circle c = mapEditor.getNodeSet().get(root.getId()).get_shape();
+          c.setRadius(c.getRadius() * 1.3);
+        });
     root.setOnMouseClicked(
         new EventHandler<MouseEvent>() {
           @Override

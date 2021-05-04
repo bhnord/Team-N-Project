@@ -150,9 +150,9 @@ public class MapEditor extends MapController implements Initializable {
 
   public void releaseMouse(MouseEvent mouseEvent) {
     if (mouseEvent.getButton() == MouseButton.PRIMARY) {
-      mapNodeEditor.clearSelection();
       Rectangle r = mapDrawer.endBoundingBox(mouseEvent.getX(), mouseEvent.getY());
       if (r != null) {
+        mapNodeEditor.clearSelection();
         for (Node n : this.getNodeSet().values()) {
           if (n.get_floor().equals(mapDrawer.getCurrentMap())
               && n.get_x() * getDownScale() > r.getX()
@@ -163,6 +163,7 @@ public class MapEditor extends MapController implements Initializable {
           }
         }
       } else if (!mouseEvent.isShiftDown()) {
+        mapNodeEditor.clearSelection();
         while (getNodeSet().containsKey("node_" + numNodes++)) {}
         placeNode("node_" + --numNodes, mouseEvent.getX(), mouseEvent.getY());
       }
