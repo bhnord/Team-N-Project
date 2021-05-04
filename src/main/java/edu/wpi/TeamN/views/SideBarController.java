@@ -22,8 +22,8 @@ public class SideBarController extends MasterController implements Initializable
   @FXML private Group groupCovid;
   @FXML private Group groupBack;
   @FXML private Group groupHome;
-  @FXML private Group LogOutBack;
-  @FXML private Group RegisterBack;
+  @FXML private Group LogOutBack = new Group();
+  @FXML private Group RegisterBack = new Group();
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {}
