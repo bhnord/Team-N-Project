@@ -1,18 +1,19 @@
 package edu.wpi.TeamN.map;
 
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXListView;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.views.PathFinderController;
 import java.util.ArrayList;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 public class DirectionHandler {
@@ -32,6 +33,7 @@ public class DirectionHandler {
     this.locationDropdown = locationDropdown;
     this.mapController = mapController;
 
+    stops.getStylesheets().add("/StyleSheet/PathfinderListView.css");
     texutualDescription.setVisible(false);
     mapController.loadRoomDropdown(this.locationDropdown);
     clickSetup();
@@ -84,20 +86,22 @@ public class DirectionHandler {
     }
 
     Label label = new Label(n.get_longName());
-    JFXButton button = new JFXButton("Delete");
-    //    button
-    button.setId(n.get_nodeID());
-    button.setOnAction(
-        new EventHandler<ActionEvent>() {
+
+    FontIcon fontIcon = new FontIcon();
+    fontIcon.setIconLiteral("gmi-clear");
+    fontIcon.setId(n.get_nodeID());
+    fontIcon.setIconSize(25);
+    fontIcon.setOnMouseClicked(
+        new EventHandler<MouseEvent>() {
           @Override
-          public void handle(ActionEvent event) {
-            stops.getItems().remove(button.getParent());
+          public void handle(MouseEvent event) {
+            stops.getItems().remove(fontIcon.getParent());
             stopNames.remove(n.get_longName());
             mapController.getPath().remove(n.get_nodeID());
             mapController.updatePath();
           }
         });
-    HBox box = new HBox(label, button);
+    HBox box = new HBox(label, fontIcon);
     box.setId(n.get_nodeID());
 
     mapController.getPath().add(n.get_nodeID());
