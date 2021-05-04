@@ -47,6 +47,10 @@ public class MapNodeEditor {
     finalize_change();
   }
 
+  public void setDragger(Node n) {
+    this.dragger = n;
+  }
+
   public void handleDrag(MouseEvent e, Node n) {
     if (selection.size() == 0) {
       selection.add(n);
@@ -234,7 +238,6 @@ public class MapNodeEditor {
   }
 
   public void commitChanges(Group root) {
-    Node selectedNode = mapEditor.getAdminMap().getNodeSet().get(mapEditor.getNodeId().getText());
     String id = mapEditor.getNodeId().getText();
     double x, y;
     String f = mapEditor.getFloor().getText();
@@ -243,21 +246,19 @@ public class MapNodeEditor {
     String ln = mapEditor.getLongName().getText();
     String sn = mapEditor.getShortName().getText();
 
-    try {
-      x = Double.parseDouble(mapEditor.getXCoord().getText());
-      y = Double.parseDouble(mapEditor.getYCoord().getText());
+    x = Double.parseDouble(mapEditor.getXCoord().getText());
+    y = Double.parseDouble(mapEditor.getYCoord().getText());
 
-      String currentID = root.getId();
-      if (mapEditor.getAdminMap().getNodeSet().containsKey(currentID)) {
-        root.setId(id);
-        mapEditor.getAdminMap().deleteNode(currentID);
-        mapEditor.getAdminMap().addNode(new Node(x, y, id, f, b, nt, ln, sn));
-      } else {
-        System.out.println("Node already Exists");
-      }
-    } catch (Exception e) {
-      System.out.println(e.toString());
-    }
+    //      String currentID = root.getId();
+    dragger.set_x(x);
+    dragger.set_y(y);
+    dragger.set_nodeID(id);
+    dragger.set_floor(f);
+    dragger.set_building(b);
+    dragger.set_nodeType(nt);
+    dragger.set_longName(ln);
+    dragger.set_shortName(sn);
+    mapEditor.getAdminMap().updateNode(dragger);
   }
 
   public void createNodes(ArrayList<Node> nodes) {

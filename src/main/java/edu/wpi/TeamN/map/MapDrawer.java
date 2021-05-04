@@ -71,6 +71,7 @@ public class MapDrawer {
 
   public Group drawBoundingBox(double x, double y) {
     Rectangle rectangle = new Rectangle(x, y, 0, 0);
+    rectangle.setFill(Color.rgb(255, 255, 255, .5));
     Group root = new Group(rectangle);
     root.setId("b_" + x + ":" + y);
     mapController.getMapAnchor().getChildren().add(3, root);
