@@ -84,6 +84,7 @@ public class HomeControllerAdmin extends MasterController implements Initializab
       makeInvisible(mapEditor);
       makeInvisible(BackMapEditor);
       makeInvisible(ServiceRequests);
+      makeInvisible(BackServiceRequests);
       // makeInvisible(BackServiceRequests);
       logInInit();
     } else {
