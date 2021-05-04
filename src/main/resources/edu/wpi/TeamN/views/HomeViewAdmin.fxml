@@ -107,13 +107,13 @@
                   </Label>
                   <Group fx:id="logInGroup" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="96.0" layoutY="40.0" stylesheets="@/Fonts/Roboto-Black.css" text="SIGN IN" textFill="WHITE">
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="96.0" layoutY="-300.0" stylesheets="@/Fonts/Roboto-Black.css" text="SIGN IN" textFill="WHITE">
                            <font>
                               <Font size="48.0" />
                            </font>
                         </Label>
-                        <Rectangle arcWidth="5.0" fill="WHITE" height="25.0" layoutX="77.0" layoutY="120.0" stroke="TRANSPARENT" strokeType="INSIDE" width="207.0" />
-                        <JFXTextField fx:id="usernameField" focusColor="RED" labelFloat="true" layoutX="77.0" layoutY="120.0" maxHeight="-Infinity" maxWidth="-Infinity" onKeyReleased="#validateButton" prefHeight="25.0" prefWidth="207.0" promptText="Username" unFocusColor="WHITE">
+                        <Rectangle arcWidth="5.0" fill="WHITE" height="25.0" layoutX="77.0" layoutY="-150.0" stroke="TRANSPARENT" strokeType="INSIDE" width="207.0" />
+                        <JFXTextField fx:id="usernameField" focusColor="RED" labelFloat="true" layoutX="77.0" layoutY="-150.0" maxHeight="-Infinity" maxWidth="-Infinity" onKeyReleased="#validateButton" prefHeight="25.0" prefWidth="207.0" promptText="Username" unFocusColor="WHITE">
                            <font>
                               <Font name="Times New Roman" size="12.0" />
                            </font>
@@ -122,8 +122,8 @@
                               <URL value="@/Fonts/Roboto-Light.css" />
                            </stylesheets>
                         </JFXTextField>
-                        <Rectangle arcWidth="5.0" fill="WHITE" height="25.0" layoutX="77.0" layoutY="170.0" stroke="TRANSPARENT" strokeType="INSIDE" width="207.0" />
-                        <JFXPasswordField fx:id="passwordField" focusColor="RED" labelFloat="true" layoutX="77.0" layoutY="170.0" maxHeight="-Infinity" maxWidth="-Infinity" onKeyReleased="#validateButton" prefHeight="25.0" prefWidth="207.0" promptText="Password" unFocusColor="WHITE">
+                        <Rectangle arcWidth="5.0" fill="WHITE" height="25.0" layoutX="77.0" layoutY="-75.0" stroke="TRANSPARENT" strokeType="INSIDE" width="207.0" />
+                        <JFXPasswordField fx:id="passwordField" focusColor="RED" labelFloat="true" layoutX="77.0" layoutY="-75.0" maxHeight="-Infinity" maxWidth="-Infinity" onKeyReleased="#validateButton" prefHeight="25.0" prefWidth="207.0" promptText="Password" unFocusColor="WHITE">
                            <font>
                               <Font name="Times New Roman" size="12.0" />
                            </font>
@@ -132,17 +132,18 @@
                               <URL value="@/Fonts/Roboto-Light.css" />
                            </stylesheets>
                         </JFXPasswordField>
-                        <JFXButton fx:id="goToHomePage" buttonType="RAISED" layoutX="93.0" layoutY="255.0" onAction="#continueToHomePage" prefHeight="50.0" prefWidth="174.0" style="-fx-background-color: #6985e0;" stylesheets="@/Fonts/Roboto-Black.css" text="SUBMIT" textFill="WHITE">
+                        <JFXButton fx:id="goToHomePage" buttonType="RAISED" layoutX="93.0" layoutY="50.0" onAction="#continueToHomePage" prefHeight="50.0" prefWidth="174.0" style="-fx-background-color: #6985e0;" stylesheets="@/Fonts/Roboto-Black.css" text="SUBMIT" textFill="WHITE">
                            <font>
                               <Font name="Javanese Text" size="14.0" />
                            </font>
                         </JFXButton>
-                        <Label fx:id="incorrectLogin" layoutY="204.0" prefHeight="33.0" prefWidth="360.0" stylesheets="@/Fonts/Roboto-Light.css" text=" " textAlignment="CENTER" textFill="WHITE">
+                        <Label fx:id="incorrectLogin" layoutY="-20.0" prefHeight="33.0" prefWidth="360.0" stylesheets="@/Fonts/Roboto-Light.css" text=" " textAlignment="CENTER" textFill="WHITE">
                            <font>
                               <Font name="Javanese Text" size="12.0" />
                            </font>
                         </Label>
-                        <JFXButton fx:id="RegisterNewUser" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" layoutX="140.0" layoutY="210.0" mnemonicParsing="false" onAction="#register" prefHeight="31.0" prefWidth="80.0" style="-fx-background-color: #6985e0;" text="Register" textFill="WHITE" />
+                        <JFXButton fx:id="RegisterNewUser" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" layoutX="140.0" layoutY="150.0" mnemonicParsing="false" onAction="#register" prefHeight="37.0" prefWidth="81.0" style="-fx-background-color: #6985e0;" text="Register" textFill="WHITE" />
+                        <Label layoutX="166.0" layoutY="300.0" />
                      </children>
                   </Group>
                </children>
