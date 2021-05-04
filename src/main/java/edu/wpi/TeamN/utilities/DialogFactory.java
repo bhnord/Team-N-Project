@@ -100,7 +100,8 @@ public class DialogFactory {
     dialog.show();
   }
 
-  public void creatDialogConfirmCancel(String heading, String body) {
+  public void createDialog(
+      String heading, String body, EventHandler<? super MouseEvent> clickAction) {
     Text headingText = (Text) content.getHeading().get(0);
     headingText.setText(heading);
     content.setHeading(headingText);
@@ -108,9 +109,18 @@ public class DialogFactory {
     bodyText.setText(body);
     content.setBody(bodyText);
     StackPane stackPane = new StackPane();
+    //    stackPane.setMouseTransparent(true);
     dialog = new JFXDialog(stackPane, content, JFXDialog.DialogTransition.CENTER);
+    JFXButton button = new JFXButton("  ");
+    button.setOnMouseClicked(clickAction);
+    button.setOnMouseReleased(action -> dialog.close());
+    content.setActions(button);
     stackPane.setPickOnBounds(false);
     pane.getChildren().add(stackPane);
     dialog.show();
+  }
+
+  public void close() {
+    dialog.close();
   }
 }
