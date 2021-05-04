@@ -54,7 +54,7 @@ public class SideBarController<node> extends MasterController implements Initial
     tt.setAutoReverse(true);
     tt.play();
 
-    if (db.getCurrentUser() != null) {
+ /*   if (db.getCurrentUser() != null) {
       String a = "user: " + db.getCurrentUser().getUsername();
       // String a = "                  jjjjjjjjj";
       Label label = new Label(a);
@@ -64,7 +64,7 @@ public class SideBarController<node> extends MasterController implements Initial
       String a = "      user: guest";
       Label label = new Label(a);
       accountSettingsGroup.getChildren().add(label);
-    }
+    }*/
 
   }
 
