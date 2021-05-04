@@ -70,12 +70,17 @@ public class SideBarController<node> extends MasterController implements Initial
     setDB(db);
     accountSettingsGroup.setTranslateX(-300);
 
-    //     if (db.getCurrentUser().getUsername() != null) {
-    // String a = "label: " + db.getCurrentUser().getUsername();
-    String a = "ccccccccccccccccccccccccccc";
-    Label label = new Label(a);
-    // accountSettingsGroup.getChildren().add(label);
-    // }
+     /*if(db.getAllEdges() != null) {
+      String a = "label: " + db.getCurrentUser().getUsername();
+      //String a = "ccccccccccccccccccccccccccc";
+     Label label = new Label(a);
+     accountSettingsGroup.getChildren().add(label);
+    }  else {
+
+       String a = "      guest";
+       Label label = new Label(a);
+       accountSettingsGroup.getChildren().add(label);
+     }*/
 
   }
 
