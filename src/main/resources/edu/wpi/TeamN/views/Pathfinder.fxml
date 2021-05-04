@@ -235,12 +235,12 @@
             <Insets bottom="-30.0" right="-30.0" />
          </StackPane.margin>
       </Rectangle>
-      <Label text="Node Size" StackPane.alignment="BOTTOM_RIGHT">
+      <Label stylesheets="/Fonts/Roboto-Light.css" text="Node Size" StackPane.alignment="BOTTOM_RIGHT">
          <StackPane.margin>
             <Insets bottom="50.0" right="160.0" />
          </StackPane.margin>
       </Label>
-      <Label text="Path Size" StackPane.alignment="BOTTOM_RIGHT">
+      <Label stylesheets="/Fonts/Roboto-Light.css" text="Path Size" StackPane.alignment="BOTTOM_RIGHT">
          <StackPane.margin>
             <Insets bottom="15.0" right="159.0" />
          </StackPane.margin>
