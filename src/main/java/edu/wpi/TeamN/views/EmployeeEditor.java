@@ -163,9 +163,11 @@ public class EmployeeEditor extends MasterController implements Initializable {
     listView.getItems().clear();
     HashSet<User> set = db.getAllUsers();
     for (User u : set) {
-      Label lbl = new Label(u.getUsername());
-      lbl.setId("" + u.getId());
-      listView.getItems().add(lbl);
+      if (!u.getUsername().equals("guest")) {
+        Label lbl = new Label(u.getUsername());
+        lbl.setId("" + u.getId());
+        listView.getItems().add(lbl);
+      }
     }
   }
 
