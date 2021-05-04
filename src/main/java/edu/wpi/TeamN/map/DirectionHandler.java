@@ -83,6 +83,7 @@ public class DirectionHandler {
 
     Label label = new Label(n.get_longName());
     JFXButton button = new JFXButton("Delete");
+    //    button
     button.setId(n.get_nodeID());
     button.setOnAction(
         new EventHandler<ActionEvent>() {
