@@ -73,7 +73,7 @@
                         <Insets right="10.0" />
                      </GridPane.margin></JFXButton>
                   <StackPane prefHeight="150.0" prefWidth="200.0" />
-                  <JFXTabPane stylesheets="@/StyleSheet/style.css" fx:id="editor">
+                  <JFXTabPane fx:id="editor" stylesheets="@/StyleSheet/style.css">
                      <tabs>
                         <Tab text="Node">
                            <content>
@@ -95,7 +95,7 @@
                                     <Label layoutX="40.0" layoutY="336.0" text="Long Name" />
                                     <JFXTextField fx:id="shortName" layoutX="40.0" layoutY="405.0" />
                                     <Label layoutX="40.0" layoutY="388.0" text="Short Name" />
-                                    <JFXButton layoutX="37.0" layoutY="530.0" onAction="#saveNode" style="-fx-background-color: #363d54;" stylesheets="@/StyleSheet/MapButtons.css" text="Save Node" textFill="WHITE" />
+                                    <JFXButton layoutX="37.0" layoutY="515.0" onAction="#saveNode" style="-fx-background-color: #363d54;" stylesheets="@/StyleSheet/MapButtons.css" text="Save Node" textFill="WHITE" />
                                     <JFXButton layoutX="37.0" layoutY="460.0" onAction="#deleteCurrent" style="-fx-background-color: #363d54;" stylesheets="@/StyleSheet/MapButtons.css" text="Delete Node" textFill="WHITE" />
                                  </children>
                               </AnchorPane>
@@ -111,7 +111,7 @@
                                     <JFXTextField fx:id="startNode" layoutX="41.0" layoutY="81.0" />
                                     <Label layoutX="41.0" layoutY="121.0" text="End Node" />
                                     <JFXTextField fx:id="endNode" layoutX="41.0" layoutY="138.0" />
-                                    <JFXButton layoutX="37.0" layoutY="522.0" onAction="#saveNode" style="-fx-background-color: #363d54;" stylesheets="@/StyleSheet/MapButtons.css" text="Save Edge" textFill="WHITE" />
+                                    <JFXButton layoutX="37.0" layoutY="515.0" onAction="#saveNode" style="-fx-background-color: #363d54;" stylesheets="@/StyleSheet/MapButtons.css" text="Save Edge" textFill="WHITE" />
                                     <JFXButton layoutX="37.0" layoutY="462.0" onAction="#deleteCurrent" style="-fx-background-color: #363d54;" stylesheets="@/StyleSheet/MapButtons.css" text="Delete Edge" textFill="WHITE" />
                                  </children>
                               </AnchorPane>
