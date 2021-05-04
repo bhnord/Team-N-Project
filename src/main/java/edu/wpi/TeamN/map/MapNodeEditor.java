@@ -148,7 +148,7 @@ public class MapNodeEditor {
     }
     averageX /= selection.size();
     for (Node n : selection) {
-      n.get_shape().setCenterX(averageX);
+      n.get_shape().setCenterX(averageX * mapEditor.getDownScale());
     }
   }
 
@@ -162,7 +162,7 @@ public class MapNodeEditor {
     }
     averageY /= selection.size();
     for (Node n : selection) {
-      n.get_shape().setCenterY(averageY);
+      n.get_shape().setCenterY(averageY * mapEditor.getDownScale());
     }
   }
 
@@ -253,21 +253,32 @@ public class MapNodeEditor {
 
   public void createNodes(ArrayList<Node> nodes) {
     HashSet<String> placed = new HashSet<>();
+    ArrayList<Node.Link> toAdd = new ArrayList<>();
     for (Node n : nodes) {
       mapEditor.placeNode(n);
       for (Node.Link l : n.get_neighbors()) {
         if (!placed.contains(l._id)) {
-          mapEditor.placeLink(l._id, l._this, l._other);
+          toAdd.add(l);
           placed.add(l._id);
         }
       }
+    }
+    for (Node.Link l : toAdd) {
+      l._this.removeNeightbor(l._other);
+      mapEditor.placeLink(l._id, l._this, l._other);
     }
   }
 
   public void deleteNodes(ArrayList<Node> nodes) {
     HashSet<String> placed = new HashSet<>();
     for (Node n : nodes) {
+      System.out.println("delting: " + n.get_nodeID());
       mapEditor.removeNode(n);
     }
+  }
+
+  public void deleteSelection(DiffHandler diffHandler) {
+    deleteNodes(this.selection);
+    diffHandler.delete(new ArrayList<>(this.selection));
   }
 }

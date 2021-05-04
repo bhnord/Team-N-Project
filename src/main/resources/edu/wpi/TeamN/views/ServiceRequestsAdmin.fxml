@@ -86,7 +86,7 @@
                                 <FontIcon iconLiteral="gmi-security" iconSize="64" iconColor="white"/>
                             </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="FacilityMaintenanceRequest" alignment="BASELINE_LEFT" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@/StyleSheet/ServiceRequestsPage.css" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="200.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="   Facility Maintenance &#10;" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                        <JFXButton fx:id="FacilityMaintenanceRequest" alignment="BASELINE_LEFT" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@/StyleSheet/ServiceRequestsPage.css" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="200.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="    Facility Maintenance &#10;" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                             <font>
                                 <Font name="Arial Black" size="20.0" />
                             </font>
@@ -100,7 +100,7 @@
                                 <FontIcon iconLiteral="gmi-build" iconSize="64" iconColor="white"/>
                             </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="ComputerServiceRequest" alignment="BASELINE_LEFT" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@/StyleSheet/ServiceRequestsPage.css" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="   Computer Service&#10;" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+                        <JFXButton fx:id="ComputerServiceRequest" alignment="BASELINE_LEFT" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@/StyleSheet/ServiceRequestsPage.css" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="    Computer Service&#10;" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                             <font>
                                 <Font name="Arial Black" size="20.0" />
                             </font>
