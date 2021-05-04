@@ -10,6 +10,8 @@ import edu.wpi.TeamN.state.HomeState;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import edu.wpi.TeamN.utilities.DialogFactory;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -55,7 +57,7 @@ public class HomeControllerAdmin extends MasterController implements Initializab
 
   // For sidebar nested FXML implementation
   @FXML private AnchorPane anchorPane;
-
+  private DialogFactory dialogFactory;
   private Scene appPrimaryScene;
 
   /**
@@ -122,16 +124,44 @@ public class HomeControllerAdmin extends MasterController implements Initializab
       }
     }
 
-    /* // if login matches the name of the person filling out covid form
+    // if login matches the name of the person filling out covid form
      int idCovid = db.getCurrentUser().getId();
      if(db.getCovidFormByUserId(idCovid) != null){
+       //pop-up for main entrance
        if(db.getCovidFormByUserId(idCovid).isOk() == true){
-         //pop-up for main entrance
+         dialogFactory.creatDialogOkayWithAction(
+                 "",
+                 "Your covid form has been processed! You can enter the hospital through the main entrance.",
+                 event -> {
+                   try {
+                     advanceHome();
+                   } catch (IOException e) {
+                     e.printStackTrace();
+                   }
+                 });
        }
-       else //pop-up for emergency
-     }
-    */
+       //pop-up for emergency
+       else{
+         dialogFactory.creatDialogOkayWithAction(
+                 "",
+                 "Your covid form has been processed! Please enter the hospital through the emergency entrance",
+                 event -> {
+                   try {
+                     advanceHome();
+                   } catch (IOException e) {
+                     e.printStackTrace();
+                   }
+                 });
+       }
 
+     }
+
+
+  }
+
+  @FXML
+  public void advanceHome() throws IOException {
+    super.advanceHome(loader, appPrimaryScene);
   }
 
   public String accountInfo() {

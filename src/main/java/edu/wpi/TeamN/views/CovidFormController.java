@@ -146,7 +146,7 @@ public class CovidFormController extends MasterController implements Initializab
     int id = db.getCurrentUser().getId();
     if (db.getCovidForm(id).isProcessed() == true) {
       dialogFactory.close();
-      advanceHomePopup();
+     // advanceHomePopup();
     }
   }
 
