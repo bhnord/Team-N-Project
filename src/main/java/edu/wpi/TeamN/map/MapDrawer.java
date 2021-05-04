@@ -163,7 +163,7 @@ public class MapDrawer {
         draggedLine.setEndY(event.getY());
       }
     }
-    if (event.getButton() == MouseButton.PRIMARY && event.isShiftDown()) {
+    if (event.getButton() == MouseButton.PRIMARY && event.isShiftDown() && !event.isControlDown()) {
       mapController
           .getMapAnchor()
           .setTranslateX(mapController.getMapAnchor().getTranslateX() + event.getX() - pressedX);

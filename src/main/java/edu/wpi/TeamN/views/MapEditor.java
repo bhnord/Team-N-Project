@@ -152,7 +152,7 @@ public class MapEditor extends MapController implements Initializable {
     if (mouseEvent.getButton() == MouseButton.PRIMARY) {
       Rectangle r = mapDrawer.endBoundingBox(mouseEvent.getX(), mouseEvent.getY());
       if (r != null) {
-        mapNodeEditor.clearSelection();
+        if (!mouseEvent.isShiftDown()) mapNodeEditor.clearSelection();
         for (Node n : this.getNodeSet().values()) {
           if (n.get_floor().equals(mapDrawer.getCurrentMap())
               && n.get_x() * getDownScale() > r.getX()
