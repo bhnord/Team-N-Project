@@ -1,6 +1,7 @@
 package edu.wpi.TeamN.map;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXListView;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.views.PathFinderController;
@@ -18,16 +19,20 @@ public class DirectionHandler {
   PathFinderController mapController;
   JFXListView<HBox> stops;
   JFXListView<HBox> texutualDescription;
+  JFXComboBox<Label> locationDropdown;
   ArrayList<String> stopNames = new ArrayList<String>();
 
   public DirectionHandler(
       PathFinderController mapController,
       JFXListView<HBox> path,
-      JFXListView<HBox> texutualDescription) {
+      JFXListView<HBox> texutualDescription,
+      JFXComboBox<Label> locationDropdown) {
     this.stops = path;
     this.texutualDescription = texutualDescription;
+    this.locationDropdown = locationDropdown;
     this.mapController = mapController;
 
+    mapController.loadRoomDropdown(this.locationDropdown);
     clickSetup();
   }
 
@@ -92,7 +97,19 @@ public class DirectionHandler {
     HBox box = new HBox(label, button);
     box.setId(n.get_nodeID());
 
+    mapController.getPath().add(n.get_nodeID());
+    System.out.println(mapController.getPath());
+    mapController.updatePath();
+    n.get_shape().setFill(mapController.getSelectedNodeColor().getValue());
     stopNames.add(n.get_longName());
     stops.getItems().add(box);
+  }
+
+  public void addStopClick(String text) {
+    for (Node n : mapController.getAdminMap().getNodeSet().values())
+      if (n.get_longName().equals(text)) {
+        this.addStop(n);
+        return;
+      }
   }
 }

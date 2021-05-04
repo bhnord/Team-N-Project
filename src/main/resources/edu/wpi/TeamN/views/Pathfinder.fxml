@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXColorPicker?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXListView?>
 <?import com.jfoenix.controls.JFXTabPane?>
 <?import com.jfoenix.controls.JFXTextField?>
@@ -82,10 +83,12 @@
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="320.0">
                                  <children>
-                                    <JFXListView fx:id="stops" layoutX="36.0" prefHeight="200.0" prefWidth="250.0" style="-fx-border-width: 3; -fx-border-color: #363d54;" stylesheets="/StyleSheet/ScrollBar.css" AnchorPane.topAnchor="5.0" />
-                                    <JFXButton fx:id="31" buttonType="RAISED" layoutX="36.0" onAction="#newColorPath" prefHeight="70.0" prefWidth="132.0" style="-fx-background-color: #363d54; -fx-background-radius: 0;" stylesheets="/Fonts/Roboto-Light.css" text="Get Directions" textFill="WHITE" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="25.0" />
-                                    <JFXButton buttonType="RAISED" layoutX="74.0" layoutY="48.0" onAction="#clearSelection" prefHeight="70.0" prefWidth="132.0" style="-fx-background-color: #363d54; -fx-background-radius: 0;" stylesheets="/Fonts/Roboto-Light.css" text="Clear Selection" textFill="WHITE" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="100.0" />
-                                    <JFXListView fx:id="texutualDescription" layoutX="36.0" layoutY="210.0" prefHeight="400.0" prefWidth="250.0" stylesheets="/StyleSheet/style.css" />
+                                    <JFXListView fx:id="stops" layoutX="36.0" prefHeight="200.0" prefWidth="250.0" style="-fx-border-width: 3; -fx-border-color: #363d54;" stylesheets="/StyleSheet/ScrollBar.css" AnchorPane.topAnchor="75" />
+                                    <JFXButton fx:id="31" buttonType="RAISED" layoutX="36.0" onAction="#newColorPath" prefHeight="70.0" prefWidth="132.0" style="-fx-background-color: #363d54; -fx-background-radius: 0;" stylesheets="/Fonts/Roboto-Light.css" text="Get Directions" textFill="WHITE" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="100" />
+                                    <JFXButton buttonType="RAISED" layoutX="74.0" layoutY="48.0" onAction="#clearSelection" prefHeight="70.0" prefWidth="132.0" style="-fx-background-color: #363d54; -fx-background-radius: 0;" stylesheets="/Fonts/Roboto-Light.css" text="Clear Selection" textFill="WHITE" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="200" />
+                                     <JFXButton buttonType="RAISED" layoutX="74.0" layoutY="5" onAction="#addStop" prefHeight="70.0" prefWidth="132.0" style="-fx-background-color: #363d54; -fx-background-radius: 0;" stylesheets="/Fonts/Roboto-Light.css" text="Add Stop" textFill="WHITE" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="10" />
+                                    <JFXListView fx:id="texutualDescription" layoutX="36.0" layoutY="210.0" prefHeight="400.0" prefWidth="250.0" stylesheets="/StyleSheet/style.css" AnchorPane.topAnchor="300.0" />
+                                    <JFXComboBox fx:id="locationDropdown" layoutX="36.0" layoutY="13.0" prefHeight="53.0" prefWidth="250.0" />
                                  </children>
                               </AnchorPane>
                            </content>

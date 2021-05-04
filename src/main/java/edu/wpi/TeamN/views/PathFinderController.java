@@ -2,6 +2,7 @@ package edu.wpi.TeamN.views;
 
 import com.google.inject.Inject;
 import com.jfoenix.controls.JFXColorPicker;
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
 import edu.wpi.TeamN.map.AdminMap;
@@ -20,6 +21,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -40,6 +42,7 @@ public class PathFinderController extends MapController implements Initializable
 
   @FXML private JFXListView<HBox> texutualDescription;
   @FXML private JFXListView<HBox> stops;
+  @FXML private JFXComboBox<Label> locationDropdown;
 
   @Inject
   public void setAppPrimaryScene(Scene appPrimaryScene) {
@@ -57,7 +60,7 @@ public class PathFinderController extends MapController implements Initializable
 
     adminMap = new AdminMap(db);
     mapDrawer = new MapDrawer(this);
-    directionHandler = new DirectionHandler(this, stops, texutualDescription);
+    directionHandler = new DirectionHandler(this, stops, texutualDescription, locationDropdown);
     mapImageView.setCursor(Cursor.CROSSHAIR);
     this.Load();
     mapDrawer.setUpZoom(mapImageView, mapAnchor);
@@ -111,7 +114,6 @@ public class PathFinderController extends MapController implements Initializable
   public void newColorPath(ActionEvent actionEvent) {
     updateUserColors(pathColor.getId(), pathColor.getValue().toString());
     for (int i = 0; path.size() - 1 > i; i++) {
-      System.out.println(getNodeSet());
       ArrayList<Node.Link> pathLink =
           this.pathfind(getNodeSet().get(path.get(i)), getNodeSet().get(path.get(i + 1)));
       nodePath.addAll(pathLink);
@@ -178,5 +180,9 @@ public class PathFinderController extends MapController implements Initializable
 
   public void mousePress(MouseEvent mouseEvent) {
     super.mouseClick(mouseEvent);
+  }
+
+  public void addStop(ActionEvent actionEvent) {
+    directionHandler.addStopClick(locationDropdown.getEditor().getText());
   }
 }
