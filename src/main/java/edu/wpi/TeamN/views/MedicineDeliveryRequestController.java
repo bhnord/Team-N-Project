@@ -80,7 +80,13 @@ public class MedicineDeliveryRequestController extends MasterController implemen
           "Missing Fields", "You must fill out all required fields of the request to continue\n");
     } else {
       dialogFactory.creatDialogConfirmCancel(
-          "Are you sure the information you have provided is correct?", "", mouse -> submitToDB());
+          "Are you sure the information you have provided is correct?", "", mouse -> {
+                try {
+                  submitToDB();
+                } catch (IOException e) {
+                  e.printStackTrace();
+                }
+              });
     }
   }
 
@@ -107,7 +113,8 @@ public class MedicineDeliveryRequestController extends MasterController implemen
     new AutoCompleteComboBoxListener(txtEquipment);
   }
 
-  private void submitToDB() {
+  private void submitToDB() throws IOException {
+    advanceHome();
     RequestType type = RequestType.MEDICINE_DELIVERY;
     int receiverID =
         Integer.parseInt(txtEmployeeName.getSelectionModel().getSelectedItem().getId());

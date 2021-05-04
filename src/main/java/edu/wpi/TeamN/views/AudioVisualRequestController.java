@@ -65,8 +65,20 @@ public class AudioVisualRequestController extends MasterController implements In
           "Missing Fields", "You must fill out all required fields of the request to continue\n");
     } else {
       dialogFactory.creatDialogConfirmCancel(
-          "Are you sure the information you have provided is correct?", "", mouse -> submitToDB());
+          "Are you sure the information you have provided is correct?", "", mouse -> {
+                try {
+                  submitToDB();
+                } catch (IOException e) {
+                  e.printStackTrace();
+                }
+              });
     }
+  }
+
+
+  @FXML
+  public void advanceHome() throws IOException {
+    super.advanceHome(loader, appPrimaryScene);
   }
 
   public void help(ActionEvent actionEvent) throws IOException {
@@ -75,7 +87,8 @@ public class AudioVisualRequestController extends MasterController implements In
         "- Employee Name refers to the employee being requested to complete the job \n- Patient Room is the room with the patient where the audio visual request is required \n- Time of request refers to time at which the request is needed \n- Necessary equipment refers to the equipment that is needed for the request \n- Comments refers to any additional information needed");
   }
 
-  private void submitToDB() {
+  private void submitToDB() throws IOException {
+    advanceHome();
     RequestType type = RequestType.AUDIO_VISUAL;
     int receiverID =
         Integer.parseInt(txtEmployeeName.getSelectionModel().getSelectedItem().getId());

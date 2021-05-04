@@ -70,7 +70,7 @@ public class SideBarController<node> extends MasterController implements Initial
 
     // ccountUsername.setLabelFor();
     //     if (db.getCurrentUser().getUsername() != null) {
-    //      String a = "label: " + db.getCurrentUser().getUsername();
+    //String a = "label: " + db.getCurrentUser().getUsername();
     String a = "ccccccccccccccccccccccccccc";
     Label label = new Label(a);
     accountSettingsGroup.getChildren().add(label);

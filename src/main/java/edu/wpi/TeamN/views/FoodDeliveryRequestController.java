@@ -76,7 +76,13 @@ public class FoodDeliveryRequestController extends MasterController implements I
           "Missing Fields", "You must fill out all required fields of the request to continue\n");
     } else {
       dialogFactory.creatDialogConfirmCancel(
-          "Are you sure the information you have provided is correct?", "", mouse -> submitToDB());
+          "Are you sure the information you have provided is correct?", "", mouse -> {
+                try {
+                  submitToDB();
+                } catch (IOException e) {
+                  e.printStackTrace();
+                }
+              });
     }
   }
 
@@ -111,7 +117,8 @@ public class FoodDeliveryRequestController extends MasterController implements I
     }
   }
 
-  private void submitToDB() {
+  private void submitToDB() throws IOException {
+    advanceHome();
     Request r =
         new Request(
             RequestType.FOOD_DELIVERY,
