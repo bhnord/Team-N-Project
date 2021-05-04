@@ -62,37 +62,6 @@
                         </AnchorPane>
                     </children>
                 </GridPane>
-                <GridPane GridPane.columnIndex="2">
-                    <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                        <RowConstraints maxHeight="737.0" minHeight="10.0" prefHeight="690.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="78.0" minHeight="78.0" prefHeight="78.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                    <children>
-                        <JFXButton buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #748cdc; -fx-background-radius: 30;">
-                            <GridPane.margin>
-                                <Insets right="10.0" />
-                            </GridPane.margin></JFXButton>
-                        <StackPane prefHeight="150.0" prefWidth="200.0" />
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="320.0">
-                     <children>
-                        <JFXListView fx:id="stops" layoutX="36.0" prefHeight="200.0" prefWidth="250.0" style="-fx-border-width: 3; -fx-border-color: #363d54;" stylesheets="/StyleSheet/ScrollBar.css" AnchorPane.topAnchor="120.0" />
-                        <JFXButton fx:id="31" buttonType="RAISED" layoutX="36.0" onAction="#newColorPath" prefHeight="70.0" prefWidth="132.0" style="-fx-background-color: #363d54; -fx-background-radius: 0;" stylesheets="/Fonts/Roboto-Light.css" text="Get Directions" textFill="WHITE" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="150.0" />
-                        <JFXButton buttonType="RAISED" layoutX="74.0" layoutY="48.0" onAction="#clearSelection" prefHeight="70.0" prefWidth="132.0" style="-fx-background-color: #363d54; -fx-background-radius: 0;" stylesheets="/Fonts/Roboto-Light.css" text="Clear Selection" textFill="WHITE" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="225.0" />
-                         <JFXButton buttonType="RAISED" layoutX="74.0" layoutY="5" onAction="#addStop" prefHeight="70.0" prefWidth="132.0" style="-fx-background-color: #363d54; -fx-background-radius: 0;" stylesheets="/Fonts/Roboto-Light.css" text="Add Stop" textFill="WHITE" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="75.0" />
-                        <JFXListView fx:id="texutualDescription" layoutX="36.0" layoutY="210.0" prefHeight="200" prefWidth="250.0" stylesheets="/StyleSheet/style.css" AnchorPane.topAnchor="325.0" />
-                        <JFXComboBox fx:id="locationDropdown" layoutX="36.0" layoutY="13.0" prefHeight="53.0" prefWidth="250.0" AnchorPane.topAnchor="50.0" />
-                        <Label layoutX="36.0" layoutY="14.0" prefHeight="38.0" prefWidth="117.0" text="Directions">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </AnchorPane>
-                    </children>
-                </GridPane>
             <AnchorPane fx:id="anchorPane" prefHeight="200.0" prefWidth="200.0" GridPane.valignment="BASELINE" />
             </children>
         </GridPane>
@@ -248,5 +217,51 @@
             <Insets bottom="50.0" right="50.0" />
          </StackPane.margin>
       </JFXTextField>
+      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="WHITE" height="634.0" opacity="0.95" stroke="#363d5400" strokeType="INSIDE" strokeWidth="0.0" width="264.0" StackPane.alignment="TOP_RIGHT">
+         <effect>
+            <DropShadow color="#00000042" height="203.35" radius="98.58" width="192.97" />
+         </effect>
+         <StackPane.margin>
+            <Insets right="-30.0" top="-30.0" />
+         </StackPane.margin>
+      </Rectangle>
+      <JFXButton fx:id="31" buttonType="RAISED" onAction="#newColorPath" prefHeight="40.0" prefWidth="132.0" style="-fx-background-color: #363d54; -fx-background-radius: 0;" stylesheets="/Fonts/Roboto-Light.css" text="Get Directions" textFill="WHITE" StackPane.alignment="TOP_RIGHT">
+         <StackPane.margin>
+            <Insets right="45.0" top="10.0" />
+         </StackPane.margin>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" onAction="#clearSelection" prefHeight="40.0" prefWidth="132.0" style="-fx-background-color: #363d54; -fx-background-radius: 0;" stylesheets="/Fonts/Roboto-Light.css" text="Clear Selection" textFill="WHITE" StackPane.alignment="TOP_RIGHT">
+         <StackPane.margin>
+            <Insets right="45.0" top="55.0" />
+         </StackPane.margin>
+      </JFXButton>
+       <JFXButton buttonType="RAISED" onAction="#addStop" prefHeight="40.0" prefWidth="132.0" style="-fx-background-color: #363d54; -fx-background-radius: 0;" stylesheets="/Fonts/Roboto-Light.css" text="Add Stop" textFill="WHITE" StackPane.alignment="TOP_RIGHT">
+         <StackPane.margin>
+            <Insets right="45.0" top="100.0" />
+         </StackPane.margin>
+      </JFXButton>
+      <JFXComboBox fx:id="locationDropdown" focusColor="#748cdc" prefHeight="53.0" prefWidth="212.0" StackPane.alignment="TOP_RIGHT">
+         <StackPane.margin>
+            <Insets right="10.0" top="150.0" />
+         </StackPane.margin>
+      </JFXComboBox>
+      <Label prefHeight="38.0" prefWidth="117.0" text="Directions" StackPane.alignment="TOP_RIGHT">
+         <font>
+            <Font size="24.0" />
+         </font>
+         <StackPane.margin>
+            <Insets right="50.0" top="565.0" />
+         </StackPane.margin>
+      </Label>
+      <JFXListView fx:id="stops" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="136.0" prefWidth="210.0" style="-fx-border-width: 3; -fx-border-color: #363d54;" stylesheets="/StyleSheet/ScrollBar.css" StackPane.alignment="TOP_RIGHT">
+         <StackPane.margin>
+            <Insets right="10.0" top="215.0" />
+         </StackPane.margin>
+      </JFXListView>
+      <JFXListView fx:id="texutualDescription" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200" prefWidth="210.0" stylesheets="/StyleSheet/style.css" StackPane.alignment="TOP_RIGHT">
+         <StackPane.margin>
+            <Insets right="10.0" top="360.0" />
+         </StackPane.margin>
+      </JFXListView>
     </children>
 </StackPane>
