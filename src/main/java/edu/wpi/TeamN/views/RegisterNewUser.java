@@ -44,8 +44,7 @@ public class RegisterNewUser extends MasterController implements Initializable {
   @FXML private StackPane myStackPane2;
   private Scene appPrimaryScene;
 
-  @FXML private AnchorPane anchorPage;
-  @FXML private AnchorPane anchorPane1;
+  @FXML private AnchorPane anchorPane;
   private DialogFactory dialogFactory;
 
   /**
@@ -62,7 +61,7 @@ public class RegisterNewUser extends MasterController implements Initializable {
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     log.debug(state.toString());
-    super.sideBarSetup(anchorPane1, appPrimaryScene, loader, "Register");
+    super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Register");
     dialogFactory = new DialogFactory(rootGridPane);
   }
 
