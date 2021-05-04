@@ -88,18 +88,12 @@
                               </Tooltip>
                           </tooltip>
                       </JFXButton>
-                      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="47.0" layoutX="834.0" layoutY="661.0" stroke="TRANSPARENT" strokeType="INSIDE" width="130.0" />
                       <Rectangle arcHeight="50.0" arcWidth="50.0" fill="WHITE" height="517.0" layoutX="136.0" layoutY="202.0" stroke="TRANSPARENT" strokeType="INSIDE" width="476.0" />
-                      <Rectangle arcHeight="8.0" arcWidth="8.0" fill="#748cdc" height="40.0" layoutX="518.0" layoutY="641.0" stroke="TRANSPARENT" strokeType="INSIDE" width="74.0">
+                      <Rectangle arcHeight="8.0" arcWidth="8.0" fill="#748cdc" height="40.0" layoutX="484.0" layoutY="641.0" stroke="TRANSPARENT" strokeType="INSIDE" width="87.0">
                           <effect>
                               <DropShadow color="#c6b8b8" offsetY="5.0" />
                           </effect>
                       </Rectangle>
-                      <JFXButton fx:id="submit" layoutX="507.0" layoutY="636.0" onAction="#Submit" prefHeight="50.0" prefWidth="95.0" ripplerFill="WHITE" stylesheets="/Fonts/Roboto-Light.css" text="Submit" textFill="WHITE">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </JFXButton>
                       <StackPane fx:id="myStackPane2" layoutX="346.0" layoutY="526.0" prefHeight="101.0" prefWidth="531.0" />
                       <Label layoutX="165.0" layoutY="247.0" text="*" />
                       <Label layoutX="165.0" layoutY="312.0" prefHeight="21.0" prefWidth="0.0" text="*" />
@@ -126,10 +120,7 @@
                               <Font name="Serif Regular" size="30.0" />
                           </font>
                       </Label>
-                      <JFXButton fx:id="helpButton" layoutX="834.0" layoutY="663.0" onAction="#help" prefHeight="47.0" prefWidth="130.0" ripplerFill="WHITE" stylesheets="/Fonts/Roboto-Light.css" text="Help" textFill="WHITE">
-                          <font>
-                              <Font name="Serif Regular" size="22.0" />
-                          </font>
+                      <JFXButton fx:id="helpButton" layoutX="439.0" layoutY="645.0" onAction="#help" prefHeight="32.0" prefWidth="32.0" ripplerFill="WHITE" stylesheets="@/StyleSheet/ServiceRequests.css" textFill="WHITE">
                           <tooltip>
                               <Tooltip fx:id="tthelpButton" text="Help Page">
                                   <font>
@@ -138,6 +129,11 @@
                               </Tooltip>
                           </tooltip>
                       </JFXButton>
+                      <JFXButton fx:id="submit" layoutX="480.0" layoutY="636.0" onAction="#Submit" prefHeight="50.0" prefWidth="95.0" ripplerFill="WHITE" stylesheets="/Fonts/Roboto-Light.css" text="Submit" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </JFXButton>
                   </children>
               </AnchorPane>
             <AnchorPane fx:id="anchorPane" prefHeight="200.0" prefWidth="200.0" GridPane.valignment="BASELINE" />

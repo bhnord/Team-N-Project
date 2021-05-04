@@ -74,23 +74,17 @@
                               <Font size="24.0" />
                           </font>
                       </Label>
-                      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="47.0" layoutX="834.0" layoutY="663.0" stroke="TRANSPARENT" strokeType="INSIDE" width="130.0" />
                       <Rectangle arcHeight="50.0" arcWidth="50.0" fill="WHITE" height="517.0" layoutX="136.0" layoutY="202.0" stroke="TRANSPARENT" strokeType="INSIDE" width="476.0" />
                       <JFXTextField fx:id="txtComments" focusColor="#5b63e1" labelFloat="true" layoutX="187.0" layoutY="528.0" prefHeight="31.0" prefWidth="200.0" promptText="Comments" scaleShape="false" stylesheets="/Fonts/Roboto-Light.css" unFocusColor="WHITE">
                           <font>
                               <Font size="16.0" />
                           </font>
                       </JFXTextField>
-                      <Rectangle arcHeight="8.0" arcWidth="8.0" fill="#748cdc" height="40.0" layoutX="518.0" layoutY="641.0" stroke="TRANSPARENT" strokeType="INSIDE" width="74.0">
+                      <Rectangle arcHeight="8.0" arcWidth="8.0" fill="#748cdc" height="40.0" layoutX="482.0" layoutY="641.0" stroke="TRANSPARENT" strokeType="INSIDE" width="87.0">
                           <effect>
                               <DropShadow color="#c6b8b8" offsetY="5.0" />
                           </effect>
                       </Rectangle>
-                      <JFXButton fx:id="submit" layoutX="508.0" layoutY="636.0" onAction="#submit" prefHeight="50.0" prefWidth="95.0" ripplerFill="WHITE" stylesheets="/Fonts/Roboto-Light.css" text="Submit" textFill="WHITE">
-                          <font>
-                              <Font name="Serif Regular" size="15.0" />
-                          </font>
-                      </JFXButton>
                       <JFXComboBox fx:id="txtEmployeeName" layoutX="187.0" layoutY="240.0" prefHeight="31.0" prefWidth="176.0" promptText="Select Employee" stylesheets="/Fonts/Roboto-Light.css" />
                       <JFXComboBox fx:id="roomDropdown" layoutX="187.0" layoutY="312.0" prefHeight="31.0" prefWidth="176.0" promptText="Select Patient Room" stylesheets="/Fonts/Roboto-Light.css" />
                       <StackPane fx:id="myStackPane2" layoutX="346.0" layoutY="526.0" prefHeight="101.0" prefWidth="531.0" />
@@ -110,10 +104,7 @@
                               <Font size="16.0" />
                           </font>
                       </JFXTextField>
-                      <JFXButton fx:id="helpButton" layoutX="834.0" layoutY="663.0" onAction="#help" prefHeight="47.0" prefWidth="130.0" ripplerFill="WHITE" stylesheets="/Fonts/Roboto-Light.css" text="Help" textFill="WHITE">
-                          <font>
-                              <Font name="Serif Regular" size="22.0" />
-                          </font>
+                      <JFXButton fx:id="helpButton" layoutX="439.0" layoutY="645.0" onAction="#help" prefHeight="32.0" prefWidth="32.0" ripplerFill="WHITE" stylesheets="@/StyleSheet/ServiceRequests.css" textFill="WHITE">
                           <tooltip>
                               <Tooltip fx:id="tthelpButton" text="Help Page">
                                   <font>
@@ -123,6 +114,11 @@
                           </tooltip>
                       </JFXButton>
                       <StackPane fx:id="myStackPane" layoutX="678.0" layoutY="441.0" prefHeight="118.0" prefWidth="171.0" />
+                      <JFXButton fx:id="submit" layoutX="476.0" layoutY="636.0" onAction="#submit" prefHeight="50.0" prefWidth="99.0" ripplerFill="WHITE" stylesheets="/Fonts/Roboto-Light.css" text="Submit" textFill="WHITE">
+                          <font>
+                              <Font name="Serif Regular" size="15.0" />
+                          </font>
+                      </JFXButton>
                   </children>
               </AnchorPane>
             <AnchorPane fx:id="anchorPane" prefHeight="200.0" prefWidth="200.0" GridPane.valignment="BASELINE" />
