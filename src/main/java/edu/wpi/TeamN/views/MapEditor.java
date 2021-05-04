@@ -1,6 +1,7 @@
 package edu.wpi.TeamN.views;
 
 import com.google.inject.Inject;
+import com.jfoenix.controls.JFXTabPane;
 import com.jfoenix.controls.JFXTextField;
 import edu.wpi.TeamN.map.*;
 import edu.wpi.TeamN.services.algo.Edge;
@@ -26,9 +27,11 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class MapEditor extends MapController implements Initializable {
+  @FXML private JFXTabPane editor;
   @FXML private JFXTextField nodeSize;
   @FXML private JFXTextField pathSize;
   @Inject FXMLLoader loader;
+
   @Inject HomeState state;
 
   @FXML private Label XLabel;
@@ -380,5 +383,9 @@ public class MapEditor extends MapController implements Initializable {
   public void alignS(ActionEvent actionEvent) {
     mapNodeEditor.straightenSelectionSnap();
     mapNodeEditor.finalize_change(diffHandler);
+  }
+
+  public JFXTabPane getEditor() {
+    return editor;
   }
 }

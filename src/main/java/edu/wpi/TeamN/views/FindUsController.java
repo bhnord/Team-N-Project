@@ -111,11 +111,14 @@ public class FindUsController extends MasterController implements Initializable 
       mapImage.setImage(new Image(image));
       String instructions;
       for (DirectionsStep step : result.routes[0].legs[0].steps) {
-        //        if (step.htmlInstructions.toLowerCase().contains("left")) {
-        //          directions.append("<b style=\"font-size: 16px;\"><-</b>  ");
-        //        } else if (step.htmlInstructions.toLowerCase().contains("right")) {
-        //          directions.append("<b style=\"font-size: 16px;\">-></b>  ");
-        //        }
+        if (step.htmlInstructions.toLowerCase().contains("left")) {
+          directions.append("<b style=\"font-size: 20px;\">⇦ </b>  ");
+        } else if (step.htmlInstructions.toLowerCase().contains("right")) {
+          directions.append("<b style=\"font-size: 20px;\">⇨ </b>  ");
+        } else if (step.htmlInstructions.toLowerCase().contains("straight")
+            || step.htmlInstructions.toLowerCase().contains("continue")) {
+          directions.append("<b style=\"font-size: 20px;\">⇧ </b>  ");
+        }
         instructions = step.htmlInstructions.replace("<div style=\"font-size:0.9em\">", " (");
         instructions = instructions.replace("</div>", ")");
         directions.append(instructions);
@@ -124,11 +127,14 @@ public class FindUsController extends MasterController implements Initializable 
             .append(step.distance)
             .append(")</span>");
         directions.append("<br/><br/>");
+        directions.replace(directions.indexOf(";"), directions.indexOf(";"), "");
+        //        directions.replace(0, directions.length(), "");
       }
       webEngine.executeScript(
           "document.getElementsByTagName('body')[0].insertAdjacentHTML('beforeend', '"
               + directions
               + "');");
+
       printButton.setDisable(false);
       directionsLabel.setText(
           "The fastest route to the hospital takes "

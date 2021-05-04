@@ -200,16 +200,18 @@ public class MasterController implements Initializable {
   public void loadRoomDropdown(JFXComboBox<Label> roomComboBox, String filter) {
     HashSet<Node> rooms = db.getAllNodes();
     for (Node node : rooms) {
-      if (!node.get_nodeType().contains(filter) && !node.get_longName().isEmpty()) {
-        Label lbl = new Label(node.get_longName());
-        lbl.setId(node.get_nodeID());
-        roomComboBox.getItems().add(lbl);
+      if (filter == null || (!node.get_nodeType().contains(filter))) {
+        if (!node.get_longName().isEmpty()) {
+          Label lbl = new Label(node.get_longName());
+          lbl.setId(node.get_nodeID());
+          roomComboBox.getItems().add(lbl);
+        }
       }
     }
     new AutoCompleteComboBoxListener(roomComboBox);
   }
 
   public void loadRoomDropdown(JFXComboBox<Label> roomComboBox) {
-    this.loadRoomDropdown(roomComboBox, "");
+    this.loadRoomDropdown(roomComboBox, null);
   }
 }
