@@ -60,7 +60,11 @@ public class FindUsController extends MasterController implements Initializable 
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Map");
+    if (db.getCurrentUser().getUsername().equals("guest")) {
+      super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Login Map");
+    } else {
+      super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Map");
+    }
     webEngine = webView.getEngine();
     context =
         new GeoApiContext.Builder().apiKey("AIzaSyBBszEPZvetVvgsIbt3pLtXLbPap6dT-KY" + "").build();

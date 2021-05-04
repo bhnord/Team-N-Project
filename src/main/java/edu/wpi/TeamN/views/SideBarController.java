@@ -111,6 +111,10 @@ public class SideBarController extends MasterController implements Initializable
       makeInvisible(groupCovid);
       makeInvisible(groupBack);
       makeInvisible(groupHome);
+    } else if (type.equals("Login Map")) {
+      makeInvisible(groupLogOut);
+      makeInvisible(groupCovid);
+      makeInvisible(groupBack);
     } else if (type.equals("Register")) {
       LogOutBack.setVisible(false);
       RegisterBack.setVisible(true);

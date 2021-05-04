@@ -584,7 +584,7 @@ public class DatabaseService {
     return false;
   }
 
-  public void logout(){
+  public void logout() {
     currentUser = null;
   }
 

@@ -6,7 +6,6 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.RequiredFieldValidator;
 import edu.wpi.TeamN.services.database.DatabaseService;
-import edu.wpi.TeamN.services.database.users.UserType;
 import edu.wpi.TeamN.state.HomeState;
 import java.io.IOException;
 import java.net.URL;
@@ -36,7 +35,7 @@ public class HomeControllerAdmin extends MasterController implements Initializab
   @FXML private JFXButton mapEditor, BackMapEditor;
   @FXML private JFXButton ServiceRequests, BackServiceRequests;
   @FXML private JFXButton EmployeeEditor, BackEmployeeEditor;
-  @FXML private JFXButton CurrentRequest, BackCurrentRequest;
+  @FXML private JFXButton CurrentRequests, BackCurrentRequests;
   @FXML private Label LogIn;
   @FXML private Group logInGroup;
 
@@ -67,17 +66,21 @@ public class HomeControllerAdmin extends MasterController implements Initializab
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     log.debug(state.toString());
-    super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Home");
 
-    if (db.getCurrentUser() == null || db.getCurrentUser().getType() == UserType.GUEST) {
+    if (db.getCurrentUser() == null || db.getCurrentUser().getUsername().equals("guest")) {
+      super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Login");
+      db.login("guest", "guest");
       makeInvisible(EmployeeEditor);
       makeInvisible(BackEmployeeEditor);
-      makeInvisible(CurrentRequest);
-      makeInvisible(BackCurrentRequest);
+      makeInvisible(CurrentRequests);
+      makeInvisible(BackCurrentRequests);
       makeInvisible(mapEditor);
       makeInvisible(BackMapEditor);
+      makeInvisible(ServiceRequests);
+      // makeInvisible(BackServiceRequests);
       logInInit();
     } else {
+      super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Home");
       switch (db.getCurrentUser().getType()) {
           // different login cases
         case ADMINISTRATOR:
@@ -99,8 +102,8 @@ public class HomeControllerAdmin extends MasterController implements Initializab
         case PATIENT:
           makeInvisible(EmployeeEditor);
           makeInvisible(BackEmployeeEditor);
-          makeInvisible(CurrentRequest);
-          makeInvisible(BackCurrentRequest);
+          makeInvisible(CurrentRequests);
+          makeInvisible(BackCurrentRequests);
           makeInvisible(mapEditor);
           makeInvisible(BackMapEditor);
           LogIn.setVisible(false);
