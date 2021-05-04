@@ -14,6 +14,15 @@ public class MapNodeEditor {
   private ArrayList<Node> selection;
   private Node dragger;
 
+  public void clearSelection(Node node) {
+    for (Node n : selection) {
+      if (n == node) {
+        return;
+      }
+    }
+    clearSelection();
+  }
+
   public void clearSelection() {
     for (Node n : selection) {
       n.get_shape().setFill(Color.web(mapEditor.getUserPrefs().getBasicNodeColor()));

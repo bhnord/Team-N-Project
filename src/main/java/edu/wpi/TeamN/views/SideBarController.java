@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Tooltip;
+import javafx.scene.image.ImageView;
 
 public class SideBarController extends MasterController implements Initializable {
 
@@ -22,8 +23,8 @@ public class SideBarController extends MasterController implements Initializable
   @FXML private Group groupCovid;
   @FXML private Group groupBack;
   @FXML private Group groupHome;
-  @FXML private Group LogOutBack;
-  @FXML private Group RegisterBack;
+  @FXML private ImageView LogOutBack;
+  @FXML private ImageView RegisterBack;
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {}
@@ -99,18 +100,26 @@ public class SideBarController extends MasterController implements Initializable
     if (type.equals("Home")) {
       makeInvisible(groupBack);
       makeInvisible(groupHome);
+      RegisterBack.setVisible(false);
     } else if (type.equals("Map") || type.equals("Database")) {
       makeInvisible(groupBack);
+      RegisterBack.setVisible(false);
     } else if (type.equals("Service Request")) {
       // all buttons
+      RegisterBack.setVisible(false);
     } else if (type.equals("Covid Form")) {
       makeInvisible(groupCovid);
       makeInvisible(groupBack);
+      RegisterBack.setVisible(false);
     } else if (type.equals("Login")) {
       makeInvisible(groupLogOut);
       makeInvisible(groupCovid);
       makeInvisible(groupBack);
       makeInvisible(groupHome);
+    } else if (type.equals("Login Map")) {
+      makeInvisible(groupLogOut);
+      makeInvisible(groupCovid);
+      makeInvisible(groupBack);
     } else if (type.equals("Register")) {
       LogOutBack.setVisible(false);
       RegisterBack.setVisible(true);

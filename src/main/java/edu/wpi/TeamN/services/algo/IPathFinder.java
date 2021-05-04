@@ -7,5 +7,5 @@ public interface IPathFinder {
     boolean isValid(Node.Link l);
   }
 
-  ArrayList<Node.Link> pathfindFull(Node start, Node end, Reduce filter);
+  abstract ArrayList<Node.Link> pathfindFull(Node start, Node end, Reduce filter);
 }

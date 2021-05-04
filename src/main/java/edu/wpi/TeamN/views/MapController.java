@@ -158,7 +158,11 @@ public abstract class MapController extends MasterController {
   public void initialize(URL location, ResourceBundle resources) {}
 
   public void init(Scene appPrimaryScene) {
-    super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Map");
+    if (db.getCurrentUser().getUsername().equals("guest")) {
+      super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Login Map");
+    } else {
+      super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Map");
+    }
     userPrefs = db.getCurrentUser().getUserPrefs();
 
     nodeColor.setValue(Color.valueOf(userPrefs.getBasicNodeColor()));
@@ -169,6 +173,8 @@ public abstract class MapController extends MasterController {
     selectedNodeColor.setValue(Color.valueOf(userPrefs.getHighlightColor()));
     nodeSize.setText(String.valueOf(userPrefs.getNodeSize()));
     pathSize.setText(String.valueOf(userPrefs.getEdgeWidth()));
+    mapImageView.setOnScroll(event -> mapDrawer.captureMouseScroll(event));
+    mapImageView.setOnMouseDragged(event -> mapDrawer.captureMouseDrag(event));
     //    log.debug(state.toString());
   }
 
@@ -182,10 +188,10 @@ public abstract class MapController extends MasterController {
   }
 
   protected void Load() {
-    for (javafx.scene.Node root :
-        mapAnchor.getChildren().subList(1, mapAnchor.getChildren().size())) {
-      root.setVisible(false);
-    }
+    //    for (javafx.scene.Node root :
+    //        mapAnchor.getChildren().subList(1, mapAnchor.getChildren().size())) {
+    //      root.setVisible(false);
+    //    }
     for (Node n : getNodeSet().values()) {
       n.set_neighbors(new ArrayList<>());
     }
@@ -197,16 +203,19 @@ public abstract class MapController extends MasterController {
                       key,
                       getNodeSet().get(value.getStartNode()),
                       getNodeSet().get(value.getEndNode()))
+                  .getChildren()
+                  .get(0)
                   .setVisible(
                       mapDrawer
                           .getCurrentMap()
                           .equals(getNodeSet().get(value.getStartNode()).get_floor()));
             });
-    adminMap
+    getAdminMap()
         .getNodeSet()
         .forEach(
             (key, value) -> {
-              placeNode(value).setVisible(mapDrawer.getCurrentMap().equals(value.get_floor()));
+              placeNode(value);
+              value.get_shape().setVisible(mapDrawer.getCurrentMap().equals(value.get_floor()));
             });
   }
 
@@ -225,6 +234,15 @@ public abstract class MapController extends MasterController {
     return root;
   }
 
+  public Group createVisualLink(String id, Node node1, Node node2) {
+    Group root = mapDrawer.drawLine(id, node1, node2);
+    mapAnchor.getChildren().add(1, root);
+    root.setCursor(Cursor.CROSSHAIR);
+    root.setOnMouseDragged(event -> mapDrawer.captureMouseDrag(event));
+    root.setOnScroll(event -> mapDrawer.captureMouseScroll(event));
+    return root;
+  }
+
   /**
    * Places a line between two nodes
    *
@@ -232,11 +250,7 @@ public abstract class MapController extends MasterController {
    * @param node2 node id of the second node
    */
   public Group placeLink(String id, Node node1, Node node2) {
-    Group root = mapDrawer.drawLine(id, node1, node2);
-    mapAnchor.getChildren().add(1, root);
-    root.setCursor(Cursor.CROSSHAIR);
-    root.setOnMouseDragged(event -> mapDrawer.captureMouseDrag(event));
-    root.setOnScroll(event -> mapDrawer.captureMouseScroll(event));
+    Group root = createVisualLink(id, node1, node2);
     getAdminMap().makeEdge(id, node1, node2, (Line) root.getChildren().get(0));
     return root;
   }
@@ -244,22 +258,14 @@ public abstract class MapController extends MasterController {
   public void mapFloor() {
     for (Node n : getNodeSet().values()) {
       n.get_shape().setVisible(n.get_floor().equals(mapDrawer.getCurrentMap()));
+      for (Node.Link l : n.get_neighbors()) {
+        l._shape.setVisible(n.get_floor().equals(mapDrawer.getCurrentMap()));
+      }
     }
   }
 
   public void correctFloor(Node.Link link) {
-    if (getEdgeSet().containsKey(link._shape.getParent().getId())) {
-      Edge a = getEdgeSet().get(link._shape.getParent().getId());
-      if (getNodeSet().containsKey(a.getStartNode()) || getNodeSet().containsKey(a.getEndNode())) {
-        link._shape
-            .getParent()
-            .setVisible(
-                this.getNodeSet()
-                    .get(a.getStartNode())
-                    .get_floor()
-                    .equals(mapDrawer.getCurrentMap()));
-      }
-    }
+    link._shape.setVisible(link._this.get_floor().equals(mapDrawer.getCurrentMap()));
   }
 
   public void SetStartNode(ActionEvent actionEvent) {
@@ -492,7 +498,7 @@ public abstract class MapController extends MasterController {
 
   public void setMap(ActionEvent actionEvent) {
     mapDrawer.setMap(((Button) actionEvent.getSource()).getId());
-    this.Load();
+    this.mapFloor();
   }
 
   public double getNodeSize() {

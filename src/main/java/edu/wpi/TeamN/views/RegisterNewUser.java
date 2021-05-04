@@ -1,6 +1,7 @@
 package edu.wpi.TeamN.views;
 
 import com.google.inject.Inject;
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import edu.wpi.TeamN.services.database.DatabaseService;
@@ -47,6 +48,7 @@ public class RegisterNewUser extends MasterController implements Initializable {
   @FXML private AnchorPane anchorPage;
   @FXML private AnchorPane anchorPane1;
   private DialogFactory dialogFactory;
+  @FXML private JFXComboBox<Label> employeeDropdown;
 
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
@@ -63,7 +65,8 @@ public class RegisterNewUser extends MasterController implements Initializable {
   public void initialize(URL location, ResourceBundle resources) {
     log.debug(state.toString());
     super.sideBarSetup(anchorPane1, appPrimaryScene, loader, "Register");
-    dialogFactory = new DialogFactory(rootGridPane);
+    dialogFactory = new DialogFactory(myStackPane);
+    //    loadEmployeeDropdown(employeeDropdown);
   }
 
   public void exit(ActionEvent actionEvent) throws IOException {

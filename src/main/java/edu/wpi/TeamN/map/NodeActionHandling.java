@@ -27,7 +27,7 @@ public class NodeActionHandling implements IActionHandling {
           public void handle(MouseEvent event) {
             mapEditor.getMapDrawer().captureClick(event);
             mapNodeEditor.showNodeProperties(root);
-            mapNodeEditor.clearSelection();
+            mapNodeEditor.clearSelection(mapEditor.getNodeSet().get(root.getId()));
             mapNodeEditor.addNode(mapEditor.getNodeSet().get(root.getId()));
           }
         });

@@ -3,11 +3,13 @@ package edu.wpi.TeamN.utilities;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
+import com.jfoenix.controls.JFXTextField;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
+import javax.swing.*;
 
 public class DialogFactory {
   //  private final StackPane stackPane;
@@ -122,5 +124,27 @@ public class DialogFactory {
 
   public void close() {
     dialog.close();
+  }
+
+  public void covidFormTextInput(
+      String heading, String body, EventHandler<? super MouseEvent> clickAction) {
+
+    Text headingText = (Text) content.getHeading().get(0);
+    headingText.setText(heading);
+    content.setHeading(headingText);
+    Text bodyText = (Text) content.getBody().get(0);
+    bodyText.setText(body);
+    content.setBody(bodyText);
+    StackPane stackPane = new StackPane();
+    dialog = new JFXDialog(stackPane, content, JFXDialog.DialogTransition.CENTER);
+    JFXTextField textField = new JFXTextField();
+    JFXButton confirmButton = new JFXButton("Confirm");
+    JFXButton text = new JFXButton("              ");
+    confirmButton.setOnMouseClicked(clickAction);
+    confirmButton.setOnMouseReleased(action -> dialog.close());
+    content.setActions(textField, text, confirmButton);
+    stackPane.setPickOnBounds(false);
+    pane.getChildren().add(stackPane);
+    dialog.show();
   }
 }

@@ -60,7 +60,11 @@ public class FindUsController extends MasterController implements Initializable 
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Map");
+    if (db.getCurrentUser().getUsername().equals("guest")) {
+      super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Login Map");
+    } else {
+      super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Map");
+    }
     webEngine = webView.getEngine();
     context =
         new GeoApiContext.Builder().apiKey("AIzaSyBBszEPZvetVvgsIbt3pLtXLbPap6dT-KY" + "").build();
@@ -95,6 +99,7 @@ public class FindUsController extends MasterController implements Initializable 
                 + "    <title>Title</title>\n"
                 + "    <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\">\n"
                 + "    <link href=\"https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap\" rel=\"stylesheet\">\n"
+                + "<link href=\"https://fonts.googleapis.com/icon?family=Material+Icons\" rel=\"stylesheet\">"
                 + "</head>\n"
                 + "<body style=\"font-family: 'Roboto', sans-serif;\">");
     try {
@@ -115,14 +120,19 @@ public class FindUsController extends MasterController implements Initializable 
       mapImage.setImage(new Image(image));
       String instructions;
       for (DirectionsStep step : result.routes[0].legs[0].steps) {
+        //        if (step.htmlInstructions.toLowerCase().contains("left")) {
+        //          directions.append("<b style=\"font-size: 16px;\"><-</b>  ");
+        //        } else if (step.htmlInstructions.toLowerCase().contains("right")) {
+        //          directions.append("<b style=\"font-size: 16px;\">-></b>  ");
+        //        }
         instructions = step.htmlInstructions.replace("<div style=\"font-size:0.9em\">", " (");
         instructions = instructions.replace("</div>", ")");
         directions.append(instructions);
         directions
-            .append(" <p style=\"text-align: right;  padding-right: 8px\">(")
+            .append(" <span style=\"float:right;\">(")
             .append(step.distance)
-            .append(")</p>");
-        directions.append("<br/>");
+            .append(")</span>");
+        directions.append("<br/><br/>");
       }
       directions.append("</body>\n" + "</html>");
       webEngine.loadContent(directions.toString());
@@ -141,6 +151,7 @@ public class FindUsController extends MasterController implements Initializable 
 
   @FXML
   private void printDirections() {
+    System.out.println((String) webEngine.executeScript("document.documentElement.outerHTML"));
     PrinterJob printerJob = PrinterJob.createPrinterJob();
     if (printerJob != null && printerJob.showPrintDialog(webView.getScene().getWindow())) {
       webEngine.print(printerJob);

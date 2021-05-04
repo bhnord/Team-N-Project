@@ -134,8 +134,9 @@ public class MapDrawer {
   public void colorPath(Color color, ArrayList<Node.Link> ret) {
     for (Node.Link c2 : ret) {
       Line simpleNode = c2._shape;
+      if (c2._this.get_floor().equals(currentMap)) simpleNode.setVisible(true);
       simpleNode.setStroke(color);
-      mapController.correctFloor(c2);
+      //      mapController.correctFloor(c2);
     }
   }
 

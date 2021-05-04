@@ -23,6 +23,7 @@ public class App extends Application {
 
   private FXMLLoader loader;
   private Scene primaryScene;
+  @Inject DatabaseService db;
 
   public static Node getPrimaryStage() {
     return null;
@@ -71,9 +72,9 @@ public class App extends Application {
 
   @Override
   public void start(Stage primaryStage) throws IOException {
-    Parent root = loader.load(getClass().getResourceAsStream("views/LoginPage.fxml"));
-    // TODO: uncomment above line and comment below line to switch between template and app
-    // Parent root = loader.load(getClass().getResourceAsStream("views/templateJFeonix.fxml"));
+
+    Parent root = loader.load(getClass().getResourceAsStream("views/HomeViewAdmin.fxml"));
+
     primaryStage
         .getIcons()
         .add(new Image(ClassLoader.getSystemResourceAsStream("images/hospital-256.png")));

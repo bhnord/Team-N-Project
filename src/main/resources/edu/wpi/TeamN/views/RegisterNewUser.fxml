@@ -57,7 +57,6 @@
                         <Font size="24.0" />
                     </font>
                 </Label>
-                <StackPane fx:id="myStackPane" layoutX="700.0" layoutY="359.0" prefHeight="91.0" prefWidth="145.0" />
                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="47.0" layoutX="834.0" layoutY="661.0" stroke="TRANSPARENT" strokeType="INSIDE" width="130.0" />
                 <JFXButton fx:id="helpButton" layoutX="834.0" layoutY="661.0" onAction="#help" prefHeight="47.0" prefWidth="130.0" ripplerFill="WHITE" stylesheets="@/Fonts/Roboto-Light.css" text="Help" textFill="WHITE">
                     <font>
@@ -80,31 +79,31 @@
                 <StackPane fx:id="myStackPane2" layoutX="346.0" layoutY="526.0" prefHeight="101.0" prefWidth="531.0" />
                 <Label layoutX="166.0" layoutY="309.0" text="*" />
                 <Label layoutX="166.0" layoutY="374.0" text="*" />
-                <Label layoutX="172.0" layoutY="641.0" stylesheets="/Fonts/Roboto-Light.css" text="*Required Fields" />
+                <Label layoutX="170.0" layoutY="631.0" text="*Required Fields" />
             <Label layoutX="166.0" layoutY="249.0" prefHeight="21.0" prefWidth="0.0" text="*" />
             <Label fx:id="text1" alignment="CENTER" layoutX="130.0" layoutY="139.0" prefHeight="47.0" prefWidth="464.0" style="-fx-background-color: #748cdc; -fx-background-radius: 6;" stylesheets="@/Fonts/Roboto-Light.css" text="Register Patient New Account" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Serif Regular" size="30.0" />
                </font>
             </Label>
-            <JFXPasswordField fx:id="retypePassword" focusColor="#5b63e1" labelFloat="true" layoutX="187.0" layoutY="364.0" prefHeight="40.0" prefWidth="203.0" promptText="Retype Password" scaleShape="false" stylesheets="/Fonts/Roboto-Light.css" unFocusColor="WHITE">
+            <JFXPasswordField fx:id="retypePassword" focusColor="#5b63e1" labelFloat="true" layoutX="187.0" layoutY="364.0" prefHeight="40.0" prefWidth="203.0" promptText="Retype Password" scaleShape="false" unFocusColor="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
             </JFXPasswordField>
-            <JFXPasswordField fx:id="password" focusColor="#5b63e1" labelFloat="true" layoutX="187.0" layoutY="299.0" prefHeight="40.0" prefWidth="203.0" promptText="Enter Password" scaleShape="false" stylesheets="/Fonts/Roboto-Light.css" unFocusColor="WHITE">
+            <JFXPasswordField fx:id="password" focusColor="#5b63e1" labelFloat="true" layoutX="187.0" layoutY="299.0" prefHeight="40.0" prefWidth="203.0" promptText="Enter Password" scaleShape="false" unFocusColor="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
             </JFXPasswordField>
-            <JFXTextField fx:id="username" focusColor="#5b63e1" labelFloat="true" layoutX="187.0" layoutY="239.0" prefHeight="40.0" prefWidth="203.0" promptText="Enter Username" scaleShape="false" stylesheets="/Fonts/Roboto-Light.css" unFocusColor="WHITE">
+            <JFXTextField fx:id="username" focusColor="#5b63e1" labelFloat="true" layoutX="187.0" layoutY="239.0" prefHeight="40.0" prefWidth="203.0" promptText="Enter Username" scaleShape="false" unFocusColor="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
             </JFXTextField>
+                <StackPane fx:id="myStackPane" layoutX="700.0" layoutY="359.0" prefHeight="91.0" prefWidth="145.0" />
             </children>
         </AnchorPane>
       <AnchorPane fx:id="anchorPane1" prefHeight="200.0" prefWidth="200.0" GridPane.valignment="BASELINE" />
-      <AnchorPane fx:id="anchorPane" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" />
     </children>
 </GridPane>

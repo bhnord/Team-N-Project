@@ -158,7 +158,7 @@ public class Node implements Comparable<Node> {
     return Math.sqrt(
             (other._x - this._x) * (other._x - this._x)
                 + (other._y - this._y) * (other._y - this._y))
-        + (!this._floor.equals(other.get_floor()) ? 500 : 0);
+        + (!this._floor.equals(other.get_floor()) ? 3500 : 0);
   }
 
   public Node(double x, double y, String nodeID) {

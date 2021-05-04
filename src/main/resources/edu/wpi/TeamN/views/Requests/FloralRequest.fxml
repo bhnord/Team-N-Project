@@ -81,11 +81,13 @@
                               <Font size="16.0" />
                           </font>
                       </JFXTextField>
-                      <Rectangle arcHeight="8.0" arcWidth="8.0" fill="#748cdc" height="40.0" layoutX="518.0" layoutY="641.0" stroke="TRANSPARENT" strokeType="INSIDE" width="74.0">
+                      <Rectangle arcHeight="8.0" arcWidth="8.0" fill="#748cdc" height="40.0" layoutX="488.0" layoutY="641.0" stroke="TRANSPARENT" strokeType="INSIDE" width="87.0">
                           <effect>
                               <DropShadow color="#c6b8b8" offsetY="5.0" />
                           </effect>
                       </Rectangle>
+                      <JFXComboBox fx:id="txtEmployeeName" layoutX="187.0" layoutY="240.0" prefHeight="31.0" prefWidth="176.0" promptText="Select Employee" stylesheets="/Fonts/Roboto-Light.css" />
+                      <JFXComboBox fx:id="roomDropdown" layoutX="187.0" layoutY="312.0" prefHeight="31.0" prefWidth="176.0" promptText="Select Patient Room" stylesheets="/Fonts/Roboto-Light.css" />
                       <JFXButton fx:id="submit" layoutX="508.0" layoutY="636.0" onAction="#submit" prefHeight="50.0" prefWidth="95.0" ripplerFill="WHITE" stylesheets="/Fonts/Roboto-Light.css" text="Submit" textFill="WHITE">
                           <font>
                               <Font name="Serif Regular" size="15.0" />
@@ -110,9 +112,9 @@
                               <Font size="16.0" />
                           </font>
                       </JFXTextField>
-                      <JFXButton fx:id="helpButton" layoutX="834.0" layoutY="661.0" onAction="#help" prefHeight="47.0" prefWidth="130.0" ripplerFill="WHITE" stylesheets="/Fonts/Roboto-Light.css" text="Help" textFill="WHITE">
+                      <JFXButton fx:id="helpButton" layoutX="445.0" layoutY="645.0" onAction="#help" prefHeight="32.0" prefWidth="32.0" ripplerFill="WHITE" stylesheets="@/StyleSheet/ServiceRequests.css" text="Button" textFill="WHITE">
                           <font>
-                              <Font name="Serif Regular" size="22.0" />
+                              <Font name="Serif Regular" size="1.0" />
                           </font>
                           <tooltip>
                               <Tooltip fx:id="tthelpButton" text="Help Page">
@@ -123,6 +125,11 @@
                           </tooltip>
                       </JFXButton>
                       <StackPane fx:id="myStackPane" layoutX="678.0" layoutY="441.0" prefHeight="118.0" prefWidth="171.0" />
+                      <JFXButton fx:id="submit" layoutX="484.0" layoutY="636.0" onAction="#submit" prefHeight="50.0" prefWidth="95.0" ripplerFill="WHITE" stylesheets="/Fonts/Roboto-Light.css" text="Submit" textFill="WHITE">
+                          <font>
+                              <Font name="Serif Regular" size="15.0" />
+                          </font>
+                      </JFXButton>
                   </children>
               </AnchorPane>
             <AnchorPane fx:id="anchorPane" prefHeight="200.0" prefWidth="200.0" GridPane.valignment="BASELINE" />
