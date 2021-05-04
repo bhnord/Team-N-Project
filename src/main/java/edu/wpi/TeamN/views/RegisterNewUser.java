@@ -66,7 +66,7 @@ public class RegisterNewUser extends MasterController implements Initializable {
     log.debug(state.toString());
     super.sideBarSetup(anchorPane1, appPrimaryScene, loader, "Register");
     dialogFactory = new DialogFactory(myStackPane);
-    loadEmployeeDropdown(employeeDropdown);
+    //    loadEmployeeDropdown(employeeDropdown);
   }
 
   public void exit(ActionEvent actionEvent) throws IOException {
