@@ -114,13 +114,18 @@ public class CovidFormController extends MasterController implements Initializab
           || comboBox4.getValue() == "yes"
           || comboBox5.getValue() == "yes"
           || comboBox6.getValue() == "yes") {
-        dialogFactory.creatDialogOkayWithAction(
-            "Attention",
-            "Please enter through emergency exit\n",
+        dialogFactory.covidFormTextInput(
+            " ",
+            "Please Elaborate on your symptoms\n",
             event -> {
               processingPopup();
             });
+
+        /*  TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Set Label Text");
+        dialog.showAndWait().ifPresent(string -> processingPopup());*/
         db.addCovidForm(form);
+
       } else {
         dialogFactory.creatDialogConfirmCancel(
             "",
