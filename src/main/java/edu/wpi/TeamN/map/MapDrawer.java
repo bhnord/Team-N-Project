@@ -24,7 +24,7 @@ import javafx.scene.shape.Rectangle;
 
 public class MapDrawer {
   private final MapController mapController;
-  private final String[] maps = {"L1", "L2", "g", "F1", "F2", "F3"};
+  private final String[] maps = {"L1", "L2", "g", "1", "2", "3"};
   private String currentMap;
   final DoubleProperty zoomProperty = new SimpleDoubleProperty(1);
   private double pressedX, pressedY;
@@ -52,7 +52,7 @@ public class MapDrawer {
 
   public MapDrawer(MapController mapControllerI) {
     this.mapController = mapControllerI;
-    currentMap = maps[0];
+    currentMap = maps[3];
   }
 
   public Group drawLine(String id, Node node1, Node node2) {
