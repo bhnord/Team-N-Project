@@ -95,12 +95,12 @@
                            <font>
                               <Font size="18.0" />
                            </font></Label>
-                        <JFXComboBox fx:id="comboBox" layoutX="936.0" layoutY="158.0" prefHeight="31.0" prefWidth="150.0" promptText="select yes or no" />
-                        <JFXComboBox fx:id="comboBox2" layoutX="936.0" layoutY="259.0" prefHeight="31.0" prefWidth="150.0" promptText="select yes or no" />
-                        <JFXComboBox fx:id="comboBox3" layoutX="936.0" layoutY="320.0" prefHeight="31.0" prefWidth="150.0" promptText="select yes or no" />
-                        <JFXComboBox fx:id="comboBox4" layoutX="936.0" layoutY="372.0" prefHeight="31.0" prefWidth="150.0" promptText="select yes or no" />
-                        <JFXComboBox fx:id="comboBox5" layoutX="936.0" layoutY="439.0" prefHeight="31.0" prefWidth="150.0" promptText="select yes or no" />
-                        <JFXComboBox fx:id="comboBox6" layoutX="936.0" layoutY="500.0" prefHeight="31.0" prefWidth="150.0" promptText="select yes or no" />
+                        <JFXComboBox fx:id="comboBox" layoutX="936.0" layoutY="158.0" prefHeight="31.0" prefWidth="150.0" promptText="select yes or no" stylesheets="/Fonts/Roboto-Light.css" />
+                        <JFXComboBox fx:id="comboBox2" layoutX="936.0" layoutY="259.0" prefHeight="31.0" prefWidth="150.0" promptText="select yes or no" stylesheets="/Fonts/Roboto-Light.css" />
+                        <JFXComboBox fx:id="comboBox3" layoutX="936.0" layoutY="320.0" prefHeight="31.0" prefWidth="150.0" promptText="select yes or no" stylesheets="/Fonts/Roboto-Light.css" />
+                        <JFXComboBox fx:id="comboBox4" layoutX="936.0" layoutY="372.0" prefHeight="31.0" prefWidth="150.0" promptText="select yes or no" stylesheets="/Fonts/Roboto-Light.css" />
+                        <JFXComboBox fx:id="comboBox5" layoutX="936.0" layoutY="439.0" prefHeight="31.0" prefWidth="150.0" promptText="select yes or no" stylesheets="/Fonts/Roboto-Light.css" />
+                        <JFXComboBox fx:id="comboBox6" layoutX="936.0" layoutY="500.0" prefHeight="31.0" prefWidth="150.0" promptText="select yes or no" stylesheets="/Fonts/Roboto-Light.css" />
                         <StackPane fx:id="myStackPane" layoutX="511.0" layoutY="346.0" prefHeight="83.0" prefWidth="112.0" />
                         <Label fx:id="text1" alignment="CENTER" layoutX="121.0" layoutY="80.0" prefHeight="50.0" prefWidth="254.0" style="-fx-background-color: #748cdc; -fx-background-radius: 6;" stylesheets="@/Fonts/Roboto-Light.css" text="Covid-19 Screening Form" textAlignment="CENTER" textFill="WHITE">
                            <font>
