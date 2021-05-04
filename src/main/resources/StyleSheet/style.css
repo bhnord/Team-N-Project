@@ -7,25 +7,25 @@
       -fx-font-size: 26;
       -fx-background-radius: 25;
 
-  }  #CurrentRequest{
+  }  #CurrentRequests{
            -fx-background-image: url('/images/ButtonCR.png');
            -fx-font-size: 26;
            -fx-background-radius: 25;
 
        }  #EmployeeEditor{
-                     -fx-background-image: url('/images/ButtonH.png');
+                     -fx-background-image: url('/images/ButtonEE.png');
                      -fx-font-size: 26;
                      -fx-background-radius: 25;
                  } #mapEditor{
-                       -fx-background-image: url('/images/ButtonM.png');
+                       -fx-background-image: url('/images/ButtonME.png');
                        -fx-font-size: 26;
                        -fx-background-radius: 25;
                    } #mapPathfinder{
-                         -fx-background-image: url('/images/ButtonM.png');
+                         -fx-background-image: url('/images/ButtonMP.png');
                          -fx-font-size: 26;
                          -fx-background-radius: 25;
                      }#FindUs{
-                          -fx-background-image: url('/images/ButtonM.png');
+                          -fx-background-image: url('/images/ButtonHD.png');
                           -fx-font-size: 26;
                           -fx-background-radius: 25;
                       }
