@@ -29,6 +29,7 @@ public class NodeActionHandling implements IActionHandling {
             mapNodeEditor.showNodeProperties(root);
             mapNodeEditor.clearSelection(mapEditor.getNodeSet().get(root.getId()));
             mapNodeEditor.addNode(mapEditor.getNodeSet().get(root.getId()));
+            mapEditor.getEditor().getSelectionModel().select(0);
           }
         });
   }
@@ -63,6 +64,7 @@ public class NodeActionHandling implements IActionHandling {
             mapEditor.getMapDrawer().captureClick(event);
             mapEdgeEditor.showEdgeProperties(root);
             mapEditor.setCurrent(root);
+            mapEditor.getEditor().getSelectionModel().select(1);
           }
         });
   }

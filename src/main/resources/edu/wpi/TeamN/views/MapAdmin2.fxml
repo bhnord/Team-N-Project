@@ -73,7 +73,7 @@
                         <Insets right="10.0" />
                      </GridPane.margin></JFXButton>
                   <StackPane prefHeight="150.0" prefWidth="200.0" />
-                  <JFXTabPane stylesheets="@/StyleSheet/style.css">
+                  <JFXTabPane stylesheets="@/StyleSheet/style.css" fx:id="editor">
                      <tabs>
                         <Tab text="Node">
                            <content>
