@@ -1,5 +1,6 @@
 package edu.wpi.TeamN.views;
 
+import com.google.inject.Inject;
 import edu.wpi.TeamN.services.database.DatabaseService;
 import java.io.IOException;
 import java.net.URL;
@@ -17,8 +18,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 
-public class SideBarController extends MasterController implements Initializable {
+public class SideBarController<node> extends MasterController implements Initializable {
 
+  @Inject private DatabaseService db;
+  @Inject private FXMLLoader loader;
   // Tooltip for logout/back button that changes in Register Page
   @FXML private Tooltip ttLogOutButton;
 
@@ -35,6 +38,9 @@ public class SideBarController extends MasterController implements Initializable
   @FXML private Label AccountUsername;
 
   @FXML private AnchorPane SideAnchor;
+
+
+
 
   @FXML
   public void accountSettings() {
@@ -61,17 +67,24 @@ public class SideBarController extends MasterController implements Initializable
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+
+    setDB(db);
     accountSettingsGroup.setTranslateX(-300);
 
     // ccountUsername.setLabelFor();
-    // if (db.getCurrentUser() != null) AccountType.setText(db.getCurrentUser().getUsername());
+    if (db.getCurrentUser() != null) {
+      String a = "label: " + db.getCurrentUser().getUsername();
+      Label label = new Label(a);
+      accountSettingsGroup.getChildren().add(label);
+    }
+    // AccountType.setText(db.getCurrentUser().getUsername());
     // AccountType.setText("hello");
-    Label a = new Label();
-    //if (db.getCurrentUser() != null) {
-    //  a = new Label(db.getCurrentUser().getUsername());
-    //}
 
-    //accountSettingsGroup.getChildren().add(a);
+    // if (db.getCurrentUser() != null) {
+    //  a = new Label(db.getCurrentUser().getUsername());
+    // }
+
+    // accountSettingsGroup.getChildren().add(a);
     // accountSettingsGroup.get
     // accountSettingsGroup
   }
