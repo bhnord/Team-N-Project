@@ -11,11 +11,7 @@ import com.google.maps.model.Size;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import edu.wpi.TeamN.services.database.DatabaseService;
-import edu.wpi.TeamN.state.HomeState;
 import edu.wpi.TeamN.utilities.AddressAutoComplete;
-import java.io.ByteArrayInputStream;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -29,15 +25,19 @@ import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import lombok.extern.slf4j.Slf4j;
 
+import java.io.ByteArrayInputStream;
+import java.net.URL;
+import java.util.Objects;
+import java.util.ResourceBundle;
+
 @Slf4j
 public class FindUsController extends MasterController implements Initializable {
 
   @Inject DatabaseService db;
   @Inject FXMLLoader loader;
-  @Inject HomeState state;
   @FXML WebView webView;
   @FXML private ImageView mapImage;
-  @FXML private JFXComboBox addressBox;
+  @FXML private JFXComboBox<String> addressBox;
   @FXML private Label directionsLabel;
   @FXML private JFXButton printButton;
   // For sidebar nested FXML implementation
@@ -83,25 +83,17 @@ public class FindUsController extends MasterController implements Initializable 
     } catch (Exception e) {
       e.printStackTrace();
     }
+    webEngine.load(
+        Objects.requireNonNull(
+                getClass().getResource("/edu/wpi/TeamN/views/HospitalDirections.html"))
+            .toExternalForm());
   }
 
   @FXML
   private void submitAddress() {
-
     String address = addressBox.getEditor().getText();
     if (address.equals("")) return;
-    StringBuilder directions =
-        new StringBuilder(
-            "<!DOCTYPE html>\n"
-                + "<html lang=\"en\">\n"
-                + "<head>\n"
-                + "    <meta charset=\"UTF-8\">\n"
-                + "    <title>Title</title>\n"
-                + "    <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\">\n"
-                + "    <link href=\"https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap\" rel=\"stylesheet\">\n"
-                + "<link href=\"https://fonts.googleapis.com/icon?family=Material+Icons\" rel=\"stylesheet\">"
-                + "</head>\n"
-                + "<body style=\"font-family: 'Roboto', sans-serif;\">");
+    StringBuilder directions = new StringBuilder();
     try {
       DirectionsResult leftLot =
           DirectionsApi.getDirections(context, address, "70 Francis St, Boston, MA 02115").await();
@@ -134,10 +126,11 @@ public class FindUsController extends MasterController implements Initializable 
             .append(")</span>");
         directions.append("<br/><br/>");
       }
-      directions.append("</body>\n" + "</html>");
-      webEngine.loadContent(directions.toString());
+      webEngine.executeScript(
+          "document.getElementsByTagName('body')[0].insertAdjacentHTML('beforeend', '"
+              + directions
+              + "');");
       printButton.setDisable(false);
-
       directionsLabel.setText(
           "The fastest route to the hospital takes "
               + result.routes[0].legs[0].duration
@@ -151,7 +144,6 @@ public class FindUsController extends MasterController implements Initializable 
 
   @FXML
   private void printDirections() {
-    System.out.println((String) webEngine.executeScript("document.documentElement.outerHTML"));
     PrinterJob printerJob = PrinterJob.createPrinterJob();
     if (printerJob != null && printerJob.showPrintDialog(webView.getScene().getWindow())) {
       webEngine.print(printerJob);

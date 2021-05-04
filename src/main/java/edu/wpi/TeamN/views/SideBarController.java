@@ -79,7 +79,11 @@ public class SideBarController<node> extends MasterController implements Initial
     }
     // AccountType.setText(db.getCurrentUser().getUsername());
     // AccountType.setText("hello");
+<<<<<<< HEAD
 
+=======
+    Label a = new Label();
+>>>>>>> 33ef95af215dfbdb6eefc1dc9193afe7be9f0469
     // if (db.getCurrentUser() != null) {
     //  a = new Label(db.getCurrentUser().getUsername());
     // }

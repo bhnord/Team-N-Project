@@ -102,12 +102,12 @@
                       <Label layoutX="179.0" layoutY="661.0" stylesheets="/Fonts/Roboto-Light.css" text="*Required Fields" />
                       <VBox alignment="CENTER_LEFT" layoutX="179.0" layoutY="222.0" prefHeight="400.0" prefWidth="203.0" spacing="37.0">
                           <children>
-                              <JFXComboBox fx:id="transportTypeDropdown" focusColor="#748cdc" labelFloat="true" prefHeight="31.0" prefWidth="203.0" promptText="Transportation Type" styleClass="text-field" stylesheets="@/Fonts/Roboto-Light.css" />
-                              <JFXComboBox fx:id="patientRoomDropdown" focusColor="#748cdc" labelFloat="true" prefHeight="31.0" prefWidth="203.0" promptText="Select Patient Room" styleClass="label" stylesheets="@/Fonts/Roboto-Light.css" />
-                              <JFXComboBox fx:id="employeeDropdown" focusColor="#748cdc" labelFloat="true" prefHeight="31.0" prefWidth="232.0" promptText="Select Employee" styleClass="label" stylesheets="@/Fonts/Roboto-Light.css" />
-                              <JFXComboBox fx:id="addressBox" editable="true" focusColor="#748cdc" labelFloat="true" prefHeight="31.0" prefWidth="251.0" promptText="Select Destination" styleClass="label" stylesheets="@/Fonts/Roboto-Light.css" />
-                              <JFXTimePicker fx:id="departureTIme" defaultColor="#a6c3e3" editable="true" prefHeight="25.0" prefWidth="218.0" promptText="Select Time of Departure" stylesheets="@/Fonts/Roboto-Light.css" />
-                              <JFXTextField fx:id="commentsBox" focusColor="#748cdc" labelFloat="true" prefHeight="40.0" prefWidth="203.0" promptText="Comments" stylesheets="@/Fonts/Roboto-Light.css" unFocusColor="WHITE">
+                              <JFXComboBox fx:id="transportTypeDropdown" focusColor="#5b63e1" labelFloat="true" prefHeight="31.0" prefWidth="203.0" promptText="Transportation Type" styleClass="text-field" stylesheets="@/Fonts/Roboto-Light.css" />
+                              <JFXComboBox fx:id="patientRoomDropdown" focusColor="#5b63e1" labelFloat="true" prefHeight="31.0" prefWidth="203.0" promptText="Select Patient Room" styleClass="label" stylesheets="@/Fonts/Roboto-Light.css" />
+                              <JFXComboBox fx:id="employeeDropdown" focusColor="#5b63e1" labelFloat="true" prefHeight="31.0" prefWidth="232.0" promptText="Select Employee" styleClass="label" stylesheets="@/Fonts/Roboto-Light.css" />
+                              <JFXComboBox fx:id="addressBox" editable="true" focusColor="#5b63e1" labelFloat="true" prefHeight="31.0" prefWidth="251.0" promptText="Select Destination" styleClass="label" stylesheets="@/Fonts/Roboto-Light.css" />
+                              <JFXTimePicker fx:id="departureTIme" defaultColor="#5b63e1" editable="true" prefHeight="25.0" prefWidth="218.0" promptText="Select Time of Departure" stylesheets="@/Fonts/Roboto-Light.css" />
+                              <JFXTextField fx:id="commentsBox" focusColor="#5b63e1" labelFloat="true" prefHeight="40.0" prefWidth="203.0" promptText="Comments" stylesheets="@/Fonts/Roboto-Light.css" unFocusColor="WHITE">
                                   <font>
                                       <Font size="16.0" />
                                   </font>
