@@ -39,8 +39,11 @@
                   <Group fx:id="groupExit">
                      <children>
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="65.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.0" layoutY="9.0" rotate="45.0" stroke="TRANSPARENT" strokeType="INSIDE" translateX="27.0" width="10.0" />
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.0" layoutY="9.0" rotate="-45.0" stroke="TRANSPARENT" strokeType="INSIDE" translateX="27.5" width="10.0" />
+                        <ImageView fitHeight="60.0" fitWidth="50.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@/images/Icons/newclose.png" />
+                           </image>
+                        </ImageView>
                         <JFXButton fx:id="exit" onAction="#exit" prefHeight="64.0" prefWidth="66.0" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="9.0" />
@@ -58,22 +61,11 @@
                   <Group fx:id="groupLogOut">
                      <children>
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="65.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
-                        <Group fx:id="LogOutBack" layoutX="5.0" layoutY="7.0">
-                           <children>
-                              <ImageView fitHeight="50.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true" translateX="5.0">
-                                 <image>
-                                    <Image url="@/images/LogOut.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                        </Group>
-                        <Group fx:id="RegisterBack" layoutX="9.0" layoutY="13.0" visible="false">
-                           <children>
-                              <Rectangle arcHeight="10.0" arcWidth="10.0" fill="WHITE" height="12.0" layoutX="9.981954574584961" layoutY="13.311014175415039" stroke="TRANSPARENT" strokeType="INSIDE" width="35.0" />
-                              <Rectangle arcHeight="10.0" arcWidth="10.0" fill="WHITE" height="11.0" layoutX="-0.9733800888061523" layoutY="19.955955505371094" rotate="40.0" stroke="TRANSPARENT" strokeType="INSIDE" width="30.0" />
-                              <Rectangle arcHeight="10.0" arcWidth="10.0" fill="WHITE" height="11.0" layoutY="6.0" rotate="-40.0" stroke="TRANSPARENT" strokeType="INSIDE" width="30.0" />
-                           </children>
-                        </Group>
+                        <ImageView fitHeight="58.0" fitWidth="50.0" layoutX="10.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@/images/Icons/newlogout.png" />
+                           </image>
+                        </ImageView>
                         <JFXButton fx:id="logOutButton" onAction="#logOut" prefHeight="64.0" prefWidth="66.0" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="9.0" />
@@ -91,12 +83,12 @@
                   <Group fx:id="groupCovid">
                      <children>
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="65.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
-                        <ImageView fitHeight="50.0" fitWidth="59.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" translateX="7.5">
+                        <ImageView fitHeight="60.0" fitWidth="50.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" translateX="7.5">
                            <image>
-                              <Image url="@/images/ButtonCovid.png" />
+                              <Image url="@/images/Icons/newcovid.png" />
                            </image>
                         </ImageView>
-                        <JFXButton fx:id="CovidForm" onAction="#advanceViews" prefHeight="64.0" prefWidth="66.0" textFill="WHITE">
+                        <JFXButton fx:id="CovidForm" layoutY="1.0" onAction="#advanceViews" prefHeight="64.0" prefWidth="66.0" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="9.0" />
                            </font>
@@ -113,13 +105,11 @@
                   <Group fx:id="groupBack">
                      <children>
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="65.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
-                        <Group layoutX="9.018045425415039" layoutY="14.688985824584961">
-                           <children>
-                              <Rectangle arcHeight="10.0" arcWidth="10.0" fill="WHITE" height="12.0" layoutX="9.981954574584961" layoutY="13.311014175415039" stroke="TRANSPARENT" strokeType="INSIDE" width="35.0" />
-                              <Rectangle arcHeight="10.0" arcWidth="10.0" fill="WHITE" height="11.0" layoutX="-0.9733800888061523" layoutY="19.955955505371094" rotate="40.0" stroke="TRANSPARENT" strokeType="INSIDE" width="30.0" />
-                              <Rectangle arcHeight="10.0" arcWidth="10.0" fill="WHITE" height="11.0" layoutY="6.0" rotate="-40.0" stroke="TRANSPARENT" strokeType="INSIDE" width="30.0" />
-                           </children>
-                        </Group>
+                        <ImageView fitHeight="60.0" fitWidth="50.0" layoutX="7.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@/images/Icons/newback.png" />
+                           </image>
+                        </ImageView>
                         <JFXButton fx:id="BackButton" onAction="#advanceServiceRequest" prefHeight="65.0" prefWidth="66.0" text="    " textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="9.0" />
@@ -137,9 +127,9 @@
                   <Group fx:id="groupHome">
                      <children>
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="69.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
-                        <ImageView fitHeight="50.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true" translateX="5.0" translateY="7.5">
+                        <ImageView fitHeight="60.0" fitWidth="50.0" layoutX="2.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true" translateX="5.0" translateY="7.5">
                            <image>
-                              <Image url="@/images/IconHome.png" />
+                              <Image url="@/images/Icons/newhome.png" />
                            </image>
                         </ImageView>
                         <JFXButton fx:id="HomeView2" onAction="#advanceHome" prefHeight="69.0" prefWidth="66.0" text="    " textFill="WHITE">
