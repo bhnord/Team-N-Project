@@ -4,14 +4,18 @@ import edu.wpi.TeamN.services.database.DatabaseService;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.util.Duration;
 
 public class SideBarController extends MasterController implements Initializable {
 
@@ -26,8 +30,51 @@ public class SideBarController extends MasterController implements Initializable
   @FXML private ImageView LogOutBack;
   @FXML private ImageView RegisterBack;
 
+  @FXML private Group accountSettingsGroup;
+  @FXML private Label AccountType;
+  @FXML private Label AccountUsername;
+
+  @FXML private AnchorPane SideAnchor;
+
+  @FXML
+  public void accountSettings() {
+    // accountSettingsGroup.setTranslateX(100);
+    TranslateTransition tt = new TranslateTransition();
+    tt.setNode(accountSettingsGroup);
+    tt.setDuration(new Duration(1000));
+    // tt.setFromX(0);
+    tt.setToX(0);
+    tt.setAutoReverse(true);
+    tt.play();
+  }
+
+  @FXML
+  public void accountSettingsBack() {
+    TranslateTransition tt = new TranslateTransition();
+    tt.setNode(accountSettingsGroup);
+    tt.setDuration(new Duration(1000));
+    // tt.setFromX(100);
+    tt.setToX(-300);
+    tt.setAutoReverse(true);
+    tt.play();
+  }
+
   @Override
-  public void initialize(URL location, ResourceBundle resources) {}
+  public void initialize(URL location, ResourceBundle resources) {
+    accountSettingsGroup.setTranslateX(-300);
+
+    // ccountUsername.setLabelFor();
+    // if (db.getCurrentUser() != null) AccountType.setText(db.getCurrentUser().getUsername());
+    // AccountType.setText("hello");
+    Label a = new Label();
+    if (db.getCurrentUser() != null) {
+      a = new Label(db.getCurrentUser().getUsername());
+    }
+
+    accountSettingsGroup.getChildren().add(a);
+    // accountSettingsGroup.get
+    // accountSettingsGroup
+  }
 
   /**
    * ------------------------------- Setters for super MasterController
