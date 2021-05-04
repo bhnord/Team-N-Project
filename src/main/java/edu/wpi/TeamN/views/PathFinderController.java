@@ -28,12 +28,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.Polygon;
 
 public class PathFinderController extends MapController implements Initializable {
   ArrayList<String> path = new ArrayList<>();
   ArrayList<Node.Link> nodePath = new ArrayList<>();
   DirectionHandler directionHandler;
   private Scene appPrimaryScene;
+  private ArrayList<javafx.scene.Node> extras;
 
   public ArrayList<Node.Link> getNodePath() {
     return nodePath;
@@ -56,6 +58,7 @@ public class PathFinderController extends MapController implements Initializable
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     super.init(appPrimaryScene);
+    extras = new ArrayList<>();
 
     adminMap = new AdminMap(db);
     mapDrawer = new MapDrawer(this);
@@ -130,16 +133,70 @@ public class PathFinderController extends MapController implements Initializable
         directionHandler.addDirection(l);
       }
     }
+    createExtras();
   }
 
   public void mapFloor() {
-    //    super.mapFloor();
+    createExtras();
     for (String s : path) {
       Node n = getNodeSet().get(s);
       n.get_shape().setVisible(n.get_floor().equals(mapDrawer.getCurrentMap()));
     }
     for (Node.Link link : nodePath) {
       correctFloor(link);
+    }
+  }
+
+  private void clearExtras() {
+    for (javafx.scene.Node n : extras) {
+      mapAnchor.getChildren().remove(n);
+    }
+    extras.clear();
+  }
+
+  private Polygon createArrow(Node.Link l) {
+    double size = 20;
+    double angle = .78;
+    Polygon p = new Polygon();
+    double dx = l._other.get_x() - l._this.get_x();
+    double dy = l._other.get_y() - l._this.get_y();
+    double mag = Math.sqrt(dx * dx + dy * dy);
+    dx /= mag;
+    dy /= mag;
+    dx *= size;
+    dy *= size;
+
+    p.getPoints().add((l._this.get_x() + dx / 2) * getDownScale());
+    p.getPoints().add((l._this.get_y() + dy / 2) * getDownScale());
+    double x1 = Math.cos(angle) * dx - Math.sin(angle) * dy;
+    double y1 = Math.sin(angle) * dx + Math.cos(angle) * dy;
+
+    double x2 = Math.cos(-angle) * dx - Math.sin(-angle) * dy;
+    double y2 = Math.sin(-angle) * dx + Math.cos(-angle) * dy;
+
+    p.getPoints().add((l._this.get_x() - x1 / 2.1) * getDownScale());
+    p.getPoints().add((l._this.get_y() - y1 / 2.1) * getDownScale());
+    p.getPoints().add((l._this.get_x() - x2 / 2.1) * getDownScale());
+    p.getPoints().add((l._this.get_y() - y2 / 2.1) * getDownScale());
+    p.setFill(Color.RED);
+    return p;
+  }
+
+  private void createExtras() {
+    clearExtras();
+    for (Node.Link l : nodePath) {
+      if (l._this.get_floor().equals(mapDrawer.getCurrentMap()))
+        if (l._this.get_floor().equals(l._other.get_floor())) {
+          Polygon p = createArrow(l);
+          mapAnchor.getChildren().add(p);
+          extras.add(p);
+        } else {
+          Label label = new Label(l._other.get_floor());
+          label.setTranslateX(l._other.get_x() * getDownScale() + 10);
+          label.setTranslateY(l._other.get_y() * getDownScale() - 10);
+          mapAnchor.getChildren().add(label);
+          extras.add(label);
+        }
     }
   }
 
@@ -153,6 +210,7 @@ public class PathFinderController extends MapController implements Initializable
   }
 
   public void clearSelection(ActionEvent actionEvent) {
+    clearExtras();
     //    reset();
     for (String s : path) {
       Node n = getNodeSet().get(s);

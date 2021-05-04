@@ -16,6 +16,7 @@
 
 .jfx-button{
     -fx-font-family: 'Roboto Light';
+    -fx-font-size: 15;
 }
 
 .jfx-combo-box{
