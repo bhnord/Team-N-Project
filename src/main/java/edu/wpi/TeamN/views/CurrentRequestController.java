@@ -19,7 +19,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 
@@ -210,7 +209,7 @@ public class CurrentRequestController extends MasterController implements Initia
     db.setCovidFormIsProcessed(idCovid, true);
   }
 
-    public void markComplete(ActionEvent actionEvent) {
+  public void markComplete(ActionEvent actionEvent) {
     if (listView.getItems().isEmpty() || selectedLabel == null) return;
     int index = listView.getItems().indexOf(selectedLabel);
     db.deleteRequest(Integer.valueOf(selectedLabel.getId()));

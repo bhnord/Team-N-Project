@@ -21,7 +21,8 @@ import javafx.util.Duration;
 public class SideBarController<node> extends MasterController implements Initializable {
 
   @Inject private DatabaseService db;
-  @Inject private FXMLLoader loader;
+  @Inject private FXMLLoader loader2;
+
   // Tooltip for logout/back button that changes in Register Page
   @FXML private Tooltip ttLogOutButton;
 
@@ -65,26 +66,17 @@ public class SideBarController<node> extends MasterController implements Initial
   @Override
   public void initialize(URL location, ResourceBundle resources) {
 
+    setLoader(loader);
     setDB(db);
     accountSettingsGroup.setTranslateX(-300);
 
-    // ccountUsername.setLabelFor();
     //     if (db.getCurrentUser().getUsername() != null) {
-    //String a = "label: " + db.getCurrentUser().getUsername();
+    // String a = "label: " + db.getCurrentUser().getUsername();
     String a = "ccccccccccccccccccccccccccc";
     Label label = new Label(a);
     accountSettingsGroup.getChildren().add(label);
     // }
-    // AccountType.setText(db.getCurrentUser().getUsername());
-    // AccountType.setText("hello");
 
-    // if (db.getCurrentUser() != null) {
-    //  a = new Label(db.getCurrentUser().getUsername());
-    // }
-
-    // accountSettingsGroup.getChildren().add(a);
-    // accountSettingsGroup.get
-    // accountSettingsGroup
   }
 
   /**

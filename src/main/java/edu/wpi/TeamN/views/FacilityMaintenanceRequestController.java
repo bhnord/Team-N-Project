@@ -75,16 +75,17 @@ public class FacilityMaintenanceRequestController extends MasterController
           "Missing Fields", "You must fill out all required fields of the request to continue\n");
     } else {
       dialogFactory.creatDialogConfirmCancel(
-          "Are you sure the information you have provided is correct?", "", mouse -> {
-                try {
-                  submitToDB();
-                } catch (IOException e) {
-                  e.printStackTrace();
-                }
-              });
+          "Are you sure the information you have provided is correct?",
+          "",
+          mouse -> {
+            try {
+              submitToDB();
+            } catch (IOException e) {
+              e.printStackTrace();
+            }
+          });
     }
   }
-
 
   public void help(ActionEvent actionEvent) throws IOException {
     dialogFactory.creatDialogOkay(
