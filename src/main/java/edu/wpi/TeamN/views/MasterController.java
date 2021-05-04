@@ -67,7 +67,7 @@ public class MasterController implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    //    log.debug(state.toString());
+    // log.debug(state.toString());
   }
 
   public void advanceHome(FXMLLoader childLoader, Scene ChildAppPrimaryScene) throws IOException {
