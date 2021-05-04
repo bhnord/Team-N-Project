@@ -2,7 +2,11 @@ package edu.wpi.TeamN.views;
 
 import com.google.inject.Inject;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.validation.RequiredFieldValidator;
 import edu.wpi.TeamN.services.database.DatabaseService;
+import edu.wpi.TeamN.services.database.users.UserType;
 import edu.wpi.TeamN.state.HomeState;
 import java.io.IOException;
 import java.net.URL;
@@ -11,9 +15,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import lombok.extern.slf4j.Slf4j;
 
@@ -30,6 +37,16 @@ public class HomeControllerAdmin extends MasterController implements Initializab
   @FXML private JFXButton ServiceRequests, BackServiceRequests;
   @FXML private JFXButton EmployeeEditor, BackEmployeeEditor;
   @FXML private JFXButton CurrentRequest, BackCurrentRequest;
+  @FXML private Label LogIn;
+  @FXML private Group logInGroup;
+
+  // Login implementation
+  @FXML private JFXTextField usernameField;
+  @FXML private JFXPasswordField passwordField;
+  @FXML private JFXButton goToHomePage;
+  @FXML private Label incorrectLogin;
+  private String accountUsername = "";
+  private String accountPassword = "";
 
   // For sidebar nested FXML implementation
   @FXML private AnchorPane anchorPane;
@@ -51,25 +68,47 @@ public class HomeControllerAdmin extends MasterController implements Initializab
   public void initialize(URL location, ResourceBundle resources) {
     log.debug(state.toString());
     super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Home");
-    switch (db.getCurrentUser().getType()) {
-        // different login cases
-      case ADMINISTRATOR:
-        break;
-      case EMPLOYEE:
-        makeInvisible(EmployeeEditor);
-        makeInvisible(BackEmployeeEditor);
-        makeInvisible(mapEditor);
-        makeInvisible(BackMapEditor);
-        break;
-      case PATIENT:
-      case GUEST:
-        makeInvisible(EmployeeEditor);
-        makeInvisible(BackEmployeeEditor);
-        makeInvisible(CurrentRequest);
-        makeInvisible(BackCurrentRequest);
-        makeInvisible(mapEditor);
-        makeInvisible(BackMapEditor);
-        break;
+
+    if (db.getCurrentUser() == null || db.getCurrentUser().getType() == UserType.GUEST) {
+      makeInvisible(EmployeeEditor);
+      makeInvisible(BackEmployeeEditor);
+      makeInvisible(CurrentRequest);
+      makeInvisible(BackCurrentRequest);
+      makeInvisible(mapEditor);
+      makeInvisible(BackMapEditor);
+      logInInit();
+    } else {
+      switch (db.getCurrentUser().getType()) {
+          // different login cases
+        case ADMINISTRATOR:
+          LogIn.setVisible(false);
+          LogIn.setManaged(false);
+          logInGroup.setVisible(false);
+          logInGroup.setManaged(false);
+          break;
+        case EMPLOYEE:
+          makeInvisible(EmployeeEditor);
+          makeInvisible(BackEmployeeEditor);
+          makeInvisible(mapEditor);
+          makeInvisible(BackMapEditor);
+          LogIn.setVisible(false);
+          LogIn.setManaged(false);
+          logInGroup.setVisible(false);
+          logInGroup.setManaged(false);
+          break;
+        case PATIENT:
+          makeInvisible(EmployeeEditor);
+          makeInvisible(BackEmployeeEditor);
+          makeInvisible(CurrentRequest);
+          makeInvisible(BackCurrentRequest);
+          makeInvisible(mapEditor);
+          makeInvisible(BackMapEditor);
+          LogIn.setVisible(false);
+          LogIn.setManaged(false);
+          logInGroup.setVisible(false);
+          logInGroup.setManaged(false);
+          break;
+      }
     }
   }
   /**
@@ -81,6 +120,8 @@ public class HomeControllerAdmin extends MasterController implements Initializab
     button.setVisible(false);
     button.setManaged(false);
   }
+
+  public void makeAllVisible() {}
 
   /**
    * advanceViews Loads a new page *not for service requests*
@@ -125,5 +166,71 @@ public class HomeControllerAdmin extends MasterController implements Initializab
   public void findUs(ActionEvent actionEvent) throws IOException {
     Parent root = loader.load(getClass().getResourceAsStream("FindUs.fxml"));
     appPrimaryScene.setRoot(root);
+  }
+
+  /** LOGIN FUNCTIONS */
+  public void logInInit() {
+    // Login init
+    /** Locking submit button to start* */
+    goToHomePage.setDisable(true);
+    goToHomePage.setDefaultButton(true);
+
+    /** USERNAME input and password* */
+    RequiredFieldValidator reqInputValid = new RequiredFieldValidator();
+    reqInputValid.setMessage("Cannot be empty");
+    usernameField.getValidators().add(reqInputValid);
+    usernameField
+        .focusedProperty()
+        .addListener(
+            (o, oldVal, newVal) -> {
+              if (!newVal) usernameField.validate();
+            });
+    reqInputValid.setMessage("Cannot be empty");
+    passwordField.getValidators().add(reqInputValid);
+    passwordField
+        .focusedProperty()
+        .addListener(
+            (o, oldVal, newVal) -> {
+              if (!newVal) passwordField.validate();
+            });
+  }
+
+  public String getUsername() {
+    accountUsername = usernameField.getText();
+    return usernameField.getText();
+  }
+
+  public String getPassword() {
+    accountPassword = passwordField.getText();
+    return passwordField.getText();
+  }
+
+  @FXML
+  private void continueToHomePage() throws IOException {
+    if (db.login(usernameField.getText(), passwordField.getText())) {
+      super.advanceHome(loader, appPrimaryScene);
+    } else {
+      incorrectLogin.setText("INCORRECT USERNAME OR PASSWORD, TRY AGAIN");
+      incorrectLogin.setAlignment(Pos.CENTER);
+    }
+  }
+
+  @FXML
+  public void register() throws IOException {
+    super.register(loader, appPrimaryScene);
+  }
+
+  @FXML
+  private void validateButton() {
+    if (!usernameField.getText().isEmpty() && !passwordField.getText().isEmpty()) {
+      goToHomePage.setDisable(false);
+    } else {
+      goToHomePage.setDisable(true);
+    }
+  }
+
+  @FXML
+  private void exit(ActionEvent actionEvent) throws IOException {
+    super.cancel(actionEvent);
   }
 }

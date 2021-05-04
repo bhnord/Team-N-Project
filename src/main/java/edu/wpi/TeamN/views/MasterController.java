@@ -130,7 +130,10 @@ public class MasterController implements Initializable {
 
   @FXML
   public void logOut(FXMLLoader childLoader, Scene ChildAppPrimaryScene) throws IOException {
-    Parent root = childLoader.load(getClass().getResourceAsStream("LoginPage.fxml"));
+
+    db.login("LogOut", "LogOut");
+
+    Parent root = childLoader.load(getClass().getResourceAsStream("HomeViewAdmin.fxml"));
     ChildAppPrimaryScene.setRoot(root);
   }
 
