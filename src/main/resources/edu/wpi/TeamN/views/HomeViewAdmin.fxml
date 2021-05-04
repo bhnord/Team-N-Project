@@ -116,7 +116,7 @@
                   </Label>
                   <Group fx:id="logInGroup" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="96.0" stylesheets="@/Fonts/Roboto-Black.css" text="SIGN IN" textFill="WHITE">
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="96.0" layoutY="40.0" stylesheets="@/Fonts/Roboto-Black.css" text="SIGN IN" textFill="WHITE">
                            <font>
                               <Font size="48.0" />
                            </font>
@@ -141,7 +141,7 @@
                               <URL value="@/Fonts/Roboto-Light.css" />
                            </stylesheets>
                         </JFXPasswordField>
-                        <JFXButton fx:id="goToHomePage" buttonType="RAISED" layoutX="93.0" layoutY="265.0" onAction="#continueToHomePage" prefHeight="50.0" prefWidth="174.0" style="-fx-background-color: #6985e0;" stylesheets="@/Fonts/Roboto-Black.css" text="SUBMIT" textFill="WHITE">
+                        <JFXButton fx:id="goToHomePage" buttonType="RAISED" layoutX="93.0" layoutY="255.0" onAction="#continueToHomePage" prefHeight="50.0" prefWidth="174.0" style="-fx-background-color: #6985e0;" stylesheets="@/Fonts/Roboto-Black.css" text="SUBMIT" textFill="WHITE">
                            <font>
                               <Font name="Javanese Text" size="14.0" />
                            </font>
@@ -151,7 +151,7 @@
                               <Font name="Javanese Text" size="12.0" />
                            </font>
                         </Label>
-                        <JFXButton fx:id="RegisterNewUser" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" layoutX="140.0" layoutY="217.0" mnemonicParsing="false" onAction="#register" prefHeight="31.0" prefWidth="80.0" style="-fx-background-color: #6985e0;" text="Register" textFill="WHITE" />
+                        <JFXButton fx:id="RegisterNewUser" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" layoutX="140.0" layoutY="210.0" mnemonicParsing="false" onAction="#register" prefHeight="31.0" prefWidth="80.0" style="-fx-background-color: #6985e0;" text="Register" textFill="WHITE" />
                      </children>
                   </Group>
                </children>
