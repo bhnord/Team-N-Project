@@ -21,7 +21,7 @@ import javafx.util.Duration;
 public class SideBarController<node> extends MasterController implements Initializable {
 
   @Inject private DatabaseService db;
-  @Inject private FXMLLoader loader;
+  @Inject private FXMLLoader loader2;
 
   // Tooltip for logout/back button that changes in Register Page
   @FXML private Tooltip ttLogOutButton;
