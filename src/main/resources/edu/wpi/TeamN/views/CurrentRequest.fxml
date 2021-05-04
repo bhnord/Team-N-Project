@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXListView?>
 <?import com.jfoenix.controls.JFXTabPane?>
 <?import javafx.scene.control.Label?>
@@ -98,6 +99,7 @@
                                           <Font name="Arial Black" size="14.0" />
                                        </font>
                                     </JFXButton>
+                                    <JFXComboBox fx:id="employeeDropdown" focusColor="#748cdc" labelFloat="true" layoutX="350.0" layoutY="341.0" prefHeight="31.0" prefWidth="232.0" promptText="Select Employee" styleClass="label" stylesheets="@/Fonts/Roboto-Light.css" />
                                  </children>
                               </AnchorPane>
                            </content>
