@@ -29,5 +29,3 @@
 .web-view .scroll-bar:vertical:pressed .thumb {
     -fx-background-color: derive(#363d54, 10%);
 }
-
-
