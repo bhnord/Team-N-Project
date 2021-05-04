@@ -161,7 +161,6 @@ public class MapEditor extends MapController implements Initializable {
         }
       } else {
         while (getNodeSet().containsKey("node_" + numNodes++)) {}
-        ;
         placeNode("node_" + --numNodes, mouseEvent.getX(), mouseEvent.getY());
       }
     }
