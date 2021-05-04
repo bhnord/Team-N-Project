@@ -80,8 +80,8 @@
                               <DropShadow color="#c6b8b8" offsetY="5.0" />
                           </effect>
                       </Rectangle>
-                      <JFXComboBox fx:id="txtEmployeeName" layoutX="187.0" layoutY="240.0" prefHeight="31.0" prefWidth="176.0" promptText="Select Employee" stylesheets="/Fonts/Roboto-Light.css" />
-                      <JFXComboBox fx:id="roomDropdown" layoutX="187.0" layoutY="290.0" prefHeight="31.0" prefWidth="176.0" promptText="Select Patient Room" stylesheets="/Fonts/Roboto-Light.css" />
+                      <JFXComboBox fx:id="txtEmployeeName" focusColor="#5b63e1" layoutX="187.0" layoutY="240.0" prefHeight="31.0" prefWidth="176.0" promptText="Select Employee" stylesheets="/Fonts/Roboto-Light.css" />
+                      <JFXComboBox fx:id="roomDropdown" focusColor="#5b63e1" layoutX="187.0" layoutY="290.0" prefHeight="31.0" prefWidth="176.0" promptText="Select Patient Room" stylesheets="/Fonts/Roboto-Light.css" />
                       <StackPane fx:id="myStackPane2" layoutX="346.0" layoutY="526.0" prefHeight="101.0" prefWidth="531.0" />
                       <Label layoutX="169.0" layoutY="250.0" text="*" />
                       <Label layoutX="169.0" layoutY="300.0" text="*" />

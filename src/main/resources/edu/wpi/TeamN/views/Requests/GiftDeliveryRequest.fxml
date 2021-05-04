@@ -65,7 +65,6 @@
                               <Font size="24.0" />
                           </font>
                       </Label>
-                      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="47.0" layoutX="834.0" layoutY="661.0" stroke="TRANSPARENT" strokeType="INSIDE" width="130.0" />
                       <Rectangle arcHeight="50.0" arcWidth="50.0" fill="WHITE" height="517.0" layoutX="136.0" layoutY="202.0" stroke="TRANSPARENT" strokeType="INSIDE" width="476.0" />
                       <JFXTextField fx:id="txtComments" focusColor="#5b63e1" labelFloat="true" layoutX="187.0" layoutY="528.0" prefHeight="31.0" prefWidth="200.0" promptText="Comments" scaleShape="false" stylesheets="/Fonts/Roboto-Light.css" unFocusColor="WHITE">
                           <font>
@@ -77,8 +76,8 @@
                               <DropShadow color="#c6b8b8" offsetY="5.0" />
                           </effect>
                       </Rectangle>
-                      <JFXComboBox fx:id="txtEmployeeName" layoutX="187.0" layoutY="240.0" prefHeight="31.0" prefWidth="176.0" promptText="Select Employee" stylesheets="/Fonts/Roboto-Light.css" />
-                      <JFXComboBox fx:id="roomDropdown" layoutX="187.0" layoutY="312.0" prefHeight="31.0" prefWidth="176.0" promptText="Select Patient Room" stylesheets="/Fonts/Roboto-Light.css" />
+                      <JFXComboBox fx:id="txtEmployeeName" focusColor="#5b63e1" layoutX="187.0" layoutY="240.0" prefHeight="31.0" prefWidth="176.0" promptText="Select Employee" stylesheets="/Fonts/Roboto-Light.css" />
+                      <JFXComboBox fx:id="roomDropdown" focusColor="#5b63e1" layoutX="187.0" layoutY="312.0" prefHeight="31.0" prefWidth="176.0" promptText="Select Patient Room" stylesheets="/Fonts/Roboto-Light.css" />
                       <StackPane fx:id="myStackPane2" layoutX="346.0" layoutY="526.0" prefHeight="101.0" prefWidth="531.0" />
                       <Label layoutX="169.0" layoutY="250.0" text="*" />
                       <Label layoutX="169.0" layoutY="322.0" text="*" />
