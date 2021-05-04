@@ -82,8 +82,8 @@
                               <Font name="Serif Regular" size="15.0" />
                           </font>
                       </JFXButton>
-                      <JFXComboBox fx:id="txtEmployeeName" layoutX="187.0" layoutY="240.0" prefHeight="31.0" prefWidth="176.0" promptText="Select Employee" stylesheets="/Fonts/Roboto-Light.css" />
-                      <JFXComboBox fx:id="roomDropdown" layoutX="187.0" layoutY="312.0" prefHeight="31.0" prefWidth="176.0" promptText="Select Patient Room" stylesheets="/Fonts/Roboto-Light.css" />
+                      <JFXComboBox fx:id="txtEmployeeName" focusColor="#5b63e1" layoutX="187.0" layoutY="240.0" prefHeight="31.0" prefWidth="176.0" promptText="Select Employee" stylesheets="/Fonts/Roboto-Light.css" />
+                      <JFXComboBox fx:id="roomDropdown" focusColor="#5b63e1" layoutX="187.0" layoutY="312.0" prefHeight="31.0" prefWidth="176.0" promptText="Select Patient Room" stylesheets="/Fonts/Roboto-Light.css" />
                       <StackPane fx:id="myStackPane2" layoutX="346.0" layoutY="526.0" prefHeight="101.0" prefWidth="531.0" />
                       <Label layoutX="169.0" layoutY="250.0" text="*" />
                       <Label layoutX="169.0" layoutY="322.0" text="*" />
@@ -94,7 +94,7 @@
                               <Font name="Serif Regular" size="30.0" />
                           </font>
                       </Label>
-                      <JFXTimePicker fx:id="timePicker" defaultColor="#a6c3e3" layoutX="187.0" layoutY="384.0" prefHeight="31.0" prefWidth="176.0" promptText="Select Time of Request" stylesheets="/Fonts/Roboto-Light.css" />
+                      <JFXTimePicker fx:id="timePicker" defaultColor="#5b63e1" layoutX="187.0" layoutY="384.0" prefHeight="31.0" prefWidth="176.0" promptText="Select Time of Request" stylesheets="/Fonts/Roboto-Light.css" />
                       <JFXButton fx:id="helpButton" layoutX="834.0" layoutY="661.0" onAction="#help" prefHeight="47.0" prefWidth="130.0" ripplerFill="WHITE" stylesheets="/Fonts/Roboto-Light.css" text="Help" textFill="WHITE">
                           <font>
                               <Font name="Serif Regular" size="22.0" />
