@@ -7,15 +7,16 @@ import com.google.maps.StaticMapsRequest;
 import com.google.maps.model.DirectionsResult;
 import com.google.maps.model.DirectionsStep;
 import com.google.maps.model.Size;
-import java.io.ByteArrayInputStream;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
+
+import java.io.ByteArrayInputStream;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class MapTest implements Initializable {
 
@@ -24,8 +25,9 @@ public class MapTest implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    //    webEngine.load(
-    //        getClass().getResource("/edu/wpi/TeamN/views/MapTest/WebView.html").toExternalForm());
+    //        webEngine.load(
+    //
+    // getClass().getResource("/edu/wpi/TeamN/views/MapTest/WebView.html").toExternalForm());
     WebEngine webEngine = webView.getEngine();
     StringBuilder directions =
         new StringBuilder(
@@ -53,7 +55,7 @@ public class MapTest implements Initializable {
       mapImage.setImage(new Image(bais));
       for (DirectionsStep step : result.routes[0].legs[0].steps) {
         System.out.println(step.htmlInstructions);
-        directions.append(step.htmlInstructions + "<br/>");
+        directions.append(step.htmlInstructions).append("<br/>");
       }
       directions.append("</body>\n" + "</html>");
       webEngine.loadContent(directions.toString());
