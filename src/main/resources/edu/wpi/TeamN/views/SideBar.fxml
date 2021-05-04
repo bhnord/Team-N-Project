@@ -105,7 +105,7 @@
                   <Group fx:id="groupHome">
                      <children>
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="69.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
-                        <ImageView fitHeight="60.0" fitWidth="50.0" layoutX="2.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true" translateX="5.0" translateY="7.5">
+                        <ImageView fitHeight="60.0" fitWidth="49.0" layoutX="2.0" pickOnBounds="true" preserveRatio="true" translateX="5.0" translateY="7.5">
                            <image>
                               <Image url="@/images/Icons/newhome.png" />
                            </image>
