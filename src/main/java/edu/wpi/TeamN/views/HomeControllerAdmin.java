@@ -121,7 +121,28 @@ public class HomeControllerAdmin extends MasterController implements Initializab
           break;
       }
     }
+
+    // if login matches the name of the person filling out covid form
+    // show pop-up that says where to go
+
   }
+
+  public String accountInfo() {
+    if (db.getCurrentUser() != null) {
+      String a = "user: " + db.getCurrentUser().getUsername();
+      // String a = "                  jjjjjjjjj";
+      // Label label = new Label(a);
+      return a;
+      // accountSettingsGroup.getChildren().add(label);
+    } else {
+
+      String a = "      user: guest";
+      //  Label label = new Label(a);
+      return a;
+      // accountSettingsGroup.getChildren().add(label);
+    }
+  }
+
   /**
    * makeInvisible
    *

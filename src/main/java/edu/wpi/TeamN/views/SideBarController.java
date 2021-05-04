@@ -39,6 +39,7 @@ public class SideBarController<node> extends MasterController implements Initial
   @FXML private Label AccountUsername;
 
   @FXML private AnchorPane SideAnchor;
+  HomeControllerAdmin homeController = new HomeControllerAdmin();
 
   @FXML
   public void accountSettings() {
@@ -66,22 +67,24 @@ public class SideBarController<node> extends MasterController implements Initial
   @Override
   public void initialize(URL location, ResourceBundle resources) {
 
-    setLoader(loader);
     setDB(db);
+    setLoader(loader);
     accountSettingsGroup.setTranslateX(-300);
 
-     /*if(db.getAllEdges() != null) {
-      String a = "label: " + db.getCurrentUser().getUsername();
-      //String a = "ccccccccccccccccccccccccccc";
-     Label label = new Label(a);
-     accountSettingsGroup.getChildren().add(label);
-    }  else {
+    /*if (db.getCurrentUser() != null) {
+      String a = "user: " + db.getCurrentUser().getUsername();
+      // String a = "                  jjjjjjjjj";
+      Label label = new Label(a);
+      accountSettingsGroup.getChildren().add(label);
+    } else {
 
-       String a = "      guest";
-       Label label = new Label(a);
-       accountSettingsGroup.getChildren().add(label);
-     }*/
-
+      String a = "      user: guest";
+      Label label = new Label(a);
+      accountSettingsGroup.getChildren().add(label);
+    }*/
+    // accountSettingsGroup.getChildren().add(homeController.accountInfo());
+   // Label label = new Label(homeController.accountInfo());
+    //accountSettingsGroup.getChildren().add(label);
   }
 
   /**

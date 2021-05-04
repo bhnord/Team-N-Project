@@ -95,6 +95,7 @@
                                        </font>
                                     </JFXButton>
                                     <JFXComboBox fx:id="employeeDropdown" focusColor="#748cdc" labelFloat="true" layoutX="350.0" layoutY="341.0" prefHeight="31.0" prefWidth="232.0" promptText="Select Employee" styleClass="label" stylesheets="@/Fonts/Roboto-Light.css" />
+                                    <JFXComboBox fx:id="entrance" focusColor="#5b63e1" layoutX="350.0" layoutY="396.0" prefHeight="31.0" prefWidth="233.0" promptText="How patient should enter" stylesheets="/Fonts/Roboto-Light.css" />
                                  </children>
                               </AnchorPane>
                            </content>

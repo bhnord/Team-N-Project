@@ -32,7 +32,6 @@ public class App extends Application {
   @Override
   public void init() {
     log.info("Starting Up");
-    primaryScene = new Scene(new AnchorPane());
     Injector injector =
         Guice.createInjector(
             new DatabaseServiceProvider(),
@@ -46,6 +45,7 @@ public class App extends Application {
               }
             });
     DatabaseService db = injector.getInstance(DatabaseService.class);
+    primaryScene = new Scene(new AnchorPane());
     if (db.initTables()) {
       db.loadCSVtoTable("src/main/resources/MapCSV/NODES.csv", "NODES");
       db.loadCSVtoTable("src/main/resources/MapCSV/EDGES.csv", "EDGES");

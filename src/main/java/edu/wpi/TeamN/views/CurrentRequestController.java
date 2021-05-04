@@ -2,6 +2,7 @@ package edu.wpi.TeamN.views;
 
 import com.google.inject.Inject;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXListView;
 import edu.wpi.TeamN.services.database.CovidForm;
 import edu.wpi.TeamN.services.database.DatabaseService;
@@ -47,6 +48,8 @@ public class CurrentRequestController extends MasterController implements Initia
   @FXML private Label emergency;
   @FXML private JFXButton checkIn;
   private HashMap<Integer, Request> requestMap = new HashMap<>();
+  @FXML
+  JFXComboBox<String> entrance = new JFXComboBox<>();
   private int userId;
 
   @Inject
@@ -56,6 +59,9 @@ public class CurrentRequestController extends MasterController implements Initia
 
   @Override
   public void initialize(URL url, ResourceBundle rb) {
+
+    entrance.getItems().add("enter through emergency entrance");
+    entrance.getItems().add("enter through 75 parking lot");
 
     int idCovid = db.getCurrentUser().getId();
     db.setCovidFormIsProcessed(idCovid, false);
@@ -205,8 +211,12 @@ public class CurrentRequestController extends MasterController implements Initia
       setEmptyFields();
     }
 
-    int idCovid = db.getCurrentUser().getId();
-    db.setCovidFormIsProcessed(idCovid, true);
+
+ // int idCovid = db.
+    /*if(entrance.getValue() == "enter through emergency entrance")
+        db.updateCovidForm(idCovid, true);
+    else db.updateCovidForm(idCovid, false);
+    db.setCovidFormIsProcessed(idCovid, true);*/
   }
 
   public void markComplete(ActionEvent actionEvent) {
