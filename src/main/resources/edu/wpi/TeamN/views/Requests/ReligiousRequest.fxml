@@ -87,10 +87,6 @@
                       </Rectangle>
                       <JFXComboBox fx:id="txtEmployeeName" layoutX="187.0" layoutY="240.0" prefHeight="31.0" prefWidth="176.0" promptText="Select Service" stylesheets="/Fonts/Roboto-Light.css" />
                       <JFXComboBox fx:id="roomDropdown" layoutX="187.0" layoutY="312.0" prefHeight="31.0" prefWidth="176.0" promptText="Select location of Service" stylesheets="/Fonts/Roboto-Light.css" />
-                      <JFXButton fx:id="submit" layoutX="508.0" layoutY="636.0" onAction="#submit" prefHeight="50.0" prefWidth="95.0" ripplerFill="WHITE" stylesheets="/Fonts/Roboto-Light.css" text="Submit" textFill="WHITE">
-                     <font>
-                        <Font size="15.0" />
-                     </font></JFXButton>
                       <JFXComboBox fx:id="txtEmployeeName" focusColor="#5b63e1" layoutX="187.0" layoutY="240.0" prefHeight="31.0" prefWidth="176.0" promptText="Select Service" stylesheets="/Fonts/Roboto-Light.css" />
                       <JFXComboBox fx:id="roomDropdown" focusColor="#5b63e1" layoutX="187.0" layoutY="312.0" prefHeight="31.0" prefWidth="176.0" promptText="Select location of Service" stylesheets="/Fonts/Roboto-Light.css" />
                       <StackPane fx:id="myStackPane2" layoutX="346.0" layoutY="526.0" prefHeight="101.0" prefWidth="531.0" />
