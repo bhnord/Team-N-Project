@@ -7,11 +7,10 @@ import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.RequiredFieldValidator;
 import edu.wpi.TeamN.services.database.DatabaseService;
 import edu.wpi.TeamN.state.HomeState;
+import edu.wpi.TeamN.utilities.DialogFactory;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import edu.wpi.TeamN.utilities.DialogFactory;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -125,38 +124,35 @@ public class HomeControllerAdmin extends MasterController implements Initializab
     }
 
     // if login matches the name of the person filling out covid form
-     int idCovid = db.getCurrentUser().getId();
-     if(db.getCovidFormByUserId(idCovid) != null){
-       //pop-up for main entrance
-       if(db.getCovidFormByUserId(idCovid).isOk() == true){
-         dialogFactory.creatDialogOkayWithAction(
-                 "",
-                 "Your covid form has been processed! You can enter the hospital through the main entrance.",
-                 event -> {
-                   try {
-                     advanceHome();
-                   } catch (IOException e) {
-                     e.printStackTrace();
-                   }
-                 });
-       }
-       //pop-up for emergency
-       else{
-         dialogFactory.creatDialogOkayWithAction(
-                 "",
-                 "Your covid form has been processed! Please enter the hospital through the emergency entrance",
-                 event -> {
-                   try {
-                     advanceHome();
-                   } catch (IOException e) {
-                     e.printStackTrace();
-                   }
-                 });
-       }
-
-     }
-
-
+    int idCovid = db.getCurrentUser().getId();
+    if (db.getCovidFormByUserId(idCovid) != null) {
+      // pop-up for main entrance
+      if (db.getCovidFormByUserId(idCovid).isOk() == true) {
+        dialogFactory.creatDialogOkayWithAction(
+            "",
+            "Your covid form has been processed! You can enter the hospital through the main entrance.",
+            event -> {
+              try {
+                advanceHome();
+              } catch (IOException e) {
+                e.printStackTrace();
+              }
+            });
+      }
+      // pop-up for emergency
+      else {
+        dialogFactory.creatDialogOkayWithAction(
+            "",
+            "Your covid form has been processed! Please enter the hospital through the emergency entrance",
+            event -> {
+              try {
+                advanceHome();
+              } catch (IOException e) {
+                e.printStackTrace();
+              }
+            });
+      }
+    }
   }
 
   @FXML

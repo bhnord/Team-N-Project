@@ -418,6 +418,11 @@ public class DatabaseService {
     return covidTable.getCovidFormByUserId(userId);
   }
 
+  public HashSet<CovidForm> getCovidFormsByEmployeeId(int employeeId){
+    return covidTable.getCovidFormsByEmployeeId(employeeId);
+  }
+
+
   /**
    * deletes a single form from the database
    *

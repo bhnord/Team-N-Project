@@ -69,6 +69,20 @@ public class CovidFormsTable {
     }
   }
 
+  public HashSet<CovidForm> getCovidFormsByEmployeeId(int employeeId){
+    String str = "SELECT * FROM COVIDFORMS WHERE assignedEmployee = '" + employeeId + "'";
+    try {
+      ResultSet rs = stmt.executeQuery(str);
+      return resultSetToCovidForms(rs);
+
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return null;
+    }
+  }
+
+
+
   // TODO DECIDE HOW TO ASSIGN EMPLOYEE ID
 
   public boolean addCovidForm(CovidForm form) {
