@@ -118,11 +118,7 @@ public class CovidFormController extends MasterController implements Initializab
             "Attention",
             "Please enter through emergency exit\n",
             event -> {
-              try {
-                advanceMap();
-              } catch (IOException e) {
-                e.printStackTrace();
-              }
+              processingPopup();
             });
         db.addCovidForm(form);
       } else {
@@ -143,9 +139,7 @@ public class CovidFormController extends MasterController implements Initializab
         "",
         "Your survey is being processed. Please wait to enter the hospital.",
         event -> {
-          int id = db.getCurrentUser().getId();
-          if (db.getCovidForm(id).isProcessed() == true) advanceHomePopup();
-          else processingPopup();
+          processingPopup();
         });
 
     int id = db.getCurrentUser().getId();
