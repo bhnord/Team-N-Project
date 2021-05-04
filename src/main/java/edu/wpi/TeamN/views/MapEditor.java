@@ -89,19 +89,26 @@ public class MapEditor extends MapController implements Initializable {
     mapDrawer = new MapDrawer(this);
     mapImageView.setCursor(Cursor.CROSSHAIR);
     mapDrawer.setUpZoom(mapImageView, mapAnchor);
-    mapImageView.setOnScroll(event -> mapDrawer.captureMouseScroll(event));
-    mapImageView.setOnMouseDragged(event -> mapDrawer.captureMouseDrag(event));
 
     KeyCombination kc = new KeyCodeCombination(KeyCode.Z, KeyCombination.CONTROL_DOWN);
-    Runnable undo = () -> diffHandler.undo();
+    Runnable undo =
+        () -> {
+          diffHandler.undo();
+          mapNodeEditor.clearSelection();
+        };
     appPrimaryScene.getAccelerators().put(kc, undo);
     KeyCombination ky = new KeyCodeCombination(KeyCode.Y, KeyCombination.CONTROL_DOWN);
-    Runnable redo = () -> diffHandler.redo();
+    appPrimaryScene.getAccelerators().put(kc, undo);
+    Runnable redo =
+        () -> {
+          diffHandler.redo();
+          mapNodeEditor.clearSelection();
+        };
     appPrimaryScene.getAccelerators().put(ky, redo);
 
     super.init(appPrimaryScene);
     this.Load();
-    this.numNodes = adminMap.getNodeSet().size();
+    this.numNodes = adminMap.getNodeSet().size() + 1;
   }
 
   /**
@@ -153,7 +160,9 @@ public class MapEditor extends MapController implements Initializable {
           }
         }
       } else {
-        placeNode("node_" + ++numNodes, mouseEvent.getX(), mouseEvent.getY());
+        while (getNodeSet().containsKey("node_" + numNodes++)) {}
+        ;
+        placeNode("node_" + --numNodes, mouseEvent.getX(), mouseEvent.getY());
       }
     }
     if (mouseEvent.getButton() == MouseButton.SECONDARY) {
@@ -348,6 +357,10 @@ public class MapEditor extends MapController implements Initializable {
         break;
       }
     }
+  }
+
+  protected void Load() {
+    super.Load();
   }
 
   public void alignH(ActionEvent actionEvent) {

@@ -1,7 +1,6 @@
 package edu.wpi.TeamN.services.algo;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class PathFinder implements IPathFinder {
   private IPathFinder impl;
@@ -43,13 +42,14 @@ public class PathFinder implements IPathFinder {
     ret += dx < 0 ? Math.PI / 2 : 0;
     ret += dy < 0 ? Math.PI / 2 : 0;
     ret += (dx > 0 && dy < 0) ? Math.PI : 0;
-    System.out.println(dx + ", " + dy + ", " + ret);
     return ret;
   }
 
   public ArrayList<String> getDescription(ArrayList<Node.Link> input) {
     if (input.size() == 0) {
-      return (ArrayList<String>) Collections.singleton("No Path");
+      ArrayList<String> ret = new ArrayList<>();
+      ret.add("No Path");
+      return ret;
     }
     double previousDirection = 0;
     double currentDirection = 0;
