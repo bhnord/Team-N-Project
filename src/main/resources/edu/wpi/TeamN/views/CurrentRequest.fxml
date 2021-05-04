@@ -46,14 +46,14 @@
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
                                     <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="581.0" stroke="#bcbcbc" strokeType="INSIDE" width="886.0" />
-                                    <JFXListView fx:id="listView" layoutX="14.0" layoutY="20.0" prefHeight="535.0" prefWidth="261.0" style="-fx-border-color: #748cdc; -fx-border-width: 2; -fx-border-style: dashed;" stylesheets="@/StyleSheet/style.css" verticalGap="10.0" />
-                                    <Label layoutX="325.0" layoutY="47.0" text="Request ID:" />
-                                    <Label layoutX="325.0" layoutY="98.0" text="Request Type:" />
-                                    <Label layoutX="325.0" layoutY="147.0" text="Sender:" />
-                                    <Label layoutX="325.0" layoutY="196.0" text="Receiver:" />
-                                    <Label layoutX="325.0" layoutY="290.0" text="Content:" />
-                                    <Label layoutX="325.0" layoutY="345.0" text="Notes" />
-                                    <Label layoutX="325.0" layoutY="242.0" text="Room:" />
+                                    <JFXListView fx:id="listView" layoutX="14.0" layoutY="20.0" prefHeight="535.0" prefWidth="261.0" stylesheets="@/StyleSheet/style.css" verticalGap="10.0" />
+                                    <Label layoutX="325.0" layoutY="47.0" stylesheets="/Fonts/Roboto-Light.css" text="Request ID:" />
+                                    <Label layoutX="325.0" layoutY="98.0" stylesheets="/Fonts/Roboto-Light.css" text="Request Type:" />
+                                    <Label layoutX="325.0" layoutY="147.0" stylesheets="/Fonts/Roboto-Light.css" text="Sender:" />
+                                    <Label layoutX="325.0" layoutY="196.0" stylesheets="/Fonts/Roboto-Light.css" text="Receiver:" />
+                                    <Label layoutX="325.0" layoutY="290.0" stylesheets="/Fonts/Roboto-Light.css" text="Content:" />
+                                    <Label layoutX="325.0" layoutY="345.0" stylesheets="/Fonts/Roboto-Light.css" text="Notes" />
+                                    <Label layoutX="325.0" layoutY="242.0" stylesheets="/Fonts/Roboto-Light.css" text="Room:" />
                                     <Label fx:id="requestId" layoutX="500.0" layoutY="45.0" prefHeight="25.0" prefWidth="426.0" />
                                     <Label fx:id="requestType" layoutX="500.0" layoutY="96.0" prefHeight="25.0" prefWidth="419.0" />
                                     <Label fx:id="senderName" layoutX="500.0" layoutY="145.0" prefHeight="25.0" prefWidth="398.0" />
@@ -61,12 +61,12 @@
                                     <Label fx:id="roomName" layoutX="500.0" layoutY="240.0" prefHeight="25.0" prefWidth="370.0" />
                                     <Label fx:id="content" layoutX="500.0" layoutY="288.0" prefHeight="25.0" prefWidth="370.0" />
                                     <Label fx:id="notes" layoutX="500.0" layoutY="343.0" prefHeight="25.0" prefWidth="370.0" />
-                                    <JFXButton fx:id="markCompleteButton" layoutX="612.0" layoutY="474.0" onAction="#markComplete" prefHeight="65.0" prefWidth="224.0" style="-fx-background-color: #748cdc; -fx-background-radius: 15;" text="MARK COMPLETE" textFill="WHITE">
+                                    <JFXButton fx:id="markCompleteButton" layoutX="612.0" layoutY="474.0" onAction="#markComplete" prefHeight="65.0" prefWidth="224.0" style="-fx-background-color: #748cdc; -fx-background-radius: 15;" stylesheets="/Fonts/Roboto-Light.css" text="MARK COMPLETE" textFill="WHITE">
                                        <font>
                                           <Font name="Arial Black" size="14.0" />
                                        </font>
                                     </JFXButton>
-                                    <JFXButton fx:id="inProgress" layoutX="345.0" layoutY="474.0" onAction="#inProgress" prefHeight="65.0" prefWidth="224.0" style="-fx-background-color: #748cdc; -fx-background-radius: 15;" text="In Progress" textFill="WHITE">
+                                    <JFXButton fx:id="inProgress" layoutX="345.0" layoutY="474.0" onAction="#inProgress" prefHeight="65.0" prefWidth="224.0" style="-fx-background-color: #748cdc; -fx-background-radius: 15;" stylesheets="/Fonts/Roboto-Light.css" text="In Progress" textFill="WHITE">
                                        <font>
                                           <Font name="Arial Black" size="14.0" />
                                        </font>
@@ -80,20 +80,20 @@
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
                                     <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="581.0" stroke="#bcbcbc" strokeType="INSIDE" width="886.0" />
-                                    <JFXListView fx:id="listViewCovid" layoutX="14.0" layoutY="20.0" prefHeight="535.0" prefWidth="261.0" style="-fx-border-color: #748cdc; -fx-border-width: 2; -fx-border-style: dashed;" stylesheets="@/StyleSheet/style.css" verticalGap="10.0" />
-                                    <Label layoutX="350.0" layoutY="60.0" text="Symptoms: " />
-                                    <Label layoutX="350.0" layoutY="104.0" text="Tested:" />
-                                    <Label layoutX="350.0" layoutY="149.0" text="Recieved treatment:" />
-                                    <Label layoutX="350.0" layoutY="196.0" text="Traveled outside US:" />
-                                    <Label layoutX="350.0" layoutY="246.0" text="Traveled on cruise ship:" />
-                                    <Label layoutX="350.0" layoutY="290.0" text="Emergency Responder:" />
+                                    <JFXListView fx:id="listViewCovid" layoutX="14.0" layoutY="20.0" prefHeight="535.0" prefWidth="261.0" stylesheets="@/StyleSheet/style.css" verticalGap="10.0" />
+                                    <Label layoutX="350.0" layoutY="60.0" stylesheets="/Fonts/Roboto-Light.css" text="Symptoms: " />
+                                    <Label layoutX="350.0" layoutY="104.0" stylesheets="/Fonts/Roboto-Light.css" text="Tested:" />
+                                    <Label layoutX="350.0" layoutY="149.0" stylesheets="/Fonts/Roboto-Light.css" text="Recieved treatment:" />
+                                    <Label layoutX="350.0" layoutY="196.0" stylesheets="/Fonts/Roboto-Light.css" text="Traveled outside US:" />
+                                    <Label layoutX="350.0" layoutY="246.0" stylesheets="/Fonts/Roboto-Light.css" text="Traveled on cruise ship:" />
+                                    <Label layoutX="350.0" layoutY="290.0" stylesheets="/Fonts/Roboto-Light.css" text="Emergency Responder:" />
                                     <Label fx:id="symptoms" layoutX="613.0" layoutY="60.0" text="                       " />
                                     <Label fx:id="tested" layoutX="613.0" layoutY="104.0" text="                           " />
                                     <Label fx:id="treatment" layoutX="613.0" layoutY="149.0" text="               " />
                                     <Label fx:id="outsideTravel" layoutX="613.0" layoutY="196.0" text="                                       " />
                                     <Label fx:id="cruiseShip" layoutX="613.0" layoutY="246.0" text="                         " />
                                     <Label fx:id="emergency" layoutX="613.0" layoutY="290.0" text="                                 " />
-                                    <JFXButton fx:id="checkIn" layoutX="634.0" layoutY="484.0" onAction="#checkIn" prefHeight="70.0" prefWidth="212.0" style="-fx-background-color: #748cdc; -fx-background-radius: 15;" text="Check In" textFill="WHITE">
+                                    <JFXButton fx:id="checkIn" layoutX="634.0" layoutY="484.0" onAction="#checkIn" prefHeight="70.0" prefWidth="212.0" style="-fx-background-color: #748cdc; -fx-background-radius: 15;" stylesheets="/Fonts/Roboto-Light.css" text="Check In" textFill="WHITE">
                                        <font>
                                           <Font name="Arial Black" size="14.0" />
                                        </font>

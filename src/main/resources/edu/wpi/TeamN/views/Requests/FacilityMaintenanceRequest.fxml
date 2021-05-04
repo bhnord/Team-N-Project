@@ -74,9 +74,9 @@
                               <Font size="24.0" />
                           </font>
                       </Label>
-                      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="47.0" layoutX="834.0" layoutY="661.0" stroke="TRANSPARENT" strokeType="INSIDE" width="130.0" />
+                      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="47.0" layoutX="834.0" layoutY="663.0" stroke="TRANSPARENT" strokeType="INSIDE" width="130.0" />
                       <Rectangle arcHeight="50.0" arcWidth="50.0" fill="WHITE" height="517.0" layoutX="136.0" layoutY="202.0" stroke="TRANSPARENT" strokeType="INSIDE" width="476.0" />
-                      <JFXTextField fx:id="txtComments" focusColor="#5b63e1" labelFloat="true" layoutX="187.0" layoutY="528.0" prefHeight="31.0" prefWidth="200.0" promptText="Comments" scaleShape="false" unFocusColor="WHITE">
+                      <JFXTextField fx:id="txtComments" focusColor="#5b63e1" labelFloat="true" layoutX="187.0" layoutY="528.0" prefHeight="31.0" prefWidth="200.0" promptText="Comments" scaleShape="false" stylesheets="/Fonts/Roboto-Light.css" unFocusColor="WHITE">
                           <font>
                               <Font size="16.0" />
                           </font>
@@ -86,31 +86,31 @@
                               <DropShadow color="#c6b8b8" offsetY="5.0" />
                           </effect>
                       </Rectangle>
-                      <JFXButton fx:id="submit" layoutX="505.0" layoutY="636.0" onAction="#submit" prefHeight="50.0" prefWidth="95.0" ripplerFill="WHITE" text="Submit" textFill="WHITE">
+                      <JFXButton fx:id="submit" layoutX="508.0" layoutY="636.0" onAction="#submit" prefHeight="50.0" prefWidth="95.0" ripplerFill="WHITE" stylesheets="/Fonts/Roboto-Light.css" text="Submit" textFill="WHITE">
                           <font>
                               <Font name="Serif Regular" size="15.0" />
                           </font>
                       </JFXButton>
-                      <JFXComboBox fx:id="txtEmployeeName" layoutX="187.0" layoutY="240.0" prefHeight="31.0" prefWidth="176.0" promptText="Select Employee" />
-                      <JFXComboBox fx:id="roomDropdown" layoutX="187.0" layoutY="312.0" prefHeight="31.0" prefWidth="176.0" promptText="Select Patient Room" />
+                      <JFXComboBox fx:id="txtEmployeeName" layoutX="187.0" layoutY="240.0" prefHeight="31.0" prefWidth="176.0" promptText="Select Employee" stylesheets="/Fonts/Roboto-Light.css" />
+                      <JFXComboBox fx:id="roomDropdown" layoutX="187.0" layoutY="312.0" prefHeight="31.0" prefWidth="176.0" promptText="Select Patient Room" stylesheets="/Fonts/Roboto-Light.css" />
                       <StackPane fx:id="myStackPane2" layoutX="346.0" layoutY="526.0" prefHeight="101.0" prefWidth="531.0" />
                       <Label layoutX="169.0" layoutY="250.0" text="*" />
                       <Label layoutX="169.0" layoutY="322.0" text="*" />
                       <Label layoutX="169.0" layoutY="394.0" text="*" />
                       <Label layoutX="169.0" layoutY="466.0" text="*" />
-                      <Label layoutX="187.0" layoutY="641.0" text="*Required Fields" />
-                      <Label fx:id="text1" alignment="CENTER" layoutX="150.0" layoutY="126.0" prefHeight="50.0" prefWidth="450.0" style="-fx-background-color: #748cdc; -fx-background-radius: 6;" stylesheets="@/Fonts/Roboto-Light.css" text="Facility Maintenance Request" textAlignment="CENTER" textFill="WHITE">
+                      <Label layoutX="187.0" layoutY="664.0" stylesheets="/Fonts/Roboto-Light.css" text="*Required Fields" />
+                      <Label fx:id="text1" alignment="CENTER" layoutX="136.0" layoutY="126.0" prefHeight="50.0" prefWidth="476.0" style="-fx-background-color: #748cdc; -fx-background-radius: 6;" stylesheets="@/Fonts/Roboto-Light.css" text="Facility Maintenance Request" textAlignment="CENTER" textFill="WHITE">
                           <font>
                               <Font name="Serif Regular" size="30.0" />
                           </font>
                       </Label>
-                      <JFXTimePicker fx:id="timePicker" defaultColor="#a6c3e3" layoutX="187.0" layoutY="384.0" prefHeight="31.0" prefWidth="176.0" promptText="Select Time of Request" />
-                      <JFXTextField fx:id="maintenanceRequest" focusColor="#5b63e1" labelFloat="true" layoutX="187.0" layoutY="456.0" prefHeight="31.0" prefWidth="200.0" promptText="Type of Maintenance" scaleShape="false" unFocusColor="WHITE">
+                      <JFXTimePicker fx:id="timePicker" defaultColor="#a6c3e3" layoutX="187.0" layoutY="384.0" prefHeight="31.0" prefWidth="176.0" promptText="Select Time of Request" stylesheets="/Fonts/Roboto-Light.css" />
+                      <JFXTextField fx:id="maintenanceRequest" focusColor="#5b63e1" labelFloat="true" layoutX="187.0" layoutY="456.0" prefHeight="31.0" prefWidth="200.0" promptText="Type of Maintenance" scaleShape="false" stylesheets="/Fonts/Roboto-Light.css" unFocusColor="WHITE">
                           <font>
                               <Font size="16.0" />
                           </font>
                       </JFXTextField>
-                      <JFXButton fx:id="helpButton" layoutX="834.0" layoutY="663.0" onAction="#help" prefHeight="47.0" prefWidth="130.0" ripplerFill="WHITE" text="Help" textFill="WHITE">
+                      <JFXButton fx:id="helpButton" layoutX="834.0" layoutY="663.0" onAction="#help" prefHeight="47.0" prefWidth="130.0" ripplerFill="WHITE" stylesheets="/Fonts/Roboto-Light.css" text="Help" textFill="WHITE">
                           <font>
                               <Font name="Serif Regular" size="22.0" />
                           </font>

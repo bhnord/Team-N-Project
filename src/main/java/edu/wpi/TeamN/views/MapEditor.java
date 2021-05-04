@@ -21,7 +21,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.*;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import lombok.extern.slf4j.Slf4j;
 
@@ -34,7 +33,6 @@ public class MapEditor extends MapController implements Initializable {
 
   @FXML private Label XLabel;
   @FXML private Label YLabel;
-  private Group current;
   private Node startNodePath;
 
   private MapNodeEditor mapNodeEditor;
@@ -63,6 +61,8 @@ public class MapEditor extends MapController implements Initializable {
   UserPreferences currentPrefs;
   DiffHandler diffHandler;
 
+  private int numNodes;
+
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
    * JavaFX thread
@@ -89,6 +89,8 @@ public class MapEditor extends MapController implements Initializable {
     mapDrawer = new MapDrawer(this);
     mapImageView.setCursor(Cursor.CROSSHAIR);
     mapDrawer.setUpZoom(mapImageView, mapAnchor);
+    mapImageView.setOnScroll(event -> mapDrawer.captureMouseScroll(event));
+    mapImageView.setOnMouseDragged(event -> mapDrawer.captureMouseDrag(event));
 
     KeyCombination kc = new KeyCodeCombination(KeyCode.Z, KeyCombination.CONTROL_DOWN);
     Runnable undo = () -> diffHandler.undo();
@@ -99,6 +101,7 @@ public class MapEditor extends MapController implements Initializable {
 
     super.init(appPrimaryScene);
     this.Load();
+    this.numNodes = adminMap.getNodeSet().size();
   }
 
   /**
@@ -130,7 +133,6 @@ public class MapEditor extends MapController implements Initializable {
       mapDrawer.drawBoundingBox(mouseEvent.getX(), mouseEvent.getY());
     }
     if (mouseEvent.getButton() == MouseButton.SECONDARY) {
-      //      System.out.println("start: " + mouseEvent.getX() + ", " + mouseEvent.getY());
       startNodePath = adminMap.get(mouseEvent.getX(), mouseEvent.getY(), mapDrawer.getCurrentMap());
       mapDrawer.startLine(startNodePath);
     }
@@ -150,11 +152,8 @@ public class MapEditor extends MapController implements Initializable {
             mapNodeEditor.addNode(n);
           }
         }
-        mapNodeEditor.straightenSelection();
-        mapNodeEditor.finalize_change(diffHandler);
       } else {
-        placeNode(
-            "node_" + adminMap.getNodeSet().values().size(), mouseEvent.getX(), mouseEvent.getY());
+        placeNode("node_" + ++numNodes, mouseEvent.getX(), mouseEvent.getY());
       }
     }
     if (mouseEvent.getButton() == MouseButton.SECONDARY) {
@@ -163,11 +162,8 @@ public class MapEditor extends MapController implements Initializable {
       if (other != startNodePath) {
         mapDrawer.cancelLine();
         String id = startNodePath.get_nodeID() + "_" + other.get_nodeID();
-        Group root = mapDrawer.drawLine(id, startNodePath, other);
-        getAdminMap().makeEdge(id, startNodePath, other, (Line) root.getChildren().get(0));
-        getMapAnchor().getChildren().add(3, root);
+        placeLink(id, startNodePath, other);
         diffHandler.makeEdge(id, startNodePath, other);
-        System.out.println(id);
       } else {
         mapDrawer.cancelLine();
       }
@@ -199,6 +195,7 @@ public class MapEditor extends MapController implements Initializable {
       for (Node.Link l : n.get_neighbors()) {
         if (mapAnchor.getChildren().get(i).getId().equals(l._id)) {
           mapAnchor.getChildren().remove(i);
+          i--;
         }
       }
       if ((mapAnchor.getChildren().get(i)).getId().equals(n.get_nodeID())) {
@@ -208,6 +205,7 @@ public class MapEditor extends MapController implements Initializable {
     }
     adminMap.deleteNode(n.get_nodeID());
     for (Node.Link l : n.get_neighbors()) {
+      l._other.removeNeightbor(n);
       adminMap.deleteEdge(l._id);
     }
   }
@@ -217,9 +215,14 @@ public class MapEditor extends MapController implements Initializable {
     actionHandling.setNodeInfo(root);
     actionHandling.setNodeStartLink(root);
     actionHandling.setNodeEndLink(root);
+    root.setOnScroll(event -> mapDrawer.captureMouseScroll(event));
     //    actionHandling.setNodeDrag((Circle) n.get_shape());
     root.setOnMouseDragged(
-        event -> mapNodeEditor.handleDrag(event, getNodeSet().get(root.getId())));
+        event -> {
+          mapDrawer.captureMouseDrag(event);
+          if (event.isPrimaryButtonDown())
+            mapNodeEditor.handleDrag(event, getNodeSet().get(root.getId()));
+        });
     root.setOnMouseReleased(event -> mapNodeEditor.finalize_change(diffHandler));
     if (!adminMap.getNodeSet().containsKey(n.get_nodeID())) {
       adminMap.addNode(n);
@@ -228,33 +231,8 @@ public class MapEditor extends MapController implements Initializable {
     return root;
   }
 
-  private void DeleteNodesFromMap() throws IOException {
-    int i = 1;
-    for (javafx.scene.Node root :
-        mapAnchor.getChildren().subList(i, mapAnchor.getChildren().size())) {
-      if (root.getId().equals(current.getId())) {
-        mapAnchor.getChildren().remove(i);
-        return;
-      } else {
-        i++;
-      }
-    }
-  }
-
-  public void DeleteObjectDataBase() throws IOException {
-    String id = current.getId();
-    if (adminMap.getNodeSet().containsKey(id)) {
-      adminMap.deleteNode(id);
-    } else if (adminMap.getEdgeSet().containsKey(id)) {
-      adminMap.deleteEdge(id);
-    } else {
-      System.out.println("Object does not exist");
-    }
-  }
-
   public void deleteCurrent(ActionEvent actionEvent) throws IOException, InterruptedException {
-    DeleteNodesFromMap();
-    DeleteObjectDataBase();
+    mapNodeEditor.deleteSelection(diffHandler);
   }
 
   public void setNodeId(String nodeId) {
@@ -322,7 +300,7 @@ public class MapEditor extends MapController implements Initializable {
   }
 
   public void saveNode(ActionEvent actionEvent) {
-    mapNodeEditor.commitChanges(current);
+    mapNodeEditor.commitChanges(getCurrent());
   }
 
   @Override
@@ -370,5 +348,25 @@ public class MapEditor extends MapController implements Initializable {
         break;
       }
     }
+  }
+
+  public void alignH(ActionEvent actionEvent) {
+    mapNodeEditor.straightenSelectionHoriz();
+    mapNodeEditor.finalize_change(diffHandler);
+  }
+
+  public void alignV(ActionEvent actionEvent) {
+    mapNodeEditor.straightenSelectionVert();
+    mapNodeEditor.finalize_change(diffHandler);
+  }
+
+  public void alignR(ActionEvent actionEvent) {
+    mapNodeEditor.straightenSelection();
+    mapNodeEditor.finalize_change(diffHandler);
+  }
+
+  public void alignS(ActionEvent actionEvent) {
+    mapNodeEditor.straightenSelectionSnap();
+    mapNodeEditor.finalize_change(diffHandler);
   }
 }

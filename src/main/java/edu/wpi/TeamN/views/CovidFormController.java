@@ -114,32 +114,45 @@ public class CovidFormController extends MasterController implements Initializab
           || comboBox4.getValue() == "yes"
           || comboBox5.getValue() == "yes"
           || comboBox6.getValue() == "yes") {
-        dialogFactory.creatDialogOkayWithAction(
-            "Attention",
-            "Please enter through emergency exit\n",
+        dialogFactory.covidFormTextInput(
+            " ",
+            "Please Elaborate on your symptoms\n",
             event -> {
-              try {
-                advanceMap();
-              } catch (IOException e) {
-                e.printStackTrace();
-              }
+              processingPopup();
             });
         db.addCovidForm(form);
+
       } else {
         dialogFactory.creatDialogConfirmCancel(
             "",
             "Are you sure the information you have provided is correct?",
             event -> {
               db.addCovidForm(form);
-              advanceHomePopup();
+              processingPopup();
             });
       }
     }
   }
 
+  private void processingPopup() {
+
+    dialogFactory.createDialog(
+        "",
+        "Your survey is being processed. Please wait to enter the hospital.",
+        event -> {
+          processingPopup();
+        });
+
+    int id = db.getCurrentUser().getId();
+    if (db.getCovidForm(id).isProcessed() == true) {
+      dialogFactory.close();
+      advanceHomePopup();
+    }
+  }
+
   private void advanceHomePopup() {
 
-    dialogFactory.creatDialogConfirmCancel(
+    dialogFactory.creatDialogOkayWithAction(
         "",
         "Your covid form has been processed! You can enter the hospital.",
         event -> {

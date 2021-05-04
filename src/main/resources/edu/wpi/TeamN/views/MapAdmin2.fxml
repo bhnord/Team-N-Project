@@ -298,5 +298,25 @@
             <Insets bottom="15.0" right="58.0" />
          </StackPane.margin>
       </Label>
+      <JFXButton fx:id="Horiz" buttonType="RAISED" onAction="#alignH" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #363d54; -fx-background-radius: 15;" stylesheets="@/StyleSheet/MapButtons.css" text="-" textFill="WHITE" StackPane.alignment="CENTER_LEFT">
+         <StackPane.margin>
+            <Insets bottom="150.0" left="100.0" />
+         </StackPane.margin>
+      </JFXButton>
+      <JFXButton fx:id="Vert" buttonType="RAISED" onAction="#alignV" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #363d54; -fx-background-radius: 15;" stylesheets="@/StyleSheet/MapButtons.css" text="|" textFill="WHITE" StackPane.alignment="CENTER_LEFT">
+         <StackPane.margin>
+            <Insets bottom="300.0" left="100.0" />
+         </StackPane.margin>
+      </JFXButton>
+      <JFXButton fx:id="Reg" buttonType="RAISED" onAction="#alignR" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #363d54; -fx-background-radius: 15;" stylesheets="@/StyleSheet/MapButtons.css" text="/" textFill="WHITE" StackPane.alignment="CENTER_LEFT">
+         <StackPane.margin>
+            <Insets bottom="-150.0" left="100.0" />
+         </StackPane.margin>
+      </JFXButton>
+      <JFXButton fx:id="Snap" buttonType="RAISED" onAction="#alignS" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #363d54; -fx-background-radius: 15;" stylesheets="@/StyleSheet/MapButtons.css" text="+" textFill="WHITE" StackPane.alignment="CENTER_LEFT">
+         <StackPane.margin>
+            <Insets left="100.0" />
+         </StackPane.margin>
+      </JFXButton>
     </children>
 </StackPane>
