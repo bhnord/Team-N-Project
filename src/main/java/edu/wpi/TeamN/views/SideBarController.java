@@ -85,9 +85,11 @@ public class SideBarController<node> extends MasterController implements Initial
     setLoader(loader);
     accountSettingsGroup.setTranslateX(-300);
 
+
     // accountSettingsGroup.getChildren().add(homeController.accountInfo());
     // Label label = new Label(homeController.accountInfo());
     // accountSettingsGroup.getChildren().add(label);
+
   }
 
   /**

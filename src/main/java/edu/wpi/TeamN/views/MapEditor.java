@@ -1,6 +1,7 @@
 package edu.wpi.TeamN.views;
 
 import com.google.inject.Inject;
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTabPane;
 import com.jfoenix.controls.JFXTextField;
 import edu.wpi.TeamN.map.*;
@@ -27,6 +28,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class MapEditor extends MapController implements Initializable {
+  @FXML private JFXComboBox<Label> algorithm;
   @FXML private JFXTabPane editor;
   @FXML private JFXTextField nodeSize;
   @FXML private JFXTextField pathSize;
@@ -92,6 +94,14 @@ public class MapEditor extends MapController implements Initializable {
     mapDrawer = new MapDrawer(this);
     mapImageView.setCursor(Cursor.CROSSHAIR);
     mapDrawer.setUpZoom(mapImageView, mapAnchor);
+    algorithm
+        .getItems()
+        .addAll(
+            new Label("Astar"),
+            new Label("Depth First"),
+            new Label("Breadth First"),
+            new Label("Dijkstra"));
+    algorithm.getSelectionModel().select(0);
 
     KeyCombination kc = new KeyCodeCombination(KeyCode.Z, KeyCombination.CONTROL_DOWN);
     Runnable undo =
@@ -389,5 +399,9 @@ public class MapEditor extends MapController implements Initializable {
 
   public JFXTabPane getEditor() {
     return editor;
+  }
+
+  public void updateAlgorithm(ActionEvent actionEvent) {
+    db.getCurrentUser().getUserPrefs();
   }
 }

@@ -46,7 +46,7 @@
                                 <ImageView fx:id="mapImageView" fitHeight="850.0" fitWidth="1250.0" onMouseDragged="#dragMouse" onMousePressed="#mousePress" preserveRatio="true">
 
                                     <image>
-                                        <Image fx:id="mapimg" url="@/images/L1.png" />
+                                        <Image fx:id="mapimg" url="@/images/1.png" />
                                     </image>
                                     <viewport>
                                         <Rectangle2D />
