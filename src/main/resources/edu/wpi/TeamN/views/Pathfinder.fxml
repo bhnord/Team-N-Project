@@ -4,13 +4,11 @@
 <?import com.jfoenix.controls.JFXColorPicker?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXListView?>
-<?import com.jfoenix.controls.JFXTabPane?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Tab?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -20,6 +18,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #d6d8d5;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.TeamN.views.PathFinderController">
     <children>
@@ -77,27 +76,21 @@
                                 <Insets right="10.0" />
                             </GridPane.margin></JFXButton>
                         <StackPane prefHeight="150.0" prefWidth="200.0" />
-                        <JFXTabPane stylesheets="@/StyleSheet/style.css">
-                            <tabs>
-                        <Tab text="Pathfinding">
-                           <content>
-                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="320.0">
-                                 <children>
-                                    <JFXListView fx:id="stops" layoutX="36.0" prefHeight="200.0" prefWidth="250.0" style="-fx-border-width: 3; -fx-border-color: #363d54;" stylesheets="/StyleSheet/ScrollBar.css" AnchorPane.topAnchor="75" />
-                                    <JFXButton fx:id="31" buttonType="RAISED" layoutX="36.0" onAction="#newColorPath" prefHeight="70.0" prefWidth="132.0" style="-fx-background-color: #363d54; -fx-background-radius: 0;" stylesheets="/Fonts/Roboto-Light.css" text="Get Directions" textFill="WHITE" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="100" />
-                                    <JFXButton buttonType="RAISED" layoutX="74.0" layoutY="48.0" onAction="#clearSelection" prefHeight="70.0" prefWidth="132.0" style="-fx-background-color: #363d54; -fx-background-radius: 0;" stylesheets="/Fonts/Roboto-Light.css" text="Clear Selection" textFill="WHITE" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="200" />
-                                     <JFXButton buttonType="RAISED" layoutX="74.0" layoutY="5" onAction="#addStop" prefHeight="70.0" prefWidth="132.0" style="-fx-background-color: #363d54; -fx-background-radius: 0;" stylesheets="/Fonts/Roboto-Light.css" text="Add Stop" textFill="WHITE" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="10" />
-                                    <JFXListView fx:id="texutualDescription" layoutX="36.0" layoutY="210.0" prefHeight="400.0" prefWidth="250.0" stylesheets="/StyleSheet/style.css" AnchorPane.topAnchor="300.0" />
-                                    <JFXComboBox fx:id="locationDropdown" layoutX="36.0" layoutY="13.0" prefHeight="53.0" prefWidth="250.0" />
-                                 </children>
-                              </AnchorPane>
-                           </content>
-                        </Tab>
-                            </tabs>
-                            <GridPane.margin>
-                                <Insets right="10.0" />
-                            </GridPane.margin>
-                        </JFXTabPane>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="320.0">
+                     <children>
+                        <JFXListView fx:id="stops" layoutX="36.0" prefHeight="200.0" prefWidth="250.0" style="-fx-border-width: 3; -fx-border-color: #363d54;" stylesheets="/StyleSheet/ScrollBar.css" AnchorPane.topAnchor="120.0" />
+                        <JFXButton fx:id="31" buttonType="RAISED" layoutX="36.0" onAction="#newColorPath" prefHeight="70.0" prefWidth="132.0" style="-fx-background-color: #363d54; -fx-background-radius: 0;" stylesheets="/Fonts/Roboto-Light.css" text="Get Directions" textFill="WHITE" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="150.0" />
+                        <JFXButton buttonType="RAISED" layoutX="74.0" layoutY="48.0" onAction="#clearSelection" prefHeight="70.0" prefWidth="132.0" style="-fx-background-color: #363d54; -fx-background-radius: 0;" stylesheets="/Fonts/Roboto-Light.css" text="Clear Selection" textFill="WHITE" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="225.0" />
+                         <JFXButton buttonType="RAISED" layoutX="74.0" layoutY="5" onAction="#addStop" prefHeight="70.0" prefWidth="132.0" style="-fx-background-color: #363d54; -fx-background-radius: 0;" stylesheets="/Fonts/Roboto-Light.css" text="Add Stop" textFill="WHITE" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="75.0" />
+                        <JFXListView fx:id="texutualDescription" layoutX="36.0" layoutY="210.0" prefHeight="200" prefWidth="250.0" stylesheets="/StyleSheet/style.css" AnchorPane.topAnchor="325.0" />
+                        <JFXComboBox fx:id="locationDropdown" layoutX="36.0" layoutY="13.0" prefHeight="53.0" prefWidth="250.0" AnchorPane.topAnchor="50.0" />
+                        <Label layoutX="36.0" layoutY="14.0" prefHeight="38.0" prefWidth="117.0" text="Directions">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
                     </children>
                 </GridPane>
             <AnchorPane fx:id="anchorPane" prefHeight="200.0" prefWidth="200.0" GridPane.valignment="BASELINE" />
@@ -133,12 +126,12 @@
       </JFXButton>
       <JFXButton fx:id="L2" buttonType="RAISED" onAction="#setMap" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #363d54; -fx-background-radius: 15;" stylesheets="@/StyleSheet/MapButtons.css" text="L2" textFill="WHITE" StackPane.alignment="BOTTOM_CENTER">
          <StackPane.margin>
-            <Insets bottom="7.5" right="225.0" />
+            <Insets bottom="7.5" right="375.0" />
          </StackPane.margin>
       </JFXButton>
       <JFXButton fx:id="L1" buttonType="RAISED" onAction="#setMap" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #363d54; -fx-background-radius: 15;" stylesheets="@/StyleSheet/MapButtons.css" text="L1" textFill="WHITE" StackPane.alignment="BOTTOM_CENTER">
          <StackPane.margin>
-            <Insets bottom="7.5" right="375.0" />
+            <Insets bottom="7.5" right="225.0" />
          </StackPane.margin>
       </JFXButton>
       <Rectangle arcHeight="25.0" arcWidth="25.0" fill="WHITE" height="103.0" opacity="0.95" stroke="#363d5400" strokeType="INSIDE" strokeWidth="0.0" width="470.0" StackPane.alignment="TOP_CENTER">

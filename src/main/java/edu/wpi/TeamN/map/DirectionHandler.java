@@ -32,6 +32,7 @@ public class DirectionHandler {
     this.locationDropdown = locationDropdown;
     this.mapController = mapController;
 
+    texutualDescription.setVisible(false);
     mapController.loadRoomDropdown(this.locationDropdown);
     clickSetup();
   }
@@ -59,6 +60,7 @@ public class DirectionHandler {
 
   public void addDirection(String l) {
     texutualDescription.getItems().add(new HBox(getDirectionIcon(l), new Label(l)));
+    texutualDescription.setVisible(true);
   }
 
   private FontIcon getDirectionIcon(String l) {
@@ -83,6 +85,7 @@ public class DirectionHandler {
 
     Label label = new Label(n.get_longName());
     JFXButton button = new JFXButton("Delete");
+    //    button
     button.setId(n.get_nodeID());
     button.setOnAction(
         new EventHandler<ActionEvent>() {
@@ -117,6 +120,7 @@ public class DirectionHandler {
 
   public void clean() {
     texutualDescription.getItems().clear();
+    texutualDescription.setVisible(false);
   }
 
   public void cleanAll() {
