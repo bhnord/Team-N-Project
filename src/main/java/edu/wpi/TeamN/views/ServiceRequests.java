@@ -43,7 +43,6 @@ public class ServiceRequests extends MasterController implements Initializable {
       case ADMINISTRATOR:
       case EMPLOYEE:
       case PATIENT:
-      case GUEST:
         break;
     }
   }
