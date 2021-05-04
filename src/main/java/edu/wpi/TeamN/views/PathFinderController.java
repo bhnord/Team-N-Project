@@ -89,14 +89,16 @@ public class PathFinderController extends MapController implements Initializable
 
   public void handleClick(MouseEvent event) {
     Node n = adminMap.get(event.getX(), event.getY(), mapDrawer.getCurrentMap());
+    System.out.println(n.get_nodeID() + ":");
     if (event.getButton() == MouseButton.PRIMARY && !path.contains(n.get_nodeID())) {
+      for (Node.Link l : n.get_neighbors()) {
+        System.out.println("\t" + l._other.get_nodeID());
+      }
       updatePath();
       nodeSelected(selectedNodeColor);
       directionHandler.addStop(n);
       n.get_shape().setVisible(true);
-    }
-    //              path.add(n.get_nodeID());
-    else if (event.getButton() == MouseButton.SECONDARY) path.remove(n.get_nodeID());
+    } else if (event.getButton() == MouseButton.SECONDARY) path.remove(n.get_nodeID());
   }
 
   public void updatePath() {

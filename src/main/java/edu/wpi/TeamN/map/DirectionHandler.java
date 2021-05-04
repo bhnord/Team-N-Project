@@ -97,6 +97,7 @@ public class DirectionHandler {
             stopNames.remove(n.get_longName());
             mapController.getPath().remove(n.get_nodeID());
             mapController.updatePath();
+            n.get_shape().setVisible(false);
           }
         });
     HBox box = new HBox(label, fontIcon);
