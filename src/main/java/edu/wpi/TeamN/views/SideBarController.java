@@ -67,11 +67,11 @@ public class SideBarController extends MasterController implements Initializable
     // if (db.getCurrentUser() != null) AccountType.setText(db.getCurrentUser().getUsername());
     // AccountType.setText("hello");
     Label a = new Label();
-    if (db.getCurrentUser() != null) {
-      a = new Label(db.getCurrentUser().getUsername());
-    }
+    //if (db.getCurrentUser() != null) {
+    //  a = new Label(db.getCurrentUser().getUsername());
+    //}
 
-    accountSettingsGroup.getChildren().add(a);
+    //accountSettingsGroup.getChildren().add(a);
     // accountSettingsGroup.get
     // accountSettingsGroup
   }
