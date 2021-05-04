@@ -77,7 +77,13 @@ public class LanguageInterpretersRequestController extends MasterController
           "Missing Fields", "You must fill out all required fields of the request to continue\n");
     } else {
       dialogFactory.creatDialogConfirmCancel(
-          "Are you sure the information you have provided is correct?", "", mouse -> submitToDB());
+          "Are you sure the information you have provided is correct?", "", mouse -> {
+                try {
+                  submitToDB();
+                } catch (IOException e) {
+                  e.printStackTrace();
+                }
+              });
     }
   }
 
@@ -97,7 +103,8 @@ public class LanguageInterpretersRequestController extends MasterController
     new AutoCompleteComboBoxListener(languageDropdown);
   }
 
-  private void submitToDB() {
+  private void submitToDB() throws IOException {
+    advanceHome();
     RequestType type = RequestType.LANGUAGE_INTERPRETER;
     int receiverID =
         Integer.parseInt(txtEmployeeName.getSelectionModel().getSelectedItem().getId());

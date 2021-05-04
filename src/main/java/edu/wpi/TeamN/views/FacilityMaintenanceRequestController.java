@@ -75,9 +75,16 @@ public class FacilityMaintenanceRequestController extends MasterController
           "Missing Fields", "You must fill out all required fields of the request to continue\n");
     } else {
       dialogFactory.creatDialogConfirmCancel(
-          "Are you sure the information you have provided is correct?", "", mouse -> submitToDB());
+          "Are you sure the information you have provided is correct?", "", mouse -> {
+                try {
+                  submitToDB();
+                } catch (IOException e) {
+                  e.printStackTrace();
+                }
+              });
     }
   }
+
 
   public void help(ActionEvent actionEvent) throws IOException {
     dialogFactory.creatDialogOkay(
@@ -85,7 +92,8 @@ public class FacilityMaintenanceRequestController extends MasterController
         "- Employee Name refers to the employee being requested to complete the job \n- Patient Room is the room with the patient where the maintenance is required \n- Time of request refers to time at which the maintenance is needed \n- Type of maintenance refers to the kind of maintenance that is required to be done \n- Comments refers to any additional information needed");
   }
 
-  private void submitToDB() {
+  private void submitToDB() throws IOException {
+    advanceHome();
     RequestType type = RequestType.MAINTENANCE;
     int receiverID =
         Integer.parseInt(txtEmployeeName.getSelectionModel().getSelectedItem().getId());

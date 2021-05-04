@@ -46,39 +46,30 @@
                   <RowConstraints maxHeight="-Infinity" minHeight="0.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <JFXButton fx:id="BackServiceRequests" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="450.0" prefWidth="728.0" style="-fx-background-color: #748cdc; -fx-background-radius: 25;" stylesheets="@/StyleSheet/style.css" textFill="WHITE">
-                     <font>
-                        <Font name="Arial Black" size="18.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
+                  <Label fx:id="BackServiceRequests" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #748cdc; -fx-background-radius: 25;">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
                      <GridPane.margin>
                         <Insets bottom="35.0" left="35.0" right="35.0" top="35.0" />
                      </GridPane.margin>
-                  </JFXButton>
-                  <JFXButton fx:id="BackCurrentRequests" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="195.0" prefWidth="728.0" style="-fx-background-color: #748cdc; -fx-background-radius: 25;" stylesheets="@/StyleSheet/style.css" textFill="WHITE" GridPane.rowIndex="2">
-                     <font>
-                        <Font name="Arial Black" size="18.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
+                  </Label>
+                  <Label fx:id="BackEmployeeEditor" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #748cdc; -fx-background-radius: 25;" GridPane.rowIndex="1">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
                      <GridPane.margin>
                         <Insets bottom="35.0" left="35.0" right="35.0" top="35.0" />
                      </GridPane.margin>
-                  </JFXButton>
-                  <JFXButton fx:id="BackEmployeeEditor" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="195.0" prefWidth="728.0" style="-fx-background-color: #748cdc; -fx-background-radius: 25;" stylesheets="@/StyleSheet/style.css" textFill="WHITE" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="Arial Black" size="18.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
+                  </Label>
+                  <Label fx:id="BackCurrentRequests" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #748cdc; -fx-background-radius: 25;" GridPane.rowIndex="2">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
                      <GridPane.margin>
                         <Insets bottom="35.0" left="35.0" right="35.0" top="35.0" />
                      </GridPane.margin>
-                  </JFXButton>
+                  </Label>
                   <JFXButton fx:id="CurrentRequests" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#advanceViews" prefHeight="150.0" prefWidth="406.0" style="-fx-background-color: #748cdc;" stylesheets="@/StyleSheet/style.css" text="CURRENT REQUESTS" textFill="WHITE" GridPane.rowIndex="2">
                      <font>
                         <Font name="Arial Black" size="18.0" />
@@ -116,7 +107,7 @@
                   </Label>
                   <Group fx:id="logInGroup" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="96.0" stylesheets="@/Fonts/Roboto-Black.css" text="SIGN IN" textFill="WHITE">
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="96.0" layoutY="40.0" stylesheets="@/Fonts/Roboto-Black.css" text="SIGN IN" textFill="WHITE">
                            <font>
                               <Font size="48.0" />
                            </font>
@@ -141,7 +132,7 @@
                               <URL value="@/Fonts/Roboto-Light.css" />
                            </stylesheets>
                         </JFXPasswordField>
-                        <JFXButton fx:id="goToHomePage" buttonType="RAISED" layoutX="93.0" layoutY="265.0" onAction="#continueToHomePage" prefHeight="50.0" prefWidth="174.0" style="-fx-background-color: #6985e0;" stylesheets="@/Fonts/Roboto-Black.css" text="SUBMIT" textFill="WHITE">
+                        <JFXButton fx:id="goToHomePage" buttonType="RAISED" layoutX="93.0" layoutY="255.0" onAction="#continueToHomePage" prefHeight="50.0" prefWidth="174.0" style="-fx-background-color: #6985e0;" stylesheets="@/Fonts/Roboto-Black.css" text="SUBMIT" textFill="WHITE">
                            <font>
                               <Font name="Javanese Text" size="14.0" />
                            </font>
@@ -151,7 +142,7 @@
                               <Font name="Javanese Text" size="12.0" />
                            </font>
                         </Label>
-                        <JFXButton fx:id="RegisterNewUser" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" layoutX="140.0" layoutY="217.0" mnemonicParsing="false" onAction="#register" prefHeight="31.0" prefWidth="80.0" style="-fx-background-color: #6985e0;" text="Register" textFill="WHITE" />
+                        <JFXButton fx:id="RegisterNewUser" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" layoutX="140.0" layoutY="210.0" mnemonicParsing="false" onAction="#register" prefHeight="31.0" prefWidth="80.0" style="-fx-background-color: #6985e0;" text="Register" textFill="WHITE" />
                      </children>
                   </Group>
                </children>
@@ -166,28 +157,27 @@
                 <RowConstraints minHeight="0.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <JFXButton fx:id="BackMapEditor" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="195.0" prefWidth="728.0" style="-fx-background-color: #748cdc; -fx-background-radius: 25;" stylesheets="@/StyleSheet/style.css" textFill="WHITE" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="Arial Black" size="18.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
+                  <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #748cdc; -fx-background-radius: 25;" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets bottom="35.0" left="35.0" right="35.0" top="35.0" />
                      </GridPane.margin>
-                  </JFXButton>
-                  <JFXButton fx:id="BackMapPathfinder" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="195.0" prefWidth="728.0" style="-fx-background-color: #748cdc; -fx-background-radius: 25;" stylesheets="@/StyleSheet/style.css" textFill="WHITE" GridPane.rowIndex="2">
-                     <font>
-                        <Font name="Arial Black" size="18.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
+                  </Label>
+                  <Label fx:id="BackMapPathfinder" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #748cdc; -fx-background-radius: 25;" GridPane.rowIndex="2">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
                      <GridPane.margin>
                         <Insets bottom="35.0" left="35.0" right="35.0" top="35.0" />
                      </GridPane.margin>
-                  </JFXButton>
+                  </Label>
+                  <Label fx:id="BackMapEditor" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #748cdc; -fx-background-radius: 25;" GridPane.rowIndex="1">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <GridPane.margin>
+                        <Insets bottom="35.0" left="35.0" right="35.0" top="35.0" />
+                     </GridPane.margin>
+                  </Label>
                   <JFXButton fx:id="mapPathfinder" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#pathFind" prefHeight="450.0" prefWidth="728.0" style="-fx-background-color: #748cdc;" stylesheets="@/StyleSheet/style.css" text="MAP PATHFINDER" textFill="WHITE" GridPane.rowIndex="2">
                      <font>
                         <Font name="Arial Black" size="18.0" />
@@ -208,17 +198,6 @@
                      </cursor>
                      <GridPane.margin>
                         <Insets bottom="45.0" left="45.0" right="45.0" top="45.0" />
-                     </GridPane.margin>
-                  </JFXButton>
-                  <JFXButton fx:id="BackMapEditor1" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="195.0" prefWidth="728.0" style="-fx-background-color: #748cdc; -fx-background-radius: 25;" stylesheets="@/StyleSheet/style.css" textFill="WHITE">
-                     <font>
-                        <Font name="Arial Black" size="18.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <GridPane.margin>
-                        <Insets bottom="35.0" left="35.0" right="35.0" top="35.0" />
                      </GridPane.margin>
                   </JFXButton>
                   <JFXButton fx:id="FindUs" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#findUs" prefHeight="195.0" prefWidth="728.0" style="-fx-background-color: #748cdc;" stylesheets="@/StyleSheet/style.css" text="FIND US" textFill="WHITE">

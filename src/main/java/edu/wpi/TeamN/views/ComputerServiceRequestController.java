@@ -57,13 +57,24 @@ public class ComputerServiceRequestController extends MasterController implement
     loadRoomDropdown(roomDropdown);
   }
 
+  @FXML
+  public void advanceHome() throws IOException {
+    super.advanceHome(loader, appPrimaryScene);
+  }
+
   public void submit(ActionEvent actionEvent) throws IOException {
     if (validateInputs()) {
       dialogFactory.creatDialogOkay(
           "Missing Fields", "You must fill out all required fields of the request to continue\n");
     } else {
       dialogFactory.creatDialogConfirmCancel(
-          "Are you sure the information you have provided is correct?", "", mouse -> submitToDB());
+          "Are you sure the information you have provided is correct?", "", mouse -> {
+                try {
+                  submitToDB();
+                } catch (IOException e) {
+                  e.printStackTrace();
+                }
+              });
     }
   }
 
@@ -73,7 +84,8 @@ public class ComputerServiceRequestController extends MasterController implement
         "- Employee Name refers to the employee being requested to complete the job \n- Patient Room is the room with the patient where the service is required \n- Time of request refers to time at which the service is needed \n- Necessary equipment refers to the equipment that is needed for the computer service \n- Comments refers to any additional information needed");
   }
 
-  private void submitToDB() {
+  private void submitToDB() throws IOException {
+    advanceHome();
     RequestType type = RequestType.COMPUTER_SERVICE;
     int receiverID =
         Integer.parseInt(txtEmployeeName.getSelectionModel().getSelectedItem().getId());

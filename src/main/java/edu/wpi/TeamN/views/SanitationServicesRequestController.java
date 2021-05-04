@@ -76,7 +76,13 @@ public class SanitationServicesRequestController extends MasterController implem
           "Missing Fields", "You must fill out all required fields of the request to continue\n");
     } else {
       dialogFactory.creatDialogConfirmCancel(
-          "Are you sure the information you have provided is correct?", "", mouse -> submitToDB());
+          "Are you sure the information you have provided is correct?", "", mouse -> {
+                try {
+                  submitToDB();
+                } catch (IOException e) {
+                  e.printStackTrace();
+                }
+              });
     }
   }
 
@@ -86,7 +92,8 @@ public class SanitationServicesRequestController extends MasterController implem
         "- Employee Name refers to the employee being requested to complete the job \n- Patient Room is the room with the patient where the sanitation is required \n- Time of request refers to time at which the sanitation is needed \n- Sanitary details refers to the necessary sanitary information that is required \n- Comments refers to any additional information needed");
   }
 
-  private void submitToDB() {
+  private void submitToDB() throws IOException {
+    advanceHome();
     RequestType type = RequestType.SANITATION;
     int receiverID =
         Integer.parseInt(txtEmployeeName.getSelectionModel().getSelectedItem().getId());
