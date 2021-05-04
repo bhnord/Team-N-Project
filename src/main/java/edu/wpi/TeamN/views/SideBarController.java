@@ -2,9 +2,6 @@ package edu.wpi.TeamN.views;
 
 import com.google.inject.Inject;
 import edu.wpi.TeamN.services.database.DatabaseService;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,11 +16,15 @@ import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import lombok.extern.slf4j.Slf4j;
 
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+
 @Slf4j
 public class SideBarController<node> extends MasterController implements Initializable {
 
-  @Inject private DatabaseService db;
   @Inject private FXMLLoader loader2;
+  private DatabaseService db;
 
   // Tooltip for logout/back button that changes in Register Page
   @FXML private Tooltip ttLogOutButton;
@@ -54,7 +55,7 @@ public class SideBarController<node> extends MasterController implements Initial
     tt.setAutoReverse(true);
     tt.play();
 
- /*   if (db.getCurrentUser() != null) {
+    if (db.getCurrentUser() != null) {
       String a = "user: " + db.getCurrentUser().getUsername();
       // String a = "                  jjjjjjjjj";
       Label label = new Label(a);
@@ -64,8 +65,7 @@ public class SideBarController<node> extends MasterController implements Initial
       String a = "      user: guest";
       Label label = new Label(a);
       accountSettingsGroup.getChildren().add(label);
-    }*/
-
+    }
   }
 
   @FXML
@@ -84,7 +84,6 @@ public class SideBarController<node> extends MasterController implements Initial
 
     setLoader(loader);
     accountSettingsGroup.setTranslateX(-300);
-
 
     // accountSettingsGroup.getChildren().add(homeController.accountInfo());
     // Label label = new Label(homeController.accountInfo());
@@ -108,7 +107,7 @@ public class SideBarController<node> extends MasterController implements Initial
 
   @Override
   public void setDB(DatabaseService db) {
-    super.setDB(db);
+    this.db = db;
   }
 
   /**
