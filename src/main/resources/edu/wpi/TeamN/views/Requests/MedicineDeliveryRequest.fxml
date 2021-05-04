@@ -66,7 +66,7 @@
                           </font>
                       </Label>
                       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="47.0" layoutX="834.0" layoutY="661.0" stroke="TRANSPARENT" strokeType="INSIDE" width="130.0" />
-                      <JFXButton fx:id="helpButton" layoutX="834.0" layoutY="663.0" onAction="#help" prefHeight="47.0" prefWidth="130.0" ripplerFill="WHITE" stylesheets="/Fonts/Roboto-Light.css" text="Help" textFill="WHITE">
+                      <JFXButton fx:id="helpButton" layoutX="834.0" layoutY="661.0" onAction="#help" prefHeight="47.0" prefWidth="130.0" ripplerFill="WHITE" stylesheets="/Fonts/Roboto-Light.css" text="Help" textFill="WHITE">
                           <font>
                               <Font name="Serif Regular" size="22.0" />
                           </font>

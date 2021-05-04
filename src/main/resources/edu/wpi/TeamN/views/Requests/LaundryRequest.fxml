@@ -95,7 +95,7 @@
                           </font>
                       </Label>
                       <JFXTimePicker fx:id="timePicker" defaultColor="#a6c3e3" layoutX="187.0" layoutY="384.0" prefHeight="31.0" prefWidth="176.0" promptText="Select Time of Request" stylesheets="/Fonts/Roboto-Light.css" />
-                      <JFXButton fx:id="helpButton" layoutX="834.0" layoutY="663.0" onAction="#help" prefHeight="47.0" prefWidth="130.0" ripplerFill="WHITE" stylesheets="/Fonts/Roboto-Light.css" text="Help" textFill="WHITE">
+                      <JFXButton fx:id="helpButton" layoutX="834.0" layoutY="661.0" onAction="#help" prefHeight="47.0" prefWidth="130.0" ripplerFill="WHITE" stylesheets="/Fonts/Roboto-Light.css" text="Help" textFill="WHITE">
                           <font>
                               <Font name="Serif Regular" size="22.0" />
                           </font>
