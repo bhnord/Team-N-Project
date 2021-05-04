@@ -74,7 +74,13 @@ public class FloralRequestController extends MasterController implements Initial
           "Missing Fields", "You must fill out all required fields of the request to continue\n");
     } else {
       dialogFactory.creatDialogConfirmCancel(
-          "Are you sure the information you have provided is correct?", "", mouse -> submitToDB());
+          "Are you sure the information you have provided is correct?", "", mouse -> {
+                try {
+                  submitToDB();
+                } catch (IOException e) {
+                  e.printStackTrace();
+                }
+              });
     }
   }
 
@@ -84,7 +90,8 @@ public class FloralRequestController extends MasterController implements Initial
         "- Employee Name refers to the employee being requested to complete the job \n- Patient Room is the room with the patient where the bouquet is required \n- Time of request refers to time at which the bouquet is needed \n- Type of bouquet refers to the bouquet that is wanted by the patient \n- Comments refers to any additional information needed");
   }
 
-  private void submitToDB() {
+  private void submitToDB() throws IOException {
+    advanceHome();
     RequestType type = RequestType.FLORAL;
     int receiverID =
         Integer.parseInt(txtEmployeeName.getSelectionModel().getSelectedItem().getId());
