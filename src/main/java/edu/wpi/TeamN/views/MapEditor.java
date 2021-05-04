@@ -188,16 +188,17 @@ public class MapEditor extends MapController implements Initializable {
   }
 
   private void placeNode(String id, double x, double y) {
+    Node closest = adminMap.get(x, y, mapDrawer.getCurrentMap());
     Node n =
         new Node(
             x * getUpScale(),
             y * getUpScale(),
             id,
             mapDrawer.getCurrentMap(),
-            getBuilding().getText(),
-            "",
-            getLongName().getText(),
-            getShortName().getText());
+            closest.get_building(),
+            closest.get_nodeType(),
+            closest.get_longName(),
+            closest.get_shortName());
     placeNode(n);
     diffHandler.create(new ArrayList<>(Collections.singleton(n)));
   }

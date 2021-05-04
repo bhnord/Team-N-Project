@@ -31,6 +31,7 @@ public class MapNodeEditor {
   }
 
   public void addNode(Node n) {
+    if (this.selection.contains(n)) return;
     n.get_shape().setFill(Color.web(mapEditor.getUserPrefs().getHighlightColor()));
     this.selection.add(n);
   }
