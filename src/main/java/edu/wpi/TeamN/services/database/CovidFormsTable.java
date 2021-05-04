@@ -83,14 +83,16 @@ public class CovidFormsTable {
 
   // TODO DECIDE HOW TO ASSIGN EMPLOYEE ID
 
-  public boolean addCovidForm(CovidForm form) {
+  public boolean addCovidForm(CovidForm form, int employeeId) {
+
     boolean ans[] = form.getAnswers();
     String ansString = Arrays.toString(ans);
     ansString = ansString.substring(1, ansString.length() - 1); // cuts off [] from toString
-    System.out.println(ansString);
     String str =
-        "INSERT INTO COVIDFORMS (UserId, Q1, Q2, Q3, Q4, Q5, Q6, ExtraInfo) VALUES ("
+        "INSERT INTO COVIDFORMS (UserId, AssignedEmployee Q1, Q2, Q3, Q4, Q5, Q6, ExtraInfo) VALUES ("
             + form.getUserId()
+            + ", "
+            + employeeId
             + ", "
             // EMPLOYEE ID HERE
             + ansString
