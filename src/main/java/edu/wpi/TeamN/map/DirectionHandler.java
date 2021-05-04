@@ -103,6 +103,8 @@ public class DirectionHandler {
     n.get_shape().setFill(mapController.getSelectedNodeColor().getValue());
     stopNames.add(n.get_longName());
     stops.getItems().add(box);
+
+    System.out.println(mapController.getPath());
   }
 
   public void addStopClick(String text) {
@@ -111,5 +113,14 @@ public class DirectionHandler {
         this.addStop(n);
         return;
       }
+  }
+
+  public void clean() {
+    texutualDescription.getItems().clear();
+  }
+
+  public void cleanAll() {
+    clean();
+    stops.getItems().clear();
   }
 }

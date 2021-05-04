@@ -95,9 +95,9 @@ public class PathFinderController extends MapController implements Initializable
         new EventHandler<MouseEvent>() {
           @Override
           public void handle(MouseEvent event) {
-            System.out.println(path);
             if (event.getButton() == MouseButton.PRIMARY && !path.contains(n.get_nodeID()))
-              path.add(n.get_nodeID());
+              directionHandler.addStop(n);
+            //              path.add(n.get_nodeID());
             else if (event.getButton() == MouseButton.SECONDARY) path.remove(n.get_nodeID());
             updatePath();
             nodeSelected(selectedNodeColor);
@@ -113,6 +113,7 @@ public class PathFinderController extends MapController implements Initializable
 
   public void newColorPath(ActionEvent actionEvent) {
     updateUserColors(pathColor.getId(), pathColor.getValue().toString());
+    directionHandler.clean();
     for (int i = 0; path.size() - 1 > i; i++) {
       ArrayList<Node.Link> pathLink =
           this.pathfind(getNodeSet().get(path.get(i)), getNodeSet().get(path.get(i + 1)));
@@ -145,6 +146,8 @@ public class PathFinderController extends MapController implements Initializable
   public void clearSelection(ActionEvent actionEvent) {
     //    reset();
     path = new ArrayList<String>();
+    directionHandler.clean();
+    directionHandler.cleanAll();
   }
 
   public ArrayList<String> getPath() {
