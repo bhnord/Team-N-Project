@@ -120,10 +120,6 @@ public class CovidFormController extends MasterController implements Initializab
             event -> {
               processingPopup();
             });
-
-        /*  TextInputDialog dialog = new TextInputDialog();
-        dialog.setTitle("Set Label Text");
-        dialog.showAndWait().ifPresent(string -> processingPopup());*/
         db.addCovidForm(form);
 
       } else {
