@@ -3,7 +3,9 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Group?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -14,8 +16,20 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1500.0" prefWidth="66.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.TeamN.views.SideBarController">
+<AnchorPane fx:id="SideAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1500.0" prefWidth="66.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.TeamN.views.SideBarController">
    <children>
+      <Group fx:id="accountSettingsGroup" layoutX="4.0" layoutY="74.0">
+         <children>
+            <Rectangle arcHeight="25.0" arcWidth="25.0" fill="WHITE" height="138.0" stroke="TRANSPARENT" strokeType="INSIDE" width="290.0">
+               <effect>
+                  <DropShadow color="#00000095" height="43.24" radius="22.2325" width="47.69" />
+               </effect>
+            </Rectangle>
+            <JFXButton layoutX="243.0" layoutY="8.0" onAction="#accountSettingsBack" text="&lt;--" />
+            <Label fx:id="AccountType" layoutX="149.0" layoutY="38.0" text="Label" />
+            <Label fx:id="AccountUsername" layoutX="149.0" layoutY="75.0" text="Label" />
+         </children>
+      </Group>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#363d54" height="1500.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
       <GridPane fx:id="sideBarGrid">
          <columnConstraints>
@@ -34,6 +48,28 @@
                               <Image url="@/images/BWHLogo.png" />
                            </image>
                         </ImageView>
+                     </children>
+                  </Group>
+                  <Group fx:id="groupExit1">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="65.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
+                        <ImageView fitHeight="60.0" fitWidth="50.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@/images/Icons/newclose.png" />
+                           </image>
+                        </ImageView>
+                        <JFXButton fx:id="accountSettings" onAction="#accountSettings" prefHeight="64.0" prefWidth="66.0" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="9.0" />
+                           </font>
+                           <tooltip>
+                              <Tooltip fx:id="ttExit1" text="Account Settings">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Tooltip>
+                           </tooltip>
+                        </JFXButton>
                      </children>
                   </Group>
                   <Group fx:id="groupHome">

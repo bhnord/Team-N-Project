@@ -74,6 +74,7 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="47.0" layoutX="834.0" layoutY="661.0" stroke="TRANSPARENT" strokeType="INSIDE" width="130.0" />
                   <Rectangle arcHeight="50.0" arcWidth="50.0" fill="WHITE" height="517.0" layoutX="136.0" layoutY="202.0" stroke="TRANSPARENT" strokeType="INSIDE" width="476.0" />
                   <JFXTextField fx:id="txtComments" focusColor="#5b63e1" labelFloat="true" layoutX="187.0" layoutY="528.0" prefHeight="31.0" prefWidth="200.0" promptText="Comments" scaleShape="false" stylesheets="/Fonts/Roboto-Light.css" unFocusColor="WHITE">
                      <font>
@@ -98,7 +99,7 @@
                         <Font name="Serif Regular" size="30.0" />
                      </font>
                   </Label>
-                  <JFXTimePicker fx:id="timePicker" defaultColor="#a6c3e3" layoutX="187.0" layoutY="384.0" prefHeight="31.0" prefWidth="176.0" promptText="Select Time of Request" stylesheets="/Fonts/Roboto-Light.css" />
+                  <JFXTimePicker fx:id="timePicker" defaultColor="#5b63e1" layoutX="187.0" layoutY="384.0" prefHeight="31.0" prefWidth="176.0" promptText="Select Time of Request" stylesheets="/Fonts/Roboto-Light.css" />
                   <JFXTextField fx:id="maintenanceRequest" focusColor="#5b63e1" labelFloat="true" layoutX="187.0" layoutY="456.0" prefHeight="31.0" prefWidth="200.0" promptText="Necessary Equipment" scaleShape="false" stylesheets="/Fonts/Roboto-Light.css" unFocusColor="WHITE">
                      <font>
                         <Font size="16.0" />

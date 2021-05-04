@@ -35,7 +35,6 @@
             <RowConstraints minHeight="768.0" prefHeight="768.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <AnchorPane fx:id="anchorPane" prefHeight="200.0" prefWidth="200.0" GridPane.valignment="BASELINE" />
             <GridPane fx:id="gridL1" prefWidth="574.0" GridPane.columnIndex="2">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -235,6 +234,7 @@
                   </JFXButton>
                </children>
             </GridPane>
+            <AnchorPane fx:id="anchorPane" prefHeight="200.0" prefWidth="88.0" GridPane.valignment="BASELINE" />
          </children>
       </GridPane>
    </children>

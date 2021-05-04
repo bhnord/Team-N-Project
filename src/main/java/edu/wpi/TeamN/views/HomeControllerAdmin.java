@@ -68,8 +68,9 @@ public class HomeControllerAdmin extends MasterController implements Initializab
     log.debug(state.toString());
 
     if (db.getCurrentUser() == null || db.getCurrentUser().getUsername().equals("guest")) {
-      super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Login");
       db.login("guest", "guest");
+      super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Login");
+
       makeInvisible(EmployeeEditor);
       makeInvisible(BackEmployeeEditor);
       makeInvisible(CurrentRequests);
@@ -123,8 +124,6 @@ public class HomeControllerAdmin extends MasterController implements Initializab
     button.setVisible(false);
     button.setManaged(false);
   }
-
-  public void makeAllVisible() {}
 
   /**
    * advanceViews Loads a new page *not for service requests*
