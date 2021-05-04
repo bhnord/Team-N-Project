@@ -122,8 +122,15 @@ public class HomeControllerAdmin extends MasterController implements Initializab
       }
     }
 
-    // if login matches the name of the person filling out covid form
-    // show pop-up that says where to go
+    /* // if login matches the name of the person filling out covid form
+     int idCovid = db.getCurrentUser().getId();
+     if(db.getCovidFormByUserId(idCovid) != null){
+       if(db.getCovidFormByUserId(idCovid).isOk() == true){
+         //pop-up for main entrance
+       }
+       else //pop-up for emergency
+     }
+    */
 
   }
 

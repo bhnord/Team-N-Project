@@ -48,8 +48,7 @@ public class CurrentRequestController extends MasterController implements Initia
   @FXML private Label emergency;
   @FXML private JFXButton checkIn;
   private HashMap<Integer, Request> requestMap = new HashMap<>();
-  @FXML
-  JFXComboBox<String> entrance = new JFXComboBox<>();
+  @FXML JFXComboBox<String> entrance = new JFXComboBox<>();
   private int userId;
 
   @Inject
@@ -72,7 +71,8 @@ public class CurrentRequestController extends MasterController implements Initia
     HashSet<Request> set = db.getAllRequests();
     for (CovidForm covidForm : formSet) {
       userId = covidForm.getUserId();
-      Label lbl = new Label("Survey completed by: " + db.getCurrentUser().getUsername());
+      Label lbl = new Label("Survey completed by: " + db.getUserById(userId).getUsername());
+      // Label lbl = new Label("Survey completed by: " + db.getCurrentUser().getUsername());
       lbl.setId(Integer.toString(covidForm.getId()));
       listViewCovid.getItems().add(lbl);
     }
@@ -211,12 +211,11 @@ public class CurrentRequestController extends MasterController implements Initia
       setEmptyFields();
     }
 
-
- // int idCovid = db.
-    /*if(entrance.getValue() == "enter through emergency entrance")
-        db.updateCovidForm(idCovid, true);
+    int idCovid = db.getCurrentUser().getId();
+    if (entrance.getValue() == "enter through emergency entrance")
+      db.updateCovidForm(idCovid, true);
     else db.updateCovidForm(idCovid, false);
-    db.setCovidFormIsProcessed(idCovid, true);*/
+    db.setCovidFormIsProcessed(idCovid, true);
   }
 
   public void markComplete(ActionEvent actionEvent) {

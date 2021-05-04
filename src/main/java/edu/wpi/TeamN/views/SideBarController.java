@@ -17,7 +17,9 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class SideBarController<node> extends MasterController implements Initializable {
 
   @Inject private DatabaseService db;
@@ -51,6 +53,19 @@ public class SideBarController<node> extends MasterController implements Initial
     tt.setToX(0);
     tt.setAutoReverse(true);
     tt.play();
+
+    if (db.getCurrentUser() != null) {
+      String a = "user: " + db.getCurrentUser().getUsername();
+      // String a = "                  jjjjjjjjj";
+      Label label = new Label(a);
+      accountSettingsGroup.getChildren().add(label);
+    } else {
+
+      String a = "      user: guest";
+      Label label = new Label(a);
+      accountSettingsGroup.getChildren().add(label);
+    }
+
   }
 
   @FXML
@@ -67,24 +82,12 @@ public class SideBarController<node> extends MasterController implements Initial
   @Override
   public void initialize(URL location, ResourceBundle resources) {
 
-    setDB(db);
     setLoader(loader);
     accountSettingsGroup.setTranslateX(-300);
 
-    /*if (db.getCurrentUser() != null) {
-      String a = "user: " + db.getCurrentUser().getUsername();
-      // String a = "                  jjjjjjjjj";
-      Label label = new Label(a);
-      accountSettingsGroup.getChildren().add(label);
-    } else {
-
-      String a = "      user: guest";
-      Label label = new Label(a);
-      accountSettingsGroup.getChildren().add(label);
-    }*/
     // accountSettingsGroup.getChildren().add(homeController.accountInfo());
-   // Label label = new Label(homeController.accountInfo());
-    //accountSettingsGroup.getChildren().add(label);
+    // Label label = new Label(homeController.accountInfo());
+    // accountSettingsGroup.getChildren().add(label);
   }
 
   /**
