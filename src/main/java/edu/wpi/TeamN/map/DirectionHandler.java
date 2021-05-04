@@ -121,6 +121,7 @@ public class DirectionHandler {
   }
 
   public void clean() {
+    stopNames.clear();
     texutualDescription.getItems().clear();
     texutualDescription.setVisible(false);
   }
