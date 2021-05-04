@@ -31,11 +31,17 @@ public class HomeControllerAdmin extends MasterController implements Initializab
   @Inject HomeState state;
 
   // all buttons for FXML page that can be hidden, hide in pairs
-  @FXML private JFXButton mapPathfinder, BackMapPathfinder;
-  @FXML private JFXButton mapEditor, BackMapEditor;
-  @FXML private JFXButton ServiceRequests, BackServiceRequests;
-  @FXML private JFXButton EmployeeEditor, BackEmployeeEditor;
-  @FXML private JFXButton CurrentRequests, BackCurrentRequests;
+  @FXML private JFXButton mapPathfinder;
+  @FXML
+  private Label BackMapPathfinder,
+      BackMapEditor,
+      BackServiceRequests,
+      BackCurrentRequests,
+      BackEmployeeEditor;
+  @FXML private JFXButton mapEditor;
+  @FXML private JFXButton ServiceRequests;
+  @FXML private JFXButton EmployeeEditor;
+  @FXML private JFXButton CurrentRequests;
   @FXML private Label LogIn;
   @FXML private Group logInGroup;
 
@@ -121,6 +127,11 @@ public class HomeControllerAdmin extends MasterController implements Initializab
    * @param button: a group to be taken out and managed in the sidebar
    */
   public void makeInvisible(JFXButton button) {
+    button.setVisible(false);
+    button.setManaged(false);
+  }
+
+  public void makeInvisible(Label button) {
     button.setVisible(false);
     button.setManaged(false);
   }
