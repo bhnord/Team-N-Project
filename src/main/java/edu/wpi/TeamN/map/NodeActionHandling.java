@@ -58,11 +58,12 @@ public class NodeActionHandling implements IActionHandling {
 
   @Override
   public void setEdgeInfo(Group root) {
+    root.setOnMousePressed(event -> mapEditor.getMapDrawer().captureClick(event));
     root.setOnMouseClicked(
         new EventHandler<MouseEvent>() {
           @Override
           public void handle(MouseEvent event) {
-            mapEditor.getMapDrawer().captureClick(event);
+
             mapEdgeEditor.showEdgeProperties(root);
             mapEditor.setCurrent(root);
             mapEditor.getEditor().getSelectionModel().select(1);

@@ -148,7 +148,7 @@ public class MapDrawer {
 
   public void captureMouseDrag(MouseEvent event) {
     event.consume();
-    if (event.getButton() == MouseButton.PRIMARY) {
+    if (event.isControlDown()) {
       if (boudningBox != null) {
         boudningBox.setX(Math.min(pressedX, event.getX()));
         boudningBox.setY(Math.min(pressedY, event.getY()));
@@ -163,7 +163,7 @@ public class MapDrawer {
         draggedLine.setEndY(event.getY());
       }
     }
-    if (event.getButton() == MouseButton.MIDDLE) {
+    if (event.getButton() == MouseButton.PRIMARY && event.isShiftDown()) {
       mapController
           .getMapAnchor()
           .setTranslateX(mapController.getMapAnchor().getTranslateX() + event.getX() - pressedX);

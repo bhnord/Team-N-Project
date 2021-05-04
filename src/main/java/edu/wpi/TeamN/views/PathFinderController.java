@@ -88,12 +88,15 @@ public class PathFinderController extends MapController implements Initializable
       }
     }
     mapImageView.setOnMouseClicked(this::handleClick);
+    mapImageView.setOnMouseDragged(event -> mapDrawer.captureMouseDrag(event));
   }
 
   public void handleClick(MouseEvent event) {
     Node n = adminMap.get(event.getX(), event.getY(), mapDrawer.getCurrentMap());
     System.out.println(n.get_nodeID() + ":");
-    if (event.getButton() == MouseButton.PRIMARY && !path.contains(n.get_nodeID())) {
+    if (event.getButton() == MouseButton.PRIMARY
+        && !path.contains(n.get_nodeID())
+        && !event.isShiftDown()) {
       for (Node.Link l : n.get_neighbors()) {
         System.out.println("\t" + l._other.get_nodeID());
       }
@@ -114,7 +117,7 @@ public class PathFinderController extends MapController implements Initializable
 
   @FXML
   private void dragMouse(MouseEvent mouseEvent) {
-    this.mapDrawer.captureMouseDrag(mouseEvent);
+    //    this.mapDrawer.captureMouseDrag(mouseEvent);
   }
 
   public void newColorPath(ActionEvent actionEvent) {

@@ -165,12 +165,12 @@ public abstract class MapController extends MasterController {
     }
     userPrefs = db.getCurrentUser().getUserPrefs();
 
-    nodeColor.setValue(Color.valueOf(userPrefs.getBasicNodeColor()));
-    EXIT.setValue(Color.valueOf(userPrefs.getExitColor()));
-    ELEV.setValue(Color.valueOf(userPrefs.getElevatorColor()));
-    STAI.setValue(Color.valueOf(userPrefs.getStairColor()));
-    pathColor.setValue(Color.valueOf(userPrefs.getPathfindingColor()));
-    selectedNodeColor.setValue(Color.valueOf(userPrefs.getHighlightColor()));
+    nodeColor.setValue(Color.web(userPrefs.getBasicNodeColor()));
+    EXIT.setValue(Color.web(userPrefs.getExitColor()));
+    ELEV.setValue(Color.web(userPrefs.getElevatorColor()));
+    STAI.setValue(Color.web(userPrefs.getStairColor()));
+    pathColor.setValue(Color.web(userPrefs.getPathfindingColor()));
+    selectedNodeColor.setValue(Color.web(userPrefs.getHighlightColor()));
     nodeSize.setText(String.valueOf(userPrefs.getNodeSize()));
     pathSize.setText(String.valueOf(userPrefs.getEdgeWidth()));
     mapImageView.setOnScroll(event -> mapDrawer.captureMouseScroll(event));
