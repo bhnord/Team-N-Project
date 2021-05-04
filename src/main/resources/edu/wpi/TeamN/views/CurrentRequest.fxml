@@ -67,11 +67,6 @@
                                           <Font name="Arial Black" size="14.0" />
                                        </font>
                                     </JFXButton>
-                                    <JFXButton fx:id="inProgress" layoutX="345.0" layoutY="474.0" onAction="#inProgress" prefHeight="65.0" prefWidth="224.0" style="-fx-background-color: #748cdc; -fx-background-radius: 15;" stylesheets="/Fonts/Roboto-Light.css" text="In Progress" textFill="WHITE">
-                                       <font>
-                                          <Font name="Arial Black" size="14.0" />
-                                       </font>
-                                    </JFXButton>
                                  </children>
                               </AnchorPane>
                            </content>

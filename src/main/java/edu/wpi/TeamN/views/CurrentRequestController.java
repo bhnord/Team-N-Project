@@ -210,35 +210,7 @@ public class CurrentRequestController extends MasterController implements Initia
     db.setCovidFormIsProcessed(idCovid, true);
   }
 
-  public void inProgress(ActionEvent actionEvent) {
-    listView.setCellFactory(
-        list -> {
-          ListCell<Label> cell =
-              new ListCell<Label>() {
-                protected void updateItem(Label item, boolean empty) {
-                  super.updateItem(item, empty);
-                  if (empty || item == null) {
-                    // There is no item to display in this cell, so leave it empty
-                    setGraphic(null);
-
-                    // Clear the style from the cell
-                    setStyle(null);
-                  } else {
-                    // If the item is equal to the first item in the list, set the style
-                    if (item == (list.getItems())) {
-                      // Set the background color to blue
-                      // setStyle("-fx-background-color: black; -fx-text-fill: white");
-                    }
-                    // Finally, show the item text in the cell
-                    // setText(item.toString());
-                  }
-                }
-              };
-          return cell;
-        });
-  }
-
-  public void markComplete(ActionEvent actionEvent) {
+    public void markComplete(ActionEvent actionEvent) {
     if (listView.getItems().isEmpty() || selectedLabel == null) return;
     int index = listView.getItems().indexOf(selectedLabel);
     db.deleteRequest(Integer.valueOf(selectedLabel.getId()));
