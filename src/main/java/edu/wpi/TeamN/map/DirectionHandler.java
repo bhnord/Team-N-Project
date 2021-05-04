@@ -7,13 +7,11 @@ import edu.wpi.TeamN.views.PathFinderController;
 import java.util.ArrayList;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
-import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 public class DirectionHandler {

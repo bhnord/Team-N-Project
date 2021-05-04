@@ -63,7 +63,7 @@ public class RegisterNewUser extends MasterController implements Initializable {
   public void initialize(URL location, ResourceBundle resources) {
     log.debug(state.toString());
     super.sideBarSetup(anchorPane1, appPrimaryScene, loader, "Register");
-    dialogFactory = new DialogFactory(rootGridPane);
+    dialogFactory = new DialogFactory(myStackPane);
   }
 
   public void exit(ActionEvent actionEvent) throws IOException {
