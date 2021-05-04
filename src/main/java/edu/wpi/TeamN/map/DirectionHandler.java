@@ -33,7 +33,7 @@ public class DirectionHandler {
 
     stops.getStylesheets().add("/StyleSheet/PathfinderListView.css");
     texutualDescription.setVisible(false);
-    mapController.loadRoomDropdown(this.locationDropdown);
+    mapController.loadRoomDropdown(this.locationDropdown, "HALL");
     clickSetup();
   }
 
@@ -104,13 +104,10 @@ public class DirectionHandler {
     box.setId(n.get_nodeID());
 
     mapController.getPath().add(n.get_nodeID());
-    System.out.println(mapController.getPath());
     mapController.updatePath();
     n.get_shape().setFill(mapController.getSelectedNodeColor().getValue());
     stopNames.add(n.get_longName());
     stops.getItems().add(box);
-
-    System.out.println(mapController.getPath());
   }
 
   public void addStopClick(String text) {
