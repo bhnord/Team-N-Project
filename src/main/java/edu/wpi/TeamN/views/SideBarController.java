@@ -3,9 +3,6 @@ package edu.wpi.TeamN.views;
 import com.google.inject.Inject;
 import edu.wpi.TeamN.services.database.DatabaseService;
 import edu.wpi.TeamN.services.database.users.User;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,6 +16,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import lombok.extern.slf4j.Slf4j;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 @Slf4j
 public class SideBarController extends MasterController implements Initializable {
@@ -41,6 +42,7 @@ public class SideBarController extends MasterController implements Initializable
   @FXML private Group accountSettingsGroup;
   @FXML private Label AccountType;
   @FXML private Label AccountUsername;
+  @FXML private Label AccountParkingSpot;
 
   @FXML private AnchorPane SideAnchor;
   HomeControllerAdmin homeController = new HomeControllerAdmin();
@@ -64,6 +66,10 @@ public class SideBarController extends MasterController implements Initializable
         // accountaSettingsGroup.getChildren().add(AccountType);
         String b = "Privileges: " + db.getCurrentUser().getType().toString();
         AccountUsername.setText(b);
+        String parkingSpot = db.getCurrentUser().getParkingSpot();
+        if(!parkingSpot.equals("")) {
+          AccountParkingSpot.setText(parkingSpot);
+        }
         accountSettingsGroup.getChildren().add(AccountUsername);
       }
     } catch (Exception e) {
