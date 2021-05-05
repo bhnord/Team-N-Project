@@ -79,7 +79,7 @@ public class DirectionHandler {
   }
 
   public void addStop(Node n) {
-    if (stopNames.contains(n.get_longName())) {
+    if (stopNames.contains(n.get_nodeID())) {
       return;
     }
 
@@ -94,7 +94,7 @@ public class DirectionHandler {
           @Override
           public void handle(MouseEvent event) {
             stops.getItems().remove(fontIcon.getParent());
-            stopNames.remove(n.get_longName());
+            stopNames.remove(n.get_nodeID());
             mapController.getPath().remove(n.get_nodeID());
             mapController.updatePath();
             n.get_shape().setVisible(false);
@@ -106,7 +106,7 @@ public class DirectionHandler {
     mapController.getPath().add(n.get_nodeID());
     mapController.updatePath();
     n.get_shape().setFill(mapController.getSelectedNodeColor().getValue());
-    stopNames.add(n.get_longName());
+    stopNames.add(n.get_nodeID());
     stops.getItems().add(box);
   }
 

@@ -2,13 +2,12 @@ package edu.wpi.TeamN.map;
 
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.views.MapEditor;
-import javafx.scene.Group;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import javafx.scene.Group;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 
 public class MapNodeEditor {
   private final MapEditor mapEditor;

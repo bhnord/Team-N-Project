@@ -3,6 +3,9 @@ package edu.wpi.TeamN.views;
 import com.google.inject.Inject;
 import edu.wpi.TeamN.services.database.DatabaseService;
 import edu.wpi.TeamN.services.database.users.User;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,10 +19,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import lombok.extern.slf4j.Slf4j;
-
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 @Slf4j
 public class SideBarController extends MasterController implements Initializable {
