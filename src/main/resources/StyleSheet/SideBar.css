@@ -1,0 +1,7 @@
+.jfx-button{
+
+}#profilePopoutBackButton{
+     -fx-background-image: url('/images/Icons/newshrinkblack.png');
+     -fx-background-size: 100% 100%;
+     -fx-background-repeat: no-repeat;
+ }

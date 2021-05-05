@@ -25,7 +25,7 @@
                   <DropShadow color="#00000095" height="43.24" radius="22.2325" width="47.69" />
                </effect>
             </Rectangle>
-            <JFXButton layoutX="243.0" layoutY="8.0" onAction="#accountSettingsBack" text="&lt;--" />
+            <JFXButton fx:id="profilePopoutBackButton" layoutX="243.0" layoutY="8.0" prefHeight="32.0" prefWidth="32.0" stylesheets="@/StyleSheet/SideBar.css" onAction="#accountSettingsBack" />
             <Label fx:id="AccountType" layoutX="80.0" layoutY="44.0" text="Label" />
             <Label fx:id="AccountUsername" layoutX="80.0" layoutY="77.0" text="Label" />
          </children>
