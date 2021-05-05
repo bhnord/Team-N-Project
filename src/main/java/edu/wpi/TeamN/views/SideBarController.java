@@ -21,7 +21,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 @Slf4j
-public class SideBarController<node> extends MasterController implements Initializable {
+public class SideBarController extends MasterController implements Initializable {
 
   @Inject private FXMLLoader loader2;
   private DatabaseService db;
@@ -39,10 +39,7 @@ public class SideBarController<node> extends MasterController implements Initial
 
   @FXML private Group accountSettingsGroup;
   @FXML private Label AccountType;
-  @FXML private Label AccountUsername;
-
   @FXML private AnchorPane SideAnchor;
-  HomeControllerAdmin homeController = new HomeControllerAdmin();
 
   @FXML
   public void accountSettings() {
