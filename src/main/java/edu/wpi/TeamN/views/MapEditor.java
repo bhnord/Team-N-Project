@@ -165,6 +165,7 @@ public class MapEditor extends MapController implements Initializable {
   }
 
   public void releaseMouse(MouseEvent mouseEvent) {
+    System.out.println("eafho");
     if (mouseEvent.getButton() == MouseButton.PRIMARY) {
       Rectangle r = mapDrawer.endBoundingBox(mouseEvent.getX(), mouseEvent.getY());
       if (r != null) {
@@ -407,9 +408,7 @@ public class MapEditor extends MapController implements Initializable {
     return editor;
   }
 
-  public void updateAlgorithm(ActionEvent actionEvent) {
-    db.getCurrentUser().getUserPrefs();
-  }
+  public void updateAlgorithm(ActionEvent actionEvent) {}
 
   @FXML
   public void groupUp() {
