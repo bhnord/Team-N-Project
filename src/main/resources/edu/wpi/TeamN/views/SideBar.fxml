@@ -26,7 +26,8 @@
                </effect>
             </Rectangle>
             <JFXButton layoutX="243.0" layoutY="8.0" onAction="#accountSettingsBack" text="&lt;--" />
-            <Label fx:id="AccountType" layoutX="145.0" layoutY="59.0" text="Label" />
+            <Label fx:id="AccountType" layoutX="80.0" layoutY="44.0" text="Label" />
+            <Label fx:id="AccountUsername" layoutX="80.0" layoutY="77.0" text="Label" />
          </children>
       </Group>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#363d54" height="1500.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
@@ -49,7 +50,7 @@
                         </ImageView>
                      </children>
                   </Group>
-                  <Group fx:id="groupExit1">
+                  <Group fx:id="groupAccountSettings">
                      <children>
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="65.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
                         <ImageView fitHeight="58.0" fitWidth="48.0" layoutX="10.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">

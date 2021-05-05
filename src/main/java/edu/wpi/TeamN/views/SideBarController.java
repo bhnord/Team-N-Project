@@ -2,6 +2,9 @@ package edu.wpi.TeamN.views;
 
 import com.google.inject.Inject;
 import edu.wpi.TeamN.services.database.DatabaseService;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,10 +18,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import lombok.extern.slf4j.Slf4j;
-
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 @Slf4j
 public class SideBarController extends MasterController implements Initializable {
@@ -34,6 +33,7 @@ public class SideBarController extends MasterController implements Initializable
   @FXML private Group groupCovid;
   @FXML private Group groupBack;
   @FXML private Group groupHome;
+  @FXML private Group groupAccountSettings;
   @FXML private ImageView LogOutBack;
   @FXML private ImageView RegisterBack;
 
@@ -56,9 +56,12 @@ public class SideBarController extends MasterController implements Initializable
     tt.play();
 
     if (db.getCurrentUser() != null) {
-      String a = "user: " + db.getCurrentUser().getUsername();
+      String a = "Username: " + db.getCurrentUser().getUsername();
       AccountType.setText(a);
-      accountSettingsGroup.getChildren().add(AccountType);
+      // accountSettingsGroup.getChildren().add(AccountType);
+      String b = "Privileges: " + db.getCurrentUser().getType().toString();
+      AccountUsername.setText(b);
+      accountSettingsGroup.getChildren().add(AccountUsername);
     } else {
       String a = "user: guest";
       AccountType.setText(a);
@@ -172,6 +175,7 @@ public class SideBarController extends MasterController implements Initializable
       makeInvisible(groupCovid);
       makeInvisible(groupBack);
       makeInvisible(groupHome);
+      makeInvisible(groupAccountSettings);
     } else if (type.equals("Login Map")) {
       makeInvisible(groupLogOut);
       makeInvisible(groupCovid);
@@ -183,6 +187,7 @@ public class SideBarController extends MasterController implements Initializable
       makeInvisible(groupCovid);
       makeInvisible(groupBack);
       makeInvisible(groupHome);
+      makeInvisible(groupAccountSettings);
     }
   }
 
