@@ -3,18 +3,14 @@ package edu.wpi.TeamN.views;
 import com.google.inject.Inject;
 import com.jfoenix.controls.JFXColorPicker;
 import com.jfoenix.controls.JFXTextField;
-import edu.wpi.TeamN.map.*;
+import edu.wpi.TeamN.map.AdminMap;
+import edu.wpi.TeamN.map.MapDrawer;
 import edu.wpi.TeamN.services.algo.Edge;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.algo.PathFinder;
 import edu.wpi.TeamN.services.database.DatabaseService;
 import edu.wpi.TeamN.services.database.users.UserPrefs;
 import edu.wpi.TeamN.state.HomeState;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,6 +26,12 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Shape;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.ResourceBundle;
 
 public abstract class MapController extends MasterController {
 
@@ -175,7 +177,6 @@ public abstract class MapController extends MasterController {
     pathSize.setText(String.valueOf(userPrefs.getEdgeWidth()));
     mapImageView.setOnScroll(event -> mapDrawer.captureMouseScroll(event));
     mapImageView.setOnMouseDragged(event -> mapDrawer.captureMouseDrag(event));
-    //    log.debug(state.toString());
   }
 
   @FXML
