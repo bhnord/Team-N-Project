@@ -6,7 +6,6 @@
     -fx-font-family: 'Roboto Light';
 }
 
-
 .jfx-label {
     -fx-font-family: 'Roboto Light';
 }
@@ -17,5 +16,9 @@
 
 .jfx-button{
     -fx-font-family: 'Roboto Light';
+    -fx-font-size: 15;
+}
 
+.jfx-combo-box{
+    -fx-font-family: 'Roboto Light';
 }

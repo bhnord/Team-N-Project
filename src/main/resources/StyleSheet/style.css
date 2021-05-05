@@ -1,3 +1,51 @@
+.jfx-button{
+    -fx-font-family: 'Roboto Black';
+    -fx-font-size: 26;
+    -fx-background-size: cover;
+} #ServiceRequests{
+      -fx-background-image: url('/images/ButtonSR.png');
+      -fx-font-size: 26;
+      -fx-background-radius: 25;
+
+  }  #CurrentRequests{
+           -fx-background-image: url('/images/ButtonCR.png');
+           -fx-font-size: 26;
+           -fx-background-radius: 25;
+
+       }  #EmployeeEditor{
+                     -fx-background-image: url('/images/ButtonEE.png');
+                     -fx-font-size: 26;
+                     -fx-background-radius: 25;
+                 } #mapEditor{
+                       -fx-background-image: url('/images/ButtonME.png');
+                       -fx-font-size: 26;
+                       -fx-background-radius: 25;
+                   } #mapPathfinder{
+                         -fx-background-image: url('/images/ButtonMP.png');
+                         -fx-font-size: 26;
+                         -fx-background-radius: 25;
+                     }#FindUs{
+                          -fx-background-image: url('/images/ButtonHD.png');
+                          -fx-font-size: 26;
+                          -fx-background-radius: 25;
+                      }
+
+.jfx-tab-pane .headers-region {
+    -fx-background-color: #1b75bc;
+}
+.jfx-tab-pane .tab-header-background {
+    -fx-background-color: #1b75bc;
+}
+.jfx-tab-pane .tab-selected-line {
+    -fx-stroke: #75bc1b;
+    -fx-stroke-width: 3pt;
+}
+
+.list-cell:selected {
+    -fx-background-color: #4b5960;
+    -fx-border-color:#ff4d4d;
+}
+
 .list-cell:filled:selected:focused, .list-cell:filled:selected {
     -fx-background-color: linear-gradient(#748cdc 0%, #748cdc 25%, #748cdc 75%, #748cdc 100%);
     -fx-text-fill: white;
@@ -12,7 +60,6 @@
     -fx-text-fill: white;
 }
 
-
 .jfx-tab-pane .headers-region {
     -fx-background-color: #363d54;
 }
@@ -24,7 +71,7 @@
     -jfx-rippler-fill: WHITE;
 }
 .jfx-tab-pane .tab-selected-line {
-    -fx-background-color: WHITE;
+    -fx-background-color: #7e98ef;
     -fx-pref-height: 3;
 }
 
@@ -63,5 +110,41 @@
     -fx-background-insets: 0;
     -fx-cell-vertical-margin: 10.0;
     -fx-vertical-gap: 10;
+    -fx-background-color: derive(#748cdc, 80%);
+    -fx-border-color: derive(#363d54, 40%);
+    -fx-border-width: 3;
     /*-fx-pref-width: 150;*/
+}
+
+/*Below for Scroll bar of the LISTVIEW*/
+/*documentary for the scroll-bar: https://blog.ngopal.com.np/2012/07/11/customize-scrollbar-via-css/    */
+
+.jfx-list-view .scroll-bar:vertical .thumb,
+.jfx-list-view .scroll-bar:horizontal .thumb,
+.web-view .scroll-bar:vertical .thumb,
+.web-view .scroll-bar:horizontal .thumb{
+    -fx-background-color: derive(#363d54,30%);
+}
+
+.jfx-list-view .scroll-bar:vertical .track,
+.jfx-list-view .scroll-bar:horizontal .track,
+.web-view .scroll-bar:vertical .track,
+.web-view .scroll-bar:horizontal .track{
+    -fx-background-color: derive(#748cdc,80%);
+}
+
+.jfx-list-view .increment-button ,.jfx-list-view .decrement-button,
+.web-view .increment-button ,.web-view .decrement-button{
+    -fx-background-color: derive(#748cdc, 70%);
+}
+
+.jfx-list-view .scroll-bar:horizontal:hover .thumb ,
+.jfx-list-view .scroll-bar:horizontal:pressed .thumb ,
+.jfx-list-view .scroll-bar:vertical:hover .thumb,
+.jfx-list-view .scroll-bar:vertical:pressed .thumb,
+.web-view .scroll-bar:horizontal:hover .thumb ,
+.web-view .scroll-bar:horizontal:pressed .thumb ,
+.web-view .scroll-bar:vertical:hover .thumb,
+.web-view .scroll-bar:vertical:pressed .thumb {
+    -fx-background-color: derive(#363d54, 10%);
 }

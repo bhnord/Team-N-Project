@@ -15,6 +15,5 @@ public enum UserType {
     public String toString() {
       return "Patient";
     }
-  },
-  GUEST;
+  }
 }

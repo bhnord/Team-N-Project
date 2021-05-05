@@ -1,102 +1,115 @@
 package edu.wpi.TeamN.views;
 
 import com.google.inject.Inject;
-import com.jfoenix.controls.JFXColorPicker;
-import com.jfoenix.controls.JFXListView;
-import com.jfoenix.controls.JFXTextField;
-import edu.wpi.TeamN.map.IActionHandling;
+import com.jfoenix.controls.*;
+import edu.wpi.TeamN.map.AdminMap;
+import edu.wpi.TeamN.map.DirectionHandler;
 import edu.wpi.TeamN.map.MapDrawer;
-import edu.wpi.TeamN.map.PathFinderMap;
-import edu.wpi.TeamN.services.algo.Edge;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.algo.PathFinder;
-import edu.wpi.TeamN.services.database.DatabaseService;
-import edu.wpi.TeamN.state.HomeState;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.animation.TranslateTransition;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.Group;
-import javafx.scene.Parent;
-import javafx.scene.control.Button;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
-import javafx.scene.shape.Shape;
+import javafx.scene.shape.Polygon;
+import javafx.util.Duration;
 
-public class PathFinderController extends MasterController
-    implements Initializable, IMapController {
-  @Inject FXMLLoader loader;
-  @Inject HomeState state;
-  @Inject DatabaseService db;
+public class PathFinderController extends MapController implements Initializable {
+  ArrayList<String> path = new ArrayList<>();
+  ArrayList<Node.Link> nodePath = new ArrayList<>();
+  DirectionHandler directionHandler;
+  private Scene appPrimaryScene;
+  private ArrayList<javafx.scene.Node> extras;
 
-  private MapController mapController;
-  private PathFinderMap pathFinderMap;
-  private MapDrawer mapDrawer;
-  private IActionHandling actionHandling;
-  ArrayList<String> path = new ArrayList<String>();
-  ArrayList<Node.Link> nodePath = new ArrayList<Node.Link>();
+  public ArrayList<Node.Link> getNodePath() {
+    return nodePath;
+  }
 
-  @FXML private AnchorPane mapAnchor;
-  @FXML private ImageView mapImageView;
-  @FXML private JFXColorPicker nodeColor;
-  @FXML private JFXColorPicker EXIT;
-  @FXML private JFXColorPicker ELEV;
-  @FXML private JFXColorPicker STAI;
-  @FXML private JFXColorPicker pathColor;
-  @FXML private JFXColorPicker selectedNodeColor;
-  @FXML private JFXTextField nodeSize;
-  @FXML private JFXTextField pathSize;
-  @FXML private JFXListView<Label> texutualDescription;
+  @FXML private JFXListView<HBox> texutualDescription;
+  @FXML private JFXListView<HBox> stops;
+  @FXML private JFXComboBox<Label> locationDropdown;
 
-  public final double downScale = 0.25;
-  public final double upScale = 4;
+  @FXML private Group ControlsGroup;
+  @FXML private JFXButton buttonUp, buttonDown;
+
+  @Inject
+  public void setAppPrimaryScene(Scene appPrimaryScene) {
+    this.appPrimaryScene = appPrimaryScene;
+  }
+
+  @Inject
+  public void setLoader(FXMLLoader loader) {
+    this.loader = loader;
+  }
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    nodeColor.setValue(Color.BLUE);
-    EXIT.setValue(Color.RED);
-    ELEV.setValue(Color.PINK);
-    STAI.setValue(Color.ORANGE);
-    pathColor.setValue(Color.BLACK);
-    selectedNodeColor.setValue(Color.GREEN);
-    nodeSize.setText("4");
-    pathSize.setText("3");
-    mapController = new MapController();
-    pathFinderMap = new PathFinderMap(this.db);
-    mapDrawer = new MapDrawer(this);
+    super.init(appPrimaryScene);
+    extras = new ArrayList<>();
 
-    //    texutualDescription = new JFXListView<>();
+    adminMap = new AdminMap(db);
+    mapDrawer = new MapDrawer(this);
+    directionHandler = new DirectionHandler(this, stops, texutualDescription, locationDropdown);
+    mapImageView.setCursor(Cursor.CROSSHAIR);
+    this.Load();
+    mapDrawer.setUpZoom(mapImageView, mapAnchor);
+
+    texutualDescription = new JFXListView<>();
     texutualDescription.setOnMouseClicked(
         event -> {
-          Label selected = texutualDescription.getSelectionModel().getSelectedItem();
+          HBox selected = texutualDescription.getSelectionModel().getSelectedItem();
           if (event.getButton() == MouseButton.PRIMARY && selected != null) {
             ObservableList<Integer> seletedI =
                 texutualDescription.getSelectionModel().getSelectedIndices();
-            mapDrawer.colorPath(pathColor.getValue(), nodePath);
+            mapDrawer.colorPath(super.getPathColor().getValue(), nodePath);
             Node.Link link = nodePath.get(nodePath.size() - seletedI.get(0) - 1);
             mapDrawer.setMap(link._other.get_floor());
             mapFloor();
             link._shape.setStroke(Color.RED);
           }
         });
-    load();
-    mapFloor();
+    for (Node n : getNodeSet().values()) {
+      n.get_shape().setVisible(false);
+      for (Node.Link l : n.get_neighbors()) {
+        l._shape.setVisible(false);
+      }
+    }
+    mapImageView.setOnMouseClicked(this::handleClick);
+    mapImageView.setOnMouseDragged(event -> mapDrawer.captureMouseDrag(event));
   }
 
-  private void updatePath() {
+  public void handleClick(MouseEvent event) {
+    Node n = adminMap.get(event.getX(), event.getY(), mapDrawer.getCurrentMap());
+    System.out.println(n.get_nodeID() + ":");
+    if (event.getButton() == MouseButton.PRIMARY
+        && !path.contains(n.get_nodeID())
+        && !event.isShiftDown()) {
+      for (Node.Link l : n.get_neighbors()) {
+        System.out.println("\t" + l._other.get_nodeID());
+      }
+      updatePath();
+      nodeSelected(selectedNodeColor);
+      directionHandler.addStop(n);
+      n.get_shape().setVisible(true);
+    } else if (event.getButton() == MouseButton.SECONDARY) path.remove(n.get_nodeID());
+  }
+
+  public void updatePath() {
     StringBuilder str = new StringBuilder();
     for (String node : path) {
       if (str.toString().equals("")) str.append(node);
@@ -105,272 +118,123 @@ public class PathFinderController extends MasterController
   }
 
   @FXML
-  private void exit(ActionEvent actionEvent) throws IOException {
-    super.cancel(actionEvent);
-  }
-
-  public void advanceViews(ActionEvent actionEvent) throws IOException {
-    String file = ((Button) actionEvent.getSource()).getId() + ".fxml";
-    Parent root = loader.load(getClass().getResourceAsStream(file));
-    appPrimaryScene.setRoot(root);
-  }
-
-  private void load() {
-    pathFinderMap
-        .getEdgeSet()
-        .forEach(
-            (key, value) -> {
-              placeLink(
-                  key,
-                  pathFinderMap.getNodeSet().get(value.getStartNode()),
-                  pathFinderMap.getNodeSet().get(value.getEndNode()));
-            });
-    pathFinderMap
-        .getNodeSet()
-        .forEach(
-            (key, value) -> {
-              placeNode(key, value.get_x() * downScale, value.get_y() * downScale);
-            });
-  }
-
-  private void placeNode(String id, double x, double y) {
-    JFXColorPicker type = getType(id);
-    Group root = mapDrawer.drawNode(id, x, y, type.getValue());
-    root.setId(id);
-    root.setOnMouseClicked(
-        new EventHandler<MouseEvent>() {
-          @Override
-          public void handle(MouseEvent event) {
-            if (event.getButton() == MouseButton.PRIMARY && !path.contains(id)) path.add(id);
-            else if (event.getButton() == MouseButton.SECONDARY) path.remove(id);
-            updatePath();
-            selectedNodeColor(new ActionEvent());
-          }
-        });
-    mapAnchor.getChildren().add(root);
-    root.setCursor(Cursor.CROSSHAIR);
-    root.setVisible(false);
-  }
-
-  private JFXColorPicker getType(String id) {
-    Node node = pathFinderMap.getNodeSet().get(id);
-    if (node.get_nodeType().contains("ELEV")) {
-      return ELEV;
-    } else if (node.get_nodeType().contains("STAI")) {
-      return STAI;
-    } else if (node.get_nodeType().contains("EXIT")) {
-      return EXIT;
-    } else {
-      return nodeColor;
-    }
-  }
-
-  private void placeLink(String id, Node node1, Node node2) {
-    Group root = mapDrawer.drawLine(id, node1, node2);
-    root.setId(id);
-    mapAnchor.getChildren().add(root);
-    pathFinderMap.makeEdge(id, node1, node2, (Line) root.getChildren().get(0));
-    root.setCursor(Cursor.CROSSHAIR);
-    root.setVisible(false);
-  }
-
-  private double getUpScale() {
-    return upScale;
-  }
-
-  public void PathFind(ActionEvent actionEvent) {
-    mapDrawer.resetColors(pathFinderMap.getNodeSet());
-    for (int i = 0; path.size() - 1 > i; i++) {
-      ArrayList<Node.Link> pathLink = pathFinderMap.pathfind(path.get(i), path.get(i + 1));
-      // newColorPath(pathColor.getValue(), pathLink);
-    }
-  }
-
-  private void reset() {
-    for (int i = 1; mapAnchor.getChildren().size() - 1 > i; i++) {
-      if (path.contains(mapAnchor.getChildren().get(i).getId())) {
-        Circle c = (Circle) ((Group) mapAnchor.getChildren().get(i)).getChildren().get(0);
-        c.setRadius(Double.parseDouble(nodeSize.getText()));
-      }
-    }
-    for (int i = 1; mapAnchor.getChildren().size() - 1 > i; i++) {
-      if (pathFinderMap.getEdgeSet().containsKey(mapAnchor.getChildren().get(i).getId())) {
-        mapAnchor.getChildren().get(i).setVisible(false);
-      }
-      newColorNode(EXIT);
-      newColorNode(ELEV);
-      newColorNode(STAI);
-      newColorNodeaf(new ActionEvent());
-      //      texutualDescription = new JFXListView<Label>();
-      //      texutualDescription.setOnMouseClicked(
-      //          event -> {
-      //            Label selected = texutualDescription.getSelectionModel().getSelectedItem();
-      //            if (event.getButton() == MouseButton.PRIMARY && selected != null) {
-      //              ObservableList<Integer> seletedI =
-      //                  texutualDescription.getSelectionModel().getSelectedIndices();
-      //              mapDrawing.colorPath(pathColor.getValue(), nodePath);
-      //              Node.Link link = nodePath.get(nodePath.size() - seletedI.get(0) - 1);
-      //              mapDrawing.setMap(link._other.get_floor());
-      //              mapFloor();
-      //              link._shape.setStroke(Color.RED);
-      //            }
-      //          });
-    }
-    nodePath.clear();
-    texutualDescription.getItems().clear();
+  private void dragMouse(MouseEvent mouseEvent) {
+    //    this.mapDrawer.captureMouseDrag(mouseEvent);
   }
 
   public void newColorPath(ActionEvent actionEvent) {
+    updateUserColors(pathColor.getId(), pathColor.getValue().toString());
+    directionHandler.clean();
+    nodePath.clear();
     for (int i = 0; path.size() - 1 > i; i++) {
-      ArrayList<Node.Link> pathLink = pathFinderMap.pathfind(path.get(i), path.get(i + 1));
-      nodePath.addAll(pathLink);
+      ArrayList<Node.Link> pathLink =
+          this.pathfind(getNodeSet().get(path.get(i)), getNodeSet().get(path.get(i + 1)));
+      pathLink.addAll(nodePath);
+      nodePath = pathLink;
       mapDrawer.colorPath(pathColor.getValue(), pathLink);
-      PathFinder p = new PathFinder();
+      PathFinder p = PathFinder.getPathFinder();
       ArrayList<String> s = p.getDescription(pathLink);
       for (String l : s) {
-        texutualDescription.getItems().add(new Label(l));
+        directionHandler.addDirection(l);
       }
     }
+    createExtras();
   }
 
-  public void newColorNode(ActionEvent actionEvent) {
-    JFXColorPicker a = ((JFXColorPicker) actionEvent.getSource());
-    for (int i = 1; mapAnchor.getChildren().size() - 1 > i; i++) {
-      if (pathFinderMap.getNodeSet().containsKey(mapAnchor.getChildren().get(i).getId())) {
-        if (pathFinderMap
-            .getNodeSet()
-            .get(mapAnchor.getChildren().get(i).getId())
-            .get_nodeType()
-            .equals(a.getId()))
-          ((Shape) ((Group) mapAnchor.getChildren().get(i)).getChildren().get(0))
-              .setFill(a.getValue());
-      }
-    }
-  }
-
-  public void newColorNode(JFXColorPicker a) {
-    for (int i = 1; mapAnchor.getChildren().size() - 1 > i; i++) {
-      if (pathFinderMap.getNodeSet().containsKey(mapAnchor.getChildren().get(i).getId())) {
-        if (pathFinderMap
-            .getNodeSet()
-            .get(mapAnchor.getChildren().get(i).getId())
-            .get_nodeType()
-            .equals(a.getId()))
-          ((Shape) ((Group) mapAnchor.getChildren().get(i)).getChildren().get(0))
-              .setFill(a.getValue());
-      }
-    }
-  }
-
-  public void setMap(ActionEvent actionEvent) {
-    mapDrawer.setMap(((Button) actionEvent.getSource()).getId());
-    this.mapFloor();
-  }
-
-  private void mapFloor() {
-    for (int i = 1; mapAnchor.getChildren().size() > i; i++) {
-      if (pathFinderMap.getNodeSet().containsKey(mapAnchor.getChildren().get(i).getId())) {
-        mapAnchor
-            .getChildren()
-            .get(i)
-            .setVisible(
-                pathFinderMap
-                    .getNodeSet()
-                    .get(mapAnchor.getChildren().get(i).getId())
-                    .get_floor()
-                    .equals(mapDrawer.getCurrentMap()));
-      }
+  public void mapFloor() {
+    createExtras();
+    for (String s : path) {
+      Node n = getNodeSet().get(s);
+      n.get_shape().setVisible(n.get_floor().equals(mapDrawer.getCurrentMap()));
     }
     for (Node.Link link : nodePath) {
       correctFloor(link);
     }
   }
 
-  public void correctFloor(Node.Link link) {
-    if (pathFinderMap.getEdgeSet().containsKey(link._shape.getParent().getId())) {
-      Edge a = pathFinderMap.getEdgeSet().get(link._shape.getParent().getId());
-      if (pathFinderMap.getNodeSet().containsKey(a.getStartNode())
-          || pathFinderMap.getNodeSet().containsKey(a.getEndNode())) {
-        link._shape
-            .getParent()
-            .setVisible(
-                pathFinderMap
-                    .getNodeSet()
-                    .get(a.getStartNode())
-                    .get_floor()
-                    .equals(mapDrawer.getCurrentMap()));
-      }
+  private void clearExtras() {
+    for (javafx.scene.Node n : extras) {
+      mapAnchor.getChildren().remove(n);
+    }
+    extras.clear();
+  }
+
+  private Polygon createArrow(Node.Link l) {
+    double size = 20;
+    double angle = .78;
+    Polygon p = new Polygon();
+    double dx = l._other.get_x() - l._this.get_x();
+    double dy = l._other.get_y() - l._this.get_y();
+    double mag = Math.sqrt(dx * dx + dy * dy);
+    dx /= mag;
+    dy /= mag;
+    dx *= size;
+    dy *= size;
+
+    p.getPoints().add((l._this.get_x() + dx / 2) * getDownScale());
+    p.getPoints().add((l._this.get_y() + dy / 2) * getDownScale());
+    double x1 = Math.cos(angle) * dx - Math.sin(angle) * dy;
+    double y1 = Math.sin(angle) * dx + Math.cos(angle) * dy;
+
+    double x2 = Math.cos(-angle) * dx - Math.sin(-angle) * dy;
+    double y2 = Math.sin(-angle) * dx + Math.cos(-angle) * dy;
+
+    p.getPoints().add((l._this.get_x() - x1 / 2.1) * getDownScale());
+    p.getPoints().add((l._this.get_y() - y1 / 2.1) * getDownScale());
+    p.getPoints().add((l._this.get_x() - x2 / 2.1) * getDownScale());
+    p.getPoints().add((l._this.get_y() - y2 / 2.1) * getDownScale());
+    p.setFill(Color.RED);
+    return p;
+  }
+
+  private void createExtras() {
+    clearExtras();
+    for (Node.Link l : nodePath) {
+      if (l._this.get_floor().equals(mapDrawer.getCurrentMap()))
+        if (l._this.get_floor().equals(l._other.get_floor())) {
+          Polygon p = createArrow(l);
+          mapAnchor.getChildren().add(p);
+          extras.add(p);
+        } else {
+          Label label = new Label(l._other.get_floor());
+          label.setTranslateX(l._other.get_x() * getDownScale() + 10);
+          label.setTranslateY(l._other.get_y() * getDownScale() - 10);
+          mapAnchor.getChildren().add(label);
+          extras.add(label);
+        }
     }
   }
 
-  public void logOut(ActionEvent actionEvent) throws IOException {
-    super.logOut(loader, appPrimaryScene);
-  }
-
-  @Override
-  public double getDownScale() {
-    return downScale;
-  }
-
-  @Override
-  public ImageView getMapImageView() {
-    return mapImageView;
-  }
-
-  @Override
-  public double getNodeSize() {
-    return Double.parseDouble(nodeSize.getText());
-  }
-
-  @Override
-  public double getPathSize() {
-    return Double.parseDouble(pathSize.getText());
-  }
-
-  public void newColorNodeaf(ActionEvent actionEvent) {
-    JFXColorPicker a = nodeColor;
-    for (int i = 1; mapAnchor.getChildren().size() - 1 > i; i++) {
-      if (pathFinderMap.getNodeSet().containsKey(mapAnchor.getChildren().get(i).getId())) {
-        if (!pathFinderMap
-                .getNodeSet()
-                .get(mapAnchor.getChildren().get(i).getId())
-                .get_nodeType()
-                .contains("ELEV")
-            && !pathFinderMap
-                .getNodeSet()
-                .get(mapAnchor.getChildren().get(i).getId())
-                .get_nodeType()
-                .contains("EXIT")
-            && !pathFinderMap
-                .getNodeSet()
-                .get(mapAnchor.getChildren().get(i).getId())
-                .get_nodeType()
-                .contains("STAI"))
-          ((Shape) ((Group) mapAnchor.getChildren().get(i)).getChildren().get(0))
-              .setFill(a.getValue());
+  public void nodeSelected(JFXColorPicker a) {
+    for (Node n : getNodeSet().values()) {
+      if (path.contains(n.get_nodeID())) {
+        n.get_shape().setFill(a.getValue());
+        directionHandler.addStop(n);
       }
     }
-  }
-
-  public void selectedNodeColor(ActionEvent actionEvent) {
-    for (int i = 1; mapAnchor.getChildren().size() - 1 > i; i++) {
-      if (pathFinderMap.getNodeSet().containsKey(mapAnchor.getChildren().get(i).getId())
-          && path.contains(mapAnchor.getChildren().get(i).getId())) {
-        Circle l = ((Circle) ((Group) mapAnchor.getChildren().get(i)).getChildren().get(0));
-        l.setFill(selectedNodeColor.getValue());
-        l.setRadius(Double.parseDouble(nodeSize.getText()) + 1);
-      }
-    }
-  }
-
-  @FXML
-  public void advanceHome() throws IOException {
-    super.advanceHome(loader, appPrimaryScene);
   }
 
   public void clearSelection(ActionEvent actionEvent) {
-    reset();
-    path = new ArrayList<String>();
+    clearExtras();
+    //    reset();
+    for (String s : path) {
+      Node n = getNodeSet().get(s);
+      n.get_shape().setVisible(false);
+    }
+    for (Node.Link l : nodePath) {
+      l._this.get_shape().setFill(Color.web(getUserPrefs().getBasicNodeColor()));
+      l._other.get_shape().setFill(Color.web(getUserPrefs().getBasicNodeColor()));
+      l._shape.setStroke(Color.BLACK);
+      l._shape.setVisible(false);
+    }
+    path.clear();
+    directionHandler.clean();
+    directionHandler.cleanAll();
+    nodePath.clear();
+  }
+
+  public ArrayList<String> getPath() {
+    return path;
   }
 
   public void newSize(ActionEvent actionEvent) {
@@ -379,8 +243,9 @@ public class PathFinderController extends MasterController
     if (((JFXTextField) actionEvent.getSource()).getId().equals("nodeSize")
         && nodeValue <= 5
         && nodeValue >= 3) {
+      userPrefs.setNodeSize(nodeValue);
       for (int i = 1; mapAnchor.getChildren().size() - 1 > i; i++) {
-        if (pathFinderMap.getNodeSet().containsKey(mapAnchor.getChildren().get(i).getId())) {
+        if (this.getNodeSet().containsKey(mapAnchor.getChildren().get(i).getId())) {
           ((Circle) ((Group) mapAnchor.getChildren().get(i)).getChildren().get(0))
               .setRadius(nodeValue);
         }
@@ -388,12 +253,49 @@ public class PathFinderController extends MasterController
     } else if (((JFXTextField) actionEvent.getSource()).getId().equals("pathSize")
         && nodeValue <= 5
         && nodeValue >= 3) {
+      userPrefs.setEdgeWidth(edgeValue);
       for (int i = 1; mapAnchor.getChildren().size() - 1 > i; i++) {
-        if (pathFinderMap.getEdgeSet().containsKey(mapAnchor.getChildren().get(i).getId())) {
+        if (this.getEdgeSet().containsKey(mapAnchor.getChildren().get(i).getId())) {
           ((Line) ((Group) mapAnchor.getChildren().get(i)).getChildren().get(0))
               .setStrokeWidth(edgeValue);
         }
       }
     }
+    db.updateUserPrefs(Integer.parseInt(String.valueOf(db.getCurrentUser().getId())), userPrefs);
+  }
+
+  public void mousePress(MouseEvent mouseEvent) {
+    super.mouseClick(mouseEvent);
+  }
+
+  public void addStop(ActionEvent actionEvent) {
+    directionHandler.addStopClick(locationDropdown.getEditor().getText());
+  }
+
+  @FXML
+  public void groupUp() {
+    // accountSettingsGroup.setTranslateX(100);
+    TranslateTransition tt = new TranslateTransition();
+    tt.setNode(ControlsGroup);
+    tt.setDuration(new Duration(1000));
+    // tt.setFromX(0);
+    tt.setToY(-250);
+    tt.setAutoReverse(true);
+    buttonDown.setVisible(true);
+    buttonUp.setVisible(false);
+    tt.play();
+  }
+
+  @FXML
+  public void groupDown() {
+    TranslateTransition tt = new TranslateTransition();
+    tt.setNode(ControlsGroup);
+    tt.setDuration(new Duration(1000));
+    // tt.setFromX(100);
+    tt.setToY(0);
+    tt.setAutoReverse(true);
+    buttonDown.setVisible(false);
+    buttonUp.setVisible(true);
+    tt.play();
   }
 }

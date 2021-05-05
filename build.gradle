@@ -19,6 +19,8 @@ repositories {
 }
 
 dependencies {
+
+//    implementation group: 'com.dlsc', name: 'GMapsFX', version: '8.0.0'
     implementation(
             'com.jfoenix:jfoenix:8.0.10',
             // You may comment out the database dependency you do not use
@@ -29,7 +31,9 @@ dependencies {
             'org.slf4j:slf4j-simple:1.7.30',
             'com.google.maps:google-maps-services:0.18.0',
             'com.google.code.gson:gson:2.8.6',
-            'org.slf4j:slf4j-simple:1.7.25'
+            'org.slf4j:slf4j-simple:1.7.25',
+            'org.kordamp.ikonli:ikonli-javafx:2.4.0',
+            'org.kordamp.ikonli:ikonli-material-pack:2.4.0',
 
     )
     testImplementation(
@@ -59,6 +63,9 @@ jar {
     }
     from {
         configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    from('src/main/resources/') {
+        include 'META-INF/services/org.kordamp.ikonli.IkonHandler'
     }
 }
 

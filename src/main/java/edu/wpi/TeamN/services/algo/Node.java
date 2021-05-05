@@ -2,14 +2,14 @@ package edu.wpi.TeamN.services.algo;
 
 import java.util.ArrayList;
 import java.util.List;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
-import javafx.scene.shape.Shape;
 import lombok.NonNull;
 
 public class Node implements Comparable<Node> {
 
   public static class Link {
-    String _id;
+    public String _id;
     public Node _other;
     public Node _this;
     double _distance;
@@ -82,15 +82,15 @@ public class Node implements Comparable<Node> {
     this._y = _y;
   }
 
-  public Shape get_shape() {
+  public Circle get_shape() {
     return _shape;
   }
 
-  public void set_shape(Shape _shape) {
+  public void set_shape(Circle _shape) {
     this._shape = _shape;
   }
 
-  private Shape _shape;
+  private Circle _shape;
   private double _x, _y;
 
   public String get_nodeID() {
@@ -158,7 +158,7 @@ public class Node implements Comparable<Node> {
     return Math.sqrt(
             (other._x - this._x) * (other._x - this._x)
                 + (other._y - this._y) * (other._y - this._y))
-        + (!this._floor.equals(other.get_floor()) ? 500 : 0);
+        + (!this._floor.equals(other.get_floor()) ? 3500 : 0);
   }
 
   public Node(double x, double y, String nodeID) {
@@ -200,6 +200,15 @@ public class Node implements Comparable<Node> {
 
   public void addNeighbor(String id, Node other, double distance, Line shape, boolean isStair) {
     this._neighbors.add(new Link(id, this, other, distance, shape, this._nodeType.equals("STAI")));
+  }
+
+  public void removeNeightbor(Node other) {
+    for (Link l : _neighbors) {
+      if (l._other == other) {
+        _neighbors.remove(l);
+        break;
+      }
+    }
   }
 
   @Override

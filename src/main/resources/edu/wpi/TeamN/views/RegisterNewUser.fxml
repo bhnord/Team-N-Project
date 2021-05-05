@@ -16,7 +16,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.TeamN.views.RegisterNewUser">
+<GridPane fx:id="rootGridPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.TeamN.views.RegisterNewUser">
 
     <columnConstraints>
 
@@ -57,9 +57,16 @@
                         <Font size="24.0" />
                     </font>
                 </Label>
-                <StackPane fx:id="myStackPane" layoutX="700.0" layoutY="359.0" prefHeight="91.0" prefWidth="145.0" />
-                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="47.0" layoutX="834.0" layoutY="661.0" stroke="TRANSPARENT" strokeType="INSIDE" width="130.0" />
-                <JFXButton fx:id="helpButton" layoutX="834.0" layoutY="661.0" onAction="#help" prefHeight="47.0" prefWidth="130.0" ripplerFill="WHITE" stylesheets="@/Fonts/Roboto-Light.css" text="Help" textFill="WHITE">
+                <Rectangle arcHeight="50.0" arcWidth="50.0" fill="WHITE" height="517.0" layoutX="124.0" layoutY="203.0" stroke="TRANSPARENT" strokeType="INSIDE" width="476.0" />
+                <Rectangle arcHeight="8.0" arcWidth="8.0" fill="#748cdc" height="40.0" layoutX="483.0" layoutY="641.0" stroke="TRANSPARENT" strokeType="INSIDE" width="87.0">
+                    <effect>
+                        <DropShadow color="#c6b8b8" offsetY="5.0" />
+                    </effect></Rectangle>
+                <JFXButton fx:id="submit" layoutX="479.0" layoutY="636.0" onAction="#Submit" prefHeight="50.0" prefWidth="95.0" ripplerFill="WHITE" stylesheets="@/Fonts/Roboto-Light.css" text="Submit" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font></JFXButton>
+                <JFXButton fx:id="helpButton" layoutX="439.0" layoutY="645.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#help" prefHeight="32.0" prefWidth="32.0" ripplerFill="WHITE" stylesheets="/StyleSheet/ServiceRequests.css" text="Help" textFill="WHITE">
                     <font>
                         <Font name="Serif Regular" size="22.0" />
                     </font>
@@ -71,13 +78,6 @@
                         </Tooltip>
                     </tooltip>
                 </JFXButton>
-                <Rectangle arcHeight="50.0" arcWidth="50.0" fill="WHITE" height="517.0" layoutX="124.0" layoutY="203.0" stroke="TRANSPARENT" strokeType="INSIDE" width="476.0" />
-                <Rectangle arcHeight="8.0" arcWidth="8.0" fill="#748cdc" height="40.0" layoutX="498.0" layoutY="641.0" stroke="TRANSPARENT" strokeType="INSIDE" width="74.0">
-                    <effect>
-                        <DropShadow color="#c6b8b8" offsetY="5.0" />
-                    </effect></Rectangle>
-                <JFXButton fx:id="submit" layoutX="488.0" layoutY="636.0" onAction="#Submit" prefHeight="50.0" prefWidth="95.0" ripplerFill="WHITE" stylesheets="@/Fonts/Roboto-Light.css" text="Submit" textFill="WHITE" />
-                <StackPane fx:id="myStackPane2" layoutX="346.0" layoutY="526.0" prefHeight="101.0" prefWidth="531.0" />
                 <Label layoutX="166.0" layoutY="309.0" text="*" />
                 <Label layoutX="166.0" layoutY="374.0" text="*" />
                 <Label layoutX="170.0" layoutY="631.0" text="*Required Fields" />
@@ -102,58 +102,9 @@
                   <Font size="16.0" />
                </font>
             </JFXTextField>
+                <StackPane fx:id="myStackPane" layoutX="700.0" layoutY="359.0" prefHeight="91.0" prefWidth="145.0" />
             </children>
         </AnchorPane>
-      <GridPane GridPane.halignment="CENTER">
-         <columnConstraints>
-            <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
-            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
-            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="NEVER" />
-         </rowConstraints>
-         <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#363d54" height="1400.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" GridPane.rowSpan="2147483647" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="65.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" GridPane.rowIndex="1" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="65.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" GridPane.rowIndex="2" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.0" rotate="-45.0" stroke="TRANSPARENT" strokeType="INSIDE" translateX="28.0" width="10.0" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.0" rotate="45.0" stroke="TRANSPARENT" strokeType="INSIDE" translateX="28.0" width="10.0" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-            <JFXButton fx:id="exit11" onAction="#exit" prefHeight="64.0" prefWidth="66.0" text="  " textFill="WHITE" GridPane.rowIndex="1">
-               <font>
-                  <Font name="System Bold" size="9.0" />
-               </font>
-               <tooltip>
-                  <Tooltip fx:id="ttExit" text="Exit App">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Tooltip>
-               </tooltip>
-            </JFXButton>
-            <ImageView fitHeight="61.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" translateX="7.0" GridPane.valignment="CENTER">
-               <image>
-                  <Image url="@/images/BWHLogo.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="58.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
-               <image>
-                  <Image url="@/images/ButtonB.png" />
-               </image>
-            </ImageView>
-            <JFXButton fx:id="BackButton" onAction="#back" prefHeight="71.0" prefWidth="66.0" textFill="WHITE" GridPane.rowIndex="2">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-               <tooltip>
-                  <Tooltip fx:id="ttBackButton" text="Back to Requests">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Tooltip>
-               </tooltip>
-            </JFXButton>
-         </children>
-      </GridPane>
+      <AnchorPane fx:id="anchorPane1" prefHeight="200.0" prefWidth="200.0" GridPane.valignment="BASELINE" />
     </children>
 </GridPane>

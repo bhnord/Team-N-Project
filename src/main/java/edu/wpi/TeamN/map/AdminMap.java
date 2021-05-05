@@ -4,6 +4,7 @@ import edu.wpi.TeamN.services.algo.Edge;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.algo.PathFinder;
 import edu.wpi.TeamN.services.database.DatabaseService;
+import edu.wpi.TeamN.services.database.users.User;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javafx.scene.shape.Line;
@@ -34,6 +35,18 @@ public class AdminMap {
     return edgeSet;
   }
 
+  public void updateNode(Node node) {
+    db.updateNode(
+        node.get_nodeID(),
+        node.get_x(),
+        node.get_y(),
+        node.get_floor(),
+        node.get_building(),
+        node.get_nodeType(),
+        node.get_longName(),
+        node.get_shortName());
+  }
+
   public void addNode(Node node) {
     nodeSet.put(node.get_nodeID(), node);
     db.addNode(node);
@@ -54,23 +67,25 @@ public class AdminMap {
     edgeSet.remove(id);
   }
 
-  public Node get(double x, double y) {
+  public Node get(double x, double y, String floor) {
     x *= upScale;
     y *= upScale;
     double min = Double.MAX_VALUE;
     Node closest = null;
     for (Node c : getNodeSet().values()) {
-      double distance = (c.get_x() - x) * (c.get_x() - x) + (c.get_y() - y) * (c.get_y() - y);
-      if (distance < min) {
-        closest = c;
-        min = distance;
+      if (c.get_floor().equals(floor)) {
+        double distance = (c.get_x() - x) * (c.get_x() - x) + (c.get_y() - y) * (c.get_y() - y);
+        if (distance < min) {
+          closest = c;
+          min = distance;
+        }
       }
     }
     return closest;
   }
 
   public ArrayList<Node.Link> pathfind() {
-    PathFinder pathFinder = new PathFinder();
+    PathFinder pathFinder = PathFinder.getPathFinder();
     Node node1 = getNodeSet().get(startNodePath);
     Node node2 = getNodeSet().get(endNodePath);
 
@@ -78,11 +93,18 @@ public class AdminMap {
   }
 
   public void SetStartNode(String snp) {
-    if (getNodeSet().containsKey(snp)) startNodePath = snp;
+
+    if (getNodeSet().containsKey(snp)) {
+      if (snp.toLowerCase().contains("park")) User.setParkingSpot(snp);
+      startNodePath = snp;
+    }
   }
 
   public void SetEndNode(String enp) {
-    if (getNodeSet().containsKey(enp)) endNodePath = enp;
+    if (getNodeSet().containsKey(enp)) {
+      if (enp.toLowerCase().contains("park")) User.setParkingSpot(enp);
+      endNodePath = enp;
+    }
   }
 
   public void makeEdge(String id, Node node1, Node node2, Line simpleNode) {

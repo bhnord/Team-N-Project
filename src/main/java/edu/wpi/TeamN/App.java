@@ -23,6 +23,7 @@ public class App extends Application {
 
   private FXMLLoader loader;
   private Scene primaryScene;
+  @Inject DatabaseService db;
 
   public static Node getPrimaryStage() {
     return null;
@@ -31,7 +32,6 @@ public class App extends Application {
   @Override
   public void init() {
     log.info("Starting Up");
-    primaryScene = new Scene(new AnchorPane());
     Injector injector =
         Guice.createInjector(
             new DatabaseServiceProvider(),
@@ -45,6 +45,7 @@ public class App extends Application {
               }
             });
     DatabaseService db = injector.getInstance(DatabaseService.class);
+    primaryScene = new Scene(new AnchorPane());
     if (db.initTables()) {
       db.loadCSVtoTable("src/main/resources/MapCSV/NODES.csv", "NODES");
       db.loadCSVtoTable("src/main/resources/MapCSV/EDGES.csv", "EDGES");
@@ -71,9 +72,9 @@ public class App extends Application {
 
   @Override
   public void start(Stage primaryStage) throws IOException {
-    Parent root = loader.load(getClass().getResourceAsStream("views/loginPage.fxml"));
-    // TODO: uncomment above line and comment below line to switch between template and app
-    // Parent root = loader.load(getClass().getResourceAsStream("views/templateJFeonix.fxml"));
+
+    Parent root = loader.load(getClass().getResourceAsStream("views/HomeViewAdmin.fxml"));
+
     primaryStage
         .getIcons()
         .add(new Image(ClassLoader.getSystemResourceAsStream("images/hospital-256.png")));

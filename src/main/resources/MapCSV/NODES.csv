@@ -1,47 +1,23 @@
+node_621,2248.6740207067005,1039.2876006349227,2,45 Francis,"",Elevator K Floor 2,Elevator K2
+node_622,2228.935585625527,903.693133555559,2,45 Francis,"",Staircase Intersection 10 Level 2,Stair B1002
+node_615,1947.9532513247866,910.2382948400149,2,45 Francis,"",Hallway Connector 3 Floor 2,Hallway W0302
+node_616,2086.276512614096,905.0879606430725,2,45 Francis,"",Hallway Connector 3 Floor 2,Hallway W0302
+node_612,2098.8373137277536,1281.7853631783516,2,45 Francis,"",Staircase Intersection 9 Level 2,Stair B0902
+node_613,2143.3260300150587,1281.7853631783516,2,45 Francis,"",Staircase Intersection 9 Level 2,Stair B0902
+node_614,2180.3999602544795,1281.7853631783516,2,45 Francis,"",Staircase Intersection 9 Level 2,Stair B0902
+CSERV001L1,2490,1043,L1,45 Francis,SERV,Volunteers Floor L1,Service C001L1
+CDEPT004L1,2310,1043,L1,45 Francis,DEPT,Medical Records Film Library Floor L1,Department C004L1
+CCONF002L1,2665,1043,L1,45 Francis,CONF,Medical Records Conference Room Floor L1,Conf C002L1
+CCONF003L1,2445,1245,L1,45 Francis,CONF,Abrams Conference Room,Conf C003L1
+CHALL002L1,2445,1043,L1,45 Francis,HALL,Hallway 2 Floor L1,Hallway C002L1
+WELEV00HL1,2720.154943212439,1066.6478180886602,L1,45 Francis,ELEV,Elevator H Floor L1,Elevator HL1
+CHALL007L1,2132.7864029343045,1051.3407970545734,L1,Tower,HALL,Hallway 7 Floor L1,Hallway C007L1
 DHALL00302,4725,995,2,15 Francis,HALL,Hallway 3 Floor 2,Hallway D0302
-Shap_lowerLeft,1084,2300,L1,"","","",""
-Hall_34,2772,988,L1,"","","",""
-HallToExit,3072,980,L1,Parking,"",LobbyEntrance,lobby
-ParkingLot_00002,2016,1524,L1,"",PARK,"",""
-nPARK001L1,140,1785,L1,Parking,PARK,parkingSpace1,parking1
-nPARK002L1,280,1785,L1,Parking,PARK,parkingSpace2,parking2
-nPARK003L1,380,1785,L1,Parking,PARK,parkingSpace3,parking3
-nPARK004L1,480,1785,L1,Parking,PARK,parkingSpace4,parking4
-nPARK005L1,600,1785,L1,Parking,PARK,parkingSpace5,parking5
-nPARK006L1,140,2150,L1,Parking,PARK,parkingSpace6,parking6
-nPARK007L1,280,2150,L1,Parking,PARK,parkingSpace7,parking7
-nPARK008L1,380,2150,L1,Parking,PARK,parkingSpace8,parking8
-nPARK009L1,480,2150,L1,Parking,PARK,parkingSpace9,parking9
-nPARK010L1,600,2150,L1,Parking,PARK,parkingSpace10,parking10
-nPARK011L1,1950,1785,L1,Parking,PARK,parkingSpace11,parking11
-nPARK012L1,2070,1785,L1,Parking,PARK,parkingSpace12,parking12
-nPARK013L1,2190,1785,L1,Parking,PARK,parkingSpace13,parking13
-nPARK014L1,2300,1785,L1,Parking,PARK,parkingSpace14,parking14
-nPARK015L1,2430,1785,L1,Parking,PARK,parkingSpace15,parking15
-nPARK016L1,1950,2150,L1,Parking,PARK,parkingSpace16,parking16
-nPARK017L1,2070,2150,L1,Parking,PARK,parkingSpace17,parking17
-nPARK018L1,2190,2150,L1,Parking,PARK,parkingSpace18,parking18
-nPARK019L1,2300,2150,L1,Parking,PARK,parkingSpace19,parking19
-nPARK020L1,2430,2150,L1,Parking,PARK,parkingSpace20,parking20
-nPARK021L1,2650,1785,L1,Parking,PARK,parkingSpace21,parking21
-nPARK022L1,2760,1785,L1,Parking,PARK,parkingSpace22,parking22
-nPARK023L1,2875,1785,L1,Parking,PARK,parkingSpace23,parking23
-nPARK024L1,2600,2150,L1,Parking,PARK,parkingSpace24,parking24
-nPARK025L1,2725,2150,L1,Parking,PARK,parkingSpace25,parking25
-nEXIT026L1,3080,1209,L1,Parking,EXIT,LobbyEntrance,lobby
-nPARK028L1,400,1984,L1,Parking,PARK,parkingSpace26,parking26
-nPARK029L1,1050,1984,L1,Parking,PARK,parkingSpace27,parking27
-nPARK030L1,1080,1700,L1,Parking,PARK,parkingSpace28,parking28
-nPARK031L1,1736,1668,L1,Parking,PARK,parkingSpace29,parking29
-nPARK032L1,1800,1784,L1,Parking,PARK,parkingSpace30,parking30
-nPARK033L1,1800,1996,L1,Parking,PARK,parkingSpace31,parking31
-nPARK034L1,2172,1986,L1,Parking,PARK,parkingSpace32,parking32
-nPARK035L1,1744,1516,L1,Parking,PARK,parkingSpace33,parking33
-nPARK036L1,1756,1388,L1,Parking,PARK,parkingSpace34,parking34
+Hall_34,2771.2523529095142,1034.0364905632434,L1,"","","",""
 ACONF00102,1580,2538,2,BTM,HALL,Hall,Hall
 ACONF00103,1648,2968,3,BTM,CONF,BTM Conference Center,BTM Conference
 ADEPT00101,1401,2628,1,BTM,DEPT,Neuroscience Waiting Room,Neuro Waiting Room
-ADEPT00102,1395,2674,2,BTM,DEPT,Orthopedics and Rhemutalogy,Orthopedics and Rhemutalogy
+ADEPT00102,1392.6012732242716,2669.168817175629,2,BTM,DEPT,Orthopedics and Rhemutalogy,Orthopedics and Rhemutalogy
 ADEPT00201,1720,2847,1,BTM,DEPT,MS Waiting,MS Waiting
 ADEPT00301,986,2852,1,BTM,DEPT,CART Waiting,CART Waiting
 AELEV00S01,1534,2777,1,BTM,ELEV,Elevator S 01,Elevator S 1
@@ -66,7 +42,7 @@ AHALL00402,1528,2745,2,BTM,HALL,Hall,Hall
 AHALL00403,1650,2766,3,BTM,HALL,Hall,Hall
 AHALL004L2,1698,2687,L2,BTM,HALL,Hall,Hall
 AHALL00501,1420,2865,1,BTM,HALL,Hall,Hall
-AHALL00502,1398,2745,2,BTM,HALL,Hall,Hall
+AHALL00502,1392.6012732242716,2745,2,BTM,HALL,Hall,Hall
 AHALL00503,1650,2855,3,BTM,HALL,Hall,Hall
 AHALL00601,1678,2865,1,BTM,HALL,Hall,Hall
 AHALL00602,1683,2543,2,BTM,HALL,Hall,Hall
@@ -84,9 +60,7 @@ AREST00103,1552,2854,3,BTM,REST,Restroom BTM conference center 3rd floor,Restroo
 ARETL00101,1619,2522,1,BTM,RETL,Cafe,Cafe
 ASTAI00101,1642,2596,1,BTM,STAI,Cafe Stairs,Cafe Staris
 ASTAI00102,1650,2602,2,BTM,STAI,Stairs Floor 2,Stairs Floor 2
-BCONF00102,2150,1025,2,45 Francis,CONF,Duncan Reid Conference Room,Conf B0102
 BHALL03802,2279,786,2,45 Francis,HALL,Hallway Intersection 38 Level 2,Hallway B3802
-BDEPT00202,2166,1039,2,45 Francis,DEPT,Oral Medicine and Dentistry,DEPT B0202
 BDEPT00302,2385,753,2,45 Francis,DEPT,Lee Bell Breast Center,DEPT B0302
 BDEPT00402,2439,902,2,45 Francis,DEPT,Jen Center for Primary Care,DEPT B0402
 BDEPT00502,2623,1018,2,45 Francis,DEPT,Ear Nose & Throat,DEPT B0502
@@ -94,10 +68,8 @@ BDEPT00602,2782,1303,2,45 Francis,HALL,Hallway Intersection 31 Level 2,Hallway B
 BDEPT00702,2945,775,2,45 Francis,DEPT,Plastic Surgery,DEPT B0702
 BDEPT00802,3155,890,2,45 Francis,DEPT,Outpatient Pharmacy,DEPT B0802
 BDEPT00902,3257,879,2,45 Francis,DEPT,Weiner Center for Preoperative Evaluation,DEPT B0902
-BHALL00102,2238,902,2,45 Francis,HALL,Hallway Intersection 1 Level 2,Hallway B0102
 BHALL00202,2279,902,2,45 Francis,HALL,Hallway Intersection 2 Level 2,Hallway B0202
-BHALL00302,2238,1028,2,45 Francis,HALL,Hallway Intersection 3 Level 2,Hallway B0302
-BHALL00402,2246,1280,2,45 Francis,HALL,Hallway Intersection 4 Level 2,Hallway B0402
+BHALL00402,2248.7805447679566,1281.7853631783516,2,45 Francis,HALL,Hallway Intersection 4 Level 2,Hallway B0402
 BHALL00502,2385,902,2,45 Francis,HALL,Hallway Intersection 5 Level 2,Hallway B0502
 BHALL00602,2605,902,2,45 Francis,HALL,Hallway Intersection 6 Level 2,Hallway B0602
 BHALL00702,2672,902,2,45 Francis,HALL,Hallway Intersection 7 Level 2,Hallway B0702
@@ -129,24 +101,17 @@ BINFO00102,2962,963,2,45 Francis,INFO,Information Desk Level 2,INFO B0102
 BINFO00202,3136,963,2,45 Francis,INFO,Valet Service Level 2,INFO B0202
 BLABS00102,2246,1350,2,45 Francis,LABS,Vascular Diagnostic Lab,Labs B0102
 BLABS00202,2945,995,2,45 Francis,LABS,Outpatient Specimen Collection,Labs B0202
-BREST00102,2177,1010,2,45 Francis,REST,Restroom 1 Level 2,REST B0102
 BREST00202,2605,841,2,45 Francis,REST,Restroom 2 Level 2,REST B0202
-BREST00302,2225,1280,2,45 Francis,REST,Restroom 3 Level 2,REST B0302
 BREST00402,2554,1389,2,45 Francis,REST,Restroom 4 Level 2,REST B0402
 BREST00502,2782,1152,2,45 Francis,REST,Restroom 5 Level 2,REST B0502
 BSERV00102,2853,1067,2,45 Francis,SERV,Patient Financial Services,SERV B0102
-BSTAI00102,2177,902,2,45 Francis,STAI,Staircase Intersection 1 Level 2,Stair B0102
 BSTAI00202,2279,827,2,45 Francis,STAI,Staircase Intersection 2 Level 2,Stair B0202
 BSTAI00302,2554,783,2,45 Francis,STAI,Staircase Intersection 3 Level 2,Stair B0302
 BSTAI00502,2945,840,2,45 Francis,STAI,Staircase Intersection 5 Level 2,Stair B0502
 BSTAI00602,3217,886,2,45 Francis,STAI,Staircase Intersection 6 Level 2,Stair B0602
 BSTAI00702,2811,1165,2,45 Francis,STAI,Staircase Intersection 7 Level 2,Stair B0702
 BSTAI00802,2554,1316,2,45 Francis,STAI,Staircase Intersection 8 Level 2,Stair B0802
-BSTAI00902,2190,1280,2,45 Francis,STAI,Staircase Intersection 9 Level 2,Stair B0902
-BSTAI01002,2238,932,2,45 Francis,STAI,Staircase Intersection 10 Level 2,Stair B1002
 BHALL03302,2782,1280,2,45 Francis,HALL,Hallway Intersection 33 Level 2,Hallway B3302
-BHALL03402,2166,1028,2,45 Francis,HALL,Hallway Intersection 34 Level 2,Hallway B3402
-BHALL03502,2246,1028,2,45 Francis,HALL,Hallway Intersection 35 Level 2,Hallway B3502
 BDEPT00102,2260,786,2,45 Francis,DEPT,Comprehensive Breast Heath,DEPT B0102
 BHALL03602,2279,762,2,45 Francis,HALL,Hallway Intersection 36 Level 2,Hallway B3602
 BHALL03702,2322,641,2,45 Francis,HALL,Hallway Intersection 37 Level 2,Hallway B3702
@@ -155,51 +120,45 @@ BHALL04202,2761,1067,2,45 Francis,HALL,Hallway Intersection 42 Level 2,Hallway B
 BHALL04302,2782,1067,2,45 Francis,HALL,Hallway Intersection 43 level 2,Hallway B04302
 BHALL04402,3063,963,2,45 Francis,HALL,Hallway Intersection 44 Level 2,Hallway B4402
 CCONF001L1,2255,849,L1,45 Francis,CONF,Anesthesia Conf Floor L1,Conf C001L1
-CCONF002L1,2665,1043,L1,45 Francis,CONF,Medical Records Conference Room Floor L1,Conf C002L1
-CCONF003L1,2445,1245,L1,45 Francis,CONF,Abrams Conference Room,Conf C003L1
-CDEPT002L1,1980,844,L1,Tower,DEPT,Day Surgery Family Waiting Floor L1,Department C002L1
+CDEPT002L1,1986.1705225716214,845.8275372176385,L1,Tower,DEPT,Day Surgery Family Waiting Floor L1,Department C002L1
 CDEPT003L1,1845,844,L1,Tower,DEPT,Day Surgery Family Waiting Exit Floor L1,Department C003L1
-CDEPT004L1,2310,1043,L1,45 Francis,DEPT,Medical Records Film Library Floor L1,Department C004L1
-CHALL001L1,1732,924,L1,Tower,HALL,Hallway 1 Floor L1,Hallway C001L1
+CHALL001L1,1729.2332330637264,924.5192039391671,L1,Tower,HALL,Hallway 1 Floor L1,Hallway C001L1
 CHALL001L2,2360,854,L2,45 Francis,HALL,Hallway K Elevator Floor L2,Hallway C001L2
-CHALL002L1,2445,1043,L1,45 Francis,HALL,Hallway 2 Floor L1,Hallway C002L1
 CHALL002L2,2270,904,L2,45 Francis,HALL,Hallway 2 Floor L2,Hallway C002L2
 CHALL003L1,2445,1284,L1,45 Francis,HALL,Hallway 3 Floor L1,Hallway C003L1
 CHALL003L2,2215,904,L2,45 Francis,HALL,Hallway 3 Floor L2,Hallway C003L2
-CHALL004L1,2770,1070,L1,45 Francis,HALL,Hallway 4 Floor L1,Hallway C004L1
+CHALL004L1,2771.2523529095142,1083.8116746809847,L1,45 Francis,HALL,Hallway 4 Floor L1,Hallway C004L1
 CHALL004L2,2130,904,L2,45 Francis,HALL,Hallway 4 Floor L2,Hallway C004L2
-CHALL005L1,1750,1284,L1,Tower,HALL,Hallway 5 Floor L1,Hallway C005L1
+CHALL005L1,1748.8556635772259,1283.922826800174,L1,Tower,HALL,Hallway 5 Floor L1,Hallway C005L1
 CHALL005L2,1745,1280,L2,Tower,HALL,Hallway 5 Floor L2,Hallway C005L2
 CHALL006L1,2130,1284,L1,Tower,HALL,Hallway 6 Floor L1,Hallway C006L1
 CHALL006L2,1745,1009,L2,Tower,HALL,Hallway 6 Floor L2,Hallway C006L2
-CHALL007L1,2130,1045,L1,Tower,HALL,Hallway 7 Floor L1,Hallway C007L1
 CHALL007L2,1730,1009,L2,Tower,HALL,Hallway 7 Floor L2,Hallway C007L2
-CHALL008L1,2215,1045,L1,45 Francis,HALL,Hallway 8 Floor L1,Hallway C008L1
+CHALL008L1,2218.3333333333335,1045.0681594109146,L1,45 Francis,HALL,Hallway 8 Floor L1,Hallway C008L1
 CHALL008L2,1730,924,L2,Tower,HALL,Hallway 8 Floor L2,Hallway C008L2
-CHALL009L1,2220,904,L1,45 Francis,HALL,Hallway 9 Floor L1,Hallway C009L1
+CHALL009L1,2218.3333333333335,904,L1,45 Francis,HALL,Hallway 9 Floor L1,Hallway C009L1
 CHALL009L2,1730,849,L2,Tower,HALL,Hallway 9 Floor L2,Hallway C009L2
 CHALL010L1,2265,904,L1,45 Francis,HALL,Hallway 10 Floor L1,Hallway C010L1
 CHALL010L2,2130,849,L2,Tower,HALL,Hallway 10 Floor L2,Hallway C010L2
 CHALL011L1,2360,849,L1,45 Francis,HALL,Hallway 11 Floor L1,Hallway C011L1
 CHALL012L1,2130,904,L1,45 Francis,HALL,Hallway 12 Floor L1,Hallway C012L1
 CHALL013L1,2130,844,L1,45 Francis,HALL,Hallway 13 Floor L1,Hallway C013L1
-CHALL014L1,1845,924,L1,Tower,HALL,Hallway 14 Floor L1,Hallway C014L1
+CHALL014L1,1845,924.5192039391671,L1,Tower,HALL,Hallway 14 Floor L1,Hallway C014L1
 CHALL015L1,2300,849,L1,45 Francis,HALL,Hallway 15 Floor L1,Hallway C015L1
-CLABS001L1,1965,1284,L1,Tower,LABS,Outpatient Fluoroscopy Floor L1,Lab C001L1
+CLABS001L1,1966.8441667135335,1283.922826800174,L1,Tower,LABS,Outpatient Fluoroscopy Floor L1,Lab C001L1
 CLABS001L2,2300,854,L2,45 Francis,LABS,Radiation Oncology TX Suite Floor L2,Lab C001L2
-CLABS002L1,1750,1090,L1,Tower,LABS,Pre-Op PACU Floor L1,Lab C002L1
+CLABS002L1,1747.0114968636924,1090,L1,Tower,LABS,Pre-Op PACU Floor L1,Lab C002L1
 CLABS002L2,2215,1280,L2,45 Francis,LABS,Radiation Oncology Floor L2,Lab C002L2
 CLABS003L1,2290,1284,L1,45 Francis,LABS,Nuclear Medicine Floor L1,Lab C003L1
 CLABS004L1,2320,1284,L1,45 Francis,LABS,Ultrasound Floor L1,Lab C004L1
-CLABS005L1,2770,1284,L1,45 Francis,LABS,CSIR MRI Floor L1,Lab C005L1
+CLABS005L1,2771.2523529095142,1284,L1,45 Francis,LABS,CSIR MRI Floor L1,Lab C005L1
 CREST001L1,1732,1019,L1,Tower,REST,Restroom L Elevator Floor L1,Restroom C001L1
 CREST001L2,2300,884,L2,45 Francis,REST,Restroom K Elevator Floor L2,Restroom C001L2
-CREST002L1,2065,1284,L1,Tower,REST,Restroom M Elevator Floor L1,Restroom C002L1
+CREST002L1,2066.8441667135335,1283.922826800174,L1,Tower,REST,Restroom M Elevator Floor L1,Restroom C002L1
 CREST002L2,1930,1280,L2,45 Francis,REST,Restroom L Elevator Floor L2,Restroom C002L2
 CREST003L1,2300,879,L1,45 Francis,REST,Restroom K Elevator Floor L1,Restroom C003L1
-CREST004L1,2770,1160,L1,45 Francis,REST,Restroom H Elevator Floor L1,Restroom C004L1
+CREST004L1,2771.2523529095142,1160,L1,45 Francis,REST,Restroom H Elevator Floor L1,Restroom C004L1
 CRETL001L1,2185,904,L1,45 Francis,RETL,Vending Machine 1 L1,Retail C001L1
-CSERV001L1,2490,1043,L1,45 Francis,SERV,Volunteers Floor L1,Service C001L1
 CSERV001L2,2015,1280,L2,45 Francis,SERV,Interpreter Services Floor L2,Service C001L2
 DELEV00A02,4550,375,2,15 Francis,ELEV,Elevator A Floor 2,Elevator A2
 DELEV00B02,4155,650,2,15 Francis,ELEV,Elevator B Floor 2,Elevator B2
@@ -285,16 +244,13 @@ DHALL05602,3480,790,2,15 Francis,HALL,Hallway 56 Floor 2,Hallway D5602
 DHALL05702,3510,790,2,15 Francis,HALL,Hallway 57 Floor 2,Hallway D5702
 DHALL05802,3420,850,2,15 Francis,HALL,Hallway 58 Floor 2,Hallway D5802
 PHALL00102,4300,630,2,45 Francis,HALL,Kiosk,HALL
-ESTAI00101,2190,910,1,45 Francis,STAI,Staircase K1 Floor 1,Stair K1
 EHALL00301,2240,910,1,45 Francis,HALL,Hallway Node 1 Floor 1,Hall 01
 EHALL00401,2275,910,1,45 Francis,HALL,Hallway Node 2 Floor 1,HallE02
 ESTAI00201,2275,830,1,45 Francis,STAI,Staircase J1 Floor 1,Stair J1
 EEXIT00101,2275,785,1,45 Francis,EXIT,Ambulance Parking Exit Floor 1,AmbExit 1
-EHALL00501,2290,910,1,45 Francis,HALL,Hallway Node 3 Floor 1,HallE03
 EHALL00601,2385,910,1,45 Francis,HALL,Hallway Node 4 Floor 1,HallE04
 EHALL00701,2385,860,1,45 Francis,HALL,Hallway Node 5 Floor 1,HallE05
 EDEPT00101,2335,860,1,45 Francis,DEPT,Waiting Room 1 Floor 1,Wait 1
-EHALL00801,2460,910,1,45 Francis,HALL,Hallway Node 6 Floor 1,HallE06
 EINFO00101,2460,850,1,45 Francis,INFO,Connors Center Security Desk Floor 1,Security 1
 EHALL00901,2585,910,1,45 Francis,HALL,Hallway Node 7 Floor 1,HallE07
 EHALL01001,2585,890,1,45 Francis,HALL,Hallway Node 8 Floor 1,HallE08
@@ -335,17 +291,12 @@ ESTAI00401,2605,1340,1,45 Francis,STAI,Staircase H2 Floor 1,Stair H2
 EHALL03401,2835,1460,1,45 Francis,HALL,Hallway Node 32 Floor 1,HallE32
 EHALL03501,2760,1460,1,45 Francis,HALL,Hallway Node 33 Floor 1,HallE33
 EHALL03601,2760,1405,1,45 Francis,HALL,Hallway Node 34 Floor 1,HallE34
-FHALL00101,2055,910,1,Tower,HALL,Lower Pike Hallway Exit Lobby,Hallway F00101
-FHALL00201,2026,910,1,Tower,HALL,Lobby Shattuck Street,Hallway F00201
-FSTAI00101,2026,892,1,Tower,STAI,Lobby Shattuck Street Stairs,Stairway F00101
-FHALL00301,2017,910,1,Tower,HALL,Shattuck Street Lobby 1,Hallway F00301
+FSTAI00101,2072.7464535733484,825.1532210879291,1,Tower,STAI,Lobby Shattuck Street Stairs,Stairway F00101
 FEXIT00101,2017,799,1,Tower,EXIT,Shattuck Street Lobby Exit,Shattuck St. Exit
-FHALL00401,1973,910,1,Tower,HALL,Shattuck Street Lobby 2,Hallway F00401
 FRETL00101,1973,844,1,Tower,RETL,Lobby Vending Machine,VM Lobby
-FHALL00501,1950,910,1,Tower,HALL,Shattuck Street Lobby 3,Hallway F00501
-FSERV00101,1950,871,1,Tower,SERV,Shattuck Street Lobby ATM,Lobby ATM
+FSERV00101,1940.8698518154501,855.232998594625,1,Tower,SERV,Shattuck Street Lobby ATM,Lobby ATM
 FHALL00601,1869,930,1,Tower,HALL,Tower Lobby Entrance 1,Tower Entrance
-FHALL00701,1758,930,1,Tower,HALL,Tower Elevator Entrance,Hallway F00701
+FHALL00701,1758.945217807684,929.3970360195775,1,Tower,HALL,Tower Elevator Entrance,Hallway F00701
 FHALL00801,1758,850,1,Tower,HALL,Tower Hallway 1,Hallway F00801
 FHALL01301,1627,825,1,Tower,HALL,Tower Hallway 5,Hallway F01301
 FHALL00901,1627,850,1,Tower,HALL,Tower Hallway 2,Hallway F00901
@@ -371,12 +322,6 @@ FDEPT00401,1794,1146,1,Tower,DEPT,Sharf Admitting Center,Sharf Center
 FHALL02201,1769,1280,1,Tower,HALL,Hallway Lobby Entrance,Entrance Hallway
 FLABS00101,1845,1250,1,Tower,LABS,Obstetrics Admitting,Obs Admitting
 FHALL02301,1845,1280,1,Tower,HALL,Lobby Hallway 1,Hallway F02301
-FHALL02401,1965,1280,1,Tower,HALL,Lobby Hallway 2,Hallway F02401
-FHALL02501,1965,1239,1,Tower,HALL,Lobby Hallway 3,Hallway F02501
-FSTAI00301,1947,1239,1,Tower,STAI,Lobby Escalator,Lobby Escalator
-FHALL02601,2026,1239,1,Tower,HALL,Lobby Hallway 4,Hallway F02601
-FHALL02701,2066,1239,1,Tower,HALL,Lobby Hallway 7,Hallway F02701
-FDEPT00501,2128,1300,1,Tower,DEPT,Emergency Department,Emergency
 FHALL02801,1748,1280,1,Tower,HALL,Lobby Entrance Hallway,HallwayF02801
 FEXIT00201,1748,1321,1,Tower,EXIT,75 Francis Valet Drop-off,75 Francis Exit
 FHALL02901,1700,1280,1,Tower,HALL,75 Lobby,75 Lobby
@@ -384,16 +329,13 @@ FINFO00101,1700,1226,1,Tower,INFO,75 Lobby Information Desk,Lobby Info Desk
 FSERV00501,1645,1280,1,Tower,SERV,75 Lobby Valet Cashier,Valet Cashier
 FHALL03001,1645,1246,1,Tower,HALL,Lobby Hallway 5,Hallway F02701
 FRETL00201,1609,1246,1,Tower,RETL,Au Bon Pain,ABP
-FHALL03101,2026,976,1,Tower,HALL,Lobby Hallway 6,Hallway F02801
 FREST00101,2091,976,1,Tower,REST,Bathroom 75 Lobby,Bathroom Lobby
-FEXIT00301,2099,1357,1,Tower,EXIT,Emergency Department Entrance,Emergency Entrance
 FHALL03201,1758,1029,1,Tower,HALL,Tower Hallway 13,Hallway F03201
 FDEPT00601,1780,1029,1,Tower,DEPT,International Patient Center,IPC
-FHALL03301,2066,1282,1,Tower,HALL,Emergency Hallway,Hallway F03301
-GCONF02001,1493,2117,1,Shapiro,CONF,Shapiro Board Room MapNode 20 Floor 1,Shapiro Board Room
-GDEPT01901,1566,2139,1,Shapiro,DEPT,Zinner Breakout Room MapNode 19 Floor 1,Zinner Breakout Room
+GCONF02001,1527.4596751186116,2118.4719669338533,1,Shapiro,CONF,Shapiro Board Room MapNode 20 Floor 1,Shapiro Board Room
+GDEPT01901,1583.9974187337286,2114.7645739099116,1,Shapiro,DEPT,Zinner Breakout Room MapNode 19 Floor 1,Zinner Breakout Room
 GELEV00N01,1647,1930,1,Shapiro,ELEV,Elevator N MapNode 26 Floor 1,Hall
-GELEV00Q01,1648,2161,1,Shapiro,ELEV,Elevator Q MapNode 18 Floor 1,Elevator Q Floor 1
+GELEV00Q01,1631.2666797889904,2118.4719669338533,1,Shapiro,ELEV,Elevator Q MapNode 18 Floor 1,Elevator Q Floor 1
 GEXIT00101,1751,1825,1,Shapiro,EXIT,Francis Street Exit MapNode 1 Floor 1,Francis Street Exit Floor 1
 GHALL00201,1722,1832,1,Shapiro,HALL,Hallway MapNode 2 Floor 1,Hall
 GHALL00301,1705,1831,1,Shapiro,HALL,Hallway MapNode 3 Floor 1,Hall
@@ -405,7 +347,7 @@ GHALL01001,1673,2165,1,Shapiro,HALL,Hallway MapNode 10 Floor 1,Hall
 GHALL01401,1749,2151,1,Shapiro,HALL,Hallway MapNode 14 Floor 1,Hall
 GHALL01501,1749,2224,1,Shapiro,HALL,Hallway MapNode 15 Floor 1,Hall
 GHALL01601,1689,2225,1,Shapiro,HALL,Hallway MapNode 16 Floor 1,Hall
-GHALL01701,1605,2093,1,Shapiro,HALL,Hallway MapNode 17 Floor 1,Hall
+GHALL01701,1630.3398315330048,2094.37391227823,1,Shapiro,HALL,Hallway MapNode 17 Floor 1,Hall
 GHALL02101,1600,1830,1,Shapiro,HALL,Hallway MapNode 21 Floor 1,Hall
 GHALL02201,1601,1866,1,Shapiro,HALL,Hallway MapNode 22 Floor 1,Hall
 GHALL02401,1602,1928,1,Shapiro,HALL,Hallway MapNode 24 Floor 1,Hall
@@ -414,9 +356,9 @@ GHALL02901,1262,1850,1,Shapiro,HALL,Hallway MapNode 29 Floor 1,Hall
 GHALL03001,1256,1858,1,Shapiro,HALL,Hallway MapNode 30 Floor 1,Hall
 GHALL03101,1227,1859,1,Shapiro,HALL,Hallway MapNode 31 Floor 1,Hall
 GHALL03301,1255,1872,1,Shapiro,HALL,Hallway MapNode 33 Floor 1,Hall
-GHALL03401,1284,1872,1,Shapiro,HALL,Hallway MapNode 34 Floor 1,Hall
+GHALL03401,1284.8508102920107,1873.6681533725196,1,Shapiro,HALL,Hallway MapNode 34 Floor 1,Hall
 GREST01201,1671,2015,1,Shapiro,REST,Bathroom MapNode 12 Floor 1,Restroom Shapiro Floor 1
-GRETL03501,1284,1884,1,Shapiro,REST,Random Room MapNode 35 Floor 1,Secret Room Floor 1
+GRETL03501,1286.2133325663342,1911.1375159164124,1,Shapiro,REST,Random Room MapNode 35 Floor 1,Secret Room Floor 1
 GSERV02301,1600,1895,1,Shapiro,SERV,ATM MapNode 23 Floor 1,ATM Floor 1
 GSTAI00501,1707,1992,1,Shapiro,STAI,Stairway MapNode 5 Floor 1,Northbound Stairs Floor 2
 GSTAI01301,1750,2014,1,Shapiro,STAI,Staircase MapNode 13 Floor 1,Southbound Stairs Floor 1
@@ -474,13 +416,8 @@ GREST01203,1628,2052,3,Shapiro,REST,Restroom Node 12 Floor 3,Restroom Shapiro Fl
 GSERV01603,1580,1858,3,Shapiro,SERV,The Porch Node 16 Floor 3,The Porch
 GSTAI00903,1685,2052,3,Shapiro,STAI,Staircase Node 9 Floor 3,Floor 3 Stairs
 GELEV00QL1,1637,2116,L1,Shapiro,ELEV,Elevator Q MapNode 7 Floor L1,Elevator Q L1
-GEXIT001L1,1702,2260,L1,Shapiro,EXIT,Fenwood Road Exit MapNode 1 Floor L1,Fenwood Road EntranceExit L1
-GHALL002L1,1702,2167,L1,Shapiro,HALL,Hallway MapNode 2 Floor L1,Hall
-GHALL003L1,1688,2167,L1,Shapiro,HALL,Hallway MapNode 3 Floor L1,Hall
-GHALL004L1,1666,2167,L1,Shapiro,HALL,Hallway MapNode 4 Floor L1,Hall
-GHALL005L1,1688,2131,L1,Shapiro,HALL,Hallway MapNode 5 Floor L1,Hall
-GHALL006L1,1665,2116,L1,Shapiro,HALL,Hallway MapNode 6 Floor L1,Hall
-GSTAI008L1,1720,2131,L1,Shapiro,STAI,Stairs MapNode 8 Floor L1,L1 Stairs
+GHALL004L1,1701.2883664659478,2146.1748161305195,L1,Shapiro,HALL,Hallway MapNode 4 Floor L1,Hall
+GSTAI008L1,1751.0620950129855,2141.5739296368192,L1,Shapiro,STAI,Stairs MapNode 8 Floor L1,L1 Stairs
 GELEV00QL2,1625,2089,L2,Shapiro,ELEV,Elevator Q MapNode 6 Floor L2,Elevator Q L2
 GHALL001L2,1730,1584,L2,Shapiro,HALL,Hallway MapNode 1 Floor L2,Hall
 GHALL005L2,1642,2089,L2,Shapiro,HALL,Hallway MapNode 5 Floor L2,Hall
@@ -498,10 +435,8 @@ GLABS014L2,1512,1844,L2,Shapiro,LABS,Cardiac Stress Test Lab Floor L2,Cardiac St
 GLABS015L2,1512,1811,L2,Shapiro,LABS,CVRR Floor L2,CVRR
 GREST004L2,1680,2090,L2,Shapiro,REST,Restroom MapNode 4 Floor L2,Restroom Shapiro L2
 HHALL00102,1875,925,2,Tower,HALL,Hallway Connector 1 Floor 2,Hallway H00102
-HHALL00202,1955,900,2,Tower,HALL,Hallway Connector 2 Floor 2,Hallway H00202
-HRETL00102,1935,860,2,Tower,RETL,Garden Cafe,Garden Cafe
-HHALL00302,2035,900,2,Tower,HALL,Hallway Connector 3 Floor 2,Hallway H00302
-HSTAI00102,2060,880,2,Tower,STAI,Stairwell 1 Floor 2,Stairwell 0102
+HRETL00102,1933.9737727902288,866.0925731519375,2,Tower,RETL,Garden Cafe,Garden Cafe
+HSTAI00102,2051.6956972917687,832.9832818858794,2,Tower,STAI,Stairwell 1 Floor 2,Stairwell 0102
 HHALL00402,1875,1025,2,Tower,HALL,Hallway Connector 4 Floor 2,Hallway H00402
 HHALL00502,1825,1025,2,Tower,HALL,Hallway Connector 5 Floor 2,Hallway H00502
 HRETL00202,1615,1025,2,Tower,RETL,Vending Machine Floor 2?,Vending Machine
@@ -513,7 +448,7 @@ HSTAI00202,1695,1165,2,Tower,STAI,Stairwell 2 Tower Floor 2,Stairwell 0202
 HHALL00802,1740,1230,2,Tower,HALL,Hallway Connector 8 Floor 2,Hallway H00802
 HSTAI00302,1790,1230,2,Tower,STAI,Escalator 1 Floor 2,Escalator 1 Floor 2
 HHALL00902,1740,1280,2,Tower,HALL,Hallway Connector 9 Floor 2,Hallway H00902
-HHALL01002,2055,1280,2,Tower,HALL,Hallway Connector 10 Floor 2,Hallway H01002
+HHALL01002,2057.7805447679566,1281.7853631783516,2,Tower,HALL,Hallway Connector 10 Floor 2,Hallway H01002
 HDEPT00102,2055,1330,2,Tower,DEPT,Endoscopy,Endoscopy
 HHALL00503,1680,1290,3,Tower,HALL,Hallway Connector 5 Floor 3,Hallway H00502
 HSTAI00103,1680,1275,3,Tower,STAI,Stairwell 1 Floor 3,Stairwell
@@ -578,7 +513,6 @@ WELEV00F01,3050,980,1,45 Francis,ELEV,Elevator F Floor 1,Elevator F1
 WELEV00F02,3075,960,2,45 Francis,ELEV,Elevator F Floor 2,Elevator F2
 WELEV00G01,2935,900,1,45 Francis,ELEV,Elevator G Floor 1,Elevator G1
 WELEV00G02,2945,870,2,45 Francis,ELEV,Elevator G Floor 2,Elevator G2
-WELEV00HL1,2715,1070,L1,45 Francis,ELEV,Elevator H Floor L1,Elevator HL1
 WELEV00H01,2735,1070,1,45 Francis,ELEV,Elevator H Floor 1,Elevator H1
 WELEV00H02,2725,1065,2,45 Francis,ELEV,Elevator H Floor 2,Elevator H2
 WELEV00H03,2715,1075,3,45 Francis,ELEV,Elevator H Floor 3,Elevator H3
@@ -588,33 +522,104 @@ WELEV00J01,2385,810,1,45 Francis,ELEV,Elevator J Floor 1,Elevator J1
 WELEV00J02,2385,800,2,45 Francis,ELEV,Elevator J Floor 2,Elevator J2
 WELEV00J03,2365,800,3,45 Francis,ELEV,Elevator J Floor 3,Elevator J3
 WELEV00KL2,2215,974,L2,45 Francis,ELEV,Elevator K Floor L2,Elevator KL2
-WELEV00KL1,2220,974,L1,45 Francis,ELEV,Elevator K Floor L1,Elevator KL1
+WELEV00KL1,2218.3333333333335,974,L1,45 Francis,ELEV,Elevator K Floor L1,Elevator KL1
 WELEV00K01,2240,985,1,45 Francis,ELEV,Elevator K Floor 1,Elevator K1
-WELEV00K02,2240,965,2,45 Francis,ELEV,Elevator K Floor 2,Elevator K2
+WELEV00K02,2237.5175139216894,971.4903670952408,2,45 Francis,ELEV,Elevator K Floor 2,Elevator K2
 WELEV00K03,2220,985,3,45 Francis,ELEV,Elevator K Floor 3,Elevator K3
 WELEV00LL2,1785,924,L2,Tower,ELEV,Elevator L Floor L2,Elevator LL2
-WELEV00LL1,1785,924,L1,Tower,ELEV,Elevator L Floor L1,Elevator LL1
-WELEV00L01,1810,930,1,Tower,ELEV,Elevator L Floor 1,Elevator L1
+WELEV00LL1,1785,924.5192039391671,L1,Tower,ELEV,Elevator L Floor L1,Elevator LL1
+WELEV00L01,1828.4617641837713,941.0719018769978,1,Tower,ELEV,Elevator L Floor 1,Elevator L1
 WELEV00L02,1805,925,2,Tower,ELEV,Elevator L Floor 2,Elevator L2
 WELEV00L03,1790,925,3,Tower,ELEV,Elevator L Floor 3,Elevator L3
 WELEV00ML2,1820,1280,L2,Tower,ELEV,Elevator M Floor L2,Elevator ML2
-WELEV00ML1,1820,1284,L1,Tower,ELEV,Elevator M Floor L1,Elevator ML1
+WELEV00ML1,1821.8441667135335,1283.922826800174,L1,Tower,ELEV,Elevator M Floor L1,Elevator ML1
 WELEV00M01,1810,1280,1,Tower,ELEV,Elevator M Floor 1,Elevator M1
 WELEV00M02,1825,1280,2,Tower,ELEV,Elevator M Floor 2,Elevator M2
 WELEV00M03,1815,1290,3,Tower,ELEV,Elevator M Floor 3,Elevator M3
 WHALL001L2,1745,1524,L2,Tower,HALL,Hallway Connector 1 Floor L2,Hallway W01L2
 WHALL002L2,1745,1539,L2,Shapiro,HALL,Hallway Connector 2 Floor L2,Hallway W02L2
-WHALL00101,2160,910,1,45 Francis,HALL,Hallway Connector 1 Floor 1,Hallway W0101
-WHALL00201,2175,910,1,45 Francis,HALL,Hallway Connector 2 Floor 1,Hallway W0201
 WHALL00103,2060,1290,3,45 Francis,HALL,Hallway Connector 1 Floor 3,Hallway W0103
 WHALL00203,2080,1290,3,45 Francis,HALL,Hallway Connector 2 Floor 3,Hallway W0203
 WHALL00102,3345,865,2,45 Francis,HALL,Hallway Connector 1 Floor 2,Hallway W0102
 WHALL00202,3360,860,2,15 Francis,HALL,Hallway Connector 2 Floor 2,Hallway W0202
-WHALL00302,2085,900,2,45 Francis,HALL,Hallway Connector 3 Floor 2,Hallway W0302
-WHALL00402,2105,900,2,45 Francis,HALL,Hallway Connector 4 Floor 2,Hallway W0402
-WHALL00502,2085,1280,2,45 Francis,HALL,Hallway Connector 5 Floor 2,Hallway W0502
-WHALL00602,2105,1280,2,45 Francis,HALL,Hallway Connector 6 Floor 2,Hallway W0602
 WHALL00702,1740,1500,2,Tower,HALL,Hallway Connector 7 Floor 2,Hallway W0702
 WHALL00802,1720,1745,2,Shapiro,HALL,Hallway Connector 8 Floor 2,Hallway W0802
 WHALL00902,1690,2240,2,Shapiro,HALL,Hallway Connector 9 Floor 2,Hallway W0902
 WHALL01002,1690,2455,2,BTM,HALL,Hallway Connector 10 Floor 2,Hallway W1002
+node_617,1952.109964426381,1779.2144189531468,1,Shapiro,"",Fenwood Road Exit MapNode 1 Floor L1,Fenwood Road EntranceExit L1
+node_619,2203.080100676283,1776.7965333438367,1,Shapiro,"",Fenwood Road Exit MapNode 1 Floor L1,Fenwood Road EntranceExit L1
+node_620,2323.950381739355,1776.7965333438367,1,Shapiro,"",Fenwood Road Exit MapNode 1 Floor L1,Fenwood Road EntranceExit L1
+node_623,2443.6689763847435,1776.7965333438367,1,Shapiro,"",Fenwood Road Exit MapNode 1 Floor L1,Fenwood Road EntranceExit L1
+node_624,1952.109964426381,2166.1840226484746,1,Shapiro,"",Fenwood Road Exit MapNode 1 Floor L1,Fenwood Road EntranceExit L1
+node_625,2073.701352623264,2166.1840226484746,1,Shapiro,"",Fenwood Road Exit MapNode 1 Floor L1,Fenwood Road EntranceExit L1
+node_626,2203.080100676283,2166.1840226484746,1,Shapiro,"",Fenwood Road Exit MapNode 1 Floor L1,Fenwood Road EntranceExit L1
+node_627,2323.950381739355,2166.1840226484746,1,Shapiro,"",Fenwood Road Exit MapNode 1 Floor L1,Fenwood Road EntranceExit L1
+node_628,2443.6689763847435,2166.1840226484746,1,Shapiro,"",Fenwood Road Exit MapNode 1 Floor L1,Fenwood Road EntranceExit L1
+node_629,1952.109964426381,1678.4419830366871,1,Shapiro,"",Fenwood Road Exit MapNode 1 Floor L1,Fenwood Road EntranceExit L1
+node_631,2203.080100676283,1678.4419830366871,1,Shapiro,"",Fenwood Road Exit MapNode 1 Floor L1,Fenwood Road EntranceExit L1
+node_632,2323.950381739355,1678.4419830366871,1,Shapiro,"",Fenwood Road Exit MapNode 1 Floor L1,Fenwood Road EntranceExit L1
+node_633,2443.6689763847435,1678.4419830366871,1,Shapiro,"",Fenwood Road Exit MapNode 1 Floor L1,Fenwood Road EntranceExit L1
+node_634,1952.109964426381,2302.5196937109213,1,Shapiro,"",Fenwood Road Exit MapNode 1 Floor L1,Fenwood Road EntranceExit L1
+node_635,2073.701352623264,2302.5196937109213,1,Shapiro,"",Fenwood Road Exit MapNode 1 Floor L1,Fenwood Road EntranceExit L1
+node_636,2203.080100676283,2302.5196937109213,1,Shapiro,"",Fenwood Road Exit MapNode 1 Floor L1,Fenwood Road EntranceExit L1
+node_637,2323.950381739355,2302.5196937109213,1,Shapiro,"",Fenwood Road Exit MapNode 1 Floor L1,Fenwood Road EntranceExit L1
+node_638,2443.6689763847435,2302.5196937109213,1,Shapiro,"",Fenwood Road Exit MapNode 1 Floor L1,Fenwood Road EntranceExit L1
+node_639,1731.723107694714,1681.460144934627,1,Shapiro,"",Fenwood Road Exit MapNode 1 Floor L1,Fenwood Road EntranceExit L1
+node_640,1731.723107694714,1524.4108571148577,1,Shapiro,"",Fenwood Road Exit MapNode 1 Floor L1,Fenwood Road EntranceExit L1
+node_641,1921.3837230398997,1525.2690499444739,1,Shapiro,"",Fenwood Road Exit MapNode 1 Floor L1,Fenwood Road EntranceExit L1
+node_642,2023.1517327561246,1527.2015054165524,1,Shapiro,"",Fenwood Road Exit MapNode 1 Floor L1,Fenwood Road EntranceExit L1
+node_643,2144.4361542787155,1516.2574780824107,1,Shapiro,"",Fenwood Road Exit MapNode 1 Floor L1,Fenwood Road EntranceExit L1
+node_644,1702.6324050487137,2249.441407021554,L1,Shapiro,"",Fenwood Road Exit MapNode 1 Floor L1,Fenwood Road EntranceExit L1
+node_645,2144.4361542787155,1455.3257871796586,1,Shapiro,"",Fenwood Road Exit MapNode 1 Floor L1,Fenwood Road EntranceExit L1
+node_646,2071.4897637613362,1388.386746469593,1,Shapiro,"",Fenwood Road Exit MapNode 1 Floor L1,Fenwood Road EntranceExit L1
+node_647,1924.73386573041,1380.6445167868292,1,Shapiro,"",Fenwood Road Exit MapNode 1 Floor L1,Fenwood Road EntranceExit L1
+node_648,1747.087949999851,1384.077288105294,1,Shapiro,"",Fenwood Road Exit MapNode 1 Floor L1,Fenwood Road EntranceExit L1
+node_649,612.991122943947,1828.198503050454,1,Shapiro,"",Fenwood Road Exit MapNode 1 Floor L1,Fenwood Road EntranceExit L1
+node_650,419.03954345067996,1828.198503050454,1,Shapiro,"",Fenwood Road Exit MapNode 1 Floor L1,Fenwood Road EntranceExit L1
+node_651,183.89470813583407,1828.198503050454,1,Shapiro,"",Parking Space West 3,Fenwood Road EntranceExit L1
+node_652,203.63314321700727,2176.3387275981027,1,Shapiro,"",Parking Space West 6,Fenwood Road EntranceExit L1
+node_653,425.9050860876098,2176.3387275981027,1,Shapiro,"",Parking Space West 5,Fenwood Road EntranceExit L1
+node_654,631.0131723658877,2176.3387275981027,1,Shapiro,"",Parking Space West 4,Fenwood Road EntranceExit L1
+node_655,633.5073053490197,2310.552148724955,1,Shapiro,"",Fenwood Road Exit MapNode 1 Floor L1,Fenwood Road EntranceExit L1
+node_656,411.2353624784172,2310.552148724955,1,Shapiro,"",Fenwood Road Exit MapNode 1 Floor L1,Fenwood Road EntranceExit L1
+node_657,219.00016864438257,2310.552148724955,1,Shapiro,"",Fenwood Road Exit MapNode 1 Floor L1,Fenwood Road EntranceExit L1
+node_658,190.6798052670471,1705.37197165262,1,Shapiro,"",Fenwood Road Exit MapNode 1 Floor L1,Fenwood Road EntranceExit L1
+node_659,442.1303043446013,1705.37197165262,1,Shapiro,"",Fenwood Road Exit MapNode 1 Floor L1,Fenwood Road EntranceExit L1
+node_660,603.4705563124518,1705.37197165262,1,Shapiro,"",Fenwood Road Exit MapNode 1 Floor L1,Fenwood Road EntranceExit L1
+node_661,844.6227414346113,1705.37197165262,1,Shapiro,"",CrossWalk West Lot,CrossWalk
+node_662,845.4809342642275,2310.552148724955,1,Shapiro,"",Fenwood Road Exit MapNode 1 Floor L1,Fenwood Road EntranceExit L1
+node_663,945.0313024997097,2280.602431553526,1,Shapiro,"",Fenwood Road Exit MapNode 1 Floor L1,Fenwood Road EntranceExit L1
+node_664,1088.3495050456193,2284.035202871991,1,Shapiro,"",Fenwood Road Exit MapNode 1 Floor L1,Fenwood Road EntranceExit L1
+node_665,1069.4692627940624,1836.9167386419372,1,Shapiro,"",Fenwood Road Exit MapNode 1 Floor L1,Fenwood Road EntranceExit L1
+node_666,1073.7602269421436,1705.37197165262,1,Shapiro,"",CrossWalk,CrossWalk
+node_667,3459.1829007964407,854.3298095845335,1,Shapiro,"",Random Room MapNode 35 Floor 1,Secret Room Floor 1
+node_668,3446.6749463181523,800.6191815307059,1,Shapiro,"",Random Room MapNode 35 Floor 1,Secret Room Floor 1
+node_669,3541.5882479475185,786.639702996148,1,Shapiro,"",Random Room MapNode 35 Floor 1,Secret Room Floor 1
+node_670,3431.223943727325,730.7217888579165,1,Shapiro,"",Random Room MapNode 35 Floor 1,Secret Room Floor 1
+node_671,3397.3788904331323,587.2481933716648,1,Shapiro,"",Random Room MapNode 35 Floor 1,Secret Room Floor 1
+node_672,1389.687123421661,2603.0768262953843,2,Shapiro,"",Hall Node 14 Floor 2,Hall
+node_673,1442.5105427124743,2603.0768262953843,2,Shapiro,"",Hall Node 14 Floor 2,Hall
+node_674,1444.7434313779231,2543.1355068007165,2,Shapiro,"",Hall Node 14 Floor 2,Hall
+node_675,949.2774794074114,2603.0768262953843,2,Shapiro,"",Hall Node 14 Floor 2,Hall
+node_676,1401.2072588585606,2822.7395232634944,2,Shapiro,"",Hall Node 14 Floor 2,Hall
+node_677,1584.3895481715394,2824.7415154964233,2,Shapiro,"",Hall Node 14 Floor 2,Hall
+node_678,1143.9512569272185,2822.7395232634944,2,Shapiro,"",Hall Node 14 Floor 2,Hall
+node_679,1139.947272461361,2852.7694067574257,2,Shapiro,"",Hall Node 14 Floor 2,Hall
+node_680,968.7769365459544,2854.771398990354,2,Shapiro,"",Hall Node 14 Floor 2,Hall
+node_681,2034.8838887437632,1083.4554795437907,1,Tower,"",Shattuck Street Lobby 3,Hallway F00501
+node_682,2034.227191254952,969.161780050437,1,"","","",""
+node_683,1998.1748518763554,913.9796279403402,1,"","","",""
+node_684,2179.172310797473,910.300817799667,1,45 Francis,"",Hallway Connector 2 Floor 1,Hallway W0201
+node_685,1786.5158895042628,2296.4428945997633,1,"","","",""
+node_686,1791.559756783717,1745.4003943193877,1,"","","",""
+EHALL00801,2460,910,1,45 Francis,HALL,Hallway Node 6 Floor 1,HallE06
+node_630,2073.701352623264,1678.4419830366871,1,Shapiro,"",Fenwood Road Exit MapNode 1 Floor L1,Fenwood Road EntranceExit L1
+node_618,2073.701352623264,1776.7965333438367,1,Shapiro,"",Fenwood Road Exit MapNode 1 Floor L1,Fenwood Road EntranceExit L1
+FSTAI00301,1947,1239,1,Tower,STAI,Lobby Escalator,Lobby Escalator
+FHALL02601,2026,1239,1,Tower,HALL,Lobby Hallway 4,Hallway F02601
+FHALL02701,2066,1239,1,Tower,HALL,Lobby Hallway 7,Hallway F02701
+FHALL02401,1965,1280,1,Tower,HALL,Lobby Hallway 2,Hallway F02401
+FHALL02501,1965,1239,1,Tower,HALL,Lobby Hallway 3,Hallway F02501
+FHALL03301,2066,1282,1,Tower,HALL,Emergency Hallway,Hallway F03301
+FEXIT00301,2099,1357,1,Tower,EXIT,Emergency Department Entrance,Emergency Entrance
+FDEPT00501,2128,1300,1,Tower,DEPT,Emergency Department,Emergency

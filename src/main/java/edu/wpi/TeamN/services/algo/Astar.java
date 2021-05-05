@@ -2,7 +2,7 @@ package edu.wpi.TeamN.services.algo;
 
 import java.util.*;
 
-public class Astar implements PathFinderI {
+public class Astar extends PathFinderAlgorithm implements IPathFinder {
   /**
    * @param start node to start search from
    * @param end target node

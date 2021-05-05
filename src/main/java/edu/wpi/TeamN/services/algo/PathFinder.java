@@ -1,30 +1,34 @@
 package edu.wpi.TeamN.services.algo;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
-public class PathFinder implements PathFinderI {
-  private PathFinderI impl;
+public class PathFinder implements IPathFinder {
+  private IPathFinder impl;
+  private static PathFinder singleton = new PathFinder();
 
-  public PathFinder(PathFinderI impl) {
-    this.impl = impl;
+  public static void setImpl(IPathFinder impl) {
+    singleton.impl = impl;
   }
 
-  public PathFinder() {
+  private PathFinder() {
     this.impl = new Astar();
   }
 
+  public static PathFinder getPathFinder() {
+    return singleton;
+  }
+
   public ArrayList<Node.Link> pathfind(Node start, Node end) {
-    return impl.pathfindFull(start, end, (l) -> true);
+    return singleton.impl.pathfindFull(start, end, (l) -> true);
   }
 
   public ArrayList<Node.Link> pathfindNoStairs(Node start, Node end) {
-    return impl.pathfindFull(start, end, (l) -> !l._isStair);
+    return singleton.impl.pathfindFull(start, end, (l) -> !l._isStair);
   }
 
   @Override
   public ArrayList<Node.Link> pathfindFull(Node start, Node end, Reduce filter) {
-    return impl.pathfindFull(start, end, filter);
+    return singleton.impl.pathfindFull(start, end, filter);
   }
 
   private double getDirection(Node.Link input) {
@@ -43,13 +47,14 @@ public class PathFinder implements PathFinderI {
     ret += dx < 0 ? Math.PI / 2 : 0;
     ret += dy < 0 ? Math.PI / 2 : 0;
     ret += (dx > 0 && dy < 0) ? Math.PI : 0;
-    System.out.println(dx + ", " + dy + ", " + ret);
     return ret;
   }
 
   public ArrayList<String> getDescription(ArrayList<Node.Link> input) {
     if (input.size() == 0) {
-      return (ArrayList<String>) Collections.singleton("No Path");
+      ArrayList<String> ret = new ArrayList<>();
+      ret.add("No Path");
+      return ret;
     }
     double previousDirection = 0;
     double currentDirection = 0;
@@ -67,20 +72,24 @@ public class PathFinder implements PathFinderI {
       } else {
         if (directionDiff > minAngle || directionDiff < (-minAngle)) {
           if (directionDiff > 0) {
-            ret.add("turn left to " + l._other.get_longName());
+            ret.add("turn left to " + l._other.get_longName() + ": (" + getDistance(l) + " ft)");
           } else {
-            ret.add("turn right to " + l._other.get_longName());
+            ret.add("turn right to " + l._other.get_longName() + ": (" + getDistance(l) + " ft)");
           }
         } else {
           //          if (!l._other.get_nodeType().equals("HALL"))
-          ret.add("continue straight to " + l._other.get_longName());
+          ret.add(
+              "continue straight to " + l._other.get_longName() + ": (" + getDistance(l) + " ft)");
         }
       }
       previousDirection = currentDirection;
     }
     return ret;
   }
-
+  // just a helper function to get estimated distance
+  private int getDistance(Node.Link l) {
+    return (int) l._distance;
+  }
   /**
    * @param start node to walk back to
    * @param curNode node to start walking back from

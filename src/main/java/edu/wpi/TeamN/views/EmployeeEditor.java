@@ -9,6 +9,7 @@ import edu.wpi.TeamN.services.database.users.User;
 import edu.wpi.TeamN.services.database.users.UserPrefs;
 import edu.wpi.TeamN.services.database.users.UserType;
 import edu.wpi.TeamN.state.HomeState;
+import edu.wpi.TeamN.utilities.AutoCompleteComboBoxListener;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashSet;
@@ -21,6 +22,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import lombok.extern.slf4j.Slf4j;
 
@@ -37,6 +39,7 @@ public class EmployeeEditor extends MasterController implements Initializable {
   @FXML private Label loadSuccess;
   @FXML private Button HomeView;
   @FXML private JFXListView<Label> listView;
+  @FXML private AnchorPane anchorPane;
 
   @FXML private JFXTextField txtUsername;
   @FXML private JFXTextField txtPassword;
@@ -60,11 +63,14 @@ public class EmployeeEditor extends MasterController implements Initializable {
 
   @Override
   public void initialize(URL url, ResourceBundle rb) {
+
+    super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Database");
+
     listView.setOnMouseClicked(
         event -> {
           Label selected = listView.getSelectionModel().getSelectedItem();
           if (event.getButton() == MouseButton.PRIMARY && selected != null) {
-            String id = selected.getId();
+            Integer id = Integer.parseInt(selected.getId());
             User clickedUser = db.getUserById(id);
             messageLabel.setText("");
             selectedLabel = selected;
@@ -115,11 +121,10 @@ public class EmployeeEditor extends MasterController implements Initializable {
 
     if (!(selectedUser == null)) {
       if (password.equals("********")) {
-        if (!db.updateUserUsernameType(Integer.parseInt(selectedUser.getId()), username, type)) {
+        if (!db.updateUserUsernameType(selectedUser.getId(), username, type)) {
           messageLabel.setText("Invalid inputs");
         }
-      } else if (!db.updateUser(
-          Integer.parseInt(selectedUser.getId()), username, password, type, new UserPrefs())) {
+      } else if (!db.updateUser(selectedUser.getId(), username, password, type, new UserPrefs())) {
         messageLabel.setText("Invalid inputs");
       }
     } else if (db.addUser(username, password, type, new UserPrefs())) {
@@ -142,7 +147,7 @@ public class EmployeeEditor extends MasterController implements Initializable {
     if (index != 0) index--;
     if (!(listView.getItems().size() == 0)) {
       selectedLabel = listView.getItems().get(index);
-      User clickedUser = db.getUserById(selectedLabel.getId());
+      User clickedUser = db.getUserById(Integer.parseInt(selectedLabel.getId()));
       if (clickedUser != null) {
         updateTextFields(clickedUser);
       } else {
@@ -158,9 +163,11 @@ public class EmployeeEditor extends MasterController implements Initializable {
     listView.getItems().clear();
     HashSet<User> set = db.getAllUsers();
     for (User u : set) {
-      Label lbl = new Label(u.getUsername());
-      lbl.setId("" + u.getId());
-      listView.getItems().add(lbl);
+      if (!u.getUsername().equals("guest")) {
+        Label lbl = new Label(u.getUsername());
+        lbl.setId("" + u.getId());
+        listView.getItems().add(lbl);
+      }
     }
   }
 

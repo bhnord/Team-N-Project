@@ -2,7 +2,7 @@ package edu.wpi.TeamN.services.algo;
 
 import java.util.*;
 
-public class Bfs implements PathFinderI {
+public class Bfs extends PathFinderAlgorithm implements IPathFinder {
   @Override
   public ArrayList<Node.Link> pathfindFull(Node start, Node end, Reduce filter) {
     LinkedList<Node> open = new LinkedList<>();
@@ -17,7 +17,7 @@ public class Bfs implements PathFinderI {
         break;
       }
       for (Node.Link l : curnode.get_neighbors()) {
-        Node n = l._other;
+        Node n = l._this;
         if (!n.is_seen()) {
           used.add(n);
           open.push(n);

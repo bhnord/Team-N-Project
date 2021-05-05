@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 public class NameNode extends MasterController implements Initializable {
   static Stage stage;
   static NameNode box;
-  static MapController external;
+  static MapEditor external;
   public JFXTextField floor;
   public JFXTextField buidling;
   public JFXTextField longName;
@@ -21,9 +21,9 @@ public class NameNode extends MasterController implements Initializable {
 
   @FXML private JFXTextField idName;
 
-  public void confirm(MapController mapController) throws IOException {
+  public void confirm(MapEditor mapEditor) throws IOException {
 
-    external = mapController;
+    external = mapEditor;
 
     FXMLLoader fxmlLoader = new FXMLLoader(NameNode.class.getResource("nameNode.fxml"));
     Parent root = fxmlLoader.load();
