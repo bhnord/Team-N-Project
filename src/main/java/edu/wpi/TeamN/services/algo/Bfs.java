@@ -17,7 +17,7 @@ public class Bfs extends PathFinderAlgorithm implements IPathFinder {
         break;
       }
       for (Node.Link l : curnode.get_neighbors()) {
-        Node n = l._other;
+        Node n = l._this;
         if (!n.is_seen()) {
           used.add(n);
           open.push(n);

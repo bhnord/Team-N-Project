@@ -32,7 +32,7 @@ public class PathFinderMap {
   }
 
   public ArrayList<Node.Link> pathfind(String startNodePath, String endNodePath) {
-    PathFinder pathFinder = new PathFinder();
+    PathFinder pathFinder = PathFinder.getPathFinder();
     Node node1 = getNodeSet().get(startNodePath);
     Node node2 = getNodeSet().get(endNodePath);
     ArrayList<Node.Link> ret = pathFinder.pathfind(node1, node2);

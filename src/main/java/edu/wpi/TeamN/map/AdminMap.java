@@ -86,7 +86,7 @@ public class AdminMap {
   }
 
   public ArrayList<Node.Link> pathfind() {
-    PathFinder pathFinder = new PathFinder();
+    PathFinder pathFinder = PathFinder.getPathFinder();
     Node node1 = getNodeSet().get(startNodePath);
     Node node2 = getNodeSet().get(endNodePath);
 

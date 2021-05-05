@@ -6,8 +6,7 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTabPane;
 import com.jfoenix.controls.JFXTextField;
 import edu.wpi.TeamN.map.*;
-import edu.wpi.TeamN.services.algo.Edge;
-import edu.wpi.TeamN.services.algo.Node;
+import edu.wpi.TeamN.services.algo.*;
 import edu.wpi.TeamN.state.HomeState;
 import java.io.IOException;
 import java.net.URL;
@@ -252,11 +251,19 @@ public class MapEditor extends MapController implements Initializable {
           if (event.isPrimaryButtonDown())
             mapNodeEditor.handleDrag(event, getNodeSet().get(root.getId()));
         });
-    root.setOnMouseReleased(event -> mapNodeEditor.finalize_change(diffHandler));
+    root.setOnMouseReleased(
+        event -> {
+          releaseMouse(event);
+          mapNodeEditor.finalize_change(diffHandler);
+        });
     if (!adminMap.getNodeSet().containsKey(n.get_nodeID())) {
       adminMap.addNode(n);
       mapNodeEditor.showNodeProperties(root);
     }
+    root.setOnMousePressed(
+        event -> {
+          if (event.isSecondaryButtonDown()) mouseClick(event);
+        });
     return root;
   }
 
@@ -340,6 +347,7 @@ public class MapEditor extends MapController implements Initializable {
   public Group placeLink(String id, Node node1, Node node2) {
     Group root = super.placeLink(id, node1, node2);
     actionHandling.setEdgeInfo(root);
+    root.setOnMouseReleased(this::releaseMouse);
     if (!super.getAdminMap().getEdgeSet().containsKey(id)) {
       Edge edge = new Edge(id, node1.get_nodeID(), node2.get_nodeID());
       adminMap.addEdge(edge);
@@ -408,7 +416,20 @@ public class MapEditor extends MapController implements Initializable {
   }
 
   public void updateAlgorithm(ActionEvent actionEvent) {
-    db.getCurrentUser().getUserPrefs();
+    switch (algorithm.getSelectionModel().getSelectedItem().getText()) {
+      case "Astar":
+        PathFinder.setImpl(new Astar());
+        return;
+      case "Depth First":
+        PathFinder.setImpl(new Dfs());
+        return;
+      case "Breadth First":
+        PathFinder.setImpl(new Bfs());
+        return;
+      case "Dijkstra":
+        PathFinder.setImpl(new Dijkstra());
+        return;
+    }
   }
 
   @FXML

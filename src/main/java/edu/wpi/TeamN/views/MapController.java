@@ -48,7 +48,7 @@ public abstract class MapController extends MasterController {
   private final double downScale = .25;
   private final double upScale = 4;
 
-  private PathFinder pathFinder = new PathFinder();
+  private PathFinder pathFinder = PathFinder.getPathFinder();
 
   //  public MapController(DatabaseService db) {
   //    this.db = db;

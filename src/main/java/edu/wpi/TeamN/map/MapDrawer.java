@@ -91,6 +91,7 @@ public class MapDrawer {
   }
 
   public Group startLine(Node node1) {
+    System.out.println("here");
     Line simpleNode =
         new Line(
             node1.get_x() * mapController.getDownScale(),
