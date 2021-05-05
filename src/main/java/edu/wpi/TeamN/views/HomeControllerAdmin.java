@@ -8,9 +8,6 @@ import com.jfoenix.validation.RequiredFieldValidator;
 import edu.wpi.TeamN.services.database.DatabaseService;
 import edu.wpi.TeamN.state.HomeState;
 import edu.wpi.TeamN.utilities.DialogFactory;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,6 +20,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import lombok.extern.slf4j.Slf4j;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 @Slf4j
 public class HomeControllerAdmin extends MasterController implements Initializable {
@@ -72,8 +73,6 @@ public class HomeControllerAdmin extends MasterController implements Initializab
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    log.debug(state.toString());
-
     if (db.getCurrentUser() == null || db.getCurrentUser().getUsername().equals("guest")) {
       db.login("guest", "guest");
       super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Login");
