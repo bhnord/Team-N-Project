@@ -21,7 +21,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 @Slf4j
-public class SideBarController<node> extends MasterController implements Initializable {
+public class SideBarController extends MasterController implements Initializable {
 
   @Inject private FXMLLoader loader2;
   private DatabaseService db;
