@@ -364,7 +364,7 @@
                </effect>
             </Rectangle>
             <TextArea editable="false" layoutX="126.0" layoutY="128.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="299.0" prefWidth="228.0" style="-fx-background-color: WHITE; -fx-border-color: WHITE;" stylesheets="@/Fonts/Roboto-Light.css" text="&#10;Ctrl+z -&gt; undo&#10;&#10;Ctrl+y -&gt; redo&#10;&#10;Ctrl+click -&gt; select nodes&#10;&#10;Shift+click -&gt; pan&#10;&#10;Scroll -&gt; zoom&#10;&#10;LeftClick -&gt; add node&#10;&#10;RightClick+drag -&gt; add link&#10;&#10;ctlr+shift+click -&gt; add to selection&#10;" />
-            <Label layoutX="200.0" layoutY="101.0" stylesheets="@Fonts/Roboto-Light.css" text="CONTOLS">
+            <Label layoutX="200.0" layoutY="101.0" stylesheets="@Fonts/Roboto-Light.css" text="CONTROLS">
                <font>
                   <Font size="18.0" />
                </font>
