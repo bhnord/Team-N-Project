@@ -54,7 +54,7 @@ public class CovidFormsTable {
    * @return
    */
   public CovidForm getCovidFormByUserId(int userId) {
-    String str = "SELECT * FROM COVIDFORMS WHERE User = '" + userId + "'";
+    String str = "SELECT * FROM COVIDFORMS WHERE userId = " + userId;
     try {
       ResultSet rs = stmt.executeQuery(str);
       HashSet<CovidForm> set = resultSetToCovidForms(rs);
@@ -134,7 +134,7 @@ public class CovidFormsTable {
   }
 
   public boolean deleteCovidFormByUserId(int userID) {
-    String str = "DELETE FROM COVIDFOMRS WHERE user = " + userID;
+    String str = "DELETE FROM COVIDFORMS WHERE userId = " + userID;
     try {
       stmt.execute(str);
       return true;

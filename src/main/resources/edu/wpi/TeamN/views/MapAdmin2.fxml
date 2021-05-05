@@ -73,11 +73,14 @@
                 <RowConstraints maxHeight="600.0" minHeight="10.0" prefHeight="600.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <JFXButton buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: WHITE; -fx-background-radius: 30;">
+                  <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: WHITE; -fx-background-radius: 25;">
                      <GridPane.margin>
-                        <Insets right="10.0" />
-                     </GridPane.margin></JFXButton>
-                  <StackPane prefHeight="150.0" prefWidth="200.0" />
+                        <Insets right="10.0" top="-25.0" />
+                     </GridPane.margin>
+                     <effect>
+                        <DropShadow color="#000000a0" height="86.23" radius="32.980000000000004" width="47.69" />
+                     </effect>
+                  </Label>
                   <JFXTabPane fx:id="editor" stylesheets="@/StyleSheet/style.css">
                      <tabs>
                         <Tab text="Node">
