@@ -67,20 +67,34 @@ public class PathFinder implements IPathFinder {
       } else {
         if (directionDiff > minAngle || directionDiff < (-minAngle)) {
           if (directionDiff > 0) {
-            ret.add("turn left to " + l._other.get_longName());
+            ret.add(
+                "turn left to "
+                    + l._other.get_longName()
+                    + " then go straight for "
+                    + getDistance(l)
+                    + " ft");
           } else {
-            ret.add("turn right to " + l._other.get_longName());
+            ret.add(
+                "turn right to "
+                    + l._other.get_longName()
+                    + " then go straight for "
+                    + getDistance(l)
+                    + " ft");
           }
         } else {
           //          if (!l._other.get_nodeType().equals("HALL"))
-          ret.add("continue straight to " + l._other.get_longName());
+          ret.add(
+              "continue straight to " + l._other.get_longName() + "for " + getDistance(l) + " ft");
         }
       }
       previousDirection = currentDirection;
     }
     return ret;
   }
-
+  // just a helper function to get estimated distance
+  private int getDistance(Node.Link l) {
+    return (int) l._distance;
+  }
   /**
    * @param start node to walk back to
    * @param curNode node to start walking back from
