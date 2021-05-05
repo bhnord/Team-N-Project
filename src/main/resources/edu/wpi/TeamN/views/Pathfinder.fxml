@@ -9,6 +9,7 @@
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -103,7 +104,7 @@
             <Insets bottom="7.5" right="225.0" />
          </StackPane.margin>
       </JFXButton>
-      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="WHITE" height="103.0" opacity="0.95" stroke="#363d5400" strokeType="INSIDE" strokeWidth="0.0" width="470.0" StackPane.alignment="TOP_CENTER">
+      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="WHITE" height="103.0" opacity="0.95" stroke="#363d5400" strokeType="INSIDE" strokeWidth="0.0" width="198.0" StackPane.alignment="TOP_CENTER">
          <effect>
             <DropShadow color="#00000042" height="203.35" radius="98.58" width="192.97" />
          </effect>
@@ -113,7 +114,7 @@
       </Rectangle>
       <Label stylesheets="@/Fonts/Roboto-Light.css" text="Selected" StackPane.alignment="TOP_CENTER">
          <StackPane.margin>
-            <Insets left="375.0" top="10.0" />
+            <Insets left="76.0" top="10.0" />
          </StackPane.margin>
       </Label>
       <JFXColorPicker fx:id="selectedNodeColor" onAction="#newColorNode" prefHeight="25.0" prefWidth="66.0" style="-fx-color-label-visible: false;" StackPane.alignment="TOP_CENTER">
@@ -121,12 +122,12 @@
             <Cursor fx:constant="HAND" />
          </cursor>
          <StackPane.margin>
-            <Insets left="375.0" top="30.0" />
+            <Insets left="75.0" top="30.0" />
          </StackPane.margin>
       </JFXColorPicker>
       <Label stylesheets="@/Fonts/Roboto-Light.css" text="Path" StackPane.alignment="TOP_CENTER">
          <StackPane.margin>
-            <Insets left="225.0" top="10.0" />
+            <Insets right="75.0" top="10.0" />
          </StackPane.margin>
       </Label>
       <JFXColorPicker fx:id="pathColor" onAction="#newColorPath" prefHeight="25.0" prefWidth="66.0" style="-fx-color-label-visible: false;" StackPane.alignment="TOP_CENTER">
@@ -134,15 +135,15 @@
             <Cursor fx:constant="HAND" />
          </cursor>
          <StackPane.margin>
-            <Insets left="225.0" top="30.0" />
+            <Insets right="75.0" top="30.0" />
          </StackPane.margin>
       </JFXColorPicker>
-      <Label stylesheets="@/Fonts/Roboto-Light.css" text="Stairs" StackPane.alignment="TOP_CENTER">
+      <Label disable="true" stylesheets="@/Fonts/Roboto-Light.css" text="Stairs" visible="false" StackPane.alignment="TOP_CENTER">
          <StackPane.margin>
             <Insets left="75.0" top="10.0" />
          </StackPane.margin>
       </Label>
-      <JFXColorPicker fx:id="STAI" onAction="#newColorNode" prefHeight="25.0" prefWidth="66.0" style="-fx-color-label-visible: false;" StackPane.alignment="TOP_CENTER">
+      <JFXColorPicker fx:id="STAI" disable="true" onAction="#newColorNode" prefHeight="25.0" prefWidth="66.0" style="-fx-color-label-visible: false;" visible="false" StackPane.alignment="TOP_CENTER">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -150,12 +151,12 @@
             <Insets left="75.0" top="30.0" />
          </StackPane.margin>
       </JFXColorPicker>
-      <Label stylesheets="@/Fonts/Roboto-Light.css" text="Elevators" StackPane.alignment="TOP_CENTER">
+      <Label disable="true" stylesheets="@/Fonts/Roboto-Light.css" text="Elevators" visible="false" StackPane.alignment="TOP_CENTER">
          <StackPane.margin>
             <Insets right="75.0" top="10.0" />
          </StackPane.margin>
       </Label>
-      <JFXColorPicker fx:id="ELEV" onAction="#newColorNode" prefHeight="25.0" prefWidth="66.0" style="-fx-color-label-visible: false;" StackPane.alignment="TOP_CENTER">
+      <JFXColorPicker fx:id="ELEV" disable="true" onAction="#newColorNode" prefHeight="25.0" prefWidth="66.0" style="-fx-color-label-visible: false;" visible="false" StackPane.alignment="TOP_CENTER">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -163,12 +164,12 @@
             <Insets right="75.0" top="30.0" />
          </StackPane.margin>
       </JFXColorPicker>
-      <Label stylesheets="@/Fonts/Roboto-Light.css" text="Exits" StackPane.alignment="TOP_CENTER">
+      <Label disable="true" stylesheets="@/Fonts/Roboto-Light.css" text="Exits" visible="false" StackPane.alignment="TOP_CENTER">
          <StackPane.margin>
             <Insets right="225.0" top="10.0" />
          </StackPane.margin>
       </Label>
-      <JFXColorPicker fx:id="EXIT" onAction="#newColorNode" prefHeight="25.0" prefWidth="66.0" style="-fx-color-label-visible: false;" StackPane.alignment="TOP_CENTER">
+      <JFXColorPicker fx:id="EXIT" disable="true" onAction="#newColorNode" prefHeight="25.0" prefWidth="66.0" style="-fx-color-label-visible: false;" visible="false" StackPane.alignment="TOP_CENTER">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -176,12 +177,12 @@
             <Insets right="225.0" top="30.0" />
          </StackPane.margin>
       </JFXColorPicker>
-      <Label stylesheets="@/Fonts/Roboto-Light.css" text="Nodes" StackPane.alignment="TOP_CENTER">
+      <Label disable="true" stylesheets="@/Fonts/Roboto-Light.css" text="Nodes" visible="false" StackPane.alignment="TOP_CENTER">
          <StackPane.margin>
             <Insets right="375.0" top="10.0" />
          </StackPane.margin>
       </Label>
-      <JFXColorPicker fx:id="nodeColor" onAction="#newColorNodeaf" prefHeight="25.0" prefWidth="66.0" style="-fx-color-label-visible: false;" stylesheets="@/StyleSheet/style.css" StackPane.alignment="TOP_CENTER">
+      <JFXColorPicker fx:id="nodeColor" disable="true" onAction="#newColorNodeaf" prefHeight="25.0" prefWidth="66.0" style="-fx-color-label-visible: false;" stylesheets="@/StyleSheet/style.css" visible="false" StackPane.alignment="TOP_CENTER">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -189,7 +190,7 @@
             <Insets right="375.0" top="30.0" />
          </StackPane.margin>
       </JFXColorPicker>
-      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="WHITE" height="106.0" opacity="0.95" stroke="#363d5400" strokeType="INSIDE" strokeWidth="0.0" width="264.0" StackPane.alignment="BOTTOM_RIGHT">
+      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="WHITE" height="106.0" opacity="0.95" stroke="#363d5400" strokeType="INSIDE" strokeWidth="0.0" width="375.0" StackPane.alignment="BOTTOM_RIGHT">
          <effect>
             <DropShadow color="#00000042" height="203.35" radius="98.58" width="192.97" />
          </effect>
@@ -197,27 +198,7 @@
             <Insets bottom="-30.0" right="-30.0" />
          </StackPane.margin>
       </Rectangle>
-      <Label stylesheets="/Fonts/Roboto-Light.css" text="Node Size" StackPane.alignment="BOTTOM_RIGHT">
-         <StackPane.margin>
-            <Insets bottom="50.0" right="160.0" />
-         </StackPane.margin>
-      </Label>
-      <Label stylesheets="/Fonts/Roboto-Light.css" text="Path Size" StackPane.alignment="BOTTOM_RIGHT">
-         <StackPane.margin>
-            <Insets bottom="15.0" right="159.0" />
-         </StackPane.margin>
-      </Label>
-      <JFXTextField fx:id="nodeSize" focusColor="#748cdc" maxWidth="-Infinity" minWidth="-Infinity" onAction="#newSize" prefWidth="100.0" StackPane.alignment="BOTTOM_RIGHT">
-         <StackPane.margin>
-            <Insets bottom="15.0" right="50.0" />
-         </StackPane.margin>
-      </JFXTextField>
-      <JFXTextField fx:id="pathSize" focusColor="#748cdc" maxWidth="-Infinity" minWidth="-Infinity" onAction="#newSize" prefWidth="100.0" StackPane.alignment="BOTTOM_RIGHT">
-         <StackPane.margin>
-            <Insets bottom="50.0" right="50.0" />
-         </StackPane.margin>
-      </JFXTextField>
-      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="WHITE" height="634.0" opacity="0.95" stroke="#363d5400" strokeType="INSIDE" strokeWidth="0.0" width="264.0" StackPane.alignment="TOP_RIGHT">
+      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="WHITE" height="634.0" opacity="0.95" stroke="#363d5400" strokeType="INSIDE" strokeWidth="0.0" width="375.0" StackPane.alignment="TOP_RIGHT">
          <effect>
             <DropShadow color="#00000042" height="203.35" radius="98.58" width="192.97" />
          </effect>
@@ -227,20 +208,20 @@
       </Rectangle>
       <JFXButton fx:id="31" buttonType="RAISED" onAction="#newColorPath" prefHeight="40.0" prefWidth="132.0" style="-fx-background-color: #363d54; -fx-background-radius: 0;" stylesheets="/Fonts/Roboto-Light.css" text="Get Directions" textFill="WHITE" StackPane.alignment="TOP_RIGHT">
          <StackPane.margin>
-            <Insets right="45.0" top="10.0" />
+            <Insets right="100.0" top="10.0" />
          </StackPane.margin>
       </JFXButton>
       <JFXButton buttonType="RAISED" onAction="#clearSelection" prefHeight="40.0" prefWidth="132.0" style="-fx-background-color: #363d54; -fx-background-radius: 0;" stylesheets="/Fonts/Roboto-Light.css" text="Clear Selection" textFill="WHITE" StackPane.alignment="TOP_RIGHT">
          <StackPane.margin>
-            <Insets right="45.0" top="55.0" />
+            <Insets right="100.0" top="55.0" />
          </StackPane.margin>
       </JFXButton>
        <JFXButton buttonType="RAISED" onAction="#addStop" prefHeight="40.0" prefWidth="132.0" style="-fx-background-color: #363d54; -fx-background-radius: 0;" stylesheets="/Fonts/Roboto-Light.css" text="Add Stop" textFill="WHITE" StackPane.alignment="TOP_RIGHT">
          <StackPane.margin>
-            <Insets right="45.0" top="100.0" />
+            <Insets right="100.0" top="100.0" />
          </StackPane.margin>
       </JFXButton>
-      <JFXComboBox fx:id="locationDropdown" focusColor="#748cdc" prefHeight="53.0" prefWidth="212.0" StackPane.alignment="TOP_RIGHT">
+      <JFXComboBox fx:id="locationDropdown" focusColor="#748cdc" prefHeight="53.0" prefWidth="320.0" StackPane.alignment="TOP_RIGHT">
          <StackPane.margin>
             <Insets right="10.0" top="150.0" />
          </StackPane.margin>
@@ -250,18 +231,59 @@
             <Font size="24.0" />
          </font>
          <StackPane.margin>
-            <Insets right="50.0" top="565.0" />
+            <Insets right="100.0" top="565.0" />
          </StackPane.margin>
       </Label>
-      <JFXListView fx:id="stops" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="136.0" prefWidth="210.0" style="-fx-border-width: 3; -fx-border-color: #363d54;" stylesheets="/StyleSheet/ScrollBar.css" StackPane.alignment="TOP_RIGHT">
+      <JFXListView fx:id="stops" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="136.0" prefWidth="320.0" style="-fx-border-width: 3; -fx-border-color: #363d54;" stylesheets="/StyleSheet/ScrollBar.css" StackPane.alignment="TOP_RIGHT">
          <StackPane.margin>
             <Insets right="10.0" top="215.0" />
          </StackPane.margin>
       </JFXListView>
-      <JFXListView fx:id="texutualDescription" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200" prefWidth="210.0" stylesheets="/StyleSheet/style.css" StackPane.alignment="TOP_RIGHT">
+      <JFXListView fx:id="texutualDescription" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200" prefWidth="320.0" stylesheets="/StyleSheet/style.css" StackPane.alignment="TOP_RIGHT">
          <StackPane.margin>
             <Insets right="10.0" top="360.0" />
          </StackPane.margin>
       </JFXListView>
+      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="WHITE" height="325.0" opacity="0.95" stroke="#363d5400" strokeType="INSIDE" strokeWidth="0.0" width="297.0" StackPane.alignment="BOTTOM_LEFT">
+         <effect>
+            <DropShadow color="#00000042" height="203.35" radius="98.58" width="192.97" />
+         </effect>
+         <StackPane.margin>
+            <Insets bottom="-30.0" left="80.0" />
+         </StackPane.margin>
+      </Rectangle>
+      <TextArea editable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="236.0" prefWidth="200.0" style="-fx-background-color: WHITE; -fx-border-color: WHITE;" stylesheets="@/Fonts/Roboto-Light.css" text="Ctrl+z -&gt; undo&#10;&#10;Ctrl+y -&gt; redo&#10;&#10;Ctrl+click -&gt; select nodes&#10;&#10;Shift+click -&gt; pan&#10;&#10;Scroll -&gt; zoom&#10;&#10;LeftClick -&gt; add node&#10;&#10;RightClick+drag -&gt; add link" StackPane.alignment="BOTTOM_LEFT">
+         <StackPane.margin>
+            <Insets bottom="25.0" left="130.0" />
+         </StackPane.margin>
+      </TextArea>
+      <Label stylesheets="@Fonts/Roboto-Light.css" text="SETTINGS" StackPane.alignment="BOTTOM_LEFT">
+         <StackPane.margin>
+            <Insets bottom="265.0" left="185.0" />
+         </StackPane.margin>
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label stylesheets="/Fonts/Roboto-Light.css" text="Node Size" StackPane.alignment="BOTTOM_RIGHT">
+         <StackPane.margin>
+            <Insets bottom="50.0" right="200.0" />
+         </StackPane.margin>
+      </Label>
+      <Label stylesheets="/Fonts/Roboto-Light.css" text="Path Size" StackPane.alignment="BOTTOM_RIGHT">
+         <StackPane.margin>
+            <Insets bottom="15.0" right="200.0" />
+         </StackPane.margin>
+      </Label>
+      <JFXTextField fx:id="nodeSize" focusColor="#748cdc" maxWidth="-Infinity" minWidth="-Infinity" onAction="#newSize" prefWidth="100.0" StackPane.alignment="BOTTOM_RIGHT">
+         <StackPane.margin>
+            <Insets bottom="15.0" right="80.0" />
+         </StackPane.margin>
+      </JFXTextField>
+      <JFXTextField fx:id="pathSize" focusColor="#748cdc" maxWidth="-Infinity" minWidth="-Infinity" onAction="#newSize" prefWidth="100.0" StackPane.alignment="BOTTOM_RIGHT">
+         <StackPane.margin>
+            <Insets bottom="50.0" right="80.0" />
+         </StackPane.margin>
+      </JFXTextField>
     </children>
 </StackPane>
