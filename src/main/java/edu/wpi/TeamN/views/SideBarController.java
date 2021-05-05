@@ -2,9 +2,6 @@ package edu.wpi.TeamN.views;
 
 import com.google.inject.Inject;
 import edu.wpi.TeamN.services.database.DatabaseService;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,6 +15,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import lombok.extern.slf4j.Slf4j;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 @Slf4j
 public class SideBarController<node> extends MasterController implements Initializable {
@@ -136,6 +137,7 @@ public class SideBarController<node> extends MasterController implements Initial
   // logs out the current user
   @FXML
   public void logOut() throws IOException {
+    super.setDB(db);
     super.logOut(loader, appPrimaryScene);
   }
 
