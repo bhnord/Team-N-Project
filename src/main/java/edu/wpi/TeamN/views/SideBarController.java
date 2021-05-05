@@ -58,23 +58,24 @@ public class SideBarController extends MasterController implements Initializable
     tt.setToX(0);
     tt.setAutoReverse(true);
     tt.play();
-    try {
-      if (db.getCurrentUser() != null && currUser != db.getCurrentUser()) {
-        currUser = db.getCurrentUser();
-        String a = "Username: " + db.getCurrentUser().getUsername();
-        AccountType.setText(a);
-        // accountaSettingsGroup.getChildren().add(AccountType);
-        String b = "Privileges: " + db.getCurrentUser().getType().toString();
-        AccountUsername.setText(b);
-        String parkingSpot = db.getCurrentUser().getParkingSpot();
-        if(!parkingSpot.equals("")) {
-          AccountParkingSpot.setText(parkingSpot);
-        }
-        accountSettingsGroup.getChildren().add(AccountUsername);
+    if (db.getCurrentUser() != null) {
+      //        currUser = db.getCurrentUser();
+      String a = "Username: " + db.getCurrentUser().getUsername();
+      AccountType.setText(a);
+      // accountaSettingsGroup.getChildren().add(AccountType);
+      String b = "Privileges: " + db.getCurrentUser().getType().toString();
+      AccountUsername.setText(b);
+      String parkingSpot = db.getCurrentUser().getParkingSpot();
+      if (parkingSpot != null) {
+        AccountParkingSpot.setText("Parking Spot: " + parkingSpot);
+      } else {
+        AccountParkingSpot.setText("Parking Spot: Not Set");
       }
-    } catch (Exception e) {
-
+      //      accountSettingsGroup.getChildren().add(AccountUsername);
     }
+    //    } catch (Exception e) {
+    //
+    //    }
   }
 
   @FXML

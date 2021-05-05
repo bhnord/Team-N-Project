@@ -8,9 +8,6 @@ import edu.wpi.TeamN.map.MapDrawer;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.algo.PathFinder;
 import edu.wpi.TeamN.services.database.users.User;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
 import javafx.animation.TranslateTransition;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -29,6 +26,10 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
 import javafx.util.Duration;
+
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 public class PathFinderController extends MapController implements Initializable {
   ArrayList<String> path = new ArrayList<>();
@@ -100,9 +101,10 @@ public class PathFinderController extends MapController implements Initializable
     if (event.getButton() == MouseButton.PRIMARY
         && !path.contains(n.get_nodeID())
         && !event.isShiftDown()) {
-      if (n.get_nodeID().toLowerCase().contains("park")) {
+      if (n.get_longName().toLowerCase().contains("park")) {
         User.setParkingSpot(n.get_longName());
-        //Label set here Michael
+        //        System.out.println("set parking spot");
+        // Label set here Michael
       }
       for (Node.Link l : n.get_neighbors()) {
         System.out.println("\t" + l._other.get_nodeID());

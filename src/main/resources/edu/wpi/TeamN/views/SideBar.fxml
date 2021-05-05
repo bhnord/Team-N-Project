@@ -20,7 +20,7 @@
             </Rectangle>
             <JFXButton fx:id="profilePopoutBackButton" layoutX="243.0" layoutY="8.0" onAction="#accountSettingsBack" prefHeight="32.0" prefWidth="32.0" stylesheets="@/StyleSheet/SideBar.css" />
             <Label fx:id="AccountType" layoutX="80.0" layoutY="32.0" text="Label" />
-            <Label fx:id="AccountUsername" layoutX="80.0" layoutY="65.0" text="Label" />
+            <Label fx:id="AccountUsername" layoutX="80.0" layoutY="63.0" text="Label" />
             <Label fx:id="AccountParkingSpot" layoutX="80.0" layoutY="94.0" text="Parking Spot: Not Set" />
          </children>
       </Group>
