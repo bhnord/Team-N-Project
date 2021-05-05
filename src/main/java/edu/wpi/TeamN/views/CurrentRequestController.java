@@ -197,8 +197,14 @@ public class CurrentRequestController extends MasterController implements Initia
   public void submitCovid(ActionEvent actionEvent) {
     if (listViewCovid.getItems().isEmpty() || selectedLabel == null) return;
     int index = listViewCovid.getItems().indexOf(selectedLabel);
-    db.deleteRequest(Integer.valueOf(selectedLabel.getId()));
+
+    int idCovid = Integer.parseInt(selectedLabel.getId());
+    if (entrance.getValue() == "enter through emergency entrance")
+      db.updateCovidForm(idCovid, false);
+    else db.updateCovidForm(idCovid, true);
+    db.setCovidFormIsProcessed(idCovid, true);
     listViewCovid.getItems().remove(selectedLabel);
+
     if (index != 0) index--;
     if (!(listViewCovid.getItems().size() == 0)) {
       selectedLabel = listViewCovid.getItems().get(index);
@@ -213,12 +219,6 @@ public class CurrentRequestController extends MasterController implements Initia
       selectedLabel = null;
       setEmptyFields();
     }
-
-    int idCovid = db.getCurrentUser().getId();
-    if (entrance.getValue() == "enter through emergency entrance")
-      db.updateCovidForm(idCovid, true);
-    else db.updateCovidForm(idCovid, false);
-    db.setCovidFormIsProcessed(idCovid, true);
   }
 
   public void markComplete(ActionEvent actionEvent) {

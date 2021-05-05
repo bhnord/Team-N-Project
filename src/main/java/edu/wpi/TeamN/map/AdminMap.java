@@ -4,8 +4,11 @@ import edu.wpi.TeamN.services.algo.Edge;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.algo.PathFinder;
 import edu.wpi.TeamN.services.database.DatabaseService;
+import edu.wpi.TeamN.services.database.users.User;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
+
 import javafx.scene.shape.Line;
 
 public class AdminMap {
@@ -92,11 +95,18 @@ public class AdminMap {
   }
 
   public void SetStartNode(String snp) {
-    if (getNodeSet().containsKey(snp)) startNodePath = snp;
+
+    if (getNodeSet().containsKey(snp)) {
+      if (snp.toLowerCase().contains("park")) User.setParkingSpot(snp);
+      startNodePath = snp;
+    }
   }
 
   public void SetEndNode(String enp) {
-    if (getNodeSet().containsKey(enp)) endNodePath = enp;
+    if (getNodeSet().containsKey(enp)) {
+      if (enp.toLowerCase().contains("park")) User.setParkingSpot(enp);
+      endNodePath = enp;
+    }
   }
 
   public void makeEdge(String id, Node node1, Node node2, Line simpleNode) {
