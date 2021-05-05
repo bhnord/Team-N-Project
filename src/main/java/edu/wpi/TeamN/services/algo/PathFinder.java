@@ -70,21 +70,19 @@ public class PathFinder implements IPathFinder {
             ret.add(
                 "turn left to "
                     + l._other.get_longName()
-                    + " then go straight for "
                     + getDistance(l)
-                    + " ft");
+                    + ": ft");
           } else {
             ret.add(
                 "turn right to "
                     + l._other.get_longName()
-                    + " then go straight for "
                     + getDistance(l)
-                    + " ft");
+                    + ": ft ");
           }
         } else {
           //          if (!l._other.get_nodeType().equals("HALL"))
           ret.add(
-              "continue straight to " + l._other.get_longName() + "for " + getDistance(l) + " ft");
+              "continue straight to " + l._other.get_longName() + ": " + getDistance(l) + " ft");
         }
       }
       previousDirection = currentDirection;
