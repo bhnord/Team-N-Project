@@ -67,14 +67,14 @@ public class PathFinder implements IPathFinder {
       } else {
         if (directionDiff > minAngle || directionDiff < (-minAngle)) {
           if (directionDiff > 0) {
-            ret.add("turn left to " + l._other.get_longName() + ": "+ getDistance(l) + " ft");
+            ret.add("turn left to " + l._other.get_longName() + ": ("+ getDistance(l) + " ft)");
           } else {
-            ret.add("turn right to " + l._other.get_longName() + ": "+ getDistance(l) + ": ft ");
+            ret.add("turn right to " + l._other.get_longName() + ": ("+ getDistance(l) + " ft)");
           }
         } else {
           //          if (!l._other.get_nodeType().equals("HALL"))
           ret.add(
-              "continue straight to " + l._other.get_longName() + ": " + getDistance(l) + " ft");
+              "continue straight to " + l._other.get_longName() + ": (" + getDistance(l) + " ft)");
         }
       }
       previousDirection = currentDirection;
