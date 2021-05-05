@@ -282,9 +282,9 @@
             <Insets right="-50.0" />
          </StackPane.margin>
       </Label>
-      <Label prefHeight="14.0" prefWidth="79.0" stylesheets="@/Fonts/Roboto-Black.css" text="X-Coordinate:" StackPane.alignment="BOTTOM_RIGHT">
+      <Label stylesheets="@/Fonts/Roboto-Black.css" text="X-Coordinate:" StackPane.alignment="BOTTOM_RIGHT">
          <StackPane.margin>
-            <Insets bottom="50.0" right="53.0" />
+            <Insets bottom="50.0" right="58.0" />
          </StackPane.margin>
       </Label>
       <Label stylesheets="@/Fonts/Roboto-Black.css" text="Y-Coordinate:" StackPane.alignment="BOTTOM_RIGHT">
