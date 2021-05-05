@@ -57,14 +57,12 @@ public class SideBarController<node> extends MasterController implements Initial
 
     if (db.getCurrentUser() != null) {
       String a = "user: " + db.getCurrentUser().getUsername();
-      // String a = "                  jjjjjjjjj";
-      Label label = new Label(a);
-      accountSettingsGroup.getChildren().add(label);
+      AccountType.setText(a);
+      accountSettingsGroup.getChildren().add(AccountType);
     } else {
-
-      String a = "      user: guest";
-      Label label = new Label(a);
-      accountSettingsGroup.getChildren().add(label);
+      String a = "user: guest";
+      AccountType.setText(a);
+      accountSettingsGroup.getChildren().add(AccountType);
     }
   }
 
@@ -84,11 +82,6 @@ public class SideBarController<node> extends MasterController implements Initial
 
     setLoader(loader);
     accountSettingsGroup.setTranslateX(-300);
-
-    // accountSettingsGroup.getChildren().add(homeController.accountInfo());
-    // Label label = new Label(homeController.accountInfo());
-    // accountSettingsGroup.getChildren().add(label);
-
   }
 
   /**
