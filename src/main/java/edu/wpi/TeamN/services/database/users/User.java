@@ -17,6 +17,7 @@ public abstract class User {
   }
 
   public static void setParkingSpot(String parkingSpot) {
+    System.out.println("Parking updated");
     User.parkingSpot = parkingSpot;
   }
 
