@@ -89,7 +89,7 @@ public class CovidFormsTable {
     String ansString = Arrays.toString(ans);
     ansString = ansString.substring(1, ansString.length() - 1); // cuts off [] from toString
     String str =
-        "INSERT INTO COVIDFORMS (UserId, AssignedEmployee Q1, Q2, Q3, Q4, Q5, Q6, ExtraInfo) VALUES ("
+        "INSERT INTO COVIDFORMS (UserId, AssignedEmployee, Q1, Q2, Q3, Q4, Q5, Q6, ExtraInfo) VALUES ("
             + form.getUserId()
             + ", "
             + employeeId

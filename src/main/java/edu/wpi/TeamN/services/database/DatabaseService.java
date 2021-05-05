@@ -395,7 +395,8 @@ public class DatabaseService {
    */
   public boolean addCovidForm(CovidForm form) {
     HashSet<User> empl = getUsersByType(UserType.EMPLOYEE);
-    User u[] = (User[]) empl.toArray();
+    User[] u = new User[empl.size()];
+    empl.toArray(u);
     int userId = u[((int) Math.random() * u.length)].getId();
     return covidTable.addCovidForm(form, userId);
   }
