@@ -2,9 +2,6 @@ package edu.wpi.TeamN.map;
 
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.views.MapController;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Objects;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.beans.property.DoubleProperty;
@@ -21,6 +18,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Objects;
 
 public class MapDrawer {
   private final MapController mapController;
@@ -52,7 +53,7 @@ public class MapDrawer {
   private Line draggedLine;
 
   private Group boundingBoxGroup;
-  private Rectangle boudningBox;
+  private Rectangle boundingBox;
 
   public MapDrawer(MapController mapControllerI) {
     this.mapController = mapControllerI;
@@ -80,15 +81,15 @@ public class MapDrawer {
     root.setId("b_" + x + ":" + y);
     mapController.getMapAnchor().getChildren().add(3, root);
     this.boundingBoxGroup = root;
-    this.boudningBox = rectangle;
+    this.boundingBox = rectangle;
     return root;
   }
 
   public Rectangle endBoundingBox(double x, double y) {
-    Rectangle temp = boudningBox;
-    if (boudningBox != null) {
+    Rectangle temp = boundingBox;
+    if (boundingBox != null) {
       mapController.getMapAnchor().getChildren().remove(boundingBoxGroup);
-      boudningBox = null;
+      boundingBox = null;
       boundingBoxGroup = null;
     }
     return temp;
@@ -154,12 +155,12 @@ public class MapDrawer {
   public void captureMouseDrag(MouseEvent event) {
     event.consume();
     if (event.isControlDown()) {
-      if (boudningBox != null) {
-        boudningBox.setX(Math.min(pressedX, event.getX()));
-        boudningBox.setY(Math.min(pressedY, event.getY()));
+      if (boundingBox != null) {
+        boundingBox.setX(Math.min(pressedX, event.getX()));
+        boundingBox.setY(Math.min(pressedY, event.getY()));
 
-        boudningBox.setWidth(Math.abs(event.getX() - pressedX));
-        boudningBox.setHeight(Math.abs(event.getY() - pressedY));
+        boundingBox.setWidth(Math.abs(event.getX() - pressedX));
+        boundingBox.setHeight(Math.abs(event.getY() - pressedY));
       }
     }
     if (event.getButton() == MouseButton.SECONDARY) {
