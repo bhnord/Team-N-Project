@@ -1,6 +1,7 @@
 package edu.wpi.TeamN.views;
 
 import com.google.inject.Inject;
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTabPane;
 import com.jfoenix.controls.JFXTextField;
@@ -13,6 +14,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.ResourceBundle;
+import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,6 +26,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -43,6 +46,9 @@ public class MapEditor extends MapController implements Initializable {
   private MapNodeEditor mapNodeEditor;
   private MapEdgeEditor mapEdgeEditor;
   private IActionHandling actionHandling;
+
+  @FXML private Group ControlsGroup;
+  @FXML private JFXButton buttonUp, buttonDown;
 
   private Scene appPrimaryScene;
   ArrayList<Node.Link> path = new ArrayList<>();
@@ -403,5 +409,32 @@ public class MapEditor extends MapController implements Initializable {
 
   public void updateAlgorithm(ActionEvent actionEvent) {
     db.getCurrentUser().getUserPrefs();
+  }
+
+  @FXML
+  public void groupUp() {
+    // accountSettingsGroup.setTranslateX(100);
+    TranslateTransition tt = new TranslateTransition();
+    tt.setNode(ControlsGroup);
+    tt.setDuration(new Duration(1000));
+    // tt.setFromX(0);
+    tt.setToY(-300);
+    tt.setAutoReverse(true);
+    buttonDown.setVisible(true);
+    buttonUp.setVisible(false);
+    tt.play();
+  }
+
+  @FXML
+  public void groupDown() {
+    TranslateTransition tt = new TranslateTransition();
+    tt.setNode(ControlsGroup);
+    tt.setDuration(new Duration(1000));
+    // tt.setFromX(100);
+    tt.setToY(0);
+    tt.setAutoReverse(true);
+    buttonDown.setVisible(false);
+    buttonUp.setVisible(true);
+    tt.play();
   }
 }
