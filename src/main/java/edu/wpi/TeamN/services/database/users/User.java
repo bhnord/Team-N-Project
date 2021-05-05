@@ -4,11 +4,20 @@ public abstract class User {
   int id;
   private String username, firstname, lastname;
   private UserPrefs userPrefs;
+  private static String parkingSpot;
 
   public User(int id, String username, UserPrefs userPrefs) {
     this.id = id;
     this.username = username;
     this.userPrefs = userPrefs;
+  }
+
+  public String getParkingSpot() {
+    return parkingSpot;
+  }
+
+  public static void setParkingSpot(String parkingSpot) {
+    User.parkingSpot = parkingSpot;
   }
 
   public int getId() {
