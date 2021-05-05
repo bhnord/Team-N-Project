@@ -128,8 +128,10 @@ public class FindUsController extends MasterController implements Initializable 
             .append(")</span>");
         directions.append("<br/><br/>");
         directions.replace(directions.indexOf(";"), directions.indexOf(";"), "");
+        System.out.println(directions);
         //        directions.replace(0, directions.length(), "");
       }
+      webEngine.executeScript("document.getElementsByTagName('body')[0].innerHTML = \"\"");
       webEngine.executeScript(
           "document.getElementsByTagName('body')[0].insertAdjacentHTML('beforeend', '"
               + directions

@@ -90,13 +90,14 @@
                                     <Label fx:id="outsideTravel" layoutX="613.0" layoutY="196.0" text="                                       " />
                                     <Label fx:id="cruiseShip" layoutX="613.0" layoutY="246.0" text="                         " />
                                     <Label fx:id="emergency" layoutX="613.0" layoutY="290.0" text="                                 " />
-                                    <JFXButton fx:id="checkIn" layoutX="634.0" layoutY="484.0" onAction="#checkIn" prefHeight="70.0" prefWidth="212.0" style="-fx-background-color: #748cdc; -fx-background-radius: 15;" stylesheets="/Fonts/Roboto-Light.css" text="CHECK IN" textFill="WHITE">
+                                    <JFXButton fx:id="submitCovidButton" layoutX="634.0" layoutY="484.0" onAction="#submitCovid" prefHeight="70.0" prefWidth="212.0" style="-fx-background-color: #748cdc; -fx-background-radius: 15;" stylesheets="/Fonts/Roboto-Light.css" text="SUBMIT" textFill="WHITE">
                                        <font>
                                           <Font name="Arial Black" size="14.0" />
                                        </font>
                                     </JFXButton>
-                                    <JFXComboBox fx:id="employeeDropdown" focusColor="#748cdc" labelFloat="true" layoutX="350.0" layoutY="341.0" prefHeight="31.0" prefWidth="232.0" promptText="Select Employee" styleClass="label" stylesheets="@/Fonts/Roboto-Light.css" />
                                     <JFXComboBox fx:id="entrance" focusColor="#5b63e1" layoutX="350.0" layoutY="396.0" prefHeight="31.0" prefWidth="233.0" promptText="How patient should enter" stylesheets="/Fonts/Roboto-Light.css" />
+                                    <Label layoutX="350.0" layoutY="340.0" stylesheets="/Fonts/Roboto-Light.css" prefHeight="17.0" prefWidth="123.0" text="Assigned Employee" />
+                                    <Label fx:id="assignedEmployee" layoutX="613.0" layoutY="340.0" prefHeight="17.0" prefWidth="186.0" text="                                 " />
                                  </children>
                               </AnchorPane>
                            </content>
