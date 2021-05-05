@@ -9,9 +9,6 @@ import edu.wpi.TeamN.services.database.users.UserPrefs;
 import edu.wpi.TeamN.services.database.users.UserType;
 import edu.wpi.TeamN.state.HomeState;
 import edu.wpi.TeamN.utilities.DialogFactory;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,6 +20,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import lombok.extern.slf4j.Slf4j;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 @Slf4j
 public class RegisterNewUser extends MasterController implements Initializable {
@@ -65,7 +66,7 @@ public class RegisterNewUser extends MasterController implements Initializable {
   public void initialize(URL location, ResourceBundle resources) {
     log.debug(state.toString());
     super.sideBarSetup(anchorPane1, appPrimaryScene, loader, "Register");
-    dialogFactory = new DialogFactory(myStackPane);
+    dialogFactory = new DialogFactory(rootGridPane);
     //    loadEmployeeDropdown(employeeDropdown);
   }
 
