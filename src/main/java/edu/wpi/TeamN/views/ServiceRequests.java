@@ -2,6 +2,9 @@ package edu.wpi.TeamN.views;
 
 import com.google.inject.Inject;
 import edu.wpi.TeamN.state.HomeState;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,10 +14,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import lombok.extern.slf4j.Slf4j;
-
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 @Slf4j
 public class ServiceRequests extends MasterController implements Initializable {

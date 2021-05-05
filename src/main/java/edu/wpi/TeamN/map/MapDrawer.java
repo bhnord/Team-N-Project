@@ -44,6 +44,10 @@ public class MapDrawer {
 
   private Circle dragging;
 
+  public boolean isDragging() {
+    return this.draggedLine != null;
+  }
+
   private Group draggedLineGroup;
   private Line draggedLine;
 

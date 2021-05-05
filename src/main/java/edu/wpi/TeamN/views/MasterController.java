@@ -8,6 +8,10 @@ import edu.wpi.TeamN.services.database.users.User;
 import edu.wpi.TeamN.services.database.users.UserType;
 import edu.wpi.TeamN.state.HomeState;
 import edu.wpi.TeamN.utilities.AutoCompleteComboBoxListener;
+import java.io.IOException;
+import java.net.URL;
+import java.util.HashSet;
+import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,11 +23,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
-
-import java.io.IOException;
-import java.net.URL;
-import java.util.HashSet;
-import java.util.ResourceBundle;
 
 @Slf4j
 public class MasterController implements Initializable {

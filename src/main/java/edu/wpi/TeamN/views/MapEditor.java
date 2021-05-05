@@ -253,8 +253,8 @@ public class MapEditor extends MapController implements Initializable {
         });
     root.setOnMouseReleased(
         event -> {
-          releaseMouse(event);
-          mapNodeEditor.finalize_change(diffHandler);
+          if (mapDrawer.isDragging()) releaseMouse(event);
+          else mapNodeEditor.finalize_change(diffHandler);
         });
     if (!adminMap.getNodeSet().containsKey(n.get_nodeID())) {
       adminMap.addNode(n);

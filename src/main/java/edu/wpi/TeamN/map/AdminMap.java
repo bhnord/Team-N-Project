@@ -5,10 +5,9 @@ import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.algo.PathFinder;
 import edu.wpi.TeamN.services.database.DatabaseService;
 import edu.wpi.TeamN.services.database.users.User;
-import javafx.scene.shape.Line;
-
 import java.util.ArrayList;
 import java.util.HashMap;
+import javafx.scene.shape.Line;
 
 public class AdminMap {
   private DatabaseService db;
