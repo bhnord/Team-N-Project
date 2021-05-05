@@ -103,7 +103,7 @@ public class RegisterNewUser extends MasterController implements Initializable {
           "Invalid User Login", "* Username already exists. Choose different username.\n");
     } else {
       dialogFactory.creatDialogOkay(
-          "Success!", "The account for \"" + username + "\" has been created.");
+          "Success!", "The account for \"" + username.getText() + "\" has been created.");
     }
   }
 
