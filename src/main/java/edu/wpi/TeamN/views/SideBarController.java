@@ -123,6 +123,7 @@ public class SideBarController extends MasterController implements Initializable
   // advances to the service request page (for back buutton group)
   @FXML
   public void advanceServiceRequest() throws IOException {
+    super.setDB(db);
     super.advanceServiceRequest(loader, appPrimaryScene);
   }
 

@@ -72,8 +72,6 @@ public class HomeControllerAdmin extends MasterController implements Initializab
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    log.debug(state.toString());
-
     if (db.getCurrentUser() == null || db.getCurrentUser().getUsername().equals("guest")) {
       db.login("guest", "guest");
       super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Login");

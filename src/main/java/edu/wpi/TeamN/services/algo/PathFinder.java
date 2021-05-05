@@ -4,26 +4,31 @@ import java.util.ArrayList;
 
 public class PathFinder implements IPathFinder {
   private IPathFinder impl;
+  private static PathFinder singleton = new PathFinder();
 
-  public PathFinder(IPathFinder impl) {
-    this.impl = impl;
+  public static void setImpl(IPathFinder impl) {
+    singleton.impl = impl;
   }
 
-  public PathFinder() {
+  private PathFinder() {
     this.impl = new Astar();
   }
 
+  public static PathFinder getPathFinder() {
+    return singleton;
+  }
+
   public ArrayList<Node.Link> pathfind(Node start, Node end) {
-    return impl.pathfindFull(start, end, (l) -> true);
+    return singleton.impl.pathfindFull(start, end, (l) -> true);
   }
 
   public ArrayList<Node.Link> pathfindNoStairs(Node start, Node end) {
-    return impl.pathfindFull(start, end, (l) -> !l._isStair);
+    return singleton.impl.pathfindFull(start, end, (l) -> !l._isStair);
   }
 
   @Override
   public ArrayList<Node.Link> pathfindFull(Node start, Node end, Reduce filter) {
-    return impl.pathfindFull(start, end, filter);
+    return singleton.impl.pathfindFull(start, end, filter);
   }
 
   private double getDirection(Node.Link input) {

@@ -66,9 +66,7 @@ public class MasterController implements Initializable {
   }
 
   @Override
-  public void initialize(URL location, ResourceBundle resources) {
-    // log.debug(state.toString());
-  }
+  public void initialize(URL location, ResourceBundle resources) {}
 
   public void advanceHome(FXMLLoader childLoader, Scene ChildAppPrimaryScene) throws IOException {
     Parent root = childLoader.load(getClass().getResourceAsStream("HomeViewAdmin.fxml"));

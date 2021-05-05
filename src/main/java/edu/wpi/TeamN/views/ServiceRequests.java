@@ -37,7 +37,6 @@ public class ServiceRequests extends MasterController implements Initializable {
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Database");
-    log.debug(state.toString());
     switch (db.getCurrentUser().getType()) {
         // different login cases to be implemented later
       case ADMINISTRATOR:

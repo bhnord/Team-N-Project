@@ -3,7 +3,8 @@ package edu.wpi.TeamN.views;
 import com.google.inject.Inject;
 import com.jfoenix.controls.JFXColorPicker;
 import com.jfoenix.controls.JFXTextField;
-import edu.wpi.TeamN.map.*;
+import edu.wpi.TeamN.map.AdminMap;
+import edu.wpi.TeamN.map.MapDrawer;
 import edu.wpi.TeamN.services.algo.Edge;
 import edu.wpi.TeamN.services.algo.Node;
 import edu.wpi.TeamN.services.algo.PathFinder;
@@ -46,7 +47,7 @@ public abstract class MapController extends MasterController {
   private final double downScale = .25;
   private final double upScale = 4;
 
-  private PathFinder pathFinder = new PathFinder();
+  private PathFinder pathFinder = PathFinder.getPathFinder();
 
   //  public MapController(DatabaseService db) {
   //    this.db = db;
@@ -175,7 +176,6 @@ public abstract class MapController extends MasterController {
     pathSize.setText(String.valueOf(userPrefs.getEdgeWidth()));
     mapImageView.setOnScroll(event -> mapDrawer.captureMouseScroll(event));
     mapImageView.setOnMouseDragged(event -> mapDrawer.captureMouseDrag(event));
-    //    log.debug(state.toString());
   }
 
   @FXML

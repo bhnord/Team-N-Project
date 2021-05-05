@@ -63,7 +63,6 @@ public class RegisterNewUser extends MasterController implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    log.debug(state.toString());
     super.sideBarSetup(anchorPane1, appPrimaryScene, loader, "Register");
     dialogFactory = new DialogFactory(rootGridPane);
     //    loadEmployeeDropdown(employeeDropdown);
