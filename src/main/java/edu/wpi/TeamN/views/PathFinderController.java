@@ -1,10 +1,7 @@
 package edu.wpi.TeamN.views;
 
 import com.google.inject.Inject;
-import com.jfoenix.controls.JFXColorPicker;
-import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXListView;
-import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.*;
 import edu.wpi.TeamN.map.AdminMap;
 import edu.wpi.TeamN.map.DirectionHandler;
 import edu.wpi.TeamN.map.MapDrawer;
@@ -13,6 +10,7 @@ import edu.wpi.TeamN.services.algo.PathFinder;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.animation.TranslateTransition;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -29,6 +27,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
+import javafx.util.Duration;
 
 public class PathFinderController extends MapController implements Initializable {
   ArrayList<String> path = new ArrayList<>();
@@ -44,6 +43,9 @@ public class PathFinderController extends MapController implements Initializable
   @FXML private JFXListView<HBox> texutualDescription;
   @FXML private JFXListView<HBox> stops;
   @FXML private JFXComboBox<Label> locationDropdown;
+
+  @FXML private Group ControlsGroup;
+  @FXML private JFXButton buttonUp, buttonDown;
 
   @Inject
   public void setAppPrimaryScene(Scene appPrimaryScene) {
@@ -268,5 +270,32 @@ public class PathFinderController extends MapController implements Initializable
 
   public void addStop(ActionEvent actionEvent) {
     directionHandler.addStopClick(locationDropdown.getEditor().getText());
+  }
+
+  @FXML
+  public void groupUp() {
+    // accountSettingsGroup.setTranslateX(100);
+    TranslateTransition tt = new TranslateTransition();
+    tt.setNode(ControlsGroup);
+    tt.setDuration(new Duration(1000));
+    // tt.setFromX(0);
+    tt.setToY(-250);
+    tt.setAutoReverse(true);
+    buttonDown.setVisible(true);
+    buttonUp.setVisible(false);
+    tt.play();
+  }
+
+  @FXML
+  public void groupDown() {
+    TranslateTransition tt = new TranslateTransition();
+    tt.setNode(ControlsGroup);
+    tt.setDuration(new Duration(1000));
+    // tt.setFromX(100);
+    tt.setToY(0);
+    tt.setAutoReverse(true);
+    buttonDown.setVisible(false);
+    buttonUp.setVisible(true);
+    tt.play();
   }
 }

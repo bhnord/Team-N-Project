@@ -8,6 +8,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.Group?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.effect.DropShadow?>
@@ -244,27 +245,26 @@
             <Insets right="10.0" top="360.0" />
          </StackPane.margin>
       </JFXListView>
-      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="WHITE" height="325.0" opacity="0.95" stroke="#363d5400" strokeType="INSIDE" strokeWidth="0.0" width="297.0" StackPane.alignment="BOTTOM_LEFT">
-         <effect>
-            <DropShadow color="#00000042" height="203.35" radius="98.58" width="192.97" />
-         </effect>
+      <Group fx:id="ControlsGroup" StackPane.alignment="BOTTOM_LEFT">
+         <children>
+            <Rectangle arcHeight="25.0" arcWidth="25.0" fill="WHITE" height="325.0" layoutX="95.0" layoutY="98.0" opacity="0.95" stroke="#363d5400" strokeType="INSIDE" strokeWidth="0.0" width="297.0">
+               <effect>
+                  <DropShadow color="#00000042" height="203.35" radius="98.58" width="192.97" />
+               </effect>
+            </Rectangle>
+            <TextArea editable="false" layoutX="145.0" layoutY="132.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="236.0" prefWidth="200.0" style="-fx-background-color: WHITE; -fx-border-color: WHITE;" stylesheets="@/Fonts/Roboto-Light.css" text="Ctrl+z -&gt; undo&#10;&#10;Ctrl+y -&gt; redo&#10;&#10;Ctrl+click -&gt; select nodes&#10;&#10;Shift+click -&gt; pan&#10;&#10;Scroll -&gt; zoom&#10;&#10;LeftClick -&gt; add node&#10;&#10;RightClick+drag -&gt; add link" />
+            <Label layoutX="200.0" layoutY="101.0" stylesheets="@Fonts/Roboto-Light.css" text="CONTOLS">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="buttonDown" layoutX="355.0" layoutY="102.0" onAction="#groupDown" text="V" visible="false" />
+            <JFXButton fx:id="buttonUp" layoutX="355.0" layoutY="102.0" onAction="#groupUp" rotate="180.0" text="V" />
+         </children>
          <StackPane.margin>
-            <Insets bottom="-30.0" left="80.0" />
+            <Insets bottom="-390.0" />
          </StackPane.margin>
-      </Rectangle>
-      <TextArea editable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="236.0" prefWidth="200.0" style="-fx-background-color: WHITE; -fx-border-color: WHITE;" stylesheets="@/Fonts/Roboto-Light.css" text="Ctrl+z -&gt; undo&#10;&#10;Ctrl+y -&gt; redo&#10;&#10;Ctrl+click -&gt; select nodes&#10;&#10;Shift+click -&gt; pan&#10;&#10;Scroll -&gt; zoom&#10;&#10;LeftClick -&gt; add node&#10;&#10;RightClick+drag -&gt; add link" StackPane.alignment="BOTTOM_LEFT">
-         <StackPane.margin>
-            <Insets bottom="25.0" left="130.0" />
-         </StackPane.margin>
-      </TextArea>
-      <Label stylesheets="@Fonts/Roboto-Light.css" text="SETTINGS" StackPane.alignment="BOTTOM_LEFT">
-         <StackPane.margin>
-            <Insets bottom="265.0" left="185.0" />
-         </StackPane.margin>
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
+      </Group>
       <Label stylesheets="/Fonts/Roboto-Light.css" text="Node Size" StackPane.alignment="BOTTOM_RIGHT">
          <StackPane.margin>
             <Insets bottom="50.0" right="200.0" />
