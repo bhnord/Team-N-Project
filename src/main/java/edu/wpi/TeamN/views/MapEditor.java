@@ -56,7 +56,7 @@ public class MapEditor extends MapController implements Initializable {
   @FXML private JFXTextField XCoord;
   @FXML private JFXTextField YCoord;
   @FXML protected AnchorPane mapAnchor;
-  @FXML protected AnchorPane anchorPane;
+  // @FXML protected AnchorPane anchorPane;
 
   @FXML private JFXTextField edgeID;
   //  @FXML private JFXTextField startNode;
