@@ -26,8 +26,7 @@
                </effect>
             </Rectangle>
             <JFXButton layoutX="243.0" layoutY="8.0" onAction="#accountSettingsBack" text="&lt;--" />
-            <Label fx:id="AccountType" layoutX="149.0" layoutY="38.0" text="Label" />
-            <Label fx:id="AccountUsername" layoutX="149.0" layoutY="75.0" text="Label" />
+            <Label fx:id="AccountType" layoutX="145.0" layoutY="59.0" text="Label" />
          </children>
       </Group>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#363d54" height="1500.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
