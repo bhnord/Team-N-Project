@@ -2,6 +2,7 @@ package edu.wpi.TeamN.views;
 
 import com.google.inject.Inject;
 import edu.wpi.TeamN.services.database.DatabaseService;
+import edu.wpi.TeamN.services.database.users.User;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -43,6 +44,7 @@ public class SideBarController extends MasterController implements Initializable
 
   @FXML private AnchorPane SideAnchor;
   HomeControllerAdmin homeController = new HomeControllerAdmin();
+  static User currUser;
 
   @FXML
   public void accountSettings() {
@@ -54,18 +56,18 @@ public class SideBarController extends MasterController implements Initializable
     tt.setToX(0);
     tt.setAutoReverse(true);
     tt.play();
+    try {
+      if (db.getCurrentUser() != null && currUser != db.getCurrentUser()) {
+        currUser = db.getCurrentUser();
+        String a = "Username: " + db.getCurrentUser().getUsername();
+        AccountType.setText(a);
+        // accountaSettingsGroup.getChildren().add(AccountType);
+        String b = "Privileges: " + db.getCurrentUser().getType().toString();
+        AccountUsername.setText(b);
+        accountSettingsGroup.getChildren().add(AccountUsername);
+      }
+    } catch (Exception e) {
 
-    if (db.getCurrentUser() != null) {
-      String a = "Username: " + db.getCurrentUser().getUsername();
-      AccountType.setText(a);
-      // accountSettingsGroup.getChildren().add(AccountType);
-      String b = "Privileges: " + db.getCurrentUser().getType().toString();
-      AccountUsername.setText(b);
-      accountSettingsGroup.getChildren().add(AccountUsername);
-    } else {
-      String a = "user: guest";
-      AccountType.setText(a);
-      accountSettingsGroup.getChildren().add(AccountType);
     }
   }
 
