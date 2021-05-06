@@ -6,7 +6,8 @@ public class UserPrefs {
       elevatorColor,
       stairColor,
       pathfindingColor,
-      highlightColor;
+      highlightColor,
+      appColor;
   private double nodeSize = 3, edgeWidth = 1.5;
 
   public UserPrefs() {
@@ -16,6 +17,7 @@ public class UserPrefs {
     this.stairColor = "#ff4500";
     this.pathfindingColor = "#000000";
     this.highlightColor = "#008000";
+    this.appColor = "#ffffff";
   }
 
   public UserPrefs(
@@ -26,7 +28,8 @@ public class UserPrefs {
       String pathfindingColor,
       String highlightColor,
       double nodeSize,
-      double edgeWidth) {
+      double edgeWidth,
+      String appColor) {
     this.basicNodeColor = basicNodeColor;
     this.exitColor = exitColor;
     this.elevatorColor = elevatorColor;
@@ -35,6 +38,7 @@ public class UserPrefs {
     this.highlightColor = highlightColor;
     this.nodeSize = nodeSize;
     this.edgeWidth = edgeWidth;
+    this.appColor = appColor;
   }
 
   public String getBasicNodeColor() {
@@ -101,31 +105,22 @@ public class UserPrefs {
     this.edgeWidth = edgeWidth;
   }
 
+  public String getAppColor() { return appColor; }
+
+  public void setAppColor(String appColor) { this.appColor = appColor; }
+
   @Override
   public String toString() {
-    return "UserPrefs{"
-        + "basicNodeColor='"
-        + basicNodeColor
-        + '\''
-        + ", exitColor='"
-        + exitColor
-        + '\''
-        + ", elevatorColor='"
-        + elevatorColor
-        + '\''
-        + ", stairColor='"
-        + stairColor
-        + '\''
-        + ", pathfindingColor='"
-        + pathfindingColor
-        + '\''
-        + ", highlightColor='"
-        + highlightColor
-        + '\''
-        + ", nodeSize="
-        + nodeSize
-        + ", edgeWidth="
-        + edgeWidth
-        + '}';
+    return "UserPrefs{" +
+            "basicNodeColor='" + basicNodeColor + '\'' +
+            ", exitColor='" + exitColor + '\'' +
+            ", elevatorColor='" + elevatorColor + '\'' +
+            ", stairColor='" + stairColor + '\'' +
+            ", pathfindingColor='" + pathfindingColor + '\'' +
+            ", highlightColor='" + highlightColor + '\'' +
+            ", appColor='" + appColor + '\'' +
+            ", nodeSize=" + nodeSize +
+            ", edgeWidth=" + edgeWidth +
+            '}';
   }
 }
