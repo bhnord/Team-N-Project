@@ -184,7 +184,7 @@ public class FacialRec {
     // check whether the lpb checkbox is selected and deselect it
     if (this.lbpClassifier.isSelected()) this.lbpClassifier.setSelected(false);
 
-    this.checkboxSelection("resources/haarcascades/haarcascade_frontalface_alt.xml");
+    this.checkboxSelection("resources/FacialRec/haarcascades/haarcascade_frontalface_alt.xml");
   }
 
   /**
@@ -196,7 +196,7 @@ public class FacialRec {
     // check whether the haar checkbox is selected and deselect it
     if (this.haarClassifier.isSelected()) this.haarClassifier.setSelected(false);
 
-    this.checkboxSelection("resources/lbpcascades/lbpcascade_frontalface.xml");
+    this.checkboxSelection("resources/FacialRec/lbpcascades/lbpcascade_frontalface.xml");
   }
 
   /**
