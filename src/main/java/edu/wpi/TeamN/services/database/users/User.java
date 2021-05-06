@@ -116,6 +116,10 @@ public abstract class User {
     return firstname + lastname;
   }
 
+  public String getAppColor() { return userPrefs.getAppColor(); }
+
+  public void setAppColor(String appColor) { userPrefs.setAppColor(appColor); }
+
   @Override
   public String toString() {
     return "User{"
