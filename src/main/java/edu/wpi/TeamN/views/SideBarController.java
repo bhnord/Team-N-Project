@@ -1,6 +1,7 @@
 package edu.wpi.TeamN.views;
 
 import com.google.inject.Inject;
+import com.jfoenix.controls.JFXColorPicker;
 import edu.wpi.TeamN.services.database.DatabaseService;
 import edu.wpi.TeamN.services.database.users.User;
 import java.io.IOException;
@@ -17,6 +18,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import lombok.extern.slf4j.Slf4j;
 
@@ -41,6 +43,11 @@ public class SideBarController extends MasterController implements Initializable
   @FXML private Group accountSettingsGroup;
   @FXML private Label AccountType;
   @FXML private Label AccountUsername;
+  @FXML private Label AccountParkingSpot;
+
+  @FXML private JFXColorPicker appColor;
+
+  private User user;
 
   @FXML private AnchorPane SideAnchor;
   HomeControllerAdmin homeController = new HomeControllerAdmin();
@@ -56,19 +63,27 @@ public class SideBarController extends MasterController implements Initializable
     tt.setToX(0);
     tt.setAutoReverse(true);
     tt.play();
-    try {
-      if (db.getCurrentUser() != null && currUser != db.getCurrentUser()) {
-        currUser = db.getCurrentUser();
-        String a = "Username: " + db.getCurrentUser().getUsername();
-        AccountType.setText(a);
-        // accountaSettingsGroup.getChildren().add(AccountType);
-        String b = "Privileges: " + db.getCurrentUser().getType().toString();
-        AccountUsername.setText(b);
-        accountSettingsGroup.getChildren().add(AccountUsername);
-      }
-    } catch (Exception e) {
+    if (db.getCurrentUser() != null) {
 
+      user = db.getCurrentUser();
+      appColor.setValue((Color.web(user.getAppColor())));
+
+      String a = "Username: " + user.getUsername();
+      AccountType.setText(a);
+      // accountaSettingsGroup.getChildren().add(AccountType);
+      String b = "Privileges: " + user.getType().toString();
+      AccountUsername.setText(b);
+      String parkingSpot = user.getParkingSpot();
+      if (parkingSpot != null) {
+        AccountParkingSpot.setText("Parking Spot: " + parkingSpot);
+      } else {
+        AccountParkingSpot.setText("Parking Spot: Not Set");
+      }
+      //      accountSettingsGroup.getChildren().add(AccountUsername);
     }
+    //    } catch (Exception e) {
+    //
+    //    }
   }
 
   @FXML
@@ -87,6 +102,13 @@ public class SideBarController extends MasterController implements Initializable
 
     setLoader(loader);
     accountSettingsGroup.setTranslateX(-300);
+
+    if (db != null) {
+      user = db.getCurrentUser();
+      appColor.setValue((Color.web(user.getAppColor())));
+      // user.setAppColor(appColor.getValue().toString());
+      // db.updateUserPrefs(user.getId(), user.getUserPrefs());
+    }
   }
 
   /**
@@ -183,6 +205,7 @@ public class SideBarController extends MasterController implements Initializable
       makeInvisible(groupLogOut);
       makeInvisible(groupCovid);
       makeInvisible(groupBack);
+      makeInvisible(groupAccountSettings);
     } else if (type.equals("Register")) {
       LogOutBack.setVisible(false);
       RegisterBack.setVisible(true);
@@ -207,4 +230,12 @@ public class SideBarController extends MasterController implements Initializable
   /**
    * ---------------------------------------------------------------------------------------------------
    */
+  @FXML
+  private void newAppColor(ActionEvent actionEvent) {
+    if (db != null) {
+      user = db.getCurrentUser();
+      user.setAppColor(appColor.getValue().toString());
+      db.updateUserPrefs(user.getId(), user.getUserPrefs());
+    }
+  }
 }

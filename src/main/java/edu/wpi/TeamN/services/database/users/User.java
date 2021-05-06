@@ -17,6 +17,7 @@ public abstract class User {
   }
 
   public static void setParkingSpot(String parkingSpot) {
+    System.out.println("Parking updated");
     User.parkingSpot = parkingSpot;
   }
 
@@ -113,6 +114,14 @@ public abstract class User {
 
   public String getWholeName() {
     return firstname + lastname;
+  }
+
+  public String getAppColor() {
+    return userPrefs.getAppColor();
+  }
+
+  public void setAppColor(String appColor) {
+    userPrefs.setAppColor(appColor);
   }
 
   @Override

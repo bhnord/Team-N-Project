@@ -252,8 +252,8 @@
                   <DropShadow color="#00000042" height="203.35" radius="98.58" width="192.97" />
                </effect>
             </Rectangle>
-            <TextArea editable="false" layoutX="145.0" layoutY="132.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="236.0" prefWidth="200.0" style="-fx-background-color: WHITE; -fx-border-color: WHITE;" stylesheets="@/Fonts/Roboto-Light.css" text="&#10;Shift+click -&gt; pan&#10;&#10;Scroll -&gt; zoom&#10;&#10;LeftClick -&gt; add node&#10;" />
-            <Label layoutX="200.0" layoutY="101.0" stylesheets="@Fonts/Roboto-Light.css" text="CONTOLS">
+            <TextArea editable="false" layoutX="145.0" layoutY="132.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="236.0" prefWidth="200.0" style="-fx-background-color: WHITE; -fx-border-color: WHITE;" stylesheets="/Fonts/Roboto-Light.css" text="&#10;Shift+click -&gt; pan&#10;&#10;Scroll -&gt; zoom&#10;&#10;LeftClick -&gt; add node&#10;" />
+            <Label layoutX="200.0" layoutY="101.0" stylesheets="/Fonts/Roboto-Light.css" text="CONTROLS">
                <font>
                   <Font size="18.0" />
                </font>
