@@ -1,8 +1,12 @@
 package edu.wpi.TeamN.views;
 
 import com.google.inject.Inject;
+import com.jfoenix.controls.JFXColorPicker;
 import edu.wpi.TeamN.services.database.DatabaseService;
 import edu.wpi.TeamN.services.database.users.User;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,12 +18,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import lombok.extern.slf4j.Slf4j;
-
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 @Slf4j
 public class SideBarController extends MasterController implements Initializable {
@@ -44,6 +45,10 @@ public class SideBarController extends MasterController implements Initializable
   @FXML private Label AccountUsername;
   @FXML private Label AccountParkingSpot;
 
+  @FXML private JFXColorPicker appColor;
+
+  private User user;
+
   @FXML private AnchorPane SideAnchor;
   HomeControllerAdmin homeController = new HomeControllerAdmin();
   static User currUser;
@@ -59,14 +64,16 @@ public class SideBarController extends MasterController implements Initializable
     tt.setAutoReverse(true);
     tt.play();
     if (db.getCurrentUser() != null) {
-      //        currUser = db.getCurrentUser();
 
-      String a = "Username: " + db.getCurrentUser().getUsername();
+      user = db.getCurrentUser();
+      appColor.setValue((Color.web(user.getAppColor())));
+
+      String a = "Username: " + user.getUsername();
       AccountType.setText(a);
       // accountaSettingsGroup.getChildren().add(AccountType);
-      String b = "Privileges: " + db.getCurrentUser().getType().toString();
+      String b = "Privileges: " + user.getType().toString();
       AccountUsername.setText(b);
-      String parkingSpot = db.getCurrentUser().getParkingSpot();
+      String parkingSpot = user.getParkingSpot();
       if (parkingSpot != null) {
         AccountParkingSpot.setText("Parking Spot: " + parkingSpot);
       } else {
@@ -95,6 +102,13 @@ public class SideBarController extends MasterController implements Initializable
 
     setLoader(loader);
     accountSettingsGroup.setTranslateX(-300);
+
+    if (db != null) {
+      user = db.getCurrentUser();
+      appColor.setValue((Color.web(user.getAppColor())));
+      // user.setAppColor(appColor.getValue().toString());
+      // db.updateUserPrefs(user.getId(), user.getUserPrefs());
+    }
   }
 
   /**
@@ -216,4 +230,12 @@ public class SideBarController extends MasterController implements Initializable
   /**
    * ---------------------------------------------------------------------------------------------------
    */
+  @FXML
+  private void newAppColor(ActionEvent actionEvent) {
+    if (db != null) {
+      user = db.getCurrentUser();
+      user.setAppColor(appColor.getValue().toString());
+      db.updateUserPrefs(user.getId(), user.getUserPrefs());
+    }
+  }
 }

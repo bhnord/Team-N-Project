@@ -105,22 +105,42 @@ public class UserPrefs {
     this.edgeWidth = edgeWidth;
   }
 
-  public String getAppColor() { return appColor; }
+  public String getAppColor() {
+    return appColor;
+  }
 
-  public void setAppColor(String appColor) { this.appColor = appColor; }
+  public void setAppColor(String appColor) {
+    this.appColor = appColor;
+  }
 
   @Override
   public String toString() {
-    return "UserPrefs{" +
-            "basicNodeColor='" + basicNodeColor + '\'' +
-            ", exitColor='" + exitColor + '\'' +
-            ", elevatorColor='" + elevatorColor + '\'' +
-            ", stairColor='" + stairColor + '\'' +
-            ", pathfindingColor='" + pathfindingColor + '\'' +
-            ", highlightColor='" + highlightColor + '\'' +
-            ", appColor='" + appColor + '\'' +
-            ", nodeSize=" + nodeSize +
-            ", edgeWidth=" + edgeWidth +
-            '}';
+    return "UserPrefs{"
+        + "basicNodeColor='"
+        + basicNodeColor
+        + '\''
+        + ", exitColor='"
+        + exitColor
+        + '\''
+        + ", elevatorColor='"
+        + elevatorColor
+        + '\''
+        + ", stairColor='"
+        + stairColor
+        + '\''
+        + ", pathfindingColor='"
+        + pathfindingColor
+        + '\''
+        + ", highlightColor='"
+        + highlightColor
+        + '\''
+        + ", appColor='"
+        + appColor
+        + '\''
+        + ", nodeSize="
+        + nodeSize
+        + ", edgeWidth="
+        + edgeWidth
+        + '}';
   }
 }

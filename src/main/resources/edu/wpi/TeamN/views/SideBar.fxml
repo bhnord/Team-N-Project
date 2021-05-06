@@ -30,7 +30,7 @@
             <Label fx:id="AccountType" layoutX="80.0" layoutY="32.0" text="Label" />
             <Label fx:id="AccountUsername" layoutX="80.0" layoutY="63.0" text="Label" />
             <Label fx:id="AccountParkingSpot" layoutX="80.0" layoutY="94.0" text="Parking Spot: Not Set" />
-            <JFXColorPicker fx:id="appColor" layoutX="108.0" layoutY="2.0" />
+            <JFXColorPicker fx:id="appColor" layoutX="108.0" layoutY="2.0" onAction="#newAppColor" />
          </children>
       </Group>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#363d54" height="1500.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
