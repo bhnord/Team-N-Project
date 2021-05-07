@@ -33,7 +33,6 @@ public class AppointmentController extends MasterController implements Initializ
   public void initialize(URL location, ResourceBundle resources) {
     System.out.println(appPrimaryScene);
     System.out.println(loader);
-    System.out.println(anchorPage);
     super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Login");
   }
 
