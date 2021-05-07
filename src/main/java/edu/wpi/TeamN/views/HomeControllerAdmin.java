@@ -307,15 +307,18 @@ public class HomeControllerAdmin extends MasterController implements Initializab
 
   public void test(ActionEvent actionEvent) throws IOException {
 
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("Templateform.fxml"));
+    //  Parent root = loader.load(getClass().getResourceAsStream("Templateform.fxml"));
+    // appPrimaryScene.setRoot(root);
+
+    FXMLLoader loader2 = new FXMLLoader(getClass().getResource("Templateform.fxml"));
 
     // Create a controller instance
     Form form = new Form();
     FormController formController = new FormController(form);
 
     // Set it in the FXMLLoader
-    loader.setController(formController);
-    StackPane stackPane = loader.load();
+    loader2.setController(formController);
+    StackPane stackPane = loader2.load();
     appPrimaryScene.setRoot(stackPane);
   }
 }

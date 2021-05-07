@@ -54,12 +54,6 @@
                   </JFXButton>
                   <AnchorPane fx:id="anchorPage" prefHeight="749.0" prefWidth="996.0" GridPane.rowIndex="1" GridPane.rowSpan="2">
                      <children>
-                        <Label fx:id="errorLabel" layoutX="297.0" layoutY="664.0" prefHeight="35.0" prefWidth="130.0">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </Label>
-                        <StackPane fx:id="myStackPane" layoutX="511.0" layoutY="346.0" prefHeight="83.0" prefWidth="112.0" />
                         <Label fx:id="title" alignment="CENTER" layoutX="121.0" layoutY="80.0" prefHeight="50.0" prefWidth="254.0" style="-fx-background-color: #748cdc; -fx-background-radius: 6;" stylesheets="@/Fonts/Roboto-Light.css" text="Title" textAlignment="CENTER" textFill="WHITE">
                            <font>
                               <Font name="Serif Regular" size="20.0" />
