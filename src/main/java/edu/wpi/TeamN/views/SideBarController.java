@@ -51,11 +51,12 @@ public class SideBarController extends MasterController implements Initializable
   private User user;
 
   @FXML private AnchorPane SideAnchor;
-  HomeControllerAdmin homeController = new HomeControllerAdmin();
-  static User currUser;
+  HomeControllerAdmin homeController;
+  static boolean open = false;
 
   @FXML
   public void accountSettings() {
+
     // accountSettingsGroup.setTranslateX(100);
     TranslateTransition tt = new TranslateTransition();
     tt.setNode(accountSettingsGroup);
@@ -64,6 +65,7 @@ public class SideBarController extends MasterController implements Initializable
     tt.setToX(0);
     tt.setAutoReverse(true);
     tt.play();
+    open = true;
     if (db.getCurrentUser() != null) {
 
       user = db.getCurrentUser();
@@ -89,6 +91,7 @@ public class SideBarController extends MasterController implements Initializable
 
   @FXML
   public void accountSettingsBack() {
+
     TranslateTransition tt = new TranslateTransition();
     tt.setNode(accountSettingsGroup);
     tt.setDuration(new Duration(1000));
@@ -96,13 +99,16 @@ public class SideBarController extends MasterController implements Initializable
     tt.setToX(-300);
     tt.setAutoReverse(true);
     tt.play();
+    open = false;
   }
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
 
     setLoader(loader);
-    accountSettingsGroup.setTranslateX(-300);
+    if (!open) {
+      accountSettingsGroup.setTranslateX(-300);
+    }
 
     //    if (db != null) {
     //      user = db.getCurrentUser();
@@ -190,6 +196,7 @@ public class SideBarController extends MasterController implements Initializable
       makeInvisible(groupBack);
       makeInvisible(groupHome);
       RegisterBack.setVisible(false);
+      appColor.setVisible(true);
     } else if (type.equals("Map") || type.equals("Database")) {
       makeInvisible(groupBack);
       RegisterBack.setVisible(false);
@@ -264,6 +271,13 @@ public class SideBarController extends MasterController implements Initializable
       db.updateUserPrefs(user.getId(), user.getUserPrefs());
 
       updateStyle(user.getAppColor());
+
+      try {
+        super.advanceHome(loader, appPrimaryScene);
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+
       // label1.setStyle("-fx-background-color: " + color + "; ");
       // label1.getStylesheets().add("src/main/resources/StyleSheet/Dynamic.css");
     }

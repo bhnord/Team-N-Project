@@ -94,6 +94,7 @@ public class HomeControllerAdmin extends MasterController implements Initializab
     } else {
 
       super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Home");
+
       user = db.getCurrentUser();
       updateStyle(user.getAppColor());
 
@@ -129,39 +130,6 @@ public class HomeControllerAdmin extends MasterController implements Initializab
           break;
       }
     }
-
-    // if login matches the name of the person filling out covid form
-    //    int idCovid = db.getCurrentUser().getId();
-    //    if (db.getCovidFormByUserId(idCovid) != null) {
-    //      // pop-up for main entrance
-    //      if (db.getCovidFormByUserId(idCovid).isOk() == true) {
-    //        dialogFactory.creatDialogOkayWithAction(
-    //            "",
-    //            "Your covid form has been processed! You can enter the hospital through the main
-    // entrance.",
-    //            event -> {
-    //              try {
-    //                advanceHome();
-    //              } catch (IOException e) {
-    //                e.printStackTrace();
-    //              }
-    //            });
-    //      }
-    //      // pop-up for emergency
-    //      else {
-    //        dialogFactory.creatDialogOkayWithAction(
-    //            "",
-    //            "Your covid form has been processed! Please enter the hospital through the
-    // emergency entrance",
-    //            event -> {
-    //              try {
-    //                advanceHome();
-    //              } catch (IOException e) {
-    //                e.printStackTrace();
-    //              }
-    //            });
-    //      }
-    //    }
   }
 
   @FXML

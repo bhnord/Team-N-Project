@@ -184,6 +184,25 @@ public class MasterController implements Initializable {
     anchorPane.getChildren().setAll(pane);
   }
 
+  public SideBarController sideBarSetup(
+      AnchorPane anchorPane, Scene appPrimaryScene, FXMLLoader loader, String type, String any) {
+    FXMLLoader loader2 = new FXMLLoader(getClass().getResource("SideBar.fxml"));
+    Parent root = null;
+    try {
+      root = loader2.load();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    AnchorPane pane = new AnchorPane(root);
+    sideBarController = loader2.getController();
+    sideBarController.setAppPrimaryScene(appPrimaryScene);
+    sideBarController.setLoader(loader);
+    sideBarController.setDB(db);
+    sideBarController.setType(type);
+    anchorPane.getChildren().setAll(pane);
+    return sideBarController;
+  }
+
   // TODO REFACTOR AFTER SPLITTING USERS AND EMPLOYEES
   public void loadEmployeeDropdown(JFXComboBox<Label> employeeComboBox) {
     HashSet<User> users = db.getUsersByType(UserType.EMPLOYEE);
