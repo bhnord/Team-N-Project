@@ -23,6 +23,7 @@ public class ComboBox extends FormElement {
   public ComboBox(boolean required, String question, String help, Form formin, ComboBoxType type) {
     super(required, question, help, formin);
     this.type = type;
+    this.values = new ArrayList<>();
   }
 
   public ComboBox(
@@ -37,7 +38,8 @@ public class ComboBox extends FormElement {
   public Node build(DatabaseService db) {
     comboBox = new JFXComboBox<>();
     comboBox.setPromptText(getName());
-    comboBox.setOnKeyPressed(e -> setValue(comboBox.getSelectionModel().getSelectedItem().getText()));
+    comboBox.setOnKeyPressed(
+        e -> setValue(comboBox.getSelectionModel().getSelectedItem().getText()));
     ArrayList<String> innerValues = new ArrayList<>();
     switch (type) {
       case ROOM:
@@ -79,16 +81,19 @@ public class ComboBox extends FormElement {
     comboBox.setOnAction(
         event -> {
           this.type = comboBox.getValue();
-          list.getItems().add(list.getItems().indexOf(box), this.editView(list));
+          list.getItems().set(list.getItems().indexOf(box), this.editView(list));
         });
     if (this.type == ComboBoxType.CUSTOM) {
+      System.out.println("custom");
       JFXTextArea area = new JFXTextArea();
       StringBuilder pt = new StringBuilder();
       values.forEach(pt::append);
       area.setPromptText(pt.toString());
       area.setOnKeyPressed(
           event -> this.values = new ArrayList<>(Arrays.asList(area.getText().split("\n"))));
+      box.getChildren().add(area);
     }
+    box.getChildren().add(comboBox);
   }
 
   private void setUpComboBox(ArrayList<String> list) {

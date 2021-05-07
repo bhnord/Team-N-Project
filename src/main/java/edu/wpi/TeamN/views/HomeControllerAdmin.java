@@ -304,10 +304,20 @@ public class HomeControllerAdmin extends MasterController implements Initializab
   }
 
   public void test(ActionEvent actionEvent) throws IOException {
+    //    loader.setController(new FormController());
     Parent root = loader.load(getClass().getResourceAsStream("Templateform.fxml"));
     appPrimaryScene.setRoot(root);
     Form form = new Form(db);
     FormController formController = loader.getController();
     formController.setUp(form);
+  }
+
+  public void testEdit(ActionEvent actionEvent) throws IOException {
+    //    loader.setController(new FormEditorController());
+    Parent root = loader.load(getClass().getResourceAsStream("Template.fxml"));
+    appPrimaryScene.setRoot(root);
+    Form form = new Form(db);
+    FormEditorController controller = loader.getController();
+    controller.setUp(form);
   }
 }

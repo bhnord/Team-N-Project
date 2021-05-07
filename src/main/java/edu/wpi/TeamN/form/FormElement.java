@@ -14,11 +14,11 @@ public abstract class FormElement implements Serializable {
 
   public abstract boolean validate();
 
-  public String getValue(){
+  public String getValue() {
     return value;
   }
 
-  public void setValue(String value){
+  public void setValue(String value) {
     this.value = value;
   }
 
@@ -29,7 +29,7 @@ public abstract class FormElement implements Serializable {
   private String question;
   private String help;
   private transient Form formin;
-  private String value;
+  private String value = "";
 
   public HBox editView(JFXListView<HBox> list) {
     HBox box = new HBox();
@@ -51,21 +51,32 @@ public abstract class FormElement implements Serializable {
               e = new TimePicker(is_required(), getName(), getHelp(), formin);
               break;
           }
-          formin.elements.set(formin.elements.indexOf(this), this);
+          formin.elements.set(formin.elements.indexOf(this), e);
           list.getItems().set(list.getItems().indexOf(box), e.editView(list));
         });
 
+    box.getChildren().add(comboBox);
+
     JFXTextField nameField = new JFXTextField();
-    nameField.setPromptText(getName());
+    if (this.question.isEmpty()) {
+      nameField.setPromptText("question");
+    } else {
+      nameField.setText(getName());
+    }
     nameField.setOnKeyPressed(event -> this.question = nameField.getText());
     box.getChildren().add(nameField);
 
     JFXTextArea helpField = new JFXTextArea();
-    helpField.setPromptText(getHelp());
+    if (this.help.isEmpty()) {
+      helpField.setPromptText("help description");
+    } else {
+      helpField.setText(getHelp());
+    }
     nameField.setOnKeyPressed(event -> this.help = helpField.getText());
     box.getChildren().add(helpField);
 
     JFXCheckBox requiredField = new JFXCheckBox();
+    requiredField.setText("Is Required");
     requiredField.selectedProperty().set(is_required());
     requiredField.setOnAction(event -> this.required = requiredField.selectedProperty().get());
     box.getChildren().add(requiredField);
@@ -74,7 +85,12 @@ public abstract class FormElement implements Serializable {
 
     JFXButton delete = new JFXButton();
     delete.setButtonType(JFXButton.ButtonType.RAISED);
-    delete.setOnAction(event -> list.getItems().remove(box));
+    delete.setOnAction(
+        event -> {
+          list.getItems().remove(box);
+          formin.elements.remove(this);
+        });
+    box.getChildren().add(delete);
 
     return box;
   }

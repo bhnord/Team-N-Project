@@ -216,6 +216,7 @@
                      </GridPane.margin>
                   </JFXButton>
                   <Button fx:id="buttonTester" mnemonicParsing="false" onAction="#test" text="Button" GridPane.rowIndex="3" />
+                  <Button fx:id="buttonTester1" mnemonicParsing="false" onAction="#testEdit" text="Form Editor" GridPane.rowIndex="1" />
                </children>
             </GridPane>
             <AnchorPane fx:id="anchorPane" prefHeight="200.0" prefWidth="88.0" GridPane.valignment="BASELINE" />

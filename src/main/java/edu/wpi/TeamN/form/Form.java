@@ -1,9 +1,11 @@
 package edu.wpi.TeamN.form;
 
+import com.jfoenix.controls.JFXListView;
 import edu.wpi.TeamN.services.database.DatabaseService;
 import edu.wpi.TeamN.views.FormController;
 import java.io.Serializable;
 import java.util.ArrayList;
+import javafx.scene.layout.HBox;
 
 public class Form implements Serializable {
   ArrayList<FormElement> elements;
@@ -43,6 +45,12 @@ public class Form implements Serializable {
     formController.getTitle().setText(title);
     for (FormElement element : elements) {
       formController.getElements().getChildren().add(element.build(db));
+    }
+  }
+
+  public void editorBuild(JFXListView<HBox> list) {
+    for (FormElement element : elements) {
+      list.getItems().add(element.editView(list));
     }
   }
 }
