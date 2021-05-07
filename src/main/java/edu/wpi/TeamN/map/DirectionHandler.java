@@ -37,10 +37,28 @@ public class DirectionHandler {
     clickSetup();
   }
 
+  public void reverse() {
+    JFXListView<HBox> reverseStops = new JFXListView<>();
+    ArrayList<String> names = new ArrayList<String>();
+    ArrayList<String> nodePath = new ArrayList<String>();
+    for (int i = stops.getItems().size() - 1; i >= 0; i--) {
+      reverseStops.getItems().add(stops.getItems().get(i));
+      names.add(stopNames.get(i));
+      nodePath.add(mapController.getPath().get(i));
+    }
+    stops.getItems().clear();
+    stops.getItems().addAll(reverseStops.getItems());
+    stopNames.clear();
+    stopNames.addAll(names);
+    mapController.getPath().clear();
+    mapController.getPath().addAll(nodePath);
+  }
+
   private void clickSetup() {
     texutualDescription.setOnMouseClicked(
         event -> {
           HBox selected = texutualDescription.getSelectionModel().getSelectedItem();
+          System.out.println(stopNames.size());
           if (event.getButton() == MouseButton.PRIMARY && selected != null) {
             ObservableList<Integer> seletedI =
                 texutualDescription.getSelectionModel().getSelectedIndices();
@@ -119,7 +137,6 @@ public class DirectionHandler {
   }
 
   public void clean() {
-    stopNames.clear();
     texutualDescription.getItems().clear();
     texutualDescription.setVisible(false);
   }
@@ -127,5 +144,6 @@ public class DirectionHandler {
   public void cleanAll() {
     clean();
     stops.getItems().clear();
+    stopNames.clear();
   }
 }
