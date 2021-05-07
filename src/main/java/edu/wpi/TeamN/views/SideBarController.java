@@ -164,7 +164,7 @@ public class SideBarController extends MasterController implements Initializable
 
   // closes the application
   @FXML
-  private void exit(ActionEvent actionEvent) throws IOException {
+  public void exit(ActionEvent actionEvent) throws IOException {
     super.cancel(actionEvent);
   }
 
@@ -230,12 +230,18 @@ public class SideBarController extends MasterController implements Initializable
   /**
    * ---------------------------------------------------------------------------------------------------
    */
+  @FXML Label label1;
+
   @FXML
   private void newAppColor(ActionEvent actionEvent) {
     if (db != null) {
+
       user = db.getCurrentUser();
+      label1.getStylesheets().remove("src/main/resources/StyleSheet/Dynamic.css");
       user.setAppColor(appColor.getValue().toString());
       db.updateUserPrefs(user.getId(), user.getUserPrefs());
+
+      label1.getStylesheets().add("src/main/resources/StyleSheet/Dynamic.css");
     }
   }
 }
