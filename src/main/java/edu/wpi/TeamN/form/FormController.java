@@ -2,15 +2,15 @@ package edu.wpi.TeamN.form;
 
 import com.google.inject.Inject;
 import edu.wpi.TeamN.views.MasterController;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 
 public class FormController extends MasterController {
@@ -19,6 +19,12 @@ public class FormController extends MasterController {
 
   @FXML HBox elements;
   @FXML Label title;
+  @FXML AnchorPane anchorPane;
+  @Inject private FXMLLoader loader;
+
+  public FormController(Form form) {
+    this.form = form;
+  }
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
    * JavaFX thread
@@ -32,7 +38,7 @@ public class FormController extends MasterController {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    this.form = (Form) resources.getObject("form");
+    super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Service Request");
     form.build(this);
   }
 
@@ -44,9 +50,5 @@ public class FormController extends MasterController {
     return title;
   }
 
-  public void submit(ActionEvent actionEvent) throws IOException {
-
-  }
-
-
+  public void submit(ActionEvent actionEvent) throws IOException {}
 }

@@ -5,6 +5,8 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.RequiredFieldValidator;
+import edu.wpi.TeamN.form.Form;
+import edu.wpi.TeamN.form.FormController;
 import edu.wpi.TeamN.services.database.DatabaseService;
 import edu.wpi.TeamN.state.HomeState;
 import edu.wpi.TeamN.utilities.DialogFactory;
@@ -22,6 +24,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -300,5 +303,19 @@ public class HomeControllerAdmin extends MasterController implements Initializab
   @FXML
   private void exit(ActionEvent actionEvent) throws IOException {
     super.cancel(actionEvent);
+  }
+
+  public void test(ActionEvent actionEvent) throws IOException {
+
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("Templateform.fxml"));
+
+    // Create a controller instance
+    Form form = new Form();
+    FormController formController = new FormController(form);
+
+    // Set it in the FXMLLoader
+    loader.setController(formController);
+    StackPane stackPane = loader.load();
+    appPrimaryScene.setRoot(stackPane);
   }
 }
