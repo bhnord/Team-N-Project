@@ -307,8 +307,8 @@ public class HomeControllerAdmin extends MasterController implements Initializab
 
   public void test(ActionEvent actionEvent) throws IOException {
 
-    //  Parent root = loader.load(getClass().getResourceAsStream("Templateform.fxml"));
-    // appPrimaryScene.setRoot(root);
+    //Parent root = loader.load(getClass().getResourceAsStream("Templateform.fxml"));
+    //appPrimaryScene.setRoot(root);
 
     FXMLLoader loader2 = new FXMLLoader(getClass().getResource("Templateform.fxml"));
 
