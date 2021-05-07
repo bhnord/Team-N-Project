@@ -47,6 +47,8 @@
                <children>
                   <Group>
                      <children>
+                        <Label fx:id="labelB1" layoutX="5.0" layoutY="4.0" prefHeight="47.0" prefWidth="40.0" style="-fx-background-color: RED; -fx-background-radius: 50;" />
+                        <Label fx:id="labelB2" layoutX="1.0" layoutY="2.0" prefHeight="17.0" prefWidth="48.0" style="-fx-background-color: RED;" />
                         <ImageView fitHeight="61.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@/images/BWHLogo.png" />

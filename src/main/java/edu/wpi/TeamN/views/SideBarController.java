@@ -237,16 +237,17 @@ public class SideBarController extends MasterController implements Initializable
   /**
    * ---------------------------------------------------------------------------------------------------
    */
-  @FXML Label label1, label2, label3, label4, label5, label6, labelBack;
+  @FXML Label label1, label2, label3, label4, label5, label6, labelBack, labelB1, labelB2;
 
   @FXML Rectangle rectangle1;
 
   public void updateStyle(String color) {
     String style = "-fx-background-color: " + "#" + color.substring(2) + ";";
-    Label[] lA = {label1, label2, label3, label4, label5, label6};
+    Label[] lA = {label1, label2, label3, label4, label5, label6, labelB1, labelB2};
     for (Label a : lA) a.setStyle(style);
     // label1.setStyle(style);
     // rectangle1.setStyle(style);
+    labelB1.setStyle(style + "-fx-background-radius: 50;");
 
     Color appC = Color.web(color);
     String s = appC.darker().darker().darker().desaturate().toString();
