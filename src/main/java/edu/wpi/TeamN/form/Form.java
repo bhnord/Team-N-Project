@@ -15,9 +15,9 @@ public class Form implements Serializable {
   public Form(DatabaseService db) {
     this.db = db;
     elements = new ArrayList<>();
-    elements.add(new TextField(false, "question", "help", this));
-    elements.add(new TimePicker(false, "time", "help", this));
-    elements.add(new ComboBox(false, "q", "help", this, ComboBoxType.ROOM));
+    elements.add(new TextField(false, "question", "", this));
+    elements.add(new TimePicker(false, "time", "", this));
+    elements.add(new ComboBox(false, "q", "", this, ComboBoxType.ROOM));
     title = "bla";
   }
 
@@ -57,5 +57,10 @@ public class Form implements Serializable {
   public void add(JFXListView<HBox> list) {
     elements.add(new TextField(false, "", "", this));
     list.getItems().add(elements.get(elements.size() - 1).editView(list));
+  }
+
+  public void remove(JFXListView<HBox> list, int index) {
+    elements.remove(index);
+    list.getItems().remove(index);
   }
 }

@@ -4,6 +4,7 @@ import com.jfoenix.controls.*;
 import edu.wpi.TeamN.services.database.DatabaseService;
 import java.io.Serializable;
 import javafx.collections.FXCollections;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 
@@ -28,7 +29,7 @@ public abstract class FormElement implements Serializable {
   private boolean required;
   private String question;
   private String help;
-  private transient Form formin;
+  private Form formin;
   private String value = "";
 
   public HBox editView(JFXListView<HBox> list) {
@@ -63,7 +64,7 @@ public abstract class FormElement implements Serializable {
     } else {
       nameField.setText(getName());
     }
-    nameField.setOnKeyPressed(event -> this.question = nameField.getText());
+    nameField.setOnKeyReleased(event -> this.question = nameField.getText());
     box.getChildren().add(nameField);
 
     JFXTextArea helpField = new JFXTextArea();
@@ -72,7 +73,8 @@ public abstract class FormElement implements Serializable {
     } else {
       helpField.setText(getHelp());
     }
-    nameField.setOnKeyPressed(event -> this.help = helpField.getText());
+    helpField.setOnKeyReleased(event -> this.help = helpField.getText());
+    helpField.prefHeightProperty().bind(box.prefHeightProperty());
     box.getChildren().add(helpField);
 
     JFXCheckBox requiredField = new JFXCheckBox();
@@ -91,6 +93,7 @@ public abstract class FormElement implements Serializable {
           formin.elements.remove(this);
         });
     box.getChildren().add(delete);
+    box.setAlignment(Pos.TOP_LEFT);
 
     return box;
   }

@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
@@ -22,11 +23,11 @@ public class FormEditorController extends MasterController implements Initializa
   Form form;
 
   @FXML VBox elements;
+  @FXML JFXListView<HBox> editor;
   @FXML Label title;
   @FXML AnchorPane anchorPane;
   @Inject private FXMLLoader loader;
   @Inject private DatabaseService db;
-  private JFXListView<HBox> list;
 
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
@@ -46,19 +47,22 @@ public class FormEditorController extends MasterController implements Initializa
 
   public void setUp(Form form) {
     this.form = form;
-    list = new JFXListView<>();
-    list.setMinWidth(1000);
-    form.editorBuild(list);
-    this.elements.getChildren().add(list);
+    editor.setMinWidth(1000);
+    form.editorBuild(editor);
   }
 
   public Label getTitle() {
     return title;
   }
 
-  public void submit(ActionEvent actionEvent) throws IOException {}
+  public void submit(ActionEvent actionEvent) throws IOException {
+    Parent root = loader.load(getClass().getResourceAsStream("Templateform.fxml"));
+    appPrimaryScene.setRoot(root);
+    FormController formController = loader.getController();
+    formController.setUp(form);
+  }
 
   public void add(ActionEvent actionEvent) {
-    form.add(list);
+    form.add(editor);
   }
 }
