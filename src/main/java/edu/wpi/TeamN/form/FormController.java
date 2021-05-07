@@ -7,8 +7,10 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 
 public class FormController extends MasterController {
@@ -17,6 +19,8 @@ public class FormController extends MasterController {
 
   @FXML HBox elements;
   @FXML Label title;
+  @FXML AnchorPane anchorPane;
+  @Inject private FXMLLoader loader;
 
   public FormController(Form form) {
     this.form = form;
@@ -34,6 +38,7 @@ public class FormController extends MasterController {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+    super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Service Request");
     form.build(this);
   }
 
