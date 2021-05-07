@@ -12,13 +12,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 public class FormController extends MasterController implements Initializable {
 
   Form form;
 
-  @FXML HBox elements;
+  @FXML VBox elements;
   @FXML Label title;
   @FXML AnchorPane anchorPane;
   @Inject private FXMLLoader loader;
@@ -44,7 +44,7 @@ public class FormController extends MasterController implements Initializable {
     form.build(this);
   }
 
-  public HBox getElements() {
+  public VBox getElements() {
     return elements;
   }
 

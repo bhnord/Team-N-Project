@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="rootStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.TeamN.form.FormController">
+<StackPane fx:id="rootStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.TeamN.views.FormController">
    <children>
       <ImageView fitHeight="1766.0" fitWidth="1458.0" pickOnBounds="true" preserveRatio="true" scaleX="2.0" scaleY="2.0" StackPane.alignment="TOP_LEFT">
          <image>
@@ -65,7 +65,7 @@
                            </font>
                         </Label>
                         <JFXButton fx:id="submit" layoutX="947.0" layoutY="613.0" mnemonicParsing="false" onAction="#submit" prefHeight="50.0" prefWidth="142.0" text="  " textFill="WHITE" />
-                        <VBox fx:id="elements" layoutX="121.0" layoutY="212.0" prefHeight="337.0" prefWidth="306.0" />
+                        <VBox fx:id="elements" spacing="25" layoutX="121.0" layoutY="212.0" prefHeight="337.0" prefWidth="306.0" />
                      </children>
                   </AnchorPane>
                </children>

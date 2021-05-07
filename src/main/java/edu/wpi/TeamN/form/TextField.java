@@ -13,7 +13,9 @@ public class TextField extends FormElement {
 
   @Override
   public Node build() {
-    textField = new JFXTextField(this.getName());
+    textField = new JFXTextField();
+    textField.setPromptText(getName());
+    textField.setLabelFloat(true);
     return textField;
   }
 

@@ -11,6 +11,7 @@ public class Form implements Serializable {
   public Form() {
     elements = new ArrayList<>();
     elements.add(new TextField(false, "question", "help"));
+    elements.add(new TextField(false, "question2", "help"));
     title = "bla";
   }
 
