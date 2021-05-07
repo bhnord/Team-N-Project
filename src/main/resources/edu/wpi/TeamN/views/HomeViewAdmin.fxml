@@ -1,24 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXPasswordField?>
-<?import com.jfoenix.controls.JFXTextField?>
-<?import java.net.URL?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.Group?>
-<?import javafx.scene.control.Label?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.Font?>
-
-<StackPane fx:id="stackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.TeamN.views.HomeControllerAdmin">
+<?import javafx.scene.text.*?>
+<?import java.net.URL?>
+<StackPane fx:id="rootStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.TeamN.views.HomeControllerAdmin">
    <children>
       <ImageView fitHeight="1766.0" fitWidth="1458.0" pickOnBounds="true" preserveRatio="true" scaleX="2.0" scaleY="2.0" StackPane.alignment="TOP_LEFT">
          <image>
@@ -144,7 +136,7 @@
                         </Label>
                         <JFXButton fx:id="RegisterNewUser" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" layoutX="140.0" layoutY="171.0" mnemonicParsing="false" onAction="#register" prefHeight="37.0" prefWidth="81.0" style="-fx-background-color: #6985e0;" text="Register" textFill="WHITE" />
                         <Label layoutX="166.0" layoutY="300.0" />
-                        <JFXButton buttonType="RAISED" layoutX="130.0" layoutY="95.0" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #6985e0;" stylesheets="@Fonts/Roboto-Light.css" text="FACE ID" textFill="WHITE" />
+                        <JFXButton buttonType="RAISED" layoutX="130.0" layoutY="95.0" onAction="#loginWithFace" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #6985e0;" stylesheets="@Fonts/Roboto-Light.css" text="FACE ID" textFill="WHITE" />
                      </children>
                   </Group>
                </children>

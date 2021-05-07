@@ -3,9 +3,9 @@ package edu.wpi.TeamN.facialRecTesting;
 import com.google.inject.Inject;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
+import edu.wpi.TeamN.faceLogin.FaceLogin;
 import edu.wpi.TeamN.services.database.DatabaseService;
 import edu.wpi.TeamN.services.database.users.User;
-import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +14,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
 import nu.pattern.OpenCV;
 import org.opencv.core.Point;
 import org.opencv.core.*;
@@ -22,22 +21,14 @@ import org.opencv.features2d.DescriptorMatcher;
 import org.opencv.features2d.ORB;
 import org.opencv.imgproc.Imgproc;
 import org.opencv.objdetect.CascadeClassifier;
-import org.opencv.videoio.VideoCapture;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 public class FacialRecognition implements Initializable {
   /** Directory on the disk containing faces */
@@ -51,7 +42,6 @@ public class FacialRecognition implements Initializable {
   @FXML private JFXTextField nameField;
   @FXML private StackPane stackPane;
   private boolean shouldSave = false;
-  private ScheduledExecutorService timer;
   private HashMap<BufferedImage, Integer> faceImages;
 
   private Image testImage;
@@ -68,88 +58,60 @@ public class FacialRecognition implements Initializable {
 
   @FXML
   private void capture() {
-    File classifier =
-        new File("src/main/resources/FacialRec/lbpcascades/lbpcascade_frontalface_improved.xml");
-
-    if (!classifier.exists()) {
-      displayFatalError("Unable to find classifier!");
-      return;
-    }
-
-    CascadeClassifier faceDetector = new CascadeClassifier(classifier.toString());
-    VideoCapture camera = new VideoCapture();
-    camera.open(0);
-
-    if (!camera.isOpened()) {
-      displayFatalError("No camera detected!");
-      return;
-    }
-
-    faceImages = db.getAllFaces();
-
-    Stage stage = (Stage) stackPane.getScene().getWindow();
-    stage.setOnCloseRequest(
-        e -> {
-          camera.release();
-          Platform.exit();
-          System.exit(0);
-        });
-
-    //    if (!DATABASE.exists()) DATABASE.mkdir();
-    Runnable frameGrabber =
-        () -> {
-          Mat rawImage = new Mat();
-          camera.read(rawImage);
-          Mat newImage = detectFaces(rawImage, faceDetector);
-          if (shouldSave) {
-            imageView.setImage(testImage);
-          }
-          imageView.setImage(mat2Image(newImage));
-        };
-
-    this.timer = Executors.newSingleThreadScheduledExecutor();
-    this.timer.scheduleAtFixedRate(frameGrabber, 0, 33, TimeUnit.MILLISECONDS);
+    FaceLogin facialRecognition = new FaceLogin(db);
+    User user = facialRecognition.getUserFromFace();
+    System.out.println(user);
+    //    File classifier =
+    //        new
+    // File("src/main/resources/FacialRec/lbpcascades/lbpcascade_frontalface_improved.xml");
+    //
+    //    if (!classifier.exists()) {
+    //      displayFatalError("Unable to find classifier!");
+    //      return;
+    //    }
+    //
+    //    CascadeClassifier faceDetector = new CascadeClassifier(classifier.toString());
+    //    VideoCapture camera = new VideoCapture();
+    //    camera.open(0);
+    //
+    //    if (!camera.isOpened()) {
+    //      displayFatalError("No camera detected!");
+    //      return;
+    //    }
+    //
+    //    faceImages = db.getAllFaces();
+    //
+    //    Stage stage = (Stage) stackPane.getScene().getWindow();
+    //    stage.setOnCloseRequest(
+    //        e -> {
+    //          camera.release();
+    //          Platform.exit();
+    //          System.exit(0);
+    //        });
+    //
+    //    //    if (!DATABASE.exists()) DATABASE.mkdir();
+    //    Runnable frameGrabber =
+    //        () -> {
+    //          Mat rawImage = new Mat();
+    //          camera.read(rawImage);
+    //          Mat newImage = detectFaces(rawImage, faceDetector);
+    //          imageView.setImage(mat2Image(newImage));
+    //        };
+    //
+    //    ScheduledExecutorService timer = Executors.newSingleThreadScheduledExecutor();
+    //    timer.scheduleAtFixedRate(frameGrabber, 0, 33, TimeUnit.MILLISECONDS);
   }
 
   private Mat detectFaces(Mat image, CascadeClassifier faceDetector) {
     MatOfRect faceDetections = new MatOfRect();
     faceDetector.detectMultiScale(image, faceDetections);
     Rect[] faces = faceDetections.toArray();
-    String name = nameField.getText();
     Scalar color = new Scalar(0, 0, 255);
 
     for (Rect face : faces) {
       Mat croppedImage = new Mat(image, face);
 
-      if (shouldSave) {
-        saveImage(croppedImage, name);
-        //        Gson gson = new Gson();
-        //        System.out.println(1);
-        //        Image temp = mat2Image(croppedImage);
-        //        System.out.println(2);
-        //        System.out.println(convertMatToBufferedImage(croppedImage));
-        //        System.out.println(3);
-        //        convertMatToBufferedImage(croppedImage);
-        //        System.out.println(gson.toJson(convertMatToBufferedImage(croppedImage)).length());
-        //        System.out.println(4);
-        //        testImage = temp;
-        //        timer.shutdown();
-        //        String json = gson.toJson(temp);
-        //        System.out.println(3);
-        //        System.out.println(json.length());
-        //        System.out.println(4);
-        //        testImage = gson.fromJson(json, Image.class);
-        //        new Mat(Long.parseLong(substring));
-        //                testImage = (mat2Image(gson.fromJson(json, Mat.class)));
-        //        System.out.println(croppedImage.equals(gson.fromJson(json, Mat.class)));
-        try {
-          ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-          ImageIO.write(convertMatToBufferedImage(croppedImage), "PNG", outputStream);
-          ObjectOutputStream oos = new ObjectOutputStream(outputStream);
-        } catch (IOException e) {
-          e.printStackTrace();
-        }
-      }
+      if (shouldSave) saveImage(croppedImage);
 
       Imgproc.putText(image, "ID: " + identifyFace(croppedImage), face.tl(), Font.BOLD, 3, color);
       Imgproc.rectangle(image, face.tl(), face.br(), color);
@@ -179,8 +141,6 @@ public class FacialRecognition implements Initializable {
     if (mostSimilarUserID != -1 && mostSimilar > errorThreshold) {
       User user = db.getUserById(mostSimilarUserID);
       return user.getUsername();
-      //      String delimiter = faceID.contains(" (") ? "(" : ".";
-      //      return faceID.substring(0, faceID.indexOf(delimiter)).trim();
     } else return "???";
   }
 
@@ -211,7 +171,7 @@ public class FacialRecognition implements Initializable {
     return similarity;
   }
 
-  private void saveImage(Mat image, String name) {
+  private void saveImage(Mat image) {
     System.out.println(db.updateUserImage(301, convertMatToBufferedImage(image)));
     //    File destination;
     //    String extension = ".png";

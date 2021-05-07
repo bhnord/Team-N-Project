@@ -5,13 +5,11 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.RequiredFieldValidator;
+import edu.wpi.TeamN.faceLogin.FaceLogin;
 import edu.wpi.TeamN.services.database.DatabaseService;
 import edu.wpi.TeamN.services.database.users.User;
 import edu.wpi.TeamN.state.HomeState;
 import edu.wpi.TeamN.utilities.DialogFactory;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,12 +20,19 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import lombok.extern.slf4j.Slf4j;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 @Slf4j
 public class HomeControllerAdmin extends MasterController implements Initializable {
 
+  public ImageView test;
   @Inject DatabaseService db;
   @Inject FXMLLoader loader;
   @Inject HomeState state;
@@ -53,6 +58,7 @@ public class HomeControllerAdmin extends MasterController implements Initializab
   @FXML private JFXPasswordField passwordField;
   @FXML private JFXButton goToHomePage;
   @FXML private Label incorrectLogin;
+  @FXML private StackPane rootStackPane;
   private String accountUsername = "";
   private String accountPassword = "";
 
@@ -291,5 +297,21 @@ public class HomeControllerAdmin extends MasterController implements Initializab
       BackFindUs
     };
     for (Label a : lA) a.setStyle(style);
+  }
+
+  @FXML
+  private void loginWithFace() {
+    FaceLogin facialRecognition = new FaceLogin(db);
+    User user = facialRecognition.getUserFromFace();
+    if (user != null) {
+      db.setLoggedInUser(user);
+      super.advanceHome(loader, appPrimaryScene);
+    } else {
+      dialogFactory = new DialogFactory(rootStackPane);
+      dialogFactory.creatDialogOkay(
+          "Couldn't Log You In",
+          "Sorry we couldn't log you in"
+              + "with FaceID. Please log in with your username and password.");
+    }
   }
 }

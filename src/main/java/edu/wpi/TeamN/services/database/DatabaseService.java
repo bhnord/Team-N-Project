@@ -608,6 +608,10 @@ public class DatabaseService {
     return false;
   }
 
+  public void setLoggedInUser(User user) {
+    currentUser = user;
+  }
+
   public void logout() {
     currentUser = null;
   }
