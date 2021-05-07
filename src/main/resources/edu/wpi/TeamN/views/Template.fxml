@@ -52,11 +52,6 @@
                         <Font name="Serif Regular" size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="submit" alignment="CENTER" onDragDetected="#submit" prefHeight="50.0" prefWidth="142.0" style="-fx-background-color: #748cdc; -fx-background-radius: 6;" stylesheets="@/Fonts/Roboto-Light.css" text="Submit" textAlignment="CENTER" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
-                     <font>
-                        <Font name="Serif Regular" size="20.0" />
-                     </font>
-                  </Label>
                   <Label fx:id="text111" alignment="CENTER" prefHeight="50.0" prefWidth="142.0" style="-fx-background-color: #748cdc; -fx-background-radius: 6;" stylesheets="@/Fonts/Roboto-Light.css" text="Add" textAlignment="CENTER" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
                      <font>
                         <Font name="Serif Regular" size="20.0" />
@@ -68,6 +63,11 @@
                         <Insets bottom="100.0" left="100.0" right="100.0" top="100.0" />
                      </GridPane.margin>
                   </JFXListView>
+                  <JFXButton prefHeight="55.0" prefWidth="182.0" style="-fx-background-color: #748cdc; -fx-background-radius: 6;" text="Submit" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </JFXButton>
                </children>
             </GridPane>
          </children>
