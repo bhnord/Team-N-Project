@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
 import com.jfoenix.controls.JFXTextField;
+import edu.wpi.TeamN.services.database.CovidForm;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -127,7 +128,7 @@ public class DialogFactory {
   }
 
   public void covidFormTextInput(
-      String heading, String body, EventHandler<? super MouseEvent> clickAction) {
+      String heading, String body, CovidForm form, EventHandler<? super MouseEvent> clickAction) {
 
     Text headingText = (Text) content.getHeading().get(0);
     headingText.setText(heading);
@@ -141,7 +142,11 @@ public class DialogFactory {
     JFXButton confirmButton = new JFXButton("Confirm");
     JFXButton text = new JFXButton("              ");
     confirmButton.setOnMouseClicked(clickAction);
-    confirmButton.setOnMouseReleased(action -> dialog.close());
+    confirmButton.setOnMouseReleased(
+        action -> {
+          form.setExtraInfo(textField.getText());
+          dialog.close();
+        });
     content.setActions(textField, text, confirmButton);
     stackPane.setPickOnBounds(false);
     pane.getChildren().add(stackPane);
