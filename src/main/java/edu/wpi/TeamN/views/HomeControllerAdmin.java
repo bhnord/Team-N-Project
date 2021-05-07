@@ -6,6 +6,7 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.RequiredFieldValidator;
 import edu.wpi.TeamN.services.database.DatabaseService;
+import edu.wpi.TeamN.services.database.users.User;
 import edu.wpi.TeamN.state.HomeState;
 import edu.wpi.TeamN.utilities.DialogFactory;
 import java.io.IOException;
@@ -38,7 +39,8 @@ public class HomeControllerAdmin extends MasterController implements Initializab
       BackMapEditor,
       BackServiceRequests,
       BackCurrentRequests,
-      BackEmployeeEditor;
+      BackEmployeeEditor,
+      BackFindUs;
   @FXML private JFXButton mapEditor;
   @FXML private JFXButton ServiceRequests;
   @FXML private JFXButton EmployeeEditor;
@@ -58,6 +60,7 @@ public class HomeControllerAdmin extends MasterController implements Initializab
   @FXML private AnchorPane anchorPane;
   private DialogFactory dialogFactory;
   private Scene appPrimaryScene;
+  private User user;
 
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
@@ -85,9 +88,15 @@ public class HomeControllerAdmin extends MasterController implements Initializab
       makeInvisible(ServiceRequests);
       makeInvisible(BackServiceRequests);
       // makeInvisible(BackServiceRequests);
+
+      updateStyle("0x748cdc");
       logInInit();
     } else {
+
       super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Home");
+      user = db.getCurrentUser();
+      updateStyle(user.getAppColor());
+
       switch (db.getCurrentUser().getType()) {
           // different login cases
         case ADMINISTRATOR:
@@ -300,5 +309,19 @@ public class HomeControllerAdmin extends MasterController implements Initializab
   @FXML
   private void exit(ActionEvent actionEvent) throws IOException {
     super.cancel(actionEvent);
+  }
+
+  public void updateStyle(String color) {
+    String style =
+        "-fx-background-color: " + "#" + color.substring(2) + "; -fx-background-radius: 25;";
+    Label[] lA = {
+      BackMapPathfinder,
+      BackMapEditor,
+      BackServiceRequests,
+      BackCurrentRequests,
+      BackEmployeeEditor,
+      BackFindUs
+    };
+    for (Label a : lA) a.setStyle(style);
   }
 }

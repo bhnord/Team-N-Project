@@ -206,7 +206,6 @@ public class SideBarController extends MasterController implements Initializable
       makeInvisible(groupBack);
       makeInvisible(groupHome);
       makeInvisible(groupAccountSettings);
-      String color = "-fx-background-color: " + "#748cdc" + ";";
       updateStyle("0x748cdc");
     } else if (type.equals("Login Map")) {
       makeInvisible(groupLogOut);
