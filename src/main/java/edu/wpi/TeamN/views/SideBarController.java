@@ -104,12 +104,12 @@ public class SideBarController extends MasterController implements Initializable
     setLoader(loader);
     accountSettingsGroup.setTranslateX(-300);
 
-    if (db != null) {
-      user = db.getCurrentUser();
-      appColor.setValue((Color.web(user.getAppColor())));
-      // user.setAppColor(appColor.getValue().toString());
-      // db.updateUserPrefs(user.getId(), user.getUserPrefs());
-    }
+    //    if (db != null) {
+    //      user = db.getCurrentUser();
+    //      appColor.setValue((Color.web(user.getAppColor())));
+    //      // user.setAppColor(appColor.getValue().toString());
+    //      // db.updateUserPrefs(user.getId(), user.getUserPrefs());
+    //    }
   }
 
   /**
@@ -131,8 +131,8 @@ public class SideBarController extends MasterController implements Initializable
     this.db = db;
     user = db.getCurrentUser();
     appColor.setValue((Color.web(user.getAppColor())));
-    String color = "-fx-background-color: " + "#" + user.getAppColor().substring(2) + ";";
-    updateStyle(color);
+    // String color = "-fx-background-color: " + "#" + user.getAppColor().substring(2) + ";";
+    updateStyle(user.getAppColor());
   }
 
   /**
@@ -206,6 +206,8 @@ public class SideBarController extends MasterController implements Initializable
       makeInvisible(groupBack);
       makeInvisible(groupHome);
       makeInvisible(groupAccountSettings);
+      String color = "-fx-background-color: " + "#748cdc" + ";";
+      updateStyle("0x748cdc");
     } else if (type.equals("Login Map")) {
       makeInvisible(groupLogOut);
       makeInvisible(groupCovid);
@@ -239,15 +241,17 @@ public class SideBarController extends MasterController implements Initializable
 
   @FXML Rectangle rectangle1;
 
-  public void updateStyle(String style) {
+  public void updateStyle(String color) {
+    String style = "-fx-background-color: " + "#" + color.substring(2) + ";";
     Label[] lA = {label1, label2, label3, label4, label5, label6};
     for (Label a : lA) a.setStyle(style);
     // label1.setStyle(style);
     // rectangle1.setStyle(style);
 
-    String s = appColor.getValue().darker().darker().darker().saturate().saturate().toString();
-    String color = "-fx-background-color: " + "#" + s.substring(2) + ";";
-    labelBack.setStyle(color);
+    Color appC = Color.web(color);
+    String s = appC.darker().darker().darker().desaturate().toString();
+    String c = "-fx-background-color: " + "#" + s.substring(2) + ";";
+    labelBack.setStyle(c);
   }
 
   @FXML
@@ -259,8 +263,7 @@ public class SideBarController extends MasterController implements Initializable
       user.setAppColor(appColor.getValue().toString());
       db.updateUserPrefs(user.getId(), user.getUserPrefs());
 
-      String color = "-fx-background-color: " + "#" + user.getAppColor().substring(2) + ";";
-      updateStyle(color);
+      updateStyle(user.getAppColor());
       // label1.setStyle("-fx-background-color: " + color + "; ");
       // label1.getStylesheets().add("src/main/resources/StyleSheet/Dynamic.css");
     }
