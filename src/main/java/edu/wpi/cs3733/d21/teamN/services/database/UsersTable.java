@@ -3,11 +3,6 @@ package edu.wpi.cs3733.d21.teamN.services.database;
 import com.google.gson.Gson;
 import com.google.inject.Inject;
 import edu.wpi.cs3733.d21.teamN.services.database.users.*;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import edu.wpi.TeamN.services.database.users.*;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;

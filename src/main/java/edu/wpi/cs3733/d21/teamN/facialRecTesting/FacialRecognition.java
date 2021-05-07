@@ -1,11 +1,11 @@
-package edu.wpi.TeamN.facialRecTesting;
+package edu.wpi.cs3733.d21.teamN.facialRecTesting;
 
 import com.google.inject.Inject;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
-import edu.wpi.TeamN.faceLogin.FaceLogin;
-import edu.wpi.TeamN.services.database.DatabaseService;
-import edu.wpi.TeamN.services.database.users.User;
+import edu.wpi.cs3733.d21.teamN.faceLogin.FaceLogin;
+import edu.wpi.cs3733.d21.teamN.services.database.DatabaseService;
+import edu.wpi.cs3733.d21.teamN.services.database.users.User;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

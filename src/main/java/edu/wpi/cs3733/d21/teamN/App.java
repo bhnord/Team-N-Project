@@ -7,7 +7,6 @@ import edu.wpi.cs3733.d21.teamN.services.database.users.UserPrefs;
 import edu.wpi.cs3733.d21.teamN.services.database.users.UserType;
 import edu.wpi.cs3733.d21.teamN.state.HomeStateProvider;
 import edu.wpi.cs3733.d21.teamN.views.FXMLLoaderProvider;
-import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -91,6 +90,7 @@ public class App extends Application {
     primaryStage.setMinHeight(800);
     primaryStage.setMinWidth(1366);
     OpenCV.loadLocally();
+
     // primaryStage.setResizable(false);
     //    primaryStage.setAlwaysOnTop(true);
 

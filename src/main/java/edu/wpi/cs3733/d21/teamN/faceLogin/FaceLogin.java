@@ -1,7 +1,7 @@
-package edu.wpi.TeamN.faceLogin;
+package edu.wpi.cs3733.d21.teamN.faceLogin;
 
-import edu.wpi.TeamN.services.database.DatabaseService;
-import edu.wpi.TeamN.services.database.users.User;
+import edu.wpi.cs3733.d21.teamN.services.database.DatabaseService;
+import edu.wpi.cs3733.d21.teamN.services.database.users.User;
 import javafx.scene.control.Alert;
 import org.opencv.core.*;
 import org.opencv.features2d.DescriptorMatcher;
