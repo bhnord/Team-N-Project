@@ -2,8 +2,12 @@ package edu.wpi.TeamN.form;
 
 import com.google.inject.Inject;
 import edu.wpi.TeamN.views.MasterController;
+
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -43,4 +47,10 @@ public class FormController extends MasterController {
   public Label getTitle() {
     return title;
   }
+
+  public void submit(ActionEvent actionEvent) throws IOException {
+
+  }
+
+
 }
