@@ -2,23 +2,30 @@ package edu.wpi.TeamN.form;
 
 import javafx.scene.Node;
 
-public abstract class FormElement {
-  public abstract Node build();
-  public abstract boolean check();
-  public abstract String serialize();
-  private boolean required;
-  private String name;
+import java.io.Serializable;
 
-  public FormElement(boolean required, String name){
+public abstract class FormElement implements Serializable {
+  public abstract Node build();
+
+  public abstract boolean check();
+
+  public abstract boolean validate();
+
+  public abstract String getValue();
+
+  private boolean required;
+  private String question;
+
+  public FormElement(boolean required, String question) {
     this.required = required;
-    this.name = name;
+    this.question = question;
   }
 
-  public boolean is_required(){
+  public boolean is_required() {
     return required;
   }
 
-  public String getName(){
-    return name;
+  public String getName() {
+    return question;
   }
 }

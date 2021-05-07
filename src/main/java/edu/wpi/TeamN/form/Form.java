@@ -1,22 +1,23 @@
 package edu.wpi.TeamN.form;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import javafx.scene.layout.StackPane;
 
-public class Form {
+public class Form implements Serializable {
   ArrayList<FormElement> elements;
-
 
   /**
    * checks if all elements that are required fields are filled out
    *
-   * @return true if the form can be submitted and false if there are elements that need to be filled out
+   * @return true if the form can be submitted and false if there are elements that need to be
+   *     filled out
    */
-  public boolean check(){
-    for(FormElement element : elements){
-        if(element.is_required() && !element.check()){
-          return false;
-        }
+  public boolean check() {
+    for (FormElement element : elements) {
+      if (element.is_required() && !element.check()) {
+        return false;
+      }
     }
     return true;
   }
