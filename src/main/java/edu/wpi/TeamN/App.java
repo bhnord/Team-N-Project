@@ -15,6 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javax.swing.*;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
@@ -33,6 +34,7 @@ public class App extends Application {
   @Override
   public void init() {
     log.info("Starting Up");
+
     Injector injector =
         Guice.createInjector(
             new DatabaseServiceProvider(),
@@ -79,7 +81,9 @@ public class App extends Application {
     primaryStage
         .getIcons()
         .add(new Image(ClassLoader.getSystemResourceAsStream("images/hospital-256.png")));
+
     // primaryStage.initStyle(StageStyle.UNDECORATED);
+
     primaryStage.setTitle("Team N Application");
     primaryScene.setRoot(root);
     primaryStage.setScene(primaryScene);

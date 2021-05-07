@@ -117,10 +117,12 @@ public class CovidFormController extends MasterController implements Initializab
         dialogFactory.covidFormTextInput(
             " ",
             "Please Elaborate on your symptoms\n",
+            form,
             event -> {
               processingPopup();
+              db.addCovidForm(form);
             });
-        db.addCovidForm(form);
+        // db.addCovidForm(form);
 
       } else {
         dialogFactory.creatDialogConfirmCancel(
@@ -136,18 +138,18 @@ public class CovidFormController extends MasterController implements Initializab
 
   private void processingPopup() {
 
+    //    int id = db.getCurrentUser().getId();
+    //    if (db.getCovidForm(id).isProcessed() == true) {
+    //      dialogFactory.close();
+    //      // advanceHomePopup();
+    //    }
+
     dialogFactory.createDialog(
         "",
         "Your survey is being processed. Please wait to enter the hospital.",
         event -> {
-          processingPopup();
+          // processingPopup();
         });
-
-    int id = db.getCurrentUser().getId();
-    if (db.getCovidForm(id).isProcessed() == true) {
-      dialogFactory.close();
-      // advanceHomePopup();
-    }
   }
 
   private void advanceHomePopup() {

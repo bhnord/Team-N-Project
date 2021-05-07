@@ -47,6 +47,7 @@ public class CurrentRequestController extends MasterController implements Initia
   @FXML private Label cruiseShip;
   @FXML private Label emergency;
   @FXML private Label assignedEmployee;
+  @FXML private Label txtExtraInfo;
   @FXML private JFXButton checkIn;
   private HashMap<Integer, Request> requestMap = new HashMap<>();
   @FXML JFXComboBox<String> entrance = new JFXComboBox<>();
@@ -59,7 +60,6 @@ public class CurrentRequestController extends MasterController implements Initia
 
   @Override
   public void initialize(URL url, ResourceBundle rb) {
-
     entrance.getItems().add("enter through emergency entrance");
     entrance.getItems().add("enter through 75 parking lot");
 
@@ -138,6 +138,7 @@ public class CurrentRequestController extends MasterController implements Initia
     cruiseShip.setText("");
     emergency.setText("");
     assignedEmployee.setText("");
+    txtExtraInfo.setText("");
   }
 
   private void updateTextFields(Request clickedRequest) {
@@ -170,6 +171,7 @@ public class CurrentRequestController extends MasterController implements Initia
     cruiseShip.setText(a.get(4));
     emergency.setText(a.get(5));
     assignedEmployee.setText(db.getUserById(covidForm.getAssignedEmployeeId()).getUsername());
+    txtExtraInfo.setText(covidForm.getExtraInfo());
   }
 
   @FXML
