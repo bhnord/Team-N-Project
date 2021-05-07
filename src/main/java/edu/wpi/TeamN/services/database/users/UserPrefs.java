@@ -113,22 +113,6 @@ public class UserPrefs {
 
   public void setAppColor(String appColor) {
     this.appColor = appColor;
-    File fold = new File("src/main/resources/StyleSheet/Dynamic.css");
-    // fold.delete();
-    File fnew = new File("src/main/resources/StyleSheet/Dynamic.css");
-
-    // background color for all things
-    String source = "*{ -fx-background-color: #" + appColor.substring(2) + ";}";
-    // radius for buttons
-    // source += "\n\n.label{ -fx-background-radius: 25; }";
-
-    try {
-      FileWriter f2 = new FileWriter(fnew, false);
-      f2.write(source);
-      f2.close();
-    } catch (IOException e) {
-      // e.printStackTrace();
-    }
   }
 
   @Override
