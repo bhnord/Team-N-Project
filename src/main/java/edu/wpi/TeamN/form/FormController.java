@@ -15,6 +15,10 @@ public class FormController extends MasterController {
 
   @FXML HBox elements;
   @FXML Label title;
+
+  public FormController(Form form){
+    this.form = form;
+  }
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
    * JavaFX thread
