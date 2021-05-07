@@ -26,6 +26,7 @@ public class FormEditorController extends MasterController implements Initializa
   @FXML AnchorPane anchorPane;
   @Inject private FXMLLoader loader;
   @Inject private DatabaseService db;
+  private JFXListView<HBox> list;
 
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
@@ -45,7 +46,7 @@ public class FormEditorController extends MasterController implements Initializa
 
   public void setUp(Form form) {
     this.form = form;
-    JFXListView<HBox> list = new JFXListView<>();
+    list = new JFXListView<>();
     list.setMinWidth(1000);
     form.editorBuild(list);
     this.elements.getChildren().add(list);
@@ -56,4 +57,8 @@ public class FormEditorController extends MasterController implements Initializa
   }
 
   public void submit(ActionEvent actionEvent) throws IOException {}
+
+  public void add(ActionEvent actionEvent) {
+    form.add(list);
+  }
 }

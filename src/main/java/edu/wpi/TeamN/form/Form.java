@@ -53,4 +53,9 @@ public class Form implements Serializable {
       list.getItems().add(element.editView(list));
     }
   }
+
+  public void add(JFXListView<HBox> list) {
+    elements.add(new TextField(false, "", "", this));
+    list.getItems().add(elements.get(elements.size() - 1).editView(list));
+  }
 }

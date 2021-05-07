@@ -64,7 +64,14 @@
                               <Font name="Serif Regular" size="20.0" />
                            </font>
                         </Label>
-                        <VBox fx:id="elements" spacing="25" layoutX="121.0" layoutY="212.0" prefHeight="337.0" prefWidth="306.0" />
+                        <JFXButton fx:id="submit" layoutX="947.0" layoutY="613.0" mnemonicParsing="false" onAction="#submit" prefHeight="50.0" prefWidth="142.0" text="  " textFill="WHITE" />
+                        <VBox fx:id="elements" layoutX="121.0" layoutY="212.0" prefHeight="337.0" prefWidth="306.0" spacing="25" />
+                        <Label fx:id="text111" alignment="CENTER" layoutX="818.0" layoutY="80.0" prefHeight="50.0" prefWidth="142.0" style="-fx-background-color: #748cdc; -fx-background-radius: 6;" stylesheets="@/Fonts/Roboto-Light.css" text="Add" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Serif Regular" size="20.0" />
+                           </font>
+                        </Label>
+                        <JFXButton fx:id="Add" layoutX="818.0" layoutY="80.0" mnemonicParsing="false" onAction="#add" prefHeight="50.0" prefWidth="142.0" text="  " textFill="WHITE" />
                      </children>
                   </AnchorPane>
                </children>
