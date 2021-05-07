@@ -18,6 +18,7 @@ public class TimePicker extends FormElement {
   public Node build(DatabaseService db) {
     timePicker = new JFXTimePicker();
     timePicker.setPromptText(getName());
+    timePicker.setOnAction(e -> setValue(timePicker.getValue().toString()));
     return timePicker;
   }
 
@@ -29,11 +30,6 @@ public class TimePicker extends FormElement {
   @Override
   public boolean validate() {
     return timePicker.validate();
-  }
-
-  @Override
-  public String getValue() {
-    return timePicker.getValue().toString();
   }
 
   @Override

@@ -20,6 +20,7 @@ public class TextField extends FormElement {
     textField = new JFXTextField();
     textField.setPromptText(getName());
     textField.setLabelFloat(true);
+    textField.setOnKeyPressed(e -> setValue(textField.getText()));
     return textField;
   }
 
@@ -39,7 +40,8 @@ public class TextField extends FormElement {
   }
 
   @Override
-  protected void editViewInner(JFXComboBox<ElementType> comboBox, HBox box, JFXListView<HBox> list) {
+  protected void editViewInner(
+      JFXComboBox<ElementType> comboBox, HBox box, JFXListView<HBox> list) {
     comboBox.getSelectionModel().select(ElementType.TextField);
   }
 }

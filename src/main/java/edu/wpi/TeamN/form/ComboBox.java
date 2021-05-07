@@ -9,7 +9,6 @@ import edu.wpi.TeamN.services.database.users.UserType;
 import edu.wpi.TeamN.utilities.AutoCompleteComboBoxListener;
 import java.util.ArrayList;
 import java.util.Arrays;
-
 import javafx.collections.FXCollections;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -26,7 +25,8 @@ public class ComboBox extends FormElement {
     this.type = type;
   }
 
-  public ComboBox(boolean required, String question, String help, Form formin, ArrayList<String> values) {
+  public ComboBox(
+      boolean required, String question, String help, Form formin, ArrayList<String> values) {
     super(required, question, help, formin);
     comboBox = new JFXComboBox<>();
     this.values = values;
@@ -37,6 +37,7 @@ public class ComboBox extends FormElement {
   public Node build(DatabaseService db) {
     comboBox = new JFXComboBox<>();
     comboBox.setPromptText(getName());
+    comboBox.setOnKeyPressed(e -> setValue(comboBox.getSelectionModel().getSelectedItem().getText()));
     ArrayList<String> innerValues = new ArrayList<>();
     switch (type) {
       case ROOM:
@@ -70,27 +71,24 @@ public class ComboBox extends FormElement {
   }
 
   @Override
-  public String getValue() {
-    return comboBox.getSelectionModel().getSelectedItem().getText();
-  }
-
-  @Override
   protected void editViewInner(JFXComboBox<ElementType> type, HBox box, JFXListView<HBox> list) {
-      type.getSelectionModel().select(ElementType.ComboBox);
-      JFXComboBox<ComboBoxType> comboBox = new JFXComboBox<>();
-      comboBox.setItems(FXCollections.observableArrayList(ComboBoxType.values()));
-      comboBox.getSelectionModel().select(this.type);
-      comboBox.setOnAction(event -> {
+    type.getSelectionModel().select(ElementType.ComboBox);
+    JFXComboBox<ComboBoxType> comboBox = new JFXComboBox<>();
+    comboBox.setItems(FXCollections.observableArrayList(ComboBoxType.values()));
+    comboBox.getSelectionModel().select(this.type);
+    comboBox.setOnAction(
+        event -> {
           this.type = comboBox.getValue();
           list.getItems().add(list.getItems().indexOf(box), this.editView(list));
-      });
-      if(this.type == ComboBoxType.CUSTOM){
-        JFXTextArea area = new JFXTextArea();
-        StringBuilder pt = new StringBuilder();
-        values.forEach(pt::append);
-        area.setPromptText(pt.toString());
-        area.setOnKeyPressed(event -> this.values = new ArrayList<>(Arrays.asList(area.getText().split("\n"))));
-      }
+        });
+    if (this.type == ComboBoxType.CUSTOM) {
+      JFXTextArea area = new JFXTextArea();
+      StringBuilder pt = new StringBuilder();
+      values.forEach(pt::append);
+      area.setPromptText(pt.toString());
+      area.setOnKeyPressed(
+          event -> this.values = new ArrayList<>(Arrays.asList(area.getText().split("\n"))));
+    }
   }
 
   private void setUpComboBox(ArrayList<String> list) {
