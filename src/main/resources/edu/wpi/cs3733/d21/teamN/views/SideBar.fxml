@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXColorPicker?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="SideAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1500.0" prefWidth="66.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.d21.teamN.views.SideBarController">
+   <children>
+      <Group fx:id="accountSettingsGroup" layoutX="4.0" layoutY="74.0">
+         <children>
+            <Rectangle arcHeight="25.0" arcWidth="25.0" fill="WHITE" height="138.0" stroke="TRANSPARENT" strokeType="INSIDE" width="290.0">
+               <effect>
+                  <DropShadow color="#00000095" height="43.24" radius="22.2325" width="47.69" />
+               </effect>
+            </Rectangle>
+            <JFXButton fx:id="profilePopoutBackButton" layoutX="243.0" layoutY="8.0" onAction="#accountSettingsBack" prefHeight="32.0" prefWidth="32.0" stylesheets="@/StyleSheet/SideBar.css" />
+            <Label fx:id="AccountType" layoutX="80.0" layoutY="32.0" text="Label" />
+            <Label fx:id="AccountUsername" layoutX="80.0" layoutY="63.0" text="Label" />
+            <Label fx:id="AccountParkingSpot" layoutX="80.0" layoutY="94.0" text="Parking Spot: Not Set" />
+            <JFXColorPicker fx:id="appColor" layoutX="128.0" layoutY="12.0" minHeight="24.0" onAction="#newAppColor" prefHeight="24.0" prefWidth="66.0" style="-fx-color-label-visible: false;" visible="false">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXColorPicker>
+         </children>
+      </Group>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#363d54" height="1500.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
+      <Label fx:id="labelBack" prefHeight="1500.0" prefWidth="66.0" />
+      <GridPane fx:id="sideBarGrid">
+         <columnConstraints>
+            <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" minWidth="66.0" prefWidth="66.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="1368.0" minHeight="-Infinity" prefHeight="700.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="4.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+               <children>
+                  <Group>
+                     <children>
+                        <Label fx:id="labelB1" layoutX="12.0" layoutY="6.0" prefHeight="47.0" prefWidth="40.0" style="-fx-background-color: RED; -fx-background-radius: 50;" />
+                        <Label fx:id="labelB2" layoutX="8.0" layoutY="4.0" prefHeight="17.0" prefWidth="48.0" style="-fx-background-color: RED;" />
+                        <ImageView fitHeight="61.0" fitWidth="50.0" layoutX="7.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@/images/BWHLogo.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Group>
+                  <Group fx:id="groupAccountSettings">
+                     <children>
+                        <Label fx:id="label1" layoutX="-1.0" maxWidth="1.7976931348623157E308" prefHeight="64.0" prefWidth="66.0" style="-fx-background-color: #748cdc;" stylesheets="@/StyleSheet/Dynamic.css" />
+                        <ImageView fitHeight="58.0" fitWidth="48.0" layoutX="10.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@/images/Icons/newprofile.png" />
+                           </image>
+                        </ImageView>
+                        <JFXButton fx:id="accountSettings" onAction="#accountSettings" prefHeight="64.0" prefWidth="66.0" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="9.0" />
+                           </font>
+                           <tooltip>
+                              <Tooltip fx:id="ttExit1" text="Account Settings">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Tooltip>
+                           </tooltip>
+                        </JFXButton>
+                     </children>
+                  </Group>
+                  <Group fx:id="groupHome">
+                     <children>
+                        <Label fx:id="label2" layoutX="-1.0" maxWidth="1.7976931348623157E308" prefHeight="64.0" prefWidth="66.0" style="-fx-background-color: #748cdc;" stylesheets="@/StyleSheet/Dynamic.css" />
+                        <ImageView fitHeight="64.0" fitWidth="49.0" layoutX="3.0" pickOnBounds="true" preserveRatio="true" translateX="5.0" translateY="7.5">
+                           <image>
+                              <Image url="@/images/Icons/newhome.png" />
+                           </image>
+                        </ImageView>
+                        <JFXButton fx:id="HomeView2" onAction="#advanceHome" prefHeight="64.0" prefWidth="66.0" text="    " textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="9.0" />
+                           </font>
+                           <tooltip>
+                              <Tooltip fx:id="ttHomeView" text="Home">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Tooltip>
+                           </tooltip>
+                        </JFXButton>
+                     </children>
+                  </Group>
+                  <Group fx:id="groupBack">
+                     <children>
+                        <Label fx:id="label3" layoutX="1.0" maxWidth="1.7976931348623157E308" prefHeight="64.0" prefWidth="66.0" style="-fx-background-color: #748cdc;" stylesheets="@/StyleSheet/Dynamic.css" />
+                        <ImageView fitHeight="60.0" fitWidth="50.0" layoutX="7.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@/images/Icons/newback.png" />
+                           </image>
+                        </ImageView>
+                        <JFXButton fx:id="BackButton" layoutX="2.0" onAction="#advanceServiceRequest" prefHeight="65.0" prefWidth="66.0" text="    " textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="9.0" />
+                           </font>
+                           <tooltip>
+                              <Tooltip fx:id="ttBackButton" text="Back to Requests">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Tooltip>
+                           </tooltip>
+                        </JFXButton>
+                     </children>
+                  </Group>
+                  <Group fx:id="groupCovid">
+                     <children>
+                        <Label fx:id="label4" layoutX="-1.0" layoutY="1.0" maxWidth="1.7976931348623157E308" prefHeight="64.0" prefWidth="66.0" style="-fx-background-color: #748cdc;" stylesheets="@/StyleSheet/Dynamic.css" />
+                        <ImageView fitHeight="58.0" fitWidth="48.0" layoutX="1.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" translateX="7.5">
+                           <image>
+                              <Image url="@/images/Icons/newcovid.png" />
+                           </image>
+                        </ImageView>
+                        <JFXButton fx:id="CovidForm" layoutY="1.0" onAction="#advanceViews" prefHeight="64.0" prefWidth="66.0" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="9.0" />
+                           </font>
+                           <tooltip>
+                              <Tooltip fx:id="ttCovidForm" text="Covid Form">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Tooltip>
+                           </tooltip>
+                        </JFXButton>
+                     </children>
+                  </Group>
+                  <Group fx:id="groupLogOut">
+                     <children>
+                        <Label fx:id="label5" layoutX="-1.0" maxWidth="1.7976931348623157E308" prefHeight="64.0" prefWidth="66.0" style="-fx-background-color: #748cdc;" stylesheets="@/StyleSheet/Dynamic.css" />
+                        <ImageView fx:id="RegisterBack" fitHeight="60.0" fitWidth="50.0" layoutX="7.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@/images/Icons/newback.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="LogOutBack" fitHeight="53.0" fitWidth="48.0" layoutX="10.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@/images/Icons/newlogout.png" />
+                           </image>
+                        </ImageView>
+                        <JFXButton fx:id="logOutButton" onAction="#logOut" prefHeight="64.0" prefWidth="66.0" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="9.0" />
+                           </font>
+                           <tooltip>
+                              <Tooltip fx:id="ttLogOutButton" text="Log Out">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Tooltip>
+                           </tooltip>
+                        </JFXButton>
+                     </children>
+                  </Group>
+                  <Group fx:id="groupExit">
+                     <children>
+                        <Label fx:id="label6" layoutX="-1.0" maxWidth="1.7976931348623157E308" prefHeight="64.0" prefWidth="66.0" style="-fx-background-color: #748cdc;" stylesheets="@/StyleSheet/Dynamic.css" />
+                        <ImageView fitHeight="60.0" fitWidth="49.0" layoutX="8.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@/images/Icons/newclose.png" />
+                           </image>
+                        </ImageView>
+                        <JFXButton fx:id="exit" onAction="#exit" prefHeight="64.0" prefWidth="66.0" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="9.0" />
+                           </font>
+                           <tooltip>
+                              <Tooltip fx:id="ttExit" text="Exit App">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Tooltip>
+                           </tooltip>
+                        </JFXButton>
+                     </children>
+                  </Group>
+               </children>
+               <GridPane.margin>
+                  <Insets top="10.0" />
+               </GridPane.margin>
+            </VBox>
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>
