@@ -31,7 +31,7 @@
             <Label fx:id="AccountType" layoutX="80.0" layoutY="32.0" text="Label" />
             <Label fx:id="AccountUsername" layoutX="80.0" layoutY="63.0" text="Label" />
             <Label fx:id="AccountParkingSpot" layoutX="80.0" layoutY="94.0" text="Parking Spot: Not Set" />
-            <JFXColorPicker fx:id="appColor" layoutX="128.0" layoutY="12.0" minHeight="24.0" onAction="#newAppColor" prefHeight="24.0" prefWidth="66.0" style="-fx-color-label-visible: false;">
+            <JFXColorPicker fx:id="appColor" layoutX="128.0" layoutY="12.0" minHeight="24.0" onAction="#newAppColor" prefHeight="24.0" prefWidth="66.0" style="-fx-color-label-visible: false;" visible="false">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
