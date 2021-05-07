@@ -306,7 +306,7 @@ public class HomeControllerAdmin extends MasterController implements Initializab
   public void test(ActionEvent actionEvent) throws IOException {
     Parent root = loader.load(getClass().getResourceAsStream("Templateform.fxml"));
     appPrimaryScene.setRoot(root);
-    Form form = new Form();
+    Form form = new Form(db);
     FormController formController = loader.getController();
     formController.setUp(form);
   }

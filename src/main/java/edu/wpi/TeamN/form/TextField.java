@@ -1,18 +1,19 @@
 package edu.wpi.TeamN.form;
 
 import com.jfoenix.controls.JFXTextField;
+import edu.wpi.TeamN.services.database.DatabaseService;
 import javafx.scene.Node;
 
 public class TextField extends FormElement {
 
-  JFXTextField textField;
+  private transient JFXTextField textField;
 
   public TextField(boolean required, String question, String help) {
     super(required, question, help);
   }
 
   @Override
-  public Node build() {
+  public Node build(DatabaseService db) {
     textField = new JFXTextField();
     textField.setPromptText(getName());
     textField.setLabelFloat(true);

@@ -1,10 +1,11 @@
 package edu.wpi.TeamN.form;
 
+import edu.wpi.TeamN.services.database.DatabaseService;
 import java.io.Serializable;
 import javafx.scene.Node;
 
 public abstract class FormElement implements Serializable {
-  public abstract Node build();
+  public abstract Node build(DatabaseService db);
 
   public abstract boolean check();
 

@@ -2,6 +2,7 @@ package edu.wpi.TeamN.views;
 
 import com.google.inject.Inject;
 import edu.wpi.TeamN.form.Form;
+import edu.wpi.TeamN.services.database.DatabaseService;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -22,6 +23,7 @@ public class FormController extends MasterController implements Initializable {
   @FXML Label title;
   @FXML AnchorPane anchorPane;
   @Inject private FXMLLoader loader;
+  @Inject private DatabaseService db;
 
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
