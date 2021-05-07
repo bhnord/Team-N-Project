@@ -2,11 +2,9 @@ package edu.wpi.TeamN.form;
 
 import com.google.inject.Inject;
 import edu.wpi.TeamN.views.MasterController;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -20,7 +18,7 @@ public class FormController extends MasterController {
   @FXML HBox elements;
   @FXML Label title;
 
-  public FormController(Form form){
+  public FormController(Form form) {
     this.form = form;
   }
   /**
@@ -36,7 +34,6 @@ public class FormController extends MasterController {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    this.form = (Form) resources.getObject("form");
     form.build(this);
   }
 
@@ -48,9 +45,5 @@ public class FormController extends MasterController {
     return title;
   }
 
-  public void submit(ActionEvent actionEvent) throws IOException {
-
-  }
-
-
+  public void submit(ActionEvent actionEvent) throws IOException {}
 }
