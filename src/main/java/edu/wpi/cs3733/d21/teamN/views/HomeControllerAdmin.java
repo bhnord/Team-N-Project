@@ -1,14 +1,13 @@
-package edu.wpi.TeamN.views;
+package edu.wpi.cs3733.d21.teamN.views;
 
 import com.google.inject.Inject;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.RequiredFieldValidator;
-import edu.wpi.TeamN.services.database.DatabaseService;
-import edu.wpi.TeamN.services.database.users.User;
-import edu.wpi.TeamN.state.HomeState;
-import edu.wpi.TeamN.utilities.DialogFactory;
+import edu.wpi.cs3733.d21.teamN.services.database.DatabaseService;
+import edu.wpi.cs3733.d21.teamN.services.database.users.User;
+import edu.wpi.cs3733.d21.teamN.utilities.DialogFactory;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -30,7 +29,6 @@ public class HomeControllerAdmin extends MasterController implements Initializab
 
   @Inject DatabaseService db;
   @Inject FXMLLoader loader;
-  @Inject HomeState state;
 
   // all buttons for FXML page that can be hidden, hide in pairs
   @FXML private JFXButton mapPathfinder;
