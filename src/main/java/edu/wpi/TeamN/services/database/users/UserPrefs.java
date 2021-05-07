@@ -116,25 +116,11 @@ public class UserPrefs {
     File fold = new File("src/main/resources/StyleSheet/Dynamic.css");
     fold.delete();
     File fnew = new File("src/main/resources/StyleSheet/Dynamic.css");
-    // FileReader fr = new FileReader("src/main/resources/StyleSheet/Dynamic.css");
-    String source = ":root{ --app-color: #" + appColor.substring(2) + ";}";
-    // System.out.println();
 
-    //    try {
-    //      File f1 = new File("src/main/resources/StyleSheet/Dynamic.css");
-    //      FileReader fr = new FileReader(f1);
-    //      FileWriter fw = new FileWriter(f1);
-    //      BufferedReader br = new BufferedReader(fr);
-    //      BufferedWriter bw = new BufferedWriter(fw);
-    //
-    //      // color variable
-    //      // if (line.contains("java"))
-    //      br.readLine();
-    //      bw.write("hello");
-    //
-    //    } catch (Exception ex) {
-    //      ex.printStackTrace();
-    //    }
+    // background color for all things
+    String source = "*{ -fx-background-color: #" + appColor.substring(2) + ";}";
+    // radius for buttons
+    source += "\n\n.label{ -fx-background-radius: 25; }";
 
     try {
       FileWriter f2 = new FileWriter(fnew, false);

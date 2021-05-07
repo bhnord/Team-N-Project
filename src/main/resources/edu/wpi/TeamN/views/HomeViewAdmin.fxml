@@ -132,10 +132,14 @@
                               <URL value="@/Fonts/Roboto-Light.css" />
                            </stylesheets>
                         </JFXPasswordField>
-                        <JFXButton fx:id="goToHomePage" buttonType="RAISED" layoutX="93.0" layoutY="50.0" onAction="#continueToHomePage" prefHeight="50.0" prefWidth="174.0" style="-fx-background-color: #6985e0;" stylesheets="@/Fonts/Roboto-Black.css" text="SUBMIT" textFill="WHITE">
+                        <JFXButton fx:id="goToHomePage" buttonType="RAISED" layoutX="93.0" layoutY="50.0" onAction="#continueToHomePage" prefHeight="50.0" prefWidth="174.0" text="SUBMIT" textFill="WHITE">
                            <font>
                               <Font name="Javanese Text" size="14.0" />
                            </font>
+                           <stylesheets>
+                              <URL value="@/Fonts/Roboto-Light.css" />
+                              <URL value="@/StyleSheet/Dynamic.css" />
+                           </stylesheets>
                         </JFXButton>
                         <Label fx:id="incorrectLogin" layoutY="-20.0" prefHeight="33.0" prefWidth="360.0" stylesheets="@/Fonts/Roboto-Light.css" text=" " textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -163,7 +167,7 @@
                         <Insets bottom="35.0" left="35.0" right="35.0" top="35.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="BackMapPathfinder" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@/StyleSheet/style.css">
+                  <Label fx:id="BackMapPathfinder" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@/StyleSheet/Dynamic.css">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>

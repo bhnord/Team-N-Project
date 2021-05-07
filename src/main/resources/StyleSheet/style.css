@@ -1,13 +1,5 @@
 
 
-
-.label{
-    -fx-background-color: var(--app-color);
-
-    -fx-background-radius: 25;
-    -fx-border-color: RED;
-}
-
 .jfx-tab-pane .headers-region {
     -fx-background-color: #1b75bc;
 }

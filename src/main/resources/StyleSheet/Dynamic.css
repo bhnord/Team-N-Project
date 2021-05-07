@@ -1,1 +1,3 @@
-:root{ --app-color: #4caf50ff;}
+*{ -fx-background-color: #d81b60ff;}
+
+.label{ -fx-background-radius: 25; }
