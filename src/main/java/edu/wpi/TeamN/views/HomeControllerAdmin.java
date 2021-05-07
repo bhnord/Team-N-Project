@@ -6,7 +6,6 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.RequiredFieldValidator;
 import edu.wpi.TeamN.form.Form;
-import edu.wpi.TeamN.form.FormController;
 import edu.wpi.TeamN.services.database.DatabaseService;
 import edu.wpi.TeamN.state.HomeState;
 import edu.wpi.TeamN.utilities.DialogFactory;

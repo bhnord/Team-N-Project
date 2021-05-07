@@ -1,7 +1,7 @@
-package edu.wpi.TeamN.form;
+package edu.wpi.TeamN.views;
 
 import com.google.inject.Inject;
-import edu.wpi.TeamN.views.MasterController;
+import edu.wpi.TeamN.form.Form;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
