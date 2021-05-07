@@ -63,7 +63,7 @@
                         <Insets bottom="100.0" left="100.0" right="100.0" top="100.0" />
                      </GridPane.margin>
                   </JFXListView>
-                  <JFXButton prefHeight="55.0" prefWidth="182.0" style="-fx-background-color: #748cdc; -fx-background-radius: 6;" text="Submit" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
+                  <JFXButton fx:id="submit" onAction="#submit" prefHeight="55.0" prefWidth="182.0" style="-fx-background-color: #748cdc; -fx-background-radius: 6;" text="Submit" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
                      <font>
                         <Font size="20.0" />
                      </font>
