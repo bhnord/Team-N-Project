@@ -1,0 +1,28 @@
+@font-face {
+    src: url("../Fonts/Roboto/Roboto-Light.ttf");
+}
+
+.label {
+    -fx-font-family: 'Roboto Light';
+}
+
+.jfx-label {
+    -fx-font-family: 'Roboto Light';
+}
+
+.text-field {
+    -fx-font-family: 'Roboto Light';
+}
+
+.jfx-button{
+    -fx-font-family: 'Roboto Light';
+    -fx-font-size: 15;
+}
+
+.jfx-combo-box{
+    -fx-font-family: 'Roboto Light';
+}
+
+.text-area{
+    -fx-font-family: 'Roboto Light';
+}
