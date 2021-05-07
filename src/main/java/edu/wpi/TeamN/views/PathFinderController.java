@@ -234,7 +234,6 @@ public class PathFinderController extends MapController implements Initializable
       l._shape.setVisible(false);
     }
     path.clear();
-    directionHandler.clean();
     directionHandler.cleanAll();
     nodePath.clear();
   }
@@ -303,5 +302,10 @@ public class PathFinderController extends MapController implements Initializable
     buttonDown.setVisible(false);
     buttonUp.setVisible(true);
     tt.play();
+  }
+
+  public void goBack(ActionEvent actionEvent) {
+    directionHandler.reverse();
+    newColorPath(actionEvent);
   }
 }
