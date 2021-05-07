@@ -114,7 +114,7 @@ public class UserPrefs {
   public void setAppColor(String appColor) {
     this.appColor = appColor;
     File fold = new File("src/main/resources/StyleSheet/Dynamic.css");
-    fold.delete();
+    // fold.delete();
     File fnew = new File("src/main/resources/StyleSheet/Dynamic.css");
 
     // background color for all things

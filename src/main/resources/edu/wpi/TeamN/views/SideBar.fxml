@@ -55,7 +55,7 @@
                   </Group>
                   <Group fx:id="groupAccountSettings">
                      <children>
-                        <Label fx:id="label1" maxWidth="1.7976931348623157E308" prefHeight="65.0" prefWidth="66.0" stylesheets="@../../../../StyleSheet/Dynamic.css" />
+                        <Label fx:id="label1" maxWidth="1.7976931348623157E308" prefHeight="65.0" prefWidth="66.0" />
                         <ImageView fitHeight="58.0" fitWidth="48.0" layoutX="10.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@/images/Icons/newprofile.png" />

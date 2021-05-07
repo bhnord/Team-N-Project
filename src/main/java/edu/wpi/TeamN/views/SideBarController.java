@@ -237,11 +237,13 @@ public class SideBarController extends MasterController implements Initializable
     if (db != null) {
 
       user = db.getCurrentUser();
-      label1.getStylesheets().remove("src/main/resources/StyleSheet/Dynamic.css");
+      // label1.getStylesheets().remove("src/main/resources/StyleSheet/Dynamic.css");
       user.setAppColor(appColor.getValue().toString());
       db.updateUserPrefs(user.getId(), user.getUserPrefs());
 
-      label1.getStylesheets().add("src/main/resources/StyleSheet/Dynamic.css");
+      String color = "#" + user.getAppColor().substring(2);
+      label1.setStyle("-fx-background-color: " + color + "; ");
+      // label1.getStylesheets().add("src/main/resources/StyleSheet/Dynamic.css");
     }
   }
 }
