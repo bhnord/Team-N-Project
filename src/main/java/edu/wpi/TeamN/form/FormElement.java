@@ -1,8 +1,7 @@
 package edu.wpi.TeamN.form;
 
-import javafx.scene.Node;
-
 import java.io.Serializable;
+import javafx.scene.Node;
 
 public abstract class FormElement implements Serializable {
   public abstract Node build();
@@ -15,10 +14,12 @@ public abstract class FormElement implements Serializable {
 
   private boolean required;
   private String question;
+  private String help;
 
-  public FormElement(boolean required, String question) {
+  public FormElement(boolean required, String question, String help) {
     this.required = required;
     this.question = question;
+    this.help = help;
   }
 
   public boolean is_required() {
@@ -27,5 +28,9 @@ public abstract class FormElement implements Serializable {
 
   public String getName() {
     return question;
+  }
+
+  public String getHelp() {
+      return help;
   }
 }

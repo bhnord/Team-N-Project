@@ -2,10 +2,15 @@ package edu.wpi.TeamN.form;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import javafx.scene.layout.StackPane;
 
 public class Form implements Serializable {
   ArrayList<FormElement> elements;
+  String title;
+
+  public Form(){
+    elements = new ArrayList<>();
+    title = "bla";
+  }
 
   /**
    * checks if all elements that are required fields are filled out
@@ -25,11 +30,12 @@ public class Form implements Serializable {
   /**
    * builds up the page based on this instance's elements
    *
-   * @param pane StackPane where the elements of the form will be laid in
+   * @param formController contoller where the elements of the form will be laid in
    */
-  public void build(StackPane pane) {
+  public void build(FormController formController) {
+    formController.getTitle().setText(title);
     for (FormElement element : elements) {
-      pane.getChildren().add(element.build());
+      formController.getElements().getChildren().add(element.build());
     }
   }
 }
