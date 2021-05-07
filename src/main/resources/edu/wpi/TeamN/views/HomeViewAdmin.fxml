@@ -167,7 +167,7 @@
                         <Insets bottom="35.0" left="35.0" right="35.0" top="35.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="BackMapPathfinder" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@/StyleSheet/Dynamic.css">
+                  <Label fx:id="BackMapPathfinder" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-radius: 25;" stylesheets="@/StyleSheet/Dynamic.css">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>

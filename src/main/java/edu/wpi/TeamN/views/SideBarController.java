@@ -19,6 +19,7 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import lombok.extern.slf4j.Slf4j;
 
@@ -128,6 +129,10 @@ public class SideBarController extends MasterController implements Initializable
   @Override
   public void setDB(DatabaseService db) {
     this.db = db;
+    user = db.getCurrentUser();
+    appColor.setValue((Color.web(user.getAppColor())));
+    String color = "-fx-background-color: " + "#" + user.getAppColor().substring(2) + ";";
+    updateStyle(color);
   }
 
   /**
@@ -230,7 +235,17 @@ public class SideBarController extends MasterController implements Initializable
   /**
    * ---------------------------------------------------------------------------------------------------
    */
-  @FXML Label label1;
+  @FXML Label label1, label2, label3, label4, label5, label6;
+
+  @FXML Rectangle rectangle1;
+
+  public void updateStyle(String style) {
+    Label[] lA = {label1, label2, label3, label4, label5, label6};
+    for (Label a : lA) a.setStyle(style);
+    // label1.setStyle(style);
+    // rectangle1.setStyle(style);
+
+  }
 
   @FXML
   private void newAppColor(ActionEvent actionEvent) {
@@ -241,8 +256,9 @@ public class SideBarController extends MasterController implements Initializable
       user.setAppColor(appColor.getValue().toString());
       db.updateUserPrefs(user.getId(), user.getUserPrefs());
 
-      String color = "#" + user.getAppColor().substring(2);
-      label1.setStyle("-fx-background-color: " + color + "; ");
+      String color = "-fx-background-color: " + "#" + user.getAppColor().substring(2) + ";";
+      updateStyle(color);
+      // label1.setStyle("-fx-background-color: " + color + "; ");
       // label1.getStylesheets().add("src/main/resources/StyleSheet/Dynamic.css");
     }
   }

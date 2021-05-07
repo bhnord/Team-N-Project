@@ -120,7 +120,7 @@ public class UserPrefs {
     // background color for all things
     String source = "*{ -fx-background-color: #" + appColor.substring(2) + ";}";
     // radius for buttons
-    source += "\n\n.label{ -fx-background-radius: 25; }";
+    // source += "\n\n.label{ -fx-background-radius: 25; }";
 
     try {
       FileWriter f2 = new FileWriter(fnew, false);
