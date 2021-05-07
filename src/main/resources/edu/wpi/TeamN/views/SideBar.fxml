@@ -34,6 +34,7 @@
          </children>
       </Group>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#363d54" height="1500.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
+      <Label fx:id="labelBack" prefHeight="1500.0" prefWidth="66.0" />
       <GridPane fx:id="sideBarGrid">
          <columnConstraints>
             <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" minWidth="66.0" prefWidth="66.0" />

@@ -235,7 +235,7 @@ public class SideBarController extends MasterController implements Initializable
   /**
    * ---------------------------------------------------------------------------------------------------
    */
-  @FXML Label label1, label2, label3, label4, label5, label6;
+  @FXML Label label1, label2, label3, label4, label5, label6, labelBack;
 
   @FXML Rectangle rectangle1;
 
@@ -245,6 +245,9 @@ public class SideBarController extends MasterController implements Initializable
     // label1.setStyle(style);
     // rectangle1.setStyle(style);
 
+    String s = appColor.getValue().darker().darker().darker().saturate().saturate().toString();
+    String color = "-fx-background-color: " + "#" + s.substring(2) + ";";
+    labelBack.setStyle(color);
   }
 
   @FXML
