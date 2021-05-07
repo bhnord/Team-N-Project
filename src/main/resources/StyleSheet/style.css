@@ -1,3 +1,10 @@
+
+
+.jfx-tab-pane .headers-region {
+    -fx-background-color: #1b75bc;
+}
+
+
 .jfx-button{
     -fx-font-family: 'Roboto Black';
     -fx-font-size: 26;
@@ -30,12 +37,8 @@
                           -fx-background-radius: 25;
                       }
 
-.jfx-tab-pane .headers-region {
-    -fx-background-color: #1b75bc;
-}
-.jfx-tab-pane .tab-header-background {
-    -fx-background-color: #1b75bc;
-}
+
+
 .jfx-tab-pane .tab-selected-line {
     -fx-stroke: #75bc1b;
     -fx-stroke-width: 3pt;
@@ -68,7 +71,7 @@
 }
 .jfx-tab-pane .tab-header-area .jfx-rippler
 {
-    -jfx-rippler-fill: WHITE;
+    -jfx-rippler-fill:  #7e98ef;
 }
 .jfx-tab-pane .tab-selected-line {
     -fx-background-color: #7e98ef;

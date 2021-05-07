@@ -19,6 +19,7 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import lombok.extern.slf4j.Slf4j;
 
@@ -50,11 +51,12 @@ public class SideBarController extends MasterController implements Initializable
   private User user;
 
   @FXML private AnchorPane SideAnchor;
-  HomeControllerAdmin homeController = new HomeControllerAdmin();
-  static User currUser;
+  HomeControllerAdmin homeController;
+  static boolean open = false;
 
   @FXML
   public void accountSettings() {
+
     // accountSettingsGroup.setTranslateX(100);
     TranslateTransition tt = new TranslateTransition();
     tt.setNode(accountSettingsGroup);
@@ -63,6 +65,7 @@ public class SideBarController extends MasterController implements Initializable
     tt.setToX(0);
     tt.setAutoReverse(true);
     tt.play();
+    open = true;
     if (db.getCurrentUser() != null) {
 
       user = db.getCurrentUser();
@@ -88,6 +91,7 @@ public class SideBarController extends MasterController implements Initializable
 
   @FXML
   public void accountSettingsBack() {
+
     TranslateTransition tt = new TranslateTransition();
     tt.setNode(accountSettingsGroup);
     tt.setDuration(new Duration(1000));
@@ -95,20 +99,23 @@ public class SideBarController extends MasterController implements Initializable
     tt.setToX(-300);
     tt.setAutoReverse(true);
     tt.play();
+    open = false;
   }
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
 
     setLoader(loader);
-    accountSettingsGroup.setTranslateX(-300);
-
-    if (db != null) {
-      user = db.getCurrentUser();
-      appColor.setValue((Color.web(user.getAppColor())));
-      // user.setAppColor(appColor.getValue().toString());
-      // db.updateUserPrefs(user.getId(), user.getUserPrefs());
+    if (!open) {
+      accountSettingsGroup.setTranslateX(-300);
     }
+
+    //    if (db != null) {
+    //      user = db.getCurrentUser();
+    //      appColor.setValue((Color.web(user.getAppColor())));
+    //      // user.setAppColor(appColor.getValue().toString());
+    //      // db.updateUserPrefs(user.getId(), user.getUserPrefs());
+    //    }
   }
 
   /**
@@ -128,6 +135,10 @@ public class SideBarController extends MasterController implements Initializable
   @Override
   public void setDB(DatabaseService db) {
     this.db = db;
+    user = db.getCurrentUser();
+    appColor.setValue((Color.web(user.getAppColor())));
+    // String color = "-fx-background-color: " + "#" + user.getAppColor().substring(2) + ";";
+    updateStyle(user.getAppColor());
   }
 
   /**
@@ -164,7 +175,7 @@ public class SideBarController extends MasterController implements Initializable
 
   // closes the application
   @FXML
-  private void exit(ActionEvent actionEvent) throws IOException {
+  public void exit(ActionEvent actionEvent) throws IOException {
     super.cancel(actionEvent);
   }
 
@@ -185,6 +196,7 @@ public class SideBarController extends MasterController implements Initializable
       makeInvisible(groupBack);
       makeInvisible(groupHome);
       RegisterBack.setVisible(false);
+      appColor.setVisible(true);
     } else if (type.equals("Map") || type.equals("Database")) {
       makeInvisible(groupBack);
       RegisterBack.setVisible(false);
@@ -201,6 +213,7 @@ public class SideBarController extends MasterController implements Initializable
       makeInvisible(groupBack);
       makeInvisible(groupHome);
       makeInvisible(groupAccountSettings);
+      updateStyle("0x748cdc");
     } else if (type.equals("Login Map")) {
       makeInvisible(groupLogOut);
       makeInvisible(groupCovid);
@@ -230,12 +243,43 @@ public class SideBarController extends MasterController implements Initializable
   /**
    * ---------------------------------------------------------------------------------------------------
    */
+  @FXML Label label1, label2, label3, label4, label5, label6, labelBack, labelB1, labelB2;
+
+  @FXML Rectangle rectangle1;
+
+  public void updateStyle(String color) {
+    String style = "-fx-background-color: " + "#" + color.substring(2) + ";";
+    Label[] lA = {label1, label2, label3, label4, label5, label6, labelB1, labelB2};
+    for (Label a : lA) a.setStyle(style);
+    // label1.setStyle(style);
+    // rectangle1.setStyle(style);
+    labelB1.setStyle(style + "-fx-background-radius: 50;");
+
+    Color appC = Color.web(color);
+    String s = appC.darker().darker().darker().desaturate().toString();
+    String c = "-fx-background-color: " + "#" + s.substring(2) + ";";
+    labelBack.setStyle(c);
+  }
+
   @FXML
   private void newAppColor(ActionEvent actionEvent) {
     if (db != null) {
+
       user = db.getCurrentUser();
+      // label1.getStylesheets().remove("src/main/resources/StyleSheet/Dynamic.css");
       user.setAppColor(appColor.getValue().toString());
       db.updateUserPrefs(user.getId(), user.getUserPrefs());
+
+      updateStyle(user.getAppColor());
+
+      try {
+        super.advanceHome(loader, appPrimaryScene);
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+
+      // label1.setStyle("-fx-background-color: " + color + "; ");
+      // label1.getStylesheets().add("src/main/resources/StyleSheet/Dynamic.css");
     }
   }
 }

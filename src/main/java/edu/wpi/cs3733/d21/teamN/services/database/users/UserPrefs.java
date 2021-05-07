@@ -1,5 +1,7 @@
 package edu.wpi.cs3733.d21.teamN.services.database.users;
 
+import java.io.*;
+
 public class UserPrefs {
   private String basicNodeColor,
       exitColor,

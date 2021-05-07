@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXColorPicker?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tooltip?>
@@ -30,23 +31,30 @@
             <Label fx:id="AccountType" layoutX="80.0" layoutY="32.0" text="Label" />
             <Label fx:id="AccountUsername" layoutX="80.0" layoutY="63.0" text="Label" />
             <Label fx:id="AccountParkingSpot" layoutX="80.0" layoutY="94.0" text="Parking Spot: Not Set" />
-            <JFXColorPicker fx:id="appColor" layoutX="108.0" layoutY="2.0" onAction="#newAppColor" />
+            <JFXColorPicker fx:id="appColor" layoutX="128.0" layoutY="12.0" minHeight="24.0" onAction="#newAppColor" prefHeight="24.0" prefWidth="66.0" style="-fx-color-label-visible: false;" visible="false">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXColorPicker>
          </children>
       </Group>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#363d54" height="1500.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
+      <Label fx:id="labelBack" prefHeight="1500.0" prefWidth="66.0" />
       <GridPane fx:id="sideBarGrid">
          <columnConstraints>
             <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" minWidth="66.0" prefWidth="66.0" />
          </columnConstraints>
          <rowConstraints>
-            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="770.0" vgrow="NEVER" />
+            <RowConstraints maxHeight="1368.0" minHeight="-Infinity" prefHeight="700.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
             <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="4.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <children>
                   <Group>
                      <children>
-                        <ImageView fitHeight="61.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                        <Label fx:id="labelB1" layoutX="12.0" layoutY="6.0" prefHeight="47.0" prefWidth="40.0" style="-fx-background-color: RED; -fx-background-radius: 50;" />
+                        <Label fx:id="labelB2" layoutX="8.0" layoutY="4.0" prefHeight="17.0" prefWidth="48.0" style="-fx-background-color: RED;" />
+                        <ImageView fitHeight="61.0" fitWidth="50.0" layoutX="7.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@/images/BWHLogo.png" />
                            </image>
@@ -55,7 +63,7 @@
                   </Group>
                   <Group fx:id="groupAccountSettings">
                      <children>
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="65.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
+                        <Label fx:id="label1" layoutX="-1.0" maxWidth="1.7976931348623157E308" prefHeight="64.0" prefWidth="66.0" style="-fx-background-color: #748cdc;" stylesheets="@/StyleSheet/Dynamic.css" />
                         <ImageView fitHeight="58.0" fitWidth="48.0" layoutX="10.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@/images/Icons/newprofile.png" />
@@ -77,7 +85,7 @@
                   </Group>
                   <Group fx:id="groupHome">
                      <children>
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="65.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
+                        <Label fx:id="label2" layoutX="-1.0" maxWidth="1.7976931348623157E308" prefHeight="64.0" prefWidth="66.0" style="-fx-background-color: #748cdc;" stylesheets="@/StyleSheet/Dynamic.css" />
                         <ImageView fitHeight="64.0" fitWidth="49.0" layoutX="3.0" pickOnBounds="true" preserveRatio="true" translateX="5.0" translateY="7.5">
                            <image>
                               <Image url="@/images/Icons/newhome.png" />
@@ -99,13 +107,13 @@
                   </Group>
                   <Group fx:id="groupBack">
                      <children>
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="65.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
+                        <Label fx:id="label3" layoutX="1.0" maxWidth="1.7976931348623157E308" prefHeight="64.0" prefWidth="66.0" style="-fx-background-color: #748cdc;" stylesheets="@/StyleSheet/Dynamic.css" />
                         <ImageView fitHeight="60.0" fitWidth="50.0" layoutX="7.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@/images/Icons/newback.png" />
                            </image>
                         </ImageView>
-                        <JFXButton fx:id="BackButton" onAction="#advanceServiceRequest" prefHeight="65.0" prefWidth="66.0" text="    " textFill="WHITE">
+                        <JFXButton fx:id="BackButton" layoutX="2.0" onAction="#advanceServiceRequest" prefHeight="65.0" prefWidth="66.0" text="    " textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="9.0" />
                            </font>
@@ -121,7 +129,7 @@
                   </Group>
                   <Group fx:id="groupCovid">
                      <children>
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="65.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
+                        <Label fx:id="label4" layoutX="-1.0" layoutY="1.0" maxWidth="1.7976931348623157E308" prefHeight="64.0" prefWidth="66.0" style="-fx-background-color: #748cdc;" stylesheets="@/StyleSheet/Dynamic.css" />
                         <ImageView fitHeight="58.0" fitWidth="48.0" layoutX="1.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" translateX="7.5">
                            <image>
                               <Image url="@/images/Icons/newcovid.png" />
@@ -143,7 +151,7 @@
                   </Group>
                   <Group fx:id="groupLogOut">
                      <children>
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="65.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
+                        <Label fx:id="label5" layoutX="-1.0" maxWidth="1.7976931348623157E308" prefHeight="64.0" prefWidth="66.0" style="-fx-background-color: #748cdc;" stylesheets="@/StyleSheet/Dynamic.css" />
                         <ImageView fx:id="RegisterBack" fitHeight="60.0" fitWidth="50.0" layoutX="7.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@/images/Icons/newback.png" />
@@ -170,8 +178,8 @@
                   </Group>
                   <Group fx:id="groupExit">
                      <children>
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#748cdc" height="65.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />
-                        <ImageView fitHeight="60.0" fitWidth="50.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                        <Label fx:id="label6" layoutX="-1.0" maxWidth="1.7976931348623157E308" prefHeight="64.0" prefWidth="66.0" style="-fx-background-color: #748cdc;" stylesheets="@/StyleSheet/Dynamic.css" />
+                        <ImageView fitHeight="60.0" fitWidth="49.0" layoutX="8.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@/images/Icons/newclose.png" />
                            </image>
