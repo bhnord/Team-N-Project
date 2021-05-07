@@ -7,6 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
+import org.kordamp.ikonli.javafx.FontIcon;
 
 public abstract class FormElement implements Serializable {
   public abstract Node build(DatabaseService db);
@@ -36,6 +37,16 @@ public abstract class FormElement implements Serializable {
     HBox box = new HBox();
     box.setSpacing(15);
 
+    FontIcon delete = new FontIcon();
+    delete.setIconLiteral("gmi-clear");
+    delete.setIconSize(25);
+    delete.setOnMouseClicked(
+        event -> {
+          list.getItems().remove(box);
+          formin.elements.remove(this);
+        });
+    box.getChildren().add(delete);
+
     JFXComboBox<ElementType> comboBox = new JFXComboBox<>();
     comboBox.setItems(FXCollections.observableArrayList(ElementType.values()));
     comboBox.setOnAction(
@@ -51,6 +62,8 @@ public abstract class FormElement implements Serializable {
             case TimePicker:
               e = new TimePicker(is_required(), getName(), getHelp(), formin);
               break;
+            case DatePicker:
+              e = new DatePicker(is_required(), getName(), getHelp(), formin);
           }
           formin.elements.set(formin.elements.indexOf(this), e);
           list.getItems().set(list.getItems().indexOf(box), e.editView(list));
@@ -74,7 +87,8 @@ public abstract class FormElement implements Serializable {
       helpField.setText(getHelp());
     }
     helpField.setOnKeyReleased(event -> this.help = helpField.getText());
-    helpField.prefHeightProperty().bind(box.prefHeightProperty());
+    helpField.setMaxHeight(40);
+
     box.getChildren().add(helpField);
 
     JFXCheckBox requiredField = new JFXCheckBox();
@@ -85,15 +99,7 @@ public abstract class FormElement implements Serializable {
 
     this.editViewInner(comboBox, box, list);
 
-    JFXButton delete = new JFXButton();
-    delete.setButtonType(JFXButton.ButtonType.RAISED);
-    delete.setOnAction(
-        event -> {
-          list.getItems().remove(box);
-          formin.elements.remove(this);
-        });
-    box.getChildren().add(delete);
-    box.setAlignment(Pos.TOP_LEFT);
+    box.setAlignment(Pos.CENTER_LEFT);
 
     return box;
   }

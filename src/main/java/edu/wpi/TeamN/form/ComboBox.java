@@ -91,6 +91,7 @@ public class ComboBox extends FormElement {
       area.setPromptText(pt.toString());
       area.setOnKeyPressed(
           event -> this.values = new ArrayList<>(Arrays.asList(area.getText().split("\n"))));
+      area.setMaxHeight(40);
       box.getChildren().add(area);
     }
     box.getChildren().add(comboBox);
