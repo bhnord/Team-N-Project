@@ -4,6 +4,7 @@ import com.google.inject.Inject;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import edu.wpi.TeamN.services.database.DatabaseService;
+import edu.wpi.TeamN.services.database.users.User;
 import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
@@ -19,16 +20,20 @@ import org.opencv.core.Point;
 import org.opencv.core.*;
 import org.opencv.features2d.DescriptorMatcher;
 import org.opencv.features2d.ORB;
-import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 import org.opencv.objdetect.CascadeClassifier;
 import org.opencv.videoio.VideoCapture;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferByte;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.URL;
-import java.util.Objects;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -47,6 +52,9 @@ public class FacialRecognition implements Initializable {
   @FXML private StackPane stackPane;
   private boolean shouldSave = false;
   private ScheduledExecutorService timer;
+  private HashMap<BufferedImage, Integer> faceImages;
+
+  private Image testImage;
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
@@ -77,6 +85,8 @@ public class FacialRecognition implements Initializable {
       return;
     }
 
+    faceImages = db.getAllFaces();
+
     Stage stage = (Stage) stackPane.getScene().getWindow();
     stage.setOnCloseRequest(
         e -> {
@@ -85,32 +95,20 @@ public class FacialRecognition implements Initializable {
           System.exit(0);
         });
 
-    if (!DATABASE.exists()) DATABASE.mkdir();
-    //    ImageFrame frame = new ImageFrame();
-
-    //    while () {
-    //      Mat rawImage = new Mat();
-    //      camera.read(rawImage);
-    //      Mat newImage = detectFaces(rawImage, faceDetector);
-    //      imageView.setImage(mat2Image(newImage));
-    //      //      frame.showImage(newImage);
-    //    }
+    //    if (!DATABASE.exists()) DATABASE.mkdir();
     Runnable frameGrabber =
-        new Runnable() {
-
-          @Override
-          public void run() {
-            Mat rawImage = new Mat();
-            camera.read(rawImage);
-            Mat newImage = detectFaces(rawImage, faceDetector);
-            imageView.setImage(mat2Image(newImage));
+        () -> {
+          Mat rawImage = new Mat();
+          camera.read(rawImage);
+          Mat newImage = detectFaces(rawImage, faceDetector);
+          if (shouldSave) {
+            imageView.setImage(testImage);
           }
+          imageView.setImage(mat2Image(newImage));
         };
 
     this.timer = Executors.newSingleThreadScheduledExecutor();
     this.timer.scheduleAtFixedRate(frameGrabber, 0, 33, TimeUnit.MILLISECONDS);
-
-    //        camera.release();
   }
 
   private Mat detectFaces(Mat image, CascadeClassifier faceDetector) {
@@ -123,7 +121,35 @@ public class FacialRecognition implements Initializable {
     for (Rect face : faces) {
       Mat croppedImage = new Mat(image, face);
 
-      if (shouldSave) saveImage(croppedImage, name);
+      if (shouldSave) {
+        saveImage(croppedImage, name);
+        //        Gson gson = new Gson();
+        //        System.out.println(1);
+        //        Image temp = mat2Image(croppedImage);
+        //        System.out.println(2);
+        //        System.out.println(convertMatToBufferedImage(croppedImage));
+        //        System.out.println(3);
+        //        convertMatToBufferedImage(croppedImage);
+        //        System.out.println(gson.toJson(convertMatToBufferedImage(croppedImage)).length());
+        //        System.out.println(4);
+        //        testImage = temp;
+        //        timer.shutdown();
+        //        String json = gson.toJson(temp);
+        //        System.out.println(3);
+        //        System.out.println(json.length());
+        //        System.out.println(4);
+        //        testImage = gson.fromJson(json, Image.class);
+        //        new Mat(Long.parseLong(substring));
+        //                testImage = (mat2Image(gson.fromJson(json, Mat.class)));
+        //        System.out.println(croppedImage.equals(gson.fromJson(json, Mat.class)));
+        try {
+          ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+          ImageIO.write(convertMatToBufferedImage(croppedImage), "PNG", outputStream);
+          ObjectOutputStream oos = new ObjectOutputStream(outputStream);
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
+      }
 
       Imgproc.putText(image, "ID: " + identifyFace(croppedImage), face.tl(), Font.BOLD, 3, color);
       Imgproc.rectangle(image, face.tl(), face.br(), color);
@@ -137,28 +163,30 @@ public class FacialRecognition implements Initializable {
   }
 
   private String identifyFace(Mat image) {
-    int errorThreshold = 3;
+    int errorThreshold = 2;
     int mostSimilar = -1;
-    File mostSimilarFile = null;
+    int mostSimilarUserID = -1;
 
-    for (File capture : Objects.requireNonNull(DATABASE.listFiles())) {
-      int similarities = compareFaces(image, capture.getAbsolutePath());
+    for (BufferedImage capture : faceImages.keySet()) {
+      int similarities = compareFaces(image, capture);
 
       if (similarities > mostSimilar) {
         mostSimilar = similarities;
-        mostSimilarFile = capture;
+        mostSimilarUserID = faceImages.get(capture);
       }
     }
 
-    if (mostSimilarFile != null && mostSimilar > errorThreshold) {
-      String faceID = mostSimilarFile.getName();
-      String delimiter = faceID.contains(" (") ? "(" : ".";
-      return faceID.substring(0, faceID.indexOf(delimiter)).trim();
+    if (mostSimilarUserID != -1 && mostSimilar > errorThreshold) {
+      User user = db.getUserById(mostSimilarUserID);
+      return user.getUsername();
+      //      String delimiter = faceID.contains(" (") ? "(" : ".";
+      //      return faceID.substring(0, faceID.indexOf(delimiter)).trim();
     } else return "???";
   }
 
-  private int compareFaces(Mat currentImage, String fileName) {
-    Mat compareImage = Imgcodecs.imread(fileName);
+  private int compareFaces(Mat currentImage, BufferedImage image) {
+    Mat compareImage = bufferedImageToMat(image);
+
     ORB orb = ORB.create();
     int similarity = 0;
 
@@ -184,20 +212,20 @@ public class FacialRecognition implements Initializable {
   }
 
   private void saveImage(Mat image, String name) {
-    File destination;
-    String extension = ".png";
-    String baseName = DATABASE + File.separator + name;
-    File basic = new File(baseName + extension);
-
-    if (!basic.exists()) destination = basic;
-    else {
-      int index = 0;
-
-      do destination = new File(baseName + " (" + index++ + ")" + extension);
-      while (destination.exists());
-    }
-
-    Imgcodecs.imwrite(destination.toString(), image);
+    System.out.println(db.updateUserImage(301, convertMatToBufferedImage(image)));
+    //    File destination;
+    //    String extension = ".png";
+    //    String baseName = DATABASE + File.separator + name;
+    //    File basic = new File(baseName + extension);
+    //
+    //    if (!basic.exists()) destination = basic;
+    //    else {
+    //      int index = 0;
+    //
+    //      do destination = new File(baseName + " (" + index++ + ")" + extension);
+    //      while (destination.exists());
+    //    }
+    //    Imgcodecs.imwrite(destination.toString(), image);
     shouldSave = false;
   }
 
@@ -213,7 +241,7 @@ public class FacialRecognition implements Initializable {
     try {
       return SwingFXUtils.toFXImage(convertMatToBufferedImage(frame), null);
     } catch (Exception e) {
-      System.err.println("Cannot convert the Mat obejct: " + e);
+      //      System.err.println("Cannot convert the Mat obejct: " + e);
       return null;
     }
   }
@@ -233,5 +261,12 @@ public class FacialRecognition implements Initializable {
     out.getRaster().setDataElements(0, 0, width, height, data);
 
     return out;
+  }
+
+  public static Mat bufferedImageToMat(BufferedImage bi) {
+    Mat mat = new Mat(bi.getHeight(), bi.getWidth(), CvType.CV_8UC3);
+    byte[] data = ((DataBufferByte) bi.getRaster().getDataBuffer()).getData();
+    mat.put(0, 0, data);
+    return mat;
   }
 }

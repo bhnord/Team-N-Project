@@ -3,10 +3,15 @@ package edu.wpi.TeamN.services.database;
 import com.google.gson.Gson;
 import com.google.inject.Inject;
 import edu.wpi.TeamN.services.database.users.*;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.*;
+import java.util.HashMap;
 import java.util.HashSet;
 
 public class UsersTable {
@@ -188,5 +193,59 @@ public class UsersTable {
       e.printStackTrace();
       return false;
     }
+  }
+
+  public boolean updateUserImage(int id, BufferedImage image) {
+    try {
+      Blob blob = connection.createBlob();
+      //      ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+      //      ImageIO.write(image, "PNG", outputStream);
+      //      ObjectOutputStream oos = new ObjectOutputStream(blob.setBinaryStream(1));
+      //      oos.write(toByteArray(image, "PNG"));
+      //      //      oos.writeObject(image);
+      //            oos.close();
+      PreparedStatement ps;
+      blob.setBytes(1, toByteArray(image, "PNG"));
+      ps = connection.prepareStatement("UPDATE USERS SET FACEIMAGES = (?) WHERE ID = (?)");
+      ps.setBlob(1, blob);
+      ps.setInt(2, id);
+      boolean result = ps.execute();
+      blob.free();
+      ps.close();
+      return result;
+    } catch (Exception e) {
+      e.printStackTrace();
+      return false;
+    }
+  }
+
+  public HashMap<BufferedImage, Integer> getAllFaces() {
+    HashMap<BufferedImage, Integer> images = new HashMap<>();
+    String str = "SELECT ID, FaceImages FROM USERS";
+    try {
+      ResultSet rs = stmt.executeQuery(str);
+      while (rs.next()) {
+        int id = rs.getInt(1);
+        Blob photo = rs.getBlob(2);
+        if (photo == null) continue;
+        byte[] bytes = photo.getBytes(1, (int) photo.length());
+        //        ObjectInputStream ois = null;
+        //        ois = new ObjectInputStream(photo.getBinaryStream());
+        InputStream is = new ByteArrayInputStream(bytes);
+        BufferedImage image = ImageIO.read(is);
+        images.put(image, id);
+      }
+      return images;
+    } catch (Exception e) {
+      e.printStackTrace();
+      return null;
+    }
+  }
+
+  private byte[] toByteArray(BufferedImage bi, String format) throws IOException {
+
+    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+    ImageIO.write(bi, format, baos);
+    return baos.toByteArray();
   }
 }
