@@ -1,5 +1,7 @@
 package edu.wpi.TeamN.services.database.users;
 
+import java.io.*;
+
 public class UserPrefs {
   private String basicNodeColor,
       exitColor,
@@ -111,6 +113,36 @@ public class UserPrefs {
 
   public void setAppColor(String appColor) {
     this.appColor = appColor;
+    File fold = new File("src/main/resources/StyleSheet/Dynamic.css");
+    fold.delete();
+    File fnew = new File("src/main/resources/StyleSheet/Dynamic.css");
+    // FileReader fr = new FileReader("src/main/resources/StyleSheet/Dynamic.css");
+    String source = ":root{ --app-color: #" + appColor.substring(2) + ";}";
+    // System.out.println();
+
+    //    try {
+    //      File f1 = new File("src/main/resources/StyleSheet/Dynamic.css");
+    //      FileReader fr = new FileReader(f1);
+    //      FileWriter fw = new FileWriter(f1);
+    //      BufferedReader br = new BufferedReader(fr);
+    //      BufferedWriter bw = new BufferedWriter(fw);
+    //
+    //      // color variable
+    //      // if (line.contains("java"))
+    //      br.readLine();
+    //      bw.write("hello");
+    //
+    //    } catch (Exception ex) {
+    //      ex.printStackTrace();
+    //    }
+
+    try {
+      FileWriter f2 = new FileWriter(fnew, false);
+      f2.write(source);
+      f2.close();
+    } catch (IOException e) {
+      // e.printStackTrace();
+    }
   }
 
   @Override
