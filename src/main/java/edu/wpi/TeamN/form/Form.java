@@ -13,8 +13,9 @@ public class Form implements Serializable {
   public Form(DatabaseService db) {
     this.db = db;
     elements = new ArrayList<>();
-    elements.add(new TextField(false, "question", "help"));
-    elements.add(new TimePicker(false, "time", "help"));
+    elements.add(new TextField(false, "question", "help", this));
+    elements.add(new TimePicker(false, "time", "help", this));
+    elements.add(new ComboBox(false, "q", "help", this, ComboBoxType.ROOM));
     title = "bla";
   }
 
