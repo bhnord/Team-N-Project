@@ -24,7 +24,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.StackPane;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -306,19 +305,10 @@ public class HomeControllerAdmin extends MasterController implements Initializab
   }
 
   public void test(ActionEvent actionEvent) throws IOException {
-
-    //Parent root = loader.load(getClass().getResourceAsStream("Templateform.fxml"));
-    //appPrimaryScene.setRoot(root);
-
-    FXMLLoader loader2 = new FXMLLoader(getClass().getResource("Templateform.fxml"));
-
-    // Create a controller instance
+    Parent root = loader.load(getClass().getResourceAsStream("Templateform.fxml"));
+    appPrimaryScene.setRoot(root);
     Form form = new Form();
-    FormController formController = new FormController(form);
-
-    // Set it in the FXMLLoader
-    loader2.setController(formController);
-    StackPane stackPane = loader2.load();
-    appPrimaryScene.setRoot(stackPane);
+    FormController formController = loader.getController();
+    formController.setUp(form);
   }
 }

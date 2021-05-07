@@ -23,9 +23,6 @@ public class FormController extends MasterController implements Initializable {
   @FXML AnchorPane anchorPane;
   @Inject private FXMLLoader loader;
 
-  public FormController(Form form) {
-    this.form = form;
-  }
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
    * JavaFX thread
@@ -40,6 +37,10 @@ public class FormController extends MasterController implements Initializable {
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Service Request");
+  }
+
+  public void setUp(Form form) {
+    this.form = form;
     form.build(this);
   }
 
