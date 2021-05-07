@@ -15,7 +15,6 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javax.swing.*;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;

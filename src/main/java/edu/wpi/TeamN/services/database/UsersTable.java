@@ -9,7 +9,6 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.sql.*;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -153,31 +152,6 @@ public class UsersTable {
     }
   }
 
-  private HashSet<User> resultSetToUsers(ResultSet rs) {
-    HashSet<User> users = new HashSet<>();
-    Gson gson = new Gson();
-    try {
-      while (rs.next()) {
-        UserPrefs userPrefs = gson.fromJson(rs.getString("PREFERENCES"), UserPrefs.class);
-        switch (rs.getString("USERTYPE")) {
-          case "Patient":
-            users.add(new Patient(rs.getInt("ID"), rs.getString("USERNAME"), userPrefs));
-            break;
-          case "Employee":
-            users.add(new Employee(rs.getInt("ID"), rs.getString("USERNAME"), userPrefs));
-            break;
-          case "Administrator":
-            users.add(new Administrator(rs.getInt("ID"), rs.getString("USERNAME"), userPrefs));
-            break;
-        }
-      }
-      return users;
-    } catch (SQLException e) {
-      e.printStackTrace();
-      return null;
-    }
-  }
-
   public boolean updateUserUsernameType(int id, String username, UserType type) {
     String str =
         "UPDATE USERS SET USERNAME = '"
@@ -198,12 +172,6 @@ public class UsersTable {
   public boolean updateUserImage(int id, BufferedImage image) {
     try {
       Blob blob = connection.createBlob();
-      //      ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-      //      ImageIO.write(image, "PNG", outputStream);
-      //      ObjectOutputStream oos = new ObjectOutputStream(blob.setBinaryStream(1));
-      //      oos.write(toByteArray(image, "PNG"));
-      //      //      oos.writeObject(image);
-      //            oos.close();
       PreparedStatement ps;
       blob.setBytes(1, toByteArray(image, "PNG"));
       ps = connection.prepareStatement("UPDATE USERS SET FACEIMAGES = (?) WHERE ID = (?)");
@@ -229,10 +197,7 @@ public class UsersTable {
         Blob photo = rs.getBlob(2);
         if (photo == null) continue;
         byte[] bytes = photo.getBytes(1, (int) photo.length());
-        //        ObjectInputStream ois = null;
-        //        ois = new ObjectInputStream(photo.getBinaryStream());
-        InputStream is = new ByteArrayInputStream(bytes);
-        BufferedImage image = ImageIO.read(is);
+        BufferedImage image = ImageIO.read(new ByteArrayInputStream(bytes));
         images.put(image, id);
       }
       return images;
@@ -243,9 +208,33 @@ public class UsersTable {
   }
 
   private byte[] toByteArray(BufferedImage bi, String format) throws IOException {
-
     ByteArrayOutputStream baos = new ByteArrayOutputStream();
     ImageIO.write(bi, format, baos);
     return baos.toByteArray();
+  }
+
+  private HashSet<User> resultSetToUsers(ResultSet rs) {
+    HashSet<User> users = new HashSet<>();
+    Gson gson = new Gson();
+    try {
+      while (rs.next()) {
+        UserPrefs userPrefs = gson.fromJson(rs.getString("PREFERENCES"), UserPrefs.class);
+        switch (rs.getString("USERTYPE")) {
+          case "Patient":
+            users.add(new Patient(rs.getInt("ID"), rs.getString("USERNAME"), userPrefs));
+            break;
+          case "Employee":
+            users.add(new Employee(rs.getInt("ID"), rs.getString("USERNAME"), userPrefs));
+            break;
+          case "Administrator":
+            users.add(new Administrator(rs.getInt("ID"), rs.getString("USERNAME"), userPrefs));
+            break;
+        }
+      }
+      return users;
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return null;
+    }
   }
 }
