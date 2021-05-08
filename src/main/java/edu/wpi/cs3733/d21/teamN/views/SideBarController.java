@@ -280,12 +280,12 @@ public class SideBarController extends MasterController implements Initializable
     labelBack.setStyle(c);
   }
 
-  //  @FXML
-  //  private void newAppDarkMode(ActionEvent actionEvent) {
-  //    if (db != null) {
-  //      user.setDarkMode(darkModeSwitch.getToggle);
-  //    }
-  //  }
+  @FXML
+  private void newAppDarkMode(ActionEvent actionEvent) {
+    if (db != null) {
+      user.setDarkMode(darkModeSwitch.isSelected());
+    }
+  }
 
   @FXML
   private void newAppColor(ActionEvent actionEvent) {
