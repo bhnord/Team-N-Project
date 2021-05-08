@@ -138,7 +138,11 @@ public class SideBarController extends MasterController implements Initializable
     user = db.getCurrentUser();
     appColor.setValue((Color.web(user.getAppColor())));
     // String color = "-fx-background-color: " + "#" + user.getAppColor().substring(2) + ";";
-    updateStyle(user.getAppColor());
+    if (!user.getUsername().equals("guest")) {
+      updateStyle(user.getAppColor());
+    } else {
+      updateStyle("0x748cdc");
+    }
   }
 
   /**
