@@ -61,7 +61,7 @@ public class SideBarController extends MasterController implements Initializable
     // accountSettingsGroup.setTranslateX(100);
     TranslateTransition tt = new TranslateTransition();
     tt.setNode(accountSettingsGroup);
-    tt.setDuration(new Duration(1000));
+    tt.setDuration(new Duration(500));
     // tt.setFromX(0);
     tt.setToX(0);
     tt.setAutoReverse(true);
@@ -95,7 +95,7 @@ public class SideBarController extends MasterController implements Initializable
 
     TranslateTransition tt = new TranslateTransition();
     tt.setNode(accountSettingsGroup);
-    tt.setDuration(new Duration(1000));
+    tt.setDuration(new Duration(500));
     // tt.setFromX(100);
     tt.setToX(-2800);
     tt.setAutoReverse(true);
