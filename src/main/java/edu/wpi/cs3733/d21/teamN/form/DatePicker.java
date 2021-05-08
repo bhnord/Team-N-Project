@@ -1,9 +1,9 @@
-package edu.wpi.TeamN.form;
+package edu.wpi.cs3733.d21.teamN.form;
 
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXListView;
-import edu.wpi.TeamN.services.database.DatabaseService;
+import edu.wpi.cs3733.d21.teamN.services.database.DatabaseService;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 

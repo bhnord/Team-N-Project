@@ -1,7 +1,7 @@
-package edu.wpi.TeamN.form;
+package edu.wpi.cs3733.d21.teamN.form;
 
 import com.jfoenix.controls.*;
-import edu.wpi.TeamN.services.database.DatabaseService;
+import edu.wpi.cs3733.d21.teamN.services.database.DatabaseService;
 import java.io.Serializable;
 import javafx.collections.FXCollections;
 import javafx.geometry.Pos;

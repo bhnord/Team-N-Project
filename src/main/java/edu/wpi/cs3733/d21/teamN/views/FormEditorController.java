@@ -1,9 +1,9 @@
-package edu.wpi.TeamN.views;
+package edu.wpi.cs3733.d21.teamN.views;
 
 import com.google.inject.Inject;
 import com.jfoenix.controls.JFXListView;
-import edu.wpi.TeamN.form.Form;
-import edu.wpi.TeamN.services.database.DatabaseService;
+import edu.wpi.cs3733.d21.teamN.form.Form;
+import edu.wpi.cs3733.d21.teamN.services.database.DatabaseService;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;

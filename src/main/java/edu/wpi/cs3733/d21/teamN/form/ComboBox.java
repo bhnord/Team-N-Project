@@ -1,12 +1,12 @@
-package edu.wpi.TeamN.form;
+package edu.wpi.cs3733.d21.teamN.form;
 
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextArea;
-import edu.wpi.TeamN.services.database.DatabaseService;
-import edu.wpi.TeamN.services.database.users.User;
-import edu.wpi.TeamN.services.database.users.UserType;
-import edu.wpi.TeamN.utilities.AutoCompleteComboBoxListener;
+import edu.wpi.cs3733.d21.teamN.services.database.DatabaseService;
+import edu.wpi.cs3733.d21.teamN.services.database.users.User;
+import edu.wpi.cs3733.d21.teamN.services.database.users.UserType;
+import edu.wpi.cs3733.d21.teamN.utilities.AutoCompleteComboBoxListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import javafx.collections.FXCollections;
@@ -43,7 +43,7 @@ public class ComboBox extends FormElement {
     ArrayList<String> innerValues = new ArrayList<>();
     switch (type) {
       case ROOM:
-        for (edu.wpi.TeamN.services.algo.Node n : db.getAllNodes()) {
+        for (edu.wpi.cs3733.d21.teamN.services.algo.Node n : db.getAllNodes()) {
           if (!n.get_nodeType().equals("HALL")) {
             innerValues.add(n.get_longName());
           }

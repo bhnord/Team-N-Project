@@ -8,7 +8,7 @@ plugins {
 
 sourceCompatibility = '1.8'
 targetCompatibility = '1.8'
-mainClassName = 'edu.wpi.TeamN.Main'
+mainClassName = 'edu.wpi.cs3733.d21.teamN.Main'
 
 repositories {
     mavenCentral()
