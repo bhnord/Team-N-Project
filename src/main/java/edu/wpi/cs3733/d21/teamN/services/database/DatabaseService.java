@@ -8,7 +8,8 @@ import edu.wpi.cs3733.d21.teamN.services.algo.Node;
 import edu.wpi.cs3733.d21.teamN.services.database.requests.Request;
 import edu.wpi.cs3733.d21.teamN.services.database.requests.RequestType;
 import edu.wpi.cs3733.d21.teamN.services.database.users.*;
-import java.sql.*;
+import lombok.extern.slf4j.Slf4j;
+
 import java.awt.image.BufferedImage;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -16,7 +17,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
 import java.util.HashSet;
-import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class DatabaseService {
