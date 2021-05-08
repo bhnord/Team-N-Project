@@ -51,7 +51,7 @@ public class SideBarController extends MasterController implements Initializable
   private User user;
 
   @FXML private AnchorPane SideAnchor;
-  HomeControllerAdmin homeController;
+  //  HomeControllerAdmin homeController;
   static boolean open = false;
 
   @FXML

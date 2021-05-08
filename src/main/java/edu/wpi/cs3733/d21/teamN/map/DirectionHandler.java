@@ -32,6 +32,7 @@ public class DirectionHandler {
     this.mapController = mapController;
 
     stops.getStylesheets().add("/StyleSheet/PathfinderListView.css");
+    texutualDescription.getStylesheets().add("/StyleSheet/PathfinderListView.css");
     texutualDescription.setVisible(false);
     mapController.loadRoomDropdown(this.locationDropdown, "HALL");
     clickSetup();
@@ -59,8 +60,25 @@ public class DirectionHandler {
   }
 
   public void addDirection(String l) {
-    texutualDescription.getItems().add(new HBox(getDirectionIcon(l), new Label(l)));
-    texutualDescription.setVisible(true);
+    if (l.contains("go to floor")) {
+      texutualDescription.getItems().add(new HBox(getDirectionIcon(l), new Label(l)));
+      texutualDescription.setVisible(true);
+    } else if (mapController.getAdminMap().getNodeSet().containsKey(l)) {
+      texutualDescription
+          .getItems()
+          .add(
+              new HBox(
+                  new Label(
+                      "Start on floor "
+                          + mapController.getAdminMap().getNodeSet().get(l).get_floor())));
+      texutualDescription.setVisible(true);
+    } else {
+      Label label = new Label("");
+      label.setId("floor");
+      label.getStylesheets().add("PathfinderListView.css");
+      texutualDescription.getItems().add(new HBox(label, getDirectionIcon(l), new Label(l)));
+      texutualDescription.setVisible(true);
+    }
   }
 
   private FontIcon getDirectionIcon(String l) {

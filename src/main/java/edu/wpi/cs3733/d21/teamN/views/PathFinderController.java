@@ -140,6 +140,7 @@ public class PathFinderController extends MapController implements Initializable
       mapDrawer.colorPath(pathColor.getValue(), pathLink);
       PathFinder p = PathFinder.getPathFinder();
       ArrayList<String> s = p.getDescription(pathLink);
+      directionHandler.addDirection(path.get(0));
       for (String l : s) {
         directionHandler.addDirection(l);
       }
