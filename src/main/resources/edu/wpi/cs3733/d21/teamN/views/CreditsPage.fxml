@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="rootStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.TeamN.views.CreditsPageController">
+<StackPane fx:id="rootStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.d21.teamN.views.CreditsPageController">
    <children>
       <ImageView fitHeight="1766.0" fitWidth="1458.0" pickOnBounds="true" preserveRatio="true" scaleX="2.0" scaleY="2.0" StackPane.alignment="TOP_LEFT">
          <image>
@@ -55,22 +55,22 @@
                      <children>
                         <ImageView fitHeight="96.0" fitWidth="93.0" layoutX="520.0" layoutY="426.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../images/java_org.apache.derby_derby.png" />
+                              <Image url="@/images/java_org.apache.derby_derby.png" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="159.0" fitWidth="155.0" layoutX="505.0" layoutY="198.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../images/jfoenixlogo.png" />
+                              <Image url="@/images/jfoenixlogo.png" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="83.0" fitWidth="95.0" layoutX="222.0" layoutY="236.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../images/google_logo_png_transparent256.png" />
+                              <Image url="@/images/google_logo_png_transparent256.png" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="83.0" fitWidth="95.0" layoutX="222.0" layoutY="431.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../images/opencvlogo.png" />
+                              <Image url="@/images/opencvlogo.png" />
                            </image>
                         </ImageView>
                         <Label layoutX="229.0" layoutY="319.0" prefHeight="40.0" prefWidth="112.0" stylesheets="/Fonts/Roboto-Light.css" text="Google Maps">
