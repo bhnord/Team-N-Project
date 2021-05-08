@@ -35,6 +35,10 @@
                           -fx-background-image: url('/images/ButtonHD.png');
                           -fx-font-size: 26;
                           -fx-background-radius: 25;
+                      }#FormEditor{
+                          -fx-background-image: url('/images/ButtonME.png');
+                          -fx-font-size: 26;
+                          -fx-background-radius: 25;
                       }
 
 
