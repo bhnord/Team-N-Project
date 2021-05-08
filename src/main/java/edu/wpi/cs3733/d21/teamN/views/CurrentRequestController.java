@@ -21,6 +21,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Rectangle;
 
 public class CurrentRequestController extends MasterController implements Initializable {
 
@@ -52,6 +53,7 @@ public class CurrentRequestController extends MasterController implements Initia
   private int userId;
 
   @FXML JFXButton submitCovidButton, markCompleteButton;
+  @FXML Rectangle darkMode;
 
   @Inject
   public void setAppPrimaryScene(Scene appPrimaryScene) {
@@ -62,6 +64,8 @@ public class CurrentRequestController extends MasterController implements Initia
   public void initialize(URL url, ResourceBundle rb) {
     entrance.getItems().add("enter through emergency entrance");
     entrance.getItems().add("enter through 75 parking lot");
+
+    darkMode.setVisible(db.getCurrentUser().getDarkMode());
 
     int idCovid = db.getCurrentUser().getId();
     db.setCovidFormIsProcessed(idCovid, false);

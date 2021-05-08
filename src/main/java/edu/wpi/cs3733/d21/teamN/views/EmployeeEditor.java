@@ -24,6 +24,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
 import lombok.extern.slf4j.Slf4j;
 
@@ -45,6 +46,7 @@ public class EmployeeEditor extends MasterController implements Initializable {
   @FXML private JFXTextField txtUsername;
   @FXML private JFXTextField txtPassword;
   @FXML private JFXComboBox<Label> userTypeDropdown = new JFXComboBox<>();
+  @FXML Rectangle darkMode;
   // TODO REMOVE NODE ID FIELD TO JUST LABEL AND NOT AN EDITOR.
   private Label selectedLabel;
   private Scene appPrimaryScene;
@@ -64,6 +66,8 @@ public class EmployeeEditor extends MasterController implements Initializable {
 
   @Override
   public void initialize(URL url, ResourceBundle rb) {
+
+    darkMode.setVisible(db.getCurrentUser().getDarkMode());
 
     updateStyle(db.getCurrentUser().getAppColor());
     super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Database");
