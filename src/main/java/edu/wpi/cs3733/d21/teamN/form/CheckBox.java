@@ -10,6 +10,7 @@ import java.util.Arrays;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 
 public class CheckBox extends FormElement {
   private ArrayList<String> options;
@@ -24,6 +25,13 @@ public class CheckBox extends FormElement {
   @Override
   public Node build(DatabaseService db) {
     selected = new ArrayList<>();
+    VBox fullfull = new VBox();
+    fullfull.setSpacing(15);
+    javafx.scene.text.Text area = new javafx.scene.text.Text();
+    area.setFont(Font.loadFont("resources/Fonts/Roboto/Roboto-Medium.ttf", 14));
+    // todo do this with css
+    area.setText(getName());
+    fullfull.getChildren().add(area);
     HBox full = new HBox();
     full.setSpacing(10);
     VBox working = new VBox();
@@ -49,7 +57,8 @@ public class CheckBox extends FormElement {
     if (working.getChildren().size() != 0) {
       full.getChildren().add(working);
     }
-    return full;
+    fullfull.getChildren().add(full);
+    return fullfull;
   }
 
   @Override
