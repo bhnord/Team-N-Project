@@ -2,6 +2,7 @@ package edu.wpi.cs3733.d21.teamN.services.database;
 
 import com.google.inject.Inject;
 import edu.wpi.cs3733.d21.teamN.form.Form;
+
 import java.io.*;
 import java.sql.*;
 import java.util.HashSet;
@@ -29,9 +30,9 @@ class AppointmentsTable {
       PreparedStatement ps =
           connection.prepareStatement(
               "INSERT INTO APPOINTMENTS (APPOINTMENTTYPEID, PATIENTID, ASSIGNEDSTAFFID, FORM, TIMEOFAPPOINTMENT, CHECKINSTATUS, ASSOCIATEDROOMID) VALUES (?, ?, ?, ?, ?, ?, ?)");
-      ps.setInt(1, 1); // appointment.getAppointmentTypeId());
-      ps.setInt(2, 1); // appointment.getPatientId());
-      ps.setInt(3, 1); // appointment.getAssignedStaffId());
+      ps.setInt(1, appointment.getAppointmentTypeId());
+      ps.setInt(2, appointment.getPatientId());
+      ps.setInt(3, appointment.getAssignedStaffId());
       ps.setBlob(4, blob);
       ps.setTimestamp(5, appointment.getTimeOfAppointment());
       ps.setBoolean(6, false);

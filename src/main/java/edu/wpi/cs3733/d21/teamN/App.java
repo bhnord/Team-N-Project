@@ -1,14 +1,12 @@
 package edu.wpi.cs3733.d21.teamN;
 
 import com.google.inject.*;
-import edu.wpi.cs3733.d21.teamN.form.Form;
 import edu.wpi.cs3733.d21.teamN.services.database.DatabaseService;
 import edu.wpi.cs3733.d21.teamN.services.database.DatabaseServiceProvider;
 import edu.wpi.cs3733.d21.teamN.services.database.users.UserPrefs;
 import edu.wpi.cs3733.d21.teamN.services.database.users.UserType;
 import edu.wpi.cs3733.d21.teamN.state.HomeStateProvider;
 import edu.wpi.cs3733.d21.teamN.views.FXMLLoaderProvider;
-import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -19,6 +17,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 import nu.pattern.OpenCV;
+
+import java.io.IOException;
 
 @Slf4j
 public class App extends Application {
@@ -72,8 +72,6 @@ public class App extends Application {
     if (db.getUserByUsername("Finn") == null)
       db.addUser("Finn", "Finn", UserType.EMPLOYEE, new UserPrefs());
 
-    db.addAppointmentType("NewType", new Form());
-    db.getAppointmentTypeForm(1).tester();
   }
 
   @Override

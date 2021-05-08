@@ -27,8 +27,8 @@ public class DBTesting {
       return;
     }
 
-    loadCSVtoTable("C:\\Users\\Bernhard\\Desktop\\L1Nodes.csv", "NODES");
-    loadCSVtoTable("C:\\Users\\Bernhard\\Desktop\\L1Edges.csv", "EDGES");
+    //    loadCSVtoTable("C:\\Users\\Bernhard\\Desktop\\L1Nodes.csv", "NODES");
+    //    loadCSVtoTable("C:\\Users\\Bernhard\\Desktop\\L1Edges.csv", "EDGES");
   }
 
   /**
