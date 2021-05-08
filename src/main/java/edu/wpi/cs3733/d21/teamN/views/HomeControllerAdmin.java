@@ -105,8 +105,11 @@ public class HomeControllerAdmin extends MasterController implements Initializab
       super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Home");
 
       user = db.getCurrentUser();
-      updateStyle(user.getAppColor());
-
+      if (user.getAppColor().equals("0x748cdc")) {
+        updateStyle("0x748cdc");
+      } else {
+        updateStyle(user.getAppColor());
+      }
       switch (db.getCurrentUser().getType()) {
           // different login cases
         case ADMINISTRATOR:

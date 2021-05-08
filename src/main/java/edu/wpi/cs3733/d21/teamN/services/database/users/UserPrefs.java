@@ -20,7 +20,7 @@ public class UserPrefs {
     this.stairColor = "#ff4500";
     this.pathfindingColor = "#000000";
     this.highlightColor = "#008000";
-    this.appColor = "#ffffff";
+    this.appColor = "0x748cdc";
   }
 
   public UserPrefs(

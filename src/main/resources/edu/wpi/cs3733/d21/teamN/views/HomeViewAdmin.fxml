@@ -48,7 +48,7 @@
                   <RowConstraints maxHeight="-Infinity" minHeight="0.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Label fx:id="BackServiceRequests" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #748cdc; -fx-background-radius: 25;" GridPane.rowIndex="3">
+                  <Label fx:id="BackServiceRequests" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #748cdc; -fx-background-radius: 25;" stylesheets="@/StyleSheet/Dynamic.css" GridPane.rowIndex="3">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
@@ -56,7 +56,7 @@
                         <Insets bottom="35.0" left="35.0" right="35.0" top="35.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="BackEmployeeEditor" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #748cdc; -fx-background-radius: 25;" GridPane.rowIndex="1">
+                  <Label fx:id="BackEmployeeEditor" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #748cdc; -fx-background-radius: 25;" stylesheets="@/StyleSheet/Dynamic.css" GridPane.rowIndex="1">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
@@ -64,7 +64,7 @@
                         <Insets bottom="35.0" left="35.0" right="35.0" top="35.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="BackCurrentRequests" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #748cdc; -fx-background-radius: 25;" GridPane.rowIndex="2">
+                  <Label fx:id="BackCurrentRequests" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #748cdc; -fx-background-radius: 25;" stylesheets="@/StyleSheet/Dynamic.css" GridPane.rowIndex="2">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
@@ -140,7 +140,7 @@
                         <JFXButton buttonType="RAISED" layoutX="130.0" layoutY="95.0" onAction="#loginWithFace" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #6985e0;" stylesheets="@/Fonts/Roboto-Light.css" text="FACE ID" textFill="WHITE" />
                      </children>
                   </Group>
-                  <Label fx:id="BackFormEditor" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #748cdc; -fx-background-radius: 25;">
+                  <Label fx:id="BackFormEditor" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #748cdc; -fx-background-radius: 25;" stylesheets="@/StyleSheet/Dynamic.css">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
@@ -165,7 +165,7 @@
                   <RowConstraints maxHeight="-Infinity" minHeight="0.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label fx:id="BackFindUs" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #748cdc; -fx-background-radius: 25;" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                  <Label fx:id="BackFindUs" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #748cdc; -fx-background-radius: 25;" stylesheets="@/StyleSheet/Dynamic.css" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets bottom="35.0" left="35.0" right="35.0" top="35.0" />
                      </GridPane.margin>
@@ -178,7 +178,7 @@
                         <Insets bottom="35.0" left="35.0" right="35.0" top="35.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="BackMapEditor" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #748cdc; -fx-background-radius: 25;" GridPane.rowIndex="1">
+                  <Label fx:id="BackMapEditor" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #748cdc; -fx-background-radius: 25;" stylesheets="@/StyleSheet/Dynamic.css" GridPane.rowIndex="1">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
