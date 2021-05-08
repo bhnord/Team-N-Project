@@ -68,19 +68,6 @@ public class AppointmentTypesTable {
     }
   }
 
-  public Form getAppointmentTypeForm(int id) {
-    String str = "SELECT * FROM APPOINTMENTTYPES WHERE id = " + id;
-    try {
-      ResultSet rs = stmt.executeQuery(str);
-      rs.next();
-      Blob blob = rs.getBlob("FORM");
-      return fromStream(blob.getBytes(1, (int) blob.length()));
-    } catch (SQLException e) {
-      e.printStackTrace();
-      return null;
-    }
-  }
-
   private Form fromStream(byte[] stream) {
     try {
       ByteArrayInputStream bais = new ByteArrayInputStream(stream);

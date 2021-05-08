@@ -11,6 +11,9 @@ import edu.wpi.cs3733.d21.teamN.services.database.DatabaseService;
 import edu.wpi.cs3733.d21.teamN.services.database.users.User;
 import edu.wpi.cs3733.d21.teamN.state.HomeState;
 import edu.wpi.cs3733.d21.teamN.utilities.DialogFactory;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,10 +28,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
 import lombok.extern.slf4j.Slf4j;
-
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 @Slf4j
 public class HomeControllerAdmin extends MasterController implements Initializable {
