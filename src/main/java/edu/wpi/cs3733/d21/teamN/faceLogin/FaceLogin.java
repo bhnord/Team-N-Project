@@ -18,6 +18,11 @@ public class FaceLogin extends FaceRec {
     super(db);
   }
 
+  /**
+   * Takes photos of the user and matches against all users in the database
+   *
+   * @return User object of the corresponding user
+   */
   public User getUserFromFace() {
     ScheduledExecutorService timer = Executors.newSingleThreadScheduledExecutor();
     camera.open(0);

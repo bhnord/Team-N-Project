@@ -27,6 +27,10 @@ public class FaceEnroller extends FaceRec {
     this.imageView = imageView;
   }
 
+  /**
+   * Starts the camera and starts trying to identify faces in the video while displaying it
+   * on the given imageView
+   */
   public void startEnroller() {
     File classifier =
         new File("src/main/resources/FacialRec/lbpcascades/lbpcascade_frontalface_improved.xml");
@@ -67,6 +71,10 @@ public class FaceEnroller extends FaceRec {
     timer.scheduleAtFixedRate(frameGrabber, 0, 33, TimeUnit.MILLISECONDS);
   }
 
+  /**
+   * Saves the currently highlighted face to the database based on the user who is currently
+   * logged in.
+   */
   public void saveFace() {
     shouldSave = true;
   }
