@@ -311,7 +311,7 @@ public class HomeControllerAdmin extends MasterController implements Initializab
       dialogFactory.creatDialogOkay(
           "Couldn't Log You In",
           "Sorry we couldn't log you in"
-              + "with FaceID. Please log in with your username and password.");
+              + " with FaceID. Please log in with your username and password.");
     }
   }
 }
