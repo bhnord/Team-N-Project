@@ -26,9 +26,9 @@ public class DividerLine extends FormElement {
   public boolean validate() {
     return true;
   }
-  
+
   @Override
-  public String getValue(){
+  public String getValue() {
     return null;
   }
 

@@ -64,20 +64,18 @@ public class Form implements Serializable {
     list.getItems().remove(index);
   }
 
-  public ArrayList<String> getResults(){
+  public ArrayList<String> getResults() {
     ArrayList<String> out = new ArrayList<>();
     for (FormElement element : elements) {
-      if(element.getValue()!=null)
-        out.add(element.getValue());
+      if (element.getValue() != null) out.add(element.getValue());
     }
     return out;
   }
 
-  public ArrayList<String> getNames(){
+  public ArrayList<String> getNames() {
     ArrayList<String> out = new ArrayList<>();
     for (FormElement element : elements) {
-        if(element.getValue()!=null)
-          out.add(element.getName());
+      if (element.getValue() != null) out.add(element.getName());
     }
     return out;
   }

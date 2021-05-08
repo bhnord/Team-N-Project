@@ -32,7 +32,7 @@ public class Text extends FormElement {
   }
 
   @Override
-  public String getValue(){
+  public String getValue() {
     return null;
   }
 
