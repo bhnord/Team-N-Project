@@ -514,6 +514,7 @@ public class DatabaseService {
               + "UserType varchar(15),"
               + "Occupation varchar (35), "
               + "Preferences varchar(300),"
+              + "FaceImages blob(16M),"
               + "CONSTRAINT chk_UserType CHECK (UserType IN ('Patient', 'Employee', 'Administrator')),"
               + "CONSTRAINT chk_Occupation CHECK (Occupation IN "
               + "('AUDIO_VISUAL', 'COMPUTER_SERVICE', 'EXTERNAL_PATIENT_TRANSPORTATION', 'FLORAL', 'FOOD_DELIVERY', 'GIFT_DELIVERY', 'INTERNAL_PATIENT_TRANSPORTATION', 'LANGUAGE_INTERPRETER', "
@@ -552,9 +553,28 @@ public class DatabaseService {
               + "IsProcessed BOOLEAN, "
               + "PRIMARY KEY (id))";
       stmt.execute(str);
+      str =
+          "CREATE TABLE AppointmentTypes("
+              + "id INT NOT NULL GENERATED ALWAYS AS IDENTITY, "
+              + "Type varchar(70), "
+              + "ClassInfo BLOB(16M), "
+              + "PRIMARY KEY (id))";
+      stmt.execute(str);
+      str =
+          "CREATE TABLE Appointments("
+              + "id INT NOT NULL GENERATED ALWAYS AS IDENTITY, "
+              + "AppointmentTypeId INT NOT NULL REFERENCES AppointmentTypes (id), "
+              + "Patient INT NOT NULL REFERENCES Users (id), "
+              + "AssignedStaff INT REFERENCES Users (id), "
+              + "FormContent BLOB(16M), "
+              + "TimeOfAppointment TIMESTAMP,"
+              + "CheckInStatus BOOLEAN, "
+              + "AssociatedRoomId varchar(60) REFERENCES NODES (id), "
+              + "PRIMARY KEY (id))";
+      stmt.execute(str);
       return true;
     } catch (SQLException e) {
-      //      e.printStackTrace();
+      e.printStackTrace();
       return false;
     }
   }
