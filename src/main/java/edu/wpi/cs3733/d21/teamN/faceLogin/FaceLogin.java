@@ -2,15 +2,14 @@ package edu.wpi.cs3733.d21.teamN.faceLogin;
 
 import edu.wpi.cs3733.d21.teamN.services.database.DatabaseService;
 import edu.wpi.cs3733.d21.teamN.services.database.users.User;
+import java.io.File;
+import java.util.Objects;
+import java.util.concurrent.*;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfRect;
 import org.opencv.core.Rect;
 import org.opencv.objdetect.CascadeClassifier;
 import org.opencv.videoio.VideoCapture;
-
-import java.io.File;
-import java.util.Objects;
-import java.util.concurrent.*;
 
 public class FaceLogin extends FaceRec {
   private final VideoCapture camera = new VideoCapture();
