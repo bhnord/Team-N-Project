@@ -2,34 +2,20 @@ package edu.wpi.cs3733.d21.teamN.faceLogin;
 
 import edu.wpi.cs3733.d21.teamN.services.database.DatabaseService;
 import edu.wpi.cs3733.d21.teamN.services.database.users.User;
-import javafx.scene.control.Alert;
-import org.opencv.core.*;
-import org.opencv.features2d.DescriptorMatcher;
-import org.opencv.features2d.ORB;
+import org.opencv.core.Mat;
+import org.opencv.core.MatOfRect;
+import org.opencv.core.Rect;
 import org.opencv.objdetect.CascadeClassifier;
 import org.opencv.videoio.VideoCapture;
 
-import java.awt.image.BufferedImage;
-import java.awt.image.DataBufferByte;
 import java.io.File;
-import java.util.HashMap;
 import java.util.concurrent.*;
 
-public class FaceLogin {
-  private final DatabaseService db;
-  private final HashMap<BufferedImage, Integer> faceImages;
+public class FaceLogin extends FaceRec {
   private final VideoCapture camera = new VideoCapture();
 
   public FaceLogin(DatabaseService db) {
-    this.db = db;
-    this.faceImages = db.getAllFaces();
-  }
-
-  private static Mat bufferedImageToMat(BufferedImage bi) {
-    Mat mat = new Mat(bi.getHeight(), bi.getWidth(), CvType.CV_8UC3);
-    byte[] data = ((DataBufferByte) bi.getRaster().getDataBuffer()).getData();
-    mat.put(0, 0, data);
-    return mat;
+    super(db);
   }
 
   public User getUserFromFace() {
@@ -40,9 +26,7 @@ public class FaceLogin {
           User user;
           for (int i = 0; i < 10; i++) {
             user = identifyUser();
-            if (user != null) {
-              return user;
-            }
+            if (user != null) return user;
             Thread.sleep(30);
           }
           return null;
@@ -96,60 +80,5 @@ public class FaceLogin {
     MatOfRect faceDetections = new MatOfRect();
     faceDetector.detectMultiScale(image, faceDetections);
     return faceDetections.toArray();
-  }
-
-  private User identifyFace(Mat image) {
-    int errorThreshold = 2;
-    int mostSimilar = -1;
-    int mostSimilarUserID = -1;
-
-    for (BufferedImage capture : faceImages.keySet()) {
-      int similarities = compareFaces(image, capture);
-
-      if (similarities > mostSimilar) {
-        mostSimilar = similarities;
-        mostSimilarUserID = faceImages.get(capture);
-      }
-    }
-
-    if (mostSimilarUserID != -1 && mostSimilar > errorThreshold) {
-      User user = db.getUserById(mostSimilarUserID);
-      return user;
-    } else return null;
-  }
-
-  private int compareFaces(Mat currentImage, BufferedImage image) {
-    Mat compareImage = bufferedImageToMat(image);
-
-    ORB orb = ORB.create();
-    int similarity = 0;
-
-    MatOfKeyPoint keypoints1 = new MatOfKeyPoint();
-    MatOfKeyPoint keypoints2 = new MatOfKeyPoint();
-    orb.detect(currentImage, keypoints1);
-    orb.detect(compareImage, keypoints2);
-
-    Mat descriptors1 = new Mat();
-    Mat descriptors2 = new Mat();
-    orb.compute(currentImage, keypoints1, descriptors1);
-    orb.compute(compareImage, keypoints2, descriptors2);
-
-    if (descriptors1.cols() == descriptors2.cols()) {
-      MatOfDMatch matchMatrix = new MatOfDMatch();
-      DescriptorMatcher.create(DescriptorMatcher.BRUTEFORCE_HAMMING)
-          .match(descriptors1, descriptors2, matchMatrix);
-
-      for (DMatch match : matchMatrix.toList()) if (match.distance <= 50) similarity++;
-    }
-
-    return similarity;
-  }
-
-  private void displayFatalError(String message) {
-    Alert alert = new Alert(Alert.AlertType.ERROR);
-    alert.setTitle("Fatal Error");
-    alert.setHeaderText("Fatal Error");
-    alert.setContentText(message);
-    alert.showAndWait();
   }
 }
