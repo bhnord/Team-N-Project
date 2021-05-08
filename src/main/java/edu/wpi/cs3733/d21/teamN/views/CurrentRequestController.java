@@ -21,6 +21,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Rectangle;
 
 public class CurrentRequestController extends MasterController implements Initializable {
 
@@ -28,7 +29,6 @@ public class CurrentRequestController extends MasterController implements Initia
   @Inject private DatabaseService db;
   @Inject private FXMLLoader loader;
   @FXML private JFXListView<Label> listView;
-  @FXML private JFXButton markCompleteButton;
   @FXML private Label requestId;
   @FXML private Label requestType;
   @FXML private Label senderName;
@@ -52,6 +52,9 @@ public class CurrentRequestController extends MasterController implements Initia
   @FXML JFXComboBox<String> entrance = new JFXComboBox<>();
   private int userId;
 
+  @FXML JFXButton submitCovidButton, markCompleteButton;
+  @FXML Rectangle darkMode;
+
   @Inject
   public void setAppPrimaryScene(Scene appPrimaryScene) {
     this.appPrimaryScene = appPrimaryScene;
@@ -61,6 +64,8 @@ public class CurrentRequestController extends MasterController implements Initia
   public void initialize(URL url, ResourceBundle rb) {
     entrance.getItems().add("enter through emergency entrance");
     entrance.getItems().add("enter through 75 parking lot");
+
+    darkMode.setVisible(db.getCurrentUser().getDarkMode());
 
     int idCovid = db.getCurrentUser().getId();
     db.setCovidFormIsProcessed(idCovid, false);
@@ -119,6 +124,15 @@ public class CurrentRequestController extends MasterController implements Initia
         });
 
     super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Database");
+
+    updateStyle(db.getCurrentUser().getAppColor());
+  }
+
+  public void updateStyle(String color) {
+    String style =
+        "-fx-background-color: " + "#" + color.substring(2) + "; -fx-background-radius: 25;";
+    JFXButton[] lA = {submitCovidButton, markCompleteButton};
+    for (JFXButton a : lA) a.setStyle(style);
   }
 
   private void setEmptyFields() {
