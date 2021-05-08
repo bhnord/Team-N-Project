@@ -50,7 +50,9 @@ public class AppointmentController extends MasterController implements Initializ
 
   public void update(ActionEvent actionEvent) {}
 
-  public void deleteAppointment(ActionEvent actionEvent) {}
+  public void deleteAppointment(ActionEvent actionEvent) {
+    listView.getItems().remove(listView.getSelectionModel().getSelectedItem());
+  }
 
   public void addAppointment(ActionEvent actionEvent) {
     HBox box = new HBox();
