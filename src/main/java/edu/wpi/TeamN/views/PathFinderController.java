@@ -11,6 +11,7 @@ import edu.wpi.TeamN.services.database.users.User;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.concurrent.TimeUnit;
 import javafx.animation.TranslateTransition;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -108,7 +109,7 @@ public class PathFinderController extends MapController implements Initializable
       for (Node.Link l : n.get_neighbors()) {
         System.out.println("\t" + l._other.get_nodeID());
       }
-      updatePath();
+      // updatePath();
       nodeSelected(selectedNodeColor);
       directionHandler.addStop(n);
       n.get_shape().setVisible(true);
@@ -190,24 +191,25 @@ public class PathFinderController extends MapController implements Initializable
     p.getPoints().add((l._this.get_x() - x2 / 2.1) * getDownScale());
     p.getPoints().add((l._this.get_y() - y2 / 2.1) * getDownScale());
     p.setFill(Color.RED);
+
     return p;
   }
 
   private void createExtras() {
     clearExtras();
     for (Node.Link l : nodePath) {
-      if (l._this.get_floor().equals(mapDrawer.getCurrentMap()))
-        if (l._this.get_floor().equals(l._other.get_floor())) {
-          Polygon p = createArrow(l);
-          mapAnchor.getChildren().add(p);
-          extras.add(p);
-        } else {
-          Label label = new Label(l._other.get_floor());
-          label.setTranslateX(l._other.get_x() * getDownScale() + 10);
-          label.setTranslateY(l._other.get_y() * getDownScale() - 10);
-          mapAnchor.getChildren().add(label);
-          extras.add(label);
-        }
+            if (l._this.get_floor().equals(mapDrawer.getCurrentMap()))
+              if (l._this.get_floor().equals(l._other.get_floor())) {
+                Polygon p = createArrow(l);
+                mapAnchor.getChildren().add(p);
+                extras.add(p);
+              } else {
+                Label label = new Label(l._other.get_floor());
+                label.setTranslateX(l._other.get_x() * getDownScale() + 10);
+                label.setTranslateY(l._other.get_y() * getDownScale() - 10);
+                mapAnchor.getChildren().add(label);
+                extras.add(label);
+              }
     }
   }
 

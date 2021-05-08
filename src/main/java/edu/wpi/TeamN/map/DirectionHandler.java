@@ -96,7 +96,7 @@ public class DirectionHandler {
             stops.getItems().remove(fontIcon.getParent());
             stopNames.remove(n.get_nodeID());
             mapController.getPath().remove(n.get_nodeID());
-            mapController.updatePath();
+            //            mapController.updatePath();
             n.get_shape().setVisible(false);
           }
         });
@@ -104,7 +104,7 @@ public class DirectionHandler {
     box.setId(n.get_nodeID());
 
     mapController.getPath().add(n.get_nodeID());
-    mapController.updatePath();
+    //    mapController.updatePath();
     n.get_shape().setFill(mapController.getSelectedNodeColor().getValue());
     stopNames.add(n.get_nodeID());
     stops.getItems().add(box);
