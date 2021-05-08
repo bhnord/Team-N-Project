@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXColorPicker?>
+<?import com.jfoenix.controls.JFXToggleButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.Group?>
@@ -31,12 +32,13 @@
             <Label fx:id="AccountType" layoutX="80.0" layoutY="69.0" text="Label" />
             <Label fx:id="AccountUsername" layoutX="80.0" layoutY="100.0" text="Label" />
             <Label fx:id="AccountParkingSpot" layoutX="81.0" layoutY="134.0" text="Parking Spot: Not Set" />
-            <JFXColorPicker fx:id="appColor" layoutX="128.0" layoutY="12.0" minHeight="24.0" onAction="#newAppColor" prefHeight="24.0" prefWidth="66.0" style="-fx-color-label-visible: false;">
+            <JFXColorPicker fx:id="appColor" layoutX="75.0" layoutY="13.0" minHeight="24.0" onAction="#newAppColor" prefHeight="24.0" prefWidth="66.0" style="-fx-color-label-visible: false;">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXColorPicker>
             <JFXButton buttonType="RAISED" layoutX="81.0" layoutY="175.0" onAction="#faceRec" prefHeight="25.0" prefWidth="160.0" style="-fx-background-color: #6985e0;" stylesheets="@/Fonts/Roboto-Light.css" text="REGISTER FACE ID" textFill="WHITE" />
+            <JFXToggleButton fx:id="darkModeSwitch" layoutX="154.0" layoutY="-4.0" onAction="#newAppColor" text="DarkMode" />
          </children>
       </Group>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#363d54" height="1500.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />

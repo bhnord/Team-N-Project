@@ -2,6 +2,7 @@ package edu.wpi.cs3733.d21.teamN.views;
 
 import com.google.inject.Inject;
 import com.jfoenix.controls.JFXColorPicker;
+import com.jfoenix.controls.JFXToggleButton;
 import edu.wpi.cs3733.d21.teamN.services.database.DatabaseService;
 import edu.wpi.cs3733.d21.teamN.services.database.users.User;
 import java.io.IOException;
@@ -48,6 +49,7 @@ public class SideBarController extends MasterController implements Initializable
   @FXML private Label AccountParkingSpot;
 
   @FXML private JFXColorPicker appColor;
+  @FXML private JFXToggleButton darkModeSwitch;
 
   private User user;
 
@@ -278,6 +280,13 @@ public class SideBarController extends MasterController implements Initializable
     labelBack.setStyle(c);
   }
 
+  //  @FXML
+  //  private void newAppDarkMode(ActionEvent actionEvent) {
+  //    if (db != null) {
+  //      user.setDarkMode(darkModeSwitch.getToggle);
+  //    }
+  //  }
+
   @FXML
   private void newAppColor(ActionEvent actionEvent) {
     if (db != null) {
@@ -285,6 +294,7 @@ public class SideBarController extends MasterController implements Initializable
       user = db.getCurrentUser();
       // label1.getStylesheets().remove("src/main/resources/StyleSheet/Dynamic.css");
       user.setAppColor(appColor.getValue().toString());
+
       db.updateUserPrefs(user.getId(), user.getUserPrefs());
 
       updateStyle(user.getAppColor());

@@ -25,6 +25,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.shape.Rectangle;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -64,6 +65,8 @@ public class HomeControllerAdmin extends MasterController implements Initializab
   private DialogFactory dialogFactory;
   private Scene appPrimaryScene;
   private User user;
+
+  @FXML Rectangle darkMode;
 
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
@@ -298,6 +301,12 @@ public class HomeControllerAdmin extends MasterController implements Initializab
       BackFindUs
     };
     for (Label a : lA) a.setStyle(style);
+
+    if (db.getCurrentUser().getDarkMode()) {
+      darkMode.setVisible(true);
+    } else {
+      darkMode.setVisible(false);
+    }
   }
 
   @FXML
