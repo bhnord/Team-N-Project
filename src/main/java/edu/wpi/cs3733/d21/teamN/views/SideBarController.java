@@ -55,7 +55,8 @@ public class SideBarController extends MasterController implements Initializable
 
   @FXML private AnchorPane SideAnchor;
   //  HomeControllerAdmin homeController;
-  static boolean open = false;
+  private static boolean open = false;
+  public static boolean darkOn = false;
 
   @FXML
   public void accountSettings() {
@@ -87,9 +88,6 @@ public class SideBarController extends MasterController implements Initializable
       }
       //      accountSettingsGroup.getChildren().add(AccountUsername);
     }
-    //    } catch (Exception e) {
-    //
-    //    }
   }
 
   @FXML
@@ -107,12 +105,12 @@ public class SideBarController extends MasterController implements Initializable
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-
     setLoader(loader);
     if (!open) {
       accountSettingsGroup.setTranslateX(-2800);
     }
 
+    darkModeSwitch.setSelected(darkOn);
     //    if (db != null) {
     //      user = db.getCurrentUser();
     //      appColor.setValue((Color.web(user.getAppColor())));
@@ -149,6 +147,9 @@ public class SideBarController extends MasterController implements Initializable
       }
     } else {
       updateStyle("0x748cdc");
+    }
+    if (open) {
+      accountSettings();
     }
   }
 
@@ -286,9 +287,13 @@ public class SideBarController extends MasterController implements Initializable
 
   @FXML
   private void newAppDarkMode(ActionEvent actionEvent) {
+
     if (db != null) {
       user.setDarkMode(darkModeSwitch.isSelected());
+      darkOn = !darkOn;
     }
+
+    super.advanceHome(loader, appPrimaryScene);
   }
 
   @FXML

@@ -7,11 +7,10 @@ import com.google.maps.errors.ApiException;
 import com.google.maps.model.AutocompletePrediction;
 import com.google.maps.model.LatLng;
 import com.jfoenix.controls.JFXComboBox;
-import javafx.scene.input.KeyCode;
-
 import java.io.IOException;
 import java.util.Collection;
 import java.util.HashSet;
+import javafx.scene.input.KeyCode;
 
 public class AddressAutoComplete {
   final JFXComboBox addressBox;
