@@ -17,6 +17,6 @@ public class Email extends TextField {
   @Override
   protected void editViewInner(
       JFXComboBox<ElementType> comboBox, HBox box, JFXListView<HBox> list) {
-    comboBox.getSelectionModel().select(ElementType.PhoneNumber);
+    comboBox.getSelectionModel().select(ElementType.Email);
   }
 }

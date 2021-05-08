@@ -11,6 +11,7 @@ public enum ElementType {
   Email("Email Address"),
   DatePicker("Date Picker"),
   Div("Divider Line"),
+  CheckBox("Check Box"),
   Text("Text Body");
 
   private String name;
