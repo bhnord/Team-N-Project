@@ -184,7 +184,10 @@ public class SideBarController extends MasterController implements Initializable
   @FXML
   public void advanceHome() throws IOException {
     open = false;
-
+    if (faceEnroller != null) {
+      faceEnroller.releaseCamera();
+      faceEnroller = null;
+    }
     super.advanceHome(loader, appPrimaryScene);
   }
 
@@ -308,6 +311,10 @@ public class SideBarController extends MasterController implements Initializable
     }
 
     super.advanceHome(loader, appPrimaryScene);
+  }
+
+  public void setFaceEnroller(FaceEnroller faceEnroller) {
+    this.faceEnroller = faceEnroller;
   }
 
   @FXML
