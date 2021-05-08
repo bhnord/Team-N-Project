@@ -5,11 +5,6 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import edu.wpi.cs3733.d21.teamN.faceLogin.FaceEnroller;
 import edu.wpi.cs3733.d21.teamN.services.database.DatabaseService;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -17,6 +12,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import nu.pattern.OpenCV;
 import org.apache.derby.impl.store.replication.master.MasterController;
+
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.ResourceBundle;
 
 public class FacialRecognition extends MasterController implements Initializable {
   private static final File DATABASE = new File("Database");
@@ -31,13 +32,6 @@ public class FacialRecognition extends MasterController implements Initializable
   private boolean shouldSave = false;
   private HashMap<BufferedImage, Integer> faceImages;
   FaceEnroller faceEnroller;
-
-  //  private Mat bufferedImageToMat(BufferedImage bi) {
-  //    Mat mat = new Mat(bi.getHeight(), bi.getWidth(), CvType.CV_8UC3);
-  //    byte[] data = ((DataBufferByte) bi.getRaster().getDataBuffer()).getData();
-  //    mat.put(0, 0, data);
-  //    return mat;
-  //  }
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {

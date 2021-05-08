@@ -2,24 +2,26 @@ package edu.wpi.cs3733.d21.teamN.faceLogin;
 
 import edu.wpi.cs3733.d21.teamN.services.database.DatabaseService;
 import edu.wpi.cs3733.d21.teamN.services.database.users.User;
+import javafx.application.Platform;
+import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
+import org.opencv.core.Point;
+import org.opencv.core.*;
+import org.opencv.imgproc.Imgproc;
+import org.opencv.objdetect.CascadeClassifier;
+import org.opencv.videoio.VideoCapture;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-import javafx.application.Platform;
-import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
-import org.opencv.core.*;
-import org.opencv.core.Point;
-import org.opencv.imgproc.Imgproc;
-import org.opencv.objdetect.CascadeClassifier;
-import org.opencv.videoio.VideoCapture;
 
 public class FaceEnroller extends FaceRec {
   private final ImageView imageView;
   private boolean shouldSave = false;
+  private VideoCapture camera = new VideoCapture();
 
   public FaceEnroller(DatabaseService db, ImageView imageView) {
     super(db);
@@ -40,13 +42,13 @@ public class FaceEnroller extends FaceRec {
     }
 
     CascadeClassifier faceDetector = new CascadeClassifier(classifier.toString());
-    VideoCapture camera = new VideoCapture();
     camera.open(0);
 
     if (!camera.isOpened()) {
       displayFatalError("No camera detected!");
       return;
     }
+    //    imageView.getScene().setOn
 
     Stage stage = (Stage) imageView.getScene().getWindow();
     stage.setOnCloseRequest(
@@ -56,6 +58,7 @@ public class FaceEnroller extends FaceRec {
           System.exit(0);
         });
 
+    stage.setOnHidden(event -> camera.release());
     Runnable frameGrabber =
         () -> {
           Mat rawImage = new Mat();
@@ -76,6 +79,10 @@ public class FaceEnroller extends FaceRec {
    */
   public void saveFace() {
     shouldSave = true;
+  }
+
+  public void releaseCamera() {
+    camera.release();
   }
 
   private Mat detectFaces(Mat image, CascadeClassifier faceDetector) {
