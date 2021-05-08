@@ -3,8 +3,6 @@ package edu.wpi.cs3733.d21.teamN.services.database;
 import com.google.gson.Gson;
 import com.google.inject.Inject;
 import edu.wpi.cs3733.d21.teamN.services.database.users.*;
-
-import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -12,6 +10,7 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.HashMap;
 import java.util.HashSet;
+import javax.imageio.ImageIO;
 
 public class UsersTable {
   private final Connection connection;

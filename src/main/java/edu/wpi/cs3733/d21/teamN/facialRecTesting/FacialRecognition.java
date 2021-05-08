@@ -5,20 +5,20 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import edu.wpi.cs3733.d21.teamN.faceLogin.FaceEnroller;
 import edu.wpi.cs3733.d21.teamN.services.database.DatabaseService;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import nu.pattern.OpenCV;
+import org.apache.derby.impl.store.replication.master.MasterController;
 
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.ResourceBundle;
-
-public class FacialRecognition implements Initializable {
+public class FacialRecognition extends MasterController implements Initializable {
   private static final File DATABASE = new File("Database");
   /** Directory on the disk containing faces */
   @Inject private DatabaseService db;
