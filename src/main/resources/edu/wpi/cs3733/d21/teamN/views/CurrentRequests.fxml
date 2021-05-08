@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.d21.teamN.views.CurrentRequestController">
+   <children>
+      <ImageView fitHeight="1766.0" fitWidth="1457.0" pickOnBounds="true" preserveRatio="true" scaleX="2.0" scaleY="2.0" StackPane.alignment="TOP_LEFT">
+         <image>
+            <Image url="@/images/CSVBackground.png" />
+         </image>
+      </ImageView>
+      <GridPane prefHeight="768.0" prefWidth="1554.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="862.0" minWidth="0.0" prefWidth="34.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="862.0" minWidth="0.0" prefWidth="445.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="1366.0" minWidth="10.0" prefWidth="887.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints maxHeight="768.0" minHeight="0.0" prefHeight="512.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <AnchorPane prefHeight="744.0" prefWidth="973.0" GridPane.columnIndex="1">
+               <children>
+                  <Label fx:id="text1" layoutX="110.0" layoutY="21.0" prefHeight="124.0" prefWidth="523.0" stylesheets="@/Fonts/Roboto-Black.css" text="CURRENT REQUESTS" textAlignment="CENTER">
+                     <font>
+                        <Font name="Arial Black" size="30.0" />
+                     </font>
+                  </Label>
+                  <JFXTabPane layoutX="110.0" layoutY="128.0" prefHeight="616.0" prefWidth="881.0" stylesheets="@/StyleSheet/style.css">
+                     <tabs>
+                        <Tab text="Current Requests">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="581.0" stroke="#bcbcbc" strokeType="INSIDE" width="886.0" />
+                                    <JFXListView fx:id="listView" layoutX="14.0" layoutY="20.0" prefHeight="535.0" prefWidth="261.0" stylesheets="@/StyleSheet/style.css" verticalGap="10.0" />
+                                    <Label layoutX="325.0" layoutY="47.0" stylesheets="/Fonts/Roboto-Light.css" text="Request ID:" />
+                                    <Label layoutX="325.0" layoutY="98.0" stylesheets="/Fonts/Roboto-Light.css" text="Request Type:" />
+                                    <Label layoutX="325.0" layoutY="147.0" stylesheets="/Fonts/Roboto-Light.css" text="Sender:" />
+                                    <Label layoutX="325.0" layoutY="196.0" stylesheets="/Fonts/Roboto-Light.css" text="Receiver:" />
+                                    <Label layoutX="325.0" layoutY="290.0" stylesheets="/Fonts/Roboto-Light.css" text="Content:" />
+                                    <Label layoutX="325.0" layoutY="345.0" stylesheets="/Fonts/Roboto-Light.css" text="Notes" />
+                                    <Label layoutX="325.0" layoutY="242.0" stylesheets="/Fonts/Roboto-Light.css" text="Room:" />
+                                    <Label fx:id="requestId" layoutX="500.0" layoutY="45.0" prefHeight="25.0" prefWidth="426.0" />
+                                    <Label fx:id="requestType" layoutX="500.0" layoutY="96.0" prefHeight="25.0" prefWidth="419.0" />
+                                    <Label fx:id="senderName" layoutX="500.0" layoutY="145.0" prefHeight="25.0" prefWidth="398.0" />
+                                    <Label fx:id="receiverName" layoutX="500.0" layoutY="194.0" prefHeight="25.0" prefWidth="357.0" />
+                                    <Label fx:id="roomName" layoutX="500.0" layoutY="240.0" prefHeight="25.0" prefWidth="370.0" />
+                                    <Label fx:id="content" layoutX="500.0" layoutY="288.0" prefHeight="25.0" prefWidth="370.0" />
+                                    <Label fx:id="notes" layoutX="500.0" layoutY="343.0" prefHeight="25.0" prefWidth="370.0" />
+                                    <JFXButton fx:id="markCompleteButton" layoutX="612.0" layoutY="474.0" onAction="#markComplete" prefHeight="65.0" prefWidth="224.0" style="-fx-background-color: #748cdc; -fx-background-radius: 15;" stylesheets="/Fonts/Roboto-Light.css" text="MARK COMPLETE" textFill="WHITE">
+                                       <font>
+                                          <Font name="Arial Black" size="14.0" />
+                                       </font>
+                                    </JFXButton>
+                                    <Label layoutX="328.0" layoutY="402.0" text="       " />
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </Tab>
+                        <Tab text="COVID-19 Check-In">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="581.0" stroke="#bcbcbc" strokeType="INSIDE" width="886.0" />
+                                    <JFXListView fx:id="listViewCovid" layoutX="14.0" layoutY="20.0" prefHeight="535.0" prefWidth="261.0" stylesheets="@/StyleSheet/style.css" verticalGap="10.0" />
+                                    <Label layoutX="350.0" layoutY="60.0" stylesheets="/Fonts/Roboto-Light.css" text="Symptoms: " />
+                                    <Label layoutX="350.0" layoutY="104.0" stylesheets="/Fonts/Roboto-Light.css" text="Tested:" />
+                                    <Label layoutX="350.0" layoutY="149.0" stylesheets="/Fonts/Roboto-Light.css" text="Recieved treatment:" />
+                                    <Label layoutX="350.0" layoutY="196.0" stylesheets="/Fonts/Roboto-Light.css" text="Traveled outside US:" />
+                                    <Label layoutX="350.0" layoutY="246.0" stylesheets="/Fonts/Roboto-Light.css" text="Traveled on cruise ship:" />
+                                    <Label layoutX="350.0" layoutY="290.0" stylesheets="/Fonts/Roboto-Light.css" text="Emergency Responder:" />
+                                    <Label fx:id="symptoms" layoutX="613.0" layoutY="60.0" text="                       " />
+                                    <Label fx:id="tested" layoutX="613.0" layoutY="104.0" text="                           " />
+                                    <Label fx:id="treatment" layoutX="613.0" layoutY="149.0" text="               " />
+                                    <Label fx:id="outsideTravel" layoutX="613.0" layoutY="196.0" text="                                       " />
+                                    <Label fx:id="cruiseShip" layoutX="613.0" layoutY="246.0" text="                         " />
+                                    <Label fx:id="emergency" layoutX="613.0" layoutY="290.0" text="                                 " />
+                                    <JFXButton fx:id="submitCovidButton" layoutX="634.0" layoutY="484.0" onAction="#submitCovid" prefHeight="70.0" prefWidth="212.0" style="-fx-background-color: #748cdc; -fx-background-radius: 15;" stylesheets="/Fonts/Roboto-Light.css" text="SUBMIT" textFill="WHITE">
+                                       <font>
+                                          <Font name="Arial Black" size="14.0" />
+                                       </font>
+                                    </JFXButton>
+                                    <JFXComboBox fx:id="entrance" focusColor="#5b63e1" layoutX="350.0" layoutY="445.0" prefHeight="31.0" prefWidth="233.0" promptText="How patient should enter" stylesheets="/Fonts/Roboto-Light.css" />
+                                    <Label layoutX="350.0" layoutY="340.0" prefHeight="21.0" prefWidth="143.0" stylesheets="/Fonts/Roboto-Light.css" text="Assigned Employee:" />
+                                    <Label fx:id="assignedEmployee" layoutX="613.0" layoutY="340.0" prefHeight="17.0" prefWidth="186.0" text="                                 " />
+                                    <Label layoutX="350.0" layoutY="452.0" text="     " />
+                                    <Label layoutX="350.0" layoutY="394.0" prefHeight="17.0" prefWidth="133.0" stylesheets="/Fonts/Roboto-Light.css" text="Extra Information:" />
+                                    <Label fx:id="txtExtraInfo" alignment="TOP_LEFT" layoutX="613.0" layoutY="394.0" prefHeight="48.0" prefWidth="219.0" wrapText="true" />
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </Tab>
+                     </tabs>
+                  </JFXTabPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="anchorPane" prefHeight="818.0" prefWidth="77.0" GridPane.valignment="BASELINE" />
+         </children>
+      </GridPane>
+   </children>
+</StackPane>
