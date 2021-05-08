@@ -36,6 +36,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXColorPicker>
+            <JFXButton buttonType="RAISED" layoutX="81.0" layoutY="111.0" onAction="#faceRec" prefHeight="25.0" prefWidth="160.0" style="-fx-background-color: #6985e0;" stylesheets="@/Fonts/Roboto-Light.css" text="REGISTER FACE ID" textFill="WHITE" />
          </children>
       </Group>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#363d54" height="1500.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />

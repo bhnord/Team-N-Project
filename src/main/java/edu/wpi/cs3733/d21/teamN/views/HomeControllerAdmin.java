@@ -204,11 +204,11 @@ public class HomeControllerAdmin extends MasterController implements Initializab
     Parent root = loader.load(getClass().getResourceAsStream("Pathfinder.fxml"));
     appPrimaryScene.setRoot(root);
   }
-
+  /*
   public void faceRec(ActionEvent actionEvent) throws IOException {
     Parent root = loader.load(getClass().getResourceAsStream("FacialRecognitionAdd.fxml"));
     appPrimaryScene.setRoot(root);
-  }
+  }*/
   /**
    * findUs advances to findUs FXML
    *

@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
@@ -181,6 +182,11 @@ public class SideBarController extends MasterController implements Initializable
   @FXML
   public void exit(ActionEvent actionEvent) throws IOException {
     super.cancel(actionEvent);
+  }
+
+  public void faceRec(ActionEvent actionEvent) throws IOException {
+    Parent root = loader.load(getClass().getResourceAsStream("FacialRecognitionAdd.fxml"));
+    appPrimaryScene.setRoot(root);
   }
 
   /** ------------------------------------------------------------------------------------ */

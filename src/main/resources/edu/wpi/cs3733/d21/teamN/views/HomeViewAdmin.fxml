@@ -136,7 +136,6 @@
                         <JFXButton fx:id="RegisterNewUser" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" layoutX="141.0" layoutY="207.0" mnemonicParsing="false" onAction="#register" prefHeight="37.0" prefWidth="81.0" style="-fx-background-color: #6985e0;" text="Register" textFill="WHITE" />
                         <Label layoutX="166.0" layoutY="300.0" />
                         <JFXButton buttonType="RAISED" layoutX="130.0" layoutY="95.0" onAction="#loginWithFace" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #6985e0;" stylesheets="@/Fonts/Roboto-Light.css" text="FACE ID" textFill="WHITE" />
-                        <JFXButton buttonType="RAISED" layoutX="100.0" layoutY="142.0" onAction="#faceRec" prefHeight="25.0" prefWidth="160.0" style="-fx-background-color: #6985e0;" stylesheets="@/Fonts/Roboto-Light.css" text="REGISTER FACE ID" textFill="WHITE" />
                      </children>
                   </Group>
                </children>
