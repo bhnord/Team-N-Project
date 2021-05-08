@@ -32,6 +32,11 @@ public class Text extends FormElement {
   }
 
   @Override
+  public String getValue(){
+    return null;
+  }
+
+  @Override
   protected void editViewInner(JFXComboBox<ElementType> type, HBox box, JFXListView<HBox> list) {
     type.getSelectionModel().select(ElementType.Text);
   }

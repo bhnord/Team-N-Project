@@ -26,6 +26,11 @@ public class DividerLine extends FormElement {
   public boolean validate() {
     return true;
   }
+  
+  @Override
+  public String getValue(){
+    return null;
+  }
 
   @Override
   protected void editViewInner(JFXComboBox<ElementType> type, HBox box, JFXListView<HBox> list) {
