@@ -64,6 +64,19 @@ public abstract class FormElement implements Serializable {
               break;
             case DatePicker:
               e = new DatePicker(is_required(), getName(), getHelp(), formin);
+              break;
+            case Div:
+              e = new DividerLine(formin);
+              break;
+            case Text:
+              e = new Text(getName(), formin);
+              break;
+            case PhoneNumber:
+              e = new PhoneNumber(is_required(), getName(), getHelp(), formin);
+              break;
+            case Email:
+              e = new Email(is_required(), getName(), getHelp(), formin);
+              break;
           }
           formin.elements.set(formin.elements.indexOf(this), e);
           list.getItems().set(list.getItems().indexOf(box), e.editView(list));
@@ -71,14 +84,25 @@ public abstract class FormElement implements Serializable {
 
     box.getChildren().add(comboBox);
 
+    if (this instanceof DividerLine) {
+      System.out.println("early");
+      this.editViewInner(comboBox, box, list);
+      return box;
+    }
+
     JFXTextField nameField = new JFXTextField();
     if (this.question.isEmpty()) {
-      nameField.setPromptText("question");
+      nameField.setPromptText("title");
     } else {
       nameField.setText(getName());
     }
     nameField.setOnKeyReleased(event -> this.question = nameField.getText());
     box.getChildren().add(nameField);
+
+    if (this instanceof Text) {
+      this.editViewInner(comboBox, box, list);
+      return box;
+    }
 
     JFXTextArea helpField = new JFXTextArea();
     if (this.help.isEmpty()) {
