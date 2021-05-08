@@ -266,6 +266,11 @@ public class HomeControllerAdmin extends MasterController implements Initializab
   }
 
   @FXML
+  public void credits() throws IOException {
+    super.credits(loader, appPrimaryScene);
+  }
+
+  @FXML
   private void validateButton() {
     if (!usernameField.getText().isEmpty() && !passwordField.getText().isEmpty()) {
       goToHomePage.setDisable(false);

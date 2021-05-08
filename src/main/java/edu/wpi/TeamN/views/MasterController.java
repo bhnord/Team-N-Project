@@ -84,6 +84,12 @@ public class MasterController implements Initializable {
     ChildAppPrimaryScene.setRoot(root);
   }
 
+  @FXML
+  public void credits(FXMLLoader childLoader, Scene ChildAppPrimaryScene) throws IOException {
+    Parent root = childLoader.load(getClass().getResourceAsStream("CreditsPage.fxml"));
+    ChildAppPrimaryScene.setRoot(root);
+  }
+
   private void advanceServiceRequestPatient(FXMLLoader childLoader, Scene ChildAppPrimaryScene)
       throws IOException {
     Parent root = childLoader.load(getClass().getResourceAsStream("ServiceRequestsPatient.fxml"));

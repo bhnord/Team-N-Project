@@ -123,7 +123,7 @@
                               <URL value="@/Fonts/Roboto-Light.css" />
                            </stylesheets>
                         </JFXPasswordField>
-                        <JFXButton fx:id="goToHomePage" buttonType="RAISED" layoutX="94.0" layoutY="23.0" onAction="#continueToHomePage" prefHeight="50.0" prefWidth="174.0" style="-fx-background-color: #6985e0;" stylesheets="@/Fonts/Roboto-Light.css" text="LOG IN" textFill="WHITE">
+                        <JFXButton fx:id="goToHomePage" buttonType="RAISED" layoutX="94.0" layoutY="23.0" onAction="#continueToHomePage" prefHeight="30.0" prefWidth="174.0" style="-fx-background-color: #6985e0;" stylesheets="@/Fonts/Roboto-Light.css" text="LOG IN" textFill="WHITE">
                            <font>
                               <Font name="Javanese Text" size="14.0" />
                            </font>
@@ -133,9 +133,10 @@
                               <Font name="Javanese Text" size="12.0" />
                            </font>
                         </Label>
-                        <JFXButton fx:id="RegisterNewUser" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" layoutX="140.0" layoutY="171.0" mnemonicParsing="false" onAction="#register" prefHeight="37.0" prefWidth="81.0" style="-fx-background-color: #6985e0;" text="Register" textFill="WHITE" />
+                        <JFXButton fx:id="RegisterNewUser" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" layoutX="94.0" layoutY="138.0" mnemonicParsing="false" onAction="#register" prefHeight="30.0" prefWidth="174.0" style="-fx-background-color: #6985e0;" text="Register" textFill="WHITE" />
                         <Label layoutX="166.0" layoutY="300.0" />
-                        <JFXButton buttonType="RAISED" layoutX="130.0" layoutY="95.0" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #6985e0;" stylesheets="@Fonts/Roboto-Light.css" text="FACE ID" textFill="WHITE" />
+                        <JFXButton buttonType="RAISED" layoutX="94.0" layoutY="91.0" prefHeight="30.0" prefWidth="174.0" style="-fx-background-color: #6985e0;" stylesheets="@/Fonts/Roboto-Light.css" text="FACE ID" textFill="WHITE" />
+                        <JFXButton fx:id="Credits" buttonType="RAISED" layoutX="141.0" layoutY="271.0" onAction="#credits" prefHeight="29.0" prefWidth="79.0" style="-fx-background-color: #6985e0;" stylesheets="@/Fonts/Roboto-Light.css" text="Credits" textFill="WHITE" />
                      </children>
                   </Group>
                </children>
