@@ -2,7 +2,6 @@ package edu.wpi.cs3733.d21.teamN.services.database;
 
 import com.google.gson.Gson;
 import com.google.inject.Inject;
-import edu.wpi.cs3733.d21.teamN.App;
 import edu.wpi.cs3733.d21.teamN.form.Form;
 import edu.wpi.cs3733.d21.teamN.services.algo.Edge;
 import edu.wpi.cs3733.d21.teamN.services.algo.Node;
@@ -464,15 +463,8 @@ public class DatabaseService {
 
   // ----------------------------------------------------------------------------------------------------------------------------------------------------
 
-  public boolean addAppointment(
-      int appointmentTypeId,
-      int patientId,
-      int assignedStaffId,
-      Form formContent,
-      Timestamp apptDateTime,
-      String associatedRoomId) {
-    return appointmentsTable.addAppointment(
-        appointmentTypeId, patientId, assignedStaffId, formContent, apptDateTime, associatedRoomId);
+  public boolean addAppointment(Appointment appointment) {
+    return appointmentsTable.addAppointment(appointment);
   }
 
   public HashSet<Appointment> getAllAppointments() {
@@ -483,14 +475,13 @@ public class DatabaseService {
     return appointmentsTable.getAppointment(appointmentId);
   }
 
-  public HashSet<Appointment> getAppointmentsByPatientId(int patientId){
+  public HashSet<Appointment> getAppointmentsByPatientId(int patientId) {
     return appointmentsTable.getAppointmentsByPatientId(patientId);
   }
 
-  public HashSet<Appointment> getAppointmentsByAssignedStaffId(int assignedStaffId){
+  public HashSet<Appointment> getAppointmentsByAssignedStaffId(int assignedStaffId) {
     return appointmentsTable.getAppointmentsByAssignedStaffId(assignedStaffId);
   }
-
 
   public Form getAppointmentForm(int appointmentId) {
     return appointmentsTable.getAppointmentForm(appointmentId);
@@ -617,7 +608,7 @@ public class DatabaseService {
       str =
           "CREATE TABLE AppointmentTypes("
               + "id INT NOT NULL GENERATED ALWAYS AS IDENTITY, "
-              + "Type varchar(70), "
+              + "Type varchar(70) UNIQUE, "
               + "Form BLOB(16M), "
               + "PRIMARY KEY (id))";
       stmt.execute(str);

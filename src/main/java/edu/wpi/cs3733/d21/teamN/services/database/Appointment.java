@@ -29,12 +29,31 @@ public class Appointment {
     this.associatedRoomId = associatedRoomId;
   }
 
+  public Appointment(
+      int appointmentTypeId,
+      int patientId,
+      int assignedStaffId,
+      Form form,
+      Timestamp timeOfAppointment,
+      String associatedRoomId) {
+    this.appointmentTypeId = appointmentTypeId;
+    this.patientId = patientId;
+    this.assignedStaffId = assignedStaffId;
+    this.form = form;
+    this.timeOfAppointment = timeOfAppointment;
+    this.associatedRoomId = associatedRoomId;
+  }
+
   public int getId() {
     return id;
   }
 
   public int getPatientId() {
     return patientId;
+  }
+
+  public int getAppointmentTypeId() {
+    return appointmentTypeId;
   }
 
   public int getAssignedStaffId() {

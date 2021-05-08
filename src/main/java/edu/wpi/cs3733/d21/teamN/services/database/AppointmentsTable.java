@@ -1,9 +1,7 @@
 package edu.wpi.cs3733.d21.teamN.services.database;
 
 import com.google.inject.Inject;
-import edu.wpi.cs3733.d21.teamN.App;
 import edu.wpi.cs3733.d21.teamN.form.Form;
-import edu.wpi.cs3733.d21.teamN.services.database.users.*;
 import java.io.*;
 import java.sql.*;
 import java.util.HashSet;
@@ -22,51 +20,26 @@ class AppointmentsTable {
     }
   }
 
-  public boolean addAppointment(
-      int appointmentTypeId,
-      int patientId,
-      int assignedStaffId,
-      Form formContent,
-      Timestamp apptDateTime,
-      String associatedRoomId) {
+  public boolean addAppointment(Appointment appointment) {
     try {
-
       Blob blob = connection.createBlob();
-      blob.setBytes(1, toStream(formContent));
-      String str =
-          "INSERT INTO APPOINTMENTS (AppointmentTypeId, PatientId, AssignedStaffId, Form, TimeOfAppointment, CheckInStatus, AssociatedRoomId) VALUES (?, ?, ?, ?, ?, ?, ?)";
-      PreparedStatement ps = connection.prepareStatement(str);
-      ps.setInt(1, appointmentTypeId);
-      ps.setInt(2, patientId);
-      ps.setInt(3, assignedStaffId);
+      blob.setBytes(1, toStream(appointment.getForm()));
+      //      String str =
+      //          ;
+      PreparedStatement ps =
+          connection.prepareStatement(
+              "INSERT INTO APPOINTMENTS (APPOINTMENTTYPEID, PATIENTID, ASSIGNEDSTAFFID, FORM, TIMEOFAPPOINTMENT, CHECKINSTATUS, ASSOCIATEDROOMID) VALUES (?, ?, ?, ?, ?, ?, ?)");
+      ps.setInt(1, 1); // appointment.getAppointmentTypeId());
+      ps.setInt(2, 1); // appointment.getPatientId());
+      ps.setInt(3, 1); // appointment.getAssignedStaffId());
       ps.setBlob(4, blob);
-      ps.setTimestamp(5, apptDateTime);
+      ps.setTimestamp(5, appointment.getTimeOfAppointment());
       ps.setBoolean(6, false);
-      ps.setString(7, associatedRoomId);
-      ps.execute();
+      ps.setString(7, appointment.getAssociatedRoomId());
+      ps.executeUpdate();
       blob.free();
       ps.close();
       return true;
-      //      String str =
-      //          "INSERT INTO APPOINTMENTS (AppointmentTypeId, PatientId, AssignedStaffId,
-      // FormContent, TimeOfAppointment, CheckInStatus, AssociatedRoomId) VALUES ("
-      //              + appointmentTypeId
-      //              + ", "
-      //              + patientId
-      //              + ", "
-      //              + assignedStaffId
-      //              + ", "
-      //              + blob
-      //              + ", "
-      //              + apptDateTime.toString()
-      //              + ", "
-      //              + false
-      //              + ", '"
-      //              + associatedRoomId
-      //              + "')";
-      //
-      //      stmt.execute(str);
-      // return true;
     } catch (SQLException e) {
       e.printStackTrace();
       return false;
@@ -103,23 +76,23 @@ class AppointmentsTable {
     }
   }
 
-  public HashSet<Appointment> getAppointmentsByPatientId(int patientId){
+  public HashSet<Appointment> getAppointmentsByPatientId(int patientId) {
     String str = "SELECT * FROM APPOINTMENTS WHERE PatientId = " + patientId;
-    try{
+    try {
       ResultSet rs = stmt.executeQuery(str);
       return resultSetToAppointments(rs);
-    } catch (SQLException e){
+    } catch (SQLException e) {
       e.printStackTrace();
       return null;
     }
   }
 
-  public HashSet<Appointment> getAppointmentsByAssignedStaffId(int assignedStaffId){
+  public HashSet<Appointment> getAppointmentsByAssignedStaffId(int assignedStaffId) {
     String str = "SELECT * FROM APPOINTMENTS WHERE AssignedStaffId = " + assignedStaffId;
-    try{
+    try {
       ResultSet rs = stmt.executeQuery(str);
       return resultSetToAppointments(rs);
-    } catch (SQLException e){
+    } catch (SQLException e) {
       e.printStackTrace();
       return null;
     }
@@ -140,8 +113,6 @@ class AppointmentsTable {
       return null;
     }
   }
-
-
 
   public Form getAppointmentForm(int appointmentId) {
     String str = "SELECT * FROM APPOINTMENTS WHERE id = " + appointmentId;

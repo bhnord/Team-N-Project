@@ -20,18 +20,18 @@ public class AppointmentTypesTable {
     }
   }
 
-  public boolean addAppointmentType(String type, Form classInfo) {
+  public boolean addAppointmentType(String type, Form form) {
     try {
       Blob blob = connection.createBlob();
-      blob.setBytes(1, toStream(classInfo));
+      blob.setBytes(1, toStream(form));
       PreparedStatement ps =
           connection.prepareStatement("INSERT INTO APPOINTMENTTYPES (TYPE, FORM) VALUES (?, ?)");
       ps.setString(1, type);
       ps.setBlob(2, blob);
-      boolean result = ps.execute();
+      ps.execute();
       blob.free();
       ps.close();
-      return result;
+      return true;
       // String str = "INSERT INTO APPOINTMENTTYPES VALUES " + type + ", " + blob;
       // stmt.execute(str);
       // return true;
