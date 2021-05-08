@@ -75,6 +75,8 @@ public class SideBarController extends MasterController implements Initializable
       user = db.getCurrentUser();
       appColor.setValue((Color.web(user.getAppColor())));
 
+      darkModeSwitch.setSelected(user.getDarkMode());
+
       String a = "Username: " + user.getUsername();
       AccountType.setText(a);
       // accountaSettingsGroup.getChildren().add(AccountType);
