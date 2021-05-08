@@ -15,6 +15,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 public class FacialRecognitionController extends MasterController implements Initializable {
   @Inject private DatabaseService db;
   @Inject private FXMLLoader loader;

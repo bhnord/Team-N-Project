@@ -3,11 +3,9 @@ package edu.wpi.cs3733.d21.teamN.views;
 import com.google.inject.Inject;
 import com.jfoenix.controls.JFXColorPicker;
 import com.jfoenix.controls.JFXToggleButton;
+import edu.wpi.cs3733.d21.teamN.faceLogin.FaceEnroller;
 import edu.wpi.cs3733.d21.teamN.services.database.DatabaseService;
 import edu.wpi.cs3733.d21.teamN.services.database.users.User;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,6 +22,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import lombok.extern.slf4j.Slf4j;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 @Slf4j
 public class SideBarController extends MasterController implements Initializable {
@@ -53,6 +55,7 @@ public class SideBarController extends MasterController implements Initializable
   @FXML private Rectangle settingsRec;
 
   private User user;
+  private FaceEnroller faceEnroller;
 
   @FXML private AnchorPane SideAnchor;
   //  HomeControllerAdmin homeController;
@@ -181,6 +184,10 @@ public class SideBarController extends MasterController implements Initializable
   @FXML
   public void advanceHome() throws IOException {
     open = false;
+    if (faceEnroller != null) {
+      faceEnroller.releaseCamera();
+      faceEnroller = null;
+    }
     super.advanceHome(loader, appPrimaryScene);
   }
 
@@ -304,6 +311,10 @@ public class SideBarController extends MasterController implements Initializable
     }
 
     super.advanceHome(loader, appPrimaryScene);
+  }
+
+  public void setFaceEnroller(FaceEnroller faceEnroller) {
+    this.faceEnroller = faceEnroller;
   }
 
   @FXML
