@@ -28,8 +28,8 @@ public class FaceEnroller extends FaceRec {
   }
 
   /**
-   * Starts the camera and starts trying to identify faces in the video while displaying it
-   * on the given imageView
+   * Starts the camera and starts trying to identify faces in the video while displaying it on the
+   * given imageView
    */
   public void startEnroller() {
     File classifier =
@@ -72,8 +72,8 @@ public class FaceEnroller extends FaceRec {
   }
 
   /**
-   * Saves the currently highlighted face to the database based on the user who is currently
-   * logged in.
+   * Saves the currently highlighted face to the database based on the user who is currently logged
+   * in.
    */
   public void saveFace() {
     shouldSave = true;

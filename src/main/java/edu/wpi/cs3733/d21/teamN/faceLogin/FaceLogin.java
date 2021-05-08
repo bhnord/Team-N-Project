@@ -70,7 +70,6 @@ public class FaceLogin extends FaceRec {
     camera.read(image);
     Rect[] faces = getFacesInImage(image, faceDetector);
     for (Rect face : faces) {
-      System.out.println(face);
       Mat croppedImage = new Mat(image, face);
       User user = identifyFace(croppedImage);
       if (user != null) {
