@@ -7,13 +7,15 @@ import edu.wpi.cs3733.d21.teamN.services.algo.Node;
 import edu.wpi.cs3733.d21.teamN.services.database.requests.Request;
 import edu.wpi.cs3733.d21.teamN.services.database.requests.RequestType;
 import edu.wpi.cs3733.d21.teamN.services.database.users.*;
+import lombok.extern.slf4j.Slf4j;
+
+import java.awt.image.BufferedImage;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
 import java.util.HashSet;
-import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class DatabaseService {
@@ -368,6 +370,19 @@ public class DatabaseService {
   }
 
   /**
+   * Gives a Hashset of all images associated with all Users
+   *
+   * @return Hashset of JavaFX Images
+   */
+  public HashMap<BufferedImage, Integer> getAllFaces() {
+    return usersTable.getAllFaces();
+  }
+
+  public boolean updateUserImage(int id, BufferedImage image) {
+    return usersTable.updateUserImage(id, image);
+  }
+
+  /**
    * retrieves all CovidForms from the database
    *
    * @return all covid forms in the database as a HashMap
@@ -514,6 +529,7 @@ public class DatabaseService {
               + "UserType varchar(15),"
               + "Occupation varchar (35), "
               + "Preferences varchar(300),"
+              + "FaceImages blob(16M),"
               + "CONSTRAINT chk_UserType CHECK (UserType IN ('Patient', 'Employee', 'Administrator')),"
               + "CONSTRAINT chk_Occupation CHECK (Occupation IN "
               + "('AUDIO_VISUAL', 'COMPUTER_SERVICE', 'EXTERNAL_PATIENT_TRANSPORTATION', 'FLORAL', 'FOOD_DELIVERY', 'GIFT_DELIVERY', 'INTERNAL_PATIENT_TRANSPORTATION', 'LANGUAGE_INTERPRETER', "
@@ -590,6 +606,10 @@ public class DatabaseService {
       e.printStackTrace();
     }
     return false;
+  }
+
+  public void setLoggedInUser(User user) {
+    currentUser = user;
   }
 
   public void logout() {
