@@ -50,6 +50,7 @@ public class SideBarController extends MasterController implements Initializable
 
   @FXML private JFXColorPicker appColor;
   @FXML private JFXToggleButton darkModeSwitch;
+  @FXML private Rectangle settingsRec;
 
   private User user;
 
