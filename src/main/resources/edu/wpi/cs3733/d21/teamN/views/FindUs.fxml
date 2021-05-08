@@ -12,6 +12,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.web.WebView?>
 
@@ -22,6 +23,7 @@
                 <Image url="@/images/CSVBackground.png" />
             </image>
         </ImageView>
+      <Rectangle fx:id="darkMode" arcHeight="5.0" arcWidth="5.0" fill="#000000bf" height="4000.0" stroke="#ffffff00" strokeType="INSIDE" width="4000.0" />
         <GridPane>
             <columnConstraints>
                 <ColumnConstraints hgrow="NEVER" maxWidth="451.0" minWidth="66.0" prefWidth="66.0" />
@@ -78,8 +80,8 @@
                         </WebView>
                      </children>
                   </GridPane>
-                  <JFXButton buttonType="RAISED" onAction="#submitAddress" style="-fx-background-color: #748cdc;" stylesheets="@/Fonts/Roboto-Light.css" text="Submit" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                  <JFXComboBox fx:id="addressBox" editable="true" focusColor="#748cdc" labelFloat="true" promptText="Enter Your Address" stylesheets="@/Fonts/Roboto-Light.css" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
+                  <JFXButton fx:id="submitButton" buttonType="RAISED" onAction="#submitAddress" style="-fx-background-color: #748cdc;" stylesheets="@/Fonts/Roboto-Light.css" text="Submit" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                  <JFXComboBox fx:id="addressBox" editable="true" focusColor="#a1a1a1" labelFloat="true" promptText="Enter Your Address" stylesheets="@/Fonts/Roboto-Light.css" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
                   <JFXButton fx:id="printButton" disable="true" onAction="#printDirections" style="-fx-background-color: #748cdc;" stylesheets="@/Fonts/Roboto-Light.css" text="Print" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="TOP">
                      <GridPane.margin>
                         <Insets top="10.0" />

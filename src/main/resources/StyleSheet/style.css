@@ -68,17 +68,17 @@
 }
 
 .jfx-tab-pane .headers-region {
-    -fx-background-color: #363d54;
+    -fx-background-color: #666666;
 }
 .jfx-tab-pane .tab-header-background {
-    -fx-background-color: #363d54;
+    -fx-background-color: #666666;
 }
 .jfx-tab-pane .tab-header-area .jfx-rippler
 {
-    -jfx-rippler-fill:  #7e98ef;
+    -jfx-rippler-fill:  #a2a2a2;
 }
 .jfx-tab-pane .tab-selected-line {
-    -fx-background-color: #7e98ef;
+    -fx-background-color: #a2a2a2;
     -fx-pref-height: 3;
 }
 

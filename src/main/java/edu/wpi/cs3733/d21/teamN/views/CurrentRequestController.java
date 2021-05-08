@@ -28,7 +28,6 @@ public class CurrentRequestController extends MasterController implements Initia
   @Inject private DatabaseService db;
   @Inject private FXMLLoader loader;
   @FXML private JFXListView<Label> listView;
-  @FXML private JFXButton markCompleteButton;
   @FXML private Label requestId;
   @FXML private Label requestType;
   @FXML private Label senderName;
@@ -51,6 +50,8 @@ public class CurrentRequestController extends MasterController implements Initia
   private HashMap<Integer, Request> requestMap = new HashMap<>();
   @FXML JFXComboBox<String> entrance = new JFXComboBox<>();
   private int userId;
+
+  @FXML JFXButton submitCovidButton, markCompleteButton;
 
   @Inject
   public void setAppPrimaryScene(Scene appPrimaryScene) {
@@ -119,6 +120,15 @@ public class CurrentRequestController extends MasterController implements Initia
         });
 
     super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Database");
+
+    updateStyle(db.getCurrentUser().getAppColor());
+  }
+
+  public void updateStyle(String color) {
+    String style =
+        "-fx-background-color: " + "#" + color.substring(2) + "; -fx-background-radius: 25;";
+    JFXButton[] lA = {submitCovidButton, markCompleteButton};
+    for (JFXButton a : lA) a.setStyle(style);
   }
 
   private void setEmptyFields() {
