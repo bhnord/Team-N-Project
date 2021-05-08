@@ -5,6 +5,11 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.RequiredFieldValidator;
+import edu.wpi.cs3733.d21.teamN.faceLogin.FaceLogin;
+import edu.wpi.cs3733.d21.teamN.services.database.DatabaseService;
+import edu.wpi.cs3733.d21.teamN.services.database.users.User;
+import edu.wpi.cs3733.d21.teamN.state.HomeState;
+import edu.wpi.cs3733.d21.teamN.utilities.DialogFactory;
 import edu.wpi.cs3733.d21.teamN.form.Form;
 import edu.wpi.cs3733.d21.teamN.services.database.DatabaseService;
 import edu.wpi.cs3733.d21.teamN.services.database.users.User;
@@ -24,6 +29,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.shape.Rectangle;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -54,6 +61,7 @@ public class HomeControllerAdmin extends MasterController implements Initializab
   @FXML private JFXPasswordField passwordField;
   @FXML private JFXButton goToHomePage;
   @FXML private Label incorrectLogin;
+  @FXML private StackPane rootStackPane;
   private String accountUsername = "";
   private String accountPassword = "";
 
@@ -62,6 +70,8 @@ public class HomeControllerAdmin extends MasterController implements Initializab
   private DialogFactory dialogFactory;
   private Scene appPrimaryScene;
   private User user;
+
+  @FXML Rectangle darkMode;
 
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
@@ -343,5 +353,27 @@ public class HomeControllerAdmin extends MasterController implements Initializab
       BackFindUs
     };
     for (Label a : lA) a.setStyle(style);
+
+    if (db.getCurrentUser().getDarkMode()) {
+      darkMode.setVisible(true);
+    } else {
+      darkMode.setVisible(false);
+    }
+  }
+
+  @FXML
+  private void loginWithFace() {
+    FaceLogin facialRecognition = new FaceLogin(db);
+    User user = facialRecognition.getUserFromFace();
+    if (user != null) {
+      db.setLoggedInUser(user);
+      super.advanceHome(loader, appPrimaryScene);
+    } else {
+      dialogFactory = new DialogFactory(rootStackPane);
+      dialogFactory.creatDialogOkay(
+          "Couldn't Log You In",
+          "Sorry we couldn't log you in"
+              + " with FaceID. Please log in with your username and password.");
+    }
   }
 }

@@ -18,6 +18,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
+import nu.pattern.OpenCV;
 
 @Slf4j
 public class App extends Application {
@@ -79,7 +80,7 @@ public class App extends Application {
   public void start(Stage primaryStage) throws IOException {
 
     Parent root = loader.load(getClass().getResourceAsStream("views/HomeViewAdmin.fxml"));
-
+    // Parent root = loader.load(getClass().getResourceAsStream("views/FacialRecTest.fxml"));
     primaryStage
         .getIcons()
         .add(new Image(ClassLoader.getSystemResourceAsStream("images/hospital-256.png")));
@@ -91,6 +92,7 @@ public class App extends Application {
     primaryStage.setScene(primaryScene);
     primaryStage.setMinHeight(800);
     primaryStage.setMinWidth(1366);
+    OpenCV.loadLocally();
 
     // primaryStage.setResizable(false);
     //    primaryStage.setAlwaysOnTop(true);

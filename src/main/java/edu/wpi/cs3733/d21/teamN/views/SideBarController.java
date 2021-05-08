@@ -2,6 +2,7 @@ package edu.wpi.cs3733.d21.teamN.views;
 
 import com.google.inject.Inject;
 import com.jfoenix.controls.JFXColorPicker;
+import com.jfoenix.controls.JFXToggleButton;
 import edu.wpi.cs3733.d21.teamN.services.database.DatabaseService;
 import edu.wpi.cs3733.d21.teamN.services.database.users.User;
 import java.io.IOException;
@@ -13,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
@@ -47,11 +49,12 @@ public class SideBarController extends MasterController implements Initializable
   @FXML private Label AccountParkingSpot;
 
   @FXML private JFXColorPicker appColor;
+  @FXML private JFXToggleButton darkModeSwitch;
 
   private User user;
 
   @FXML private AnchorPane SideAnchor;
-  HomeControllerAdmin homeController;
+  //  HomeControllerAdmin homeController;
   static boolean open = false;
 
   @FXML
@@ -60,7 +63,7 @@ public class SideBarController extends MasterController implements Initializable
     // accountSettingsGroup.setTranslateX(100);
     TranslateTransition tt = new TranslateTransition();
     tt.setNode(accountSettingsGroup);
-    tt.setDuration(new Duration(1000));
+    tt.setDuration(new Duration(500));
     // tt.setFromX(0);
     tt.setToX(0);
     tt.setAutoReverse(true);
@@ -94,9 +97,9 @@ public class SideBarController extends MasterController implements Initializable
 
     TranslateTransition tt = new TranslateTransition();
     tt.setNode(accountSettingsGroup);
-    tt.setDuration(new Duration(1000));
+    tt.setDuration(new Duration(500));
     // tt.setFromX(100);
-    tt.setToX(-300);
+    tt.setToX(-2800);
     tt.setAutoReverse(true);
     tt.play();
     open = false;
@@ -107,7 +110,7 @@ public class SideBarController extends MasterController implements Initializable
 
     setLoader(loader);
     if (!open) {
-      accountSettingsGroup.setTranslateX(-300);
+      accountSettingsGroup.setTranslateX(-2800);
     }
 
     //    if (db != null) {
@@ -138,7 +141,11 @@ public class SideBarController extends MasterController implements Initializable
     user = db.getCurrentUser();
     appColor.setValue((Color.web(user.getAppColor())));
     // String color = "-fx-background-color: " + "#" + user.getAppColor().substring(2) + ";";
-    updateStyle(user.getAppColor());
+    if (!user.getUsername().equals("guest")) {
+      updateStyle(user.getAppColor());
+    } else {
+      updateStyle("0x748cdc");
+    }
   }
 
   /**
@@ -150,6 +157,7 @@ public class SideBarController extends MasterController implements Initializable
   // advance function for specific instances
   @Override
   public void advanceViews(ActionEvent actionEvent) throws IOException {
+    open = false;
     super.advanceViews(actionEvent);
   }
 
@@ -157,12 +165,14 @@ public class SideBarController extends MasterController implements Initializable
   @FXML
   public void advanceServiceRequest() throws IOException {
     super.setDB(db);
+    open = false;
     super.advanceServiceRequest(loader, appPrimaryScene);
   }
 
   // advances to the current users home page
   @FXML
   public void advanceHome() throws IOException {
+    open = false;
     super.advanceHome(loader, appPrimaryScene);
   }
 
@@ -170,6 +180,7 @@ public class SideBarController extends MasterController implements Initializable
   @FXML
   public void logOut() throws IOException {
     super.setDB(db);
+    open = false;
     super.logOut(loader, appPrimaryScene);
   }
 
@@ -177,6 +188,12 @@ public class SideBarController extends MasterController implements Initializable
   @FXML
   public void exit(ActionEvent actionEvent) throws IOException {
     super.cancel(actionEvent);
+  }
+
+  public void faceRec(ActionEvent actionEvent) throws IOException {
+    Parent root = loader.load(getClass().getResourceAsStream("FacialRecognitionAdd.fxml"));
+    open = false;
+    appPrimaryScene.setRoot(root);
   }
 
   /** ------------------------------------------------------------------------------------ */
@@ -200,12 +217,14 @@ public class SideBarController extends MasterController implements Initializable
     } else if (type.equals("Map") || type.equals("Database")) {
       makeInvisible(groupBack);
       RegisterBack.setVisible(false);
+      makeInvisible(groupAccountSettings);
     } else if (type.equals("Service Request")) {
       // all buttons
       RegisterBack.setVisible(false);
     } else if (type.equals("Covid Form")) {
       makeInvisible(groupCovid);
       makeInvisible(groupBack);
+      makeInvisible(groupAccountSettings);
       RegisterBack.setVisible(false);
     } else if (type.equals("Login")) {
       makeInvisible(groupLogOut);
@@ -262,21 +281,25 @@ public class SideBarController extends MasterController implements Initializable
   }
 
   @FXML
+  private void newAppDarkMode(ActionEvent actionEvent) {
+    if (db != null) {
+      user.setDarkMode(darkModeSwitch.isSelected());
+    }
+  }
+
+  @FXML
   private void newAppColor(ActionEvent actionEvent) {
     if (db != null) {
 
       user = db.getCurrentUser();
       // label1.getStylesheets().remove("src/main/resources/StyleSheet/Dynamic.css");
       user.setAppColor(appColor.getValue().toString());
+
       db.updateUserPrefs(user.getId(), user.getUserPrefs());
 
       updateStyle(user.getAppColor());
 
-      try {
-        super.advanceHome(loader, appPrimaryScene);
-      } catch (IOException e) {
-        e.printStackTrace();
-      }
+      super.advanceHome(loader, appPrimaryScene);
 
       // label1.setStyle("-fx-background-color: " + color + "; ");
       // label1.getStylesheets().add("src/main/resources/StyleSheet/Dynamic.css");

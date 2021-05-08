@@ -9,6 +9,11 @@ import edu.wpi.cs3733.d21.teamN.services.database.requests.Request;
 import edu.wpi.cs3733.d21.teamN.services.database.requests.RequestType;
 import edu.wpi.cs3733.d21.teamN.services.database.users.*;
 import java.sql.*;
+import java.awt.image.BufferedImage;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.HashMap;
 import java.util.HashSet;
 import lombok.extern.slf4j.Slf4j;
@@ -369,6 +374,19 @@ public class DatabaseService {
     return usersTable.deleteUser(username);
   }
 
+  /**
+   * Gives a Hashset of all images associated with all Users
+   *
+   * @return Hashset of JavaFX Images
+   */
+  public HashMap<BufferedImage, Integer> getAllFaces() {
+    return usersTable.getAllFaces();
+  }
+
+  public boolean updateUserImage(int id, BufferedImage image) {
+    return usersTable.updateUserImage(id, image);
+  }
+
   // ----------------------------------------------------------------------------------------------------------------------------------------------------
 
   /**
@@ -662,6 +680,10 @@ public class DatabaseService {
       e.printStackTrace();
     }
     return false;
+  }
+
+  public void setLoggedInUser(User user) {
+    currentUser = user;
   }
 
   public void logout() {

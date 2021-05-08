@@ -19,13 +19,14 @@
 <?import javafx.scene.text.Font?>
 
 <?import javafx.scene.control.Button?>
-<StackPane fx:id="stackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.d21.teamN.views.HomeControllerAdmin">
+<StackPane fx:id="rootStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.d21.teamN.views.HomeControllerAdmin">
    <children>
       <ImageView fitHeight="1766.0" fitWidth="1458.0" pickOnBounds="true" preserveRatio="true" scaleX="2.0" scaleY="2.0" StackPane.alignment="TOP_LEFT">
          <image>
             <Image url="@/images/CSVBackground.png" />
          </image>
       </ImageView>
+      <Rectangle fx:id="darkMode" arcHeight="5.0" arcWidth="5.0" fill="#000000bf" height="4000.0" stroke="#ffffff00" strokeType="INSIDE" width="4000.0" StackPane.alignment="TOP_LEFT" />
       <GridPane>
          <columnConstraints>
             <ColumnConstraints hgrow="NEVER" maxWidth="451.0" minWidth="66.0" prefWidth="66.0" />
@@ -134,9 +135,9 @@
                               <Font name="Javanese Text" size="12.0" />
                            </font>
                         </Label>
-                        <JFXButton fx:id="RegisterNewUser" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" layoutX="140.0" layoutY="171.0" mnemonicParsing="false" onAction="#register" prefHeight="37.0" prefWidth="81.0" style="-fx-background-color: #6985e0;" text="Register" textFill="WHITE" />
+                        <JFXButton fx:id="RegisterNewUser" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" layoutX="141.0" layoutY="207.0" mnemonicParsing="false" onAction="#register" prefHeight="37.0" prefWidth="81.0" style="-fx-background-color: #6985e0;" text="Register" textFill="WHITE" />
                         <Label layoutX="166.0" layoutY="300.0" />
-                        <JFXButton buttonType="RAISED" layoutX="130.0" layoutY="95.0" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #6985e0;" stylesheets="@/Fonts/Roboto-Light.css" text="FACE ID" textFill="WHITE" />
+                        <JFXButton buttonType="RAISED" layoutX="130.0" layoutY="95.0" onAction="#loginWithFace" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #6985e0;" stylesheets="@/Fonts/Roboto-Light.css" text="FACE ID" textFill="WHITE" />
                      </children>
                   </Group>
                </children>

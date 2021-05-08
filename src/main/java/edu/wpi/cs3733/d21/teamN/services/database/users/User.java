@@ -124,6 +124,14 @@ public abstract class User {
     userPrefs.setAppColor(appColor);
   }
 
+  public boolean getDarkMode() {
+    return userPrefs.getDarkMode();
+  }
+
+  public void setDarkMode(boolean darkMode) {
+    userPrefs.setDarkMode(darkMode);
+  }
+
   @Override
   public String toString() {
     return "User{"

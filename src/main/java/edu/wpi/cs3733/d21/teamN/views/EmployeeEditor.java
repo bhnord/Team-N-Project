@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.d21.teamN.views;
 
 import com.google.inject.Inject;
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
@@ -64,6 +65,7 @@ public class EmployeeEditor extends MasterController implements Initializable {
   @Override
   public void initialize(URL url, ResourceBundle rb) {
 
+    updateStyle(db.getCurrentUser().getAppColor());
     super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Database");
 
     listView.setOnMouseClicked(
@@ -199,5 +201,14 @@ public class EmployeeEditor extends MasterController implements Initializable {
 
   public void advanceViews(ActionEvent actionEvent) throws IOException {
     super.advanceViews(actionEvent);
+  }
+
+  @FXML private JFXButton commitChangesButton, addEmployeeButton, deleteUserButton;
+
+  public void updateStyle(String color) {
+    String style =
+        "-fx-background-color: " + "#" + color.substring(2) + "; -fx-background-radius: 25;";
+    JFXButton[] lA = {commitChangesButton, addEmployeeButton, deleteUserButton};
+    for (JFXButton a : lA) a.setStyle(style);
   }
 }
