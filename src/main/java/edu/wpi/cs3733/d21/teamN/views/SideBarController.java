@@ -97,7 +97,7 @@ public class SideBarController extends MasterController implements Initializable
     tt.setNode(accountSettingsGroup);
     tt.setDuration(new Duration(1000));
     // tt.setFromX(100);
-    tt.setToX(-300);
+    tt.setToX(-2800);
     tt.setAutoReverse(true);
     tt.play();
     open = false;
@@ -108,7 +108,7 @@ public class SideBarController extends MasterController implements Initializable
 
     setLoader(loader);
     if (!open) {
-      accountSettingsGroup.setTranslateX(-300);
+      accountSettingsGroup.setTranslateX(-2800);
     }
 
     //    if (db != null) {
@@ -155,6 +155,7 @@ public class SideBarController extends MasterController implements Initializable
   // advance function for specific instances
   @Override
   public void advanceViews(ActionEvent actionEvent) throws IOException {
+    open = false;
     super.advanceViews(actionEvent);
   }
 
@@ -162,12 +163,14 @@ public class SideBarController extends MasterController implements Initializable
   @FXML
   public void advanceServiceRequest() throws IOException {
     super.setDB(db);
+    open = false;
     super.advanceServiceRequest(loader, appPrimaryScene);
   }
 
   // advances to the current users home page
   @FXML
   public void advanceHome() throws IOException {
+    open = false;
     super.advanceHome(loader, appPrimaryScene);
   }
 
@@ -175,6 +178,7 @@ public class SideBarController extends MasterController implements Initializable
   @FXML
   public void logOut() throws IOException {
     super.setDB(db);
+    open = false;
     super.logOut(loader, appPrimaryScene);
   }
 
@@ -186,6 +190,7 @@ public class SideBarController extends MasterController implements Initializable
 
   public void faceRec(ActionEvent actionEvent) throws IOException {
     Parent root = loader.load(getClass().getResourceAsStream("FacialRecognitionAdd.fxml"));
+    open = false;
     appPrimaryScene.setRoot(root);
   }
 
@@ -210,12 +215,14 @@ public class SideBarController extends MasterController implements Initializable
     } else if (type.equals("Map") || type.equals("Database")) {
       makeInvisible(groupBack);
       RegisterBack.setVisible(false);
+      makeInvisible(groupAccountSettings);
     } else if (type.equals("Service Request")) {
       // all buttons
       RegisterBack.setVisible(false);
     } else if (type.equals("Covid Form")) {
       makeInvisible(groupCovid);
       makeInvisible(groupBack);
+      makeInvisible(groupAccountSettings);
       RegisterBack.setVisible(false);
     } else if (type.equals("Login")) {
       makeInvisible(groupLogOut);
