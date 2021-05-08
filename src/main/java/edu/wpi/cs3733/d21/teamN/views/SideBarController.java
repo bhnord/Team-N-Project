@@ -198,6 +198,8 @@ public class SideBarController extends MasterController implements Initializable
   }
 
   public void faceRec(ActionEvent actionEvent) throws IOException {
+    accountSettingsGroup.setTranslateX(-2800);
+    open = !open;
     Parent root = loader.load(getClass().getResourceAsStream("FacialRecognitionAdd.fxml"));
     open = false;
     appPrimaryScene.setRoot(root);
@@ -252,6 +254,11 @@ public class SideBarController extends MasterController implements Initializable
       makeInvisible(groupCovid);
       makeInvisible(groupBack);
       makeInvisible(groupHome);
+      makeInvisible(groupAccountSettings);
+    } else if (type.equals("FaceRec")) {
+      makeInvisible(groupCovid);
+      makeInvisible(groupBack);
+      makeInvisible(groupLogOut);
       makeInvisible(groupAccountSettings);
     }
   }

@@ -28,7 +28,7 @@ public class FacialRecognitionController extends MasterController implements Ini
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Register");
+    super.sideBarSetup(anchorPane, appPrimaryScene, loader, "FaceRec");
 
     faceEnroller = new FaceEnroller(db, imageView);
     //    db.setLoggedInUser(db.getUserByUsername("Michael"));
