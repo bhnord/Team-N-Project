@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.d21.teamN.services.database;
 
 import com.google.inject.Inject;
+import edu.wpi.cs3733.d21.teamN.App;
 import edu.wpi.cs3733.d21.teamN.form.Form;
 import edu.wpi.cs3733.d21.teamN.services.database.users.*;
 import java.io.*;
@@ -102,6 +103,28 @@ class AppointmentsTable {
     }
   }
 
+  public HashSet<Appointment> getAppointmentsByPatientId(int patientId){
+    String str = "SELECT * FROM APPOINTMENTS WHERE PatientId = " + patientId;
+    try{
+      ResultSet rs = stmt.executeQuery(str);
+      return resultSetToAppointments(rs);
+    } catch (SQLException e){
+      e.printStackTrace();
+      return null;
+    }
+  }
+
+  public HashSet<Appointment> getAppointmentsByAssignedStaffId(int assignedStaffId){
+    String str = "SELECT * FROM APPOINTMENTS WHERE AssignedStaffId = " + assignedStaffId;
+    try{
+      ResultSet rs = stmt.executeQuery(str);
+      return resultSetToAppointments(rs);
+    } catch (SQLException e){
+      e.printStackTrace();
+      return null;
+    }
+  }
+
   public Appointment getAppointment(int appointmentId) {
     String str = "SELECT * FROM APPOINTMENTS WHERE id = " + appointmentId;
     try {
@@ -117,6 +140,8 @@ class AppointmentsTable {
       return null;
     }
   }
+
+
 
   public Form getAppointmentForm(int appointmentId) {
     String str = "SELECT * FROM APPOINTMENTS WHERE id = " + appointmentId;

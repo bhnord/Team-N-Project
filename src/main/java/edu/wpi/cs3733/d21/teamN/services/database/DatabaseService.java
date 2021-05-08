@@ -2,6 +2,7 @@ package edu.wpi.cs3733.d21.teamN.services.database;
 
 import com.google.gson.Gson;
 import com.google.inject.Inject;
+import edu.wpi.cs3733.d21.teamN.App;
 import edu.wpi.cs3733.d21.teamN.form.Form;
 import edu.wpi.cs3733.d21.teamN.services.algo.Edge;
 import edu.wpi.cs3733.d21.teamN.services.algo.Node;
@@ -481,6 +482,15 @@ public class DatabaseService {
   public Appointment getAppointment(int appointmentId) {
     return appointmentsTable.getAppointment(appointmentId);
   }
+
+  public HashSet<Appointment> getAppointmentsByPatientId(int patientId){
+    return appointmentsTable.getAppointmentsByPatientId(patientId);
+  }
+
+  public HashSet<Appointment> getAppointmentsByAssignedStaffId(int assignedStaffId){
+    return appointmentsTable.getAppointmentsByAssignedStaffId(assignedStaffId);
+  }
+
 
   public Form getAppointmentForm(int appointmentId) {
     return appointmentsTable.getAppointmentForm(appointmentId);
