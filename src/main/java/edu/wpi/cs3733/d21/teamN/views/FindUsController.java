@@ -25,6 +25,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
@@ -42,6 +43,7 @@ public class FindUsController extends MasterController implements Initializable 
   @FXML private JFXButton printButton, submitButton;
   // For sidebar nested FXML implementation
   @FXML private AnchorPane anchorPane;
+  @FXML private Label BackLabel;
 
   @FXML Rectangle darkMode;
 
@@ -104,6 +106,13 @@ public class FindUsController extends MasterController implements Initializable 
         "-fx-background-color: " + "#" + color.substring(2) + "; -fx-background-radius: 25;";
     JFXButton[] lA = {submitButton, printButton};
     for (JFXButton a : lA) a.setStyle(style);
+
+    Color appC = Color.web(color);
+    String s = appC.darker().darker().darker().desaturate().toString();
+    style = "-fx-background-color: " + "#" + s.substring(2) + "; -fx-background-radius: 25;";
+    if (db.getCurrentUser().getDarkMode()) {
+      BackLabel.setStyle(style);
+    }
   }
 
   @FXML

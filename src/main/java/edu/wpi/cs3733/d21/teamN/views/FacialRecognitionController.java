@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.shape.Rectangle;
 
 public class FacialRecognitionController extends MasterController implements Initializable {
   @Inject private DatabaseService db;
@@ -23,13 +24,13 @@ public class FacialRecognitionController extends MasterController implements Ini
   @FXML private JFXButton saveButton;
   @FXML private StackPane stackPane;
   FaceEnroller faceEnroller;
-
+  @FXML Rectangle darkMode;
   @FXML AnchorPane anchorPane;
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     super.sideBarSetup(anchorPane, appPrimaryScene, loader, "FaceRec");
-
+    darkMode.setVisible(db.getCurrentUser().getDarkMode());
     faceEnroller = new FaceEnroller(db, imageView);
     //    db.setLoggedInUser(db.getUserByUsername("Michael"));
   }
