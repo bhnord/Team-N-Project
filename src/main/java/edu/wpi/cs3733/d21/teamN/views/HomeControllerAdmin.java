@@ -317,7 +317,7 @@ public class HomeControllerAdmin extends MasterController implements Initializab
     //    loader.setController(new FormController());
     Parent root = loader.load(getClass().getResourceAsStream("Templateform.fxml"));
     appPrimaryScene.setRoot(root);
-    Form form = new Form(db);
+    Form form = new Form();
     FormController formController = loader.getController();
     formController.setUp(form);
   }
@@ -326,7 +326,7 @@ public class HomeControllerAdmin extends MasterController implements Initializab
     //    loader.setController(new FormEditorController());
     Parent root = loader.load(getClass().getResourceAsStream("Template.fxml"));
     appPrimaryScene.setRoot(root);
-    Form form = new Form(db);
+    Form form = new Form();
     FormEditorController controller = loader.getController();
     controller.setUp(form);
   }

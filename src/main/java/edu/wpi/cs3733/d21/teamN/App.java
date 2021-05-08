@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.d21.teamN;
 
 import com.google.inject.*;
+import edu.wpi.cs3733.d21.teamN.form.Form;
 import edu.wpi.cs3733.d21.teamN.services.database.DatabaseService;
 import edu.wpi.cs3733.d21.teamN.services.database.DatabaseServiceProvider;
 import edu.wpi.cs3733.d21.teamN.services.database.users.UserPrefs;
@@ -69,6 +70,9 @@ public class App extends Application {
       db.addUser("Ananya", "Ananya", UserType.EMPLOYEE, new UserPrefs());
     if (db.getUserByUsername("Finn") == null)
       db.addUser("Finn", "Finn", UserType.EMPLOYEE, new UserPrefs());
+
+    db.addAppointmentType("NewType", new Form());
+    db.getAppointmentTypeForm(1).tester();
   }
 
   @Override

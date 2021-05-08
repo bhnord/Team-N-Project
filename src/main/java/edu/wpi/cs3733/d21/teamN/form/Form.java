@@ -10,10 +10,12 @@ import javafx.scene.layout.HBox;
 public class Form implements Serializable {
   ArrayList<FormElement> elements;
   String title;
-  DatabaseService db;
 
-  public Form(DatabaseService db) {
-    this.db = db;
+  public void tester() {
+    System.out.println("SUCCESSFULLY DESERIALIZED");
+  }
+
+  public Form() {
     elements = new ArrayList<>();
     elements.add(new TextField(false, "question", "", this));
     elements.add(new TimePicker(false, "time", "", this));
@@ -41,7 +43,7 @@ public class Form implements Serializable {
    *
    * @param formController contoller where the elements of the form will be laid in
    */
-  public void build(FormController formController) {
+  public void build(FormController formController, DatabaseService db) {
     formController.getTitle().setText(title);
     for (FormElement element : elements) {
       formController.getElements().getChildren().add(element.build(db));

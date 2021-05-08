@@ -21,7 +21,6 @@ class AppointmentsTable {
     }
   }
 
-  // TODO MAKE INTO PREPARED STATEMENT
   public boolean addAppointment(
       int appointmentTypeId,
       int patientId,
@@ -30,27 +29,43 @@ class AppointmentsTable {
       Timestamp apptDateTime,
       String associatedRoomId) {
     try {
+
       Blob blob = connection.createBlob();
       blob.setBytes(1, toStream(formContent));
       String str =
-          "INSERT INTO APPOINTMENTS (AppointmentTypeId, PatientId, AssignedStaffId, FormContent, TimeOfAppointment, CheckInStatus, AssociatedRoomId) VALUES ("
-              + appointmentTypeId
-              + ", "
-              + patientId
-              + ", "
-              + assignedStaffId
-              + ", "
-              + blob
-              + ", "
-              + apptDateTime.toString()
-              + ", "
-              + false
-              + ", "
-              + associatedRoomId
-              + ")";
-
-      stmt.execute(str);
+          "INSERT INTO APPOINTMENTS (AppointmentTypeId, PatientId, AssignedStaffId, Form, TimeOfAppointment, CheckInStatus, AssociatedRoomId) VALUES (?, ?, ?, ?, ?, ?, ?)";
+      PreparedStatement ps = connection.prepareStatement(str);
+      ps.setInt(1, appointmentTypeId);
+      ps.setInt(2, patientId);
+      ps.setInt(3, assignedStaffId);
+      ps.setBlob(4, blob);
+      ps.setTimestamp(5, apptDateTime);
+      ps.setBoolean(6, false);
+      ps.setString(7, associatedRoomId);
+      ps.execute();
+      blob.free();
+      ps.close();
       return true;
+      //      String str =
+      //          "INSERT INTO APPOINTMENTS (AppointmentTypeId, PatientId, AssignedStaffId,
+      // FormContent, TimeOfAppointment, CheckInStatus, AssociatedRoomId) VALUES ("
+      //              + appointmentTypeId
+      //              + ", "
+      //              + patientId
+      //              + ", "
+      //              + assignedStaffId
+      //              + ", "
+      //              + blob
+      //              + ", "
+      //              + apptDateTime.toString()
+      //              + ", "
+      //              + false
+      //              + ", '"
+      //              + associatedRoomId
+      //              + "')";
+      //
+      //      stmt.execute(str);
+      // return true;
     } catch (SQLException e) {
       e.printStackTrace();
       return false;
@@ -62,9 +77,13 @@ class AppointmentsTable {
     try {
       Blob blob = connection.createBlob();
       blob.setBytes(1, toStream(formContent));
-      String str = "UPDATE APPOINTMENTS SET ClassData = " + blob + " WHERE Id = " + appointmentId;
-
-      stmt.execute(str);
+      String str = "UPDATE APPOINTMENTS SET FORM = ? WHERE Id = ?";
+      PreparedStatement ps = connection.prepareStatement(str);
+      ps.setBlob(1, blob);
+      ps.setInt(2, appointmentId);
+      ps.execute();
+      blob.free();
+      ps.close();
       return true;
     } catch (SQLException e) {
       e.printStackTrace();

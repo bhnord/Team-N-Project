@@ -24,9 +24,17 @@ public class AppointmentTypesTable {
     try {
       Blob blob = connection.createBlob();
       blob.setBytes(1, toStream(classInfo));
-      String str = "INSERT INTO APPOINTMENTTYPES VALUES " + type + ", " + blob;
-      stmt.execute(str);
-      return true;
+      PreparedStatement ps =
+          connection.prepareStatement("INSERT INTO APPOINTMENTTYPES (TYPE, FORM) VALUES (?, ?)");
+      ps.setString(1, type);
+      ps.setBlob(2, blob);
+      boolean result = ps.execute();
+      blob.free();
+      ps.close();
+      return result;
+      // String str = "INSERT INTO APPOINTMENTTYPES VALUES " + type + ", " + blob;
+      // stmt.execute(str);
+      // return true;
     } catch (SQLException e) {
       e.printStackTrace();
       return false;
@@ -46,7 +54,6 @@ public class AppointmentTypesTable {
 
   public AppointmentType getAppointmentType(int id) {
     try {
-      Blob b = connection.createBlob();
       String str = "SELECT * FROM APPOINTMENTTYPES WHERE id = " + id;
       ResultSet rs = stmt.executeQuery(str);
       HashSet<AppointmentType> set = resultSetToAppointmentTypes(rs);
@@ -66,7 +73,7 @@ public class AppointmentTypesTable {
     try {
       ResultSet rs = stmt.executeQuery(str);
       rs.next();
-      Blob blob = rs.getBlob("ClassInfo");
+      Blob blob = rs.getBlob("FORM");
       return fromStream(blob.getBytes(1, (int) blob.length()));
     } catch (SQLException e) {
       e.printStackTrace();

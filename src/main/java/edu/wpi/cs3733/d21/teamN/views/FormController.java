@@ -43,7 +43,7 @@ public class FormController extends MasterController implements Initializable {
 
   public void setUp(Form form) {
     this.form = form;
-    form.build(this);
+    form.build(this, db);
   }
 
   public VBox getElements() {
