@@ -5,7 +5,6 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.RequiredFieldValidator;
-import edu.wpi.cs3733.d21.teamN.faceLogin.FaceLogin;
 import edu.wpi.cs3733.d21.teamN.services.database.DatabaseService;
 import edu.wpi.cs3733.d21.teamN.services.database.users.User;
 import edu.wpi.cs3733.d21.teamN.state.HomeState;
@@ -26,6 +25,10 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import lombok.extern.slf4j.Slf4j;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 @Slf4j
 public class HomeControllerAdmin extends MasterController implements Initializable {
@@ -55,6 +58,7 @@ public class HomeControllerAdmin extends MasterController implements Initializab
   @FXML private JFXPasswordField passwordField;
   @FXML private JFXButton goToHomePage;
   @FXML private Label incorrectLogin;
+  @FXML private StackPane rootStackPane;
   private String accountUsername = "";
   private String accountPassword = "";
 
@@ -299,5 +303,19 @@ public class HomeControllerAdmin extends MasterController implements Initializab
     for (Label a : lA) a.setStyle(style);
   }
 
-
+  @FXML
+  private void loginWithFace() {
+    FaceLogin facialRecognition = new FaceLogin(db);
+    User user = facialRecognition.getUserFromFace();
+    if (user != null) {
+      db.setLoggedInUser(user);
+      super.advanceHome(loader, appPrimaryScene);
+    } else {
+      dialogFactory = new DialogFactory(rootStackPane);
+      dialogFactory.creatDialogOkay(
+          "Couldn't Log You In",
+          "Sorry we couldn't log you in"
+              + " with FaceID. Please log in with your username and password.");
+    }
+  }
 }
