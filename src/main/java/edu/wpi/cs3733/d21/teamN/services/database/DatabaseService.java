@@ -34,6 +34,7 @@ public class DatabaseService {
   @Inject RequestsTable requestsTable;
   @Inject AppointmentsTable appointmentsTable;
   @Inject AppointmentTypesTable appointmentTypesTable;
+  @Inject FormsTable formsTable;
   private Statement stmt;
 
   @Inject
@@ -500,18 +501,14 @@ public class DatabaseService {
     return appointmentsTable.getAppointmentsByAssignedStaffId(assignedStaffId);
   }
 
-  public Form getAppointmentForm(int appointmentId) {
-    return appointmentsTable.getAppointmentForm(appointmentId);
-  }
-
   public boolean updateAppointment(int appointmentId, Form form) {
     return appointmentsTable.updateAppointment(appointmentId, form);
   }
 
   // ----------------------------------------------------------------------------------------------------------------------------------------------------
 
-  public boolean addAppointmentType(String type, Form form) {
-    return appointmentTypesTable.addAppointmentType(type, form);
+  public boolean addAppointmentType(String type, int formId) {
+    return appointmentTypesTable.addAppointmentType(type, formId);
   }
 
   public HashSet<AppointmentType> getAllAppointmentTypes() {
@@ -520,6 +517,28 @@ public class DatabaseService {
 
   public AppointmentType getAppointmentType(int id) {
     return appointmentTypesTable.getAppointmentType(id);
+  }
+
+  public AppointmentType getAppointmentTypeByType(String type) {
+    return appointmentTypesTable.getAppointmentTypeByType(type);
+  }
+
+  // ----------------------------------------------------------------------------------------------------------------------------------------------------
+
+  public boolean addForm(NamedForm nForm) {
+    return formsTable.addForm(nForm);
+  }
+
+  public HashSet<NamedForm> getAllForms() {
+    return formsTable.getAllForms();
+  }
+
+  public NamedForm getForm(int id) {
+    return formsTable.getForm(id);
+  }
+
+  public NamedForm getFormByName(String name) {
+    return formsTable.getFormByName(name);
   }
 
   /**
@@ -619,10 +638,17 @@ public class DatabaseService {
               + "PRIMARY KEY (id))";
       stmt.execute(str);
       str =
+          "CREATE TABLE Forms("
+              + "id INT NOT NULL GENERATED ALWAYS AS IDENTITY, "
+              + "Name varchar(30) UNIQUE, "
+              + "Form BLOB(16M),"
+              + "PRIMARY KEY (id))";
+      stmt.execute(str);
+      str =
           "CREATE TABLE AppointmentTypes("
               + "id INT NOT NULL GENERATED ALWAYS AS IDENTITY, "
               + "Type varchar(70) UNIQUE, "
-              + "Form BLOB(16M), "
+              + "FormId INT NOT NULL REFERENCES FORMS (id), "
               + "PRIMARY KEY (id))";
       stmt.execute(str);
       str =

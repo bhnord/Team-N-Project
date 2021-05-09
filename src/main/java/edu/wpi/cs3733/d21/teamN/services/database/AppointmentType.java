@@ -1,16 +1,14 @@
 package edu.wpi.cs3733.d21.teamN.services.database;
 
-import edu.wpi.cs3733.d21.teamN.form.Form;
-
 public class AppointmentType {
   private int id;
   private String type;
-  private Form form;
+  private int formId;
 
-  AppointmentType(int id, String type, Form form) {
+  AppointmentType(int id, String type, int formId) {
     this.id = id;
     this.type = type;
-    this.form = form;
+    this.formId = formId;
   }
 
   public int getId() {
@@ -21,7 +19,7 @@ public class AppointmentType {
     return type;
   }
 
-  public Form getForm() {
-    return form;
+  public int getFormId() {
+    return formId;
   }
 }

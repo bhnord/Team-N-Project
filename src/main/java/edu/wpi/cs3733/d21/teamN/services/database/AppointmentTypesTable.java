@@ -1,7 +1,6 @@
 package edu.wpi.cs3733.d21.teamN.services.database;
 
 import com.google.inject.Inject;
-import edu.wpi.cs3733.d21.teamN.form.Form;
 import java.io.*;
 import java.sql.*;
 import java.util.HashSet;
@@ -9,6 +8,7 @@ import java.util.HashSet;
 public class AppointmentTypesTable {
   private final Connection connection;
   private Statement stmt;
+  private FormSerializer fs = new FormSerializer();
 
   @Inject
   AppointmentTypesTable(Connection connection) {
@@ -20,16 +20,13 @@ public class AppointmentTypesTable {
     }
   }
 
-  public boolean addAppointmentType(String type, Form form) {
+  public boolean addAppointmentType(String type, int formId) {
     try {
-      Blob blob = connection.createBlob();
-      blob.setBytes(1, toStream(form));
       PreparedStatement ps =
-          connection.prepareStatement("INSERT INTO APPOINTMENTTYPES (TYPE, FORM) VALUES (?, ?)");
+          connection.prepareStatement("INSERT INTO APPOINTMENTTYPES (TYPE, FORMID) VALUES (?, ?)");
       ps.setString(1, type);
-      ps.setBlob(2, blob);
+      ps.setInt(2, formId);
       ps.execute();
-      blob.free();
       ps.close();
       return true;
       // String str = "INSERT INTO APPOINTMENTTYPES VALUES " + type + ", " + blob;
@@ -68,35 +65,27 @@ public class AppointmentTypesTable {
     }
   }
 
-  private Form fromStream(byte[] stream) {
+  public AppointmentType getAppointmentTypeByType(String type) {
     try {
-      ByteArrayInputStream bais = new ByteArrayInputStream(stream);
-      ObjectInputStream ois = new ObjectInputStream(bais);
-      return (Form) ois.readObject();
-    } catch (IOException | ClassNotFoundException e) {
+      String str = "SELECT * FROM APPOINTMENTTYPES WHERE TYPE = '" + type + "'";
+      ResultSet rs = stmt.executeQuery(str);
+      HashSet<AppointmentType> set = resultSetToAppointmentTypes(rs);
+      if (set.size() > 0) {
+        return (AppointmentType) set.toArray()[0];
+      } else {
+        return null;
+      }
+    } catch (SQLException e) {
       e.printStackTrace();
       return null;
     }
   }
 
-  private byte[] toStream(Form f) {
-    byte[] stream = null;
-    try (ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        ObjectOutputStream oos = new ObjectOutputStream(baos)) {
-      oos.writeObject(f);
-      stream = baos.toByteArray();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-    return stream;
-  }
-
   private HashSet<AppointmentType> resultSetToAppointmentTypes(ResultSet rs) throws SQLException {
     HashSet<AppointmentType> appointmentTypes = new HashSet<>();
     while (rs.next()) {
-      Blob blob = rs.getBlob("FORM");
-      Form form = fromStream(blob.getBytes(1, (int) blob.length()));
-      appointmentTypes.add(new AppointmentType(rs.getInt("ID"), rs.getString("TYPE"), form));
+      appointmentTypes.add(
+          new AppointmentType(rs.getInt("ID"), rs.getString("TYPE"), rs.getInt("FORMID")));
     }
     return appointmentTypes;
   }
