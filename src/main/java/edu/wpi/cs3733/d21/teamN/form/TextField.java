@@ -35,11 +35,6 @@ public class TextField extends FormElement {
   }
 
   @Override
-  public String getValue() {
-    return textField.getText();
-  }
-
-  @Override
   protected void editViewInner(
       JFXComboBox<ElementType> comboBox, HBox box, JFXListView<HBox> list) {
     comboBox.getSelectionModel().select(ElementType.TextField);

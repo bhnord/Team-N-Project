@@ -2,8 +2,8 @@ package edu.wpi.cs3733.d21.teamN.views;
 
 import com.google.inject.Inject;
 import com.jfoenix.controls.JFXListView;
-import edu.wpi.cs3733.d21.teamN.form.Form;
 import edu.wpi.cs3733.d21.teamN.services.database.DatabaseService;
+import edu.wpi.cs3733.d21.teamN.services.database.NamedForm;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -11,7 +11,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
@@ -20,7 +19,7 @@ import javafx.scene.layout.VBox;
 
 public class FormEditorController extends MasterController implements Initializable {
 
-  Form form;
+  NamedForm form;
 
   @FXML VBox elements;
   @FXML JFXListView<HBox> editor;
@@ -28,7 +27,7 @@ public class FormEditorController extends MasterController implements Initializa
   @FXML AnchorPane anchorPane;
   @Inject private FXMLLoader loader;
   @Inject private DatabaseService db;
-  private String ogTitle;
+  private int id;
 
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
@@ -46,11 +45,11 @@ public class FormEditorController extends MasterController implements Initializa
     super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Service Request");
   }
 
-  public void setUp(Form form) {
+  public void setUp(NamedForm form) {
     this.form = form;
-    ogTitle = form.getTitle();
+
     editor.setMinWidth(1000);
-    form.editorBuild(editor);
+    form.getForm().editorBuild(editor);
   }
 
   public Label getTitle() {
@@ -58,13 +57,14 @@ public class FormEditorController extends MasterController implements Initializa
   }
 
   public void submit(ActionEvent actionEvent) throws IOException {
-//    Parent root = loader.load(getClass().getResourceAsStream("Templateform.fxml"));
-//    appPrimaryScene.setRoot(root);
-//    FormController formController = loader.getController();
-//    formController.setUp(form);
+    //    Parent root = loader.load(getClass().getResourceAsStream("Templateform.fxml"));
+    //    appPrimaryScene.setRoot(root);
+    //    FormController formController = loader.getController();
+    //    formController.setUp(form);
+    db.updateForm(form);
   }
 
   public void add(ActionEvent actionEvent) {
-    form.add(editor);
+    form.getForm().add(editor);
   }
 }

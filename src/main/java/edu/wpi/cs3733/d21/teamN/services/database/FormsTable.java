@@ -39,6 +39,37 @@ public class FormsTable {
     }
   }
 
+  public boolean updateForm(NamedForm nForm) {
+    try {
+      Blob blob = connection.createBlob();
+      blob.setBytes(1, fs.toStream(nForm.getForm()));
+      System.out.println(nForm.getForm().getNames().size());
+      String str = "UPDATE FORMS SET FORM = ?, NAME = ? WHERE NAME = ?";
+      PreparedStatement ps = connection.prepareStatement(str);
+      ps.setBlob(1, blob);
+      ps.setString(2, nForm.getName());
+      ps.setInt(3, nForm.getId());
+      ps.executeUpdate();
+      blob.free();
+      ps.close();
+      return true;
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return false;
+    }
+  }
+
+  public boolean deleteForm(int id) {
+    String st = "DELETE FROM FORMS WHERE id = '" + id + "'";
+    try {
+      stmt.execute(st);
+      return true;
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return false;
+    }
+  }
+
   public HashSet<NamedForm> getAllForms() {
     try {
       String str = "SELECT * FROM FORMS";

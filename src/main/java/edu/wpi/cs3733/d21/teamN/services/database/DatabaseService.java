@@ -542,6 +542,13 @@ public class DatabaseService {
     return formsTable.getFormByName(name);
   }
 
+  public boolean deleteForm(int id) {
+    return formsTable.deleteForm(id);
+  }
+
+  public boolean updateForm(NamedForm form) {
+    return formsTable.updateForm(form);
+  }
   /**
    * loads CSV files into database.
    *

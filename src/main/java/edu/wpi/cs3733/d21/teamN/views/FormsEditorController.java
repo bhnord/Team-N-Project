@@ -15,8 +15,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -33,7 +35,7 @@ public class FormsEditorController extends MasterController implements Initializ
   @Inject private DatabaseService db;
   @FXML @Inject StackPane rootStackPane;
 
-  private ArrayList<Form> forms;
+  private ArrayList<NamedForm> forms;
   private DialogFactory dialogFactory;
 
   /**
@@ -51,22 +53,36 @@ public class FormsEditorController extends MasterController implements Initializ
   public void initialize(URL location, ResourceBundle resources) {
     super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Service Request");
     dialogFactory = new DialogFactory(rootStackPane);
+
+    editor.setOnMouseClicked(
+        event -> {
+          int selected = editor.getSelectionModel().getSelectedIndex();
+          if (event.getButton() == MouseButton.PRIMARY && selected != -1) {
+            Parent root = null;
+            try {
+              root = loader.load(getClass().getResourceAsStream("Template.fxml"));
+            } catch (IOException e) {
+              e.printStackTrace();
+            }
+            appPrimaryScene.setRoot(root);
+            FormEditorController formController = loader.getController();
+            formController.setUp(forms.get(selected));
+          }
+        });
   }
 
   public void setUp() {
     editor.setMinWidth(1000);
-    forms = new ArrayList<>();
-    for (NamedForm nf : db.getAllForms()) {
-      forms.add(nf.getForm());
-    }
-    for (Form f : forms) {
-      editor.getItems().add(formsEditor(f));
+    forms = new ArrayList<>(db.getAllForms());
+    for (NamedForm f : forms) {
+      editor.getItems().add(formsEditor(f.getForm()));
     }
   }
 
   public HBox formsEditor(Form form) {
     HBox ret = new HBox();
     ret.setSpacing(15);
+    ret.setId(form.getTitle());
 
     FontIcon delete = new FontIcon();
     delete.setIconLiteral("gmi-clear");
@@ -92,12 +108,13 @@ public class FormsEditorController extends MasterController implements Initializ
     return title;
   }
 
-  public void submit(ActionEvent actionEvent) throws IOException {
-  }
+  public void submit(ActionEvent actionEvent) throws IOException {}
 
   public void add(ActionEvent actionEvent) {
-      Form nf = new Form();
-      forms.add(nf);
-      editor.getItems().add(formsEditor(nf));
+    Form nf = new Form();
+    NamedForm namedForm = new NamedForm(nf.getTitle().hashCode(), nf.getTitle(), nf);
+    db.addForm(namedForm);
+    forms.add(namedForm);
+    editor.getItems().add(formsEditor(nf));
   }
 }

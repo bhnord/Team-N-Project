@@ -1,17 +1,13 @@
 package edu.wpi.cs3733.d21.teamN;
 
 import com.google.inject.*;
-import edu.wpi.cs3733.d21.teamN.form.Form;
-import edu.wpi.cs3733.d21.teamN.services.database.Appointment;
 import edu.wpi.cs3733.d21.teamN.services.database.DatabaseService;
 import edu.wpi.cs3733.d21.teamN.services.database.DatabaseServiceProvider;
-import edu.wpi.cs3733.d21.teamN.services.database.NamedForm;
 import edu.wpi.cs3733.d21.teamN.services.database.users.UserPrefs;
 import edu.wpi.cs3733.d21.teamN.services.database.users.UserType;
 import edu.wpi.cs3733.d21.teamN.state.HomeStateProvider;
 import edu.wpi.cs3733.d21.teamN.views.FXMLLoaderProvider;
 import java.io.IOException;
-import java.sql.Timestamp;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -75,12 +71,12 @@ public class App extends Application {
     if (db.getUserByUsername("Finn") == null)
       db.addUser("Finn", "Finn", UserType.EMPLOYEE, new UserPrefs());
 
-    db.addForm(new NamedForm("BigBoyForm", new Form()));
-    db.getForm(1).getForm().tester();
-    db.addAppointmentType("NewType", 1);
-    db.addAppointment(
-        new Appointment(
-            1, 1, 1, new Form(), new Timestamp(System.currentTimeMillis()), "CSERV001L1"));
+    //    db.addForm(new NamedForm(1, "BigBoyForm", new Form()));
+    //    db.getForm(1).getForm().tester();
+    //    db.addAppointmentType("NewType", 1);
+    //    db.addAppointment(
+    //        new Appointment(
+    //            1, 1, 1, new Form(), new Timestamp(System.currentTimeMillis()), "CSERV001L1"));
   }
 
   @Override

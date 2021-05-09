@@ -354,11 +354,11 @@ public class HomeControllerAdmin extends MasterController implements Initializab
 
   public void testEdit(ActionEvent actionEvent) throws IOException {
     //    loader.setController(new FormEditorController());
-    Parent root = loader.load(getClass().getResourceAsStream("Template.fxml"));
-    appPrimaryScene.setRoot(root);
-    Form form = new Form();
-    FormEditorController controller = loader.getController();
-    controller.setUp(form);
+    //    Parent root = loader.load(getClass().getResourceAsStream("Template.fxml"));
+    //    appPrimaryScene.setRoot(root);
+    //    Form form = new Form();
+    //    FormEditorController controller = loader.getController();
+    //    controller.setUp(form);
   }
 
   public void updateStyle(String color) {
