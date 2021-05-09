@@ -110,7 +110,7 @@
                   </Group>
                   <Group fx:id="groupAboutUs">
                      <children>
-                        <Label fx:id="label61" layoutX="-1.0" maxWidth="1.7976931348623157E308" prefHeight="64.0" prefWidth="66.0" style="-fx-background-color: #748cdc;" stylesheets="@/StyleSheet/Dynamic.css" />
+                        <Label fx:id="label7" layoutX="-1.0" maxWidth="1.7976931348623157E308" prefHeight="64.0" prefWidth="66.0" style="-fx-background-color: #748cdc;" stylesheets="@/StyleSheet/Dynamic.css" />
                         <JFXButton fx:id="exit1" onAction="#aboutUs" prefHeight="64.0" prefWidth="66.0" text="info" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="9.0" />
