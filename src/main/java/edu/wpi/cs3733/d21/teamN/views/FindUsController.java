@@ -102,14 +102,13 @@ public class FindUsController extends MasterController implements Initializable 
   }
 
   public void updateStyle(String color) {
-    String style =
-        "-fx-background-color: " + "#" + color.substring(2) + "; -fx-background-radius: 25;";
+    Color appC = Color.web(color);
+    String s = appC.darker().darker().desaturate().toString();
+    String style = "-fx-background-color: " + "#" + s.substring(2) + "; -fx-background-radius: 25;";
     JFXButton[] lA = {submitButton, printButton};
     for (JFXButton a : lA) a.setStyle(style);
 
-    Color appC = Color.web(color);
-    String s = appC.darker().darker().desaturate().toString();
-    style = "-fx-background-color: " + "#" + s.substring(2) + "; -fx-background-radius: 25;";
+    style = "-fx-background-color: " + "#" + color.substring(2) + "; -fx-background-radius: 25;";
     if (db.getCurrentUser().getDarkMode()) {
       BackLabel.setStyle(style);
     }
