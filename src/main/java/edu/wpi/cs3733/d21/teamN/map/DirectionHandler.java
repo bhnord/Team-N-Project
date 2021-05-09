@@ -97,7 +97,7 @@ public class DirectionHandler {
   }
 
   public void addStop(Node n) {
-    if (stopNames.contains(n.get_longName())) {
+    if (stopNames.contains(n.get_nodeID())) {
       return;
     }
 
