@@ -25,7 +25,8 @@
          </font>
       </JFXButton>
       <AnchorPane fx:id="anchorPane" prefHeight="1153.0" prefWidth="66.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="590.0" layoutX="110.0" layoutY="152.0" stroke="#bcbcbc" strokeType="INSIDE" width="486.0" />
+      <Rectangle fx:id="rectangle" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="590.0" layoutX="110.0" layoutY="152.0" stroke="#bababa00" strokeType="INSIDE" width="486.0" />
+      <Label layoutX="390.0" layoutY="167.0" prefHeight="202.0" prefWidth="187.0" style="-fx-background-color: WHITE; -fx-background-radius: 25;" />
       <JFXListView fx:id="listView" layoutX="116.0" layoutY="161.0" prefHeight="535.0" prefWidth="261.0" stylesheets="@/StyleSheet/style.css" verticalGap="10.0" />
       <Label fx:id="messageLabel" layoutX="395.0" layoutY="654.0" prefHeight="21.0" prefWidth="200.0" text=" " />
       <Label fx:id="loadSuccess" layoutX="118.0" layoutY="705.0" prefHeight="21.0" prefWidth="463.0" />
