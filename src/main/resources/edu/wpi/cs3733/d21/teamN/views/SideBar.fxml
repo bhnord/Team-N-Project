@@ -121,7 +121,7 @@
                               <Font name="System Bold" size="9.0" />
                            </font>
                            <tooltip>
-                              <Tooltip fx:id="ttExit2" text="Exit App">
+                              <Tooltip fx:id="ttExit2" text="Info">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
