@@ -25,6 +25,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import lombok.extern.slf4j.Slf4j;
@@ -38,9 +40,12 @@ public class FindUsController extends MasterController implements Initializable 
   @FXML private ImageView mapImage;
   @FXML private JFXComboBox<String> addressBox;
   @FXML private Label directionsLabel;
-  @FXML private JFXButton printButton;
+  @FXML private JFXButton printButton, submitButton;
   // For sidebar nested FXML implementation
   @FXML private AnchorPane anchorPane;
+  @FXML private Label BackLabel;
+
+  @FXML Rectangle darkMode;
 
   private GeoApiContext context;
   private Scene appPrimaryScene;
@@ -61,8 +66,10 @@ public class FindUsController extends MasterController implements Initializable 
   public void initialize(URL location, ResourceBundle resources) {
     if (db.getCurrentUser().getUsername().equals("guest")) {
       super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Login Map");
+      darkMode.setVisible(false);
     } else {
       super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Map");
+      darkMode.setVisible(db.getCurrentUser().getDarkMode());
     }
     webEngine = webView.getEngine();
     context =
@@ -86,6 +93,25 @@ public class FindUsController extends MasterController implements Initializable 
         Objects.requireNonNull(
                 getClass().getResource("/edu/wpi/cs3733/d21/teamN/views/HospitalDirections.html"))
             .toExternalForm());
+
+    if (db.getCurrentUser().getUsername().equals("guest")) {
+      updateStyle("0x748cdc");
+    } else {
+      updateStyle(db.getCurrentUser().getAppColor());
+    }
+  }
+
+  public void updateStyle(String color) {
+    Color appC = Color.web(color);
+    String s = appC.darker().darker().desaturate().toString();
+    String style = "-fx-background-color: " + "#" + s.substring(2) + "; -fx-background-radius: 25;";
+    JFXButton[] lA = {submitButton, printButton};
+    for (JFXButton a : lA) a.setStyle(style);
+
+    style = "-fx-background-color: " + "#" + color.substring(2) + "; -fx-background-radius: 25;";
+    if (db.getCurrentUser().getDarkMode()) {
+      BackLabel.setStyle(style);
+    }
   }
 
   @FXML

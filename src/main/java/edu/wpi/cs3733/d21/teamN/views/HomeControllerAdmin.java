@@ -44,11 +44,13 @@ public class HomeControllerAdmin extends MasterController implements Initializab
       BackServiceRequests,
       BackCurrentRequests,
       BackEmployeeEditor,
-      BackFindUs;
+      BackFindUs,
+      BackFormEditor;
   @FXML private JFXButton mapEditor;
   @FXML private JFXButton ServiceRequests;
   @FXML private JFXButton EmployeeEditor;
   @FXML private JFXButton CurrentRequests;
+  @FXML private JFXButton FormEditor;
   @FXML private Label LogIn;
   @FXML private Group logInGroup;
 
@@ -94,7 +96,8 @@ public class HomeControllerAdmin extends MasterController implements Initializab
       makeInvisible(BackMapEditor);
       makeInvisible(ServiceRequests);
       makeInvisible(BackServiceRequests);
-      // makeInvisible(BackServiceRequests);
+      makeInvisible(FormEditor);
+      makeInvisible(BackFormEditor);
 
       updateStyle("0x748cdc");
       logInInit();
@@ -103,8 +106,11 @@ public class HomeControllerAdmin extends MasterController implements Initializab
       super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Home");
 
       user = db.getCurrentUser();
-      updateStyle(user.getAppColor());
-
+      if (user.getAppColor().equals("0x748cdc")) {
+        updateStyle("0x748cdc");
+      } else {
+        updateStyle(user.getAppColor());
+      }
       switch (db.getCurrentUser().getType()) {
           // different login cases
         case ADMINISTRATOR:
@@ -122,6 +128,9 @@ public class HomeControllerAdmin extends MasterController implements Initializab
           LogIn.setManaged(false);
           logInGroup.setVisible(false);
           logInGroup.setManaged(false);
+
+          makeInvisible(FormEditor);
+          makeInvisible(BackFormEditor);
           break;
         case PATIENT:
           makeInvisible(EmployeeEditor);
@@ -130,6 +139,9 @@ public class HomeControllerAdmin extends MasterController implements Initializab
           makeInvisible(BackCurrentRequests);
           makeInvisible(mapEditor);
           makeInvisible(BackMapEditor);
+
+          makeInvisible(FormEditor);
+          makeInvisible(BackFormEditor);
           LogIn.setVisible(false);
           LogIn.setManaged(false);
           logInGroup.setVisible(false);
@@ -253,6 +265,11 @@ public class HomeControllerAdmin extends MasterController implements Initializab
     appPrimaryScene.setRoot(root);
   }
 
+  public void formEditor(ActionEvent actionEvent) throws IOException {
+    Parent root = loader.load(getClass().getResourceAsStream("EditForms.fxml"));
+    appPrimaryScene.setRoot(root);
+  }
+
   /** LOGIN FUNCTIONS */
   public void logInInit() {
     // Login init
@@ -306,6 +323,11 @@ public class HomeControllerAdmin extends MasterController implements Initializab
   }
 
   @FXML
+  public void credits() throws IOException {
+    super.credits(loader, appPrimaryScene);
+  }
+
+  @FXML
   private void validateButton() {
     if (!usernameField.getText().isEmpty() && !passwordField.getText().isEmpty()) {
       goToHomePage.setDisable(false);
@@ -346,7 +368,8 @@ public class HomeControllerAdmin extends MasterController implements Initializab
       BackServiceRequests,
       BackCurrentRequests,
       BackEmployeeEditor,
-      BackFindUs
+      BackFindUs,
+      BackFormEditor
     };
     for (Label a : lA) a.setStyle(style);
 

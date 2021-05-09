@@ -3,6 +3,7 @@ package edu.wpi.cs3733.d21.teamN.faceLogin;
 import edu.wpi.cs3733.d21.teamN.services.database.DatabaseService;
 import edu.wpi.cs3733.d21.teamN.services.database.users.User;
 import java.io.File;
+import java.util.Objects;
 import java.util.concurrent.*;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfRect;
@@ -51,7 +52,11 @@ public class FaceLogin extends FaceRec {
 
   private User identifyUser() {
     File classifier =
-        new File("src/main/resources/FacialRec/lbpcascades/lbpcascade_frontalface_improved.xml");
+        new File(
+            Objects.requireNonNull(
+                    getClass()
+                        .getResource("/FacialRec/lbpcascades/lbpcascade_frontalface_improved.xml"))
+                .getFile());
 
     if (!classifier.exists()) {
       displayFatalError("Unable to find classifier!");

@@ -89,6 +89,12 @@ public class MasterController implements Initializable {
     ChildAppPrimaryScene.setRoot(root);
   }
 
+  @FXML
+  public void credits(FXMLLoader childLoader, Scene ChildAppPrimaryScene) throws IOException {
+    Parent root = childLoader.load(getClass().getResourceAsStream("CreditsPage.fxml"));
+    ChildAppPrimaryScene.setRoot(root);
+  }
+
   private void advanceServiceRequestPatient(FXMLLoader childLoader, Scene ChildAppPrimaryScene)
       throws IOException {
     Parent root = childLoader.load(getClass().getResourceAsStream("ServiceRequestsPatient.fxml"));
@@ -171,7 +177,7 @@ public class MasterController implements Initializable {
     appPrimaryScene.setRoot(root);
   }
 
-  public void sideBarSetup(
+  public SideBarController sideBarSetup(
       AnchorPane anchorPane, Scene appPrimaryScene, FXMLLoader loader, String type) {
     FXMLLoader loader2 = new FXMLLoader(getClass().getResource("SideBar.fxml"));
     Parent root = null;
@@ -187,6 +193,7 @@ public class MasterController implements Initializable {
     sideBarController.setDB(db);
     sideBarController.setType(type);
     anchorPane.getChildren().setAll(pane);
+    return sideBarController;
   }
 
   public SideBarController sideBarSetup(
