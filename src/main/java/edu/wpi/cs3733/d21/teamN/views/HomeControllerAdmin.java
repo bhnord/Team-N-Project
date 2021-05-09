@@ -150,6 +150,39 @@ public class HomeControllerAdmin extends MasterController implements Initializab
           break;
       }
     }
+
+    // if login matches the name of the person filling out covid form
+    //    int idCovid = db.getCurrentUser().getId();
+    //    if (db.getCovidFormByUserId(idCovid) != null) {
+    //      // pop-up for main entrance
+    //      if (db.getCovidFormByUserId(idCovid).isOk() == true) {
+    //        dialogFactory.creatDialogOkayWithAction(
+    //            "",
+    //            "Your covid form has been processed! You can enter the hospital through the main
+    // entrance.",
+    //            event -> {
+    //              try {
+    //                advanceHome();
+    //              } catch (IOException e) {
+    //                e.printStackTrace();
+    //              }
+    //            });
+    //      }
+    //      // pop-up for emergency
+    //      else {
+    //        dialogFactory.creatDialogOkayWithAction(
+    //            "",
+    //            "Your covid form has been processed! Please enter the hospital through the
+    // emergency entrance",
+    //            event -> {
+    //              try {
+    //                advanceHome();
+    //              } catch (IOException e) {
+    //                e.printStackTrace();
+    //              }
+    //            });
+    //      }
+    //    }
   }
 
   @FXML
@@ -239,6 +272,8 @@ public class HomeControllerAdmin extends MasterController implements Initializab
 
   public void formEditor(ActionEvent actionEvent) throws IOException {
     Parent root = loader.load(getClass().getResourceAsStream("EditForms.fxml"));
+    FormsEditorController controller = loader.getController();
+    controller.setUp();
     appPrimaryScene.setRoot(root);
   }
 
@@ -316,6 +351,24 @@ public class HomeControllerAdmin extends MasterController implements Initializab
   @FXML
   private void exit(ActionEvent actionEvent) throws IOException {
     super.cancel(actionEvent);
+  }
+
+  public void test(ActionEvent actionEvent) throws IOException {
+    //    loader.setController(new FormController());
+    //    Parent root = loader.load(getClass().getResourceAsStream("Templateform.fxml"));
+    //    appPrimaryScene.setRoot(root);
+    //    Form form = new Form();
+    //    FormController formController = loader.getController();
+    //    formController.setUp(form);
+  }
+
+  public void testEdit(ActionEvent actionEvent) throws IOException {
+    //    loader.setController(new FormEditorController());
+    //    Parent root = loader.load(getClass().getResourceAsStream("Template.fxml"));
+    //    appPrimaryScene.setRoot(root);
+    //    Form form = new Form();
+    //    FormEditorController controller = loader.getController();
+    //    controller.setUp(form);
   }
 
   public void appointment(ActionEvent actionEvent) throws IOException {

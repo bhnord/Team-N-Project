@@ -285,5 +285,10 @@
             <Insets bottom="50.0" right="80.0" />
          </StackPane.margin>
       </JFXTextField>
+      <JFXButton fx:id="reverse" buttonType="RAISED" onAction="#goBack" prefHeight="40.0" prefWidth="75.0" style="-fx-background-color: #363d54; -fx-background-radius: 0;" stylesheets="/Fonts/Roboto-Light.css" text="Reverse" textFill="WHITE" StackPane.alignment="TOP_RIGHT">
+         <StackPane.margin>
+            <Insets right="20.0" top="100.0" />
+         </StackPane.margin>
+      </JFXButton>
     </children>
 </StackPane>

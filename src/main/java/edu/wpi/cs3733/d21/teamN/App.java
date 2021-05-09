@@ -70,6 +70,13 @@ public class App extends Application {
       db.addUser("Ananya", "Ananya", UserType.EMPLOYEE, new UserPrefs());
     if (db.getUserByUsername("Finn") == null)
       db.addUser("Finn", "Finn", UserType.EMPLOYEE, new UserPrefs());
+
+    //    db.addForm(new NamedForm(1, "BigBoyForm", new Form()));
+    //    db.getForm(1).getForm().tester();
+    //    db.addAppointmentType("NewType", 1);
+    //    db.addAppointment(
+    //        new Appointment(
+    //            1, 1, 1, new Form(), new Timestamp(System.currentTimeMillis()), "CSERV001L1"));
   }
 
   @Override

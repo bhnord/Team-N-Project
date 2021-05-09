@@ -2,12 +2,14 @@ package edu.wpi.cs3733.d21.teamN.services.database;
 
 import com.google.gson.Gson;
 import com.google.inject.Inject;
+import edu.wpi.cs3733.d21.teamN.form.Form;
 import edu.wpi.cs3733.d21.teamN.services.algo.Edge;
 import edu.wpi.cs3733.d21.teamN.services.algo.Node;
 import edu.wpi.cs3733.d21.teamN.services.database.requests.Request;
 import edu.wpi.cs3733.d21.teamN.services.database.requests.RequestType;
 import edu.wpi.cs3733.d21.teamN.services.database.users.*;
 import java.awt.image.BufferedImage;
+import java.sql.*;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -32,6 +34,9 @@ public class DatabaseService {
   @Inject EdgesTable edgesTable;
   @Inject CovidFormsTable covidTable;
   @Inject RequestsTable requestsTable;
+  @Inject AppointmentsTable appointmentsTable;
+  @Inject AppointmentTypesTable appointmentTypesTable;
+  @Inject FormsTable formsTable;
   private Statement stmt;
 
   @Inject
@@ -124,7 +129,7 @@ public class DatabaseService {
     nodesTable.deleteNodeRows();
   }
 
-  /// EDGES
+  // ----------------------------------------------------------------------------------------------------------------------------------------------------
 
   /**
    * retrieves all edges from the database
@@ -211,6 +216,8 @@ public class DatabaseService {
     edgesTable.deleteEdgeRows();
   }
 
+  // ----------------------------------------------------------------------------------------------------------------------------------------------------
+
   /**
    * adds a request to the database
    *
@@ -286,7 +293,7 @@ public class DatabaseService {
     return requestsTable.updateRequest(requestID, type, senderID, receiverID, content, notes);
   }
 
-  //////////////////////////
+  // ----------------------------------------------------------------------------------------------------------------------------------------------------
 
   /**
    * retrieves all users from the database
@@ -382,6 +389,8 @@ public class DatabaseService {
     return usersTable.updateUserImage(id, image);
   }
 
+  // ----------------------------------------------------------------------------------------------------------------------------------------------------
+
   /**
    * retrieves all CovidForms from the database
    *
@@ -472,6 +481,75 @@ public class DatabaseService {
     return covidTable.setCovidFormIsProcessed(id, isProcessed);
   }
 
+  // ----------------------------------------------------------------------------------------------------------------------------------------------------
+
+  public boolean addAppointment(Appointment appointment) {
+    return appointmentsTable.addAppointment(appointment);
+  }
+
+  public HashSet<Appointment> getAllAppointments() {
+    return appointmentsTable.getAllAppointments();
+  }
+
+  public Appointment getAppointment(int appointmentId) {
+    return appointmentsTable.getAppointment(appointmentId);
+  }
+
+  public HashSet<Appointment> getAppointmentsByPatientId(int patientId) {
+    return appointmentsTable.getAppointmentsByPatientId(patientId);
+  }
+
+  public HashSet<Appointment> getAppointmentsByAssignedStaffId(int assignedStaffId) {
+    return appointmentsTable.getAppointmentsByAssignedStaffId(assignedStaffId);
+  }
+
+  public boolean updateAppointment(int appointmentId, Form form) {
+    return appointmentsTable.updateAppointment(appointmentId, form);
+  }
+
+  // ----------------------------------------------------------------------------------------------------------------------------------------------------
+
+  public boolean addAppointmentType(String type, int formId) {
+    return appointmentTypesTable.addAppointmentType(type, formId);
+  }
+
+  public HashSet<AppointmentType> getAllAppointmentTypes() {
+    return appointmentTypesTable.getAllAppointmentTypes();
+  }
+
+  public AppointmentType getAppointmentType(int id) {
+    return appointmentTypesTable.getAppointmentType(id);
+  }
+
+  public AppointmentType getAppointmentTypeByType(String type) {
+    return appointmentTypesTable.getAppointmentTypeByType(type);
+  }
+
+  // ----------------------------------------------------------------------------------------------------------------------------------------------------
+
+  public boolean addForm(NamedForm nForm) {
+    return formsTable.addForm(nForm);
+  }
+
+  public HashSet<NamedForm> getAllForms() {
+    return formsTable.getAllForms();
+  }
+
+  public NamedForm getForm(int id) {
+    return formsTable.getForm(id);
+  }
+
+  public NamedForm getFormByName(String name) {
+    return formsTable.getFormByName(name);
+  }
+
+  public boolean deleteForm(int id) {
+    return formsTable.deleteForm(id);
+  }
+
+  public boolean updateForm(NamedForm form) {
+    return formsTable.updateForm(form);
+  }
   /**
    * loads CSV files into database.
    *
@@ -493,7 +571,7 @@ public class DatabaseService {
       stmt.execute(str);
       return true;
     } catch (SQLException e) {
-      e.printStackTrace();
+      //      e.printStackTrace();
       return false;
     }
   }
@@ -568,6 +646,32 @@ public class DatabaseService {
               + "ExtraInfo varchar(250), "
               + "IsOk BOOLEAN, "
               + "IsProcessed BOOLEAN, "
+              + "PRIMARY KEY (id))";
+      stmt.execute(str);
+      str =
+          "CREATE TABLE Forms("
+              + "id INT NOT NULL GENERATED ALWAYS AS IDENTITY, "
+              + "Name varchar(30) UNIQUE, "
+              + "Form BLOB(16M),"
+              + "PRIMARY KEY (id))";
+      stmt.execute(str);
+      str =
+          "CREATE TABLE AppointmentTypes("
+              + "id INT NOT NULL GENERATED ALWAYS AS IDENTITY, "
+              + "Type varchar(70) UNIQUE, "
+              + "FormId INT NOT NULL REFERENCES FORMS (id), "
+              + "PRIMARY KEY (id))";
+      stmt.execute(str);
+      str =
+          "CREATE TABLE Appointments("
+              + "id INT NOT NULL GENERATED ALWAYS AS IDENTITY, "
+              + "AppointmentTypeId INT NOT NULL REFERENCES AppointmentTypes (id), "
+              + "PatientId INT NOT NULL REFERENCES Users (id), "
+              + "AssignedStaffId INT REFERENCES Users (id), "
+              + "Form BLOB(16M), "
+              + "TimeOfAppointment TIMESTAMP,"
+              + "CheckInStatus BOOLEAN, "
+              + "AssociatedRoomId varchar(60) REFERENCES NODES (id), "
               + "PRIMARY KEY (id))";
       stmt.execute(str);
       return true;
