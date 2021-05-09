@@ -89,7 +89,7 @@
                   <Group fx:id="groupHome">
                      <children>
                         <Label fx:id="label2" layoutX="-1.0" maxWidth="1.7976931348623157E308" prefHeight="64.0" prefWidth="66.0" style="-fx-background-color: #748cdc;" stylesheets="@/StyleSheet/Dynamic.css" />
-                        <ImageView fitHeight="55.0" fitWidth="50.0" layoutX="3.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" translateX="5.0" translateY="7.5">
+                        <ImageView fitHeight="55.0" fitWidth="50.0" layoutX="2.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" translateX="5.0" translateY="7.5">
                            <image>
                               <Image url="@/images/Icons/newhome.png" />
                            </image>
@@ -111,7 +111,7 @@
                   <Group fx:id="groupAboutUs">
                      <children>
                         <Label fx:id="label7" layoutX="-1.0" maxWidth="1.7976931348623157E308" prefHeight="64.0" prefWidth="66.0" style="-fx-background-color: #748cdc;" stylesheets="@/StyleSheet/Dynamic.css" />
-                        <ImageView fitHeight="58.0" fitWidth="49.0" layoutX="9.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="44.0" fitWidth="44.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@/images/Icons/newinfo.png" />
                            </image>
@@ -204,7 +204,7 @@
                   <Group fx:id="groupExit">
                      <children>
                         <Label fx:id="label6" layoutX="-1.0" maxWidth="1.7976931348623157E308" prefHeight="64.0" prefWidth="66.0" style="-fx-background-color: #748cdc;" stylesheets="@/StyleSheet/Dynamic.css" />
-                        <ImageView fitHeight="60.0" fitWidth="49.0" layoutX="8.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="64.0" fitWidth="49.0" layoutX="7.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@/images/Icons/newclose.png" />
                            </image>
