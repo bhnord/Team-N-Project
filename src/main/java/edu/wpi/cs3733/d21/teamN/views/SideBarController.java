@@ -6,6 +6,9 @@ import com.jfoenix.controls.JFXToggleButton;
 import edu.wpi.cs3733.d21.teamN.faceLogin.FaceEnroller;
 import edu.wpi.cs3733.d21.teamN.services.database.DatabaseService;
 import edu.wpi.cs3733.d21.teamN.services.database.users.User;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,10 +26,6 @@ import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import lombok.extern.slf4j.Slf4j;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-
 @Slf4j
 public class SideBarController extends MasterController implements Initializable {
 
@@ -42,6 +41,7 @@ public class SideBarController extends MasterController implements Initializable
   @FXML private Group groupBack;
   @FXML private Group groupHome;
   @FXML private Group groupAccountSettings;
+  @FXML private Group groupAboutUs;
   @FXML private ImageView LogOutBack;
   @FXML private ImageView RegisterBack;
 
@@ -213,6 +213,14 @@ public class SideBarController extends MasterController implements Initializable
     appPrimaryScene.setRoot(root);
   }
 
+  public void aboutUs(ActionEvent actionEvent) throws IOException {
+    // accountSettingsGroup.setTranslateX(0);
+
+    Parent root = loader.load(getClass().getResourceAsStream("AboutUs.fxml"));
+    // open = false;
+    appPrimaryScene.setRoot(root);
+  }
+
   /** ------------------------------------------------------------------------------------ */
 
   /**
@@ -268,6 +276,12 @@ public class SideBarController extends MasterController implements Initializable
       makeInvisible(groupBack);
       makeInvisible(groupLogOut);
       makeInvisible(groupAccountSettings);
+    } else if (type.equals("About Us")) {
+      makeInvisible(groupLogOut);
+      makeInvisible(groupCovid);
+      makeInvisible(groupBack);
+      makeInvisible(groupAccountSettings);
+      makeInvisible(groupAboutUs);
     }
   }
 
