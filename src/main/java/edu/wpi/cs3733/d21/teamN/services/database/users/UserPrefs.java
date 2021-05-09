@@ -10,6 +10,7 @@ public class UserPrefs {
       pathfindingColor,
       highlightColor,
       appColor;
+  private boolean darkMode;
   private double nodeSize = 3, edgeWidth = 1.5;
 
   public UserPrefs() {
@@ -19,7 +20,7 @@ public class UserPrefs {
     this.stairColor = "#ff4500";
     this.pathfindingColor = "#000000";
     this.highlightColor = "#008000";
-    this.appColor = "#ffffff";
+    this.appColor = "0x748cdc";
   }
 
   public UserPrefs(
@@ -115,6 +116,14 @@ public class UserPrefs {
     this.appColor = appColor;
   }
 
+  public boolean getDarkMode() {
+    return darkMode;
+  }
+
+  public void setDarkMode(boolean darkMode) {
+    this.darkMode = darkMode;
+  }
+
   @Override
   public String toString() {
     return "UserPrefs{"
@@ -139,6 +148,8 @@ public class UserPrefs {
         + ", appColor='"
         + appColor
         + '\''
+        + ", darkMode="
+        + darkMode
         + ", nodeSize="
         + nodeSize
         + ", edgeWidth="

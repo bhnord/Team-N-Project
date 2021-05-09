@@ -21,6 +21,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
 public class CurrentRequestController extends MasterController implements Initializable {
 
@@ -28,7 +30,6 @@ public class CurrentRequestController extends MasterController implements Initia
   @Inject private DatabaseService db;
   @Inject private FXMLLoader loader;
   @FXML private JFXListView<Label> listView;
-  @FXML private JFXButton markCompleteButton;
   @FXML private Label requestId;
   @FXML private Label requestType;
   @FXML private Label senderName;
@@ -52,6 +53,12 @@ public class CurrentRequestController extends MasterController implements Initia
   @FXML JFXComboBox<String> entrance = new JFXComboBox<>();
   private int userId;
 
+  @FXML JFXButton submitCovidButton, markCompleteButton;
+  @FXML Rectangle darkMode;
+  @FXML Label text;
+
+  @FXML Rectangle rectangle1, rectangle2;
+
   @Inject
   public void setAppPrimaryScene(Scene appPrimaryScene) {
     this.appPrimaryScene = appPrimaryScene;
@@ -61,6 +68,13 @@ public class CurrentRequestController extends MasterController implements Initia
   public void initialize(URL url, ResourceBundle rb) {
     entrance.getItems().add("enter through emergency entrance");
     entrance.getItems().add("enter through 75 parking lot");
+
+    if (db.getCurrentUser().getDarkMode()) {
+      Color c = Color.web("WHITE");
+      text.setTextFill(c);
+    }
+
+    darkMode.setVisible(db.getCurrentUser().getDarkMode());
 
     int idCovid = db.getCurrentUser().getId();
     db.setCovidFormIsProcessed(idCovid, false);
@@ -119,6 +133,22 @@ public class CurrentRequestController extends MasterController implements Initia
         });
 
     super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Database");
+
+    updateStyle(db.getCurrentUser().getAppColor());
+  }
+
+  public void updateStyle(String color) {
+
+    Color appC = Color.web(color);
+    String s = appC.darker().darker().darker().desaturate().toString();
+
+    String style = "-fx-background-color: " + "#" + s.substring(2) + "; -fx-background-radius: 25;";
+    JFXButton[] lA = {submitCovidButton, markCompleteButton};
+    for (JFXButton a : lA) a.setStyle(style);
+
+    Color c = Color.web(color);
+    rectangle1.setFill(c);
+    rectangle2.setFill(c);
   }
 
   private void setEmptyFields() {

@@ -5,8 +5,10 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.RequiredFieldValidator;
+import edu.wpi.cs3733.d21.teamN.faceLogin.FaceLogin;
 import edu.wpi.cs3733.d21.teamN.services.database.DatabaseService;
 import edu.wpi.cs3733.d21.teamN.services.database.users.User;
+import edu.wpi.cs3733.d21.teamN.state.HomeState;
 import edu.wpi.cs3733.d21.teamN.utilities.DialogFactory;
 import java.io.IOException;
 import java.net.URL;
@@ -22,6 +24,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.shape.Rectangle;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -29,6 +33,7 @@ public class HomeControllerAdmin extends MasterController implements Initializab
 
   @Inject DatabaseService db;
   @Inject FXMLLoader loader;
+  @Inject HomeState state;
 
   // all buttons for FXML page that can be hidden, hide in pairs
   @FXML private JFXButton mapPathfinder;
@@ -38,11 +43,13 @@ public class HomeControllerAdmin extends MasterController implements Initializab
       BackServiceRequests,
       BackCurrentRequests,
       BackEmployeeEditor,
-      BackFindUs;
+      BackFindUs,
+      BackFormEditor;
   @FXML private JFXButton mapEditor;
   @FXML private JFXButton ServiceRequests;
   @FXML private JFXButton EmployeeEditor;
   @FXML private JFXButton CurrentRequests;
+  @FXML private JFXButton FormEditor;
   @FXML private Label LogIn;
   @FXML private Group logInGroup;
 
@@ -51,6 +58,7 @@ public class HomeControllerAdmin extends MasterController implements Initializab
   @FXML private JFXPasswordField passwordField;
   @FXML private JFXButton goToHomePage;
   @FXML private Label incorrectLogin;
+  @FXML private StackPane rootStackPane;
   private String accountUsername = "";
   private String accountPassword = "";
 
@@ -59,6 +67,8 @@ public class HomeControllerAdmin extends MasterController implements Initializab
   private DialogFactory dialogFactory;
   private Scene appPrimaryScene;
   private User user;
+
+  @FXML Rectangle darkMode;
 
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
@@ -85,7 +95,8 @@ public class HomeControllerAdmin extends MasterController implements Initializab
       makeInvisible(BackMapEditor);
       makeInvisible(ServiceRequests);
       makeInvisible(BackServiceRequests);
-      // makeInvisible(BackServiceRequests);
+      makeInvisible(FormEditor);
+      makeInvisible(BackFormEditor);
 
       updateStyle("0x748cdc");
       logInInit();
@@ -94,8 +105,11 @@ public class HomeControllerAdmin extends MasterController implements Initializab
       super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Home");
 
       user = db.getCurrentUser();
-      updateStyle(user.getAppColor());
-
+      if (user.getAppColor().equals("0x748cdc")) {
+        updateStyle("0x748cdc");
+      } else {
+        updateStyle(user.getAppColor());
+      }
       switch (db.getCurrentUser().getType()) {
           // different login cases
         case ADMINISTRATOR:
@@ -113,6 +127,9 @@ public class HomeControllerAdmin extends MasterController implements Initializab
           LogIn.setManaged(false);
           logInGroup.setVisible(false);
           logInGroup.setManaged(false);
+
+          makeInvisible(FormEditor);
+          makeInvisible(BackFormEditor);
           break;
         case PATIENT:
           makeInvisible(EmployeeEditor);
@@ -121,6 +138,9 @@ public class HomeControllerAdmin extends MasterController implements Initializab
           makeInvisible(BackCurrentRequests);
           makeInvisible(mapEditor);
           makeInvisible(BackMapEditor);
+
+          makeInvisible(FormEditor);
+          makeInvisible(BackFormEditor);
           LogIn.setVisible(false);
           LogIn.setManaged(false);
           logInGroup.setVisible(false);
@@ -199,7 +219,11 @@ public class HomeControllerAdmin extends MasterController implements Initializab
     Parent root = loader.load(getClass().getResourceAsStream("Pathfinder.fxml"));
     appPrimaryScene.setRoot(root);
   }
-
+  /*
+  public void faceRec(ActionEvent actionEvent) throws IOException {
+    Parent root = loader.load(getClass().getResourceAsStream("FacialRecognitionAdd.fxml"));
+    appPrimaryScene.setRoot(root);
+  }*/
   /**
    * findUs advances to findUs FXML
    *
@@ -208,6 +232,11 @@ public class HomeControllerAdmin extends MasterController implements Initializab
    */
   public void findUs(ActionEvent actionEvent) throws IOException {
     Parent root = loader.load(getClass().getResourceAsStream("FindUs.fxml"));
+    appPrimaryScene.setRoot(root);
+  }
+
+  public void formEditor(ActionEvent actionEvent) throws IOException {
+    Parent root = loader.load(getClass().getResourceAsStream("EditForms.fxml"));
     appPrimaryScene.setRoot(root);
   }
 
@@ -264,6 +293,16 @@ public class HomeControllerAdmin extends MasterController implements Initializab
   }
 
   @FXML
+  public void credits() throws IOException {
+    super.credits(loader, appPrimaryScene);
+  }
+
+  @FXML
+  public void helpPage() throws IOException {
+    super.helpPage(loader, appPrimaryScene);
+  }
+
+  @FXML
   private void validateButton() {
     if (!usernameField.getText().isEmpty() && !passwordField.getText().isEmpty()) {
       goToHomePage.setDisable(false);
@@ -286,8 +325,31 @@ public class HomeControllerAdmin extends MasterController implements Initializab
       BackServiceRequests,
       BackCurrentRequests,
       BackEmployeeEditor,
-      BackFindUs
+      BackFindUs,
+      BackFormEditor
     };
     for (Label a : lA) a.setStyle(style);
+
+    if (db.getCurrentUser().getDarkMode()) {
+      darkMode.setVisible(true);
+    } else {
+      darkMode.setVisible(false);
+    }
+  }
+
+  @FXML
+  private void loginWithFace() {
+    FaceLogin facialRecognition = new FaceLogin(db);
+    User user = facialRecognition.getUserFromFace();
+    if (user != null) {
+      db.setLoggedInUser(user);
+      super.advanceHome(loader, appPrimaryScene);
+    } else {
+      dialogFactory = new DialogFactory(rootStackPane);
+      dialogFactory.creatDialogOkay(
+          "Couldn't Log You In",
+          "Sorry we couldn't log you in"
+              + " with FaceID. Please log in with your username and password.");
+    }
   }
 }

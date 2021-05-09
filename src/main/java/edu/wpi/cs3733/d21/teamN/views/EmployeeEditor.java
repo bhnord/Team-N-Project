@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.d21.teamN.views;
 
 import com.google.inject.Inject;
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
@@ -23,6 +24,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
 import lombok.extern.slf4j.Slf4j;
 
@@ -40,10 +43,13 @@ public class EmployeeEditor extends MasterController implements Initializable {
   @FXML private Button HomeView;
   @FXML private JFXListView<Label> listView;
   @FXML private AnchorPane anchorPane;
+  @FXML Label text;
 
   @FXML private JFXTextField txtUsername;
   @FXML private JFXTextField txtPassword;
   @FXML private JFXComboBox<Label> userTypeDropdown = new JFXComboBox<>();
+  @FXML Rectangle darkMode;
+  @FXML Rectangle rectangle;
   // TODO REMOVE NODE ID FIELD TO JUST LABEL AND NOT AN EDITOR.
   private Label selectedLabel;
   private Scene appPrimaryScene;
@@ -64,6 +70,13 @@ public class EmployeeEditor extends MasterController implements Initializable {
   @Override
   public void initialize(URL url, ResourceBundle rb) {
 
+    darkMode.setVisible(db.getCurrentUser().getDarkMode());
+    if (db.getCurrentUser().getDarkMode()) {
+      Color c = Color.web("WHITE");
+      text.setTextFill(c);
+    }
+
+    updateStyle(db.getCurrentUser().getAppColor());
     super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Database");
 
     listView.setOnMouseClicked(
@@ -199,5 +212,17 @@ public class EmployeeEditor extends MasterController implements Initializable {
 
   public void advanceViews(ActionEvent actionEvent) throws IOException {
     super.advanceViews(actionEvent);
+  }
+
+  @FXML private JFXButton commitChangesButton, addEmployeeButton, deleteUserButton;
+
+  public void updateStyle(String color) {
+    String style =
+        "-fx-background-color: " + "#" + color.substring(2) + "; -fx-background-radius: 25;";
+    JFXButton[] lA = {commitChangesButton, addEmployeeButton, deleteUserButton};
+    for (JFXButton a : lA) a.setStyle(style);
+
+    Color c = Color.web(color);
+    rectangle.setFill(c);
   }
 }

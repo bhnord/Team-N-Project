@@ -17,6 +17,7 @@ public class AddressAutoComplete {
 
   public AddressAutoComplete(final JFXComboBox addressBox) {
     this.addressBox = addressBox;
+    this.addressBox.setEditable(true);
     GeoApiContext context =
         new GeoApiContext.Builder().apiKey("AIzaSyBBszEPZvetVvgsIbt3pLtXLbPap6dT-KY" + "").build();
     PlaceAutocompleteRequest.SessionToken token = new PlaceAutocompleteRequest.SessionToken();
