@@ -64,6 +64,10 @@ public class Appointment {
     return form;
   }
 
+  public void setForm(Form form) {
+    this.form = form;
+  }
+
   public Timestamp getTimeOfAppointment() {
     return timeOfAppointment;
   }
