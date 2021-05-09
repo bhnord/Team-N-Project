@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.*?>
-<?import java.net.URL?>
+<?import javafx.scene.text.Font?>
+
 <StackPane fx:id="rootStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.d21.teamN.views.HomeControllerAdmin">
    <children>
       <ImageView fitHeight="1766.0" fitWidth="1458.0" pickOnBounds="true" preserveRatio="true" scaleX="2.0" scaleY="2.0" StackPane.alignment="TOP_LEFT">
@@ -129,7 +137,7 @@
                         </Label>
                         <JFXButton fx:id="RegisterNewUser" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" layoutX="94.0" layoutY="138.0" mnemonicParsing="false" onAction="#register" prefHeight="30.0" prefWidth="174.0" style="-fx-background-color: #6985e0;" text="Register" textFill="WHITE" />
                         <Label layoutX="166.0" layoutY="300.0" />
-                        <JFXButton buttonType="RAISED" layoutX="94.0" layoutY="91.0" prefHeight="30.0" prefWidth="174.0" style="-fx-background-color: #6985e0;" stylesheets="@/Fonts/Roboto-Light.css" text="FACE ID" textFill="WHITE"  onAction="#loginWithFace"/>
+                        <JFXButton buttonType="RAISED" layoutX="94.0" layoutY="91.0" onAction="#loginWithFace" prefHeight="30.0" prefWidth="174.0" style="-fx-background-color: #6985e0;" stylesheets="@/Fonts/Roboto-Light.css" text="FACE ID" textFill="WHITE" />
                         <JFXButton fx:id="Credits" buttonType="RAISED" layoutX="141.0" layoutY="271.0" onAction="#credits" prefHeight="29.0" prefWidth="79.0" style="-fx-background-color: #6985e0;" stylesheets="@/Fonts/Roboto-Light.css" text="Credits" textFill="WHITE" />
                         <JFXButton fx:id="HelpPage" buttonType="RAISED" layoutX="141.0" layoutY="315.0" onAction="#helpPage" prefHeight="29.0" prefWidth="79.0" style="-fx-background-color: #6985e0;" stylesheets="@/Fonts/Roboto-Light.css" text="Help" textFill="WHITE" />
                      </children>
@@ -156,6 +164,7 @@
               <rowConstraints>
                 <RowConstraints minHeight="0.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="-Infinity" minHeight="0.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="-Infinity" minHeight="0.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="-Infinity" minHeight="0.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
@@ -203,6 +212,22 @@
                      </GridPane.margin>
                   </JFXButton>
                   <JFXButton fx:id="FindUs" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#findUs" prefHeight="195.0" prefWidth="728.0" stylesheets="@/StyleSheet/style.css" text="DIRECTIONS TO HOSPITAL" textFill="WHITE" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Arial Black" size="18.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <GridPane.margin>
+                        <Insets bottom="45.0" left="45.0" right="45.0" top="45.0" />
+                     </GridPane.margin>
+                  </JFXButton>
+                  <Label fx:id="BackAppointment" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #748cdc; -fx-background-radius: 25;" stylesheets="@/StyleSheet/Dynamic.css" GridPane.rowIndex="3">
+                     <GridPane.margin>
+                        <Insets bottom="35.0" left="35.0" right="35.0" top="35.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <JFXButton fx:id="Appointment" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#appointment" prefHeight="195.0" prefWidth="728.0" stylesheets="@/StyleSheet/style.css" text="APPOINTMENTS" textFill="WHITE" GridPane.rowIndex="3">
                      <font>
                         <Font name="Arial Black" size="18.0" />
                      </font>

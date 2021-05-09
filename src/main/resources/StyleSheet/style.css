@@ -39,6 +39,10 @@
                           -fx-background-image: url('/images/ButtonME.png');
                           -fx-font-size: 26;
                           -fx-background-radius: 25;
+                      } #Appointment {
+                        -fx-background-image: url('/images/ButtonCR.png');
+                        -fx-font-size: 26;
+                        -fx-background-radius: 25;
                       }
 
 

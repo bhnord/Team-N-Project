@@ -44,12 +44,13 @@ public class HomeControllerAdmin extends MasterController implements Initializab
       BackCurrentRequests,
       BackEmployeeEditor,
       BackFindUs,
-      BackFormEditor;
+      BackFormEditor,
+      BackAppointment;
   @FXML private JFXButton mapEditor;
   @FXML private JFXButton ServiceRequests;
   @FXML private JFXButton EmployeeEditor;
   @FXML private JFXButton CurrentRequests;
-  @FXML private JFXButton FormEditor;
+  @FXML private JFXButton FormEditor, Appointment;
   @FXML private Label LogIn;
   @FXML private Group logInGroup;
 
@@ -97,7 +98,8 @@ public class HomeControllerAdmin extends MasterController implements Initializab
       makeInvisible(BackServiceRequests);
       makeInvisible(FormEditor);
       makeInvisible(BackFormEditor);
-
+      makeInvisible(BackAppointment);
+      makeInvisible(Appointment);
       updateStyle("0x748cdc");
       logInInit();
     } else {
@@ -316,6 +318,11 @@ public class HomeControllerAdmin extends MasterController implements Initializab
     super.cancel(actionEvent);
   }
 
+  public void appointment(ActionEvent actionEvent) throws IOException {
+    Parent root = loader.load(getClass().getResourceAsStream("Appointment.fxml"));
+    appPrimaryScene.setRoot(root);
+  }
+
   public void updateStyle(String color) {
     String style =
         "-fx-background-color: " + "#" + color.substring(2) + "; -fx-background-radius: 25;";
@@ -326,7 +333,8 @@ public class HomeControllerAdmin extends MasterController implements Initializab
       BackCurrentRequests,
       BackEmployeeEditor,
       BackFindUs,
-      BackFormEditor
+      BackFormEditor,
+      BackAppointment
     };
     for (Label a : lA) a.setStyle(style);
 

@@ -41,7 +41,7 @@ public class AppointmentController extends MasterController implements Initializ
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Login");
+    super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Login Map");
     listView.getStylesheets().add("StyleSheet/appointmentTable.css");
     for (User user : db.getAllUsers()) {
       appointmentTypeDropdown.getItems().add(new Label(user.getUsername()));
