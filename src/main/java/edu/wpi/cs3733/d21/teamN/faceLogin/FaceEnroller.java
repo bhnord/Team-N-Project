@@ -2,6 +2,15 @@ package edu.wpi.cs3733.d21.teamN.faceLogin;
 
 import edu.wpi.cs3733.d21.teamN.services.database.DatabaseService;
 import edu.wpi.cs3733.d21.teamN.services.database.users.User;
+import javafx.application.Platform;
+import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
+import org.opencv.core.Point;
+import org.opencv.core.*;
+import org.opencv.imgproc.Imgproc;
+import org.opencv.objdetect.CascadeClassifier;
+import org.opencv.videoio.VideoCapture;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -9,18 +18,11 @@ import java.util.Objects;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-import javafx.application.Platform;
-import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
-import org.opencv.core.*;
-import org.opencv.core.Point;
-import org.opencv.imgproc.Imgproc;
-import org.opencv.objdetect.CascadeClassifier;
-import org.opencv.videoio.VideoCapture;
 
 public class FaceEnroller extends FaceRec {
   private final ImageView imageView;
   private boolean shouldSave = false;
+  private ScheduledExecutorService timer;
   private VideoCapture camera = new VideoCapture();
 
   public FaceEnroller(DatabaseService db, ImageView imageView) {
@@ -58,6 +60,8 @@ public class FaceEnroller extends FaceRec {
     stage.setOnCloseRequest(
         e -> {
           camera.release();
+          System.out.println(timer);
+          if (timer != null) timer.shutdown();
           Platform.exit();
           System.exit(0);
         });
@@ -73,7 +77,7 @@ public class FaceEnroller extends FaceRec {
           imageView.setImage(mat2Image(newImage));
         };
 
-    ScheduledExecutorService timer = Executors.newSingleThreadScheduledExecutor();
+    timer = Executors.newSingleThreadScheduledExecutor();
     timer.scheduleAtFixedRate(frameGrabber, 0, 33, TimeUnit.MILLISECONDS);
   }
 
@@ -87,6 +91,7 @@ public class FaceEnroller extends FaceRec {
 
   public void releaseCamera() {
     camera.release();
+    timer.shutdown();
   }
 
   private Mat detectFaces(Mat image, CascadeClassifier faceDetector) {
