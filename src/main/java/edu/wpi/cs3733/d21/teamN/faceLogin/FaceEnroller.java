@@ -21,6 +21,7 @@ import org.opencv.videoio.VideoCapture;
 public class FaceEnroller extends FaceRec {
   private final ImageView imageView;
   private boolean shouldSave = false;
+  private ScheduledExecutorService timer;
   private VideoCapture camera = new VideoCapture();
 
   public FaceEnroller(DatabaseService db, ImageView imageView) {
@@ -58,6 +59,8 @@ public class FaceEnroller extends FaceRec {
     stage.setOnCloseRequest(
         e -> {
           camera.release();
+          System.out.println(timer);
+          if (timer != null) timer.shutdown();
           Platform.exit();
           System.exit(0);
         });
@@ -73,7 +76,7 @@ public class FaceEnroller extends FaceRec {
           imageView.setImage(mat2Image(newImage));
         };
 
-    ScheduledExecutorService timer = Executors.newSingleThreadScheduledExecutor();
+    timer = Executors.newSingleThreadScheduledExecutor();
     timer.scheduleAtFixedRate(frameGrabber, 0, 33, TimeUnit.MILLISECONDS);
   }
 
@@ -87,6 +90,7 @@ public class FaceEnroller extends FaceRec {
 
   public void releaseCamera() {
     camera.release();
+    timer.shutdown();
   }
 
   private Mat detectFaces(Mat image, CascadeClassifier faceDetector) {

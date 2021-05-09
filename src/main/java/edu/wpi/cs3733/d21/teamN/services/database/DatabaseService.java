@@ -8,6 +8,8 @@ import edu.wpi.cs3733.d21.teamN.services.algo.Node;
 import edu.wpi.cs3733.d21.teamN.services.database.requests.Request;
 import edu.wpi.cs3733.d21.teamN.services.database.requests.RequestType;
 import edu.wpi.cs3733.d21.teamN.services.database.users.*;
+import lombok.extern.slf4j.Slf4j;
+
 import java.awt.image.BufferedImage;
 import java.sql.*;
 import java.sql.Connection;
@@ -16,7 +18,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
 import java.util.HashSet;
-import lombok.extern.slf4j.Slf4j;
+import java.util.Objects;
 
 @Slf4j
 public class DatabaseService {
@@ -558,11 +560,13 @@ public class DatabaseService {
    * @return whether the operation was carried out successfully
    */
   public boolean loadCSVtoTable(String csvPath, String tableName) {
+    String path = Objects.requireNonNull(getClass().getResource(csvPath)).toExternalForm();
+    System.out.println(path);
     String str =
         "CALL SYSCS_UTIL.SYSCS_IMPORT_TABLE(null, '"
             + tableName
             + "', '"
-            + csvPath
+            + path
             + "', ',', '\"', 'UTF-8',0)";
     try {
       stmt.execute(str);
@@ -706,7 +710,7 @@ public class DatabaseService {
       }
       return true;
     } catch (SQLException e) {
-      e.printStackTrace();
+      //      e.printStackTrace();
     }
     return false;
   }

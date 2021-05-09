@@ -23,13 +23,14 @@ public class FacialRecognitionController extends MasterController implements Ini
   @FXML private ImageView imageView;
   @FXML private JFXButton saveButton;
   @FXML private StackPane stackPane;
-  FaceEnroller faceEnroller;
+  private FaceEnroller faceEnroller;
+  private SideBarController sideBarController;
   @FXML Rectangle darkMode;
   @FXML AnchorPane anchorPane;
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    super.sideBarSetup(anchorPane, appPrimaryScene, loader, "FaceRec");
+    sideBarController = super.sideBarSetup(anchorPane, appPrimaryScene, loader, "FaceRec");
     darkMode.setVisible(db.getCurrentUser().getDarkMode());
     faceEnroller = new FaceEnroller(db, imageView);
     //    db.setLoggedInUser(db.getUserByUsername("Michael"));
@@ -42,8 +43,8 @@ public class FacialRecognitionController extends MasterController implements Ini
 
   @FXML
   private void capture() {
-    //    appPrimaryScene.setOnMouseClicked(System.out::println);
     stackPane.getScene().getWindow().setOnCloseRequest(event -> faceEnroller.releaseCamera());
     faceEnroller.startEnroller();
+    sideBarController.setFaceEnroller(faceEnroller);
   }
 }

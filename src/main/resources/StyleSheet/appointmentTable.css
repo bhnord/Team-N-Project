@@ -1,0 +1,12 @@
+.label{
+    -fx-pref-width: 150;
+    -fx-pref-height: 25;
+    -fx-grid-lines-visible: true;
+}
+
+.jfx-list-view{
+    -fx-grid-lines-visible: true;
+}
+#time {
+    -fx-pref-width: 60;
+}

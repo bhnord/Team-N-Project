@@ -215,7 +215,10 @@ public class SideBarController extends MasterController implements Initializable
 
   public void aboutUs(ActionEvent actionEvent) throws IOException {
     // accountSettingsGroup.setTranslateX(0);
-
+    if (faceEnroller != null) {
+      faceEnroller.releaseCamera();
+      faceEnroller = null;
+    }
     Parent root = loader.load(getClass().getResourceAsStream("AboutUs.fxml"));
     // open = false;
     appPrimaryScene.setRoot(root);

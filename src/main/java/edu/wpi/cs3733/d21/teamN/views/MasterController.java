@@ -95,6 +95,12 @@ public class MasterController implements Initializable {
     ChildAppPrimaryScene.setRoot(root);
   }
 
+  @FXML
+  public void helpPage(FXMLLoader childLoader, Scene ChildAppPrimaryScene) throws IOException {
+    Parent root = childLoader.load(getClass().getResourceAsStream("HelpPage.fxml"));
+    ChildAppPrimaryScene.setRoot(root);
+  }
+
   private void advanceServiceRequestPatient(FXMLLoader childLoader, Scene ChildAppPrimaryScene)
       throws IOException {
     Parent root = childLoader.load(getClass().getResourceAsStream("ServiceRequestsPatient.fxml"));
@@ -158,11 +164,12 @@ public class MasterController implements Initializable {
   }
 
   public void cancel(ActionEvent actionEvent) throws IOException {
-    new Stage();
-    Stage stage2;
-    stage2 = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-    stage2.setScene(null);
-    stage2.close();
+    System.exit(0);
+    //    new Stage();
+    //    Stage stage2;
+    //    stage2 = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+    //    stage2.setScene(null);
+    //    stage2.close();
   }
 
   public void advance(ActionEvent actionEvent) throws IOException {

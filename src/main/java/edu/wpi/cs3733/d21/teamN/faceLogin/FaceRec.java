@@ -19,7 +19,7 @@ abstract class FaceRec {
 
   public FaceRec(DatabaseService db) {
     this.db = db;
-    // TODO? Change db to store Mat of descriptors1
+    // TODO? Change db to store Mat of descriptors
     faceImages = db.getAllFaces();
   }
 
