@@ -6,7 +6,6 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.RequiredFieldValidator;
 import edu.wpi.cs3733.d21.teamN.faceLogin.FaceLogin;
-import edu.wpi.cs3733.d21.teamN.form.Form;
 import edu.wpi.cs3733.d21.teamN.services.database.DatabaseService;
 import edu.wpi.cs3733.d21.teamN.services.database.users.User;
 import edu.wpi.cs3733.d21.teamN.state.HomeState;
@@ -345,11 +344,11 @@ public class HomeControllerAdmin extends MasterController implements Initializab
 
   public void test(ActionEvent actionEvent) throws IOException {
     //    loader.setController(new FormController());
-    Parent root = loader.load(getClass().getResourceAsStream("Templateform.fxml"));
-    appPrimaryScene.setRoot(root);
-    Form form = new Form();
-    FormController formController = loader.getController();
-    formController.setUp(form);
+    //    Parent root = loader.load(getClass().getResourceAsStream("Templateform.fxml"));
+    //    appPrimaryScene.setRoot(root);
+    //    Form form = new Form();
+    //    FormController formController = loader.getController();
+    //    formController.setUp(form);
   }
 
   public void testEdit(ActionEvent actionEvent) throws IOException {

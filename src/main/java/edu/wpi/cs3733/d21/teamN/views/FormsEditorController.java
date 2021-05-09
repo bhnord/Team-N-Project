@@ -18,7 +18,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -31,6 +30,7 @@ public class FormsEditorController extends MasterController implements Initializ
   @FXML JFXListView<HBox> editor;
   @FXML Label title;
   @FXML AnchorPane anchorPane;
+  @FXML JFXTextField titleEditor;
   @Inject private FXMLLoader loader;
   @Inject private DatabaseService db;
   @FXML @Inject StackPane rootStackPane;
@@ -53,36 +53,20 @@ public class FormsEditorController extends MasterController implements Initializ
   public void initialize(URL location, ResourceBundle resources) {
     super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Service Request");
     dialogFactory = new DialogFactory(rootStackPane);
-
-    editor.setOnMouseClicked(
-        event -> {
-          int selected = editor.getSelectionModel().getSelectedIndex();
-          if (event.getButton() == MouseButton.PRIMARY && selected != -1) {
-            Parent root = null;
-            try {
-              root = loader.load(getClass().getResourceAsStream("Template.fxml"));
-            } catch (IOException e) {
-              e.printStackTrace();
-            }
-            appPrimaryScene.setRoot(root);
-            FormEditorController formController = loader.getController();
-            formController.setUp(forms.get(selected));
-          }
-        });
   }
 
   public void setUp() {
     editor.setMinWidth(1000);
     forms = new ArrayList<>(db.getAllForms());
     for (NamedForm f : forms) {
-      editor.getItems().add(formsEditor(f.getForm()));
+      editor.getItems().add(formsEditor(f));
     }
   }
 
-  public HBox formsEditor(Form form) {
+  public HBox formsEditor(NamedForm form) {
     HBox ret = new HBox();
     ret.setSpacing(15);
-    ret.setId(form.getTitle());
+    ret.setId(form.getForm().getTitle());
 
     FontIcon delete = new FontIcon();
     delete.setIconLiteral("gmi-clear");
@@ -95,12 +79,39 @@ public class FormsEditorController extends MasterController implements Initializ
               e -> {
                 editor.getItems().remove(ret);
                 forms.remove(form);
+                db.deleteForm(form.getId());
               });
         });
     ret.getChildren().add(delete);
 
-    JFXTextField title = new JFXTextField(form.getTitle());
+    FontIcon edit = new FontIcon();
+    edit.setIconLiteral("gmi-edit");
+    edit.setIconSize(25);
+    edit.setId(form.getName());
+    edit.setOnMouseClicked(
+        event -> {
+          Parent root = null;
+          try {
+            root = loader.load(getClass().getResourceAsStream("Template.fxml"));
+          } catch (IOException e) {
+            e.printStackTrace();
+          }
+          appPrimaryScene.setRoot(root);
+          FormEditorController formController = loader.getController();
+          for (NamedForm n : forms) {
+            System.out.println(n.getForm().getNames().size());
+            if (n.getName().equals(edit.getId())) {
+              formController.setUp(n);
+              return;
+            }
+          }
+        });
+    ret.getChildren().add(edit);
+
+    JFXTextField title = new JFXTextField(form.getForm().getTitle());
     ret.getChildren().add(title);
+    title.setEditable(false);
+
     return ret;
   }
 
@@ -111,10 +122,23 @@ public class FormsEditorController extends MasterController implements Initializ
   public void submit(ActionEvent actionEvent) throws IOException {}
 
   public void add(ActionEvent actionEvent) {
-    Form nf = new Form();
-    NamedForm namedForm = new NamedForm(nf.getTitle().hashCode(), nf.getTitle(), nf);
+    if (titleEditor.getText().isEmpty()) {
+      dialogFactory.creatDialogOkay(
+          "Can't Create", "Please fill out title field before creating a new Form");
+      return;
+    }
+    for (NamedForm testForm : forms) {
+      if (testForm.getName().equals(titleEditor.getText())) {
+        dialogFactory.creatDialogOkay("Can't Create", "Please make name unique");
+        return;
+      }
+    }
+    Form nf = new Form(titleEditor.getText());
+    NamedForm namedForm = new NamedForm(nf.getTitle(), nf);
+    System.out.println(namedForm.getId());
     db.addForm(namedForm);
+    namedForm = db.getFormByName(titleEditor.getText());
     forms.add(namedForm);
-    editor.getItems().add(formsEditor(nf));
+    editor.getItems().add(formsEditor(namedForm));
   }
 }

@@ -29,4 +29,8 @@ public class NamedForm {
   public int getId() {
     return id;
   }
+
+  public void setName(String name) {
+    this.name = name;
+  }
 }

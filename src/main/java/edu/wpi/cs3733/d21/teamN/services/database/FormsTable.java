@@ -43,6 +43,7 @@ public class FormsTable {
     try {
       Blob blob = connection.createBlob();
       blob.setBytes(1, fs.toStream(nForm.getForm()));
+      System.out.println(nForm.getForm().getNames().size());
       String str = "UPDATE FORMS SET FORM = ?, NAME = ? WHERE id = ?";
       PreparedStatement ps = connection.prepareStatement(str);
       ps.setBlob(1, blob);
@@ -59,7 +60,7 @@ public class FormsTable {
   }
 
   public boolean deleteForm(int id) {
-    String st = "DELETE FROM FORMS WHERE id = '" + id + "'";
+    String st = "DELETE FROM FORMS WHERE id = " + id + "";
     try {
       stmt.execute(st);
       return true;
@@ -108,7 +109,7 @@ public class FormsTable {
       Blob blob = rs.getBlob("FORM");
       Form form = fs.fromStream(blob.getBytes(1, (int) blob.length()));
       blob.free();
-      namedForms.add(new NamedForm(rs.getInt("ID"), rs.getString("NAME"), form));
+      namedForms.add(new NamedForm(rs.getInt("id"), rs.getString("NAME"), form));
     }
     return namedForms;
   }

@@ -15,12 +15,9 @@ public class Form implements Serializable {
     System.out.println("SUCCESSFULLY DESERIALIZED");
   }
 
-  public Form() {
-    elements = new ArrayList<>();
-    elements.add(new TextField(false, "question", "", this));
-    elements.add(new TimePicker(false, "time", "", this));
-    elements.add(new ComboBox(false, "q", "", this, ComboBoxType.ROOM));
-    title = "bla";
+  public Form(String title) {
+    this.title = title;
+    this.elements = new ArrayList<>();
   }
 
   /**
@@ -84,5 +81,9 @@ public class Form implements Serializable {
 
   public String getTitle() {
     return title;
+  }
+
+  public void setTitle(String title) {
+    this.title = title;
   }
 }

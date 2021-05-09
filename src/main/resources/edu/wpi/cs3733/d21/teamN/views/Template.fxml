@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.DropShadow?>
@@ -40,7 +41,7 @@
                   <RowConstraints maxHeight="1.7976931348623157E308" minHeight="-Infinity" prefHeight="712.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: WHITE; -fx-background-radius: 45;" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                  <Label alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: WHITE; -fx-background-radius: 45;" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
@@ -50,14 +51,9 @@
                      <effect>
                         <DropShadow color="#000000cf" height="109.95" radius="54.475" width="109.95" />
                      </effect>
-                  </Label>
-                  <Label fx:id="title" alignment="CENTER" prefHeight="50.0" prefWidth="254.0" style="-fx-background-color: #748cdc; -fx-background-radius: 6;" stylesheets="@/Fonts/Roboto-Light.css" text="Title" textAlignment="CENTER" textFill="WHITE" GridPane.halignment="LEFT" GridPane.valignment="TOP">
-                     <font>
-                        <Font name="Serif Regular" size="20.0" />
-                     </font>
-                     <GridPane.margin>
-                        <Insets left="100.0" top="60.0" />
-                     </GridPane.margin>
+                     <graphic>
+                        <JFXTextField fx:id="titleEditor" labelFloat="true" maxWidth="-Infinity" promptText="Title" translateX="50.0" translateY="20.0" />
+                     </graphic>
                   </Label>
                   <Label fx:id="text111" alignment="CENTER" prefHeight="50.0" prefWidth="142.0" style="-fx-background-color: #748cdc; -fx-background-radius: 6;" stylesheets="@/Fonts/Roboto-Light.css" text="Add" textAlignment="CENTER" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
                      <font>
@@ -76,7 +72,7 @@
                         <Insets bottom="120.0" left="100.0" right="100.0" top="120.0" />
                      </GridPane.margin>
                   </JFXListView>
-                  <JFXButton fx:id="submit" onAction="#submit" prefHeight="55.0" prefWidth="182.0" style="-fx-background-color: #748cdc; -fx-background-radius: 6;" text="Submit" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
+                  <JFXButton fx:id="submit" onAction="#submit" prefHeight="55.0" prefWidth="182.0" style="-fx-background-color: #748cdc; -fx-background-radius: 6;" text="Save" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
                      <font>
                         <Font size="20.0" />
                      </font>

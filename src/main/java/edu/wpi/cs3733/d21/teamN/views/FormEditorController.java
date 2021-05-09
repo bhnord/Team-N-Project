@@ -2,6 +2,7 @@ package edu.wpi.cs3733.d21.teamN.views;
 
 import com.google.inject.Inject;
 import com.jfoenix.controls.JFXListView;
+import com.jfoenix.controls.JFXTextField;
 import edu.wpi.cs3733.d21.teamN.services.database.DatabaseService;
 import edu.wpi.cs3733.d21.teamN.services.database.NamedForm;
 import java.io.IOException;
@@ -12,7 +13,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -23,8 +23,8 @@ public class FormEditorController extends MasterController implements Initializa
 
   @FXML VBox elements;
   @FXML JFXListView<HBox> editor;
-  @FXML Label title;
   @FXML AnchorPane anchorPane;
+  @FXML JFXTextField titleEditor;
   @Inject private FXMLLoader loader;
   @Inject private DatabaseService db;
   private int id;
@@ -43,18 +43,24 @@ public class FormEditorController extends MasterController implements Initializa
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Service Request");
+    titleEditor.setOnKeyReleased(
+        e -> {
+          this.form.getForm().setTitle(titleEditor.getText());
+        });
   }
 
   public void setUp(NamedForm form) {
     this.form = form;
 
+    System.out.println(form.getId());
+    titleEditor.setText(this.form.getName());
     editor.setMinWidth(1000);
     form.getForm().editorBuild(editor);
   }
 
-  public Label getTitle() {
-    return title;
-  }
+  //  public Label getTitle() {
+  //    return form.getForm().getTitle();
+  //  }
 
   public void submit(ActionEvent actionEvent) throws IOException {
     //    Parent root = loader.load(getClass().getResourceAsStream("Templateform.fxml"));
