@@ -7,6 +7,7 @@ import edu.wpi.cs3733.d21.teamN.services.database.users.UserPrefs;
 import edu.wpi.cs3733.d21.teamN.services.database.users.UserType;
 import edu.wpi.cs3733.d21.teamN.state.HomeStateProvider;
 import edu.wpi.cs3733.d21.teamN.views.FXMLLoaderProvider;
+import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -17,8 +18,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 import nu.pattern.OpenCV;
-
-import java.io.IOException;
 
 @Slf4j
 public class App extends Application {
