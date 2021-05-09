@@ -9,7 +9,7 @@ import javafx.scene.layout.HBox;
 
 public class Form implements Serializable {
   ArrayList<FormElement> elements;
-  String title;
+  private String title;
 
   public void tester() {
     System.out.println("SUCCESSFULLY DESERIALIZED");
@@ -80,5 +80,9 @@ public class Form implements Serializable {
       if (element.getValue() != null) out.add(element.getName());
     }
     return out;
+  }
+
+  public String getTitle() {
+    return title;
   }
 }

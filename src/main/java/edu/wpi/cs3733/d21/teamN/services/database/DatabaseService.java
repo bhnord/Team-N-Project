@@ -9,6 +9,7 @@ import edu.wpi.cs3733.d21.teamN.services.database.requests.Request;
 import edu.wpi.cs3733.d21.teamN.services.database.requests.RequestType;
 import edu.wpi.cs3733.d21.teamN.services.database.users.*;
 import java.awt.image.BufferedImage;
+import java.sql.*;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -560,7 +561,7 @@ public class DatabaseService {
       stmt.execute(str);
       return true;
     } catch (SQLException e) {
-      e.printStackTrace();
+      //      e.printStackTrace();
       return false;
     }
   }

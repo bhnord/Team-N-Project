@@ -28,6 +28,7 @@ public class FormEditorController extends MasterController implements Initializa
   @FXML AnchorPane anchorPane;
   @Inject private FXMLLoader loader;
   @Inject private DatabaseService db;
+  private String ogTitle;
 
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
@@ -47,6 +48,7 @@ public class FormEditorController extends MasterController implements Initializa
 
   public void setUp(Form form) {
     this.form = form;
+    ogTitle = form.getTitle();
     editor.setMinWidth(1000);
     form.editorBuild(editor);
   }
@@ -56,10 +58,10 @@ public class FormEditorController extends MasterController implements Initializa
   }
 
   public void submit(ActionEvent actionEvent) throws IOException {
-    Parent root = loader.load(getClass().getResourceAsStream("Templateform.fxml"));
-    appPrimaryScene.setRoot(root);
-    FormController formController = loader.getController();
-    formController.setUp(form);
+//    Parent root = loader.load(getClass().getResourceAsStream("Templateform.fxml"));
+//    appPrimaryScene.setRoot(root);
+//    FormController formController = loader.getController();
+//    formController.setUp(form);
   }
 
   public void add(ActionEvent actionEvent) {

@@ -267,6 +267,8 @@ public class HomeControllerAdmin extends MasterController implements Initializab
 
   public void formEditor(ActionEvent actionEvent) throws IOException {
     Parent root = loader.load(getClass().getResourceAsStream("EditForms.fxml"));
+    FormsEditorController controller = loader.getController();
+    controller.setUp();
     appPrimaryScene.setRoot(root);
   }
 

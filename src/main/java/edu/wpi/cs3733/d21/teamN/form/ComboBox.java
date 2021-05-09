@@ -41,6 +41,7 @@ public class ComboBox extends FormElement {
   public Node build(DatabaseService db) {
     comboBox = new JFXComboBox<>();
     comboBox.setPromptText(getName());
+    comboBox.setLabelFloat(true);
     comboBox.setOnKeyPressed(
         e -> setValue(comboBox.getSelectionModel().getSelectedItem().getText()));
     ArrayList<String> innerValues = new ArrayList<>();

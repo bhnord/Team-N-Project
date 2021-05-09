@@ -17,6 +17,8 @@ public class Adress extends FormElement {
   @Override
   public Node build(DatabaseService db) {
     addressbox = new JFXComboBox<>();
+    addressbox.setPromptText(getName());
+    addressbox.setLabelFloat(true);
     new AddressAutoComplete(addressbox);
     return addressbox;
   }
