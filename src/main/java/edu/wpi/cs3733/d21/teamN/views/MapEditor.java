@@ -22,8 +22,10 @@ import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.input.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import lombok.extern.slf4j.Slf4j;
@@ -52,7 +54,7 @@ public class MapEditor extends MapController implements Initializable {
   private Scene appPrimaryScene;
   ArrayList<Node.Link> path = new ArrayList<>();
 
-  @FXML private JFXTextField nodeId;
+  @FXML private JFXTextField nodeId, startNode, endNode;
   @FXML private JFXTextField building;
   @FXML private JFXTextField floor;
   @FXML private JFXTextField longName;
@@ -127,6 +129,92 @@ public class MapEditor extends MapController implements Initializable {
     super.init(appPrimaryScene);
     this.Load();
     this.numNodes = adminMap.getNodeSet().size() + 1;
+
+    updateStyle(db.getCurrentUser().getAppColor());
+  }
+
+  @FXML JFXButton Vert, Horiz, Snap, Reg, L2, L1, G, F1, F2, F3, dN1, sN1, dE1, sE1;
+  @FXML Rectangle rectangle1, rectangle2, rectangle3, rectangle4, rectangle5, rectangle6;
+  @FXML
+  Label l1,
+      l2,
+      l3,
+      l4,
+      l5,
+      l6,
+      l7,
+      l8,
+      l9,
+      l10,
+      l11,
+      l12,
+      l13,
+      l14,
+      l15,
+      l16,
+      l17,
+      l18,
+      l19,
+      l20,
+      l21,
+      l22,
+      l23,
+      backTab;
+  @FXML TextArea tArea;
+
+  public void updateStyle(String color) {
+
+    if (!db.getCurrentUser().getDarkMode()) {
+      Color appC = Color.web(color);
+      String s = appC.darker().darker().desaturate().toString();
+      String style =
+          "-fx-background-color: " + "#" + s.substring(2) + "; -fx-background-radius: 15;";
+
+      JFXButton[] lA = {Vert, Horiz, Snap, Reg, L2, L1, G, F1, F2, F3, dN1, sN1, dE1, sE1};
+      for (JFXButton a : lA) a.setStyle(style);
+
+      style = "-fx-background-color: " + "#" + color.substring(2) + "; -fx-background-radius: 25;";
+    } else {
+      String style =
+          "-fx-background-color: " + "#" + color.substring(2) + "; -fx-background-radius: 25;";
+
+      JFXButton[] lA = {Vert, Horiz, Snap, Reg, L2, L1, G, F1, F2, F3, dN1, sN1, dE1, sE1};
+      for (JFXButton a : lA) a.setStyle(style);
+
+      Color appC = Color.web(color);
+      String s = appC.darker().darker().desaturate().toString();
+      Color c = Color.web(s);
+      style = "-fx-background-color: " + "#" + s.substring(2) + ";-fx-background-radius: 25;";
+      backTab.setStyle(style);
+      Rectangle[] rA = {rectangle1, rectangle2, rectangle3, rectangle4, rectangle5, rectangle6};
+      for (Rectangle a : rA) a.setFill(c);
+      Label[] labelA = {
+        l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18, l19, l20,
+        l21, l22, l23, XLabel, YLabel
+      };
+      for (Label a : labelA) a.setTextFill(Color.web("WHITE"));
+
+      JFXTextField[] tA = {
+        nodeSize, pathSize, shortName, longName, building, floor, YCoord, XCoord, nodeId, edgeID,
+        startNode, endNode, nodeType
+      };
+      for (JFXTextField a : tA) {
+        a.setFocusColor(Color.web("WHITE"));
+        a.setUnFocusColor(Color.web("WHITE"));
+        a.setStyle("-fx-text-inner-color: WHITE;");
+      }
+
+      algorithm.setFocusColor(Color.web("WHITE"));
+      algorithm.setUnFocusColor(Color.web("WHITE"));
+      algorithm.setStyle("-fx-text-fill: WHITE;");
+      buttonDown.setTextFill(Color.web("WHITE"));
+      buttonUp.setTextFill(Color.web("WHITE"));
+      tArea.setStyle(
+          "-fx-text-fill: WHITE; -fx-control-inner-background:"
+              + "#"
+              + s.substring(2)
+              + ";-fx-text-box-border: transparent;-fx-focus-color: transparent;");
+    }
   }
 
   /**
