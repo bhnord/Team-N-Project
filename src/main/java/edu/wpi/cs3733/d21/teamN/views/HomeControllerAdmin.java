@@ -298,6 +298,11 @@ public class HomeControllerAdmin extends MasterController implements Initializab
   }
 
   @FXML
+  public void helpPage() throws IOException {
+    super.helpPage(loader, appPrimaryScene);
+  }
+
+  @FXML
   private void validateButton() {
     if (!usernameField.getText().isEmpty() && !passwordField.getText().isEmpty()) {
       goToHomePage.setDisable(false);
