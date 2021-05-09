@@ -15,7 +15,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 
@@ -48,21 +47,21 @@ public class AppointmentController extends MasterController implements Initializ
       appointmentTypeDropdown.getItems().add(new Label(user.getUsername()));
     }
 
-//    listView.setOnMouseClicked(
-//            event -> {
-//              Label selected = listView.getSelectionModel().getSelectedItem();
-//              if (event.getButton() == MouseButton.PRIMARY && selected != null) {
-//                Integer id = Integer.parseInt(selected.getId());
-//                Appoint clickedUser = db.getUserById(id);
-//                messageLabel.setText("");
-//                selectedLabel = selected;
-//                if (!(clickedUser == null)) {
-//                  updateTextFields(clickedUser);
-//                } else {
-//                  setEmptyFields();
-//                }
-//              }
-//            });
+    //    listView.setOnMouseClicked(
+    //            event -> {
+    //              Label selected = listView.getSelectionModel().getSelectedItem();
+    //              if (event.getButton() == MouseButton.PRIMARY && selected != null) {
+    //                Integer id = Integer.parseInt(selected.getId());
+    //                Appoint clickedUser = db.getUserById(id);
+    //                messageLabel.setText("");
+    //                selectedLabel = selected;
+    //                if (!(clickedUser == null)) {
+    //                  updateTextFields(clickedUser);
+    //                } else {
+    //                  setEmptyFields();
+    //                }
+    //              }
+    //            });
   }
 
   public void update(ActionEvent actionEvent) {}
@@ -73,7 +72,8 @@ public class AppointmentController extends MasterController implements Initializ
 
   public void addAppointment(ActionEvent actionEvent) {
     HBox box = new HBox();
-    Label appointmentType = new Label(appointmentTypeDropdown.getSelectionModel().getSelectedItem().getText());
+    Label appointmentType =
+        new Label(appointmentTypeDropdown.getSelectionModel().getSelectedItem().getText());
 
     box.getStylesheets().add("StyleSheet/appointmentTable.css");
     box.getChildren().addAll(appointmentType);
