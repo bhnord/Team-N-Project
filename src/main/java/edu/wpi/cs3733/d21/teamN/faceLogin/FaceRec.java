@@ -2,9 +2,6 @@ package edu.wpi.cs3733.d21.teamN.faceLogin;
 
 import edu.wpi.cs3733.d21.teamN.services.database.DatabaseService;
 import edu.wpi.cs3733.d21.teamN.services.database.users.User;
-import java.awt.image.BufferedImage;
-import java.awt.image.DataBufferByte;
-import java.util.HashMap;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
@@ -13,12 +10,17 @@ import org.opencv.features2d.DescriptorMatcher;
 import org.opencv.features2d.ORB;
 import org.opencv.imgproc.Imgproc;
 
+import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferByte;
+import java.util.HashMap;
+
 abstract class FaceRec {
   final DatabaseService db;
   final HashMap<BufferedImage, Integer> faceImages;
 
   public FaceRec(DatabaseService db) {
     this.db = db;
+    //TODO? Change db to store Mat of descriptors1
     faceImages = db.getAllFaces();
   }
 
