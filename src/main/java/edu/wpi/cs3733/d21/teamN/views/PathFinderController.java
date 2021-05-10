@@ -22,6 +22,7 @@ import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
@@ -31,6 +32,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
+import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
 public class PathFinderController extends MapController implements Initializable {
@@ -95,6 +97,58 @@ public class PathFinderController extends MapController implements Initializable
     }
     mapImageView.setOnMouseClicked(this::handleClick);
     mapImageView.setOnMouseDragged(event -> mapDrawer.captureMouseDrag(event));
+    if (!db.getCurrentUser().getUsername().equals("guest")) {
+      updateStyle(db.getCurrentUser().getAppColor());
+    }
+  }
+
+  @FXML JFXButton reverse, b1, b2, b3, L2, L1, G, F1, F2, F3;
+  @FXML Rectangle rectangle1, rectangle2, rectangle3, rectangle4, rectangle5;
+  @FXML Label l1, l2, l3, l4, l5, l6;
+  @FXML TextArea tArea;
+
+  public void updateStyle(String color) {
+    if (!db.getCurrentUser().getDarkMode()) {
+      Color appC = Color.web(color);
+      String s = appC.darker().darker().desaturate().toString();
+      String style =
+          "-fx-background-color: " + "#" + s.substring(2) + "; -fx-background-radius: 15;";
+
+      JFXButton[] lA = {reverse, L2, L1, G, b1, b2, b3, F1, F2, F3};
+      for (JFXButton a : lA) a.setStyle(style);
+    } else {
+      Color appC = Color.web(color);
+      String s = appC.darker().darker().desaturate().toString();
+      String style =
+          "-fx-background-color: " + "#" + s.substring(2) + "; -fx-background-radius: 15;";
+      Rectangle[] rA = {rectangle1, rectangle2, rectangle3, rectangle4, rectangle5};
+      for (Rectangle a : rA) a.setFill(appC.darker().darker().desaturate());
+      style = "-fx-background-color: " + "#" + color.substring(2) + "; -fx-background-radius: 15;";
+
+      JFXButton[] lA = {reverse, L2, L1, G, b1, b2, b3, F1, F2, F3};
+      for (JFXButton a : lA) a.setStyle(style);
+
+      Label[] labelA = {l1, l2, l3, l4, l5, l6};
+      for (Label a : labelA) a.setTextFill(Color.web("WHITE"));
+      buttonDown.setTextFill(Color.web("WHITE"));
+      buttonUp.setTextFill(Color.web("WHITE"));
+
+      tArea.setStyle(
+          "-fx-text-fill: WHITE; -fx-control-inner-background:"
+              + "#"
+              + s.substring(2)
+              + ";-fx-text-box-border: transparent;-fx-focus-color: transparent;");
+
+      JFXTextField[] tA = {nodeSize, pathSize};
+      for (JFXTextField a : tA) {
+        a.setFocusColor(Color.web("WHITE"));
+        a.setUnFocusColor(Color.web("WHITE"));
+        a.setStyle("-fx-text-inner-color: WHITE;");
+      }
+      locationDropdown.setFocusColor(Color.web("WHITE"));
+      locationDropdown.setUnFocusColor(Color.web("WHITE"));
+      locationDropdown.setStyle("-fx-text-fill: WHITE;");
+    }
   }
 
   public void handleClick(MouseEvent event) {
@@ -169,6 +223,8 @@ public class PathFinderController extends MapController implements Initializable
     }
     extras.clear();
   }
+
+  private void arrowChase(Polygon p) {}
 
   private Polygon createArrow(Node.Link l) {
     double size = 20;

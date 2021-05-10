@@ -324,6 +324,7 @@ public class SideBarController extends MasterController implements Initializable
 
     if (db != null) {
       user.setDarkMode(darkModeSwitch.isSelected());
+      db.updateUserPrefs(user.getId(), user.getUserPrefs());
       darkOn = !darkOn;
     }
 
