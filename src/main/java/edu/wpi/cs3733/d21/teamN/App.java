@@ -7,6 +7,7 @@ import edu.wpi.cs3733.d21.teamN.services.database.users.UserType;
 import edu.wpi.cs3733.d21.teamN.state.HomeStateProvider;
 import edu.wpi.cs3733.d21.teamN.views.FXMLLoaderProvider;
 import java.io.IOException;
+import java.util.Objects;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -80,7 +81,10 @@ public class App extends Application {
     // Parent root = loader.load(getClass().getResourceAsStream("views/FacialRecTest.fxml"));
     primaryStage
         .getIcons()
-        .add(new Image(ClassLoader.getSystemResourceAsStream("images/hospital-256.png")));
+        .add(
+            new Image(
+                Objects.requireNonNull(
+                    ClassLoader.getSystemResourceAsStream("images/hospital-256.png"))));
 
     // primaryStage.initStyle(StageStyle.UNDECORATED);
 

@@ -4,7 +4,13 @@ import edu.wpi.cs3733.d21.teamN.services.database.DatabaseService;
 import edu.wpi.cs3733.d21.teamN.services.database.users.User;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.util.HashMap;
+import java.util.Objects;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
@@ -16,11 +22,23 @@ import org.opencv.imgproc.Imgproc;
 abstract class FaceRec {
   final DatabaseService db;
   final HashMap<BufferedImage, Integer> faceImages;
+  String classifier;
 
   public FaceRec(DatabaseService db) {
     this.db = db;
     // TODO? Change db to store Mat of descriptors
     faceImages = db.getAllFaces();
+    InputStream path =
+        Objects.requireNonNull(
+            getClass()
+                .getResourceAsStream("/FacialRec/lbpcascades/lbpcascade_frontalface_improved.xml"));
+    try {
+      Path classifierPath = Files.createTempFile("cv", ".xml");
+      Files.copy(path, classifierPath, StandardCopyOption.REPLACE_EXISTING);
+      classifier = classifierPath.toString();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
   int compareFaces(Mat currentImage, BufferedImage image) {
@@ -51,7 +69,7 @@ abstract class FaceRec {
   }
 
   User identifyFace(Mat image) {
-    int errorThreshold = 2;
+    int errorThreshold = 5;
     int mostSimilar = -1;
     int mostSimilarUserID = -1;
 
@@ -65,6 +83,7 @@ abstract class FaceRec {
     }
 
     if (mostSimilarUserID != -1 && mostSimilar > errorThreshold) {
+      //      System.out.println(errorThreshold);
       return db.getUserById(mostSimilarUserID);
     } else return null;
   }
@@ -108,5 +127,9 @@ abstract class FaceRec {
     alert.setHeaderText("Fatal Error");
     alert.setContentText(message);
     alert.showAndWait();
+  }
+
+  String getClassifier() {
+    return classifier;
   }
 }

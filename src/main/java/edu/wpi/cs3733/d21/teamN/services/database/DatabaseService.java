@@ -9,7 +9,6 @@ import edu.wpi.cs3733.d21.teamN.services.database.requests.Request;
 import edu.wpi.cs3733.d21.teamN.services.database.requests.RequestType;
 import edu.wpi.cs3733.d21.teamN.services.database.users.*;
 import java.awt.image.BufferedImage;
-import java.sql.*;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -517,6 +516,10 @@ public class DatabaseService {
     return appointmentTypesTable.addAppointmentType(type, formId);
   }
 
+  public boolean updateAppointmentType(AppointmentType a) {
+    return appointmentTypesTable.updateAppointmentType(a);
+  }
+
   public HashSet<AppointmentType> getAllAppointmentTypes() {
     return appointmentTypesTable.getAllAppointmentTypes();
   }
@@ -564,7 +567,6 @@ public class DatabaseService {
    */
   public boolean loadCSVtoTable(String csvPath, String tableName) {
     String path = Objects.requireNonNull(getClass().getResource(csvPath)).toExternalForm();
-    System.out.println(path);
     String str =
         "CALL SYSCS_UTIL.SYSCS_IMPORT_TABLE(null, '"
             + tableName
