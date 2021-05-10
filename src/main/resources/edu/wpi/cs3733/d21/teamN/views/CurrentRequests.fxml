@@ -104,10 +104,10 @@
                                     <Label fx:id="assignedEmployee" layoutX="613.0" layoutY="330.0" prefHeight="17.0" prefWidth="186.0" text="                                 " />
                                     <Label layoutX="350.0" layoutY="452.0" text="     " />
                                     <Label layoutX="350.0" layoutY="377.0" prefHeight="17.0" prefWidth="133.0" stylesheets="/Fonts/Roboto-Light.css" text="Extra Information:" />
-                                    <Label fx:id="txtExtraInfo" alignment="TOP_LEFT" layoutX="613.0" layoutY="377.0" prefHeight="48.0" prefWidth="219.0" wrapText="true" />
-                                    <CheckBox fx:id="isClearedCheckbox" layoutX="350.0" layoutY="461.0" mnemonicParsing="false" text="Mark as cleared past entrance" />
-                                    <Label layoutX="350.0" layoutY="72.0" text="Cleared past entrance?" />
-                                    <Label fx:id="txtisCleared" layoutX="613.0" layoutY="72.0" text="                       " />
+                                    <Label fx:id="txtExtraInfo" alignment="TOP_LEFT" layoutX="613.0" layoutY="377.0" stylesheets="/Fonts/Roboto-Light.css" prefHeight="48.0" prefWidth="219.0" wrapText="true" />
+                                    <CheckBox fx:id="isClearedCheckbox" layoutX="350.0" layoutY="461.0" stylesheets="/Fonts/Roboto-Light.css" mnemonicParsing="false" text="Mark as cleared past entrance" />
+                                    <Label layoutX="350.0" layoutY="72.0" stylesheets="/Fonts/Roboto-Light.css" text="Cleared past entrance?" />
+                                    <Label fx:id="txtisCleared" stylesheets="/Fonts/Roboto-Light.css" layoutX="613.0" layoutY="72.0" text="                       " />
                                  </children>
                               </AnchorPane>
                            </content>
