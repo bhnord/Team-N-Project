@@ -111,7 +111,7 @@ public class EmployeeEditor extends MasterController implements Initializable {
   private void addNew(ActionEvent actionEvent) {
     numUsersAdded++;
     Label lbl = new Label("New User " + numUsersAdded);
-    lbl.setId("New User " + numUsersAdded);
+    lbl.setId("-1");
     listView.getItems().add(lbl);
   }
 
@@ -140,6 +140,7 @@ public class EmployeeEditor extends MasterController implements Initializable {
       } else if (!db.updateUser(selectedUser.getId(), username, password, type, new UserPrefs())) {
         messageLabel.setText("Invalid inputs");
       }
+      updateSelectedLabel(selectedUser);
     } else if (db.addUser(username, password, type, new UserPrefs())) {
       updateSelectedLabel(db.getUserByUsername(username));
     } else {
