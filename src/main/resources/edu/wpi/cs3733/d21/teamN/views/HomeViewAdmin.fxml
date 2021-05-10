@@ -166,6 +166,7 @@
                 <RowConstraints maxHeight="-Infinity" minHeight="0.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="-Infinity" minHeight="0.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="-Infinity" minHeight="0.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="-Infinity" minHeight="0.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <Label fx:id="BackFindUs" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #748cdc; -fx-background-radius: 25;" stylesheets="@/StyleSheet/Dynamic.css" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
@@ -228,6 +229,22 @@
                      </GridPane.margin>
                   </Label>
                   <JFXButton fx:id="Appointment" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#appointment" prefHeight="195.0" prefWidth="728.0" stylesheets="@/StyleSheet/style.css" text="APPOINTMENTS" textFill="WHITE" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Arial Black" size="18.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <GridPane.margin>
+                        <Insets bottom="45.0" left="45.0" right="45.0" top="45.0" />
+                     </GridPane.margin>
+                  </JFXButton>
+                  <Label fx:id="BackAppointmentEditor" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #748cdc; -fx-background-radius: 25;" stylesheets="@/StyleSheet/Dynamic.css" GridPane.rowIndex="4">
+                     <GridPane.margin>
+                        <Insets bottom="35.0" left="35.0" right="35.0" top="35.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <JFXButton fx:id="AppointmentEditor" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#appointmentEdit" prefHeight="195.0" prefWidth="728.0" stylesheets="@/StyleSheet/style.css" text="APPOINTMENT EDITOR" textFill="WHITE" GridPane.rowIndex="4">
                      <font>
                         <Font name="Arial Black" size="18.0" />
                      </font>
