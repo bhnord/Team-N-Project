@@ -20,6 +20,26 @@ public class AppointmentTypesTable {
     }
   }
 
+  public boolean updateAppointmentType(AppointmentType appointmentType) {
+    try {
+      PreparedStatement ps =
+          connection.prepareStatement(
+              "UPDATE APPOINTMENTTYPES SET TYPE = ?, FORMID = ? WHERE id = ?");
+      ps.setString(1, appointmentType.getType());
+      ps.setInt(2, appointmentType.getFormId());
+      ps.setInt(3, appointmentType.getId());
+      ps.execute();
+      ps.close();
+      return true;
+      // String str = "INSERT INTO APPOINTMENTTYPES VALUES " + type + ", " + blob;
+      // stmt.execute(str);
+      // return true;
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return false;
+    }
+  }
+
   public boolean addAppointmentType(String type, int formId) {
     try {
       PreparedStatement ps =
