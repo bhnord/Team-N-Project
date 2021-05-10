@@ -2,6 +2,7 @@ package edu.wpi.cs3733.d21.teamN.views;
 
 import com.google.inject.Inject;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.RequiredFieldValidator;
@@ -37,21 +38,21 @@ public class HomeControllerAdmin extends MasterController implements Initializab
 
   // all buttons for FXML page that can be hidden, hide in pairs
   @FXML private JFXButton mapPathfinder;
-  @FXML
-  private Label BackMapPathfinder,
-      BackMapEditor,
-      BackServiceRequests,
-      BackCurrentRequests,
-      BackEmployeeEditor,
-      BackFindUs,
-      BackFormEditor,
-      BackAppointment,
-      BackAppointmentEditor;
+  //  @FXML
+  //  private Label BackMapPathfinder,
+  //      BackMapEditor,
+  //      BackServiceRequests,
+  //      BackCurrentRequests,
+  //      BackEmployeeEditor,
+  //      BackFindUs,
+  //      BackFormEditor,
+  //      BackAppointment,
+  //      BackAppointmentEditor;
   @FXML private JFXButton mapEditor;
   @FXML private JFXButton ServiceRequests;
   @FXML private JFXButton EmployeeEditor;
   @FXML private JFXButton CurrentRequests;
-  @FXML private JFXButton FormEditor, Appointment, AppointmentEditor;
+  @FXML private JFXButton FormEditor, Appointment, AppointmentEditor, FindUs;
   @FXML private Label LogIn;
   @FXML private Group logInGroup;
 
@@ -71,6 +72,7 @@ public class HomeControllerAdmin extends MasterController implements Initializab
   private User user;
 
   @FXML Rectangle darkMode;
+  @FXML JFXListView<JFXButton> listView;
 
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
@@ -85,36 +87,25 @@ public class HomeControllerAdmin extends MasterController implements Initializab
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+
     if (db.getCurrentUser() == null || db.getCurrentUser().getUsername().equals("guest")) {
       db.login("guest", "guest");
       super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Login");
-
       makeInvisible(EmployeeEditor);
-      makeInvisible(BackEmployeeEditor);
       makeInvisible(CurrentRequests);
-      makeInvisible(BackCurrentRequests);
       makeInvisible(mapEditor);
-      makeInvisible(BackMapEditor);
       makeInvisible(ServiceRequests);
-      makeInvisible(BackServiceRequests);
       makeInvisible(FormEditor);
-      makeInvisible(BackFormEditor);
-      makeInvisible(BackAppointment);
       makeInvisible(Appointment);
       makeInvisible(AppointmentEditor);
-      makeInvisible(BackAppointmentEditor);
+      listView.getItems().add(mapPathfinder);
+      listView.getItems().add(FindUs);
       updateStyle("0x748cdc");
       logInInit();
     } else {
 
       super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Home");
 
-      user = db.getCurrentUser();
-      if (user.getAppColor().equals("0x748cdc")) {
-        updateStyle("0x748cdc");
-      } else {
-        updateStyle(user.getAppColor());
-      }
       switch (db.getCurrentUser().getType()) {
           // different login cases
         case ADMINISTRATOR:
@@ -122,37 +113,53 @@ public class HomeControllerAdmin extends MasterController implements Initializab
           LogIn.setManaged(false);
           logInGroup.setVisible(false);
           logInGroup.setManaged(false);
+          listView.getItems().add(mapPathfinder);
+          listView.getItems().add(FindUs);
+          listView.getItems().add(Appointment);
+          listView.getItems().add(ServiceRequests);
+          listView.getItems().add(CurrentRequests);
+          listView.getItems().add(EmployeeEditor);
+          listView.getItems().add(mapEditor);
+          listView.getItems().add(FormEditor);
+          listView.getItems().add(AppointmentEditor);
+
           break;
         case EMPLOYEE:
           makeInvisible(EmployeeEditor);
-          makeInvisible(BackEmployeeEditor);
           makeInvisible(mapEditor);
-          makeInvisible(BackMapEditor);
           LogIn.setVisible(false);
           LogIn.setManaged(false);
           logInGroup.setVisible(false);
           logInGroup.setManaged(false);
           makeInvisible(AppointmentEditor);
-          makeInvisible(BackAppointmentEditor);
           makeInvisible(FormEditor);
-          makeInvisible(BackFormEditor);
+          listView.getItems().add(mapPathfinder);
+          listView.getItems().add(FindUs);
+          listView.getItems().add(Appointment);
+          listView.getItems().add(ServiceRequests);
+          listView.getItems().add(CurrentRequests);
           break;
         case PATIENT:
           makeInvisible(EmployeeEditor);
-          makeInvisible(BackEmployeeEditor);
           makeInvisible(CurrentRequests);
-          makeInvisible(BackCurrentRequests);
           makeInvisible(mapEditor);
-          makeInvisible(BackMapEditor);
           makeInvisible(AppointmentEditor);
-          makeInvisible(BackAppointmentEditor);
           makeInvisible(FormEditor);
-          makeInvisible(BackFormEditor);
           LogIn.setVisible(false);
           LogIn.setManaged(false);
           logInGroup.setVisible(false);
           logInGroup.setManaged(false);
+          listView.getItems().add(mapPathfinder);
+          listView.getItems().add(FindUs);
+          listView.getItems().add(Appointment);
+          listView.getItems().add(ServiceRequests);
           break;
+      }
+      user = db.getCurrentUser();
+      if (user.getAppColor().equals("0x748cdc")) {
+        updateStyle("0x748cdc");
+      } else {
+        updateStyle(user.getAppColor());
       }
     }
 
@@ -393,22 +400,25 @@ public class HomeControllerAdmin extends MasterController implements Initializab
   public void updateStyle(String color) {
     String style =
         "-fx-background-color: " + "#" + color.substring(2) + "; -fx-background-radius: 25;";
-    Label[] lA = {
-      BackMapPathfinder,
-      BackMapEditor,
-      BackServiceRequests,
-      BackCurrentRequests,
-      BackEmployeeEditor,
-      BackFindUs,
-      BackFormEditor,
-      BackAppointment
-    };
-    for (Label a : lA) a.setStyle(style);
+    //    Label[] lA = {
+    //      BackMapPathfinder,
+    //      BackMapEditor,
+    //      BackServiceRequests,
+    //      BackCurrentRequests,
+    //      BackEmployeeEditor,
+    //      BackFindUs,
+    //      BackFormEditor,
+    //      BackAppointment
+    //    };
+    //    for (Label a : lA) a.setStyle(style);
 
     if (db.getCurrentUser().getDarkMode()) {
       darkMode.setVisible(true);
     } else {
       darkMode.setVisible(false);
+    }
+    for (int i = 0; i < listView.getItems().size(); i++) {
+      listView.getItems().get(i).setStyle(style);
     }
   }
 

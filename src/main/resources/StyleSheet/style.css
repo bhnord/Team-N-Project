@@ -127,35 +127,3 @@
     /*-fx-pref-width: 150;*/
 }
 
-/*Below for Scroll bar of the LISTVIEW*/
-/*documentary for the scroll-bar: https://blog.ngopal.com.np/2012/07/11/customize-scrollbar-via-css/    */
-
-.jfx-list-view .scroll-bar:vertical .thumb,
-.jfx-list-view .scroll-bar:horizontal .thumb,
-.web-view .scroll-bar:vertical .thumb,
-.web-view .scroll-bar:horizontal .thumb{
-    -fx-background-color: derive(#6e6e6e,30%);
-}
-
-.jfx-list-view .scroll-bar:vertical .track,
-.jfx-list-view .scroll-bar:horizontal .track,
-.web-view .scroll-bar:vertical .track,
-.web-view .scroll-bar:horizontal .track{
-    -fx-background-color: derive(#a1a1a1,80%);
-}
-
-.jfx-list-view .increment-button ,.jfx-list-view .decrement-button,
-.web-view .increment-button ,.web-view .decrement-button{
-    -fx-background-color: derive(#a1a1a1, 70%);
-}
-
-.jfx-list-view .scroll-bar:horizontal:hover .thumb ,
-.jfx-list-view .scroll-bar:horizontal:pressed .thumb ,
-.jfx-list-view .scroll-bar:vertical:hover .thumb,
-.jfx-list-view .scroll-bar:vertical:pressed .thumb,
-.web-view .scroll-bar:horizontal:hover .thumb ,
-.web-view .scroll-bar:horizontal:pressed .thumb ,
-.web-view .scroll-bar:vertical:hover .thumb,
-.web-view .scroll-bar:vertical:pressed .thumb {
-    -fx-background-color: derive(#6e6e6e, 10%);
-}

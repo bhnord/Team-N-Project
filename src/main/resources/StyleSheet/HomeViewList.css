@@ -1,0 +1,95 @@
+.list-cell {
+    -fx-padding: 1.5em 7.5em 1.5em 7.5em; /* 3 7 3 7 */
+}
+
+.list-cell:selected {
+    -fx-background-color: transparent;
+
+}
+
+.list-cell:filled:selected:focused, .list-cell:filled:selected {
+    -fx-background-color: linear-gradient(transparent 0%,transparent 25%, transparent 75%,transparent 100%);
+    -fx-text-fill: white;
+}
+
+.list-cell:even {
+    -fx-background-color: transparent;
+}
+.list-cell:odd{
+    -fx-background-color: transparent;
+}
+
+
+.list-cell:filled:hover {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+}
+*{
+    -jfx-rippler-fill: WHITE;
+    -jfx-rippler-set-disabled:true;
+}
+
+/*Below for Scroll bar of the LISTVIEW*/
+/*documentary for the scroll-bar: https://blog.ngopal.com.np/2012/07/11/customize-scrollbar-via-css/    */
+
+.jfx-list-view .scroll-bar:vertical .thumb,
+.jfx-list-view .scroll-bar:horizontal .thumb,
+.web-view .scroll-bar:vertical .thumb,
+.web-view .scroll-bar:horizontal .thumb{
+    -fx-background-color: derive(#6e6e6e,30%);
+}
+
+.jfx-list-view .scroll-bar:vertical .track,
+.jfx-list-view .scroll-bar:horizontal .track,
+.web-view .scroll-bar:vertical .track,
+.web-view .scroll-bar:horizontal .track{
+    -fx-background-color: derive(#a1a1a1,80%);
+}
+
+.jfx-list-view .increment-button ,.jfx-list-view .decrement-button,
+.web-view .increment-button ,.web-view .decrement-button{
+    -fx-background-color: derive(#a1a1a1, 70%);
+}
+
+.jfx-list-view .scroll-bar:horizontal:hover .thumb ,
+.jfx-list-view .scroll-bar:horizontal:pressed .thumb ,
+.jfx-list-view .scroll-bar:vertical:hover .thumb,
+.jfx-list-view .scroll-bar:vertical:pressed .thumb,
+.web-view .scroll-bar:horizontal:hover .thumb ,
+.web-view .scroll-bar:horizontal:pressed .thumb ,
+.web-view .scroll-bar:vertical:hover .thumb,
+.web-view .scroll-bar:vertical:pressed .thumb {
+    -fx-background-color: derive(#6e6e6e, 10%);
+}
+
+/*documentary for the scroll-bar: https://blog.ngopal.com.np/2012/07/11/customize-scrollbar-via-css/    */
+
+.jfx-list-view .scroll-bar:vertical .thumb,
+.jfx-list-view .scroll-bar:horizontal .thumb,
+.web-view .scroll-bar:vertical .thumb,
+.web-view .scroll-bar:horizontal .thumb{
+    -fx-background-color: derive(#626262,30%);
+}
+
+.jfx-list-view .scroll-bar:vertical .track,
+.jfx-list-view .scroll-bar:horizontal .track,
+.web-view .scroll-bar:vertical .track,
+.web-view .scroll-bar:horizontal .track{
+    -fx-background-color: derive(#a1a1a1,80%);
+}
+
+.jfx-list-view .increment-button ,.jfx-list-view .decrement-button,
+.web-view .increment-button ,.web-view .decrement-button{
+    -fx-background-color: derive(#a1a1a1, 70%);
+}
+
+.jfx-list-view .scroll-bar:horizontal:hover .thumb ,
+.jfx-list-view .scroll-bar:horizontal:pressed .thumb ,
+.jfx-list-view .scroll-bar:vertical:hover .thumb,
+.jfx-list-view .scroll-bar:vertical:pressed .thumb,
+.web-view .scroll-bar:horizontal:hover .thumb ,
+.web-view .scroll-bar:horizontal:pressed .thumb ,
+.web-view .scroll-bar:vertical:hover .thumb,
+.web-view .scroll-bar:vertical:pressed .thumb {
+    -fx-background-color: derive(#535353, 10%);
+}
