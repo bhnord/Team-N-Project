@@ -46,6 +46,33 @@ class AppointmentsTable {
     }
   }
 
+  public boolean updateAppointment(Appointment appointment) {
+    try {
+      Blob blob = connection.createBlob();
+      blob.setBytes(1, toStream(appointment.getForm()));
+      //      String str =
+      //          ;
+      PreparedStatement ps =
+          connection.prepareStatement(
+              "UPDATE APPOINTMENTS SET APPOINTMENTTYPEID = ?, PATIENTID = ?, ASSIGNEDSTAFFID = ?, FORM = ?, TIMEOFAPPOINTMENT = ?, CHECKINSTATUS = ?, ASSOCIATEDROOMID = ? WHERE Id = ?");
+      ps.setInt(1, appointment.getAppointmentTypeId());
+      ps.setInt(2, appointment.getPatientId());
+      ps.setInt(3, appointment.getAssignedStaffId());
+      ps.setBlob(4, blob);
+      ps.setTimestamp(5, appointment.getTimeOfAppointment());
+      ps.setBoolean(6, false);
+      ps.setString(7, appointment.getAssociatedRoomId());
+      ps.setInt(8, appointment.getId());
+      ps.executeUpdate();
+      blob.free();
+      ps.close();
+      return true;
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return false;
+    }
+  }
+
   public boolean updateAppointment(int appointmentId, Form formContent) {
 
     try {

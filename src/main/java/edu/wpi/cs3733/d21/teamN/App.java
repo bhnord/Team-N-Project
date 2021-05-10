@@ -71,9 +71,9 @@ public class App extends Application {
     if (db.getUserByUsername("Finn") == null)
       db.addUser("Finn", "Finn", UserType.EMPLOYEE, new UserPrefs());
 
-    //    db.addForm(new NamedForm(1, "BigBoyForm", new Form()));
-    //    db.getForm(1).getForm().tester();
-    //    db.addAppointmentType("NewType", 100);
+    //    db.addForm(new NamedForm(1, "BigBoyForm", new Form("BigBoyForm")));
+    //    int id = db.getFormByName("BigBoyForm").getId();
+    //    db.addAppointmentType("NewType", id);
     //    db.addAppointment(
     //        new Appointment(
     //            1, 1, 1, new Form(), new Timestamp(System.currentTimeMillis()), "CSERV001L1"));

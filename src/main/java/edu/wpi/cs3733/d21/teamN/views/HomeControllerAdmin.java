@@ -284,6 +284,8 @@ public class HomeControllerAdmin extends MasterController implements Initializab
 
   public void appointmentEdit(ActionEvent actionEvent) throws IOException {
     Parent root = loader.load(getClass().getResourceAsStream("EditAppointments.fxml"));
+    AppointmentsEditorController controller = loader.getController();
+    controller.setUp();
     appPrimaryScene.setRoot(root);
   }
 
@@ -382,8 +384,10 @@ public class HomeControllerAdmin extends MasterController implements Initializab
   }
 
   public void appointment(ActionEvent actionEvent) throws IOException {
-    Parent root = loader.load(getClass().getResourceAsStream("Appointment.fxml"));
+    Parent root = loader.load(getClass().getResourceAsStream("Calender.fxml"));
     appPrimaryScene.setRoot(root);
+    Calender calender = loader.getController();
+    calender.setUp();
   }
 
   public void updateStyle(String color) {

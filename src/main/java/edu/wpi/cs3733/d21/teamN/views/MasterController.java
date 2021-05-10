@@ -3,6 +3,7 @@ package edu.wpi.cs3733.d21.teamN.views;
 import com.google.inject.Inject;
 import com.jfoenix.controls.JFXComboBox;
 import edu.wpi.cs3733.d21.teamN.services.algo.Node;
+import edu.wpi.cs3733.d21.teamN.services.database.AppointmentType;
 import edu.wpi.cs3733.d21.teamN.services.database.DatabaseService;
 import edu.wpi.cs3733.d21.teamN.services.database.users.User;
 import edu.wpi.cs3733.d21.teamN.services.database.users.UserType;
@@ -225,6 +226,26 @@ public class MasterController implements Initializable {
   // TODO REFACTOR AFTER SPLITTING USERS AND EMPLOYEES
   public void loadEmployeeDropdown(JFXComboBox<Label> employeeComboBox) {
     HashSet<User> users = db.getUsersByType(UserType.EMPLOYEE);
+    for (User user : users) {
+      Label lbl = new Label(user.getUsername());
+      lbl.setId("" + user.getId());
+      employeeComboBox.getItems().add((lbl));
+    }
+    new AutoCompleteComboBoxListener(employeeComboBox);
+  }
+
+  public void loadAppointmentTypeDropdown(JFXComboBox<Label> employeeComboBox) {
+    HashSet<AppointmentType> appoints = db.getAllAppointmentTypes();
+    for (AppointmentType appoint : appoints) {
+      Label lbl = new Label(appoint.getType());
+      lbl.setId("" + appoint.getId());
+      employeeComboBox.getItems().add((lbl));
+    }
+    new AutoCompleteComboBoxListener(employeeComboBox);
+  }
+
+  public void loadPatientDropdown(JFXComboBox<Label> employeeComboBox) {
+    HashSet<User> users = db.getUsersByType(UserType.PATIENT);
     for (User user : users) {
       Label lbl = new Label(user.getUsername());
       lbl.setId("" + user.getId());

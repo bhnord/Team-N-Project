@@ -5,6 +5,31 @@ import java.sql.Timestamp;
 
 public class Appointment {
   private int id, appointmentTypeId, patientId, assignedStaffId;
+
+  public void setCheckInStatus(boolean checkInStatus) {
+    this.checkInStatus = checkInStatus;
+  }
+
+  public void setAssociatedRoomId(String associatedRoomId) {
+    this.associatedRoomId = associatedRoomId;
+  }
+
+  public void setAppointmentTypeId(int appointmentTypeId) {
+    this.appointmentTypeId = appointmentTypeId;
+  }
+
+  public void setPatientId(int patientId) {
+    this.patientId = patientId;
+  }
+
+  public void setAssignedStaffId(int assignedStaffId) {
+    this.assignedStaffId = assignedStaffId;
+  }
+
+  public void setTimeOfAppointment(Timestamp timeOfAppointment) {
+    this.timeOfAppointment = timeOfAppointment;
+  }
+
   private Timestamp timeOfAppointment;
   private boolean checkInStatus;
   private String associatedRoomId;

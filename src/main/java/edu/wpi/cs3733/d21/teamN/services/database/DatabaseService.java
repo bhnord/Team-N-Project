@@ -503,6 +503,10 @@ public class DatabaseService {
     return appointmentsTable.getAppointmentsByAssignedStaffId(assignedStaffId);
   }
 
+  public boolean updateAppointment(Appointment appointment) {
+    return appointmentsTable.updateAppointment(appointment);
+  }
+
   public boolean updateAppointment(int appointmentId, Form form) {
     return appointmentsTable.updateAppointment(appointmentId, form);
   }

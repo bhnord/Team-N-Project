@@ -36,6 +36,44 @@ public class AutoCompleteComboBoxListener implements EventHandler<KeyEvent> {
   private final String promptText;
   private final ObservableList<Label> sortedData;
 
+  public AutoCompleteComboBoxListener(final JFXComboBox<Label> comboBox, boolean flag) {
+    this.comboBox = comboBox;
+    sb = new StringBuilder();
+    data = comboBox.getItems();
+    promptText = comboBox.getPromptText();
+
+    comboBox.setConverter(
+        new StringConverter<Label>() {
+
+          @Override
+          public String toString(Label label) {
+            return label != null ? label.getText() : "";
+          }
+
+          @Override
+          public Label fromString(String string) {
+            for (Object label : comboBox.getItems()) {
+              if (((Label) label).getText().equals(string)) return (Label) label;
+            }
+            return null;
+          }
+        });
+
+    this.comboBox.setEditable(true);
+    this.comboBox
+        .focusedProperty()
+        .addListener(
+            (o, oldVal, newVal) -> {
+              if (newVal) {
+                this.comboBox.show();
+              } else {
+                this.comboBox.hide();
+              }
+            });
+    sortedData = this.comboBox.getItems();
+    this.comboBox.setOnKeyReleased(AutoCompleteComboBoxListener.this);
+  }
+
   public AutoCompleteComboBoxListener(final JFXComboBox<Label> comboBox) {
     this.comboBox = comboBox;
     sb = new StringBuilder();
