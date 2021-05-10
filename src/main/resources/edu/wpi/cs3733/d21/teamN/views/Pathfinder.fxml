@@ -247,7 +247,7 @@
             <Insets right="10.0" top="150.0" />
          </StackPane.margin>
       </JFXComboBox>
-      <Label fx:id="l1" prefHeight="38.0" prefWidth="117.0" text="Directions" StackPane.alignment="TOP_RIGHT">
+      <Label fx:id="l1" prefHeight="38.0" prefWidth="117.0" stylesheets="@/Fonts/Roboto-Light.css" text="Directions" StackPane.alignment="TOP_RIGHT">
          <font>
             <Font size="24.0" />
          </font>

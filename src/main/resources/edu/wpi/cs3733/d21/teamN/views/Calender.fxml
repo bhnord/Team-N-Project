@@ -50,7 +50,7 @@
                      <children>
                         <Pane fx:id="pain" prefHeight="200.0" prefWidth="1084.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <JFXListView fx:id="editor" maxWidth="-Infinity" prefWidth="100000.0" verticalGap="15.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                        <JFXButton onAction="#add" style="-fx-background-color: #CCCCCC;" text="Add" GridPane.columnIndex="2" />
+                        <JFXButton onAction="#add" style="-fx-background-color: #CCCCCC;" stylesheets="@/Fonts/Roboto-Light-buttonSmall.css" text="Add" GridPane.columnIndex="2" />
                      </children>
                   </GridPane>
                </graphic>

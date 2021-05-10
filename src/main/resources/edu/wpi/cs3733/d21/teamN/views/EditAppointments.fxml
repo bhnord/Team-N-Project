@@ -38,7 +38,7 @@
                <graphic>
                   <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <JFXTextField fx:id="titleEditor" maxWidth="-Infinity" prefHeight="25.0" prefWidth="163.0" promptText="Title" />
+                        <JFXTextField fx:id="titleEditor" maxWidth="-Infinity" prefHeight="25.0" prefWidth="163.0" promptText="Title" stylesheets="@/Fonts/Roboto-Light.css" />
                         <JFXButton alignment="CENTER" onAction="#add" style="-fx-background-color: #748cdc;" stylesheets="@/Fonts/Roboto-Light.css" text="Add Form" textFill="WHITE" />
                      </children>
                      <padding>

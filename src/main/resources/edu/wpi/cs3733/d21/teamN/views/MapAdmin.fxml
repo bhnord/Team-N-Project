@@ -245,23 +245,23 @@
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
                                     <JFXTextField fx:id="nodeId" layoutX="40.0" layoutY="23.0" />
-                                    <Label layoutX="40.0" layoutY="6.0" text="Node ID" />
+                                    <Label layoutX="40.0" layoutY="6.0" stylesheets="@/Fonts/Roboto-Light.css" text="Node ID" />
                                     <JFXTextField fx:id="XCoord" layoutX="40.0" layoutY="73.0" />
-                                    <Label layoutX="40.0" layoutY="56.0" text="XCoord" />
+                                    <Label layoutX="40.0" layoutY="56.0" stylesheets="@/Fonts/Roboto-Light.css" text="XCoord" />
                                     <JFXTextField fx:id="YCoord" layoutX="40.0" layoutY="132.0" />
-                                    <Label layoutX="40.0" layoutY="115.0" text="YCoord" />
+                                    <Label layoutX="40.0" layoutY="115.0" stylesheets="@/Fonts/Roboto-Light.css" text="YCoord" />
                                     <JFXTextField fx:id="floor" layoutX="40.0" layoutY="189.0" />
-                                    <Label layoutX="40.0" layoutY="172.0" text="Floor" />
+                                    <Label layoutX="40.0" layoutY="172.0" stylesheets="@/Fonts/Roboto-Light.css" text="Floor" />
                                     <JFXTextField fx:id="building" layoutX="40.0" layoutY="242.0" />
-                                    <Label layoutX="40.0" layoutY="225.0" text="Building" />
+                                    <Label layoutX="40.0" layoutY="225.0" stylesheets="@/Fonts/Roboto-Light.css" text="Building" />
                                     <JFXTextField fx:id="nodeType" layoutX="40.0" layoutY="295.0" />
-                                    <Label layoutX="40.0" layoutY="278.0" text="Node Type" />
+                                    <Label layoutX="40.0" layoutY="278.0" stylesheets="@/Fonts/Roboto-Light.css" text="Node Type" />
                                     <JFXTextField fx:id="longName" layoutX="40.0" layoutY="353.0" />
-                                    <Label layoutX="40.0" layoutY="336.0" text="Long Name" />
+                                    <Label layoutX="40.0" layoutY="336.0" stylesheets="@/Fonts/Roboto-Light.css" text="Long Name" />
                                     <JFXTextField fx:id="shortName" layoutX="40.0" layoutY="405.0" />
-                                    <Label layoutX="40.0" layoutY="388.0" text="Short Name" />
+                                    <Label layoutX="40.0" layoutY="388.0" stylesheets="@/Fonts/Roboto-Light.css" text="Short Name" />
                                     <JFXButton layoutX="37.0" layoutY="500.0" onAction="#saveNode" style="-fx-background-color: #363d54;" stylesheets="@/Fonts/Roboto-Light.css" text="Save Node" textFill="WHITE" />
-                                    <JFXButton layoutX="37.0" layoutY="460.0" onAction="#deleteCurrent" style="-fx-background-color: #363d54;" text="Delete Node" textFill="WHITE" />
+                                    <JFXButton layoutX="37.0" layoutY="460.0" onAction="#deleteCurrent" style="-fx-background-color: #363d54;" stylesheets="@/Fonts/Roboto-Light.css" text="Delete Node" textFill="WHITE" />
                                  </children>
                               </AnchorPane>
                            </content>
@@ -270,14 +270,14 @@
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <Label layoutX="41.0" layoutY="6.0" text="Edge ID" />
+                                    <Label layoutX="41.0" layoutY="6.0" stylesheets="@/Fonts/Roboto-Light.css" text="Edge ID" />
                                     <JFXTextField fx:id="edgeID" layoutX="41.0" layoutY="23.0" />
-                                    <Label layoutX="41.0" layoutY="64.0" text="Start Node" />
+                                    <Label layoutX="41.0" layoutY="64.0" stylesheets="@/Fonts/Roboto-Light.css" text="Start Node" />
                                     <JFXTextField fx:id="startNode" layoutX="41.0" layoutY="81.0" />
-                                    <Label layoutX="41.0" layoutY="121.0" text="End Node" />
+                                    <Label layoutX="41.0" layoutY="121.0" stylesheets="@/Fonts/Roboto-Light.css" text="End Node" />
                                     <JFXTextField fx:id="endNode" layoutX="41.0" layoutY="138.0" />
                                     <JFXButton layoutX="37.0" layoutY="502.0" onAction="#saveNode" style="-fx-background-color: #363d54;" stylesheets="/Fonts/Roboto-Light.css" text="Save Edge" textFill="WHITE" />
-                                    <JFXButton layoutX="37.0" layoutY="462.0" onAction="#deleteCurrent" style="-fx-background-color: #363d54;" text="Delete Edge" textFill="WHITE" />
+                                    <JFXButton layoutX="37.0" layoutY="462.0" onAction="#deleteCurrent" style="-fx-background-color: #363d54;" stylesheets="@/Fonts/Roboto-Light.css" text="Delete Edge" textFill="WHITE" />
                                  </children>
                               </AnchorPane>
                            </content>
