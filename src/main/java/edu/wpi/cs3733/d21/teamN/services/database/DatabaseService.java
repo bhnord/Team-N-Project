@@ -79,6 +79,7 @@ public class DatabaseService {
       setConnections();
     } catch (SQLException e) {
       e.printStackTrace();
+      switchConnection(); //if cant connect to remote server, switches back to embedded
     }
   }
 
