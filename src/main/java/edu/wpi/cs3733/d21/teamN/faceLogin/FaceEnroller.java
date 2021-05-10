@@ -2,27 +2,26 @@ package edu.wpi.cs3733.d21.teamN.faceLogin;
 
 import edu.wpi.cs3733.d21.teamN.services.database.DatabaseService;
 import edu.wpi.cs3733.d21.teamN.services.database.users.User;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.util.Objects;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 import javafx.application.Platform;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import org.opencv.core.*;
 import org.opencv.core.Point;
+import org.opencv.core.*;
 import org.opencv.imgproc.Imgproc;
 import org.opencv.objdetect.CascadeClassifier;
 import org.opencv.videoio.VideoCapture;
+
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class FaceEnroller extends FaceRec {
   private final ImageView imageView;
   private boolean shouldSave = false;
   private ScheduledExecutorService timer;
-  private VideoCapture camera = new VideoCapture();
+  private final VideoCapture camera = new VideoCapture();
 
   public FaceEnroller(DatabaseService db, ImageView imageView) {
     super(db);
@@ -34,19 +33,13 @@ public class FaceEnroller extends FaceRec {
    * given imageView
    */
   public void startEnroller() {
-    File classifier =
-        new File(
-            Objects.requireNonNull(
-                    getClass()
-                        .getResource("/FacialRec/lbpcascades/lbpcascade_frontalface_improved.xml"))
-                .getFile());
-
-    if (!classifier.exists()) {
+    String classifier = getClassifier();
+    if (classifier.equals("")) {
       displayFatalError("Unable to find classifier!");
       return;
     }
+    CascadeClassifier faceDetector = new CascadeClassifier(classifier);
 
-    CascadeClassifier faceDetector = new CascadeClassifier(classifier.toString());
     camera.open(0);
 
     if (!camera.isOpened()) {

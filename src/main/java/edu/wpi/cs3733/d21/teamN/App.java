@@ -6,7 +6,6 @@ import edu.wpi.cs3733.d21.teamN.services.database.DatabaseServiceProvider;
 import edu.wpi.cs3733.d21.teamN.services.database.users.UserType;
 import edu.wpi.cs3733.d21.teamN.state.HomeStateProvider;
 import edu.wpi.cs3733.d21.teamN.views.FXMLLoaderProvider;
-import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -17,6 +16,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 import nu.pattern.OpenCV;
+
+import java.io.IOException;
+import java.util.Objects;
 
 @Slf4j
 public class App extends Application {
@@ -80,7 +82,10 @@ public class App extends Application {
     // Parent root = loader.load(getClass().getResourceAsStream("views/FacialRecTest.fxml"));
     primaryStage
         .getIcons()
-        .add(new Image(ClassLoader.getSystemResourceAsStream("images/hospital-256.png")));
+        .add(
+            new Image(
+                Objects.requireNonNull(
+                    ClassLoader.getSystemResourceAsStream("images/hospital-256.png"))));
 
     // primaryStage.initStyle(StageStyle.UNDECORATED);
 
