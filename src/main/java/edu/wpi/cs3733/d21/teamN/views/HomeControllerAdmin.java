@@ -53,7 +53,7 @@ public class HomeControllerAdmin extends MasterController implements Initializab
   @FXML private JFXButton ServiceRequests;
   @FXML private JFXButton EmployeeEditor;
   @FXML private JFXButton CurrentRequests;
-  @FXML private JFXButton FormEditor, Appointment, AppointmentEditor, FindUs;
+  @FXML private JFXButton FormEditor, Appointment, AppointmentEditor, FindUs, EditorPage;
   @FXML private Label LogIn;
   @FXML private Group logInGroup;
 
@@ -116,15 +116,16 @@ public class HomeControllerAdmin extends MasterController implements Initializab
           LogIn.setManaged(false);
           logInGroup.setVisible(false);
           logInGroup.setManaged(false);
+          listView.getItems().add(EditorPage);
           listView.getItems().add(mapPathfinder);
           listView.getItems().add(FindUs);
           listView.getItems().add(Appointment);
           listView.getItems().add(ServiceRequests);
           listView.getItems().add(CurrentRequests);
-          listView.getItems().add(EmployeeEditor);
-          listView.getItems().add(mapEditor);
-          listView.getItems().add(FormEditor);
-          listView.getItems().add(AppointmentEditor);
+          // listView.getItems().add(EmployeeEditor);
+          // listView.getItems().add(mapEditor);
+          // listView.getItems().add(FormEditor);
+          // listView.getItems().add(AppointmentEditor);
 
           break;
         case EMPLOYEE:

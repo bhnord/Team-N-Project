@@ -43,6 +43,10 @@
                         -fx-background-image: url('/images/ButtonCR.png');
                         -fx-font-size: 26;
                         -fx-background-radius: 25;
+                      }AppointmentEditor {
+                        -fx-background-image: url('/images/ButtonCR.png');
+                        -fx-font-size: 26;
+                        -fx-background-radius: 25;
                       }
 
 
