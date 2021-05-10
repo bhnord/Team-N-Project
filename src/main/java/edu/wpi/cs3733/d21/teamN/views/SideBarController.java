@@ -36,12 +36,14 @@ public class SideBarController extends MasterController implements Initializable
   @FXML private Tooltip ttLogOutButton;
 
   // Groups for buttons
-  @FXML private Group groupLogOut;
-  @FXML private Group groupCovid;
-  @FXML private Group groupBack;
-  @FXML private Group groupHome;
-  @FXML private Group groupAccountSettings;
-  @FXML private Group groupAboutUs;
+  @FXML
+  private Group groupLogOut,
+      groupCovid,
+      groupBack,
+      groupHome,
+      groupAccountSettings,
+      groupAboutUs,
+      covidInfo;
   @FXML private ImageView LogOutBack;
   @FXML private ImageView RegisterBack;
 
@@ -291,6 +293,7 @@ public class SideBarController extends MasterController implements Initializable
       makeInvisible(groupBack);
       makeInvisible(groupAccountSettings);
       makeInvisible(groupAboutUs);
+      makeInvisible(covidInfo);
     }
   }
 
@@ -307,13 +310,14 @@ public class SideBarController extends MasterController implements Initializable
   /**
    * ---------------------------------------------------------------------------------------------------
    */
-  @FXML Label label1, label2, label3, label4, label5, label6, label7, labelBack, labelB1, labelB2;
+  @FXML
+  Label label1, label2, label3, label4, label5, label6, label7, label8, labelBack, labelB1, labelB2;
 
   @FXML Rectangle rectangle1;
 
   public void updateStyle(String color) {
     String style = "-fx-background-color: " + "#" + color.substring(2) + ";";
-    Label[] lA = {label1, label2, label3, label4, label5, label6, label7, labelB1, labelB2};
+    Label[] lA = {label1, label2, label3, label4, label5, label6, label7, label8, labelB1, labelB2};
     for (Label a : lA) a.setStyle(style);
     // label1.setStyle(style);
     // rectangle1.setStyle(style);
@@ -360,5 +364,9 @@ public class SideBarController extends MasterController implements Initializable
     }
   }
 
-  public void covidinformation(ActionEvent actionEvent) {}
+  public void covidinformation(ActionEvent actionEvent) throws IOException {
+    Parent root = loader.load(getClass().getResourceAsStream("CovidInformation.fxml"));
+    // open = false;
+    appPrimaryScene.setRoot(root);
+  }
 }
