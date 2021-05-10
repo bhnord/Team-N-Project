@@ -516,6 +516,10 @@ public class DatabaseService {
     return appointmentTypesTable.addAppointmentType(type, formId);
   }
 
+  public boolean updateAppointmentType(AppointmentType a) {
+    return appointmentTypesTable.updateAppointmentType(a);
+  }
+
   public HashSet<AppointmentType> getAllAppointmentTypes() {
     return appointmentTypesTable.getAllAppointmentTypes();
   }

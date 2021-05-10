@@ -40,6 +40,7 @@ public class SideBarController extends MasterController implements Initializable
   private Group groupLogOut,
       groupCovid,
       groupBack,
+      groupBack1,
       groupHome,
       groupAccountSettings,
       groupAboutUs,
@@ -174,6 +175,12 @@ public class SideBarController extends MasterController implements Initializable
     super.advanceViews(actionEvent);
   }
 
+  @FXML
+  public void advanceEditorPage() throws IOException {
+    super.setDB(db);
+    Parent root = loader.load(getClass().getResourceAsStream("EditorPage.fxml"));
+    appPrimaryScene.setRoot(root);
+  }
   // advances to the service request page (for back buutton group)
   @FXML
   public void advanceServiceRequest() throws IOException {
@@ -239,6 +246,7 @@ public class SideBarController extends MasterController implements Initializable
    * @param type: a String to give what the type of page the sidebar needs to load on
    */
   public void setType(String type) {
+    makeInvisible(groupBack1);
     switch (type) {
       case "Home":
         makeInvisible(groupBack);
@@ -306,6 +314,14 @@ public class SideBarController extends MasterController implements Initializable
         makeInvisible(groupAboutUs);
         makeInvisible(covidInfo);
         break;
+      case "Editor":
+        makeInvisible(groupHome);
+        makeInvisible(groupBack);
+        RegisterBack.setVisible(false);
+        makeInvisible(groupAccountSettings);
+        groupBack1.setVisible(true);
+        groupBack1.setManaged(true);
+        break;
     }
   }
 
@@ -323,13 +339,26 @@ public class SideBarController extends MasterController implements Initializable
    * ---------------------------------------------------------------------------------------------------
    */
   @FXML
-  Label label1, label2, label3, label4, label5, label6, label7, label8, labelBack, labelB1, labelB2;
+  Label label1,
+      label2,
+      label3,
+      label4,
+      label5,
+      label6,
+      label7,
+      label8,
+      label9,
+      labelBack,
+      labelB1,
+      labelB2;
 
   @FXML Rectangle rectangle1;
 
   public void updateStyle(String color) {
     String style = "-fx-background-color: " + "#" + color.substring(2) + ";";
-    Label[] lA = {label1, label2, label3, label4, label5, label6, label7, label8, labelB1, labelB2};
+    Label[] lA = {
+      label1, label2, label3, label4, label5, label6, label7, label8, label9, labelB1, labelB2
+    };
     for (Label a : lA) a.setStyle(style);
     // label1.setStyle(style);
     // rectangle1.setStyle(style);

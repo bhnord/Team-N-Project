@@ -54,7 +54,7 @@ public class AppointmentsEditorController extends MasterController implements In
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Map");
+    super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Editor");
     dialogFactory = new DialogFactory(rootStackPane);
   }
 
@@ -96,9 +96,13 @@ public class AppointmentsEditorController extends MasterController implements In
     JFXComboBox<NamedForm> selectForm = new JFXComboBox<>();
     selectForm.setItems(FXCollections.observableArrayList(forms));
     selectForm.setOnAction(
-        event -> appointment.setForm(selectForm.getSelectionModel().getSelectedItem().getId()));
+        event -> {
+          appointment.setForm(selectForm.getSelectionModel().getSelectedItem().getId());
+          db.updateAppointmentType(appointment);
+        });
     NamedForm form = db.getForm(appointment.getFormId());
     if (form != null) {
+      System.out.println(appointment.getType() + " " + form);
       selectForm.getSelectionModel().select(form);
     }
     ret.getChildren().add(selectForm);
@@ -125,7 +129,7 @@ public class AppointmentsEditorController extends MasterController implements In
       }
     }
     db.addAppointmentType(titleEditor.getText(), defaultFormID);
-    AppointmentType appointmentType = db.getAppointmentType(defaultFormID);
+    AppointmentType appointmentType = db.getAppointmentTypeByType(titleEditor.getText());
     appointments.add(appointmentType);
     editor.getItems().add(formsEditor(appointmentType));
   }

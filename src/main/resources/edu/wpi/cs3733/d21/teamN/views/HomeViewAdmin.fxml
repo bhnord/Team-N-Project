@@ -21,7 +21,7 @@
 
 <StackPane fx:id="rootStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.d21.teamN.views.HomeControllerAdmin">
    <children>
-      <JFXButton fx:id="mapEditor" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#map" prefHeight="195.0" prefWidth="728.0" stylesheets="@/StyleSheet/style.css" text="MAP EDITOR" textFill="WHITE">
+      <JFXButton fx:id="mapEditor" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#map" prefHeight="310.0" prefWidth="728.0" stylesheets="@/StyleSheet/style.css" text="MAP EDITOR" textFill="WHITE">
          <font>
             <Font name="Arial Black" size="18.0" />
          </font>
@@ -32,17 +32,23 @@
             <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
          </StackPane.margin>
       </JFXButton>
-      <JFXButton fx:id="EmployeeEditor" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#advanceViews" prefHeight="150.0" prefWidth="502.0" stylesheets="@/StyleSheet/style.css" text="EMPLOYEE EDITOR" textFill="WHITE">
+      <JFXButton fx:id="EmployeeEditor" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#advanceViews" prefHeight="310.0" prefWidth="502.0" stylesheets="@/StyleSheet/style.css" text="EMPLOYEE EDITOR" textFill="WHITE">
          <StackPane.margin>
             <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
          </StackPane.margin>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </JFXButton>
-      <JFXButton fx:id="CurrentRequests" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#advanceViews" prefHeight="150.0" prefWidth="502.0" stylesheets="@/StyleSheet/style.css" text="CURRENT REQUESTS" textFill="WHITE">
+      <JFXButton fx:id="CurrentRequests" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#advanceViews" prefHeight="310.0" prefWidth="502.0" stylesheets="@/StyleSheet/style.css" text="CURRENT REQUESTS" textFill="WHITE">
          <StackPane.margin>
             <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
          </StackPane.margin>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </JFXButton>
-      <JFXButton fx:id="ServiceRequests" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#advanceViews" prefHeight="450.0" prefWidth="408.0" stylesheets="@/StyleSheet/style.css" text=" SERVICE REQUESTS" textFill="WHITE" textOverrun="CLIP">
+      <JFXButton fx:id="ServiceRequests" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#advanceViews" prefHeight="310.0" prefWidth="408.0" stylesheets="@/StyleSheet/style.css" text=" SERVICE REQUESTS" textFill="WHITE" textOverrun="CLIP">
          <font>
             <Font name="Arial Black" size="18.0" />
          </font>
@@ -53,7 +59,7 @@
             <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
          </StackPane.margin>
       </JFXButton>
-      <JFXButton fx:id="Appointment" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#appointment" prefHeight="195.0" prefWidth="728.0" stylesheets="@/StyleSheet/style.css" text="APPOINTMENTS" textFill="WHITE">
+      <JFXButton fx:id="Appointment" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#appointment" prefHeight="310.0" prefWidth="728.0" stylesheets="@/StyleSheet/style.css" text="APPOINTMENTS" textFill="WHITE">
          <font>
             <Font name="Arial Black" size="18.0" />
          </font>
@@ -64,7 +70,7 @@
             <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
          </StackPane.margin>
       </JFXButton>
-      <JFXButton fx:id="AppointmentEditor" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#appointmentEdit" prefHeight="195.0" prefWidth="728.0" stylesheets="@/StyleSheet/style.css" text="APPOINTMENT EDITOR" textFill="WHITE">
+      <JFXButton fx:id="AppointmentEditor" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#appointmentEdit" prefHeight="310.0" prefWidth="728.0" stylesheets="@/StyleSheet/style.css" text="APPOINTMENT EDITOR" textFill="WHITE">
          <font>
             <Font name="Arial Black" size="18.0" />
          </font>
@@ -75,10 +81,18 @@
             <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
          </StackPane.margin>
       </JFXButton>
-      <JFXButton fx:id="FormEditor" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#formEditor" prefHeight="150.0" prefWidth="502.0" stylesheets="@/StyleSheet/style.css" text="FORM EDITOR" textFill="WHITE">
+      <JFXButton fx:id="FormEditor" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#formEditor" prefHeight="310.0" prefWidth="502.0" stylesheets="@/StyleSheet/style.css" text="FORM EDITOR" textFill="WHITE">
          <StackPane.margin>
             <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
          </StackPane.margin>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="EditorPage" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#advanceViews" prefHeight="310.0" prefWidth="728.0" stylesheets="@/StyleSheet/style.css" text="EDITORS" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </JFXButton>
       <ImageView fitHeight="1766.0" fitWidth="1458.0" pickOnBounds="true" preserveRatio="true" scaleX="2.0" scaleY="2.0" StackPane.alignment="TOP_LEFT">
          <image>
@@ -103,7 +117,7 @@
                   <Insets />
                </GridPane.margin></JFXListView>
             <AnchorPane fx:id="anchorPane" prefHeight="200.0" prefWidth="88.0" GridPane.valignment="BASELINE" />
-            <Label fx:id="LogIn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #748cdc; -fx-background-radius: 25;" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+            <Label fx:id="LogIn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="718.0" prefWidth="708.0" style="-fx-background-color: #748cdc; -fx-background-radius: 25;" GridPane.columnIndex="2" GridPane.halignment="CENTER">
                <GridPane.margin>
                   <Insets bottom="25.0" left="25.0" right="55.0" top="25.0" />
                </GridPane.margin>
@@ -164,7 +178,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <JFXButton fx:id="mapPathfinder" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#pathFind" prefHeight="450.0" prefWidth="728.0" stylesheets="@/StyleSheet/style.css" text="MAP PATHFINDER" textFill="WHITE">
+                  <JFXButton fx:id="mapPathfinder" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#pathFind" prefHeight="310.0" prefWidth="728.0" stylesheets="@/StyleSheet/style.css" text="MAP PATHFINDER" textFill="WHITE">
                      <font>
                         <Font name="Arial Black" size="18.0" />
                      </font>
@@ -175,7 +189,7 @@
                         <Insets bottom="25.0" left="50.0" right="50.0" top="25.0" />
                      </GridPane.margin>
                   </JFXButton>
-                  <JFXButton fx:id="FindUs" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#findUs" prefHeight="195.0" prefWidth="728.0" stylesheets="@/StyleSheet/style.css" text="DIRECTIONS TO HOSPITAL" textFill="WHITE" GridPane.rowIndex="1">
+                  <JFXButton fx:id="FindUs" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#findUs" prefHeight="310.0" prefWidth="728.0" stylesheets="@/StyleSheet/style.css" text="DIRECTIONS TO HOSPITAL" textFill="WHITE" GridPane.rowIndex="1">
                      <font>
                         <Font name="Arial Black" size="18.0" />
                      </font>
