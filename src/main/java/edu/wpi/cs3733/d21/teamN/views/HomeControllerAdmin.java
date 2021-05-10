@@ -45,12 +45,13 @@ public class HomeControllerAdmin extends MasterController implements Initializab
       BackEmployeeEditor,
       BackFindUs,
       BackFormEditor,
-      BackAppointment;
+      BackAppointment,
+      BackAppointmentEditor;
   @FXML private JFXButton mapEditor;
   @FXML private JFXButton ServiceRequests;
   @FXML private JFXButton EmployeeEditor;
   @FXML private JFXButton CurrentRequests;
-  @FXML private JFXButton FormEditor, Appointment;
+  @FXML private JFXButton FormEditor, Appointment, AppointmentEditor;
   @FXML private Label LogIn;
   @FXML private Group logInGroup;
 
@@ -100,6 +101,8 @@ public class HomeControllerAdmin extends MasterController implements Initializab
       makeInvisible(BackFormEditor);
       makeInvisible(BackAppointment);
       makeInvisible(Appointment);
+      makeInvisible(AppointmentEditor);
+      makeInvisible(BackAppointmentEditor);
       updateStyle("0x748cdc");
       logInInit();
     } else {
@@ -129,7 +132,8 @@ public class HomeControllerAdmin extends MasterController implements Initializab
           LogIn.setManaged(false);
           logInGroup.setVisible(false);
           logInGroup.setManaged(false);
-
+          makeInvisible(AppointmentEditor);
+          makeInvisible(BackAppointmentEditor);
           makeInvisible(FormEditor);
           makeInvisible(BackFormEditor);
           break;
@@ -140,7 +144,8 @@ public class HomeControllerAdmin extends MasterController implements Initializab
           makeInvisible(BackCurrentRequests);
           makeInvisible(mapEditor);
           makeInvisible(BackMapEditor);
-
+          makeInvisible(AppointmentEditor);
+          makeInvisible(BackAppointmentEditor);
           makeInvisible(FormEditor);
           makeInvisible(BackFormEditor);
           LogIn.setVisible(false);
@@ -274,6 +279,11 @@ public class HomeControllerAdmin extends MasterController implements Initializab
     Parent root = loader.load(getClass().getResourceAsStream("EditForms.fxml"));
     FormsEditorController controller = loader.getController();
     controller.setUp();
+    appPrimaryScene.setRoot(root);
+  }
+
+  public void appointmentEdit(ActionEvent actionEvent) throws IOException {
+    Parent root = loader.load(getClass().getResourceAsStream("EditAppointments.fxml"));
     appPrimaryScene.setRoot(root);
   }
 

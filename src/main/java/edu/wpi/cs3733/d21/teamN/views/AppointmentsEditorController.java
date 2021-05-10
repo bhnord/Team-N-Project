@@ -54,7 +54,7 @@ public class AppointmentsEditorController extends MasterController implements In
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Service Request");
+    super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Map");
     dialogFactory = new DialogFactory(rootStackPane);
   }
 
