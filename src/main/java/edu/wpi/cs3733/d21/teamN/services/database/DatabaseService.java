@@ -682,7 +682,7 @@ public class DatabaseService {
       stmt.execute(str);
       return true;
     } catch (SQLException e) {
-      //      e.printStackTrace();
+      e.printStackTrace();
       return false;
     }
   }
