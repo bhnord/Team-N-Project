@@ -173,10 +173,9 @@ public class MapEditor extends MapController implements Initializable {
       JFXButton[] lA = {Vert, Horiz, Snap, Reg, L2, L1, G, F1, F2, F3, dN1, sN1, dE1, sE1};
       for (JFXButton a : lA) a.setStyle(style);
 
-      style = "-fx-background-color: " + "#" + color.substring(2) + "; -fx-background-radius: 25;";
     } else {
       String style =
-          "-fx-background-color: " + "#" + color.substring(2) + "; -fx-background-radius: 25;";
+          "-fx-background-color: " + "#" + color.substring(2) + "; -fx-background-radius: 15;";
 
       JFXButton[] lA = {Vert, Horiz, Snap, Reg, L2, L1, G, F1, F2, F3, dN1, sN1, dE1, sE1};
       for (JFXButton a : lA) a.setStyle(style);
@@ -184,7 +183,7 @@ public class MapEditor extends MapController implements Initializable {
       Color appC = Color.web(color);
       String s = appC.darker().darker().desaturate().toString();
       Color c = Color.web(s);
-      style = "-fx-background-color: " + "#" + s.substring(2) + ";-fx-background-radius: 25;";
+      style = "-fx-background-color: " + "#" + s.substring(2) + ";-fx-background-radius: 15;";
       backTab.setStyle(style);
       Rectangle[] rA = {rectangle1, rectangle2, rectangle3, rectangle4, rectangle5, rectangle6};
       for (Rectangle a : rA) a.setFill(c);
