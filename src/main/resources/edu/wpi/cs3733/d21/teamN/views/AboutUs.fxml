@@ -122,6 +122,9 @@
          <font>
             <Font size="18.0" />
          </font>
+         <StackPane.margin>
+            <Insets bottom="25.0" />
+         </StackPane.margin>
       </Text>
     </children>
 </StackPane>
