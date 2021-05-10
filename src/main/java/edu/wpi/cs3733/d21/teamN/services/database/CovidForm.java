@@ -2,7 +2,7 @@ package edu.wpi.cs3733.d21.teamN.services.database;
 
 public class CovidForm {
   private int id, userId, assignedEmployeeId;
-  private boolean answers[], isOk, isProcessed;
+  private boolean answers[], isOk, isProcessed, isCleared;
   private String extraInfo;
 
   public CovidForm(int userId, boolean answers[], String extraInfo) {
@@ -18,6 +18,7 @@ public class CovidForm {
       boolean answers[],
       String extraInfo,
       boolean isOk,
+      boolean isCleared,
       boolean isProcessed) {
     this.id = id;
     this.userId = userId;
@@ -25,7 +26,12 @@ public class CovidForm {
     this.answers = answers;
     this.extraInfo = extraInfo;
     this.isOk = isOk;
+    this.isCleared = isCleared;
     this.isProcessed = isProcessed;
+  }
+
+  public boolean isCleared() {
+    return isCleared;
   }
 
   public int getId() {

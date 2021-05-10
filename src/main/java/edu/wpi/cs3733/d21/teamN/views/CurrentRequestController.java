@@ -18,6 +18,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
@@ -52,6 +53,8 @@ public class CurrentRequestController extends MasterController implements Initia
   private HashMap<Integer, Request> requestMap = new HashMap<>();
   @FXML JFXComboBox<String> entrance = new JFXComboBox<>();
   private int userId;
+  @FXML private CheckBox isClearedCheckbox;
+  @FXML private Label txtisCleared;
 
   @FXML JFXButton submitCovidButton, markCompleteButton;
   @FXML Rectangle darkMode;
@@ -168,6 +171,7 @@ public class CurrentRequestController extends MasterController implements Initia
     emergency.setText("");
     assignedEmployee.setText("");
     txtExtraInfo.setText("");
+    txtisCleared.setText("");
   }
 
   private void updateTextFields(Request clickedRequest) {
@@ -192,7 +196,7 @@ public class CurrentRequestController extends MasterController implements Initia
         a.add("yes");
       }
     }
-
+    txtisCleared.setText(covidForm.isCleared() + "");
     symptoms.setText(a.get(0));
     tested.setText(a.get(1));
     treatment.setText(a.get(2));
@@ -201,6 +205,11 @@ public class CurrentRequestController extends MasterController implements Initia
     emergency.setText(a.get(5));
     assignedEmployee.setText(db.getUserById(covidForm.getAssignedEmployeeId()).getUsername());
     txtExtraInfo.setText(covidForm.getExtraInfo());
+    System.out.println("bbb");
+    entrance
+        .getEditor()
+        .setText(
+            (covidForm.isOk()) ? "enter through 75 parking lot" : "enter through 75 parking lot");
   }
 
   @FXML
@@ -231,8 +240,8 @@ public class CurrentRequestController extends MasterController implements Initia
 
     int idCovid = Integer.parseInt(selectedLabel.getId());
     if (entrance.getValue() == "enter through emergency entrance")
-      db.updateCovidForm(idCovid, false);
-    else db.updateCovidForm(idCovid, true);
+      db.updateCovidForm(idCovid, false, isClearedCheckbox.isSelected());
+    else db.updateCovidForm(idCovid, true, isClearedCheckbox.isSelected());
     db.setCovidFormIsProcessed(idCovid, true);
     listViewCovid.getItems().remove(selectedLabel);
 
