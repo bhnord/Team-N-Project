@@ -42,7 +42,7 @@ public class FormEditorController extends MasterController implements Initializa
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Map");
+    super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Editor");
     titleEditor.setOnKeyReleased(
         e -> {
           this.form.getForm().setTitle(titleEditor.getText());
