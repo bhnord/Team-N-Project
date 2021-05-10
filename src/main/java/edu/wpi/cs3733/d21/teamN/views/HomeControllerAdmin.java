@@ -25,6 +25,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
 import lombok.extern.slf4j.Slf4j;
@@ -73,7 +74,7 @@ public class HomeControllerAdmin extends MasterController implements Initializab
 
   @FXML Rectangle darkMode;
   @FXML JFXListView<JFXButton> listView;
-
+  @FXML GridPane gridPane;
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
    * JavaFX thread
@@ -98,12 +99,14 @@ public class HomeControllerAdmin extends MasterController implements Initializab
       makeInvisible(FormEditor);
       makeInvisible(Appointment);
       makeInvisible(AppointmentEditor);
-      listView.getItems().add(mapPathfinder);
-      listView.getItems().add(FindUs);
+      //      listView.getItems().add(mapPathfinder);
+      //      listView.getItems().add(FindUs);
       updateStyle("0x748cdc");
       logInInit();
     } else {
 
+      gridPane.setManaged(false);
+      gridPane.setVisible(false);
       super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Home");
 
       switch (db.getCurrentUser().getType()) {
@@ -398,6 +401,12 @@ public class HomeControllerAdmin extends MasterController implements Initializab
   }
 
   public void updateStyle(String color) {
+    if (db.getCurrentUser() == null || db.getCurrentUser().getUsername().equals("guest")) {
+      String style =
+          "-fx-background-color: " + "#" + color.substring(2) + "; -fx-background-radius: 25;";
+      mapPathfinder.setStyle(style);
+      FindUs.setStyle(style);
+    }
     String style =
         "-fx-background-color: " + "#" + color.substring(2) + "; -fx-background-radius: 25;";
     //    Label[] lA = {
