@@ -10,6 +10,7 @@ import edu.wpi.cs3733.d21.teamN.services.algo.PathFinder;
 import edu.wpi.cs3733.d21.teamN.services.database.users.User;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import javafx.animation.TranslateTransition;
 import javafx.collections.ObservableList;
@@ -21,6 +22,8 @@ import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -145,7 +148,8 @@ public class PathFinderController extends MapController implements Initializable
         directionHandler.addDirection(l);
       }
     }
-    createExtras();
+//    arrowChase();
+        createExtras();
   }
 
   public void mapFloor() {
@@ -165,8 +169,6 @@ public class PathFinderController extends MapController implements Initializable
     }
     extras.clear();
   }
-
-  private void arrowChase(Polygon p) {}
 
   private Polygon createArrow(Node.Link l) {
     double size = 20;
@@ -201,10 +203,9 @@ public class PathFinderController extends MapController implements Initializable
     for (Node.Link l : nodePath) {
       if (l._this.get_floor().equals(mapDrawer.getCurrentMap()))
         if (l._this.get_floor().equals(l._other.get_floor())) {
-          Polygon p = createArrow(l);
-          mapAnchor.getChildren().add(p);
-          arrowChase(p);
-          extras.add(p);
+                    Polygon p = createArrow(l);
+                    mapAnchor.getChildren().add(p);
+                    extras.add(p);
         } else {
           Label label = new Label(l._other.get_floor());
           label.setTranslateX(l._other.get_x() * getDownScale() + 10);
@@ -213,6 +214,39 @@ public class PathFinderController extends MapController implements Initializable
           extras.add(label);
         }
     }
+  }
+
+  private void arrowChase() {
+    for (Node.Link l : nodePath) {
+      Image i =
+          new Image(
+              Objects.requireNonNull(
+                  getClass().getClassLoader().getResourceAsStream("gifs/Arrow1.gif")));
+      ImageView imageView = new ImageView(i);
+      //      imageView.setFitWidth(500);
+      //      imageView.setFitHeight(500);
+      System.out.println(
+          l._this.get_x() * getDownScale() + " : " + l._this.get_y() * getDownScale());
+      imageView.setX(l._this.get_x() * getDownScale());
+      imageView.setY(l._this.get_y() * getDownScale());
+      //      imageView.setLayoutX(l._this.get_x() * getDownScale());
+      //      imageView.setLayoutY(l._this.get_y() * getDownScale());
+
+      //      imageView.setRotationAxis(
+      //          new Point3D(l._this.get_x() * getDownScale(), l._this.get_y() * getDownScale(),
+      // 0.0));
+      //      imageView.setRotate(getDirection(l));
+
+      mapAnchor.getChildren().add(imageView);
+    }
+  }
+
+  private double getDirection(Node.Link l) {
+    double dx = l._other.get_x() * getDownScale() - l._this.get_x() * getDownScale();
+    double dy = l._other.get_y() * getDownScale() - l._this.get_y() * getDownScale();
+    double mag = Math.sqrt(dx * dx + dy * dy);
+
+    return -Math.sin(dy / mag) * 360 / Math.PI;
   }
 
   public void nodeSelected(JFXColorPicker a) {
