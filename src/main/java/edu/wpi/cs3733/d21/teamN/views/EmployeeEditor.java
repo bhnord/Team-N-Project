@@ -77,7 +77,7 @@ public class EmployeeEditor extends MasterController implements Initializable {
     }
 
     updateStyle(db.getCurrentUser().getAppColor());
-    super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Database");
+    super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Editor");
 
     listView.setOnMouseClicked(
         event -> {

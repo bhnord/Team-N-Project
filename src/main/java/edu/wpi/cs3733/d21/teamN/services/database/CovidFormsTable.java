@@ -111,8 +111,9 @@ public class CovidFormsTable {
     }
   }
 
-  public boolean updateCovidForm(int id, boolean isOk) {
-    String str = "UPDATE COVIDFORMS SET IsOk = " + isOk + " WHERE id = " + id;
+  public boolean updateCovidForm(int id, boolean isOk, boolean isCleared) {
+    String str =
+        "UPDATE COVIDFORMS SET IsOk = " + isOk + ", IsCleared = " + isCleared + " WHERE id = " + id;
     try {
       stmt.execute(str);
       return true;
@@ -158,8 +159,9 @@ public class CovidFormsTable {
         String extraInfo = rs.getString("extraInfo");
         boolean isOk = rs.getBoolean("IsOk");
         boolean isProcessed = rs.getBoolean("IsProcessed");
+        boolean isCleared = rs.getBoolean("IsCleared");
         CovidForm form =
-            new CovidForm(id, user, assignedEmployee, ans, extraInfo, isOk, isProcessed);
+            new CovidForm(id, user, assignedEmployee, ans, extraInfo, isOk, isCleared, isProcessed);
         formSet.add(form);
       }
       return formSet;

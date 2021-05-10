@@ -4,6 +4,7 @@
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXListView?>
 <?import com.jfoenix.controls.JFXTabPane?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.image.Image?>
@@ -81,29 +82,32 @@
                                     <Rectangle fx:id="rectangle1" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="581.0" stroke="#bcbcbc" strokeType="INSIDE" width="886.0" />
                                     <Label layoutX="303.0" layoutY="30.0" prefHeight="457.0" prefWidth="392.0" style="-fx-background-color: WHITE; -fx-background-radius: 25;" />
                                     <JFXListView fx:id="listViewCovid" layoutX="14.0" layoutY="20.0" prefHeight="535.0" prefWidth="261.0" stylesheets="@/StyleSheet/style.css" verticalGap="10.0" />
-                                    <Label layoutX="350.0" layoutY="60.0" stylesheets="/Fonts/Roboto-Light.css" text="Symptoms: " />
-                                    <Label layoutX="350.0" layoutY="104.0" stylesheets="/Fonts/Roboto-Light.css" text="Tested:" />
-                                    <Label layoutX="350.0" layoutY="149.0" stylesheets="/Fonts/Roboto-Light.css" text="Recieved treatment:" />
-                                    <Label layoutX="350.0" layoutY="196.0" stylesheets="/Fonts/Roboto-Light.css" text="Traveled outside US:" />
-                                    <Label layoutX="350.0" layoutY="246.0" stylesheets="/Fonts/Roboto-Light.css" text="Traveled on cruise ship:" />
+                                    <Label layoutX="350.0" layoutY="104.0" stylesheets="/Fonts/Roboto-Light.css" text="Symptoms: " />
+                                    <Label layoutX="350.0" layoutY="139.0" stylesheets="/Fonts/Roboto-Light.css" text="Tested:" />
+                                    <Label layoutX="350.0" layoutY="175.0" stylesheets="/Fonts/Roboto-Light.css" text="Recieved treatment:" />
+                                    <Label layoutX="350.0" layoutY="213.0" stylesheets="/Fonts/Roboto-Light.css" text="Traveled outside US:" />
+                                    <Label layoutX="350.0" layoutY="250.0" stylesheets="/Fonts/Roboto-Light.css" text="Traveled on cruise ship:" />
                                     <Label layoutX="350.0" layoutY="290.0" stylesheets="/Fonts/Roboto-Light.css" text="Emergency Responder:" />
-                                    <Label fx:id="symptoms" layoutX="613.0" layoutY="60.0" text="                       " />
-                                    <Label fx:id="tested" layoutX="613.0" layoutY="104.0" text="                           " />
-                                    <Label fx:id="treatment" layoutX="613.0" layoutY="149.0" text="               " />
-                                    <Label fx:id="outsideTravel" layoutX="613.0" layoutY="196.0" text="                                       " />
-                                    <Label fx:id="cruiseShip" layoutX="613.0" layoutY="246.0" text="                         " />
+                                    <Label fx:id="symptoms" layoutX="613.0" layoutY="104.0" text="                       " />
+                                    <Label fx:id="tested" layoutX="613.0" layoutY="139.0" text="                           " />
+                                    <Label fx:id="treatment" layoutX="613.0" layoutY="175.0" text="               " />
+                                    <Label fx:id="outsideTravel" layoutX="613.0" layoutY="213.0" text="                                       " />
+                                    <Label fx:id="cruiseShip" layoutX="613.0" layoutY="250.0" text="                         " />
                                     <Label fx:id="emergency" layoutX="613.0" layoutY="290.0" text="                                 " />
                                     <JFXButton fx:id="submitCovidButton" layoutX="634.0" layoutY="484.0" onAction="#submitCovid" prefHeight="70.0" prefWidth="212.0" style="-fx-background-color: #748cdc; -fx-background-radius: 15;" stylesheets="/Fonts/Roboto-Light.css" text="SUBMIT" textFill="WHITE">
                                        <font>
                                           <Font name="Arial Black" size="14.0" />
                                        </font>
                                     </JFXButton>
-                                    <JFXComboBox fx:id="entrance" focusColor="#5b63e1" layoutX="350.0" layoutY="445.0" prefHeight="31.0" prefWidth="233.0" promptText="How patient should enter" stylesheets="/Fonts/Roboto-Light.css" />
-                                    <Label layoutX="350.0" layoutY="340.0" prefHeight="21.0" prefWidth="143.0" stylesheets="/Fonts/Roboto-Light.css" text="Assigned Employee:" />
-                                    <Label fx:id="assignedEmployee" layoutX="613.0" layoutY="340.0" prefHeight="17.0" prefWidth="186.0" text="                                 " />
+                                    <JFXComboBox fx:id="entrance" focusColor="#5b63e1" layoutX="350.0" layoutY="410.0" prefHeight="31.0" prefWidth="233.0" promptText="How patient should enter" stylesheets="/Fonts/Roboto-Light.css" />
+                                    <Label layoutX="350.0" layoutY="330.0" prefHeight="21.0" prefWidth="143.0" stylesheets="/Fonts/Roboto-Light.css" text="Assigned Employee:" />
+                                    <Label fx:id="assignedEmployee" layoutX="613.0" layoutY="330.0" prefHeight="17.0" prefWidth="186.0" text="                                 " />
                                     <Label layoutX="350.0" layoutY="452.0" text="     " />
-                                    <Label layoutX="350.0" layoutY="394.0" prefHeight="17.0" prefWidth="133.0" stylesheets="/Fonts/Roboto-Light.css" text="Extra Information:" />
-                                    <Label fx:id="txtExtraInfo" alignment="TOP_LEFT" layoutX="613.0" layoutY="394.0" prefHeight="48.0" prefWidth="219.0" wrapText="true" />
+                                    <Label layoutX="350.0" layoutY="377.0" prefHeight="17.0" prefWidth="133.0" stylesheets="/Fonts/Roboto-Light.css" text="Extra Information:" />
+                                    <Label fx:id="txtExtraInfo" alignment="TOP_LEFT" layoutX="613.0" layoutY="377.0" stylesheets="/Fonts/Roboto-Light.css" prefHeight="48.0" prefWidth="219.0" wrapText="true" />
+                                    <CheckBox fx:id="isClearedCheckbox" layoutX="350.0" layoutY="461.0" stylesheets="/Fonts/Roboto-Light.css" mnemonicParsing="false" text="Mark as cleared past entrance" />
+                                    <Label layoutX="350.0" layoutY="72.0" stylesheets="/Fonts/Roboto-Light.css" text="Cleared past entrance?" />
+                                    <Label fx:id="txtisCleared" stylesheets="/Fonts/Roboto-Light.css" layoutX="613.0" layoutY="72.0" text="                       " />
                                  </children>
                               </AnchorPane>
                            </content>
