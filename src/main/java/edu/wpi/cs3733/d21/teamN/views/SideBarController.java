@@ -285,6 +285,12 @@ public class SideBarController extends MasterController implements Initializable
       makeInvisible(groupBack);
       makeInvisible(groupAccountSettings);
       makeInvisible(groupAboutUs);
+    } else if (type.equals("CovidInformation")) {
+      makeInvisible(groupLogOut);
+      makeInvisible(groupCovid);
+      makeInvisible(groupBack);
+      makeInvisible(groupAccountSettings);
+      makeInvisible(groupAboutUs);
     }
   }
 
@@ -353,4 +359,6 @@ public class SideBarController extends MasterController implements Initializable
       // label1.getStylesheets().add("src/main/resources/StyleSheet/Dynamic.css");
     }
   }
+
+  public void covidinformation(ActionEvent actionEvent) {}
 }
