@@ -3,7 +3,6 @@ package edu.wpi.cs3733.d21.teamN;
 import com.google.inject.*;
 import edu.wpi.cs3733.d21.teamN.services.database.DatabaseService;
 import edu.wpi.cs3733.d21.teamN.services.database.DatabaseServiceProvider;
-import edu.wpi.cs3733.d21.teamN.services.database.users.UserPrefs;
 import edu.wpi.cs3733.d21.teamN.services.database.users.UserType;
 import edu.wpi.cs3733.d21.teamN.state.HomeStateProvider;
 import edu.wpi.cs3733.d21.teamN.views.FXMLLoaderProvider;
@@ -55,21 +54,16 @@ public class App extends Application {
     loader = new FXMLLoader();
     loader.setControllerFactory(injector::getInstance);
 
-    if (db.getUserByUsername("admin") == null)
-      db.addUser("admin", "admin", UserType.ADMINISTRATOR, new UserPrefs());
-    if (db.getUserByUsername("staff") == null)
-      db.addUser("staff", "staff", UserType.EMPLOYEE, new UserPrefs());
-    if (db.getUserByUsername("patient") == null)
-      db.addUser("patient", "patient", UserType.PATIENT, new UserPrefs());
-    if (db.getUserByUsername("guest") == null)
-      db.addUser("guest", "guest", UserType.PATIENT, new UserPrefs());
+    if (db.getUserByUsername("admin") == null) db.addUser("admin", "admin", UserType.ADMINISTRATOR);
+    if (db.getUserByUsername("staff") == null) db.addUser("staff", "staff", UserType.EMPLOYEE);
+    if (db.getUserByUsername("patient") == null) db.addUser("patient", "patient", UserType.PATIENT);
+    if (db.getUserByUsername("guest") == null) db.addUser("guest", "guest", UserType.PATIENT);
 
-    if (db.getUserByUsername("Alex") == null)
-      db.addUser("Alex", "Alex", UserType.EMPLOYEE, new UserPrefs());
-    if (db.getUserByUsername("Ananya") == null)
-      db.addUser("Ananya", "Ananya", UserType.EMPLOYEE, new UserPrefs());
-    if (db.getUserByUsername("Finn") == null)
-      db.addUser("Finn", "Finn", UserType.EMPLOYEE, new UserPrefs());
+    String arr[] = {
+      "Alex", "Ananya", "Bernhard", "Finn", "Jake", "John", "Josh", "Michael", "Payton", "Romish"
+    };
+    for (String str : arr)
+      if (db.getUserByUsername(str) == null) db.addUser(str, str, UserType.EMPLOYEE);
 
     //    db.addForm(new NamedForm(1, "BigBoyForm", new Form("BigBoyForm")));
     //    int id = db.getFormByName("BigBoyForm").getId();
