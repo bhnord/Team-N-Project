@@ -2,6 +2,7 @@ package edu.wpi.cs3733.d21.teamN.services.database;
 
 import com.google.gson.Gson;
 import com.google.inject.Inject;
+import com.google.inject.Singleton;
 import edu.wpi.cs3733.d21.teamN.form.Form;
 import edu.wpi.cs3733.d21.teamN.services.algo.Edge;
 import edu.wpi.cs3733.d21.teamN.services.algo.Node;
@@ -20,8 +21,10 @@ import java.util.Objects;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
+@Singleton
 public class DatabaseService {
-  private final Connection connection;
+  private Connection connection;
+  private boolean connectedToServer = false;
   /*
    database service class. This class will be loaded as a Singleton by Guice.
   */
@@ -29,14 +32,14 @@ public class DatabaseService {
   /*
    database service class. This class will be loaded as a Singleton by Guice.
   */
-  @Inject UsersTable usersTable;
-  @Inject NodesTable nodesTable;
-  @Inject EdgesTable edgesTable;
-  @Inject CovidFormsTable covidTable;
-  @Inject RequestsTable requestsTable;
-  @Inject AppointmentsTable appointmentsTable;
-  @Inject AppointmentTypesTable appointmentTypesTable;
-  @Inject FormsTable formsTable;
+  UsersTable usersTable = UsersTable.getInstance();
+  NodesTable nodesTable = NodesTable.getInstance();
+  EdgesTable edgesTable = EdgesTable.getInstance();
+  CovidFormsTable covidTable = CovidFormsTable.getInstance();
+  RequestsTable requestsTable = RequestsTable.getInstance();
+  AppointmentsTable appointmentsTable = AppointmentsTable.getInstance();
+  AppointmentTypesTable appointmentTypesTable = AppointmentTypesTable.getInstance();
+  FormsTable formsTable = FormsTable.getInstance();
   private Statement stmt;
 
   @Inject
@@ -44,6 +47,36 @@ public class DatabaseService {
     this.connection = connection;
     try {
       this.stmt = connection.createStatement();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+
+    setConnections();
+  }
+
+  private void setConnections() {
+    usersTable.setConnection(connection);
+    nodesTable.setConnection(connection);
+    edgesTable.setConnection(connection);
+    covidTable.setConnection(connection);
+    requestsTable.setConnection(connection);
+    appointmentsTable.setConnection(connection);
+    appointmentTypesTable.setConnection(connection);
+    formsTable.setConnection(connection);
+  }
+
+  public void switchConnection() {
+    String dbUrl;
+    if (connectedToServer) {
+      dbUrl = "jdbc:derby:DerbyDB;username=admin;password=admin;create=true;";
+    } else {
+      dbUrl = "jdbc:derby://localhost:1527/DerbyDB;user=admin;password=admin;";
+    }
+    connectedToServer = !connectedToServer;
+    try {
+      this.connection = DriverManager.getConnection(dbUrl);
+      this.stmt = connection.createStatement();
+      setConnections();
     } catch (SQLException e) {
       e.printStackTrace();
     }

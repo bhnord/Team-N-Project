@@ -1,6 +1,5 @@
 package edu.wpi.cs3733.d21.teamN.services.database;
 
-import com.google.inject.Inject;
 import edu.wpi.cs3733.d21.teamN.services.database.requests.Request;
 import edu.wpi.cs3733.d21.teamN.services.database.requests.RequestType;
 import edu.wpi.cs3733.d21.teamN.services.database.users.User;
@@ -11,11 +10,18 @@ import java.sql.Statement;
 import java.util.HashSet;
 
 public class RequestsTable {
-  private final Connection connection;
+  private Connection connection;
   private Statement stmt;
 
-  @Inject
-  RequestsTable(Connection connection) {
+  public static RequestsTable getInstance() {
+    return SingletonHelper.table;
+  }
+
+  private static class SingletonHelper {
+    private static final RequestsTable table = new RequestsTable();
+  }
+
+  public void setConnection(Connection connection) {
     this.connection = connection;
     try {
       this.stmt = connection.createStatement();

@@ -1,6 +1,5 @@
 package edu.wpi.cs3733.d21.teamN.services.database;
 
-import com.google.inject.Inject;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,11 +8,18 @@ import java.util.Arrays;
 import java.util.HashSet;
 
 public class CovidFormsTable {
-  private final Connection connection;
+  private Connection connection;
   private Statement stmt;
 
-  @Inject
-  CovidFormsTable(Connection connection) {
+  public static CovidFormsTable getInstance() {
+    return SingletonHelper.table;
+  }
+
+  private static class SingletonHelper {
+    private static final CovidFormsTable table = new CovidFormsTable();
+  }
+
+  public void setConnection(Connection connection) {
     this.connection = connection;
     try {
       this.stmt = connection.createStatement();

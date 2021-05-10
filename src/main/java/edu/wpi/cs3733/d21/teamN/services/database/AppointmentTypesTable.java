@@ -1,17 +1,23 @@
 package edu.wpi.cs3733.d21.teamN.services.database;
 
-import com.google.inject.Inject;
 import java.io.*;
 import java.sql.*;
 import java.util.HashSet;
 
 public class AppointmentTypesTable {
-  private final Connection connection;
+  private Connection connection;
   private Statement stmt;
   private FormSerializer fs = new FormSerializer();
 
-  @Inject
-  AppointmentTypesTable(Connection connection) {
+  public static AppointmentTypesTable getInstance() {
+    return SingletonHelper.table;
+  }
+
+  private static class SingletonHelper {
+    private static final AppointmentTypesTable table = new AppointmentTypesTable();
+  }
+
+  public void setConnection(Connection connection) {
     this.connection = connection;
     try {
       this.stmt = connection.createStatement();

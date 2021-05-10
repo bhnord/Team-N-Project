@@ -401,4 +401,20 @@ public class HomeControllerAdmin extends MasterController implements Initializab
               + " with FaceID. Please log in with your username and password.");
     }
   }
+
+  @FXML
+  private void switchDB() throws IOException {
+    dialogFactory = new DialogFactory(rootStackPane);
+    dialogFactory.creatDialogOkayWithAction(
+        "Alert",
+        "You have switched Database connections",
+        event -> {
+          try {
+            super.logOut(loader, appPrimaryScene);
+          } catch (IOException e) {
+            e.printStackTrace();
+          }
+          db.switchConnection();
+        });
+  }
 }
