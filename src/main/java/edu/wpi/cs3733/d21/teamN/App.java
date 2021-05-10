@@ -73,7 +73,7 @@ public class App extends Application {
 
     //    db.addForm(new NamedForm(1, "BigBoyForm", new Form()));
     //    db.getForm(1).getForm().tester();
-//    db.addAppointmentType("NewType", 100);
+    //    db.addAppointmentType("NewType", 100);
     //    db.addAppointment(
     //        new Appointment(
     //            1, 1, 1, new Form(), new Timestamp(System.currentTimeMillis()), "CSERV001L1"));

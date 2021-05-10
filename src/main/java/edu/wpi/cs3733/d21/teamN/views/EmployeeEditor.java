@@ -217,12 +217,14 @@ public class EmployeeEditor extends MasterController implements Initializable {
   @FXML private JFXButton commitChangesButton, addEmployeeButton, deleteUserButton;
 
   public void updateStyle(String color) {
-    String style =
-        "-fx-background-color: " + "#" + color.substring(2) + "; -fx-background-radius: 25;";
-    JFXButton[] lA = {commitChangesButton, addEmployeeButton, deleteUserButton};
-    for (JFXButton a : lA) a.setStyle(style);
+    if (!color.substring(2).equals("fffff")) {
+      String style =
+          "-fx-background-color: " + "#" + color.substring(2) + "; -fx-background-radius: 25;";
+      JFXButton[] lA = {commitChangesButton, addEmployeeButton, deleteUserButton};
+      for (JFXButton a : lA) a.setStyle(style);
 
-    Color c = Color.web(color);
-    rectangle.setFill(c);
+      Color c = Color.web(color);
+      rectangle.setFill(c);
+    }
   }
 }

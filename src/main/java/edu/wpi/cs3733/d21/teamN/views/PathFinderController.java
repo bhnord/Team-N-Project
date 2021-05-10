@@ -202,8 +202,8 @@ public class PathFinderController extends MapController implements Initializable
         directionHandler.addDirection(l);
       }
     }
-//    arrowChase();
-        createExtras();
+    //    arrowChase();
+    createExtras();
   }
 
   public void mapFloor() {
@@ -259,9 +259,9 @@ public class PathFinderController extends MapController implements Initializable
     for (Node.Link l : nodePath) {
       if (l._this.get_floor().equals(mapDrawer.getCurrentMap()))
         if (l._this.get_floor().equals(l._other.get_floor())) {
-                    Polygon p = createArrow(l);
-                    mapAnchor.getChildren().add(p);
-                    extras.add(p);
+          Polygon p = createArrow(l);
+          mapAnchor.getChildren().add(p);
+          extras.add(p);
         } else {
           Label label = new Label(l._other.get_floor());
           label.setTranslateX(l._other.get_x() * getDownScale() + 10);
