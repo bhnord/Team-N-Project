@@ -206,6 +206,9 @@ public class Calender extends MasterController implements Initializable {
       updateColor(c);
       c.setOnMousePressed(
           e -> {
+            if (selectedButton == c) {
+              return;
+            }
             JFXButton prev = selectedButton;
             if (e.isSecondaryButtonDown()) {
               System.out.println("SECONDARY");

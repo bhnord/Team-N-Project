@@ -2,14 +2,6 @@ package edu.wpi.cs3733.d21.teamN.faceLogin;
 
 import edu.wpi.cs3733.d21.teamN.services.database.DatabaseService;
 import edu.wpi.cs3733.d21.teamN.services.database.users.User;
-import javafx.embed.swing.SwingFXUtils;
-import javafx.scene.control.Alert;
-import javafx.scene.image.Image;
-import org.opencv.core.*;
-import org.opencv.features2d.DescriptorMatcher;
-import org.opencv.features2d.ORB;
-import org.opencv.imgproc.Imgproc;
-
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
 import java.io.IOException;
@@ -19,6 +11,13 @@ import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.util.HashMap;
 import java.util.Objects;
+import javafx.embed.swing.SwingFXUtils;
+import javafx.scene.control.Alert;
+import javafx.scene.image.Image;
+import org.opencv.core.*;
+import org.opencv.features2d.DescriptorMatcher;
+import org.opencv.features2d.ORB;
+import org.opencv.imgproc.Imgproc;
 
 abstract class FaceRec {
   final DatabaseService db;
@@ -27,7 +26,7 @@ abstract class FaceRec {
 
   public FaceRec(DatabaseService db) {
     this.db = db;
-    //TODO? Change db to store Mat of descriptors
+    // TODO? Change db to store Mat of descriptors
     faceImages = db.getAllFaces();
     InputStream path =
         Objects.requireNonNull(
@@ -84,7 +83,7 @@ abstract class FaceRec {
     }
 
     if (mostSimilarUserID != -1 && mostSimilar > errorThreshold) {
-//      System.out.println(errorThreshold);
+      //      System.out.println(errorThreshold);
       return db.getUserById(mostSimilarUserID);
     } else return null;
   }

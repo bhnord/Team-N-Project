@@ -2,20 +2,19 @@ package edu.wpi.cs3733.d21.teamN.faceLogin;
 
 import edu.wpi.cs3733.d21.teamN.services.database.DatabaseService;
 import edu.wpi.cs3733.d21.teamN.services.database.users.User;
-import javafx.application.Platform;
-import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
-import org.opencv.core.Point;
-import org.opencv.core.*;
-import org.opencv.imgproc.Imgproc;
-import org.opencv.objdetect.CascadeClassifier;
-import org.opencv.videoio.VideoCapture;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import javafx.application.Platform;
+import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
+import org.opencv.core.*;
+import org.opencv.core.Point;
+import org.opencv.imgproc.Imgproc;
+import org.opencv.objdetect.CascadeClassifier;
+import org.opencv.videoio.VideoCapture;
 
 public class FaceEnroller extends FaceRec {
   private final ImageView imageView;
