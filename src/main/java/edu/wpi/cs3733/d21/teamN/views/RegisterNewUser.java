@@ -5,7 +5,6 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import edu.wpi.cs3733.d21.teamN.services.database.DatabaseService;
-import edu.wpi.cs3733.d21.teamN.services.database.users.UserPrefs;
 import edu.wpi.cs3733.d21.teamN.services.database.users.UserType;
 import edu.wpi.cs3733.d21.teamN.state.HomeState;
 import edu.wpi.cs3733.d21.teamN.utilities.DialogFactory;
@@ -95,8 +94,7 @@ public class RegisterNewUser extends MasterController implements Initializable {
     } else if (!(password.getText().equals(retypePassword.getText()))) {
       dialogFactory.creatDialogOkay(
           "Invalid Entry", "* Passwords do not match. Retype passwords. \n");
-    } else if (!(db.addUser(
-        username.getText(), password.getText(), UserType.PATIENT, new UserPrefs()))) {
+    } else if (!(db.addUser(username.getText(), password.getText(), UserType.PATIENT))) {
       dialogFactory.creatDialogOkay(
           "Invalid User Login", "* Username already exists. Choose different username.\n");
     } else {

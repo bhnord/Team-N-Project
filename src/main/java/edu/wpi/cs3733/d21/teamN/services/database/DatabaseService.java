@@ -310,8 +310,8 @@ public class DatabaseService {
    * @param type the type of the user to be added
    * @return whether or not the operation was carried out successfully
    */
-  public boolean addUser(String username, String password, UserType type, UserPrefs userPrefs) {
-    return usersTable.addUser(username, password, type, userPrefs);
+  public boolean addUser(String username, String password, UserType type) {
+    return usersTable.addUser(username, password, type);
   }
 
   /**

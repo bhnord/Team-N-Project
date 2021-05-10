@@ -141,7 +141,7 @@ public class EmployeeEditor extends MasterController implements Initializable {
         messageLabel.setText("Invalid inputs");
       }
       updateSelectedLabel(selectedUser);
-    } else if (db.addUser(username, password, type, new UserPrefs())) {
+    } else if (db.addUser(username, password, type)) {
       updateSelectedLabel(db.getUserByUsername(username));
     } else {
       messageLabel.setText("Invalid inputs");

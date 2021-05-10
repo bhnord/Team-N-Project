@@ -26,7 +26,7 @@ public class UsersTable {
     }
   }
 
-  public boolean addUser(String username, String password, UserType type, UserPrefs userPrefs) {
+  public boolean addUser(String username, String password, UserType type) {
     Gson gson = new Gson();
     String str =
         "INSERT INTO USERS (USERNAME, PASSWORD, USERTYPE, PREFERENCES) VALUES ('"
@@ -36,7 +36,7 @@ public class UsersTable {
             + "', '"
             + type.toString()
             + "', '"
-            + gson.toJson(userPrefs)
+            + gson.toJson(new UserPrefs())
             + "')";
     try {
       stmt.execute(str);
