@@ -12,7 +12,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -64,11 +63,11 @@ public class FormEditorController extends MasterController implements Initializa
   //  }
 
   public void submit(ActionEvent actionEvent) throws IOException {
+    //    Parent root = loader.load(getClass().getResourceAsStream("Templateform.fxml"));
+    //    appPrimaryScene.setRoot(root);
+    //    FormController formController = loader.getController();
+    //    formController.setUp(form);
     db.updateForm(form);
-    Parent root = loader.load(getClass().getResourceAsStream("Templateform.fxml"));
-    appPrimaryScene.setRoot(root);
-    FormController formController = loader.getController();
-    formController.setUp(form.getForm());
   }
 
   public void add(ActionEvent actionEvent) {
