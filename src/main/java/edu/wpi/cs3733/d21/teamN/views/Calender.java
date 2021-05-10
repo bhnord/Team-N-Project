@@ -212,6 +212,7 @@ public class Calender extends MasterController implements Initializable {
               Appointment res = appointmentSlot.get(editor.getSelectionModel().getSelectedIndex());
               appointmentsThisWeek.add(res);
               res.setTimeOfAppointment(Timestamp.valueOf(c.getId()));
+              db.updateAppointment(res);
             }
             setAppointmentSlot(c.getId());
             selectedButton = c;
