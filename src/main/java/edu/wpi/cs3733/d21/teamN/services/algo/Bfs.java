@@ -10,6 +10,7 @@ public class Bfs extends PathFinderAlgorithm implements IPathFinder {
     Node curnode;
     used.add(start);
     open.push(start);
+    start.set_seen(true);
 
     while (!open.isEmpty()) {
       curnode = open.pop();
@@ -17,10 +18,10 @@ public class Bfs extends PathFinderAlgorithm implements IPathFinder {
         break;
       }
       for (Node.Link l : curnode.get_neighbors()) {
-        Node n = l._this;
+        Node n = l._other;
         if (!n.is_seen()) {
           used.add(n);
-          open.push(n);
+          open.addFirst(n);
           n.set_seen(true);
           n.set_parent(l);
         }

@@ -11,6 +11,7 @@ public class Dfs extends PathFinderAlgorithm implements IPathFinder {
     Node curnode;
     used.add(start);
     open.push(start);
+    start.set_seen(true);
 
     while (!open.isEmpty()) {
       curnode = open.pop();
