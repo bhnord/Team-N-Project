@@ -471,7 +471,7 @@ public class HomeControllerAdmin extends MasterController implements Initializab
     Parent root = loader.load(getClass().getResourceAsStream("Templateform.fxml"));
     appPrimaryScene.setRoot(root);
     FormController formController = loader.getController();
-//    System.out.println(closest.getForm().getResults());
+    //    System.out.println(closest.getForm().getResults());
     formController.setUp(closest, db.getForm(closest.getAppointmentTypeId()).getForm());
   }
 }
