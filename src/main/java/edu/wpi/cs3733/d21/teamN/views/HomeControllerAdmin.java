@@ -309,12 +309,13 @@ public class HomeControllerAdmin extends MasterController implements Initializab
   }
 
   public void appointmentEdit(ActionEvent actionEvent) throws IOException {
-        if (db.getAllForms()) {
-          dialogFactory.creatDialogOkay(
-              "No Forms Available", "You must create a form before you can assign any
-     appointments");
-          return;
-        }
+    if (db.getAllFormsNotServiceRequest().isEmpty()) {
+      dialogFactory = new DialogFactory(rootStackPane);
+      dialogFactory.creatDialogOkay(
+          "No Forms Available",
+          "You must create a form before you can assign any appointments types");
+      return;
+    }
     Parent root = loader.load(getClass().getResourceAsStream("EditAppointments.fxml"));
     AppointmentsEditorController controller = loader.getController();
     controller.setUp();
@@ -416,6 +417,13 @@ public class HomeControllerAdmin extends MasterController implements Initializab
   }
 
   public void appointment(ActionEvent actionEvent) throws IOException {
+    if (db.getAllAppointments().isEmpty()) {
+      dialogFactory = new DialogFactory(rootStackPane);
+      dialogFactory.creatDialogOkay(
+          "No Appointments types Available",
+          "You must create an appointment type before you can assign any appointments");
+      return;
+    }
     Parent root = loader.load(getClass().getResourceAsStream("Calender.fxml"));
     appPrimaryScene.setRoot(root);
     Calender calender = loader.getController();

@@ -17,9 +17,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
 
 public class EditorPageController extends MasterController implements Initializable {
+  public StackPane rootStackPane;
   @Inject DatabaseService db;
   @Inject FXMLLoader loader;
   @Inject HomeState state;
@@ -69,6 +71,13 @@ public class EditorPageController extends MasterController implements Initializa
   }
 
   public void appointmentEdit(ActionEvent actionEvent) throws IOException {
+    if (db.getAllFormsNotServiceRequest().isEmpty()) {
+      dialogFactory = new DialogFactory(rootStackPane);
+      dialogFactory.creatDialogOkay(
+          "No Forms Available",
+          "You must create a form before you can assign any appointments types");
+      return;
+    }
     Parent root = loader.load(getClass().getResourceAsStream("EditAppointments.fxml"));
     AppointmentsEditorController controller = loader.getController();
     controller.setUp();
