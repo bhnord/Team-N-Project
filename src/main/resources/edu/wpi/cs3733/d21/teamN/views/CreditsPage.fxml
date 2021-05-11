@@ -37,81 +37,82 @@
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                </columnConstraints>
                <rowConstraints>
-                  <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="1.7976931348623157E308" minHeight="-Infinity" prefHeight="712.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="143.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="1.7976931348623157E308" minHeight="-Infinity" prefHeight="615.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="197.0" minHeight="-Infinity" prefHeight="0.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="197.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <JFXButton fx:id="helpSB" alignment="TOP_LEFT" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="628.0" prefWidth="1012.0" style="-fx-background-radius: 25; -fx-background-color: #ffffff;" text=" " textFill="WHITE" GridPane.rowIndex="1">
+                  <JFXButton fx:id="helpSB" alignment="TOP_LEFT" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="504.0" prefWidth="1070.0" style="-fx-background-radius: 25; -fx-background-color: #ffffff;" text=" " textFill="WHITE" GridPane.rowIndex="1">
                      <font>
                         <Font name="Arial Black" size="18.0" />
                      </font>
                      <GridPane.margin>
-                        <Insets bottom="35.0" left="35.0" right="35.0" top="35.0" />
+                        <Insets bottom="35.0" left="35.0" right="35.0" top="10.0" />
                      </GridPane.margin>
                   </JFXButton>
-                  <AnchorPane fx:id="anchorPage" prefHeight="749.0" prefWidth="996.0" GridPane.rowIndex="1" GridPane.rowSpan="2">
+                  <AnchorPane fx:id="anchorPage" prefHeight="685.0" prefWidth="1140.0" GridPane.rowIndex="1" GridPane.rowSpan="2">
                      <children>
-                        <ImageView fitHeight="96.0" fitWidth="93.0" layoutX="520.0" layoutY="426.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="96.0" fitWidth="93.0" layoutX="536.0" layoutY="368.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@/images/java_org.apache.derby_derby.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="159.0" fitWidth="155.0" layoutX="505.0" layoutY="198.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="159.0" fitWidth="155.0" layoutX="510.0" layoutY="158.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@/images/jfoenixlogo.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="83.0" fitWidth="95.0" layoutX="222.0" layoutY="236.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="83.0" fitWidth="95.0" layoutX="210.0" layoutY="189.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@/images/google_logo_png_transparent256.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="83.0" fitWidth="95.0" layoutX="222.0" layoutY="431.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="83.0" fitWidth="95.0" layoutX="210.0" layoutY="382.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@/images/opencvlogo.png" />
                            </image>
                         </ImageView>
-                        <Label layoutX="229.0" layoutY="319.0" prefHeight="40.0" prefWidth="112.0" stylesheets="/Fonts/Roboto-Light.css" text="Google Maps">
+                        <Label layoutX="204.0" layoutY="275.0" prefHeight="40.0" prefWidth="112.0" stylesheets="/Fonts/Roboto-Light.css" text="Google Maps">
                            <font>
                               <Font size="18.0" />
                            </font></Label>
-                        <Label layoutX="229.0" layoutY="525.0" prefHeight="40.0" prefWidth="112.0" stylesheets="/Fonts/Roboto-Light.css" text="Open CV">
+                        <Label layoutX="221.0" layoutY="491.0" prefHeight="40.0" prefWidth="112.0" stylesheets="/Fonts/Roboto-Light.css" text="Open CV">
                            <font>
                               <Font size="18.0" />
                            </font></Label>
-                        <Label layoutX="520.0" layoutY="319.0" prefHeight="40.0" prefWidth="73.0" stylesheets="/Fonts/Roboto-Light.css" text="JFoenix">
+                        <Label layoutX="546.0" layoutY="292.0" prefHeight="40.0" prefWidth="73.0" stylesheets="/Fonts/Roboto-Light.css" text="JFoenix">
                            <font>
                               <Font size="18.0" />
                            </font></Label>
-                        <Label layoutX="229.0" layoutY="364.0" prefHeight="27.0" prefWidth="112.0" stylesheets="/Fonts/Roboto-Light.css" text="Google Gson">
+                        <Label layoutX="205.0" layoutY="309.0" prefHeight="27.0" prefWidth="112.0" stylesheets="/Fonts/Roboto-Light.css" text="Google Gson">
                            <font>
                               <Font size="18.0" />
                            </font></Label>
                         <StackPane fx:id="myStackPane" layoutX="967.0" layoutY="64.0" prefHeight="83.0" prefWidth="112.0" />
-                        <Label fx:id="text1" alignment="CENTER" layoutX="229.0" layoutY="106.0" prefHeight="50.0" prefWidth="204.0" style="-fx-background-color: #748cdc; -fx-background-radius: 6;" stylesheets="@/Fonts/Roboto-Light.css" text="Credits To:" textAlignment="CENTER" textFill="WHITE">
-                           <font>
-                              <Font name="Serif Regular" size="20.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="520.0" layoutY="525.0" prefHeight="40.0" prefWidth="120.0" stylesheets="/Fonts/Roboto-Light.css" text="Apache Derby">
+                        <Label layoutX="527.0" layoutY="490.0" prefHeight="40.0" prefWidth="120.0" stylesheets="/Fonts/Roboto-Light.css" text="Apache Derby">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Label layoutX="799.0" layoutY="525.0" prefHeight="40.0" prefWidth="120.0" stylesheets="/Fonts/Roboto-Light.css" text="SLF4J">
+                        <Label layoutX="882.0" layoutY="490.0" prefHeight="40.0" prefWidth="120.0" stylesheets="/Fonts/Roboto-Light.css" text="SLF4J">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Label layoutX="799.0" layoutY="319.0" prefHeight="40.0" prefWidth="120.0" stylesheets="/Fonts/Roboto-Light.css" text="ikonli">
+                        <Label layoutX="884.0" layoutY="292.0" prefHeight="40.0" prefWidth="120.0" stylesheets="/Fonts/Roboto-Light.css" text="ikonli">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
+                        <Label fx:id="boldd" layoutX="265.0" layoutY="99.0" stylesheets="@/StyleSheet/Help.css" text="The following technologies have been utilitized in our application:" textAlignment="CENTER" textFill="#748cdc" />
                      </children>
                   </AnchorPane>
+                  <Label fx:id="text" alignment="BOTTOM_LEFT" layoutX="149.0" layoutY="123.0" prefHeight="108.0" prefWidth="350.0" stylesheets="@/Fonts/Roboto-Black.css" text="      CREDITS">
+                     <font>
+                        <Font name="Arial Black" size="30.0" />
+                     </font>
+                  </Label>
                </children>
             </GridPane>
          </children>
