@@ -12,6 +12,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.ResourceBundle;
+import javafx.animation.AnimationTimer;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -39,7 +40,8 @@ public class PathFinderController extends MapController implements Initializable
   ArrayList<Node.Link> nodePath = new ArrayList<>();
   DirectionHandler directionHandler;
   private Scene appPrimaryScene;
-  private ArrayList<javafx.scene.Node> extras;
+  private ArrayList<Circle> extras;
+  private ArrayList<Double> percents;
 
   public ArrayList<Node.Link> getNodePath() {
     return nodePath;
@@ -91,6 +93,9 @@ public class PathFinderController extends MapController implements Initializable
     if (!db.getCurrentUser().getUsername().equals("guest")) {
       updateStyle(db.getCurrentUser().getAppColor());
     }
+    percents = new ArrayList<>();
+    AnimationTimer a = new MyTimer();
+    a.start();
   }
 
   @FXML JFXButton reverse, b1, b2, b3, L2, L1, g, F1, F2, F3;
@@ -211,6 +216,7 @@ public class PathFinderController extends MapController implements Initializable
     for (javafx.scene.Node n : extras) {
       mapAnchor.getChildren().remove(n);
     }
+    percents.clear();
     extras.clear();
   }
 
@@ -244,9 +250,14 @@ public class PathFinderController extends MapController implements Initializable
 
   private void createExtras() {
     clearExtras();
-    for (double i = 0; i < 1; i += .1) {
-      double[] d = PathFinder.getPathFinder().getParametric(i, nodePath);
+    for (double i = 0; i < 1; i += .05) {
+      double[] d = PathFinder.getPathFinder().getParametric(i, nodePath, mapDrawer.getCurrentMap());
       System.out.println(d[0] + ", " + d[1]);
+      Circle c = new Circle(d[0] * getDownScale(), d[1] * getDownScale(), 1);
+      mapAnchor.getChildren().add(c);
+      c.setVisible(d[2] == 1.0);
+      extras.add(c);
+      percents.add(i);
     }
     //    for (Node.Link l : nodePath) {
     //      if (l._this.get_floor().equals(mapDrawer.getCurrentMap()))
@@ -390,5 +401,26 @@ public class PathFinderController extends MapController implements Initializable
   public void goBack(ActionEvent actionEvent) {
     directionHandler.reverse();
     newColorPath(actionEvent);
+  }
+
+  private class MyTimer extends AnimationTimer {
+
+    @Override
+    public void handle(long now) {
+
+      doHandle();
+    }
+
+    private void doHandle() {
+      for (int i = 0; i < percents.size(); i++) {
+        percents.set(i, (percents.get(i) + .0008) % 1);
+        double[] d =
+            PathFinder.getPathFinder()
+                .getParametric(percents.get(i), nodePath, mapDrawer.getCurrentMap());
+        extras.get(i).setCenterX(d[0] * getDownScale());
+        extras.get(i).setCenterY(d[1] * getDownScale());
+        extras.get(i).setVisible(d[2] == 1.0);
+      }
+    }
   }
 }
