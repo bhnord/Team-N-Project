@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextArea?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -20,6 +21,7 @@
                 <Image url="@/images/CSVBackground.png" />
             </image>
         </ImageView>
+      <Rectangle fx:id="darkMode" arcHeight="5.0" arcWidth="5.0" fill="#000000bf" height="4000.0" stroke="#ffffff00" strokeType="INSIDE" width="4000.0" />
         <GridPane>
             <columnConstraints>
                 <ColumnConstraints hgrow="NEVER" maxWidth="451.0" minWidth="66.0" prefWidth="66.0" />
@@ -30,18 +32,7 @@
             </rowConstraints>
             <children>
                 <AnchorPane fx:id="anchorPane" prefHeight="200.0" prefWidth="88.0" GridPane.valignment="BASELINE" />
-            <JFXButton fx:id="AboutUs" prefHeight="147.0" prefWidth="236.0" stylesheets="@/Fonts/Roboto-Light-buttonLarge.css" text="About Us" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="TOP">
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-               <font>
-                  <Font size="30.0" />
-               </font>
-               <padding>
-                  <Insets right="45.0" />
-               </padding>
-            </JFXButton>
-            <JFXTextArea editable="false" style="-fx-background-color: transparent;" text="                                                                                                                                   The Navy Nix&#10;&#10;CS 3733 is an undergraduate level introduction to software engineering. Students work on large teams utilizing contemporary software methodologies in the development of a real world application. “This course introduces the fundamental principles of software engineering. Modern software development techniques and life cycles are emphasized. Topics include requirements analysis and specification, analysis and design, architecture, implementation, testing and quality, configuration management, and project management. Brigham and Women’s Hospital is a world-class academic medical center based in Boston, Massachusetts. The Brigham serves patients from New England, across the United States and from 120 countries around the world. A major teaching hospital of Harvard Medical School, Brigham and Women’s Hospital has a legacy of clinical excellence that continues to grow year after year. An international leader in virtually every area of medicine, Brigham Health has led numerous medical and scientific breakthroughs that have improved lives around the world. U.S. News &amp; World Report ranks Brigham and Women’s Hospital among the best hospitals in many specialty areas, including cancer, cardiology and heart surgery and much more. With the recently adopted Mass General Brigham name, we aspire to more closely connect with patients and communities. Working together as one system, our health care organizations can leverage their collective expertise, resources and compassion to better serve patients and the community.&#10;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <JFXTextArea fx:id="tA" editable="false" style="-fx-background-color: transparent;" text="&#10;&#10;CS 3733 is an undergraduate level introduction to software engineering. Students work on large teams utilizing contemporary software methodologies in the development of a real world application. “This course introduces the fundamental principles of software engineering. Modern software development techniques and life cycles are emphasized. Topics include requirements analysis and specification, analysis and design, architecture, implementation, testing and quality, configuration management, and project management. Brigham and Women’s Hospital is a world-class academic medical center based in Boston, Massachusetts. The Brigham serves patients from New England, across the United States and from 120 countries around the world. A major teaching hospital of Harvard Medical School, Brigham and Women’s Hospital has a legacy of clinical excellence that continues to grow year after year. An international leader in virtually every area of medicine, Brigham Health has led numerous medical and scientific breakthroughs that have improved lives around the world. U.S. News &amp; World Report ranks Brigham and Women’s Hospital among the best hospitals in many specialty areas, including cancer, cardiology and heart surgery and much more. With the recently adopted Mass General Brigham name, we aspire to more closely connect with patients and communities. Working together as one system, our health care organizations can leverage their collective expertise, resources and compassion to better serve patients and the community.&#10;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets top="200.0" />
                </GridPane.margin>
@@ -52,6 +43,22 @@
                   <Insets left="65.0" right="65.0" />
                </padding>
             </JFXTextArea>
+            <Label fx:id="l1" text="ABOUT US" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+               <font>
+                  <Font size="39.0" />
+               </font>
+               <padding>
+                  <Insets top="45.0" />
+               </padding>
+            </Label>
+            <Label fx:id="l2" alignment="CENTER" text="Navy Nix" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+               <font>
+                  <Font size="22.0" />
+               </font>
+               <padding>
+                  <Insets top="150.0" />
+               </padding>
+            </Label>
             </children>
         </GridPane>
       <Text fx:id="HospitalStatement" strokeType="OUTSIDE" strokeWidth="0.0" text="“The Brigham &amp; Women’s Hospital maps and data used in this application are copyrighted and provided for the sole use of educational purposes.”" StackPane.alignment="BOTTOM_CENTER">
