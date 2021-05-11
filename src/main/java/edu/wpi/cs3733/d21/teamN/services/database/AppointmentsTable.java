@@ -82,6 +82,17 @@ class AppointmentsTable {
     }
   }
 
+  public boolean deleteAppointment(int id) {
+    String st = "DELETE FROM APPOINTMENTS WHERE Id = " + id + "";
+    try {
+      stmt.execute(st);
+      return true;
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return false;
+    }
+  }
+
   public boolean updateAppointment(int appointmentId, Form formContent) {
 
     try {

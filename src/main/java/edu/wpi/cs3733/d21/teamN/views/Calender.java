@@ -51,6 +51,9 @@ public class Calender extends MasterController implements Initializable {
   HashSet<Appointment> appointmentsThisWeek;
   ArrayList<Appointment> appointmentSlot;
   private int defaultApp;
+  private int defaultP;
+  private int defaultD;
+  private String defaultR;
   private ArrayList<User> staff;
   private ArrayList<Node> rooms;
   private ArrayList<AppointmentType> appointmentTypes;
@@ -126,6 +129,9 @@ public class Calender extends MasterController implements Initializable {
     appointmentTypes = new ArrayList<>(db.getAllAppointmentTypes());
     defaultApp = appointmentTypes.get(0).getId();
     currentDate = Calendar.getInstance().getTime();
+    defaultD = staff.get(0).getId();
+    defaultP = patients.get(0).getId();
+    defaultR = rooms.get(0).get_nodeID();
     setUpCalander();
   }
 
@@ -282,6 +288,7 @@ public class Calender extends MasterController implements Initializable {
           appointments.remove(a);
           appointmentsThisWeek.remove(a);
           appointmentSlot.remove(a);
+          db.deleteAppointmnet(a.getId());
         });
     editview.getChildren().add(delete);
     JFXComboBox<Label> patientDropDown = new JFXComboBox<>();
@@ -367,7 +374,8 @@ public class Calender extends MasterController implements Initializable {
   }
 
   public void add(ActionEvent actionEvent) {
-    Appointment appointment = new Appointment(defaultApp, 1, 1, null, currentSlot, "CSERV001L1");
+    Appointment appointment =
+        new Appointment(defaultApp, defaultP, defaultD, null, currentSlot, "CSERV001L1");
     appointment = db.addAppointment(appointment);
     appointments.add(appointment);
     appointmentsThisWeek.add(appointment);

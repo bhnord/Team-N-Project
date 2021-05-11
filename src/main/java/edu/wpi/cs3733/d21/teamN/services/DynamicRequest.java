@@ -16,7 +16,7 @@ public class DynamicRequest {
 
   public DynamicRequest(int senderID, Form form) {
     this.senderID = senderID;
-    this.receiverID = receiverID;
+    this.receiverID = -1;
 
     this.form = form;
   }

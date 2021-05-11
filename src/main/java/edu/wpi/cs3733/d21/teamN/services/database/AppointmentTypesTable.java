@@ -26,6 +26,17 @@ public class AppointmentTypesTable {
     }
   }
 
+  public boolean deleteAppointmentType(int id) {
+    String st = "DELETE FROM APPOINTMENTTYPES WHERE id = " + id + "";
+    try {
+      stmt.execute(st);
+      return true;
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return false;
+    }
+  }
+
   public boolean updateAppointmentType(AppointmentType appointmentType) {
     try {
       PreparedStatement ps =

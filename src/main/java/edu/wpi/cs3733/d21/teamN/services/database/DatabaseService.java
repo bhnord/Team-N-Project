@@ -529,6 +529,10 @@ public class DatabaseService {
     return appointmentsTable.addAppointment(appointment);
   }
 
+  public boolean deleteAppointmnet(int id) {
+    return appointmentsTable.deleteAppointment(id);
+  }
+
   /**
    * gets all appointments from the database
    *
@@ -594,6 +598,10 @@ public class DatabaseService {
   public boolean addAppointmentType(String type, int formId) {
     return appointmentTypesTable.addAppointmentType(type, formId);
   }
+
+  public boolean deleteAppointmentType(int id) {
+    return appointmentTypesTable.deleteAppointmentType(id);
+  };
 
   /**
    * gets all appointment types from the database
