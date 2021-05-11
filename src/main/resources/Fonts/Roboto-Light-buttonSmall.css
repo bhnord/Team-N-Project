@@ -1,0 +1,8 @@
+@font-face {
+    src: url("../Fonts/Roboto/Roboto-Light.ttf");
+}
+
+.jfx-button{
+    -fx-font-family: 'Roboto Light';
+    -fx-font-size: 12;
+}

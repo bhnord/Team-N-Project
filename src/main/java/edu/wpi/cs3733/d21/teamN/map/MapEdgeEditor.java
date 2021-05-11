@@ -35,4 +35,12 @@ public class MapEdgeEditor {
       System.out.println(e.toString());
     }
   }
+
+  public void commitChanges(Group current) {
+    String id = mapEditor.getEdgeID().getText();
+    String node1 = mapEditor.getStartNode().getText();
+    String node2 = mapEditor.getEndNode().getText();
+
+    mapEditor.getAdminMap().updateEdge(id, node1, node2);
+  }
 }
