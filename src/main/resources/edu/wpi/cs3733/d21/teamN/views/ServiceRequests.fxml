@@ -54,9 +54,6 @@
                             <tooltip>
                                 <Tooltip fx:id="ttAnanya" text="Request for audio and visual equipments." />
                             </tooltip>
-                     <graphic>
-                         <FontIcon iconLiteral="gmi-accessibility" iconSize="64" iconColor="white"/>
-                     </graphic>
                         </JFXButton>
                         <JFXButton fx:id="GiftDeliveryRequest" alignment="BASELINE_LEFT" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@/StyleSheet/ServiceRequestsPage.css" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="   Gift Delivery Service" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                             <font>
@@ -68,9 +65,6 @@
                             <tooltip>
                                 <Tooltip fx:id="ttAnanya2" text="Deliver a gift to a specific location" />
                             </tooltip>
-                     <graphic>
-                         <FontIcon iconLiteral="gmi-redeem" iconSize="64" iconColor="white"/>
-                     </graphic>
                         </JFXButton>
                         <JFXButton fx:id="SecurityServicesRequest" alignment="BASELINE_LEFT" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@/StyleSheet/ServiceRequestsPage.css" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="   Security Services" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                             <font>
@@ -82,9 +76,6 @@
                             <tooltip>
                                 <Tooltip fx:id="ttRomish" text="Request for protection and safety." />
                             </tooltip>
-                     <graphic>
-                         <FontIcon iconLiteral="gmi-security" iconSize="64" iconColor="white"/>
-                     </graphic>
                         </JFXButton>
                         <JFXButton fx:id="FacilityMaintenanceRequest" alignment="BASELINE_LEFT" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@/StyleSheet/ServiceRequestsPage.css" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="200.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="    Facility Maintenance" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                             <font>
@@ -96,9 +87,6 @@
                             <tooltip>
                                 <Tooltip fx:id="ttJohn" text="Report a facility issue here." />
                             </tooltip>
-                     <graphic>
-                         <FontIcon iconLiteral="gmi-build" iconSize="56" iconColor="white"/>
-                     </graphic>
                         </JFXButton>
                         <JFXButton fx:id="ComputerServiceRequest" alignment="BASELINE_LEFT" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@/StyleSheet/ServiceRequestsPage.css" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="    Computer Service" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                             <font>
@@ -110,9 +98,6 @@
                             <tooltip>
                                 <Tooltip fx:id="ttAnanya3" text="Report computer related issues." />
                             </tooltip>
-                     <graphic>
-                         <FontIcon iconLiteral="gmi-desktop-windows" iconSize="58" iconColor="white"/>
-                     </graphic>
                         </JFXButton>
                         <JFXButton fx:id="InternalPatientRequest" alignment="BASELINE_LEFT" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@/StyleSheet/ServiceRequestsPage.css" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="   Internal Transportation" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                             <font>
@@ -124,9 +109,6 @@
                             <tooltip>
                                 <Tooltip fx:id="ttJacob" text="Request for transportation within the hospital area." />
                             </tooltip>
-                     <graphic>
-                         <FontIcon iconLiteral="gmi-accessible" iconSize="64" iconColor="white"/>
-                     </graphic>
                         </JFXButton>
                         <JFXButton fx:id="ExternalPatientRequest" alignment="BASELINE_LEFT" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@/StyleSheet/ServiceRequestsPage.css" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="   External Transportation&#10;" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                             <font>
@@ -138,9 +120,6 @@
                             <tooltip>
                                 <Tooltip fx:id="ttMichael" text="Request for transportation to outside of the hospital." />
                             </tooltip>
-                     <graphic>
-                         <FontIcon iconLiteral="gmi-airport-shuttle" iconSize="64" iconColor="white"/>
-                     </graphic>
                         </JFXButton>
                     </children>
                 </GridPane>
@@ -168,9 +147,6 @@
                             <tooltip>
                                 <Tooltip fx:id="ttFinn" text="Deliver medicine to a specific location in the hospital." />
                             </tooltip>
-                     <graphic>
-                         <FontIcon iconLiteral="gmi-local-pharmacy" iconSize="64" iconColor="white"/>
-                     </graphic>
                         </JFXButton>
                         <JFXButton fx:id="FloralRequest" alignment="BASELINE_LEFT" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@/StyleSheet/ServiceRequestsPage.css" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="   Floral Request" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                             <font>
@@ -182,9 +158,6 @@
                             <tooltip>
                                 <Tooltip fx:id="ttAnanya4" text="Deliver floral goods to a specific location in the hospital." />
                             </tooltip>
-                     <graphic>
-                         <FontIcon iconLiteral="gmi-local-florist" iconSize="64" iconColor="white"/>
-                     </graphic>
                         </JFXButton>
                         <JFXButton fx:id="LaundryRequest" alignment="BASELINE_LEFT" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@/StyleSheet/ServiceRequestsPage.css" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="   Laundry Services" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                             <font>
@@ -196,9 +169,6 @@
                             <tooltip>
                                 <Tooltip fx:id="ttAnanya5" text="Request for laundry services." />
                             </tooltip>
-                     <graphic>
-                         <FontIcon iconLiteral="gmi-local-laundry-service" iconSize="64" iconColor="white"/>
-                     </graphic>
                         </JFXButton>
                         <JFXButton fx:id="SanitationServicesRequest" alignment="BASELINE_LEFT" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@/StyleSheet/ServiceRequestsPage.css" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="   Sanitation Service" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                             <font>
@@ -210,9 +180,6 @@
                             <tooltip>
                                 <Tooltip fx:id="ttYongxiang" text="Request for sanitary demands in the hospital." />
                             </tooltip>
-                     <graphic>
-                         <FontIcon iconLiteral="gmi-opacity" iconSize="66" iconColor="white"/>
-                     </graphic>
                         </JFXButton>
                         <JFXButton fx:id="LanguageInterpretersRequest" alignment="BASELINE_LEFT" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@/StyleSheet/ServiceRequestsPage.css" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="   Language Interpreters" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                             <font>
@@ -224,9 +191,6 @@
                             <tooltip>
                                 <Tooltip fx:id="ttBen" text="Language options." />
                             </tooltip>
-                     <graphic>
-                         <FontIcon iconLiteral="gmi-language" iconSize="64" iconColor="white"/>
-                     </graphic>
                         </JFXButton>
                         <JFXButton fx:id="FoodDeliveryRequest" alignment="BASELINE_LEFT" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@/StyleSheet/ServiceRequestsPage.css" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="   Food Delivery Service" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                             <font>
@@ -238,9 +202,6 @@
                             <tooltip>
                                 <Tooltip fx:id="ttAlex" text="Deliver food to a specific location in the hospital." />
                             </tooltip>
-                     <graphic>
-                         <FontIcon iconLiteral="gmi-restaurant" iconSize="64" iconColor="white"/>
-                     </graphic>
                         </JFXButton>
                         <JFXButton fx:id="ReligiousRequest" alignment="BASELINE_LEFT" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@/StyleSheet/ServiceRequestsPage.css" mnemonicParsing="false" onAction="#advance" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #748cdc; -fx-background-radius: 20;" text="   Religious Request" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                             <font>
@@ -252,9 +213,6 @@
                             <tooltip>
                                 <Tooltip fx:id="ttPayton" text="Request for specific religious needs." />
                             </tooltip>
-                     <graphic>
-                         <FontIcon iconLiteral="gmi-import-contacts" iconSize="62" iconColor="white"/>
-                     </graphic>
                         </JFXButton>
                     </children>
                 </GridPane>
