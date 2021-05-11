@@ -23,7 +23,7 @@
    <children>
       <Group fx:id="accountSettingsGroup" layoutX="23.0" layoutY="1.0">
          <children>
-            <Rectangle fx:id="settingsRec" arcHeight="25.0" arcWidth="25.0" fill="#ffffff83" height="259.0" stroke="TRANSPARENT" strokeType="INSIDE" width="371.0">
+            <Rectangle fx:id="settingsRec" arcHeight="25.0" arcWidth="25.0" fill="#ffffff83" height="259.0" stroke="TRANSPARENT" strokeType="INSIDE" width="370.0">
                <effect>
                   <DropShadow color="#00000095" height="43.24" radius="22.2325" width="47.69" />
                </effect>
