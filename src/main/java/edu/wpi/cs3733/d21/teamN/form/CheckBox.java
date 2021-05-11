@@ -76,8 +76,12 @@ public class CheckBox extends FormElement {
 
   public String getValue() {
     StringBuilder stringBuilder = new StringBuilder();
-    for (String s : selected) {
-      stringBuilder.append(s).append("\\:");
+    for (int i = 0; i <= selected.size() - 1; i++) {
+      if (i == selected.size() - 1) {
+        stringBuilder.append(selected.get(i));
+      } else {
+        stringBuilder.append(selected.get(i)).append(", ");
+      }
     }
     return stringBuilder.toString();
   }

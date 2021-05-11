@@ -11,7 +11,7 @@ public class PhoneNumber extends TextField {
 
   @Override
   public boolean validate() {
-    return getValue().matches("^((\\(\\d{3}\\))|\\d{3})[- ]?\\d{3}[- ]?\\d{4}$");
+    return getValue().matches("\\d{10}");
   }
 
   @Override

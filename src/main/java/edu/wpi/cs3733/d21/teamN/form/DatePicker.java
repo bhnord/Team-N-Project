@@ -24,7 +24,7 @@ public class DatePicker extends FormElement {
 
   @Override
   public boolean check() {
-    return !datePicker.getAccessibleText().isEmpty();
+    return !datePicker.getEditor().getText().isEmpty();
   }
 
   @Override

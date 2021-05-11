@@ -50,7 +50,6 @@ public class FormsTable {
     try {
       Blob blob = connection.createBlob();
       blob.setBytes(1, fs.toStream(nForm.getForm()));
-      System.out.println(nForm.getForm().getNames().size());
       String str = "UPDATE FORMS SET FORM = ?, NAME = ?, ISSERVICEREQUEST = ? WHERE id = ?";
       PreparedStatement ps = connection.prepareStatement(str);
       ps.setBlob(1, blob);

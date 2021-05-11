@@ -20,6 +20,7 @@ public class Adress extends FormElement {
     addressbox.setPromptText(getName());
     addressbox.setLabelFloat(true);
     new AddressAutoComplete(addressbox);
+    addressbox.setOnAction(e -> setValue(addressbox.getValue()));
     return addressbox;
   }
 

@@ -7,7 +7,6 @@ import java.awt.*;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
-import javafx.scene.text.Font;
 
 public class Text extends FormElement {
   public Text(String text, Form formin) {
@@ -17,7 +16,7 @@ public class Text extends FormElement {
   @Override
   public Node build(DatabaseService db) {
     Label l = new Label(getName());
-    l.setFont(Font.loadFont("resources/Fonts/Roboto/Roboto-Medium.ttf", 14));
+    l.getStylesheets().add("resources/Fonts/Roboto-Black.css");
     // todo do this with css
     return l;
   }

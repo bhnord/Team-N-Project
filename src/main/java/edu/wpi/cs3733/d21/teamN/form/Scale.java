@@ -62,7 +62,7 @@ public class Scale extends FormElement {
 
   @Override
   public boolean check() {
-    return getValue().isEmpty();
+    return !getValue().isEmpty();
   }
 
   @Override
