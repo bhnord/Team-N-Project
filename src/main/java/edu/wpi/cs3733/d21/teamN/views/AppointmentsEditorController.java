@@ -131,9 +131,11 @@ public class AppointmentsEditorController extends MasterController implements In
         });
     NamedForm form = db.getForm(appointment.getFormId());
     if (form != null) {
-      int i = selectForm.getItems().indexOf(form);
-      System.out.println(i);
-      selectForm.getSelectionModel().select(i);
+      for (int i = 0; i < selectForm.getItems().size(); i++) {
+        if (selectForm.getItems().get(i).getId() == form.getId()) {
+          selectForm.getSelectionModel().select(i);
+        }
+      }
     }
     ret.getChildren().add(selectForm);
 

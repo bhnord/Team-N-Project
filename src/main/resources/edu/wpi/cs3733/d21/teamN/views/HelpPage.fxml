@@ -68,8 +68,8 @@
                               <RowConstraints maxHeight="267.0" minHeight="0.0" prefHeight="20.0" vgrow="SOMETIMES" />
                               <RowConstraints maxHeight="318.0" minHeight="1.0" prefHeight="20.0" vgrow="SOMETIMES" />
                               <RowConstraints maxHeight="258.0" minHeight="8.0" prefHeight="10.0" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="276.0" minHeight="4.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="276.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="276.0" minHeight="4.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="276.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
                               <RowConstraints maxHeight="276.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
                               <RowConstraints maxHeight="276.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
                               <RowConstraints maxHeight="276.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -79,17 +79,17 @@
                            <children>
                               <Text fx:id="boldd" fill="#748cdc" strokeType="OUTSIDE" strokeWidth="0.0" text="Frequently Asked Questions" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Q. Where can I schedule an appointment?" GridPane.rowIndex="1" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="A. To access all of the hospital services, including sceduling appointments, please LOGIN to your B.W.H. account." GridPane.rowIndex="2" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="A. To access all hospital services, including sceduling appointments, please LOGIN to your B.W.H. account." GridPane.rowIndex="2" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" GridPane.rowIndex="3" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" GridPane.rowIndex="4" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="A. If you do not already have a B.W.H. account, you can create one by clicking REGISTER." GridPane.rowIndex="5" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Q. What if I dont have a B.W.H. account?" GridPane.rowIndex="4" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Q." GridPane.rowIndex="7" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="A." GridPane.rowIndex="8" />
-                              <Text fx:id="bolddd" fill="#748cdc" strokeType="OUTSIDE" strokeWidth="0.0" text="Stuff" GridPane.rowIndex="10" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="1" GridPane.rowIndex="11" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="2" GridPane.rowIndex="12" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="3" GridPane.rowIndex="13" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Q. Where can I request a service?" wrappingWidth="239.435546875" GridPane.rowIndex="7" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="A. To access all hospital services please LOGIN to your B.W.H. account. " GridPane.rowIndex="8" />
+                              <Text fx:id="bolddd" fill="#748cdc" strokeType="OUTSIDE" strokeWidth="0.0" text="Hospital Information" GridPane.rowIndex="10" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="▢  For more information on Covid-19 related procedures, refer to the COVID INFORMATION tab found on the navigation tab." GridPane.rowIndex="11" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="▢  For Directions to B.W.H. refer to the DIRECTIONS TO HOSPITAL page found on the login page." GridPane.rowIndex="12" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="▢  For Directions within B.W.H. refer to the MAP PATHFINDER page found on the login page." GridPane.rowIndex="13" />
                            </children>
                         </GridPane>
                      </graphic>

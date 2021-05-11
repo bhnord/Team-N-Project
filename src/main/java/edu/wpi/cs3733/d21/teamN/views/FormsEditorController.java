@@ -224,7 +224,15 @@ public class FormsEditorController extends MasterController implements Initializ
       HBox box = new HBox(icon);
       box.setId(s);
       iconSelection.getItems().add(box);
+      if (form.getForm().getIcon().equals(s)) {
+        iconSelection.getSelectionModel().select(box);
+      }
     }
+    iconSelection.setOnAction(
+        e -> {
+          form.getForm().setIcon(iconSelection.getSelectionModel().getSelectedItem().getId());
+          db.updateForm(form);
+        });
     ret.getChildren().add(iconSelection);
 
     return ret;
