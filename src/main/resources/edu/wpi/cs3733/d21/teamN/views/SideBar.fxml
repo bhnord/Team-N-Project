@@ -156,7 +156,7 @@
                   <Group fx:id="covidInfo">
                      <children>
                         <Label fx:id="label8" layoutX="-5.0" maxWidth="1.7976931348623157E308" prefHeight="64.0" prefWidth="66.0" style="-fx-background-color: #748cdc;" stylesheets="@/StyleSheet/Dynamic.css" />
-                        <ImageView fitHeight="44.0" fitWidth="44.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="46.0" fitWidth="44.0" layoutX="6.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@/images/Icons/newcovidinfo.png" />
                            </image>

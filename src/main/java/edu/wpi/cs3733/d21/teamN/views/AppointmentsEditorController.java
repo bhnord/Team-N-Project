@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.d21.teamN.views;
 
 import com.google.inject.Inject;
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
@@ -23,6 +24,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 public class AppointmentsEditorController extends MasterController implements Initializable {
@@ -40,6 +43,7 @@ public class AppointmentsEditorController extends MasterController implements In
   private ArrayList<NamedForm> forms;
   private DialogFactory dialogFactory;
   private int defaultFormID;
+  @FXML Rectangle darkMode;
 
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
@@ -56,6 +60,31 @@ public class AppointmentsEditorController extends MasterController implements In
   public void initialize(URL location, ResourceBundle resources) {
     super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Editor");
     dialogFactory = new DialogFactory(rootStackPane);
+    darkMode.setVisible(db.getCurrentUser().getDarkMode());
+    updateStyle(db.getCurrentUser().getAppColor());
+  }
+
+  @FXML JFXButton add;
+  @FXML Label l1;
+
+  public void updateStyle(String color) {
+    Color appC = Color.web(color);
+    String s = appC.darker().darker().desaturate().toString();
+    String style = "-fx-background-color: " + "#" + s.substring(2) + "; -fx-background-radius: 25;";
+    add.setStyle(style);
+    style = "-fx-background-color: " + "#" + color.substring(2) + "; -fx-background-radius: 25;";
+    if (db.getCurrentUser().getDarkMode()) {
+      l1.setStyle(style);
+    }
+    if (db.getCurrentUser().getDarkMode()) {
+      titleEditor.setFocusColor(Color.web("WHITE"));
+      titleEditor.setUnFocusColor(Color.web("WHITE"));
+      titleEditor.setStyle("-fx-text-inner-color: WHITE;");
+    } else {
+      titleEditor.setFocusColor(Color.web("BLACK"));
+      titleEditor.setUnFocusColor(Color.web("BLACK"));
+      titleEditor.setStyle("-fx-text-inner-color: BLACK;");
+    }
   }
 
   public void setUp() {
