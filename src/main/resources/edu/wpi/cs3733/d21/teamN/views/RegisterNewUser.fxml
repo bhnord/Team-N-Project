@@ -102,7 +102,7 @@
                   <Font size="16.0" />
                </font>
             </JFXTextField>
-                <StackPane fx:id="myStackPane" layoutX="700.0" layoutY="359.0" prefHeight="91.0" prefWidth="145.0" />
+                <StackPane fx:id="stackPane" layoutX="700.0" layoutY="359.0" prefHeight="91.0" prefWidth="145.0" />
             </children>
         </AnchorPane>
       <AnchorPane fx:id="anchorPane1" prefHeight="200.0" prefWidth="200.0" GridPane.valignment="BASELINE" />

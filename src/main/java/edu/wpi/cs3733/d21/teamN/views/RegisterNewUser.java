@@ -39,9 +39,8 @@ public class RegisterNewUser extends MasterController implements Initializable {
   @FXML private JFXPasswordField password;
   @FXML private JFXPasswordField retypePassword;
   @FXML private Button helpButton;
-  @FXML private StackPane myStackPane;
+  @FXML private StackPane stackPane;
   @FXML private Button submit;
-  @FXML private StackPane myStackPane2;
   private Scene appPrimaryScene;
 
   @FXML private AnchorPane anchorPage;
@@ -63,7 +62,7 @@ public class RegisterNewUser extends MasterController implements Initializable {
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     super.sideBarSetup(anchorPane1, appPrimaryScene, loader, "Register");
-    dialogFactory = new DialogFactory(rootGridPane);
+    dialogFactory = new DialogFactory(stackPane);
     //    loadEmployeeDropdown(employeeDropdown);
   }
 
