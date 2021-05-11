@@ -13,6 +13,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Rectangle?>
 
 <StackPane fx:id="rootStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.d21.teamN.views.AppointmentsEditorController">
    <children>
@@ -21,6 +22,7 @@
             <Image url="@/images/CSVBackground.png" />
          </image>
       </ImageView>
+      <Rectangle fx:id="darkMode" arcHeight="5.0" arcWidth="5.0" fill="#000000bf" height="4000.0" stroke="#ffffff00" strokeType="INSIDE" width="4000.0" />
       <GridPane>
          <columnConstraints>
             <ColumnConstraints hgrow="NEVER" maxWidth="451.0" minWidth="66.0" prefWidth="66.0" />
@@ -31,7 +33,7 @@
          </rowConstraints>
          <children>
             <AnchorPane fx:id="anchorPane" prefHeight="200.0" prefWidth="88.0" GridPane.valignment="BASELINE" />
-            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: WHITE; -fx-background-radius: 40;" GridPane.columnIndex="1">
+            <Label fx:id="l1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: WHITE; -fx-background-radius: 40;" GridPane.columnIndex="1">
                <GridPane.margin>
                   <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
                </GridPane.margin>
@@ -39,7 +41,7 @@
                   <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
                         <JFXTextField fx:id="titleEditor" maxWidth="-Infinity" prefHeight="25.0" prefWidth="163.0" promptText="Title" stylesheets="@/Fonts/Roboto-Light.css" />
-                        <JFXButton alignment="CENTER" onAction="#add" style="-fx-background-color: #748cdc;" stylesheets="@/Fonts/Roboto-Light.css" text="Add Form" textFill="WHITE" />
+                        <JFXButton fx:id="add" alignment="CENTER" onAction="#add" style="-fx-background-color: #748cdc;" stylesheets="@/Fonts/Roboto-Light.css" text="Add Form" textFill="WHITE" />
                      </children>
                      <padding>
                         <Insets left="26.0" top="10.0" />
