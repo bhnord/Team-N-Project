@@ -36,6 +36,7 @@ public class App extends Application {
 
     try {
       Class.forName("org.apache.derby.jdbc.EmbeddedDriver").newInstance();
+      Class.forName("org.apache.derby.jdbc.ClientDriver").newInstance();
     } catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
       e.printStackTrace();
     }

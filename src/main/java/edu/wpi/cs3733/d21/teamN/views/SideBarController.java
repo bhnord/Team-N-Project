@@ -8,6 +8,7 @@ import edu.wpi.cs3733.d21.teamN.faceLogin.FaceEnroller;
 import edu.wpi.cs3733.d21.teamN.services.database.DatabaseService;
 import edu.wpi.cs3733.d21.teamN.services.database.users.User;
 import edu.wpi.cs3733.d21.teamN.services.database.users.UserType;
+import edu.wpi.cs3733.d21.teamN.utilities.DialogFactory;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -31,40 +32,53 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class SideBarController extends MasterController implements Initializable {
 
-  @Inject private FXMLLoader loader2;
+  @Inject
+  private FXMLLoader loader2;
   private DatabaseService db;
 
   // Tooltip for logout/back button that changes in Register Page
-  @FXML private Tooltip ttLogOutButton;
+  @FXML
+  private Tooltip ttLogOutButton;
 
-  @FXML private JFXButton switchDB;
+  @FXML
+  private JFXButton switchDB;
 
   // Groups for buttons
   @FXML
   private Group groupLogOut,
-      groupCovid,
-      groupBack,
-      groupBack1,
-      groupHome,
-      groupAccountSettings,
-      groupAboutUs,
-      covidInfo;
-  @FXML private ImageView LogOutBack;
-  @FXML private ImageView RegisterBack;
+          groupCovid,
+          groupBack,
+          groupBack1,
+          groupHome,
+          groupAccountSettings,
+          groupAboutUs,
+          covidInfo;
+  @FXML
+  private ImageView LogOutBack;
+  @FXML
+  private ImageView RegisterBack;
 
-  @FXML private Group accountSettingsGroup;
-  @FXML private Label AccountType;
-  @FXML private Label AccountUsername;
-  @FXML private Label AccountParkingSpot;
+  @FXML
+  private Group accountSettingsGroup;
+  @FXML
+  private Label AccountType;
+  @FXML
+  private Label AccountUsername;
+  @FXML
+  private Label AccountParkingSpot;
 
-  @FXML private JFXColorPicker appColor;
-  @FXML private JFXToggleButton darkModeSwitch;
-  @FXML private Rectangle settingsRec;
+  @FXML
+  private JFXColorPicker appColor;
+  @FXML
+  private JFXToggleButton darkModeSwitch;
+  @FXML
+  private Rectangle settingsRec;
 
   private User user;
   private FaceEnroller faceEnroller;
 
-  @FXML private AnchorPane SideAnchor;
+  @FXML
+  private AnchorPane SideAnchor;
   //  HomeControllerAdmin homeController;
   private static boolean open = false;
   public static boolean darkOn = false;
@@ -170,7 +184,9 @@ public class SideBarController extends MasterController implements Initializable
    * --------------------------------------------------------------------------------------------------
    */
 
-  /** ------------------------------- Button Functionality ------------------------------- */
+  /**
+   * ------------------------------- Button Functionality -------------------------------
+   */
 
   // advance function for specific instances
   @Override
@@ -185,6 +201,7 @@ public class SideBarController extends MasterController implements Initializable
     Parent root = loader.load(getClass().getResourceAsStream("EditorPage.fxml"));
     appPrimaryScene.setRoot(root);
   }
+
   // advances to the service request page (for back buutton group)
   @FXML
   public void advanceServiceRequest() throws IOException {
@@ -347,25 +364,27 @@ public class SideBarController extends MasterController implements Initializable
    */
   @FXML
   Label label1,
-      label2,
-      label3,
-      label4,
-      label5,
-      label6,
-      label7,
-      label8,
-      label9,
-      labelBack,
-      labelB1,
-      labelB2;
+          label2,
+          label3,
+          label4,
+          label5,
+          label6,
+          label7,
+          label8,
+          label9,
+          labelBack,
+          labelB1,
+          labelB2;
 
-  @FXML Rectangle rectangle1;
-  @FXML JFXButton faceRec;
+  @FXML
+  Rectangle rectangle1;
+  @FXML
+  JFXButton faceRec;
 
   public void updateStyle(String color) {
     String style = "-fx-background-color: " + "#" + color.substring(2) + ";";
     Label[] lA = {
-      label1, label2, label3, label4, label5, label6, label7, label8, label9, labelB1, labelB2
+            label1, label2, label3, label4, label5, label6, label7, label8, label9, labelB1, labelB2
     };
     for (Label a : lA) a.setStyle(style);
     // label1.setStyle(style);
@@ -421,5 +440,14 @@ public class SideBarController extends MasterController implements Initializable
     appPrimaryScene.setRoot(root);
   }
 
-  public void switchDB() {}
+  @FXML
+  private void switchDB() throws IOException {
+    DialogFactory dialogFactory = new DialogFactory(SideAnchor);
+    try {
+      logOut();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    db.switchConnection();
+  }
 }
