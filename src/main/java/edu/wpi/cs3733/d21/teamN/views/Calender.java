@@ -30,6 +30,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 public class Calender extends MasterController implements Initializable {
@@ -40,6 +41,10 @@ public class Calender extends MasterController implements Initializable {
   @Inject private DatabaseService db;
   @FXML @Inject StackPane rootStackPane;
   @FXML JFXListView<HBox> editor;
+  @FXML JFXButton add;
+  @FXML Label l1;
+  @FXML Rectangle darkMode;
+
   private DialogFactory dialogFactory;
   private JFXButton selectedButton;
   HashSet<Appointment> appointments;
@@ -84,6 +89,21 @@ public class Calender extends MasterController implements Initializable {
     appointmentsThisWeek = new HashSet<>();
     appointmentSlot = new ArrayList<>();
     dialogFactory = new DialogFactory(rootStackPane);
+
+    darkMode.setVisible(db.getCurrentUser().getDarkMode());
+    updateStyle(db.getCurrentUser().getAppColor());
+  }
+
+  public void updateStyle(String color) {
+    Color appC = Color.web(color);
+    String s = appC.darker().darker().desaturate().toString();
+    String style = "-fx-background-color: " + "#" + s.substring(2) + "; -fx-background-radius: 25;";
+    JFXButton[] lA = {add};
+    for (JFXButton a : lA) a.setStyle(style);
+    style = "-fx-background-color: " + "#" + color.substring(2) + "; -fx-background-radius: 25;";
+    if (db.getCurrentUser().getDarkMode()) {
+      l1.setStyle(style);
+    }
   }
 
   public void setUp() {
