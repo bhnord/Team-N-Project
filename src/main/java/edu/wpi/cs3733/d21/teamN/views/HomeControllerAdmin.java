@@ -417,7 +417,7 @@ public class HomeControllerAdmin extends MasterController implements Initializab
   }
 
   public void appointment(ActionEvent actionEvent) throws IOException {
-    if (db.getAllAppointments().isEmpty()) {
+    if (db.getAllAppointmentTypes().isEmpty()) {
       dialogFactory = new DialogFactory(rootStackPane);
       dialogFactory.creatDialogOkay(
           "No Appointments types Available",
