@@ -457,7 +457,7 @@ public class HomeControllerAdmin extends MasterController implements Initializab
   @FXML
   private void checkIn() throws IOException {
     ArrayList<edu.wpi.cs3733.d21.teamN.services.database.Appointment> appointments =
-            new ArrayList<>(db.getAppointmentsByPatientId(db.getCurrentUser().getId()));
+        new ArrayList<>(db.getAppointmentsByPatientId(db.getCurrentUser().getId()));
     if (appointments.size() == 0) {
       return;
     }
@@ -474,7 +474,6 @@ public class HomeControllerAdmin extends MasterController implements Initializab
     //    System.out.println(closest.getForm().getResults());
     formController.setUp(closest, db.getForm(closest.getAppointmentTypeId()).getForm());
   }
-
 
   @FXML
   private void switchDB() throws IOException {
