@@ -108,8 +108,28 @@ public class CurrentRequestController extends MasterController implements Initia
     //      listView.getItems().add(lbl);
     //    }
     //
+    listView.setOnMouseClicked(
+        e -> {
+          requestData.getItems().clear();
+          HBox selected = listView.getSelectionModel().getSelectedItem();
+          if (e.getButton() == MouseButton.PRIMARY && selected != null) {
+            String id = selected.getId();
+            DynamicRequest clickedRequest = db.getDynamicRequest(Integer.parseInt(id));
+            if (!(clickedRequest.getForm() == null)) {
+              for (int i = 0; i < clickedRequest.getForm().getNames().size(); i++) {
+                Label labelName = new Label(clickedRequest.getForm().getNames().get(i) + ": ");
+                Label labelResult = new Label(clickedRequest.getForm().getResults().get(i));
+                HBox box = new HBox(labelName, labelResult);
+                box.setSpacing(50);
+                requestData.getItems().add(box);
+              }
+            }
+          }
+        });
+
     appointmentNames.setOnMouseClicked(
         event -> {
+          appointmentsData.getItems().clear();
           Label selected = appointmentNames.getSelectionModel().getSelectedItem();
           if (event.getButton() == MouseButton.PRIMARY && selected != null) {
             String id = selected.getId();
@@ -117,9 +137,10 @@ public class CurrentRequestController extends MasterController implements Initia
             selectedLabel = selected;
             if (!(clickedAppointments.getForm() == null)) {
               for (int i = 0; i < clickedAppointments.getForm().getNames().size(); i++) {
-                Label labelName = new Label(clickedAppointments.getForm().getNames().get(i));
+                Label labelName = new Label(clickedAppointments.getForm().getNames().get(i) + ": ");
                 Label labelResult = new Label(clickedAppointments.getForm().getResults().get(i));
                 HBox box = new HBox(labelName, labelResult);
+                box.setSpacing(50);
                 appointmentsData.getItems().add(box);
               }
             }
@@ -170,8 +191,8 @@ public class CurrentRequestController extends MasterController implements Initia
         }
       }
       HBox hbox = new HBox(id, senderID, employ);
-      hbox.setSpacing(100);
-
+      hbox.setSpacing(50);
+      hbox.setId(String.valueOf(request.getId()));
       listView.getItems().add(hbox);
     }
   }
@@ -191,7 +212,7 @@ public class CurrentRequestController extends MasterController implements Initia
     String s = appC.darker().darker().darker().desaturate().toString();
 
     String style = "-fx-background-color: " + "#" + s.substring(2) + "; -fx-background-radius: 25;";
-    JFXButton[] lA = {submitCovidButton, markCompleteButton};
+    JFXButton[] lA = {submitCovidButton};
     for (JFXButton a : lA) a.setStyle(style);
 
     Color c = Color.web(color);

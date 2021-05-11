@@ -250,6 +250,15 @@ public class HomeControllerAdmin extends MasterController implements Initializab
    * @throws IOException
    */
   public void advanceViews(ActionEvent actionEvent) throws IOException {
+    if (((Button) actionEvent.getSource()).getId().equals("ServiceRequests")) {
+      if (db.getAllDynamicRequests().isEmpty()) {
+        dialogFactory = new DialogFactory(rootStackPane);
+        dialogFactory.creatDialogOkay(
+            "No request Exist",
+            "Requests must be made in form editor before service request can be used");
+        return;
+      }
+    }
     String file = ((Button) actionEvent.getSource()).getId() + ".fxml";
     Parent root = loader.load(getClass().getResourceAsStream(file));
     appPrimaryScene.setRoot(root);
@@ -300,6 +309,12 @@ public class HomeControllerAdmin extends MasterController implements Initializab
   }
 
   public void appointmentEdit(ActionEvent actionEvent) throws IOException {
+        if (db.getAllForms()) {
+          dialogFactory.creatDialogOkay(
+              "No Forms Available", "You must create a form before you can assign any
+     appointments");
+          return;
+        }
     Parent root = loader.load(getClass().getResourceAsStream("EditAppointments.fxml"));
     AppointmentsEditorController controller = loader.getController();
     controller.setUp();
