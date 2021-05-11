@@ -99,6 +99,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
+      <Rectangle fx:id="darkMode1" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="7229.0" stroke="#ffffff00" strokeType="INSIDE" width="6632.0" />
       <ImageView fitHeight="1766.0" fitWidth="1458.0" pickOnBounds="true" preserveRatio="true" scaleX="2.0" scaleY="2.0" StackPane.alignment="TOP_LEFT">
          <image>
             <Image url="@/images/CSVBackground.png" />
