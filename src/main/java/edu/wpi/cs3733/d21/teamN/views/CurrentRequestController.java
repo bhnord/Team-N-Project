@@ -4,16 +4,14 @@ import com.google.inject.Inject;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXListView;
+import edu.wpi.cs3733.d21.teamN.services.DynamicRequest;
 import edu.wpi.cs3733.d21.teamN.services.database.Appointment;
 import edu.wpi.cs3733.d21.teamN.services.database.CovidForm;
 import edu.wpi.cs3733.d21.teamN.services.database.DatabaseService;
 import edu.wpi.cs3733.d21.teamN.services.database.requests.Request;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.ResourceBundle;
+import java.util.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,22 +21,26 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 public class CurrentRequestController extends MasterController implements Initializable {
 
+  @FXML private JFXListView<HBox> requestData;
+  @FXML private JFXListView<Label> appointmentNames;
+  @FXML private JFXListView<HBox> appointmentsData;
   private Scene appPrimaryScene;
   @Inject private DatabaseService db;
   @Inject private FXMLLoader loader;
-  @FXML private JFXListView<Label> listView;
-  @FXML private Label requestId;
-  @FXML private Label requestType;
-  @FXML private Label senderName;
-  @FXML private Label receiverName;
-  @FXML private Label content;
-  @FXML private Label notes;
-  @FXML private Label roomName;
+  @FXML private JFXListView<HBox> listView;
+  //  @FXML private Label requestId;
+  //  @FXML private Label requestType;
+  //  @FXML private Label senderName;
+  //  @FXML private Label receiverName;
+  //  @FXML private Label content;
+  //  @FXML private Label notes;
+  //  @FXML private Label roomName;
   @FXML private AnchorPane anchorPane;
   private Label selectedLabel;
   @FXML private JFXListView<Label> listViewCovid;
@@ -61,7 +63,7 @@ public class CurrentRequestController extends MasterController implements Initia
   @FXML Rectangle darkMode;
   @FXML Label text;
 
-  @FXML Rectangle rectangle1, rectangle2;
+  @FXML Rectangle rectangle1, rectangle2, rectangle3;
 
   @Inject
   public void setAppPrimaryScene(Scene appPrimaryScene) {
@@ -106,22 +108,25 @@ public class CurrentRequestController extends MasterController implements Initia
     //      listView.getItems().add(lbl);
     //    }
     //
-    //    listView.setOnMouseClicked(
-    //        event -> {
-    //          Label selected = listView.getSelectionModel().getSelectedItem();
-    //          if (event.getButton() == MouseButton.PRIMARY && selected != null) {
-    //            String id = selected.getId();
-    //            Request clickedRequest = requestMap.get(Integer.valueOf(id));
-    //            selectedLabel = selected;
-    //            if (!(clickedRequest == null)) {
-    //              updateTextFields(clickedRequest);
-    //              //                showRequestFields(clickedRequest);
-    //            } else {
-    //              setEmptyFields();
-    //            }
-    //          }
-    //        });
+    appointmentNames.setOnMouseClicked(
+        event -> {
+          Label selected = appointmentNames.getSelectionModel().getSelectedItem();
+          if (event.getButton() == MouseButton.PRIMARY && selected != null) {
+            String id = selected.getId();
+            Appointment clickedAppointments = db.getAppointment(Integer.parseInt(id));
+            selectedLabel = selected;
+            if (!(clickedAppointments.getForm() == null)) {
+              for (int i = 0; i < clickedAppointments.getForm().getNames().size(); i++) {
+                Label labelName = new Label(clickedAppointments.getForm().getNames().get(i));
+                Label labelResult = new Label(clickedAppointments.getForm().getResults().get(i));
+                HBox box = new HBox(labelName, labelResult);
+                appointmentsData.getItems().add(box);
+              }
+            }
+          }
+        });
     showAppointmentFields();
+    showRequestFields();
 
     listViewCovid.setOnMouseClicked(
         event -> {
@@ -143,12 +148,41 @@ public class CurrentRequestController extends MasterController implements Initia
     updateStyle(db.getCurrentUser().getAppColor());
   }
 
+  private void showRequestFields() {
+    for (DynamicRequest request : db.getAllDynamicRequests()) {
+      Label id = new Label(request.getForm().getTitle());
+      Label senderID = new Label(String.valueOf(request.getSenderID()));
+      JFXComboBox<Label> employ = new JFXComboBox<>();
+      loadEmployeeDropdown(employ);
+      Label label = new Label("Unassigned");
+      label.setId("-1");
+      employ.getItems().add(label);
+      employ.setOnAction(
+          e -> {
+            db.assignDynamicRequestEmployee(
+                request.getId(),
+                Integer.parseInt(employ.getSelectionModel().getSelectedItem().getId()));
+          });
+      for (Label l : employ.getItems()) {
+        if (l.getId().equals(String.valueOf(request.getReceiverID()))) {
+          employ.getSelectionModel().select(l);
+          break;
+        }
+      }
+      HBox hbox = new HBox(id, senderID, employ);
+      hbox.setSpacing(100);
+
+      listView.getItems().add(hbox);
+    }
+  }
+
   private void showAppointmentFields() {
     for (Appointment appointment : db.getAllAppointments()) {
-      appointment.getForm().getTitle();
-      appointment.getForm().getResults();
+      Label lbl = new Label(db.getUserById(appointment.getPatientId()).getUsername() + "'s: ");
+      lbl.setId(String.valueOf(appointment.getId()));
+      //                  + appointment.getForm().getTitle());
+      appointmentNames.getItems().add(lbl);
     }
-    //    clickedRequest.
   }
 
   public void updateStyle(String color) {
@@ -163,17 +197,10 @@ public class CurrentRequestController extends MasterController implements Initia
     Color c = Color.web(color);
     rectangle1.setFill(c);
     rectangle2.setFill(c);
+    rectangle3.setFill(c);
   }
 
   private void setEmptyFields() {
-    requestId.setText("");
-    requestType.setText("");
-    senderName.setText("");
-    receiverName.setText("");
-    content.setText("");
-    notes.setText("");
-    roomName.setText("");
-
     symptoms.setText("");
     tested.setText("");
     treatment.setText("");
@@ -185,15 +212,15 @@ public class CurrentRequestController extends MasterController implements Initia
     txtisCleared.setText("");
   }
 
-  private void updateTextFields(Request clickedRequest) {
-    requestId.setText(Integer.toString(clickedRequest.getId()));
-    requestType.setText(clickedRequest.getType().getName());
-    senderName.setText(db.getUserById(clickedRequest.getSenderID()).getUsername());
-    receiverName.setText(db.getUserById(clickedRequest.getReceiverID()).getUsername());
-    roomName.setText(db.getNode(clickedRequest.getRoomNodeId()).get_longName());
-    content.setText(clickedRequest.getContent());
-    notes.setText(clickedRequest.getNotes());
-  }
+  //  private void updateTextFields(Request clickedRequest) {
+  //    requestId.setText(Integer.toString(clickedRequest.getId()));
+  //    requestType.setText(clickedRequest.getType().getName());
+  //    senderName.setText(db.getUserById(clickedRequest.getSenderID()).getUsername());
+  //    receiverName.setText(db.getUserById(clickedRequest.getReceiverID()).getUsername());
+  //    roomName.setText(db.getNode(clickedRequest.getRoomNodeId()).get_longName());
+  //    content.setText(clickedRequest.getContent());
+  //    notes.setText(clickedRequest.getNotes());
+  //  }
 
   private void updateTextFieldsCovid(CovidForm covidForm) {
 
@@ -279,10 +306,10 @@ public class CurrentRequestController extends MasterController implements Initia
     listView.getItems().remove(selectedLabel);
     if (index != 0) index--;
     if (!(listView.getItems().size() == 0)) {
-      selectedLabel = listView.getItems().get(index);
+      //      selectedLabel = listView.getItems().get(index);
       Request clickedRequest = requestMap.get(Integer.valueOf(selectedLabel.getId()));
       if (clickedRequest != null) {
-        updateTextFields(clickedRequest);
+        //        updateTextFields(clickedRequest);
       } else {
         setEmptyFields();
       }
