@@ -12,11 +12,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Region;
 import javafx.scene.shape.Rectangle;
 import lombok.extern.slf4j.Slf4j;
 
@@ -61,6 +63,16 @@ public class ServiceRequests extends MasterController implements Initializable {
       //            if (form.getForm().isRequest()) {
       JFXButton btn = new JFXButton(form.getName());
       btn.setId(String.valueOf(form.getId()));
+      String style =
+          "-fx-background-color: "
+              + "#"
+              + db.getCurrentUser().getAppColor().substring(2)
+              + "; -fx-background-radius: 25; -fx-text-fill: WHITE; -fx-font-family: 'Roboto Black'; -fx-font-size: 26;";
+      btn.setStyle(style);
+      btn.setAlignment(Pos.TOP_LEFT);
+      btn.setMinSize(Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE);
+      btn.setPrefSize(1000, 310);
+      btn.setMaxSize(100000, 100000);
       btn.setOnMouseClicked(
           event -> {
             if (event.getButton() == MouseButton.PRIMARY) {

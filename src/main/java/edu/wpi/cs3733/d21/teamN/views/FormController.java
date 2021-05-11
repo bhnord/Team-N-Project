@@ -40,7 +40,7 @@ public class FormController extends MasterController implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Service Request");
+    super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Database");
   }
 
   public void setUp(Form form) {
