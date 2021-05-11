@@ -494,7 +494,7 @@ public class HomeControllerAdmin extends MasterController implements Initializab
       appPrimaryScene.setRoot(root);
       FormController formController = loader.getController();
       //    System.out.println(closest.getForm().getResults());
-      formController.setUp(closest, db.getForm(closest.getAppointmentTypeId()).getForm());
+      formController.setUp(closest, db.getForm(db.getAppointmentType(closest.getAppointmentTypeId()).getFormId()).getForm());
     }
   }
 }
