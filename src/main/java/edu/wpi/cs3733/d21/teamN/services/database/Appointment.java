@@ -6,8 +6,8 @@ import java.sql.Timestamp;
 public class Appointment {
   private int id, appointmentTypeId, patientId, assignedStaffId;
 
-  public void setCheckInStatus(boolean checkInStatus) {
-    this.checkInStatus = checkInStatus;
+  public void setCheckInStatus(boolean checkIn) {
+    this.checkInStatus = checkIn;
   }
 
   public void setAssociatedRoomId(String associatedRoomId) {
