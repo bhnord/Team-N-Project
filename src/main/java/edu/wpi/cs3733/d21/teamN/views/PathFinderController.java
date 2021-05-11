@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.ResourceBundle;
 import javafx.animation.TranslateTransition;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -81,19 +80,6 @@ public class PathFinderController extends MapController implements Initializable
     mapDrawer.setUpZoom(mapImageView, mapAnchor);
 
     texutualDescription = new JFXListView<>();
-    texutualDescription.setOnMouseClicked(
-        event -> {
-          HBox selected = texutualDescription.getSelectionModel().getSelectedItem();
-          if (event.getButton() == MouseButton.PRIMARY && selected != null) {
-            ObservableList<Integer> seletedI =
-                texutualDescription.getSelectionModel().getSelectedIndices();
-            mapDrawer.colorPath(super.getPathColor().getValue(), nodePath);
-            Node.Link link = nodePath.get(nodePath.size() - seletedI.get(0) - 1);
-            mapDrawer.setMap(link._other.get_floor());
-            mapFloor();
-            link._shape.setStroke(Color.RED);
-          }
-        });
     for (Node n : getNodeSet().values()) {
       n.get_shape().setVisible(false);
       for (Node.Link l : n.get_neighbors()) {
@@ -158,7 +144,6 @@ public class PathFinderController extends MapController implements Initializable
 
   public void handleClick(MouseEvent event) {
     Node n = adminMap.get(event.getX(), event.getY(), mapDrawer.getCurrentMap());
-    System.out.println(n);
     if (event.getButton() == MouseButton.PRIMARY
         && !path.contains(n.get_nodeID())
         && !event.isShiftDown()) {
@@ -207,7 +192,7 @@ public class PathFinderController extends MapController implements Initializable
         directionHandler.addDirection(l);
       }
     }
-    arrowChase();
+    //    arrowChase();
     //    createExtras();
   }
 

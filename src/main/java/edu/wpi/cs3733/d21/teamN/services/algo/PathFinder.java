@@ -23,7 +23,7 @@ public class PathFinder implements IPathFinder {
   }
 
   public ArrayList<Node.Link> pathfindNoStairs(Node start, Node end) {
-    return singleton.impl.pathfindFull(start, end, (l) -> !l._isStair);
+    return singleton.impl.pathfindFull(start, end, (l) -> true);
   }
 
   @Override
@@ -50,6 +50,10 @@ public class PathFinder implements IPathFinder {
     return ret;
   }
 
+  public static double normalizeAngle(double angle) {
+    return Math.atan2(Math.sin(angle), Math.cos(angle));
+  }
+
   public ArrayList<String> getDescription(ArrayList<Node.Link> input) {
     if (input.size() == 0) {
       ArrayList<String> ret = new ArrayList<>();
@@ -66,7 +70,9 @@ public class PathFinder implements IPathFinder {
     for (int i = input.size() - 1; i >= 0; i--) {
       Node.Link l = input.get(i);
       currentDirection = getDirection(l);
-      double directionDiff = (currentDirection - previousDirection);
+      double directionDiff = normalizeAngle(currentDirection - previousDirection);
+
+      System.out.println(i + " : " + directionDiff);
       if (!l._this.get_floor().equals(l._other.get_floor())) {
         ret.add("go to floor " + l._other.get_floor());
       } else {

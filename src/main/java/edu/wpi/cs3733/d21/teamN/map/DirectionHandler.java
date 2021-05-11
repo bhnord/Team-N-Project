@@ -69,7 +69,7 @@ public class DirectionHandler {
             Node.Link link =
                 mapController
                     .getNodePath()
-                    .get(mapController.getNodePath().size() - seletedI.get(0) - 1);
+                    .get(mapController.getNodePath().size() - seletedI.get(0));
             mapController.getMapDrawer().setMap(link._other.get_floor());
             mapController.mapFloor();
             link._shape.setStroke(Color.RED);
