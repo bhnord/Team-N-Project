@@ -193,7 +193,7 @@ public class PathFinderController extends MapController implements Initializable
       }
     }
     //    arrowChase();
-        createExtras();
+    createExtras();
   }
 
   public void mapFloor() {
@@ -244,20 +244,24 @@ public class PathFinderController extends MapController implements Initializable
 
   private void createExtras() {
     clearExtras();
-    for (Node.Link l : nodePath) {
-      if (l._this.get_floor().equals(mapDrawer.getCurrentMap()))
-        if (l._this.get_floor().equals(l._other.get_floor())) {
-          Polygon p = createArrow(l);
-          mapAnchor.getChildren().add(p);
-          extras.add(p);
-        } else {
-          Label label = new Label(l._other.get_floor());
-          label.setTranslateX(l._other.get_x() * getDownScale() + 10);
-          label.setTranslateY(l._other.get_y() * getDownScale() - 10);
-          mapAnchor.getChildren().add(label);
-          extras.add(label);
-        }
+    for (double i = 0; i < 1; i += .1) {
+      double[] d = PathFinder.getPathFinder().getParametric(i, nodePath);
+      System.out.println(d[0] + ", " + d[1]);
     }
+    //    for (Node.Link l : nodePath) {
+    //      if (l._this.get_floor().equals(mapDrawer.getCurrentMap()))
+    //        if (l._this.get_floor().equals(l._other.get_floor())) {
+    //          Polygon p = createArrow(l);
+    //          mapAnchor.getChildren().add(p);
+    //          extras.add(p);
+    //        } else {
+    //          Label label = new Label(l._other.get_floor());
+    //          label.setTranslateX(l._other.get_x() * getDownScale() + 10);
+    //          label.setTranslateY(l._other.get_y() * getDownScale() - 10);
+    //          mapAnchor.getChildren().add(label);
+    //          extras.add(label);
+    //        }
+    //    }
   }
 
   private void arrowChase() {

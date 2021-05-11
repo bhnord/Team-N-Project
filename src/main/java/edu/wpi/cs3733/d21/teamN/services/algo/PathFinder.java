@@ -111,31 +111,33 @@ public class PathFinder implements IPathFinder {
     return ret;
   }
 
-  private double getLen(Node.Link input){
-      return Math.sqrt((input._this.get_x() - input._other.get_x()) * (input._this.get_x() - input._other.get_x()) +
-              (input._this.get_y() - input._other.get_y()) * (input._this.get_y() - input._other.get_y()));
+  private double getLen(Node.Link input) {
+    return Math.sqrt(
+        (input._this.get_x() - input._other.get_x()) * (input._this.get_x() - input._other.get_x())
+            + (input._this.get_y() - input._other.get_y())
+                * (input._this.get_y() - input._other.get_y()));
   }
 
-  public double[] getParametric(double percent, ArrayList<Node.Link> links){
-      double totalLen = 0;
+  public double[] getParametric(double percent, ArrayList<Node.Link> links) {
+    double totalLen = 0;
     for (Node.Link l : links) {
       totalLen += getLen(l);
     }
     for (int i = links.size() - 1; i >= 0; i--) {
-      double curPercent = getLen(links.get(i))/totalLen;
+      double curPercent = getLen(links.get(i)) / totalLen;
       percent -= curPercent;
-      if(percent < 0){
-          percent += curPercent;
-          percent /= curPercent;
-          double dx = links.get(i)._other.get_x() - links.get(i)._this.get_x();
-          double dy = links.get(i)._other.get_y() - links.get(i)._this.get_y();
-          dx *= percent;
-          dy *= percent;
-          dx += links.get(i)._other.get_x();
-          dy += links.get(i)._other.get_y();
-          return new double[]{dx, dy};
+      if (percent < 0) {
+        percent += curPercent;
+        percent /= curPercent;
+        double dx = links.get(i)._other.get_x() - links.get(i)._this.get_x();
+        double dy = links.get(i)._other.get_y() - links.get(i)._this.get_y();
+        dx *= percent;
+        dy *= percent;
+        dx += links.get(i)._other.get_x();
+        dy += links.get(i)._other.get_y();
+        return new double[] {dx, dy};
       }
     }
     return null;
-    }
+  }
 }

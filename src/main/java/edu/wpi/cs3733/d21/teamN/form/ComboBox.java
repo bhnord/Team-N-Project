@@ -42,8 +42,7 @@ public class ComboBox extends FormElement {
     comboBox = new JFXComboBox<>();
     comboBox.setPromptText(getName());
     comboBox.setLabelFloat(true);
-    comboBox.setOnAction(
-        e -> setValue(comboBox.getSelectionModel().getSelectedItem().getText()));
+    comboBox.setOnAction(e -> setValue(comboBox.getSelectionModel().getSelectedItem().getText()));
     ArrayList<String> innerValues = new ArrayList<>();
     switch (type) {
       case ROOM:

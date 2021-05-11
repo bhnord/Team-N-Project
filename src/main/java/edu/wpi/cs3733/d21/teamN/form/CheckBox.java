@@ -20,7 +20,7 @@ public class CheckBox extends FormElement {
       boolean required, String question, String help, Form formin, ArrayList<String> options) {
     super(required, question, help, formin);
     this.options = options;
-    if (selected == null){
+    if (selected == null) {
       selected = new ArrayList<>();
     }
   }
