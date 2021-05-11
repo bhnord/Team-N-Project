@@ -31,10 +31,11 @@ public class FormsTable {
     try {
       Blob blob = connection.createBlob();
       blob.setBytes(1, fs.toStream(nForm.getForm()));
-      String str = "INSERT INTO FORMS (NAME, FORM) VALUES (?, ?)";
+      String str = "INSERT INTO FORMS (NAME, FORM, ISSERVICEREQUEST) VALUES (?, ?, ?)";
       PreparedStatement ps = connection.prepareStatement(str);
       ps.setString(1, nForm.getName());
       ps.setBlob(2, blob);
+      ps.setBoolean(3, nForm.isRequest());
       ps.executeUpdate();
       blob.free();
       ps.close();
@@ -50,11 +51,12 @@ public class FormsTable {
       Blob blob = connection.createBlob();
       blob.setBytes(1, fs.toStream(nForm.getForm()));
       System.out.println(nForm.getForm().getNames().size());
-      String str = "UPDATE FORMS SET FORM = ?, NAME = ? WHERE id = ?";
+      String str = "UPDATE FORMS SET FORM = ?, NAME = ?, ISSERVICEREQUEST = ? WHERE id = ?";
       PreparedStatement ps = connection.prepareStatement(str);
       ps.setBlob(1, blob);
       ps.setString(2, nForm.getName());
-      ps.setInt(3, nForm.getId());
+      ps.setBoolean(3, nForm.isRequest());
+      ps.setInt(4, nForm.getId());
       ps.executeUpdate();
       blob.free();
       ps.close();
@@ -114,6 +116,7 @@ public class FormsTable {
     while (rs.next()) {
       Blob blob = rs.getBlob("FORM");
       Form form = fs.fromStream(blob.getBytes(1, (int) blob.length()));
+      form.setRequest(rs.getBoolean("ISSERVICEREQUEST"));
       blob.free();
       namedForms.add(new NamedForm(rs.getInt("id"), rs.getString("NAME"), form));
     }

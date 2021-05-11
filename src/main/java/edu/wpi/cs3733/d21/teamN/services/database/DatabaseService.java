@@ -786,6 +786,7 @@ public class DatabaseService {
           "CREATE TABLE Forms("
               + "id INT NOT NULL GENERATED ALWAYS AS IDENTITY, "
               + "Name varchar(30) UNIQUE, "
+              + "isServiceRequest BOOLEAN NOT NULL, "
               + "Form BLOB(16M),"
               + "PRIMARY KEY (id))";
       stmt.execute(str);

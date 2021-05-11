@@ -7,12 +7,14 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.RequiredFieldValidator;
 import edu.wpi.cs3733.d21.teamN.faceLogin.FaceLogin;
+import edu.wpi.cs3733.d21.teamN.services.database.Appointment;
 import edu.wpi.cs3733.d21.teamN.services.database.DatabaseService;
 import edu.wpi.cs3733.d21.teamN.services.database.users.User;
 import edu.wpi.cs3733.d21.teamN.state.HomeState;
 import edu.wpi.cs3733.d21.teamN.utilities.DialogFactory;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -453,7 +455,26 @@ public class HomeControllerAdmin extends MasterController implements Initializab
   }
 
   @FXML
-  private void checkIn() {}
+  private void checkIn() throws IOException {
+    ArrayList<edu.wpi.cs3733.d21.teamN.services.database.Appointment> appointments =
+            new ArrayList<>(db.getAppointmentsByPatientId(db.getCurrentUser().getId()));
+    if (appointments.size() == 0) {
+      return;
+    }
+    Appointment closest = appointments.get(0);
+    for (Appointment a : appointments) {
+      if (a.getTimeOfAppointment().before(closest.getTimeOfAppointment())) {
+        closest = a;
+      }
+    }
+    //
+    Parent root = loader.load(getClass().getResourceAsStream("Templateform.fxml"));
+    appPrimaryScene.setRoot(root);
+    FormController formController = loader.getController();
+    //    System.out.println(closest.getForm().getResults());
+    formController.setUp(closest, db.getForm(closest.getAppointmentTypeId()).getForm());
+  }
+
 
   @FXML
   private void switchDB() throws IOException {

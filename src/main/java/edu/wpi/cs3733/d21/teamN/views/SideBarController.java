@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.d21.teamN.views;
 
 import com.google.inject.Inject;
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXColorPicker;
 import com.jfoenix.controls.JFXToggleButton;
 import edu.wpi.cs3733.d21.teamN.faceLogin.FaceEnroller;
@@ -353,6 +354,7 @@ public class SideBarController extends MasterController implements Initializable
       labelB2;
 
   @FXML Rectangle rectangle1;
+  @FXML JFXButton faceRec;
 
   public void updateStyle(String color) {
     String style = "-fx-background-color: " + "#" + color.substring(2) + ";";
@@ -363,6 +365,7 @@ public class SideBarController extends MasterController implements Initializable
     // label1.setStyle(style);
     // rectangle1.setStyle(style);
     labelB1.setStyle(style + "-fx-background-radius: 50;");
+    faceRec.setStyle(style);
 
     Color appC = Color.web(color);
     String s = appC.darker().darker().darker().desaturate().toString();
