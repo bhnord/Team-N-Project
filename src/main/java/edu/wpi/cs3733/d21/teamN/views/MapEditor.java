@@ -1,10 +1,7 @@
 package edu.wpi.cs3733.d21.teamN.views;
 
 import com.google.inject.Inject;
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXTabPane;
-import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.*;
 import edu.wpi.cs3733.d21.teamN.map.*;
 import edu.wpi.cs3733.d21.teamN.services.algo.*;
 import edu.wpi.cs3733.d21.teamN.state.HomeState;
@@ -217,6 +214,15 @@ public class MapEditor extends MapController implements Initializable {
               + ";-fx-text-box-border: transparent;-fx-focus-color: transparent;");
     }
   }
+
+  //  @FXML
+  //  public void newColorPath(JFXColorPicker a) {
+  //    updateUserColors(a.getId(), a.getValue().toString());
+  //    System.out.println("new color path");
+  //    for (Node n : getNodeSet().values()) {
+  //      for (Node.Link l : n.get_neighbors()) l._shape.setStroke(a.getValue());
+  //    }
+  //  }
 
   /**
    * Prints the x and y values of the cursor on the bottom left of the screen
@@ -550,5 +556,13 @@ public class MapEditor extends MapController implements Initializable {
 
   public void saveEdge(ActionEvent actionEvent) {
     mapEdgeEditor.commitChanges(getCurrent());
+  }
+
+  public void newColorPath(ActionEvent actionEvent) {
+    updateUserColors(pathColor.getId(), pathColor.getValue().toString());
+    System.out.println("new color path");
+    for (Node n : getNodeSet().values()) {
+      for (Node.Link l : n.get_neighbors()) l._shape.setStroke(pathColor.getValue());
+    }
   }
 }

@@ -7,7 +7,6 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.RequiredFieldValidator;
 import edu.wpi.cs3733.d21.teamN.faceLogin.FaceLogin;
-import edu.wpi.cs3733.d21.teamN.services.DynamicRequest;
 import edu.wpi.cs3733.d21.teamN.services.database.Appointment;
 import edu.wpi.cs3733.d21.teamN.services.database.DatabaseService;
 import edu.wpi.cs3733.d21.teamN.services.database.NamedForm;
@@ -263,17 +262,16 @@ public class HomeControllerAdmin extends MasterController implements Initializab
       dialogFactory = new DialogFactory(rootStackPane);
       if (!answer) {
         dialogFactory.creatDialogOkay(
-                "No request Exist",
-                "Requests must be made in form editor before service request can be used");
+            "No request Exist",
+            "Requests must be made in form editor before service request can be used");
         return;
       }
     }
 
-      String file = ((Button) actionEvent.getSource()).getId() + ".fxml";
-      Parent root = loader.load(getClass().getResourceAsStream(file));
-      appPrimaryScene.setRoot(root);
+    String file = ((Button) actionEvent.getSource()).getId() + ".fxml";
+    Parent root = loader.load(getClass().getResourceAsStream(file));
+    appPrimaryScene.setRoot(root);
   }
-
 
   /**
    * map advances to map FXML

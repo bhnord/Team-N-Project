@@ -68,6 +68,7 @@ public class MapDrawer {
             node2.get_y() * mapController.getDownScale());
     simpleNode.setTranslateZ(5);
     simpleNode.setStrokeWidth(mapController.getUserPrefs().getEdgeWidth());
+    simpleNode.setStroke(mapController.getPathColor().getValue());
     Group root = new Group(simpleNode);
     root.setId(id);
     return root;
@@ -104,6 +105,7 @@ public class MapDrawer {
             node1.get_y() * mapController.getDownScale());
     simpleNode.setTranslateZ(5);
     simpleNode.setStrokeWidth(mapController.getUserPrefs().getEdgeWidth());
+    simpleNode.setStroke(mapController.getPathColor().getValue());
     Group root = new Group(simpleNode);
     root.setId(node1.get_nodeID() + "_");
     this.draggedLineGroup = root;
