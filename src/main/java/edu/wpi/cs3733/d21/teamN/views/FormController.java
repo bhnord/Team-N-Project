@@ -43,6 +43,11 @@ public class FormController extends MasterController implements Initializable {
     super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Service Request");
   }
 
+  public void setUp(Form form) {
+    this.form = form;
+    form.build(this, db);
+  }
+
   public void setUp(Appointment a, Form form) {
     appointment = a;
     this.form = form;
@@ -58,7 +63,11 @@ public class FormController extends MasterController implements Initializable {
   }
 
   public void submit(ActionEvent actionEvent) throws IOException {
-    this.appointment.setForm(this.form);
-    db.updateAppointment(appointment);
+    if (appointment != null) {
+      this.appointment.setForm(this.form);
+      db.updateAppointment(appointment);
+    } else {
+      // db.addrequest(this.form);
+    }
   }
 }
