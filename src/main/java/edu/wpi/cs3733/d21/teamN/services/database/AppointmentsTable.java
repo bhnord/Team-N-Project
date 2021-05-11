@@ -41,7 +41,7 @@ class AppointmentsTable {
       blob.free();
       ResultSet rs = ps.getGeneratedKeys();
       rs.next();
-      return getAppointment(rs.getInt("ID"));
+      return getAppointment(rs.getInt(1));
     } catch (SQLException e) {
       e.printStackTrace();
       return null;
