@@ -14,7 +14,9 @@ public class CovidInformationController extends MasterController {
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     super.sideBarSetup(anchorPane, appPrimaryScene, loader, "CovidInformation");
-
+    if (db.getCurrentUser() != null) {
+      darkMode.setVisible(db.getCurrentUser().getDarkMode());
+    }
     //    loadEmployeeDropdown(employeeDropdown);
   }
 }
