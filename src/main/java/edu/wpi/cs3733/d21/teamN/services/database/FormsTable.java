@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.d21.teamN.services.database;
 
 import edu.wpi.cs3733.d21.teamN.form.Form;
+
 import java.sql.*;
 import java.util.HashSet;
 
@@ -81,6 +82,17 @@ public class FormsTable {
   public HashSet<NamedForm> getAllForms() {
     try {
       String str = "SELECT * FROM FORMS";
+      ResultSet rs = stmt.executeQuery(str);
+      return resultSetToNamedForms(rs);
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return null;
+    }
+  }
+
+  public HashSet<NamedForm> getAllFormsNotServiceRequest() {
+    try {
+      String str = "SELECT * FROM FORMS WHERE ISSERVICEREQUEST = FALSE";
       ResultSet rs = stmt.executeQuery(str);
       return resultSetToNamedForms(rs);
     } catch (SQLException e) {
