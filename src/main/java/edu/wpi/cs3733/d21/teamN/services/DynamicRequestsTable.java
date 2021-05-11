@@ -44,8 +44,7 @@ public class DynamicRequestsTable {
       blob.setBytes(1, fs.toStream(request.getForm()));
       PreparedStatement ps =
           connection.prepareStatement(
-              "INSERT INTO DYNAMICREQUESTS (SENDERID, FORM) VALUES (?, ?, ?)",
-              new String[] {"ID"});
+              "INSERT INTO DYNAMICREQUESTS (SENDERID, FORM) VALUES (?, ?, ?)", new String[] {"ID"});
       ps.setInt(1, request.getSenderID());
       ps.setBlob(2, blob);
       ps.executeUpdate();
@@ -59,12 +58,12 @@ public class DynamicRequestsTable {
     }
   }
 
-  public boolean assignDynamicRequestEmployee(int id, int employeeId){
+  public boolean assignDynamicRequestEmployee(int id, int employeeId) {
     String str = "UPDATE DYNAMICREQUESTS SET RECIEVERID = " + employeeId + " WHERE ID = " + id;
-    try{
+    try {
       stmt.execute(str);
       return true;
-    } catch(SQLException e){
+    } catch (SQLException e) {
       e.printStackTrace();
       return false;
     }
