@@ -1,7 +1,5 @@
 package edu.wpi.cs3733.d21.teamN.services.algo;
 
-import org.opencv.core.Mat;
-
 import java.util.ArrayList;
 
 public class PathFinder implements IPathFinder {
@@ -118,7 +116,7 @@ public class PathFinder implements IPathFinder {
               (input._this.get_y() - input._other.get_y()) * (input._this.get_y() - input._other.get_y()));
   }
 
-  public int[] getParametric(double percent, ArrayList<Node.Link> links){
+  public double[] getParametric(double percent, ArrayList<Node.Link> links){
       double totalLen = 0;
     for (Node.Link l : links) {
       totalLen += getLen(l);
@@ -127,7 +125,15 @@ public class PathFinder implements IPathFinder {
       double curPercent = getLen(links.get(i))/totalLen;
       percent -= curPercent;
       if(percent < 0){
-
+          percent += curPercent;
+          percent /= curPercent;
+          double dx = links.get(i)._other.get_x() - links.get(i)._this.get_x();
+          double dy = links.get(i)._other.get_y() - links.get(i)._this.get_y();
+          dx *= percent;
+          dy *= percent;
+          dx += links.get(i)._other.get_x();
+          dy += links.get(i)._other.get_y();
+          return new double[]{dx, dy};
       }
     }
     return null;
