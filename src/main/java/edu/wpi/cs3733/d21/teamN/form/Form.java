@@ -13,11 +13,11 @@ public class Form implements Serializable {
 
   private String icon = "";
 
-  public void setIcon(String icon){
+  public void setIcon(String icon) {
     this.icon = icon;
   }
 
-  public String getIcon(){
+  public String getIcon() {
     return icon;
   }
 

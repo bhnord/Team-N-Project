@@ -1,10 +1,7 @@
 package edu.wpi.cs3733.d21.teamN.views;
 
 import com.google.inject.Inject;
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXCheckBox;
-import com.jfoenix.controls.JFXListView;
-import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.*;
 import edu.wpi.cs3733.d21.teamN.form.Form;
 import edu.wpi.cs3733.d21.teamN.services.database.DatabaseService;
 import edu.wpi.cs3733.d21.teamN.services.database.NamedForm;
@@ -44,6 +41,73 @@ public class FormsEditorController extends MasterController implements Initializ
 
   private ArrayList<NamedForm> forms;
   private DialogFactory dialogFactory;
+  private String[] icons = {
+    "gmi-accessibility",
+    "gmi-redeem",
+    "gmi-security",
+    "gmi-build",
+    "gmi-desktop-windows",
+    "gmi-accessible",
+    "gmi-airport-shuttle",
+    "gmi-local-pharmacy",
+    "gmi-local-florist",
+    "gmi-local-laundry-service",
+    "gmi-opacity",
+    "gmi-language",
+    "gmi-restaurant",
+    "gmi-import-contacts",
+    "gmi-school",
+    "gmi-access-alarm",
+    "gmi-brush",
+    "gmi-business-center",
+    "gmi-call",
+    "gmi-card-travel",
+    "gmi-child-friendly",
+    "gmi-create",
+    "gmi-chrome-reader-mode",
+    "gmi-computer",
+    "gmi-content-paste",
+    "gmi-delete",
+    "gmi-directions-walk",
+    "gmi-directions-subway",
+    "gmi-domain",
+    "gmi-drafts",
+    "gmi-enhanced-encrypt",
+    "gmi-favorite-border",
+    "gmi-face",
+    "gmi-fitness-center",
+    "gmi-flight",
+    "gmi-format-paint",
+    "gmi-free-breakfast",
+    "gmi-healing",
+    "gmi-headset",
+    "gmi-hotel",
+    "gmi-laptop-chromebook",
+    "gmi-local-atm",
+    "gmi-local-grocery-store",
+    "gmi-local-hospital",
+    "gmi-local-mall",
+    "gmi-local-movies",
+    "gmi-local-parking",
+    "gmi-local-pizza",
+    "gmi-local-shipping",
+    "gmi-local-printshop",
+    "gmi-mood-bad",
+    "gmi-mood",
+    "gmi-ondemand-video",
+    "gmi-pregnant-woman",
+    "gmi-power",
+    "gmi-room",
+    "gmi-room-service",
+    "gmi-translate",
+    "gmi-visibility",
+    "gmi-volume-up",
+    "gmi-wb-incandescent",
+    "gmi-wifi",
+    "gmi-wc",
+    "gmi-weekend",
+    "gmi-spa"
+  };
 
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
@@ -152,6 +216,16 @@ public class FormsEditorController extends MasterController implements Initializ
           db.updateForm(form);
         });
     ret.getChildren().add(isRequest);
+
+    JFXComboBox<HBox> iconSelection = new JFXComboBox<>();
+    for (String s : icons) {
+      FontIcon icon = new FontIcon();
+      icon.setIconLiteral(s);
+      HBox box = new HBox(icon);
+      box.setId(s);
+      iconSelection.getItems().add(box);
+    }
+    ret.getChildren().add(iconSelection);
 
     return ret;
   }
