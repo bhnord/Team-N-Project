@@ -53,7 +53,7 @@ public class FormEditorController extends MasterController implements Initializa
     this.form = form;
 
     System.out.println(form.getId());
-    titleEditor.setText(this.form.getName());
+    titleEditor.setText(this.form.getForm().getTitle());
     editor.setMinWidth(1000);
     form.getForm().editorBuild(editor);
   }
