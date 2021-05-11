@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXListView?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -35,7 +36,10 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                <children>
-                  <JFXListView fx:id="listView" style="-fx-background-color: transparent;" stylesheets="@/StyleSheet/HomeViewList.css" />
+                  <JFXListView fx:id="listView" style="-fx-background-color: transparent;" stylesheets="@/StyleSheet/ServiceRequestList.css">
+                     <GridPane.margin>
+                        <Insets left="25.0" />
+                     </GridPane.margin></JFXListView>
                </children>
                 </GridPane>
                 <AnchorPane fx:id="anchorPane" prefHeight="200.0" prefWidth="200.0" GridPane.valignment="BASELINE" />

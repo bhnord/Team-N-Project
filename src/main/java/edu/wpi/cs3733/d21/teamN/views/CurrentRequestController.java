@@ -4,6 +4,7 @@ import com.google.inject.Inject;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXListView;
+import edu.wpi.cs3733.d21.teamN.services.database.Appointment;
 import edu.wpi.cs3733.d21.teamN.services.database.CovidForm;
 import edu.wpi.cs3733.d21.teamN.services.database.DatabaseService;
 import edu.wpi.cs3733.d21.teamN.services.database.requests.Request;
@@ -94,32 +95,33 @@ public class CurrentRequestController extends MasterController implements Initia
       listViewCovid.getItems().add(lbl);
     }
 
-    for (Request request : set) {
-      Label lbl =
-          new Label(
-              request.getType().getName()
-                  + " request for "
-                  + db.getUserById(request.getReceiverID()).getUsername());
-      lbl.setId(Integer.toString(request.getId()));
-      requestMap.put(request.getId(), request);
-      listView.getItems().add(lbl);
-    }
-
-    listView.setOnMouseClicked(
-        event -> {
-          Label selected = listView.getSelectionModel().getSelectedItem();
-          if (event.getButton() == MouseButton.PRIMARY && selected != null) {
-            String id = selected.getId();
-            Request clickedRequest = requestMap.get(Integer.valueOf(id));
-            selectedLabel = selected;
-            if (!(clickedRequest == null)) {
-              updateTextFields(clickedRequest);
-              //                showRequestFields(clickedRequest);
-            } else {
-              setEmptyFields();
-            }
-          }
-        });
+    //    for (Request request : set) {
+    //      Label lbl =
+    //          new Label(
+    //              request.getType().getName()
+    //                  + " request for "
+    //                  + db.getUserById(request.getReceiverID()).getUsername());
+    //      lbl.setId(Integer.toString(request.getId()));
+    //      requestMap.put(request.getId(), request);
+    //      listView.getItems().add(lbl);
+    //    }
+    //
+    //    listView.setOnMouseClicked(
+    //        event -> {
+    //          Label selected = listView.getSelectionModel().getSelectedItem();
+    //          if (event.getButton() == MouseButton.PRIMARY && selected != null) {
+    //            String id = selected.getId();
+    //            Request clickedRequest = requestMap.get(Integer.valueOf(id));
+    //            selectedLabel = selected;
+    //            if (!(clickedRequest == null)) {
+    //              updateTextFields(clickedRequest);
+    //              //                showRequestFields(clickedRequest);
+    //            } else {
+    //              setEmptyFields();
+    //            }
+    //          }
+    //        });
+    showAppointmentFields();
 
     listViewCovid.setOnMouseClicked(
         event -> {
@@ -141,7 +143,11 @@ public class CurrentRequestController extends MasterController implements Initia
     updateStyle(db.getCurrentUser().getAppColor());
   }
 
-  private void showRequestFields(Request clickedRequest) {
+  private void showAppointmentFields() {
+    for (Appointment appointment : db.getAllAppointments()) {
+      appointment.getForm().getTitle();
+      appointment.getForm().getResults();
+    }
     //    clickedRequest.
   }
 
