@@ -58,25 +58,25 @@ public class ServiceRequests extends MasterController implements Initializable {
 
   private void loadRequestFromDB() {
     for (NamedForm form : db.getAllForms()) {
-      //            if (form.getForm().isRequest()) {
-      JFXButton btn = new JFXButton(form.getName());
-      btn.setId(String.valueOf(form.getId()));
-      btn.setOnMouseClicked(
-          event -> {
-            if (event.getButton() == MouseButton.PRIMARY) {
-              Parent root = null;
-              try {
-                root = loader.load(getClass().getResourceAsStream("Templateform.fxml"));
-                appPrimaryScene.setRoot(root);
-                FormController formController = loader.getController();
-                formController.setUp(db.getForm(form.getId()).getForm());
-              } catch (IOException e) {
-                e.printStackTrace();
+      if (form.getForm().isRequest()) {
+        JFXButton btn = new JFXButton(form.getName());
+        btn.setId(String.valueOf(form.getId()));
+        btn.setOnMouseClicked(
+            event -> {
+              if (event.getButton() == MouseButton.PRIMARY) {
+                Parent root = null;
+                try {
+                  root = loader.load(getClass().getResourceAsStream("Templateform.fxml"));
+                  appPrimaryScene.setRoot(root);
+                  FormController formController = loader.getController();
+                  formController.setUp(db.getForm(form.getId()).getForm());
+                } catch (IOException e) {
+                  e.printStackTrace();
+                }
               }
-            }
-          });
-      listView.getItems().add(btn);
-      //            }
+            });
+        listView.getItems().add(btn);
+      }
     }
   }
 
