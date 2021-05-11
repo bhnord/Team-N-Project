@@ -344,7 +344,7 @@ public class Calender extends MasterController implements Initializable {
 
     JFXComboBox<Label> roomDropDown = new JFXComboBox<>();
     roomDropDown.setLabelFloat(true);
-    roomDropDown.setPromptText("Appointment Type");
+    roomDropDown.setPromptText("Room");
     roomDropDown.setItems(roomsL);
     new AutoCompleteComboBoxListener(roomDropDown, false);
     editview.getChildren().add(roomDropDown);
