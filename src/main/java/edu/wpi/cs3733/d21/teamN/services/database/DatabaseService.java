@@ -11,12 +11,13 @@ import edu.wpi.cs3733.d21.teamN.services.algo.Node;
 import edu.wpi.cs3733.d21.teamN.services.database.requests.Request;
 import edu.wpi.cs3733.d21.teamN.services.database.requests.RequestType;
 import edu.wpi.cs3733.d21.teamN.services.database.users.*;
+import lombok.extern.slf4j.Slf4j;
+
 import java.awt.image.BufferedImage;
 import java.sql.*;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Objects;
-import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Singleton
@@ -648,6 +649,13 @@ public class DatabaseService {
   public HashSet<NamedForm> getAllForms() {
     return formsTable.getAllForms();
   }
+
+  /**
+   * Returns all Forms that are not a service request
+   *
+   * @return a HashSet of NamedForms
+   */
+  public HashSet<NamedForm> getAllFormsNotServiceRequest() { return formsTable.getAllFormsNotServiceRequest(); }
 
   /**
    * gets a singular NamedForm with matching id from the database
