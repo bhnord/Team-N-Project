@@ -285,12 +285,12 @@
             <Insets bottom="-390.0" />
          </StackPane.margin>
       </Group>
-      <Label fx:id="l2" stylesheets="/Fonts/Roboto-Light.css" text="Node Size" StackPane.alignment="BOTTOM_RIGHT">
+      <Label fx:id="l2" stylesheets="/Fonts/Roboto-Light.css" text="Path Size" StackPane.alignment="BOTTOM_RIGHT">
          <StackPane.margin>
             <Insets bottom="50.0" right="200.0" />
          </StackPane.margin>
       </Label>
-      <Label fx:id="l3" stylesheets="/Fonts/Roboto-Light.css" text="Path Size" StackPane.alignment="BOTTOM_RIGHT">
+      <Label fx:id="l3" stylesheets="/Fonts/Roboto-Light.css" text="Node Size" StackPane.alignment="BOTTOM_RIGHT">
          <StackPane.margin>
             <Insets bottom="15.0" right="200.0" />
          </StackPane.margin>
