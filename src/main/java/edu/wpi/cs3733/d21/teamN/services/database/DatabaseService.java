@@ -690,17 +690,19 @@ public class DatabaseService {
     return formsTable.updateForm(form);
   }
 
-  public boolean addDynamicRequestType(String type, int formId) {
-    return dynamicRequestTypesTable.addDynamicRequestType(type, formId);
-  }
 
-  public HashSet<DynamicRequestType> getAllDynamicRequestTypes() {
-    return dynamicRequestTypesTable.getAllDynamicRequestTypes();
-  }
 
-  public DynamicRequestType getDynamicRequestType(int id) {
-    return dynamicRequestTypesTable.getDynamicRequestType(id);
-  }
+//  public boolean addDynamicRequestType(String type, int formId) {
+//    return dynamicRequestTypesTable.addDynamicRequestType(type, formId);
+//  }
+//
+//  public HashSet<DynamicRequestType> getAllDynamicRequestTypes() {
+//    return dynamicRequestTypesTable.getAllDynamicRequestTypes();
+//  }
+//
+//  public DynamicRequestType getDynamicRequestType(int id) {
+//    return dynamicRequestTypesTable.getDynamicRequestType(id);
+//  }
 
   public DynamicRequest addDynamicRequest(DynamicRequest request) {
     return dynamicRequestsTable.addDynamicRequest(request);
@@ -713,6 +715,11 @@ public class DatabaseService {
   public DynamicRequest getDynamicRequest(int id) {
     return dynamicRequestsTable.getDynamicRequest(id);
   }
+
+  public boolean assignDynamicRequestEmployee(int id, int employeeId){
+    return dynamicRequestsTable.assignDynamicRequestEmployee(id, employeeId);
+  }
+
 
   /**
    * loads CSV files into database.
@@ -839,17 +846,16 @@ public class DatabaseService {
               + "AssociatedRoomId varchar(60) REFERENCES NODES (id), "
               + "PRIMARY KEY (id))";
       stmt.execute(str);
-      str =
-          "CREATE TABLE DynamicRequestTypes("
-              + "id INT NOT NULL GENERATED ALWAYS AS IDENTITY, "
-              + "Type varchar(70) UNIQUE, "
-              + "FormId INT NOT NULL REFERENCES FORMS (id), "
-              + "PRIMARY KEY (id))";
-      stmt.execute(str);
+//      str =
+//          "CREATE TABLE DynamicRequestTypes("
+//              + "id INT NOT NULL GENERATED ALWAYS AS IDENTITY, "
+//              + "Type varchar(70) UNIQUE, "
+//              + "FormId INT NOT NULL REFERENCES FORMS (id), "
+//              + "PRIMARY KEY (id))";
+//      stmt.execute(str);
       str =
           "CREATE TABLE DynamicRequests("
               + "id INT NOT NULL GENERATED ALWAYS AS IDENTITY, "
-              + "DynamicRequestTypeId INT NOT NULL REFERENCES DynamicRequestTypes (id), "
               + "SenderId INT NOT NULL REFERENCES Users (id), "
               + "RecieverId INT REFERENCES Users (id), "
               + "Form BLOB(16M), "

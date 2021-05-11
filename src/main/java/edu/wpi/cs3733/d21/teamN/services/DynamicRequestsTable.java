@@ -44,12 +44,10 @@ public class DynamicRequestsTable {
       blob.setBytes(1, fs.toStream(request.getForm()));
       PreparedStatement ps =
           connection.prepareStatement(
-              "INSERT INTO DYNAMICREQUESTS (DYNAMICREQUESTTYPEID, SENDERID, RECIEVERID, FORM) VALUES (?, ?, ?, ?)",
+              "INSERT INTO DYNAMICREQUESTS (SENDERID, FORM) VALUES (?, ?, ?)",
               new String[] {"ID"});
-      ps.setInt(1, request.getDynamicRequestTypeId());
-      ps.setInt(2, request.getSenderID());
-      ps.setInt(3, request.getReceiverID());
-      ps.setBlob(4, blob);
+      ps.setInt(1, request.getSenderID());
+      ps.setBlob(2, blob);
       ps.executeUpdate();
       blob.free();
       ResultSet rs = ps.getGeneratedKeys();
@@ -58,6 +56,17 @@ public class DynamicRequestsTable {
     } catch (SQLException e) {
       e.printStackTrace();
       return null;
+    }
+  }
+
+  public boolean assignDynamicRequestEmployee(int id, int employeeId){
+    String str = "UPDATE DYNAMICREQUESTS SET RECIEVERID = " + employeeId + " WHERE ID = " + id;
+    try{
+      stmt.execute(str);
+      return true;
+    } catch(SQLException e){
+      e.printStackTrace();
+      return false;
     }
   }
 
@@ -84,11 +93,10 @@ public class DynamicRequestsTable {
         Blob blob = rs.getBlob("FORM");
         Form form = fs.fromStream(blob.getBytes(1, (int) blob.length()));
         int id = rs.getInt("ID");
-        int formId = rs.getInt("DYNAMICREQUESTTYPEID");
         int senderId = rs.getInt("SENDERID");
         int recieverId = rs.getInt("RECIEVERID");
 
-        set.add(new DynamicRequest(id, formId, senderId, recieverId, form));
+        set.add(new DynamicRequest(id, senderId, recieverId, form));
       }
       return set;
     } catch (SQLException e) {
