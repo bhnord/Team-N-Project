@@ -44,7 +44,7 @@ public class DynamicRequestsTable {
       blob.setBytes(1, fs.toStream(request.getForm()));
       PreparedStatement ps =
           connection.prepareStatement(
-              "INSERT INTO DYNAMICREQUESTS (SENDERID, FORM) VALUES (?, ?, ?)", new String[] {"ID"});
+              "INSERT INTO DYNAMICREQUESTS (SENDERID, FORM) VALUES (?, ?)", new String[] {"ID"});
       ps.setInt(1, request.getSenderID());
       ps.setBlob(2, blob);
       ps.executeUpdate();
