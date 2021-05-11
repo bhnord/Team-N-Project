@@ -114,6 +114,7 @@ public class CurrentRequestController extends MasterController implements Initia
             selectedLabel = selected;
             if (!(clickedRequest == null)) {
               updateTextFields(clickedRequest);
+              //                showRequestFields(clickedRequest);
             } else {
               setEmptyFields();
             }
@@ -138,6 +139,10 @@ public class CurrentRequestController extends MasterController implements Initia
     super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Database");
 
     updateStyle(db.getCurrentUser().getAppColor());
+  }
+
+  private void showRequestFields(Request clickedRequest) {
+    //    clickedRequest.
   }
 
   public void updateStyle(String color) {
