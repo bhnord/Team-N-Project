@@ -26,6 +26,7 @@ public class YesNo extends FormElement {
     String[] options = {"yes", "no"};
     cb = new JFXComboBox<>();
     cb.setItems(FXCollections.observableArrayList(options));
+    cb.setOnAction(e -> setValue(cb.getSelectionModel().getSelectedItem()));
     full.getChildren().add(cb);
     return full;
   }

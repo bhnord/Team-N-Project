@@ -118,18 +118,18 @@ public class PathFinder implements IPathFinder {
               (input._this.get_y() - input._other.get_y()) * (input._this.get_y() - input._other.get_y()));
   }
 
-//  public int[] getParametric(double percent, ArrayList<Node.Link> links){
-//      double totalLen = 0;
-//    for (Node.Link l : links) {
-//      totalLen += getLen(l);
-//    }
-//    for (int i = links.size() - 1; i >= 0; i--) {
-//      double curPercent = getLen(links.get(i))/totalLen;
-//      if(percent - curPercent < 0){
-//        break;
-//      }
-//      percent -= curPercent;
-//    }
-//
-//    }
+  public int[] getParametric(double percent, ArrayList<Node.Link> links){
+      double totalLen = 0;
+    for (Node.Link l : links) {
+      totalLen += getLen(l);
+    }
+    for (int i = links.size() - 1; i >= 0; i--) {
+      double curPercent = getLen(links.get(i))/totalLen;
+      percent -= curPercent;
+      if(percent < 0){
+
+      }
+    }
+    return null;
+    }
 }
