@@ -2,6 +2,7 @@ package edu.wpi.cs3733.d21.teamN.services.database;
 
 import com.google.gson.Gson;
 import com.google.inject.Inject;
+import com.google.inject.Singleton;
 import edu.wpi.cs3733.d21.teamN.form.Form;
 import edu.wpi.cs3733.d21.teamN.services.algo.Edge;
 import edu.wpi.cs3733.d21.teamN.services.algo.Node;
@@ -9,33 +10,32 @@ import edu.wpi.cs3733.d21.teamN.services.database.requests.Request;
 import edu.wpi.cs3733.d21.teamN.services.database.requests.RequestType;
 import edu.wpi.cs3733.d21.teamN.services.database.users.*;
 import java.awt.image.BufferedImage;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Objects;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
+@Singleton
 public class DatabaseService {
+  private Connection connection;
+  private boolean connectedToServer = false;
   /*
    database service class. This class will be loaded as a Singleton by Guice.
   */
   private static User currentUser;
-  private final Connection connection;
   /*
    database service class. This class will be loaded as a Singleton by Guice.
   */
-  @Inject UsersTable usersTable;
-  @Inject NodesTable nodesTable;
-  @Inject EdgesTable edgesTable;
-  @Inject CovidFormsTable covidTable;
-  @Inject RequestsTable requestsTable;
-  @Inject AppointmentsTable appointmentsTable;
-  @Inject AppointmentTypesTable appointmentTypesTable;
-  @Inject FormsTable formsTable;
+  UsersTable usersTable = UsersTable.getInstance();
+  NodesTable nodesTable = NodesTable.getInstance();
+  EdgesTable edgesTable = EdgesTable.getInstance();
+  CovidFormsTable covidTable = CovidFormsTable.getInstance();
+  RequestsTable requestsTable = RequestsTable.getInstance();
+  AppointmentsTable appointmentsTable = AppointmentsTable.getInstance();
+  AppointmentTypesTable appointmentTypesTable = AppointmentTypesTable.getInstance();
+  FormsTable formsTable = FormsTable.getInstance();
   private Statement stmt;
 
   @Inject
@@ -45,6 +45,37 @@ public class DatabaseService {
       this.stmt = connection.createStatement();
     } catch (SQLException e) {
       e.printStackTrace();
+    }
+
+    setConnections();
+  }
+
+  private void setConnections() {
+    usersTable.setConnection(connection);
+    nodesTable.setConnection(connection);
+    edgesTable.setConnection(connection);
+    covidTable.setConnection(connection);
+    requestsTable.setConnection(connection);
+    appointmentsTable.setConnection(connection);
+    appointmentTypesTable.setConnection(connection);
+    formsTable.setConnection(connection);
+  }
+
+  public void switchConnection() {
+    String dbUrl;
+    if (connectedToServer) {
+      dbUrl = "jdbc:derby:DerbyDB;username=admin;password=admin;create=true;";
+    } else {
+      dbUrl = "jdbc:derby://localhost:1527/DerbyDB;user=admin;password=admin;";
+    }
+    connectedToServer = !connectedToServer;
+    try {
+      this.connection = DriverManager.getConnection(dbUrl);
+      this.stmt = connection.createStatement();
+      setConnections();
+    } catch (SQLException e) {
+      e.printStackTrace();
+      switchConnection(); // if cant connect to remote server, switches back to embedded
     }
   }
 
@@ -482,26 +513,61 @@ public class DatabaseService {
 
   // ----------------------------------------------------------------------------------------------------------------------------------------------------
 
+  /**
+   * adds an appointment to the database
+   *
+   * @param appointment the appointment you want to add to the database
+   * @return whether the operation was carried out successfully
+   */
   public Appointment addAppointment(Appointment appointment) {
     return appointmentsTable.addAppointment(appointment);
   }
 
+  /**
+   * gets all appointments from the database
+   *
+   * @return a HashSet of all appointments
+   */
   public HashSet<Appointment> getAllAppointments() {
     return appointmentsTable.getAllAppointments();
   }
 
+  /**
+   * gets a singular appointment from the database with matching id
+   *
+   * @param appointmentId the id of the appointment you want ot get
+   * @return the appointment in the database with matching id
+   */
   public Appointment getAppointment(int appointmentId) {
     return appointmentsTable.getAppointment(appointmentId);
   }
 
+  /**
+   * gets all appointment from the database with matching patientId
+   *
+   * @param patientId the patient id of the appointments you want to get
+   * @return a HashSet of appointments with matching patientId
+   */
   public HashSet<Appointment> getAppointmentsByPatientId(int patientId) {
     return appointmentsTable.getAppointmentsByPatientId(patientId);
   }
 
+  /**
+   * gets all appointment from the database with matching assignedStaffId
+   *
+   * @param assignedStaffId the assignedStaffId fo the appointments that you want to get
+   * @return a HashSet of appointments with matching assignedStaffId
+   */
   public HashSet<Appointment> getAppointmentsByAssignedStaffId(int assignedStaffId) {
     return appointmentsTable.getAppointmentsByAssignedStaffId(assignedStaffId);
   }
 
+  /**
+   * updates an appointment form from the database
+   *
+   * @param appointment the appointment with the id you want to edit
+   * @return whether the operation was completed successfully
+   */
   public boolean updateAppointment(Appointment appointment) {
     return appointmentsTable.updateAppointment(appointment);
   }
@@ -512,10 +578,22 @@ public class DatabaseService {
 
   // ----------------------------------------------------------------------------------------------------------------------------------------------------
 
+  /**
+   * adds appointment type to the database
+   *
+   * @param type the type of appointment
+   * @param formId the id of the form that the appointment type uses
+   * @return whether the operation was completed successfully
+   */
   public boolean addAppointmentType(String type, int formId) {
     return appointmentTypesTable.addAppointmentType(type, formId);
   }
 
+  /**
+   * gets all appointment types from the database
+   *
+   * @return a HashSet containing all AppointmentTypes from the database
+   */
   public boolean updateAppointmentType(AppointmentType a) {
     return appointmentTypesTable.updateAppointmentType(a);
   }
@@ -524,36 +602,84 @@ public class DatabaseService {
     return appointmentTypesTable.getAllAppointmentTypes();
   }
 
+  /**
+   * gets a singular appointment type with matching id
+   *
+   * @param id the id of the reqeusted appointment type
+   * @return the AppointmentType with matching id or null if not found
+   */
   public AppointmentType getAppointmentType(int id) {
     return appointmentTypesTable.getAppointmentType(id);
   }
 
+  /**
+   * gets a singular appointment type by type
+   *
+   * @param type the type of the appointment type that you want
+   * @return the AppointmentType with matching type or null if not found
+   */
   public AppointmentType getAppointmentTypeByType(String type) {
     return appointmentTypesTable.getAppointmentTypeByType(type);
   }
 
   // ----------------------------------------------------------------------------------------------------------------------------------------------------
 
+  /**
+   * adds form to the database
+   *
+   * @param nForm a NamedForm to enter into the database
+   * @return whether the operation was carried out successfully
+   */
   public boolean addForm(NamedForm nForm) {
     return formsTable.addForm(nForm);
   }
 
+  /**
+   * returns all forms from the database
+   *
+   * @return a HashSet of NamedForms
+   */
   public HashSet<NamedForm> getAllForms() {
     return formsTable.getAllForms();
   }
 
+  /**
+   * gets a singular NamedForm with matching id from the database
+   *
+   * @param id the id of the desired form
+   * @return the NamedForm from the database
+   */
   public NamedForm getForm(int id) {
     return formsTable.getForm(id);
   }
 
+  /**
+   * returns a singular NamedForm with matching name
+   *
+   * @param name the name of the desired form
+   * @return the form in the database with matching name
+   */
   public NamedForm getFormByName(String name) {
     return formsTable.getFormByName(name);
   }
 
+  /**
+   * deletes form from the database
+   *
+   * @param id the id of the form you want to delete
+   * @return whether the operation was completed successfully
+   */
   public boolean deleteForm(int id) {
     return formsTable.deleteForm(id);
   }
 
+  /**
+   * updates form and name in the database based on given id (you cannot change the id of a form
+   * once set)
+   *
+   * @param form a NamedForm with the correct name and form
+   * @return whether the operation was completed successfully
+   */
   public boolean updateForm(NamedForm form) {
     return formsTable.updateForm(form);
   }

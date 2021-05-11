@@ -60,7 +60,7 @@ public class ServiceRequests extends MasterController implements Initializable {
 
   private void loadRequestFromDB() {
     for (NamedForm form : db.getAllForms()) {
-      //            if (form.getForm().isRequest()) {
+      if (form.getForm().isRequest()) {
       JFXButton btn = new JFXButton(form.getName());
       btn.setId(String.valueOf(form.getId()));
       String style =
@@ -88,7 +88,7 @@ public class ServiceRequests extends MasterController implements Initializable {
             }
           });
       listView.getItems().add(btn);
-      //            }
+      }
     }
   }
 
