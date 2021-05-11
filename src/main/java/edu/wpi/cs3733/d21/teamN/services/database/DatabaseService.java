@@ -10,10 +10,7 @@ import edu.wpi.cs3733.d21.teamN.services.database.requests.Request;
 import edu.wpi.cs3733.d21.teamN.services.database.requests.RequestType;
 import edu.wpi.cs3733.d21.teamN.services.database.users.*;
 import java.awt.image.BufferedImage;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Objects;
@@ -78,7 +75,7 @@ public class DatabaseService {
       setConnections();
     } catch (SQLException e) {
       e.printStackTrace();
-      switchConnection(); //if cant connect to remote server, switches back to embedded
+      switchConnection(); // if cant connect to remote server, switches back to embedded
     }
   }
 
@@ -516,18 +513,19 @@ public class DatabaseService {
 
   // ----------------------------------------------------------------------------------------------------------------------------------------------------
 
-
   /**
    * adds an appointment to the database
+   *
    * @param appointment the appointment you want to add to the database
    * @return whether the operation was carried out successfully
    */
-  public boolean addAppointment(Appointment appointment) {
+  public Appointment addAppointment(Appointment appointment) {
     return appointmentsTable.addAppointment(appointment);
   }
 
   /**
    * gets all appointments from the database
+   *
    * @return a HashSet of all appointments
    */
   public HashSet<Appointment> getAllAppointments() {
@@ -536,6 +534,7 @@ public class DatabaseService {
 
   /**
    * gets a singular appointment from the database with matching id
+   *
    * @param appointmentId the id of the appointment you want ot get
    * @return the appointment in the database with matching id
    */
@@ -545,6 +544,7 @@ public class DatabaseService {
 
   /**
    * gets all appointment from the database with matching patientId
+   *
    * @param patientId the patient id of the appointments you want to get
    * @return a HashSet of appointments with matching patientId
    */
@@ -554,6 +554,7 @@ public class DatabaseService {
 
   /**
    * gets all appointment from the database with matching assignedStaffId
+   *
    * @param assignedStaffId the assignedStaffId fo the appointments that you want to get
    * @return a HashSet of appointments with matching assignedStaffId
    */
@@ -563,6 +564,7 @@ public class DatabaseService {
 
   /**
    * updates an appointment form from the database
+   *
    * @param appointment the appointment with the id you want to edit
    * @return whether the operation was completed successfully
    */
@@ -578,6 +580,7 @@ public class DatabaseService {
 
   /**
    * adds appointment type to the database
+   *
    * @param type the type of appointment
    * @param formId the id of the form that the appointment type uses
    * @return whether the operation was completed successfully
@@ -588,6 +591,7 @@ public class DatabaseService {
 
   /**
    * gets all appointment types from the database
+   *
    * @return a HashSet containing all AppointmentTypes from the database
    */
   public boolean updateAppointmentType(AppointmentType a) {
@@ -600,6 +604,7 @@ public class DatabaseService {
 
   /**
    * gets a singular appointment type with matching id
+   *
    * @param id the id of the reqeusted appointment type
    * @return the AppointmentType with matching id or null if not found
    */
@@ -609,6 +614,7 @@ public class DatabaseService {
 
   /**
    * gets a singular appointment type by type
+   *
    * @param type the type of the appointment type that you want
    * @return the AppointmentType with matching type or null if not found
    */
@@ -620,6 +626,7 @@ public class DatabaseService {
 
   /**
    * adds form to the database
+   *
    * @param nForm a NamedForm to enter into the database
    * @return whether the operation was carried out successfully
    */
@@ -629,6 +636,7 @@ public class DatabaseService {
 
   /**
    * returns all forms from the database
+   *
    * @return a HashSet of NamedForms
    */
   public HashSet<NamedForm> getAllForms() {
@@ -637,6 +645,7 @@ public class DatabaseService {
 
   /**
    * gets a singular NamedForm with matching id from the database
+   *
    * @param id the id of the desired form
    * @return the NamedForm from the database
    */
@@ -646,6 +655,7 @@ public class DatabaseService {
 
   /**
    * returns a singular NamedForm with matching name
+   *
    * @param name the name of the desired form
    * @return the form in the database with matching name
    */
@@ -655,6 +665,7 @@ public class DatabaseService {
 
   /**
    * deletes form from the database
+   *
    * @param id the id of the form you want to delete
    * @return whether the operation was completed successfully
    */
@@ -663,14 +674,15 @@ public class DatabaseService {
   }
 
   /**
-   * updates form and name in the database based on given id (you cannot change the id of a form once set)
+   * updates form and name in the database based on given id (you cannot change the id of a form
+   * once set)
+   *
    * @param form a NamedForm with the correct name and form
    * @return whether the operation was completed successfully
    */
   public boolean updateForm(NamedForm form) {
     return formsTable.updateForm(form);
   }
-
 
   /**
    * loads CSV files into database.
