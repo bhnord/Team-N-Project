@@ -66,12 +66,12 @@
 }
 
 .list-cell:selected {
-    -fx-background-color: #4b5960;
+    -fx-background-color: #b7b7b7;
 
 }
 
-.list-cell:filled:selected:focused, .list-cell:filled:selected {
-    -fx-background-color: linear-gradient(#a1a1a1 0%, #a1a1a1 25%, #a1a1a1 75%, #a1a1a1 100%);
+.list-cell:filled:selected:focused .list-cell:filled:hover .list-cell:filled:selected {
+    -fx-background-color: linear-gradient(#d7d7d7 0%, #eaeaea 25%, #eaeaea 75%, #eaeaea 100%);
     -fx-text-fill: white;
 }
 
@@ -80,7 +80,7 @@
 }
 
 .list-cell:filled:hover {
-    -fx-background-color: #a2a2a2;
+    -fx-background-color: #cacaca;
     -fx-text-fill: white;
 }
 
@@ -117,7 +117,7 @@
 }
 
 .jfx-list-cell:selected{
-    -fx-background-color: #797979;
+    -fx-background-color: #d6d6d6;
 }
 .jfx-list-cell{
     -fx-background-insets: 0.0;
@@ -126,7 +126,7 @@
     -jfx-rippler-fill: #ffffff;
 }
 .jfx-list-cell:hover{
-    -fx-background-color: #7c7c7c;
+    -fx-background-color: #cdcdcd;
 }
 
 .jfx-list-view{
@@ -134,8 +134,8 @@
     -fx-background-insets: 0;
     -fx-cell-vertical-margin: 10.0;
     -fx-vertical-gap: 10;
-    -fx-background-color: derive(#a1a1a1, 80%);
-    -fx-border-color: derive(#6e6e6e, 40%);
+    -fx-background-color: derive(#d6d6d6, 80%);
+    -fx-border-color: derive(#d2d2d2, 40%);
     -fx-border-width: 3;
     /*-fx-pref-width: 150;*/
 }
