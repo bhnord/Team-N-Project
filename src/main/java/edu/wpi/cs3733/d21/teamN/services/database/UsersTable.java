@@ -1,7 +1,6 @@
 package edu.wpi.cs3733.d21.teamN.services.database;
 
 import com.google.gson.Gson;
-import com.google.inject.Inject;
 import edu.wpi.cs3733.d21.teamN.services.database.users.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
@@ -13,11 +12,18 @@ import java.util.HashSet;
 import javax.imageio.ImageIO;
 
 public class UsersTable {
-  private final Connection connection;
+  private Connection connection;
   private Statement stmt;
 
-  @Inject
-  UsersTable(Connection connection) {
+  public static UsersTable getInstance() {
+    return SingletonHelper.table;
+  }
+
+  private static class SingletonHelper {
+    private static final UsersTable table = new UsersTable();
+  }
+
+  public void setConnection(Connection connection) {
     this.connection = connection;
     try {
       this.stmt = connection.createStatement();

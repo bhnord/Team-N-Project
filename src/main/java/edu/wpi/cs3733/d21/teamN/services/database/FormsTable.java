@@ -1,18 +1,24 @@
 package edu.wpi.cs3733.d21.teamN.services.database;
 
-import com.google.inject.Inject;
 import edu.wpi.cs3733.d21.teamN.form.Form;
 import java.sql.*;
 import java.util.HashSet;
 
 public class FormsTable {
 
-  private final Connection connection;
+  private Connection connection;
   private Statement stmt;
   FormSerializer fs = new FormSerializer();
 
-  @Inject
-  FormsTable(Connection connection) {
+  public static FormsTable getInstance() {
+    return SingletonHelper.table;
+  }
+
+  private static class SingletonHelper {
+    private static final FormsTable table = new FormsTable();
+  }
+
+  public void setConnection(Connection connection) {
     this.connection = connection;
     try {
       this.stmt = connection.createStatement();

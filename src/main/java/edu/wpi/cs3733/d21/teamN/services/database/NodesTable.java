@@ -1,6 +1,5 @@
 package edu.wpi.cs3733.d21.teamN.services.database;
 
-import com.google.inject.Inject;
 import edu.wpi.cs3733.d21.teamN.services.algo.Node;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -11,11 +10,18 @@ import java.util.HashSet;
 
 public class NodesTable {
 
-  private final Connection connection;
+  private Connection connection;
   private Statement stmt;
 
-  @Inject
-  NodesTable(Connection connection) {
+  public static NodesTable getInstance() {
+    return SingletonHelper.table;
+  }
+
+  private static class SingletonHelper {
+    private static final NodesTable table = new NodesTable();
+  }
+
+  public void setConnection(Connection connection) {
     this.connection = connection;
     try {
       this.stmt = connection.createStatement();
