@@ -7,6 +7,7 @@ import com.jfoenix.controls.JFXToggleButton;
 import edu.wpi.cs3733.d21.teamN.faceLogin.FaceEnroller;
 import edu.wpi.cs3733.d21.teamN.services.database.DatabaseService;
 import edu.wpi.cs3733.d21.teamN.services.database.users.User;
+import edu.wpi.cs3733.d21.teamN.services.database.users.UserType;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -35,6 +36,8 @@ public class SideBarController extends MasterController implements Initializable
 
   // Tooltip for logout/back button that changes in Register Page
   @FXML private Tooltip ttLogOutButton;
+
+  @FXML private JFXButton switchDB;
 
   // Groups for buttons
   @FXML
@@ -248,6 +251,9 @@ public class SideBarController extends MasterController implements Initializable
    */
   public void setType(String type) {
     makeInvisible(groupBack1);
+    if (db.getCurrentUser().getType().equals(UserType.ADMINISTRATOR)) {
+      switchDB.setVisible(true);
+    }
     switch (type) {
       case "Home":
         makeInvisible(groupBack);
@@ -366,6 +372,7 @@ public class SideBarController extends MasterController implements Initializable
     // rectangle1.setStyle(style);
     labelB1.setStyle(style + "-fx-background-radius: 50;");
     faceRec.setStyle(style);
+    switchDB.setStyle(style);
 
     Color appC = Color.web(color);
     String s = appC.darker().darker().darker().desaturate().toString();
@@ -413,4 +420,6 @@ public class SideBarController extends MasterController implements Initializable
     // open = false;
     appPrimaryScene.setRoot(root);
   }
+
+  public void switchDB() {}
 }
