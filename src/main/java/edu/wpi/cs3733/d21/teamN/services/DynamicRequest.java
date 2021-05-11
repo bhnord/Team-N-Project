@@ -3,20 +3,18 @@ package edu.wpi.cs3733.d21.teamN.services;
 import edu.wpi.cs3733.d21.teamN.form.Form;
 
 public class DynamicRequest {
-  private int id, senderID, receiverID, dynamicRequestTypeId;
+  private int id, senderID, receiverID;
   private Form form;
 
-  public DynamicRequest(int id, int dynamicRequestTypeId, int senderID, int receiverID, Form form) {
+  public DynamicRequest(int id, int senderID, int receiverID, Form form) {
     this.id = id;
-    this.dynamicRequestTypeId = dynamicRequestTypeId;
     this.senderID = senderID;
     this.receiverID = receiverID;
 
     this.form = form;
   }
 
-  public DynamicRequest(int dynamicRequestTypeId, int senderID, int receiverID, Form form) {
-    this.dynamicRequestTypeId = dynamicRequestTypeId;
+  public DynamicRequest(int senderID, Form form) {
     this.senderID = senderID;
     this.receiverID = receiverID;
 
@@ -25,10 +23,6 @@ public class DynamicRequest {
 
   public int getId() {
     return id;
-  }
-
-  public int getDynamicRequestTypeId() {
-    return dynamicRequestTypeId;
   }
 
   public int getSenderID() {
