@@ -17,6 +17,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -25,14 +27,15 @@ public class CovidFormController extends MasterController implements Initializab
   @Inject DatabaseService db;
   @Inject FXMLLoader loader;
   @Inject HomeState state;
-  @FXML private Label text;
+  @FXML private Label text, text1, text11;
   private Scene appPrimaryScene;
-  @FXML private JFXButton submit = new JFXButton();
+  @FXML private JFXButton submit;
   @FXML private AnchorPane anchorPage;
   @FXML private StackPane myStackPane;
   @FXML private AnchorPane anchorPane;
   @FXML private StackPane rootStackPane;
   private DialogFactory dialogFactory;
+  @FXML Rectangle darkMode;
 
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
@@ -75,6 +78,32 @@ public class CovidFormController extends MasterController implements Initializab
 
     comboBox6.getItems().add("yes");
     comboBox6.getItems().add("no");
+
+    darkMode.setVisible(db.getCurrentUser().getDarkMode());
+    updateStyle(db.getCurrentUser().getAppColor());
+  }
+
+  @FXML JFXButton helpSB;
+  @FXML Label l2, l3, l4, l5, l6, l7;
+
+  public void updateStyle(String color) {
+    Color appC = Color.web(color);
+    String s = appC.darker().darker().desaturate().toString();
+    String style = "-fx-background-color: " + "#" + s.substring(2) + "; -fx-background-radius: 10;";
+    text11.setStyle(style);
+    text1.setStyle(style);
+    style = "-fx-background-color: " + "#" + color.substring(2) + "; -fx-background-radius: 25;";
+    JFXComboBox[] lA = {comboBox, comboBox2, comboBox3, comboBox4, comboBox6, comboBox5};
+    for (JFXComboBox<String> a : lA) {
+      a.setFocusColor(Color.web("BLACK"));
+      a.setUnFocusColor(Color.web("BLACK"));
+      a.setStyle("-fx-text-inner-color: BLACK;");
+    }
+    if (db.getCurrentUser().getDarkMode()) {
+      helpSB.setStyle(style);
+      Label[] bA = {l2, l3, l4, l5, l6, l7};
+      for (Label a : bA) a.setStyle("-fx-text-fill: WHITE;");
+    }
   }
 
   public void advanceHome() throws IOException {
