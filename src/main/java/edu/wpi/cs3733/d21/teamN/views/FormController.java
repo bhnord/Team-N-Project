@@ -2,6 +2,7 @@ package edu.wpi.cs3733.d21.teamN.views;
 
 import com.google.inject.Inject;
 import edu.wpi.cs3733.d21.teamN.form.Form;
+import edu.wpi.cs3733.d21.teamN.services.database.Appointment;
 import edu.wpi.cs3733.d21.teamN.services.database.DatabaseService;
 import java.io.IOException;
 import java.net.URL;
@@ -24,6 +25,7 @@ public class FormController extends MasterController implements Initializable {
   @FXML AnchorPane anchorPane;
   @Inject private FXMLLoader loader;
   @Inject private DatabaseService db;
+  private Appointment appointment;
 
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
@@ -41,7 +43,8 @@ public class FormController extends MasterController implements Initializable {
     super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Service Request");
   }
 
-  public void setUp(Form form) {
+  public void setUp(Appointment a, Form form) {
+    appointment = a;
     this.form = form;
     form.build(this, db);
   }
@@ -54,5 +57,8 @@ public class FormController extends MasterController implements Initializable {
     return title;
   }
 
-  public void submit(ActionEvent actionEvent) throws IOException {}
+  public void submit(ActionEvent actionEvent) throws IOException {
+    this.appointment.setForm(this.form);
+    db.updateAppointment(appointment);
+  }
 }
