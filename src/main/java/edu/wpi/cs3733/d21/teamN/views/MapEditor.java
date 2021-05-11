@@ -133,7 +133,7 @@ public class MapEditor extends MapController implements Initializable {
     updateStyle(db.getCurrentUser().getAppColor());
   }
 
-  @FXML JFXButton Vert, Horiz, Snap, Reg, L2, L1, G, F1, F2, F3, dN1, sN1, dE1, sE1;
+  @FXML JFXButton Vert, Horiz, Snap, Reg, L2, L1, g, F1, F2, F3, dN1, sN1, dE1, sE1;
   @FXML Rectangle rectangle1, rectangle2, rectangle3, rectangle4, rectangle5, rectangle6;
   @FXML
   Label l1,
@@ -170,14 +170,14 @@ public class MapEditor extends MapController implements Initializable {
       String style =
           "-fx-background-color: " + "#" + s.substring(2) + "; -fx-background-radius: 15;";
 
-      JFXButton[] lA = {Vert, Horiz, Snap, Reg, L2, L1, G, F1, F2, F3, dN1, sN1, dE1, sE1};
+      JFXButton[] lA = {Vert, Horiz, Snap, Reg, L2, L1, g, F1, F2, F3, dN1, sN1, dE1, sE1};
       for (JFXButton a : lA) a.setStyle(style);
 
     } else {
       String style =
           "-fx-background-color: " + "#" + color.substring(2) + "; -fx-background-radius: 15;";
 
-      JFXButton[] lA = {Vert, Horiz, Snap, Reg, L2, L1, G, F1, F2, F3, dN1, sN1, dE1, sE1};
+      JFXButton[] lA = {Vert, Horiz, Snap, Reg, L2, L1, g, F1, F2, F3, dN1, sN1, dE1, sE1};
       for (JFXButton a : lA) a.setStyle(style);
 
       Color appC = Color.web(color);
@@ -544,5 +544,9 @@ public class MapEditor extends MapController implements Initializable {
     buttonDown.setVisible(false);
     buttonUp.setVisible(true);
     tt.play();
+  }
+
+  public void saveEdge(ActionEvent actionEvent) {
+    mapEdgeEditor.commitChanges(getCurrent());
   }
 }

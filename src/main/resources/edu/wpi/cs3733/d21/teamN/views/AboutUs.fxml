@@ -29,7 +29,7 @@
             </rowConstraints>
             <children>
                 <AnchorPane fx:id="anchorPane" prefHeight="200.0" prefWidth="88.0" GridPane.valignment="BASELINE" />
-            <JFXButton fx:id="AboutUs" prefHeight="147.0" prefWidth="236.0" text="About Us" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+            <JFXButton fx:id="AboutUs" prefHeight="147.0" prefWidth="236.0" stylesheets="@/Fonts/Roboto-Light-buttonLarge.css" text="About Us" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="TOP">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
@@ -39,12 +39,12 @@
             </JFXButton>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="The Navy Nix" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <font>
-                  <Font size="20.0" />
+                  <Font name="Roboto Light" size="20.0" />
                </font>
             </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CS3733 is an undergraduate level introduction to software engineering. Students work on large teams utilizing contemporary software methodologies in the development of a real world application." GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CS3733 is an undergraduate level introduction to software engineering. Students work on large teams utilizing contemporary software methodologies in the development of a real world application." wrappingWidth="1195.7490234375" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <font>
-                  <Font size="14.0" />
+                  <Font name="Roboto Light" size="14.0" />
                </font>
                <GridPane.margin>
                   <Insets top="50.0" />
@@ -55,12 +55,12 @@
                   <Insets top="80.0" />
                </GridPane.margin>
                <font>
-                  <Font size="14.0" />
+                  <Font name="Roboto Light" size="14.0" />
                </font>
             </Text>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Topics include requirements analysis and specification, analysis and design, architecture, implementation, testing and quality, configuration management, and project management." GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <font>
-                  <Font size="14.0" />
+                  <Font name="Roboto Light" size="14.0" />
                </font>
                <GridPane.margin>
                   <Insets top="110.0" />
@@ -68,7 +68,7 @@
             </Text>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Brigham and Women’s Hospital is a world-class academic medical center based in Boston, Massachusetts." GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <font>
-                  <Font size="14.0" />
+                  <Font name="Roboto Light" size="14.0" />
                </font>
                <GridPane.margin>
                   <Insets top="145.0" />
@@ -76,7 +76,7 @@
             </Text>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="The Brigham serves patients from New England, across the United States and from 120 countries around the world. A major teaching hospital of Harvard Medical School" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <font>
-                  <Font size="14.0" />
+                  <Font name="Roboto Light" size="14.0" />
                </font>
                <GridPane.margin>
                   <Insets top="170.0" />
@@ -86,10 +86,13 @@
                <GridPane.margin>
                   <Insets top="200.0" />
                </GridPane.margin>
+               <font>
+                  <Font name="Roboto Light" size="14.0" />
+               </font>
             </Text>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="An international leader in virtually every area of medicine, Brigham Health has led numerous medical and scientific breakthroughs that have improved lives around the world." GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <font>
-                  <Font size="14.0" />
+                  <Font name="Roboto Light" size="14.0" />
                </font>
                <GridPane.margin>
                   <Insets top="230.0" />
@@ -99,10 +102,13 @@
                <GridPane.margin>
                   <Insets top="260.0" />
                </GridPane.margin>
+               <font>
+                  <Font name="Roboto Light" size="14.0" />
+               </font>
             </Text>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="With the recently adopted Mass General Brigham name, we aspire to more closely connect with patients and communities." GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <font>
-                  <Font size="14.0" />
+                  <Font name="Roboto Light" size="14.0" />
                </font>
                <GridPane.margin>
                   <Insets top="290.0" />
@@ -113,7 +119,7 @@
                   <Insets top="320.0" />
                </GridPane.margin>
                <font>
-                  <Font size="14.0" />
+                  <Font name="Roboto Light" size="14.0" />
                </font>
             </Text>
             </children>

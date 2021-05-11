@@ -162,7 +162,7 @@ public abstract class MapController extends MasterController {
     if (db.getCurrentUser().getUsername().equals("guest")) {
       super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Login Map");
     } else {
-      super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Map");
+      super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Editor");
     }
     userPrefs = db.getCurrentUser().getUserPrefs();
 

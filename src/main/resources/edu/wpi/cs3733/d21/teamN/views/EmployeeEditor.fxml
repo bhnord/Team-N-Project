@@ -19,7 +19,7 @@
          </image>
       </ImageView>
       <Rectangle fx:id="darkMode" arcHeight="5.0" arcWidth="5.0" fill="#000000bf" height="4000.0" stroke="#ffffff00" strokeType="INSIDE" width="4000.0" />
-      <JFXButton fx:id="deleteUserButton" layoutX="609.0" layoutY="365.0" onAction="#deleteUser" prefHeight="82.0" prefWidth="395.0" style="-fx-background-radius: 15; -fx-background-color: #748cdc;" text="DELETE USER" textFill="WHITE">
+      <JFXButton fx:id="deleteUserButton" layoutX="609.0" layoutY="365.0" onAction="#deleteUser" prefHeight="82.0" prefWidth="395.0" style="-fx-background-radius: 15; -fx-background-color: #748cdc;" stylesheets="@/Fonts/Roboto-Light.css" text="DELETE USER" textFill="WHITE">
          <font>
             <Font name="Arial Black" size="14.0" />
          </font>
@@ -32,10 +32,10 @@
       <Label fx:id="loadSuccess" layoutX="118.0" layoutY="705.0" prefHeight="21.0" prefWidth="463.0" />
       <JFXTextField fx:id="txtUsername" focusColor="#ababab" layoutX="411.0" layoutY="189.0" />
       <JFXTextField fx:id="txtPassword" focusColor="#ababab" layoutX="411.0" layoutY="245.0" />
-      <Label layoutX="411.0" layoutY="172.0" text="Username" />
-      <Label layoutX="411.0" layoutY="228.0" text="Password" />
-      <Label layoutX="411.0" layoutY="280.0" text="User Type" />
-      <JFXButton fx:id="commitChangesButton" layoutX="609.0" layoutY="167.0" onAction="#commitChanges" prefHeight="82.0" prefWidth="395.0" style="-fx-background-radius: 15; -fx-background-color: #748cdc;" text="UPDATE" textFill="WHITE">
+      <Label layoutX="411.0" layoutY="172.0" stylesheets="@/Fonts/Roboto-Light.css" text="Username" />
+      <Label layoutX="411.0" layoutY="228.0" stylesheets="@/Fonts/Roboto-Light.css" text="Password" />
+      <Label layoutX="411.0" layoutY="284.0" stylesheets="@/Fonts/Roboto-Light.css" text="User Type" />
+      <JFXButton fx:id="commitChangesButton" layoutX="609.0" layoutY="167.0" onAction="#commitChanges" prefHeight="82.0" prefWidth="395.0" style="-fx-background-radius: 15; -fx-background-color: #748cdc;" stylesheets="@/Fonts/Roboto-Light.css" text="UPDATE" textFill="WHITE">
          <font>
             <Font name="Arial Black" size="14.0" />
          </font></JFXButton>
@@ -46,7 +46,7 @@
       </Label>
       <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#0c00ad00" height="181.0" layoutX="1037.0" layoutY="145.0" stroke="TRANSPARENT" strokeType="INSIDE" width="302.0" />
       <JFXComboBox fx:id="userTypeDropdown" focusColor="#ababab" layoutX="411.0" layoutY="305.0" prefHeight="25.0" prefWidth="135.0" />
-      <JFXButton fx:id="addEmployeeButton" layoutX="609.0" layoutY="264.0" onAction="#addNew" prefHeight="82.0" prefWidth="395.0" style="-fx-background-radius: 15; -fx-background-color: #748cdc;" text="ADD NEW" textFill="WHITE">
+      <JFXButton fx:id="addEmployeeButton" layoutX="609.0" layoutY="264.0" onAction="#addNew" prefHeight="82.0" prefWidth="395.0" style="-fx-background-radius: 15; -fx-background-color: #748cdc;" stylesheets="@/Fonts/Roboto-Light.css" text="ADD NEW" textFill="WHITE">
          <font>
             <Font name="Arial Black" size="14.0" />
          </font>

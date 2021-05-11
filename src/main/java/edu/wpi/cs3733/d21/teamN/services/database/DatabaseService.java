@@ -431,8 +431,8 @@ public class DatabaseService {
    * @param isOk what you want to set isOk to
    * @return whether the operation was carried out successfully
    */
-  public boolean updateCovidForm(int id, boolean isOk) {
-    return covidTable.updateCovidForm(id, isOk);
+  public boolean updateCovidForm(int id, boolean isOk, boolean isCleared) {
+    return covidTable.updateCovidForm(id, isOk, isCleared);
   }
 
   /**
@@ -651,6 +651,7 @@ public class DatabaseService {
               + "Q6 BOOLEAN NOT NULL, "
               + "ExtraInfo varchar(250), "
               + "IsOk BOOLEAN, "
+              + "IsCleared BOOLEAN, "
               + "IsProcessed BOOLEAN, "
               + "PRIMARY KEY (id))";
       stmt.execute(str);
@@ -682,7 +683,7 @@ public class DatabaseService {
       stmt.execute(str);
       return true;
     } catch (SQLException e) {
-      //      e.printStackTrace();
+      e.printStackTrace();
       return false;
     }
   }

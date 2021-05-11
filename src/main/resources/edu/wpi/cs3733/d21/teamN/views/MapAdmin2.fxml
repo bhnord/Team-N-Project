@@ -119,7 +119,7 @@
                                     <JFXTextField fx:id="startNode" layoutX="41.0" layoutY="81.0" />
                                     <Label fx:id="l21" layoutX="41.0" layoutY="121.0" text="End Node" />
                                     <JFXTextField fx:id="endNode" layoutX="41.0" layoutY="138.0" />
-                                    <JFXButton fx:id="sE1" layoutX="37.0" layoutY="515.0" onAction="#saveNode" style="-fx-background-color: #363d54;" stylesheets="@/StyleSheet/MapButtons.css" text="Save Edge" textFill="WHITE" />
+                                    <JFXButton fx:id="sE1" layoutX="37.0" layoutY="515.0" onAction="#saveEdge" style="-fx-background-color: #363d54;" stylesheets="@/StyleSheet/MapButtons.css" text="Save Edge" textFill="WHITE" />
                                     <JFXButton fx:id="dE1" layoutX="37.0" layoutY="462.0" onAction="#deleteCurrent" style="-fx-background-color: #363d54;" stylesheets="@/StyleSheet/MapButtons.css" text="Delete Edge" textFill="WHITE" />
                                  </children>
                               </AnchorPane>
@@ -266,7 +266,7 @@
             <Insets bottom="7.5" left="75.0" />
          </StackPane.margin>
       </JFXButton>
-      <JFXButton fx:id="G" buttonType="RAISED" onAction="#setMap" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #363d54; -fx-background-radius: 15;" stylesheets="@/StyleSheet/MapButtons.css" text="G" textFill="WHITE" StackPane.alignment="BOTTOM_CENTER">
+      <JFXButton fx:id="g" buttonType="RAISED" onAction="#setMap" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #363d54; -fx-background-radius: 15;" stylesheets="@/StyleSheet/MapButtons.css" text="G" textFill="WHITE" StackPane.alignment="BOTTOM_CENTER">
          <StackPane.margin>
             <Insets bottom="7.5" right="75.0" />
          </StackPane.margin>

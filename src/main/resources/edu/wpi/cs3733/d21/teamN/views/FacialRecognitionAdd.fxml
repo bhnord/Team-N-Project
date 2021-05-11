@@ -57,13 +57,16 @@
                             </font>
                         </Label>
                         <ImageView fx:id="imageView" fitHeight="481.0" fitWidth="702.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                        <Label alignment="CENTER" contentDisplay="CENTER" text="Facial Rec" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" stylesheets="@/Fonts/Roboto-Light.css" text="Facial Rec" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Label>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
                             <children>
-                                <JFXButton fx:id="saveButton" onAction="#toggleSave" text="Save Face" />
+                                <JFXButton fx:id="saveButton" onAction="#toggleSave" stylesheets="@/Fonts/Roboto-Light.css" text="Save Face" />
                             </children>
                         </HBox>
-                        <JFXButton onAction="#capture" text="Start Camera" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP" />
+                        <JFXButton onAction="#capture" stylesheets="@/Fonts/Roboto-Light.css" text="Start Camera" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP" />
                     </children>
                 </GridPane>
                 <AnchorPane fx:id="anchorPane" prefHeight="200.0" prefWidth="200.0" GridPane.valignment="BASELINE" />
