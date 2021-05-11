@@ -98,10 +98,10 @@ public class FormController extends MasterController implements Initializable {
 
   public void submit(ActionEvent actionEvent) throws IOException {
     if (form.check().isEmpty() && form.validate().isEmpty()) {
-      System.out.println(form.getResults());
       if (!this.form.isRequest()) {
         this.appointment.setForm(this.form);
-        db.updateAppointment(appointment);
+        this.appointment.setCheckInStatus(true);
+        db.updateAppointment(this.appointment);
       } else {
         db.addDynamicRequest(new DynamicRequest(db.getCurrentUser().getId(), this.form));
       }

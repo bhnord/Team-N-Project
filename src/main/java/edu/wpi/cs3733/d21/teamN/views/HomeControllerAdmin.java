@@ -499,11 +499,13 @@ public class HomeControllerAdmin extends MasterController implements Initializab
         closest = a;
       }
     }
-    //
-    Parent root = loader.load(getClass().getResourceAsStream("Templateform.fxml"));
-    appPrimaryScene.setRoot(root);
-    FormController formController = loader.getController();
-    //    System.out.println(closest.getForm().getResults());
-    formController.setUp(closest, db.getForm(closest.getAppointmentTypeId()).getForm());
+    System.out.println(closest.isCheckInStatus());
+    if (!closest.isCheckInStatus()) {
+      Parent root = loader.load(getClass().getResourceAsStream("Templateform.fxml"));
+      appPrimaryScene.setRoot(root);
+      FormController formController = loader.getController();
+      //    System.out.println(closest.getForm().getResults());
+      formController.setUp(closest, db.getForm(closest.getAppointmentTypeId()).getForm());
+    }
   }
 }

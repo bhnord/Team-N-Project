@@ -69,7 +69,7 @@ class AppointmentsTable {
       ps.setInt(3, appointment.getAssignedStaffId());
       ps.setBlob(4, blob);
       ps.setTimestamp(5, appointment.getTimeOfAppointment());
-      ps.setBoolean(6, false);
+      ps.setBoolean(6, appointment.isCheckInStatus());
       ps.setString(7, appointment.getAssociatedRoomId());
       ps.setInt(8, appointment.getId());
       ps.executeUpdate();
