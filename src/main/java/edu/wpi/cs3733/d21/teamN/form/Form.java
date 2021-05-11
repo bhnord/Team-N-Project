@@ -36,13 +36,24 @@ public class Form implements Serializable {
    * @return true if the form can be submitted and false if there are elements that need to be
    *     filled out
    */
-  public boolean check() {
+  public ArrayList<String> check() {
+      ArrayList<String> ret = new ArrayList<>();
     for (FormElement element : elements) {
-      if (element.is_required() && !element.check()) {
-        return false;
+      if (element.check()) {
+        ret.add(element.getName());
       }
     }
-    return true;
+    return ret;
+  }
+
+  public ArrayList<String> validate() {
+    ArrayList<String> ret = new ArrayList<>();
+    for (FormElement element : elements) {
+      if (!element.validate()) {
+        ret.add(element.getName());
+      }
+    }
+    return ret;
   }
 
   /**
