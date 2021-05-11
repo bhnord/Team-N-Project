@@ -144,6 +144,7 @@ public class FormsEditorController extends MasterController implements Initializ
 
     JFXCheckBox isRequest = new JFXCheckBox();
     isRequest.setText("Is Service Request");
+    isRequest.selectedProperty().set(form.getForm().isRequest());
     //    isRequest.setId();
     isRequest.setOnAction(
         e -> {
