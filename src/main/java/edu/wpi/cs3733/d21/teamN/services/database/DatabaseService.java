@@ -690,8 +690,6 @@ public class DatabaseService {
     return formsTable.updateForm(form);
   }
 
-
-
   public boolean addDynamicRequestType(String type, int formId) {
     return dynamicRequestTypesTable.addDynamicRequestType(type, formId);
   }
@@ -715,7 +713,6 @@ public class DatabaseService {
   public DynamicRequest getDynamicRequest(int id) {
     return dynamicRequestsTable.getDynamicRequest(id);
   }
-
 
   /**
    * loads CSV files into database.
