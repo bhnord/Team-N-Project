@@ -24,6 +24,9 @@ public class AdminMap {
     this.db = db;
     nodeSet = db.getAllNodesMap();
     edgeSet = db.getAllEdgesMap();
+
+    System.out.println(nodeSet);
+    System.out.println(edgeSet);
   }
 
   public HashMap<String, Node> getNodeSet() {
@@ -44,6 +47,10 @@ public class AdminMap {
         node.get_nodeType(),
         node.get_longName(),
         node.get_shortName());
+  }
+
+  public void updateEdge(String id, String startNode, String endNode) {
+    db.addEdge(new Edge(id, startNode, endNode));
   }
 
   public void addNode(Node node) {

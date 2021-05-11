@@ -1,3 +1,11 @@
+node_687,1676,2468,G,BTM,DEPT,MS Waiting,MS Waiting
+node_688,1628,2588,G,BTM,DEPT,MS Waiting,MS Waiting
+node_689,1672,2464,g,Shapiro,"",Stairs MapNode 8 Floor L1,L1 Stairs
+node_690,1671.090150783502,2535.5509050316555,g,TransformativeMedicine,"",Transformative Medicine Entrance,BTM entrance
+node_691,1619.834313388673,2534.6044124062255,g,TransformativeMedicine,STAI,Staircase to F1,stair F1
+node_693,1536.2852511957522,2535.5509050316555,g,TransformativeMedicine,"",Transformative Medicine Entrance,BTM entrance
+node_695,1599.3811685327712,2535.5509050316555,g,TransformativeMedicine,"",Transformative Medicine Entrance,BTM entrance
+node_701,1522.760789728903,2763.014057477523,g,TransformativeMedicine,ELEV,Elevator BTM,BTM elev
 node_621,2248.6740207067005,1039.2876006349227,2,45 Francis,"",Elevator K Floor 2,Elevator K2
 node_622,2228.935585625527,903.693133555559,2,45 Francis,"",Staircase Intersection 10 Level 2,Stair B1002
 node_615,1947.9532513247866,910.2382948400149,2,45 Francis,"",Hallway Connector 3 Floor 2,Hallway W0302
@@ -50,7 +58,7 @@ AHALL00603,1580,2858,3,BTM,HALL,HallNode,HallNode
 AHALL00701,1017,2865,1,BTM,HALL,Hall,Hall
 AHALL00801,1532,2739,1,BTM,HALL,Hall,Hall
 AHALL00901,1581,2566,1,BTM,HALL,Hall,Hall
-AHALL01001,1605,2568,1,BTM,HALL,Hall,Hall
+AHALL01001,1604.917872333345,2560.5178015123915,1,BTM,HALL,Hall,Hall
 AINFO001L2,1681,2747,L2,BTM,INFO,BTM Security Desk,Security
 ALABS00103,1611,2678,3,BTM,LABS,Innovation Hub,Innovation Hub
 ALABS001L2,1667,2682,L2,BTM,LABS,MRI CT Scan Imaging,MRI CT Imaging
@@ -58,7 +66,6 @@ ALABS00203,1671,2695,3,BTM,LABS,Clinical Trials,Clinical Trials
 AREST00101,1556,2604,1,BTM,REST,Restroom S elevator 1st floor,Restroom
 AREST00103,1552,2854,3,BTM,REST,Restroom BTM conference center 3rd floor,Restroom
 ARETL00101,1619,2522,1,BTM,RETL,Cafe,Cafe
-ASTAI00101,1642,2596,1,BTM,STAI,Cafe Stairs,Cafe Staris
 ASTAI00102,1650,2602,2,BTM,STAI,Stairs Floor 2,Stairs Floor 2
 BHALL03802,2279,786,2,45 Francis,HALL,Hallway Intersection 38 Level 2,Hallway B3802
 BDEPT00302,2385,753,2,45 Francis,DEPT,Lee Bell Breast Center,DEPT B0302
@@ -623,3 +630,12 @@ FHALL02501,1965,1239,1,Tower,HALL,Lobby Hallway 3,Hallway F02501
 FHALL03301,2066,1282,1,Tower,HALL,Emergency Hallway,Hallway F03301
 FEXIT00301,2099,1357,1,Tower,EXIT,Emergency Department Entrance,Emergency Entrance
 FDEPT00501,2128,1300,1,Tower,DEPT,Emergency Department,Emergency
+node_702,1599.3811685327712,2854.7967894133462,g,TransformativeMedicine,"",Transformative Medicine Entrance,BTM entrance
+node_692,1730.4385357343108,2535.5509050316555,g,TransformativeMedicine,"",Transformative Medicine Entrance,BTM entrance
+node_694,1599.3811685327712,2612.0435854498487,g,TransformativeMedicine,"",Transformative Medicine Entrance,BTM entrance
+node_696,1664.4955225590863,2612.0435854498487,g,TransformativeMedicine,"",Transformative Medicine Entrance,BTM entrance
+node_697,1730.4385357343108,2612.0435854498487,g,TransformativeMedicine,"",Transformative Medicine Entrance,BTM entrance
+node_698,1669.1657700400624,2719.759822849853,g,TransformativeMedicine,"",Transformative Medicine Entrance,BTM entrance
+node_699,1599.3811685327712,2719.759822849853,g,TransformativeMedicine,"",Transformative Medicine Entrance,BTM entrance
+node_700,1641.0247126029144,2596.624641781961,1,BTM,STAI,Staircase ,stairs
+node_703,1639.8756955915876,2731.9436396505134,1,BTM,HALL,Hall,Hall

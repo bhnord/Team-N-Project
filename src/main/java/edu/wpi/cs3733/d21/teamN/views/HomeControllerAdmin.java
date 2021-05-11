@@ -75,6 +75,7 @@ public class HomeControllerAdmin extends MasterController implements Initializab
   @FXML Rectangle darkMode;
   @FXML JFXListView<JFXButton> listView;
   @FXML GridPane gridPane;
+  @FXML JFXButton checkIn;
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
    * JavaFX thread
@@ -99,6 +100,7 @@ public class HomeControllerAdmin extends MasterController implements Initializab
       makeInvisible(FormEditor);
       makeInvisible(Appointment);
       makeInvisible(AppointmentEditor);
+      makeInvisible(checkIn);
       //      listView.getItems().add(mapPathfinder);
       //      listView.getItems().add(FindUs);
       updateStyle("0x748cdc");
@@ -153,10 +155,12 @@ public class HomeControllerAdmin extends MasterController implements Initializab
           LogIn.setManaged(false);
           logInGroup.setVisible(false);
           logInGroup.setManaged(false);
+          listView.getItems().add(checkIn);
           listView.getItems().add(mapPathfinder);
           listView.getItems().add(FindUs);
           listView.getItems().add(Appointment);
           listView.getItems().add(ServiceRequests);
+
           break;
       }
       user = db.getCurrentUser();
@@ -447,4 +451,7 @@ public class HomeControllerAdmin extends MasterController implements Initializab
               + " with FaceID. Please log in with your username and password.");
     }
   }
+
+  @FXML
+  private void checkIn() {}
 }

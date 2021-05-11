@@ -11,6 +11,16 @@ public class Form implements Serializable {
   ArrayList<FormElement> elements;
   private String title;
 
+  public boolean isRequest() {
+    return request;
+  }
+
+  public void setRequest(boolean request) {
+    this.request = request;
+  }
+
+  private boolean request;
+
   public void tester() {
     System.out.println("SUCCESSFULLY DESERIALIZED");
   }

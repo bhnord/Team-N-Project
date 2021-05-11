@@ -65,6 +65,11 @@ public class PathFinderController extends MapController implements Initializable
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+    if (db.getCurrentUser().getUsername().equals("guest")) {
+      super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Login Map");
+    } else {
+      super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Map");
+    }
     super.init(appPrimaryScene);
     extras = new ArrayList<>();
 
@@ -102,7 +107,7 @@ public class PathFinderController extends MapController implements Initializable
     }
   }
 
-  @FXML JFXButton reverse, b1, b2, b3, L2, L1, G, F1, F2, F3;
+  @FXML JFXButton reverse, b1, b2, b3, L2, L1, g, F1, F2, F3;
   @FXML Rectangle rectangle1, rectangle2, rectangle3, rectangle4, rectangle5;
   @FXML Label l1, l2, l3, l4, l5, l6;
   @FXML TextArea tArea;
@@ -114,7 +119,7 @@ public class PathFinderController extends MapController implements Initializable
       String style =
           "-fx-background-color: " + "#" + s.substring(2) + "; -fx-background-radius: 15;";
 
-      JFXButton[] lA = {reverse, L2, L1, G, b1, b2, b3, F1, F2, F3};
+      JFXButton[] lA = {reverse, L2, L1, g, b1, b2, b3, F1, F2, F3};
       for (JFXButton a : lA) a.setStyle(style);
     } else {
       Color appC = Color.web(color);
@@ -125,7 +130,7 @@ public class PathFinderController extends MapController implements Initializable
       for (Rectangle a : rA) a.setFill(appC.darker().darker().desaturate());
       style = "-fx-background-color: " + "#" + color.substring(2) + "; -fx-background-radius: 15;";
 
-      JFXButton[] lA = {reverse, L2, L1, G, b1, b2, b3, F1, F2, F3};
+      JFXButton[] lA = {reverse, L2, L1, g, b1, b2, b3, F1, F2, F3};
       for (JFXButton a : lA) a.setStyle(style);
 
       Label[] labelA = {l1, l2, l3, l4, l5, l6};
@@ -153,7 +158,7 @@ public class PathFinderController extends MapController implements Initializable
 
   public void handleClick(MouseEvent event) {
     Node n = adminMap.get(event.getX(), event.getY(), mapDrawer.getCurrentMap());
-    System.out.println(n.get_nodeID() + ":");
+    System.out.println(n);
     if (event.getButton() == MouseButton.PRIMARY
         && !path.contains(n.get_nodeID())
         && !event.isShiftDown()) {
@@ -162,9 +167,9 @@ public class PathFinderController extends MapController implements Initializable
         //        System.out.println("set parking spot");
         // Label set here Michael
       }
-      for (Node.Link l : n.get_neighbors()) {
-        System.out.println("\t" + l._other.get_nodeID());
-      }
+      //      for (Node.Link l : n.get_neighbors()) {
+      //        System.out.println("\t" + l._other.get_nodeID());
+      //      }
       updatePath();
       nodeSelected(selectedNodeColor);
       directionHandler.addStop(n);
@@ -202,8 +207,8 @@ public class PathFinderController extends MapController implements Initializable
         directionHandler.addDirection(l);
       }
     }
-    //    arrowChase();
-    createExtras();
+    arrowChase();
+    //    createExtras();
   }
 
   public void mapFloor() {
@@ -223,8 +228,6 @@ public class PathFinderController extends MapController implements Initializable
     }
     extras.clear();
   }
-
-  private void arrowChase(Polygon p) {}
 
   private Polygon createArrow(Node.Link l) {
     double size = 20;
@@ -281,17 +284,14 @@ public class PathFinderController extends MapController implements Initializable
       ImageView imageView = new ImageView(i);
       //      imageView.setFitWidth(500);
       //      imageView.setFitHeight(500);
-      System.out.println(
-          l._this.get_x() * getDownScale() + " : " + l._this.get_y() * getDownScale());
+      //      System.out.println(
+      //          l._this.get_x() * getDownScale() + " : " + l._this.get_y() * getDownScale());
       imageView.setX(l._this.get_x() * getDownScale());
       imageView.setY(l._this.get_y() * getDownScale());
-      //      imageView.setLayoutX(l._this.get_x() * getDownScale());
-      //      imageView.setLayoutY(l._this.get_y() * getDownScale());
+      //            imageView.setLayoutX(l._this.get_x() * getDownScale());
+      //            imageView.setLayoutY(l._this.get_y() * getDownScale());
 
-      //      imageView.setRotationAxis(
-      //          new Point3D(l._this.get_x() * getDownScale(), l._this.get_y() * getDownScale(),
-      // 0.0));
-      //      imageView.setRotate(getDirection(l));
+      imageView.setRotate(getDirection(l));
 
       mapAnchor.getChildren().add(imageView);
     }
@@ -300,9 +300,9 @@ public class PathFinderController extends MapController implements Initializable
   private double getDirection(Node.Link l) {
     double dx = l._other.get_x() * getDownScale() - l._this.get_x() * getDownScale();
     double dy = l._other.get_y() * getDownScale() - l._this.get_y() * getDownScale();
-    double mag = Math.sqrt(dx * dx + dy * dy);
+    double mag = Math.sqrt(dx);
 
-    return -Math.sin(dy / mag) * 360 / Math.PI;
+    return dx;
   }
 
   public void nodeSelected(JFXColorPicker a) {
