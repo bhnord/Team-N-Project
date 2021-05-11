@@ -34,6 +34,12 @@ public class App extends Application {
   public void init() {
     log.info("Starting Up");
 
+    try {
+      Class.forName("org.apache.derby.jdbc.EmbeddedDriver").newInstance();
+    } catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
+      e.printStackTrace();
+    }
+
     Injector injector =
         Guice.createInjector(
             new DatabaseServiceProvider(),

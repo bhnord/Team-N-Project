@@ -20,6 +20,7 @@ public class TextField extends FormElement {
     textField = new JFXTextField();
     textField.setPromptText(getName());
     textField.setLabelFloat(true);
+    textField.setMaxWidth(300);
     textField.setOnKeyReleased(e -> setValue(textField.getText()));
     return textField;
   }

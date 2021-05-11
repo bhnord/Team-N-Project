@@ -63,11 +63,11 @@ public class FormController extends MasterController implements Initializable {
   }
 
   public void submit(ActionEvent actionEvent) throws IOException {
-    if (appointment != null) {
+    if (!this.form.isRequest()) {
       this.appointment.setForm(this.form);
       db.updateAppointment(appointment);
     } else {
-      // db.addrequest(this.form);
+      //       db.add(this.form);
     }
   }
 }

@@ -8,6 +8,7 @@ import java.util.HashSet;
 class AppointmentsTable {
   private Connection connection;
   private Statement stmt;
+  private FormSerializer fs = new FormSerializer();
 
   public static AppointmentsTable getInstance() {
     return SingletonHelper.table;
@@ -29,7 +30,7 @@ class AppointmentsTable {
   public Appointment addAppointment(Appointment appointment) {
     try {
       Blob blob = connection.createBlob();
-      blob.setBytes(1, toStream(appointment.getForm()));
+      blob.setBytes(1, fs.toStream(appointment.getForm()));
       //      String str =
       //          ;
       PreparedStatement ps =
@@ -57,7 +58,7 @@ class AppointmentsTable {
   public boolean updateAppointment(Appointment appointment) {
     try {
       Blob blob = connection.createBlob();
-      blob.setBytes(1, toStream(appointment.getForm()));
+      blob.setBytes(1, fs.toStream(appointment.getForm()));
       //      String str =
       //          ;
       PreparedStatement ps =
@@ -85,7 +86,7 @@ class AppointmentsTable {
 
     try {
       Blob blob = connection.createBlob();
-      blob.setBytes(1, toStream(formContent));
+      blob.setBytes(1, fs.toStream(formContent));
       String str = "UPDATE APPOINTMENTS SET FORM = ? WHERE Id = ?";
       PreparedStatement ps = connection.prepareStatement(str);
       ps.setBlob(1, blob);
@@ -155,41 +156,18 @@ class AppointmentsTable {
       ResultSet rs = stmt.executeQuery(str);
       rs.next();
       Blob blob = rs.getBlob("FORM");
-      return fromStream(blob.getBytes(1, (int) blob.length()));
+      return fs.fromStream(blob.getBytes(1, (int) blob.length()));
     } catch (SQLException e) {
       e.printStackTrace();
       return null;
     }
   }
 
-  private Form fromStream(byte[] stream) {
-    try {
-      ByteArrayInputStream bais = new ByteArrayInputStream(stream);
-      ObjectInputStream ois = new ObjectInputStream(bais);
-      return (Form) ois.readObject();
-    } catch (IOException | ClassNotFoundException e) {
-      e.printStackTrace();
-      return null;
-    }
-  }
-
-  private byte[] toStream(Form f) {
-    byte[] stream = null;
-    try (ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        ObjectOutputStream oos = new ObjectOutputStream(baos)) {
-      oos.writeObject(f);
-      stream = baos.toByteArray();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-    return stream;
-  }
-
   private HashSet<Appointment> resultSetToAppointments(ResultSet rs) throws SQLException {
     HashSet<Appointment> appointments = new HashSet<>();
     while (rs.next()) {
       Blob blob = rs.getBlob("FORM");
-      Form form = fromStream(blob.getBytes(1, (int) blob.length()));
+      Form form = fs.fromStream(blob.getBytes(1, (int) blob.length()));
       appointments.add(
           new Appointment(
               rs.getInt("ID"),

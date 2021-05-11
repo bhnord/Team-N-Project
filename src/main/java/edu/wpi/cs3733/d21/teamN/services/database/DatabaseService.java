@@ -4,6 +4,8 @@ import com.google.gson.Gson;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import edu.wpi.cs3733.d21.teamN.form.Form;
+import edu.wpi.cs3733.d21.teamN.services.DynamicRequest;
+import edu.wpi.cs3733.d21.teamN.services.DynamicRequestsTable;
 import edu.wpi.cs3733.d21.teamN.services.algo.Edge;
 import edu.wpi.cs3733.d21.teamN.services.algo.Node;
 import edu.wpi.cs3733.d21.teamN.services.database.requests.Request;
@@ -36,6 +38,8 @@ public class DatabaseService {
   AppointmentsTable appointmentsTable = AppointmentsTable.getInstance();
   AppointmentTypesTable appointmentTypesTable = AppointmentTypesTable.getInstance();
   FormsTable formsTable = FormsTable.getInstance();
+  DynamicRequestsTable dynamicRequestsTable = DynamicRequestsTable.getInstance();
+  DynamicRequestTypesTable dynamicRequestTypesTable = DynamicRequestTypesTable.getInstance();
   private Statement stmt;
 
   @Inject
@@ -59,6 +63,8 @@ public class DatabaseService {
     appointmentsTable.setConnection(connection);
     appointmentTypesTable.setConnection(connection);
     formsTable.setConnection(connection);
+    dynamicRequestsTable.setConnection(connection);
+    dynamicRequestTypesTable.setConnection(connection);
   }
 
   public void switchConnection() {
@@ -684,6 +690,33 @@ public class DatabaseService {
     return formsTable.updateForm(form);
   }
 
+
+
+  public boolean addDynamicRequestType(String type, int formId) {
+    return dynamicRequestTypesTable.addDynamicRequestType(type, formId);
+  }
+
+  public HashSet<DynamicRequestType> getAllDynamicRequestTypes() {
+    return dynamicRequestTypesTable.getAllDynamicRequestTypes();
+  }
+
+  public DynamicRequestType getDynamicRequestType(int id) {
+    return dynamicRequestTypesTable.getDynamicRequestType(id);
+  }
+
+  public DynamicRequest addDynamicRequest(DynamicRequest request) {
+    return dynamicRequestsTable.addDynamicRequest(request);
+  }
+
+  public HashSet<DynamicRequest> getAllDynamicRequests() {
+    return dynamicRequestsTable.getAllDynamicRequests();
+  }
+
+  public DynamicRequest getDynamicRequest(int id) {
+    return dynamicRequestsTable.getDynamicRequest(id);
+  }
+
+
   /**
    * loads CSV files into database.
    *
@@ -807,6 +840,22 @@ public class DatabaseService {
               + "TimeOfAppointment TIMESTAMP,"
               + "CheckInStatus BOOLEAN, "
               + "AssociatedRoomId varchar(60) REFERENCES NODES (id), "
+              + "PRIMARY KEY (id))";
+      stmt.execute(str);
+      str =
+          "CREATE TABLE DynamicRequestTypes("
+              + "id INT NOT NULL GENERATED ALWAYS AS IDENTITY, "
+              + "Type varchar(70) UNIQUE, "
+              + "FormId INT NOT NULL REFERENCES FORMS (id), "
+              + "PRIMARY KEY (id))";
+      stmt.execute(str);
+      str =
+          "CREATE TABLE DynamicRequests("
+              + "id INT NOT NULL GENERATED ALWAYS AS IDENTITY, "
+              + "DynamicRequestTypeId INT NOT NULL REFERENCES DynamicRequestTypes (id), "
+              + "SenderId INT NOT NULL REFERENCES Users (id), "
+              + "RecieverId INT REFERENCES Users (id), "
+              + "Form BLOB(16M), "
               + "PRIMARY KEY (id))";
       stmt.execute(str);
       return true;
