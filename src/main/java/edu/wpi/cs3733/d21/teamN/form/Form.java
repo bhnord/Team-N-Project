@@ -11,6 +11,16 @@ public class Form implements Serializable {
   ArrayList<FormElement> elements;
   private String title;
 
+  private String icon = "";
+
+  public void setIcon(String icon){
+    this.icon = icon;
+  }
+
+  public String getIcon(){
+    return icon;
+  }
+
   public boolean isRequest() {
     return request;
   }
