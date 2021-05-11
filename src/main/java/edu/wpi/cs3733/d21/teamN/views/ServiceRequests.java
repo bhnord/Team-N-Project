@@ -2,6 +2,7 @@ package edu.wpi.cs3733.d21.teamN.views;
 
 import com.google.inject.Inject;
 import edu.wpi.cs3733.d21.teamN.state.HomeState;
+import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -13,6 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Rectangle;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -22,6 +24,7 @@ public class ServiceRequests extends MasterController implements Initializable {
   @Inject HomeState state;
   @FXML private AnchorPane anchorPane;
   private Scene appPrimaryScene;
+  @FXML Rectangle darkMode;
 
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
@@ -36,6 +39,8 @@ public class ServiceRequests extends MasterController implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+    darkMode.setVisible(db.getCurrentUser().getDarkMode());
+
     super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Database");
     switch (db.getCurrentUser().getType()) {
         // different login cases to be implemented later
