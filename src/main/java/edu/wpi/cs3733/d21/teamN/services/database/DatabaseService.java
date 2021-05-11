@@ -8,6 +8,8 @@ import edu.wpi.cs3733.d21.teamN.services.algo.Node;
 import edu.wpi.cs3733.d21.teamN.services.database.requests.Request;
 import edu.wpi.cs3733.d21.teamN.services.database.requests.RequestType;
 import edu.wpi.cs3733.d21.teamN.services.database.users.*;
+import lombok.extern.slf4j.Slf4j;
+
 import java.awt.image.BufferedImage;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -16,15 +18,14 @@ import java.sql.Statement;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Objects;
-import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class DatabaseService {
-  private final Connection connection;
   /*
    database service class. This class will be loaded as a Singleton by Guice.
   */
   private static User currentUser;
+  private final Connection connection;
   /*
    database service class. This class will be loaded as a Singleton by Guice.
   */
@@ -557,6 +558,7 @@ public class DatabaseService {
   public boolean updateForm(NamedForm form) {
     return formsTable.updateForm(form);
   }
+
   /**
    * loads CSV files into database.
    *
@@ -659,6 +661,7 @@ public class DatabaseService {
           "CREATE TABLE Forms("
               + "id INT NOT NULL GENERATED ALWAYS AS IDENTITY, "
               + "Name varchar(30) UNIQUE, "
+              + "isServiceRequest BOOLEAN NOT NULL, "
               + "Form BLOB(16M),"
               + "PRIMARY KEY (id))";
       stmt.execute(str);
