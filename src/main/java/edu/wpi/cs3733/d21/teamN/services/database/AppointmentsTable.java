@@ -28,7 +28,8 @@ class AppointmentsTable {
       //          ;
       PreparedStatement ps =
           connection.prepareStatement(
-              "INSERT INTO APPOINTMENTS (APPOINTMENTTYPEID, PATIENTID, ASSIGNEDSTAFFID, FORM, TIMEOFAPPOINTMENT, CHECKINSTATUS, ASSOCIATEDROOMID) VALUES (?, ?, ?, ?, ?, ?, ?)", new String[] {"ID"});
+              "INSERT INTO APPOINTMENTS (APPOINTMENTTYPEID, PATIENTID, ASSIGNEDSTAFFID, FORM, TIMEOFAPPOINTMENT, CHECKINSTATUS, ASSOCIATEDROOMID) VALUES (?, ?, ?, ?, ?, ?, ?)",
+              new String[] {"ID"});
       ps.setInt(1, appointment.getAppointmentTypeId());
       ps.setInt(2, appointment.getPatientId());
       ps.setInt(3, appointment.getAssignedStaffId());

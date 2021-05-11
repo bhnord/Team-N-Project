@@ -33,7 +33,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                <children>
-                  <JFXListView fx:id="listView" />
+                  <JFXListView fx:id="listView" style="-fx-background-color: transparent;" stylesheets="@/StyleSheet/HomeViewList.css" />
                </children>
                 </GridPane>
                 <AnchorPane fx:id="anchorPane" prefHeight="200.0" prefWidth="200.0" GridPane.valignment="BASELINE" />
