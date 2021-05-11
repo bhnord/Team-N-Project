@@ -90,7 +90,7 @@ public class AppointmentsEditorController extends MasterController implements In
   public void setUp() {
     defaultFormID = db.getAllForms().iterator().next().getId();
     editor.setMinWidth(1000);
-    forms = new ArrayList<>(db.getAllForms());
+    forms = new ArrayList<>(db.getAllFormsNotServiceRequest());
     appointments = new ArrayList<>(db.getAllAppointmentTypes());
     for (AppointmentType a : appointments) {
       editor.getItems().add(formsEditor(a));
