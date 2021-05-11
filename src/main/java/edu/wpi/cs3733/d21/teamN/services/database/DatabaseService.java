@@ -482,7 +482,7 @@ public class DatabaseService {
 
   // ----------------------------------------------------------------------------------------------------------------------------------------------------
 
-  public boolean addAppointment(Appointment appointment) {
+  public Appointment addAppointment(Appointment appointment) {
     return appointmentsTable.addAppointment(appointment);
   }
 
