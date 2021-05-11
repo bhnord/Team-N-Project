@@ -63,10 +63,10 @@
                      </font></Label>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
                             <children>
-                                <JFXButton fx:id="saveButton" onAction="#toggleSave" stylesheets="@/Fonts/Roboto-Light.css" text="Save Face" />
+                                <JFXButton fx:id="saveButton" buttonType="RAISED" onAction="#toggleSave" style="-fx-background-color: #748cdc;" text="Save Face" />
                             </children>
                         </HBox>
-                        <JFXButton onAction="#capture" stylesheets="@/Fonts/Roboto-Light.css" text="Start Camera" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP" />
+                        <JFXButton buttonType="RAISED" onAction="#capture" style="-fx-background-color: #748cdc;" stylesheets="@/Fonts/Roboto-Light.css" text="Start Camera" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP" />
                     </children>
                 </GridPane>
                 <AnchorPane fx:id="anchorPane" prefHeight="200.0" prefWidth="200.0" GridPane.valignment="BASELINE" />

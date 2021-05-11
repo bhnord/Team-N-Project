@@ -5,7 +5,7 @@ import edu.wpi.cs3733.d21.teamN.form.Form;
 public class NamedForm {
   private int id;
   private String name;
-  private Form form;
+  private final Form form;
 
   public NamedForm(int id, String name, Form form) {
     this.form = form;
