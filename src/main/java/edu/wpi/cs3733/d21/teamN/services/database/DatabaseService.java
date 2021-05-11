@@ -735,6 +735,10 @@ public class DatabaseService {
     return dynamicRequestsTable.assignDynamicRequestEmployee(id, employeeId);
   }
 
+  public boolean deleteDynamicRequest(int id) {
+    return dynamicRequestsTable.deleteDynamicRequest(id);
+  }
+
   /**
    * loads CSV files into database.
    *
@@ -877,7 +881,7 @@ public class DatabaseService {
       stmt.execute(str);
       return true;
     } catch (SQLException e) {
-      e.printStackTrace();
+      //      e.printStackTrace();
       return false;
     }
   }

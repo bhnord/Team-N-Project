@@ -59,7 +59,7 @@ public class CurrentRequestController extends MasterController implements Initia
   @FXML private CheckBox isClearedCheckbox;
   @FXML private Label txtisCleared;
 
-  @FXML JFXButton submitCovidButton, submitCovidButton1, markCompleteButton;
+  @FXML JFXButton submitCovidButton, requestCompleted, markCompleteButton;
   @FXML Rectangle darkMode;
   @FXML Label text;
 
@@ -212,7 +212,7 @@ public class CurrentRequestController extends MasterController implements Initia
     String s = appC.darker().darker().darker().desaturate().toString();
 
     String style = "-fx-background-color: " + "#" + s.substring(2) + "; -fx-background-radius: 25;";
-    JFXButton[] lA = {submitCovidButton, submitCovidButton1};
+    JFXButton[] lA = {submitCovidButton, requestCompleted};
     for (JFXButton a : lA) a.setStyle(style);
 
     Color c = Color.web(color);
@@ -289,7 +289,11 @@ public class CurrentRequestController extends MasterController implements Initia
   }
 
   @FXML
-  private void completed(ActionEvent actionEvent) {}
+  private void completed(ActionEvent actionEvent) {
+    db.deleteDynamicRequest(
+        Integer.parseInt(listView.getSelectionModel().getSelectedItem().getId()));
+    listView.getItems().remove(listView.getSelectionModel().getSelectedItem());
+  }
 
   @FXML
   public void advanceHome() throws IOException {

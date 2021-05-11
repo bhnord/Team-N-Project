@@ -103,4 +103,15 @@ public class DynamicRequestsTable {
       return null;
     }
   }
+
+  public boolean deleteDynamicRequest(int id) {
+    String st = "DELETE FROM DynamicRequests WHERE Id = " + id + "";
+    try {
+      stmt.execute(st);
+      return true;
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return false;
+    }
+  }
 }
