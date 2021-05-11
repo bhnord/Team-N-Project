@@ -11,22 +11,22 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
 
 public class FormController extends MasterController implements Initializable {
 
   Form form;
 
-  @FXML VBox elements;
   @FXML Label title;
   @FXML AnchorPane anchorPane;
   @Inject private FXMLLoader loader;
   @Inject private DatabaseService db;
   private Appointment appointment;
-
+  @FXML private ListView<Node> listView;
   /**
    * This method allows the tests to inject the scene at a later time, since it must be done on the
    * JavaFX thread
@@ -54,8 +54,8 @@ public class FormController extends MasterController implements Initializable {
     form.build(this, db);
   }
 
-  public VBox getElements() {
-    return elements;
+  public ListView<Node> getElements() {
+    return listView;
   }
 
   public Label getTitle() {

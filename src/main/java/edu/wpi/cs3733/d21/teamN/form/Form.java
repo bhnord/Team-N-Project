@@ -53,7 +53,7 @@ public class Form implements Serializable {
   public void build(FormController formController, DatabaseService db) {
     formController.getTitle().setText(title);
     for (FormElement element : elements) {
-      formController.getElements().getChildren().add(element.build(db));
+      formController.getElements().getItems().add(element.build(db));
     }
   }
 
