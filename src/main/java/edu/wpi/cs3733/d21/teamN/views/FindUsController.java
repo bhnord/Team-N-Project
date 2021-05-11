@@ -12,10 +12,6 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import edu.wpi.cs3733.d21.teamN.services.database.DatabaseService;
 import edu.wpi.cs3733.d21.teamN.utilities.AddressAutoComplete;
-import java.io.ByteArrayInputStream;
-import java.net.URL;
-import java.util.Objects;
-import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -30,6 +26,11 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import lombok.extern.slf4j.Slf4j;
+
+import java.io.ByteArrayInputStream;
+import java.net.URL;
+import java.util.Objects;
+import java.util.ResourceBundle;
 
 @Slf4j
 public class FindUsController extends MasterController implements Initializable {
@@ -78,7 +79,7 @@ public class FindUsController extends MasterController implements Initializable 
     StaticMapsRequest mapsRequest = StaticMapsApi.newRequest(context, new Size(900, 500));
     StaticMapsRequest.Markers markers = new StaticMapsRequest.Markers();
     markers.addLocation("80 Francis St, Boston, MA 02115");
-    markers.addLocation("15-51 New Whitney St, Boston, MA 02115");
+    markers.addLocation("5-51 New Whitney St Parking, 15-51 New Whitney St, Boston, MA 02115");
     mapsRequest.center("75 Francis Street, Carrie Hall 103, Boston, MA 02115");
     markers.size(StaticMapsRequest.Markers.MarkersSize.small);
     mapsRequest.markers(markers);
@@ -138,9 +139,9 @@ public class FindUsController extends MasterController implements Initializable 
       String instructions;
       for (DirectionsStep step : result.routes[0].legs[0].steps) {
         if (step.htmlInstructions.toLowerCase().contains("left")) {
-          directions.append("<b style=\"font-size: 20px;\">⇦ </b>  ");
+          directions.append("<b style=\"font-size: 20px;\">← </b>  ");
         } else if (step.htmlInstructions.toLowerCase().contains("right")) {
-          directions.append("<b style=\"font-size: 20px;\">⇨ </b>  ");
+          directions.append("<b style=\"font-size: 20px;\">→ </b>  ");
         } else if (step.htmlInstructions.toLowerCase().contains("straight")
             || step.htmlInstructions.toLowerCase().contains("continue")) {
           directions.append("<b style=\"font-size: 20px;\">⇧ </b>  ");
