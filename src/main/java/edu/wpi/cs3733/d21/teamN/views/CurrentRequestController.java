@@ -59,7 +59,7 @@ public class CurrentRequestController extends MasterController implements Initia
   @FXML private CheckBox isClearedCheckbox;
   @FXML private Label txtisCleared;
 
-  @FXML JFXButton submitCovidButton, markCompleteButton;
+  @FXML JFXButton submitCovidButton, submitCovidButton1, markCompleteButton;
   @FXML Rectangle darkMode;
   @FXML Label text;
 
@@ -212,7 +212,7 @@ public class CurrentRequestController extends MasterController implements Initia
     String s = appC.darker().darker().darker().desaturate().toString();
 
     String style = "-fx-background-color: " + "#" + s.substring(2) + "; -fx-background-radius: 25;";
-    JFXButton[] lA = {submitCovidButton};
+    JFXButton[] lA = {submitCovidButton, submitCovidButton1};
     for (JFXButton a : lA) a.setStyle(style);
 
     Color c = Color.web(color);
@@ -287,6 +287,9 @@ public class CurrentRequestController extends MasterController implements Initia
   public void advanceViews(ActionEvent actionEvent) throws IOException {
     super.advanceViews(actionEvent);
   }
+
+  @FXML
+  private void completed(ActionEvent actionEvent) {}
 
   @FXML
   public void advanceHome() throws IOException {

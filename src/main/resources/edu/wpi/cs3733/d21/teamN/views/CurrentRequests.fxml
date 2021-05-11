@@ -50,7 +50,12 @@
                                  <children>
                                     <Rectangle fx:id="rectangle2" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="581.0" stroke="#bcbcbc" strokeType="INSIDE" width="886.0" />
                                     <JFXListView fx:id="listView" layoutX="14.0" layoutY="20.0" prefHeight="535.0" prefWidth="300.0" stylesheets="@/StyleSheet/style.css" verticalGap="10.0" />
-                                    <JFXListView fx:id="requestData" layoutX="357.0" layoutY="20.0" prefHeight="535.0" prefWidth="500.0" stylesheets="@/StyleSheet/style.css" verticalGap="10.0" />
+                                    <JFXListView fx:id="requestData" layoutX="357.0" layoutY="20.0" prefHeight="466.0" prefWidth="500.0" stylesheets="@/StyleSheet/style.css" verticalGap="10.0" />
+                                    <JFXButton fx:id="submitCovidButton1" layoutX="358.0" layoutY="497.0" onAction="#completed" prefHeight="61.0" prefWidth="500.0" style="-fx-background-color: #748cdc; -fx-background-radius: 15;" stylesheets="/Fonts/Roboto-Light.css" text="MARK COMPLETE" textFill="WHITE">
+                                       <font>
+                                          <Font name="Arial Black" size="14.0" />
+                                       </font>
+                                    </JFXButton>
                                  </children>
                               </AnchorPane>
                            </content>
@@ -74,7 +79,7 @@
                                     <Label fx:id="outsideTravel" layoutX="613.0" layoutY="213.0" text="                                       " />
                                     <Label fx:id="cruiseShip" layoutX="613.0" layoutY="250.0" text="                         " />
                                     <Label fx:id="emergency" layoutX="613.0" layoutY="290.0" text="                                 " />
-                                    <JFXButton fx:id="submitCovidButton" layoutX="634.0" layoutY="484.0" onAction="#submitCovid" prefHeight="70.0" prefWidth="212.0" style="-fx-background-color: #748cdc; -fx-background-radius: 15;" stylesheets="/Fonts/Roboto-Light.css" text="SUBMIT" textFill="WHITE">
+                                    <JFXButton fx:id="submitCovidButton" layoutX="651.0" layoutY="495.0" onAction="#submitCovid" prefHeight="70.0" prefWidth="212.0" style="-fx-background-color: #748cdc; -fx-background-radius: 15;" stylesheets="/Fonts/Roboto-Light.css" text="SUBMIT" textFill="WHITE">
                                        <font>
                                           <Font name="Arial Black" size="14.0" />
                                        </font>
@@ -98,7 +103,7 @@
                                  <children>
                                     <Rectangle fx:id="rectangle3" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="581.0" stroke="#bcbcbc" strokeType="INSIDE" width="886.0" />
                                     <JFXListView fx:id="appointmentNames" layoutX="14.0" layoutY="21.0" prefHeight="535.0" prefWidth="261.0" stylesheets="@/StyleSheet/style.css" verticalGap="10.0" />
-                                    <JFXListView fx:id="appointmentsData" layoutX="310.0" layoutY="20.0" prefHeight="535.0" prefWidth="261.0" stylesheets="@/StyleSheet/style.css" verticalGap="10.0" />
+                                    <JFXListView fx:id="appointmentsData" layoutX="310.0" layoutY="20.0" prefHeight="534.0" prefWidth="541.0" stylesheets="@/StyleSheet/style.css" verticalGap="10.0" />
                                  </children>
                               </AnchorPane>
                           </content>
