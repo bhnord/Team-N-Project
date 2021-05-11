@@ -61,33 +61,33 @@ public class ServiceRequests extends MasterController implements Initializable {
   private void loadRequestFromDB() {
     for (NamedForm form : db.getAllForms()) {
       if (form.getForm().isRequest()) {
-      JFXButton btn = new JFXButton(form.getName());
-      btn.setId(String.valueOf(form.getId()));
-      String style =
-          "-fx-background-color: "
-              + "#"
-              + db.getCurrentUser().getAppColor().substring(2)
-              + "; -fx-background-radius: 25; -fx-text-fill: WHITE; -fx-font-family: 'Roboto Black'; -fx-font-size: 26;";
-      btn.setStyle(style);
-      btn.setAlignment(Pos.TOP_LEFT);
-      btn.setMinSize(Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE);
-      btn.setPrefSize(1000, 310);
-      btn.setMaxSize(100000, 100000);
-      btn.setOnMouseClicked(
-          event -> {
-            if (event.getButton() == MouseButton.PRIMARY) {
-              Parent root = null;
-              try {
-                root = loader.load(getClass().getResourceAsStream("Templateform.fxml"));
-                appPrimaryScene.setRoot(root);
-                FormController formController = loader.getController();
-                formController.setUp(db.getForm(form.getId()).getForm());
-              } catch (IOException e) {
-                e.printStackTrace();
+        JFXButton btn = new JFXButton(form.getName());
+        btn.setId(String.valueOf(form.getId()));
+        String style =
+            "-fx-background-color: "
+                + "#"
+                + db.getCurrentUser().getAppColor().substring(2)
+                + "; -fx-background-radius: 10; -fx-text-fill: WHITE; -fx-font-family: 'Roboto Black'; -fx-font-size: 33;";
+        btn.setStyle(style);
+        btn.setAlignment(Pos.CENTER_LEFT);
+        btn.setMinSize(Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE);
+        btn.setPrefSize(750, 115);
+        btn.setMaxSize(750, 100000);
+        btn.setOnMouseClicked(
+            event -> {
+              if (event.getButton() == MouseButton.PRIMARY) {
+                Parent root = null;
+                try {
+                  root = loader.load(getClass().getResourceAsStream("Templateform.fxml"));
+                  appPrimaryScene.setRoot(root);
+                  FormController formController = loader.getController();
+                  formController.setUp(db.getForm(form.getId()).getForm());
+                } catch (IOException e) {
+                  e.printStackTrace();
+                }
               }
-            }
-          });
-      listView.getItems().add(btn);
+            });
+        listView.getItems().add(btn);
       }
     }
   }
