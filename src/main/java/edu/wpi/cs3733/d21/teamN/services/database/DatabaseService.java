@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import edu.wpi.cs3733.d21.teamN.form.Form;
+import edu.wpi.cs3733.d21.teamN.services.DynamicRequest;
 import edu.wpi.cs3733.d21.teamN.services.DynamicRequestsTable;
 import edu.wpi.cs3733.d21.teamN.services.algo.Edge;
 import edu.wpi.cs3733.d21.teamN.services.algo.Node;
@@ -688,6 +689,33 @@ public class DatabaseService {
   public boolean updateForm(NamedForm form) {
     return formsTable.updateForm(form);
   }
+
+
+
+  public boolean addDynamicRequestType(String type, int formId) {
+    return dynamicRequestTypesTable.addDynamicRequestType(type, formId);
+  }
+
+  public HashSet<DynamicRequestType> getAllDynamicRequestTypes() {
+    return dynamicRequestTypesTable.getAllDynamicRequestTypes();
+  }
+
+  public DynamicRequestType getDynamicRequestType(int id) {
+    return dynamicRequestTypesTable.getDynamicRequestType(id);
+  }
+
+  public DynamicRequest addDynamicRequest(DynamicRequest request) {
+    return dynamicRequestsTable.addDynamicRequest(request);
+  }
+
+  public HashSet<DynamicRequest> getAllDynamicRequests() {
+    return dynamicRequestsTable.getAllDynamicRequests();
+  }
+
+  public DynamicRequest getDynamicRequest(int id) {
+    return dynamicRequestsTable.getDynamicRequest(id);
+  }
+
 
   /**
    * loads CSV files into database.

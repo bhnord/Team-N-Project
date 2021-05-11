@@ -55,13 +55,13 @@ public class DynamicRequestTypesTable {
     }
   }
 
-  public AppointmentType getDynamicRequestType(int id) {
+  public DynamicRequestType getDynamicRequestType(int id) {
     try {
       String str = "SELECT * FROM DYNAMICREQUESTTYPES WHERE id = " + id;
       ResultSet rs = stmt.executeQuery(str);
       HashSet<DynamicRequestType> set = resultSetToDynamicRequestTypes(rs);
       if (set.size() > 0) {
-        return (AppointmentType) set.toArray()[0];
+        return (DynamicRequestType) set.toArray()[0];
       } else {
         return null;
       }
