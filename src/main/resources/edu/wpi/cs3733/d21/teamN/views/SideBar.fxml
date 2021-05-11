@@ -39,6 +39,7 @@
             </JFXColorPicker>
             <JFXButton fx:id="faceRec" buttonType="RAISED" layoutX="81.0" layoutY="175.0" onAction="#faceRec" prefHeight="25.0" prefWidth="160.0" style="-fx-background-color: #6985e0;" stylesheets="@/Fonts/Roboto-Light.css" text="REGISTER FACE ID" textFill="WHITE" />
             <JFXToggleButton fx:id="darkModeSwitch" layoutX="154.0" layoutY="-4.0" onAction="#newAppDarkMode" text="DarkMode" toggleColor="#a4a4a4" toggleLineColor="#f5f5f5" />
+            <JFXButton fx:id="switchDB" buttonType="RAISED" layoutX="81.0" layoutY="225.0" onAction="#switchDB" prefHeight="25.0" prefWidth="279.0" style="-fx-background-color: #6985e0;" stylesheets="@/Fonts/Roboto-Light.css" text="SWITCH DATABASE CONNECTION" textFill="WHITE" visible="false" />
          </children>
       </Group>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#363d54" height="1500.0" stroke="TRANSPARENT" strokeType="INSIDE" width="66.0" />

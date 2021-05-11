@@ -138,7 +138,7 @@ public class FormsEditorController extends MasterController implements Initializ
         });
     ret.getChildren().add(edit);
 
-    JFXTextField title = new JFXTextField(form.getForm().getTitle());
+    JFXTextField title = new JFXTextField(form.getName());
     ret.getChildren().add(title);
     title.setEditable(false);
 
