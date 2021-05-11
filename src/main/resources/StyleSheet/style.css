@@ -10,12 +10,12 @@
     -fx-font-size: 26;
     -fx-background-size: cover;
 } #ServiceRequests{
-      -fx-background-image: url('/images/ButtonSR.png');
+      -fx-background-image: url('/images/N2.png');
       -fx-font-size: 26;
       -fx-background-radius: 25;
 
   }  #CurrentRequests{
-           -fx-background-image: url('/images/ButtonCR.png');
+           -fx-background-image: url('/images/N1.png');
            -fx-font-size: 26;
            -fx-background-radius: 25;
 
@@ -28,11 +28,11 @@
                        -fx-font-size: 26;
                        -fx-background-radius: 25;
                    } #mapPathfinder{
-                         -fx-background-image: url('/images/ButtonMP.png');
+                         -fx-background-image: url('/images/N5.png');
                          -fx-font-size: 26;
                          -fx-background-radius: 25;
                      }#FindUs{
-                          -fx-background-image: url('/images/ButtonHD.png');
+                          -fx-background-image: url('/images/N4.png');
                           -fx-font-size: 26;
                           -fx-background-radius: 25;
                       }#FormEditor{
@@ -40,14 +40,19 @@
                           -fx-font-size: 26;
                           -fx-background-radius: 25;
                       } #Appointment {
+                        -fx-background-image: url('/images/N3.png');
+                        -fx-font-size: 26;
+                        -fx-background-radius: 25;
+                      }#AppointmentEditor {
                         -fx-background-image: url('/images/ButtonCR.png');
                         -fx-font-size: 26;
                         -fx-background-radius: 25;
-                      }AppointmentEditor {
-                        -fx-background-image: url('/images/ButtonCR.png');
+                      } #EditorPage {
+                        -fx-background-image: url('/images/N6.png');
                         -fx-font-size: 26;
                         -fx-background-radius: 25;
                       }
+
 
 
 

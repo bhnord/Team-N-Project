@@ -51,7 +51,7 @@ public class FormsEditorController extends MasterController implements Initializ
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Map");
+    super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Editor");
     dialogFactory = new DialogFactory(rootStackPane);
   }
 

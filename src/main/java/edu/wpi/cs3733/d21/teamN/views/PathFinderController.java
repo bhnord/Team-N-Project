@@ -65,6 +65,11 @@ public class PathFinderController extends MapController implements Initializable
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+    if (db.getCurrentUser().getUsername().equals("guest")) {
+      super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Login Map");
+    } else {
+      super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Map");
+    }
     super.init(appPrimaryScene);
     extras = new ArrayList<>();
 

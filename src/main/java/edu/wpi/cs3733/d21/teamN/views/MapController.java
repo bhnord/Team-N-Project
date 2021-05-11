@@ -159,11 +159,7 @@ public abstract class MapController extends MasterController {
   public void initialize(URL location, ResourceBundle resources) {}
 
   public void init(Scene appPrimaryScene) {
-    if (db.getCurrentUser().getUsername().equals("guest")) {
-      super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Login Map");
-    } else {
-      super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Editor");
-    }
+
     userPrefs = db.getCurrentUser().getUserPrefs();
 
     nodeColor.setValue(Color.web(userPrefs.getBasicNodeColor()));

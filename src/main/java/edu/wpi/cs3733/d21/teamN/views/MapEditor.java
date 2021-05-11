@@ -91,6 +91,8 @@ public class MapEditor extends MapController implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+    super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Editor");
+
     mapNodeEditor = new MapNodeEditor(this);
     mapEdgeEditor = new MapEdgeEditor(this);
     diffHandler = new DiffHandler(mapNodeEditor, this);
