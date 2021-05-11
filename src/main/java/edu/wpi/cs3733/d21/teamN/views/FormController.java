@@ -97,7 +97,7 @@ public class FormController extends MasterController implements Initializable {
       this.appointment.setForm(this.form);
       db.updateAppointment(appointment);
     } else {
-      db.addDynamicRequest(new DynamicRequest(db.getCurrentUser().getId(),this.form));
+      db.addDynamicRequest(new DynamicRequest(db.getCurrentUser().getId(), this.form));
     }
   }
 }
