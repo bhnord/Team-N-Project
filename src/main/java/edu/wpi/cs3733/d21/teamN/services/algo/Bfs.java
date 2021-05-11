@@ -21,7 +21,7 @@ public class Bfs extends PathFinderAlgorithm implements IPathFinder {
         Node n = l._other;
         if (!n.is_seen()) {
           used.add(n);
-          open.addFirst(n);
+          open.addLast(n);
           n.set_seen(true);
           n.set_parent(l);
         }
