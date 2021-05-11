@@ -34,6 +34,8 @@ public class NamedForm {
     this.name = name;
   }
 
+  public boolean isRequest() { return this.form.isRequest(); }
+
   public String toString() {
     return this.name;
   }

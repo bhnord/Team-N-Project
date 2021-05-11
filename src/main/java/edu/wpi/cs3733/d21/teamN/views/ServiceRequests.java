@@ -18,6 +18,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Rectangle;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -27,6 +28,7 @@ public class ServiceRequests extends MasterController implements Initializable {
   @Inject HomeState state;
   @FXML private AnchorPane anchorPane;
   private Scene appPrimaryScene;
+  @FXML Rectangle darkMode;
   @FXML private JFXListView<JFXButton> listView;
 
   /**
@@ -42,6 +44,8 @@ public class ServiceRequests extends MasterController implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+    darkMode.setVisible(db.getCurrentUser().getDarkMode());
+
     super.sideBarSetup(anchorPane, appPrimaryScene, loader, "Database");
     switch (db.getCurrentUser().getType()) {
         // different login cases to be implemented later

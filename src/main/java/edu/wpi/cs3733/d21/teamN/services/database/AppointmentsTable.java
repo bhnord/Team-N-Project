@@ -20,7 +20,7 @@ class AppointmentsTable {
     }
   }
 
-  public boolean addAppointment(Appointment appointment) {
+  public Appointment addAppointment(Appointment appointment) {
     try {
       Blob blob = connection.createBlob();
       blob.setBytes(1, toStream(appointment.getForm()));
@@ -28,7 +28,8 @@ class AppointmentsTable {
       //          ;
       PreparedStatement ps =
           connection.prepareStatement(
-              "INSERT INTO APPOINTMENTS (APPOINTMENTTYPEID, PATIENTID, ASSIGNEDSTAFFID, FORM, TIMEOFAPPOINTMENT, CHECKINSTATUS, ASSOCIATEDROOMID) VALUES (?, ?, ?, ?, ?, ?, ?)");
+              "INSERT INTO APPOINTMENTS (APPOINTMENTTYPEID, PATIENTID, ASSIGNEDSTAFFID, FORM, TIMEOFAPPOINTMENT, CHECKINSTATUS, ASSOCIATEDROOMID) VALUES (?, ?, ?, ?, ?, ?, ?)",
+              new String[] {"ID"});
       ps.setInt(1, appointment.getAppointmentTypeId());
       ps.setInt(2, appointment.getPatientId());
       ps.setInt(3, appointment.getAssignedStaffId());
@@ -38,11 +39,12 @@ class AppointmentsTable {
       ps.setString(7, appointment.getAssociatedRoomId());
       ps.executeUpdate();
       blob.free();
-      ps.close();
-      return true;
+      ResultSet rs = ps.getGeneratedKeys();
+      rs.next();
+      return getAppointment(rs.getInt(1));
     } catch (SQLException e) {
       e.printStackTrace();
-      return false;
+      return null;
     }
   }
 

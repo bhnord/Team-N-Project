@@ -348,10 +348,10 @@ public class Calender extends MasterController implements Initializable {
 
   public void add(ActionEvent actionEvent) {
     Appointment appointment = new Appointment(defaultApp, 1, 1, null, currentSlot, "CSERV001L1");
+    appointment = db.addAppointment(appointment);
     appointments.add(appointment);
     appointmentsThisWeek.add(appointment);
     appointmentSlot.add(appointment);
-    db.addAppointment(appointment);
     editor.getItems().add(getEditView(appointment));
   }
 }

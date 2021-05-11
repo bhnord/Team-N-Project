@@ -37,7 +37,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXColorPicker>
-            <JFXButton buttonType="RAISED" layoutX="81.0" layoutY="175.0" onAction="#faceRec" prefHeight="25.0" prefWidth="160.0" style="-fx-background-color: #6985e0;" stylesheets="@/Fonts/Roboto-Light.css" text="REGISTER FACE ID" textFill="WHITE" />
+            <JFXButton fx:id="faceRec" buttonType="RAISED" layoutX="81.0" layoutY="175.0" onAction="#faceRec" prefHeight="25.0" prefWidth="160.0" style="-fx-background-color: #6985e0;" stylesheets="@/Fonts/Roboto-Light.css" text="REGISTER FACE ID" textFill="WHITE" />
             <JFXToggleButton fx:id="darkModeSwitch" layoutX="154.0" layoutY="-4.0" onAction="#newAppDarkMode" text="DarkMode" toggleColor="#a4a4a4" toggleLineColor="#f5f5f5" />
          </children>
       </Group>

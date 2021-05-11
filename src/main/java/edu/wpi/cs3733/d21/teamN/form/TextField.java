@@ -20,7 +20,7 @@ public class TextField extends FormElement {
     textField = new JFXTextField();
     textField.setPromptText(getName());
     textField.setLabelFloat(true);
-    textField.setOnKeyPressed(e -> setValue(textField.getText()));
+    textField.setOnKeyReleased(e -> setValue(textField.getText()));
     return textField;
   }
 
