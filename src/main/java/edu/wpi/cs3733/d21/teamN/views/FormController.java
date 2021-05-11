@@ -2,6 +2,7 @@ package edu.wpi.cs3733.d21.teamN.views;
 
 import com.google.inject.Inject;
 import edu.wpi.cs3733.d21.teamN.form.Form;
+import edu.wpi.cs3733.d21.teamN.services.DynamicRequest;
 import edu.wpi.cs3733.d21.teamN.services.database.Appointment;
 import edu.wpi.cs3733.d21.teamN.services.database.DatabaseService;
 import java.io.IOException;
@@ -67,7 +68,7 @@ public class FormController extends MasterController implements Initializable {
       this.appointment.setForm(this.form);
       db.updateAppointment(appointment);
     } else {
-      //       db.add(this.form);
+      db.addDynamicRequest(new DynamicRequest(db.getCurrentUser().getId(),this.form));
     }
   }
 }
