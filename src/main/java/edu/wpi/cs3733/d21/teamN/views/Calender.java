@@ -374,12 +374,14 @@ public class Calender extends MasterController implements Initializable {
   }
 
   public void add(ActionEvent actionEvent) {
-    Appointment appointment =
-        new Appointment(defaultApp, defaultP, defaultD, null, currentSlot, "CSERV001L1");
-    appointment = db.addAppointment(appointment);
-    appointments.add(appointment);
-    appointmentsThisWeek.add(appointment);
-    appointmentSlot.add(appointment);
-    editor.getItems().add(getEditView(appointment));
+    if (!(selectedButton == null)) {
+      Appointment appointment =
+          new Appointment(defaultApp, defaultP, defaultD, null, currentSlot, "CSERV001L1");
+      appointment = db.addAppointment(appointment);
+      appointments.add(appointment);
+      appointmentsThisWeek.add(appointment);
+      appointmentSlot.add(appointment);
+      editor.getItems().add(getEditView(appointment));
+    }
   }
 }
