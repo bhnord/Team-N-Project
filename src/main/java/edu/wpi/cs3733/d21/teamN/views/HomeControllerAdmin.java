@@ -448,17 +448,6 @@ public class HomeControllerAdmin extends MasterController implements Initializab
     }
     String style =
         "-fx-background-color: " + "#" + color.substring(2) + "; -fx-background-radius: 25;";
-    //    Label[] lA = {
-    //      BackMapPathfinder,
-    //      BackMapEditor,
-    //      BackServiceRequests,
-    //      BackCurrentRequests,
-    //      BackEmployeeEditor,
-    //      BackFindUs,
-    //      BackFormEditor,
-    //      BackAppointment
-    //    };
-    //    for (Label a : lA) a.setStyle(style);
 
     if (db.getCurrentUser().getDarkMode()) {
       darkMode.setVisible(true);

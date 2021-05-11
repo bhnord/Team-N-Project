@@ -111,7 +111,7 @@ public class SideBarController extends MasterController implements Initializable
     tt.setNode(accountSettingsGroup);
     tt.setDuration(new Duration(500));
     // tt.setFromX(100);
-    tt.setToX(-2800);
+    tt.setToX(-370);
     tt.setAutoReverse(true);
     tt.play();
     open = false;
@@ -121,7 +121,7 @@ public class SideBarController extends MasterController implements Initializable
   public void initialize(URL location, ResourceBundle resources) {
     setLoader(loader);
     if (!open) {
-      accountSettingsGroup.setTranslateX(-2800);
+      accountSettingsGroup.setTranslateX(-370);
     }
 
     darkModeSwitch.setSelected(darkOn);
@@ -221,7 +221,7 @@ public class SideBarController extends MasterController implements Initializable
   }
 
   public void faceRec(ActionEvent actionEvent) throws IOException {
-    accountSettingsGroup.setTranslateX(-2800);
+    accountSettingsGroup.setTranslateX(-370);
     open = !open;
     Parent root = loader.load(getClass().getResourceAsStream("FacialRecognitionAdd.fxml"));
     open = false;

@@ -23,7 +23,7 @@
    <children>
       <Group fx:id="accountSettingsGroup" layoutX="23.0" layoutY="1.0">
          <children>
-            <Rectangle fx:id="settingsRec" fill="#ffffff59" height="1498.0" stroke="TRANSPARENT" strokeType="INSIDE" width="2800.0">
+            <Rectangle fx:id="settingsRec" arcHeight="25.0" arcWidth="25.0" fill="#ffffff83" height="259.0" stroke="TRANSPARENT" strokeType="INSIDE" width="371.0">
                <effect>
                   <DropShadow color="#00000095" height="43.24" radius="22.2325" width="47.69" />
                </effect>
@@ -32,13 +32,13 @@
             <Label fx:id="AccountType" layoutX="80.0" layoutY="69.0" text="Label" />
             <Label fx:id="AccountUsername" layoutX="80.0" layoutY="100.0" text="Label" />
             <Label fx:id="AccountParkingSpot" layoutX="81.0" layoutY="134.0" text="Parking Spot: Not Set" />
-            <JFXColorPicker fx:id="appColor" layoutX="75.0" layoutY="13.0" minHeight="24.0" onAction="#newAppColor" prefHeight="24.0" prefWidth="66.0" style="-fx-color-label-visible: false;">
+            <JFXColorPicker fx:id="appColor" layoutX="75.0" layoutY="23.0" minHeight="24.0" onAction="#newAppColor" prefHeight="24.0" prefWidth="66.0" style="-fx-color-label-visible: false;">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXColorPicker>
             <JFXButton fx:id="faceRec" buttonType="RAISED" layoutX="81.0" layoutY="175.0" onAction="#faceRec" prefHeight="25.0" prefWidth="160.0" style="-fx-background-color: #6985e0;" stylesheets="@/Fonts/Roboto-Light.css" text="REGISTER FACE ID" textFill="WHITE" />
-            <JFXToggleButton fx:id="darkModeSwitch" layoutX="154.0" layoutY="-4.0" onAction="#newAppDarkMode" text="DarkMode" toggleColor="#a4a4a4" toggleLineColor="#f5f5f5" />
+            <JFXToggleButton fx:id="darkModeSwitch" layoutX="154.0" layoutY="6.0" onAction="#newAppDarkMode" text="DarkMode" toggleColor="#a4a4a4" toggleLineColor="#f5f5f5" />
             <JFXButton fx:id="switchDB" buttonType="RAISED" layoutX="81.0" layoutY="225.0" onAction="#switchDB" prefHeight="25.0" prefWidth="279.0" style="-fx-background-color: #6985e0;" stylesheets="@/Fonts/Roboto-Light.css" text="SWITCH DATABASE CONNECTION" textFill="WHITE" visible="false" />
          </children>
       </Group>
