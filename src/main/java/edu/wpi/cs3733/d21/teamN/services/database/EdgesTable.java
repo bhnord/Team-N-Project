@@ -1,6 +1,5 @@
 package edu.wpi.cs3733.d21.teamN.services.database;
 
-import com.google.inject.Inject;
 import edu.wpi.cs3733.d21.teamN.services.algo.Edge;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -10,11 +9,18 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 public class EdgesTable {
-  private final Connection connection;
+  private Connection connection;
   private Statement stmt;
 
-  @Inject
-  EdgesTable(Connection connection) {
+  public static EdgesTable getInstance() {
+    return SingletonHelper.table;
+  }
+
+  private static class SingletonHelper {
+    private static final EdgesTable table = new EdgesTable();
+  }
+
+  public void setConnection(Connection connection) {
     this.connection = connection;
     try {
       this.stmt = connection.createStatement();
