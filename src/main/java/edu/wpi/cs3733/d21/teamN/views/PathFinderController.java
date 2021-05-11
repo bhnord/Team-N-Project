@@ -42,6 +42,7 @@ public class PathFinderController extends MapController implements Initializable
   private Scene appPrimaryScene;
   private ArrayList<Circle> extras;
   private ArrayList<Double> percents;
+  private double len;
 
   public ArrayList<Node.Link> getNodePath() {
     return nodePath;
@@ -249,6 +250,7 @@ public class PathFinderController extends MapController implements Initializable
   }
 
   private void createExtras() {
+    this.len = PathFinder.getPathFinder().getTotalLen(nodePath);
     clearExtras();
     for (double i = 0; i < 1; i += .02) {
       double[] d = PathFinder.getPathFinder().getParametric(i, nodePath, mapDrawer.getCurrentMap());
@@ -405,15 +407,21 @@ public class PathFinderController extends MapController implements Initializable
 
   private class MyTimer extends AnimationTimer {
 
+    long prev = 0;
+
     @Override
     public void handle(long now) {
-
-      doHandle();
+      if (prev == 0) {
+        prev = now;
+        return;
+      }
+      doHandle((double) (now - prev) / 10000000);
+      prev = now;
     }
 
-    private void doHandle() {
+    private void doHandle(double dt) {
       for (int i = 0; i < percents.size(); i++) {
-        percents.set(i, (percents.get(i) + .0008) % 1);
+        percents.set(i, (percents.get(i) + 1 / len * dt) % 1);
         double[] d =
             PathFinder.getPathFinder()
                 .getParametric(percents.get(i), nodePath, mapDrawer.getCurrentMap());
