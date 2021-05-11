@@ -193,7 +193,7 @@ public class PathFinderController extends MapController implements Initializable
       }
     }
     //    arrowChase();
-    //    createExtras();
+        createExtras();
   }
 
   public void mapFloor() {

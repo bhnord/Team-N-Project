@@ -39,7 +39,7 @@ public class Form implements Serializable {
   public ArrayList<String> check() {
       ArrayList<String> ret = new ArrayList<>();
     for (FormElement element : elements) {
-      if (element.check()) {
+      if (element.is_required() && !element.check()) {
         ret.add(element.getName());
       }
     }
