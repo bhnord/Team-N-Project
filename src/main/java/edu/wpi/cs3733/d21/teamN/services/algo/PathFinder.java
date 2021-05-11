@@ -118,7 +118,10 @@ public class PathFinder implements IPathFinder {
                 * (input._this.get_y() - input._other.get_y()));
   }
 
-  public double[] getParametric(double percent, ArrayList<Node.Link> links) {
+  public double[] getParametric(double percent, ArrayList<Node.Link> links, String floor) {
+    if (links.size() == 0) {
+      return new double[] {-1, -1, 0};
+    }
     double totalLen = 0;
     for (Node.Link l : links) {
       totalLen += getLen(l);
@@ -129,15 +132,25 @@ public class PathFinder implements IPathFinder {
       if (percent < 0) {
         percent += curPercent;
         percent /= curPercent;
-        double dx = links.get(i)._other.get_x() - links.get(i)._this.get_x();
-        double dy = links.get(i)._other.get_y() - links.get(i)._this.get_y();
+        double dx = -(links.get(i)._this.get_x() - links.get(i)._other.get_x());
+        double dy = -(links.get(i)._this.get_y() - links.get(i)._other.get_y());
         dx *= percent;
         dy *= percent;
-        dx += links.get(i)._other.get_x();
-        dy += links.get(i)._other.get_y();
-        return new double[] {dx, dy};
+        dx += links.get(i)._this.get_x();
+        dy += links.get(i)._this.get_y();
+        double bool = 0;
+        if (links.get(i)._this.get_floor().equals(floor)) {
+          bool = 1;
+        }
+        return new double[] {dx, dy, bool};
       }
     }
-    return null;
+    double bool = 0;
+    if (links.get(links.size() - 1)._this.get_floor().equals(floor)) {
+      bool = 1;
+    }
+    return new double[] {
+      links.get(links.size() - 1)._this.get_x(), links.get(links.size() - 1)._this.get_y(), bool
+    };
   }
 }
