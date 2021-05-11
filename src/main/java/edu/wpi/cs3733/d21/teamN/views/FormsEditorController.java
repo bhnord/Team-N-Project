@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.d21.teamN.views;
 
 import com.google.inject.Inject;
+import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
 import edu.wpi.cs3733.d21.teamN.form.Form;
@@ -111,6 +112,14 @@ public class FormsEditorController extends MasterController implements Initializ
     JFXTextField title = new JFXTextField(form.getForm().getTitle());
     ret.getChildren().add(title);
     title.setEditable(false);
+
+    JFXCheckBox isRequest = new JFXCheckBox();
+    isRequest.setText("Is Service Request");
+//    isRequest.setId();
+    isRequest.setOnAction(e -> {
+      form.getForm().setRequest(isRequest.selectedProperty().get());
+      db.updateForm(form);
+    });
 
     return ret;
   }
