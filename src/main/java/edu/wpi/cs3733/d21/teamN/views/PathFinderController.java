@@ -250,7 +250,7 @@ public class PathFinderController extends MapController implements Initializable
 
   private void createExtras() {
     clearExtras();
-    for (double i = 0; i < 1; i += .05) {
+    for (double i = 0; i < 1; i += .02) {
       double[] d = PathFinder.getPathFinder().getParametric(i, nodePath, mapDrawer.getCurrentMap());
       System.out.println(d[0] + ", " + d[1]);
       Circle c = new Circle(d[0] * getDownScale(), d[1] * getDownScale(), 1);

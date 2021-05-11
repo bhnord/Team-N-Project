@@ -70,8 +70,10 @@ public class DirectionHandler {
                 mapController
                     .getNodePath()
                     .get(mapController.getNodePath().size() - seletedI.get(0));
-            mapController.getMapDrawer().setMap(link._other.get_floor());
-            mapController.mapFloor();
+            if (!link._other.get_floor().equals(mapController.getMapDrawer().getCurrentMap())) {
+              mapController.getMapDrawer().setMap(link._other.get_floor());
+              mapController.mapFloor();
+            }
             link._shape.setStroke(Color.RED);
           }
         });
