@@ -72,7 +72,7 @@ public class DatabaseService {
     if (connectedToServer) {
       dbUrl = "jdbc:derby:DerbyDB;username=admin;password=admin;create=true;";
     } else {
-      dbUrl = "jdbc:derby://localhost:1527/DerbyDB;user=admin;password=admin;";
+      dbUrl = "jdbc:derby://abacaba.info:1527/DerbyDB;user=admin;password=admin;";
     }
     connectedToServer = !connectedToServer;
     try {
