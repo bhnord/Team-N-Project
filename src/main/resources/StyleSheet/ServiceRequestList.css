@@ -19,7 +19,6 @@
     -fx-background-color: transparent;
 }
 
-
 .list-cell:filled:hover {
     -fx-background-color: transparent;
     -fx-text-fill: white;
@@ -29,8 +28,12 @@
     -jfx-rippler-set-disabled:true;
 }
 
-/*Below for Scroll bar of the LISTVIEW*/
-/*documentary for the scroll-bar: https://blog.ngopal.com.np/2012/07/11/customize-scrollbar-via-css/    */
+#listView .combo-box .list-cell:filled:hover{
+    -fx-background-color: grey;
+}
+
+/*!*Below for Scroll bar of the LISTVIEW*!*/
+/*!*documentary for the scroll-bar: https://blog.ngopal.com.np/2012/07/11/customize-scrollbar-via-css/    *!*/
 
 .jfx-list-view .scroll-bar:vertical .thumb,
 .jfx-list-view .scroll-bar:horizontal .thumb,
