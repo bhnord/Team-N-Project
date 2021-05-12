@@ -338,7 +338,7 @@ public class Calender extends MasterController implements Initializable {
     typeDropDown.setOnAction(
         e -> {
           int id = Integer.parseInt(typeDropDown.getSelectionModel().getSelectedItem().getId());
-          a.setAssignedStaffId(id);
+          a.setAppointmentTypeId(id);
           db.updateAppointment(a);
         });
 

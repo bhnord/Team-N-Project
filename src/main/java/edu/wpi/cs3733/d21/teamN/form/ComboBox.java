@@ -7,10 +7,9 @@ import edu.wpi.cs3733.d21.teamN.services.database.DatabaseService;
 import edu.wpi.cs3733.d21.teamN.services.database.users.User;
 import edu.wpi.cs3733.d21.teamN.services.database.users.UserType;
 import edu.wpi.cs3733.d21.teamN.utilities.AutoCompleteComboBoxListener;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.Scanner;
 import javafx.collections.FXCollections;
 import javafx.scene.Node;
@@ -62,11 +61,10 @@ public class ComboBox extends FormElement {
         break;
       case MEDICINE:
         Scanner scan = null;
-        try {
-          scan = new Scanner(new File("src/main/resources/tempCSV/drugs.txt"));
-        } catch (FileNotFoundException e) {
-          e.printStackTrace();
-        }
+        scan =
+            new Scanner(
+                Objects.requireNonNull(
+                    getClass().getClassLoader().getResourceAsStream("tempCSV/drugs.txt")));
         while (scan.hasNextLine()) {
           innerValues.add(scan.nextLine());
         }
