@@ -87,7 +87,7 @@ public class ServiceRequests extends MasterController implements Initializable {
         g.setMinSize(Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE);
         g.setPrefSize(750, 115);
         g.setMaxSize(750, 100000);
-        btn.setOnMouseClicked(
+        g.setOnMouseClicked(
             event -> {
               if (event.getButton() == MouseButton.PRIMARY) {
                 Parent root = null;
