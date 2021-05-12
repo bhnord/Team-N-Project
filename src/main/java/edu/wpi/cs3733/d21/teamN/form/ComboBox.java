@@ -46,7 +46,9 @@ public class ComboBox extends FormElement {
     switch (type) {
       case ROOM:
         for (edu.wpi.cs3733.d21.teamN.services.algo.Node n : db.getAllNodes()) {
-          if (!n.get_nodeType().equals("HALL")) {
+          if (!n.get_nodeType().equals("HALL")
+              && !n.get_longName().equals("")
+              && !n.get_nodeType().equals("STAI")) {
             innerValues.add(n.get_longName());
           }
         }
