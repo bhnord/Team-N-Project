@@ -161,7 +161,6 @@ public class HomeControllerAdmin extends MasterController implements Initializab
           listView.getItems().add(checkIn);
           listView.getItems().add(mapPathfinder);
           listView.getItems().add(FindUs);
-          listView.getItems().add(Appointment);
           listView.getItems().add(ServiceRequests);
 
           break;
