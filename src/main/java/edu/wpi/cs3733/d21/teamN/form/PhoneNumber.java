@@ -11,7 +11,11 @@ public class PhoneNumber extends TextField {
 
   @Override
   public boolean validate() {
-    return getValue().matches("\\d{10}");
+    if (is_required()) {
+      return getValue().matches("\\d{10}");
+    } else {
+      return true;
+    }
   }
 
   @Override

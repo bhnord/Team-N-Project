@@ -111,7 +111,7 @@ public class FormController extends MasterController implements Initializable {
         stringBuilder.append("- ").append(check).append("\n");
       }
       for (String valid : form.validate()) {
-        System.out.println(valid);
+        stringBuilder.append("- ").append(valid).append("\n");
       }
       dialogFactory = new DialogFactory(rootStackPane);
       dialogFactory.creatDialogOkay("Required fields empty", stringBuilder.toString());
