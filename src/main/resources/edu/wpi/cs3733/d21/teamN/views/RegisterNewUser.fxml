@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<GridPane fx:id="rootGridPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.d21.teamN.views.RegisterNewUser">
+
+    <columnConstraints>
+
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1366.0" minWidth="0.0" prefWidth="58.44541358947754" />
+
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1366.0" minWidth="0.0" prefWidth="694.5545864105225" />
+
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1366.0" minWidth="10.0" prefWidth="593.0" />
+
+    </columnConstraints>
+
+    <rowConstraints>
+
+        <RowConstraints maxHeight="768.0" minHeight="10.0" prefHeight="768.0" vgrow="SOMETIMES" />
+
+        <RowConstraints maxHeight="253.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+
+    </rowConstraints>
+
+    <children>
+
+              <ImageView fitHeight="1500.0" fitWidth="3500.0" layoutX="-5.0" pickOnBounds="true" preserveRatio="true">
+
+                  <image>
+
+                      <Image url="@/images/CSVBackground.png" />
+
+                  </image>
+
+              </ImageView>
+
+        <AnchorPane fx:id="anchorPage" prefHeight="749.0" prefWidth="996.0" GridPane.columnIndex="1">
+
+            <children>
+
+                <Label fx:id="errorLabel" layoutX="297.0" layoutY="664.0" prefHeight="35.0" prefWidth="130.0">
+                    <font>
+                        <Font size="24.0" />
+                    </font>
+                </Label>
+                <Rectangle arcHeight="50.0" arcWidth="50.0" fill="WHITE" height="517.0" layoutX="124.0" layoutY="203.0" stroke="TRANSPARENT" strokeType="INSIDE" width="476.0" />
+                <Rectangle arcHeight="8.0" arcWidth="8.0" fill="#748cdc" height="40.0" layoutX="483.0" layoutY="641.0" stroke="TRANSPARENT" strokeType="INSIDE" width="87.0">
+                    <effect>
+                        <DropShadow color="#c6b8b8" offsetY="5.0" />
+                    </effect></Rectangle>
+                <JFXButton fx:id="submit" layoutX="479.0" layoutY="636.0" onAction="#Submit" prefHeight="50.0" prefWidth="95.0" ripplerFill="WHITE" stylesheets="@/Fonts/Roboto-Light.css" text="Submit" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font></JFXButton>
+                <JFXButton fx:id="helpButton" layoutX="439.0" layoutY="645.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#help" prefHeight="32.0" prefWidth="32.0" ripplerFill="WHITE" stylesheets="/StyleSheet/ServiceRequests.css" text="Help" textFill="WHITE">
+                    <font>
+                        <Font name="Serif Regular" size="22.0" />
+                    </font>
+                    <tooltip>
+                        <Tooltip fx:id="tthelpButton" text="Help Page">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Tooltip>
+                    </tooltip>
+                </JFXButton>
+                <Label layoutX="166.0" layoutY="309.0" text="*" />
+                <Label layoutX="166.0" layoutY="374.0" text="*" />
+                <Label layoutX="170.0" layoutY="631.0" text="*Required Fields" />
+            <Label layoutX="166.0" layoutY="249.0" prefHeight="21.0" prefWidth="0.0" text="*" />
+            <Label fx:id="text1" alignment="CENTER" layoutX="130.0" layoutY="139.0" prefHeight="47.0" prefWidth="464.0" style="-fx-background-color: #748cdc; -fx-background-radius: 6;" stylesheets="@/Fonts/Roboto-Light.css" text="Register Patient New Account" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Serif Regular" size="30.0" />
+               </font>
+            </Label>
+            <JFXPasswordField fx:id="retypePassword" focusColor="#5b63e1" labelFloat="true" layoutX="187.0" layoutY="364.0" prefHeight="40.0" prefWidth="203.0" promptText="Retype Password" scaleShape="false" unFocusColor="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXPasswordField>
+            <JFXPasswordField fx:id="password" focusColor="#5b63e1" labelFloat="true" layoutX="187.0" layoutY="299.0" prefHeight="40.0" prefWidth="203.0" promptText="Enter Password" scaleShape="false" unFocusColor="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXPasswordField>
+            <JFXTextField fx:id="username" focusColor="#5b63e1" labelFloat="true" layoutX="187.0" layoutY="239.0" prefHeight="40.0" prefWidth="203.0" promptText="Enter Username" scaleShape="false" unFocusColor="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXTextField>
+                <StackPane fx:id="stackPane" layoutX="700.0" layoutY="359.0" prefHeight="91.0" prefWidth="145.0" />
+            </children>
+        </AnchorPane>
+      <AnchorPane fx:id="anchorPane1" prefHeight="200.0" prefWidth="200.0" GridPane.valignment="BASELINE" />
+    </children>
+</GridPane>

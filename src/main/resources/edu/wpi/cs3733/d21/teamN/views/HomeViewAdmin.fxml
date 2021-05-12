@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<StackPane fx:id="rootStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.d21.teamN.views.HomeControllerAdmin">
+   <children>
+      <JFXButton fx:id="checkIn" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#checkIn" prefHeight="310.0" prefWidth="768.0" style="-fx-background-color: #748cdc;" stylesheets="@StyleSheet/style.css" text="CHECK IN" textFill="WHITE">
+         <StackPane.margin>
+            <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+         </StackPane.margin>
+      </JFXButton>
+      <JFXButton fx:id="mapEditor" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#map" prefHeight="310.0" prefWidth="728.0" stylesheets="@/StyleSheet/style.css" text="MAP EDITOR" textFill="WHITE">
+         <font>
+            <Font name="Arial Black" size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <StackPane.margin>
+            <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+         </StackPane.margin>
+      </JFXButton>
+      <JFXButton fx:id="EmployeeEditor" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#advanceViews" prefHeight="310.0" prefWidth="502.0" stylesheets="@/StyleSheet/style.css" text="EMPLOYEE EDITOR" textFill="WHITE">
+         <StackPane.margin>
+            <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+         </StackPane.margin>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="CurrentRequests" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#advanceViews" prefHeight="310.0" prefWidth="502.0" stylesheets="@/StyleSheet/style.css" text="CURRENT REQUESTS" textFill="WHITE">
+         <StackPane.margin>
+            <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+         </StackPane.margin>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="ServiceRequests" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#advanceViews" prefHeight="310.0" prefWidth="408.0" stylesheets="@/StyleSheet/style.css" text=" SERVICE REQUESTS" textFill="WHITE" textOverrun="CLIP">
+         <font>
+            <Font name="Arial Black" size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <StackPane.margin>
+            <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+         </StackPane.margin>
+      </JFXButton>
+      <JFXButton fx:id="Appointment" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#appointment" prefHeight="310.0" prefWidth="728.0" stylesheets="@/StyleSheet/style.css" text="APPOINTMENTS" textFill="WHITE">
+         <font>
+            <Font name="Arial Black" size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <StackPane.margin>
+            <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+         </StackPane.margin>
+      </JFXButton>
+      <JFXButton fx:id="AppointmentEditor" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#appointmentEdit" prefHeight="310.0" prefWidth="728.0" stylesheets="@/StyleSheet/style.css" text="APPOINTMENT EDITOR" textFill="WHITE">
+         <font>
+            <Font name="Arial Black" size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <StackPane.margin>
+            <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+         </StackPane.margin>
+      </JFXButton>
+      <JFXButton fx:id="FormEditor" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#formEditor" prefHeight="310.0" prefWidth="502.0" stylesheets="@/StyleSheet/style.css" text="FORM EDITOR" textFill="WHITE">
+         <StackPane.margin>
+            <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+         </StackPane.margin>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="EditorPage" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#advanceViews" prefHeight="310.0" prefWidth="728.0" stylesheets="@/StyleSheet/style.css" text="EDITORS" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <Rectangle fx:id="darkMode1" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="7229.0" stroke="#ffffff00" strokeType="INSIDE" width="6632.0" />
+      <ImageView fitHeight="1766.0" fitWidth="1458.0" pickOnBounds="true" preserveRatio="true" scaleX="2.0" scaleY="2.0" StackPane.alignment="TOP_LEFT">
+         <image>
+            <Image url="@/images/CSVBackground.png" />
+         </image>
+      </ImageView>
+      <Rectangle fx:id="darkMode" arcHeight="5.0" arcWidth="5.0" fill="#000000bf" height="4000.0" stroke="#ffffff00" strokeType="INSIDE" width="4000.0" StackPane.alignment="TOP_LEFT" />
+      <GridPane prefWidth="1203.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="NEVER" maxWidth="451.0" minWidth="66.0" prefWidth="66.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="0.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="0.0" minWidth="0.0" prefWidth="0.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="0.0" minWidth="0.0" prefWidth="0.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="768.0" prefHeight="768.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <JFXListView fx:id="listView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="700.0" style="-fx-background-color: transparent;" stylesheets="@/StyleSheet/HomeViewList.css" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin></JFXListView>
+            <AnchorPane fx:id="anchorPane" prefHeight="200.0" prefWidth="88.0" GridPane.valignment="BASELINE" />
+            <Label fx:id="LogIn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="718.0" prefWidth="708.0" style="-fx-background-color: #748cdc; -fx-background-radius: 25;" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+               <GridPane.margin>
+                  <Insets bottom="25.0" left="25.0" right="55.0" top="25.0" />
+               </GridPane.margin>
+            </Label>
+            <Group fx:id="logInGroup" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="96.0" layoutY="-300.0" stylesheets="@/Fonts/Roboto-Black.css" text="SIGN IN" textFill="WHITE">
+                     <font>
+                        <Font size="48.0" />
+                     </font>
+                  </Label>
+                  <Rectangle arcWidth="5.0" fill="WHITE" height="25.0" layoutX="77.0" layoutY="-150.0" stroke="TRANSPARENT" strokeType="INSIDE" width="207.0" />
+                  <JFXTextField fx:id="usernameField" focusColor="RED" labelFloat="true" layoutX="77.0" layoutY="-150.0" maxHeight="-Infinity" maxWidth="-Infinity" onKeyReleased="#validateButton" prefHeight="25.0" prefWidth="207.0" promptText="Username" unFocusColor="WHITE">
+                     <font>
+                        <Font name="Times New Roman" size="12.0" />
+                     </font>
+                     <stylesheets>
+                        <URL value="@/StyleSheet/style.css" />
+                        <URL value="@/Fonts/Roboto-Light.css" />
+                     </stylesheets>
+                  </JFXTextField>
+                  <Rectangle arcWidth="5.0" fill="WHITE" height="25.0" layoutX="77.0" layoutY="-75.0" stroke="TRANSPARENT" strokeType="INSIDE" width="207.0" />
+                  <JFXPasswordField fx:id="passwordField" focusColor="RED" labelFloat="true" layoutX="77.0" layoutY="-75.0" maxHeight="-Infinity" maxWidth="-Infinity" onKeyReleased="#validateButton" prefHeight="25.0" prefWidth="207.0" promptText="Password" unFocusColor="WHITE">
+                     <font>
+                        <Font name="Times New Roman" size="12.0" />
+                     </font>
+                     <stylesheets>
+                        <URL value="@/StyleSheet/style.css" />
+                        <URL value="@/Fonts/Roboto-Light.css" />
+                     </stylesheets>
+                  </JFXPasswordField>
+                  <JFXButton fx:id="goToHomePage" buttonType="RAISED" layoutX="94.0" layoutY="23.0" onAction="#continueToHomePage" prefHeight="30.0" prefWidth="174.0" style="-fx-background-color: #6985e0;" stylesheets="@/Fonts/Roboto-Light.css" text="LOG IN" textFill="WHITE">
+                     <font>
+                        <Font name="Javanese Text" size="14.0" />
+                     </font>
+                  </JFXButton>
+                  <Label fx:id="incorrectLogin" layoutY="-20.0" prefHeight="33.0" prefWidth="360.0" stylesheets="@/Fonts/Roboto-Light.css" text=" " textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="Javanese Text" size="12.0" />
+                     </font>
+                  </Label>
+                  <JFXButton fx:id="RegisterNewUser" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" layoutX="94.0" layoutY="138.0" mnemonicParsing="false" onAction="#register" prefHeight="30.0" prefWidth="174.0" style="-fx-background-color: #6985e0;" text="Register" textFill="WHITE" />
+                  <Label layoutX="166.0" layoutY="300.0" />
+                  <JFXButton buttonType="RAISED" layoutX="94.0" layoutY="91.0" onAction="#loginWithFace" prefHeight="30.0" prefWidth="174.0" style="-fx-background-color: #6985e0;" stylesheets="@/Fonts/Roboto-Light.css" text="FACE ID" textFill="WHITE" />
+                  <JFXButton fx:id="Credits" buttonType="RAISED" layoutX="141.0" layoutY="271.0" onAction="#credits" prefHeight="29.0" prefWidth="79.0" style="-fx-background-color: #6985e0;" stylesheets="@/Fonts/Roboto-Light.css" text="Credits" textFill="WHITE" />
+                  <JFXButton fx:id="HelpPage" buttonType="RAISED" layoutX="141.0" layoutY="315.0" onAction="#helpPage" prefHeight="29.0" prefWidth="79.0" style="-fx-background-color: #6985e0;" stylesheets="@/Fonts/Roboto-Light.css" text="Help" textFill="WHITE" />
+               </children>
+               <GridPane.margin>
+                  <Insets right="25.0" />
+               </GridPane.margin>
+            </Group>
+            <GridPane fx:id="gridPane" GridPane.columnIndex="1">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <JFXButton fx:id="mapPathfinder" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#pathFind" prefHeight="310.0" prefWidth="728.0" stylesheets="@/StyleSheet/style.css" text="MAP PATHFINDER" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Black" size="18.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <GridPane.margin>
+                        <Insets bottom="25.0" left="50.0" right="50.0" top="25.0" />
+                     </GridPane.margin>
+                  </JFXButton>
+                  <JFXButton fx:id="FindUs" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#findUs" prefHeight="310.0" prefWidth="728.0" stylesheets="@/StyleSheet/style.css" text="DIRECTIONS TO HOSPITAL" textFill="WHITE" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Arial Black" size="18.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <GridPane.margin>
+                        <Insets bottom="25.0" left="50.0" right="50.0" top="50.0" />
+                     </GridPane.margin>
+                  </JFXButton>
+               </children>
+            </GridPane>
+         </children>
+      </GridPane>
+   </children>
+</StackPane>

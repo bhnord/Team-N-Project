@@ -1,14 +1,21 @@
+
+
+.jfx-tab-pane .headers-region .label{
+    -fx-background-color: #1b75bc;
+}
+
+
 .jfx-button{
     -fx-font-family: 'Roboto Black';
     -fx-font-size: 26;
     -fx-background-size: cover;
 } #ServiceRequests{
-      -fx-background-image: url('/images/ButtonSR.png');
+      -fx-background-image: url('/images/N2.png');
       -fx-font-size: 26;
       -fx-background-radius: 25;
 
   }  #CurrentRequests{
-           -fx-background-image: url('/images/ButtonCR.png');
+           -fx-background-image: url('/images/N1.png');
            -fx-font-size: 26;
            -fx-background-radius: 25;
 
@@ -21,33 +28,50 @@
                        -fx-font-size: 26;
                        -fx-background-radius: 25;
                    } #mapPathfinder{
-                         -fx-background-image: url('/images/ButtonMP.png');
+                         -fx-background-image: url('/images/N5.png');
                          -fx-font-size: 26;
                          -fx-background-radius: 25;
                      }#FindUs{
-                          -fx-background-image: url('/images/ButtonHD.png');
+                          -fx-background-image: url('/images/N4.png');
                           -fx-font-size: 26;
                           -fx-background-radius: 25;
+                      }#FormEditor{
+                          -fx-background-image: url('/images/ButtonME.png');
+                          -fx-font-size: 26;
+                          -fx-background-radius: 25;
+                      } #Appointment {
+                        -fx-background-image: url('/images/N3.png');
+                        -fx-font-size: 26;
+                        -fx-background-radius: 25;
+                      }#AppointmentEditor {
+                        -fx-background-image: url('/images/ButtonCR.png');
+                        -fx-font-size: 26;
+                        -fx-background-radius: 25;
+                      } #EditorPage {
+                        -fx-background-image: url('/images/N6.png');
+                        -fx-font-size: 26;
+                        -fx-background-radius: 25;
+                      } #checkIn {
+                        -fx-background-image: url('/images/N6.png');
+                        -fx-font-size: 26;
+                        -fx-background-radius: 25;
                       }
 
-.jfx-tab-pane .headers-region {
-    -fx-background-color: #1b75bc;
-}
-.jfx-tab-pane .tab-header-background {
-    -fx-background-color: #1b75bc;
-}
+
+
+
 .jfx-tab-pane .tab-selected-line {
     -fx-stroke: #75bc1b;
     -fx-stroke-width: 3pt;
 }
 
 .list-cell:selected {
-    -fx-background-color: #4b5960;
-    -fx-border-color:#ff4d4d;
+    -fx-background-color: #b7b7b7;
+
 }
 
-.list-cell:filled:selected:focused, .list-cell:filled:selected {
-    -fx-background-color: linear-gradient(#748cdc 0%, #748cdc 25%, #748cdc 75%, #748cdc 100%);
+.list-cell:filled:selected:focused .list-cell:filled:hover .list-cell:filled:selected {
+    -fx-background-color: linear-gradient(#d7d7d7 0%, #eaeaea 25%, #eaeaea 75%, #eaeaea 100%);
     -fx-text-fill: white;
 }
 
@@ -56,22 +80,22 @@
 }
 
 .list-cell:filled:hover {
-    -fx-background-color: #7e98ef;
+    -fx-background-color: #cacaca;
     -fx-text-fill: white;
 }
 
 .jfx-tab-pane .headers-region {
-    -fx-background-color: #363d54;
+    -fx-background-color: #666666;
 }
 .jfx-tab-pane .tab-header-background {
-    -fx-background-color: #363d54;
+    -fx-background-color: #666666;
 }
 .jfx-tab-pane .tab-header-area .jfx-rippler
 {
-    -jfx-rippler-fill: WHITE;
+    -jfx-rippler-fill:  #a2a2a2;
 }
 .jfx-tab-pane .tab-selected-line {
-    -fx-background-color: #7e98ef;
+    -fx-background-color: #a2a2a2;
     -fx-pref-height: 3;
 }
 
@@ -93,16 +117,16 @@
 }
 
 .jfx-list-cell:selected{
-    -fx-background-color: #3d8c91;
+    -fx-background-color: #d6d6d6;
 }
 .jfx-list-cell{
     -fx-background-insets: 0.0;
 }
-.jfx-list-cell .jfx-rippler{
-    -fx-rippler-fill: #0000ff;
+*{
+    -jfx-rippler-fill: #ffffff;
 }
 .jfx-list-cell:hover{
-    -fx-background-color: #1bd79c;
+    -fx-background-color: #cdcdcd;
 }
 
 .jfx-list-view{
@@ -110,41 +134,9 @@
     -fx-background-insets: 0;
     -fx-cell-vertical-margin: 10.0;
     -fx-vertical-gap: 10;
-    -fx-background-color: derive(#748cdc, 80%);
-    -fx-border-color: derive(#363d54, 40%);
+    -fx-background-color: derive(#d6d6d6, 80%);
+    -fx-border-color: derive(#d2d2d2, 40%);
     -fx-border-width: 3;
     /*-fx-pref-width: 150;*/
 }
 
-/*Below for Scroll bar of the LISTVIEW*/
-/*documentary for the scroll-bar: https://blog.ngopal.com.np/2012/07/11/customize-scrollbar-via-css/    */
-
-.jfx-list-view .scroll-bar:vertical .thumb,
-.jfx-list-view .scroll-bar:horizontal .thumb,
-.web-view .scroll-bar:vertical .thumb,
-.web-view .scroll-bar:horizontal .thumb{
-    -fx-background-color: derive(#363d54,30%);
-}
-
-.jfx-list-view .scroll-bar:vertical .track,
-.jfx-list-view .scroll-bar:horizontal .track,
-.web-view .scroll-bar:vertical .track,
-.web-view .scroll-bar:horizontal .track{
-    -fx-background-color: derive(#748cdc,80%);
-}
-
-.jfx-list-view .increment-button ,.jfx-list-view .decrement-button,
-.web-view .increment-button ,.web-view .decrement-button{
-    -fx-background-color: derive(#748cdc, 70%);
-}
-
-.jfx-list-view .scroll-bar:horizontal:hover .thumb ,
-.jfx-list-view .scroll-bar:horizontal:pressed .thumb ,
-.jfx-list-view .scroll-bar:vertical:hover .thumb,
-.jfx-list-view .scroll-bar:vertical:pressed .thumb,
-.web-view .scroll-bar:horizontal:hover .thumb ,
-.web-view .scroll-bar:horizontal:pressed .thumb ,
-.web-view .scroll-bar:vertical:hover .thumb,
-.web-view .scroll-bar:vertical:pressed .thumb {
-    -fx-background-color: derive(#363d54, 10%);
-}

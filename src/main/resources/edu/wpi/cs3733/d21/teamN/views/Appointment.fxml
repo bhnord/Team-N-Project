@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXTimePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="anchorPage" prefHeight="767.0" prefWidth="1360.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.d21.teamN.views.AppointmentController">
+    <children>
+      <ImageView fitHeight="1766.0" fitWidth="1567.0" pickOnBounds="true" preserveRatio="true" scaleX="2.0" scaleY="2.0">
+         <image>
+            <Image url="@/images/CSVBackground.png" />
+         </image>
+      </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="590.0" layoutX="110.0" layoutY="152.0" stroke="#bcbcbc" strokeType="INSIDE" width="700.0" AnchorPane.topAnchor="150.0" />
+      <JFXListView fx:id="listView" layoutX="116.0" layoutY="161.0" prefHeight="535.0" prefWidth="400.0" stylesheets="@/StyleSheet/style.css" verticalGap="10.0" />
+      <Label layoutX="549.0" layoutY="493.0" stylesheets="@/Fonts/Roboto-Light.css" text="Date" AnchorPane.leftAnchor="549.0" />
+      <Label layoutX="549.0" layoutY="549.0" stylesheets="@/Fonts/Roboto-Light.css" text="Time" AnchorPane.leftAnchor="549.0" />
+      <Label layoutX="550.0" layoutY="347.0" stylesheets="@/Fonts/Roboto-Light.css" text="Appointment Type" AnchorPane.leftAnchor="550.0" />
+      <Label fx:id="text" layoutX="110.0" layoutY="21.0" prefHeight="124.0" prefWidth="523.0" stylesheets="@/Fonts/Roboto-Black.css" text="Appointments" textAlignment="CENTER">
+         <font>
+            <Font name="Arial Black" size="30.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#0c00ad00" height="181.0" layoutX="1037.0" layoutY="145.0" stroke="TRANSPARENT" strokeType="INSIDE" width="302.0" />
+      <JFXButton layoutX="609.0" layoutY="365.0" onAction="#addAppointment" prefHeight="82.0" prefWidth="395.0" style="-fx-background-radius: 15; -fx-background-color: #748cdc;" stylesheets="@/Fonts/Roboto-Light.css" text="Make New Appointment" textFill="WHITE" AnchorPane.leftAnchor="850.0" AnchorPane.topAnchor="150.0">
+         <font>
+            <Font name="Arial Black" size="14.0" />
+         </font>
+      </JFXButton>
+      <AnchorPane fx:id="anchorPane" prefHeight="1153.0" prefWidth="66.0" />
+      <JFXButton layoutX="609.0" layoutY="247.0" onAction="#deleteAppointment" prefHeight="82.0" prefWidth="395.0" style="-fx-background-radius: 15; -fx-background-color: #748cdc;" stylesheets="@/Fonts/Roboto-Light.css" text="Delete appointment" textFill="WHITE" AnchorPane.leftAnchor="850.0" AnchorPane.topAnchor="250.0">
+         <font>
+            <Font name="Arial Black" size="14.0" />
+         </font>
+      </JFXButton>
+      <JFXDatePicker fx:id="datePicker" layoutX="546.0" layoutY="510.0" />
+      <JFXTimePicker fx:id="timePicker" layoutX="546.0" layoutY="570.0" />
+      <JFXComboBox fx:id="appointmentTypeDropdown" layoutX="547.0" layoutY="387.0" prefHeight="25.0" prefWidth="136.0" />
+      <JFXTextField fx:id="username" layoutX="548.0" layoutY="248.0" />
+      <Label layoutX="549.0" layoutY="232.0" stylesheets="@/Fonts/Roboto-Light.css" text="Patient Username" />
+      <Label layoutX="549.0" layoutY="174.0" stylesheets="@/Fonts/Roboto-Light.css" text="AppointmentID" />
+      <JFXTextField fx:id="appointmentID" layoutX="550.0" layoutY="191.0" />
+      <Label layoutX="549.0" layoutY="291.0" stylesheets="@/Fonts/Roboto-Light.css" text="Staff" />
+      <JFXComboBox fx:id="staffDropdown" layoutX="547.0" layoutY="314.0" prefHeight="25.0" prefWidth="136.0" />
+      <JFXButton layoutX="850.0" layoutY="339.0" onAction="#save" prefHeight="82.0" prefWidth="395.0" style="-fx-background-radius: 15; -fx-background-color: #748cdc;" stylesheets="@/Fonts/Roboto-Light.css" text="Update Appointment" textFill="WHITE">
+         <font>
+            <Font name="Arial Black" size="14.0" />
+         </font>
+      </JFXButton>
+      <Label layoutX="548.0" layoutY="437.0" stylesheets="@/Fonts/Roboto-Light.css" text="Room" />
+      <JFXComboBox fx:id="locationDropdown" layoutX="547.0" layoutY="454.0" prefHeight="25.0" prefWidth="136.0" />
+    </children>
+</AnchorPane>

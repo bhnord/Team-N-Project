@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXListView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Rectangle?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.d21.teamN.views.ServiceRequests">
+    <children>
+        <ImageView fitHeight="1766.0" fitWidth="1458.0" pickOnBounds="true" preserveRatio="true" scaleX="2.0" scaleY="2.0" StackPane.alignment="TOP_LEFT">
+            <image>
+                <Image url="@/images/CSVBackground.png" />
+            </image>
+        </ImageView>
+      <Rectangle fx:id="darkMode" arcHeight="5.0" arcWidth="5.0" fill="#000000bf" height="4000.0" stroke="#ffffff00" strokeType="INSIDE" width="4000.0" />
+        <GridPane fx:id="BigBoiPane">
+            <columnConstraints>
+                <ColumnConstraints hgrow="NEVER" maxWidth="451.0" minWidth="66.0" prefWidth="66.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="652.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="768.0" prefHeight="768.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <GridPane prefWidth="240.0" GridPane.columnIndex="1">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+               <children>
+                  <JFXListView fx:id="listView" style="-fx-background-color: transparent;" stylesheets="@/StyleSheet/ServiceRequestList.css">
+                     <GridPane.margin>
+                        <Insets left="25.0" />
+                     </GridPane.margin></JFXListView>
+               </children>
+                </GridPane>
+                <AnchorPane fx:id="anchorPane" prefHeight="200.0" prefWidth="200.0" GridPane.valignment="BASELINE" />
+            </children>
+        </GridPane>
+    </children>
+</StackPane>
